@@ -1,0 +1,55 @@
+\section{数域}
+
+\subsection{定义}
+
+\begin{definition}[域的定义]
+	如果一个集合 $D$ 和其上的运算 $+,\times$ 满足如下条件：
+
+	\begin{enumerate}
+		\item $(D,+)$ 构成阿贝尔群；
+		\item $(D,\times)$ 构成阿贝尔群；
+		\item $+,\times$ 有分配律。
+	\end{enumerate}
+
+	那么 $(D,+,\times)$ 是一个域。
+\end{definition}
+
+数域的定义可以在此基础上进一步限制：
+
+\begin{definition}[数域的定义]
+	若集合 $P$ 满足 $\{0,1\} \subseteq P \subseteq \mathbb{C}$，且 $(P,+,\times)$ 是数域。
+
+	课本定义：若 $\mathbb{C}$ 的子集 $P$ 包含 $0,1$ 且其上的加减乘除封闭，那么 $P$ 是数域。
+\end{definition}
+
+要证明一个集合是数域，只需要验证加减乘除的封闭性即可。
+
+\subsection{性质}
+
+\begin{conclusion}
+	对于域 $P$，若 $a,b \in P \land ab=0$，那么 $a=0 \lor b=0$。
+
+	\begin{proof}
+		先证明 $0 \times x=0$：随便找一个 $y \neq 0$，那么等价于证明 $(y-y) \times x=0$，也就是证明 $y \times x-y \times x=0$，这是根据定义显然的。
+
+		回到原问题。不妨设有 $a \neq 0$，我们希望证明 $b=0$。那么找到 $a$ 的乘法逆元 $a^{-1}$，则有 $a^{-1} \times a \times b=a^{-1} \times 0=0$。根据结合律得到 $1 \times b=0$，再由定义 $b=0$。
+	\end{proof}
+\end{conclusion}
+
+\begin{conclusion}
+	若集合 $P$ 是数域，那么 $\mathbb{Q} \subseteq P$。
+
+	\begin{proof}
+		首先根据定义，$0 \in P,\ 1 \in P$。根据加减法封闭，推出 $\mathbb{Z} \subseteq P$，再由除法封闭，推出 $\mathbb{Q} \subseteq P$。
+	\end{proof}
+\end{conclusion}
+
+\subsection{拓展}
+
+\begin{theorem}[林德曼定理]
+	$\pi$ 是超越数。即对于任意复数域上的非零多项式 $f(x)$，有 $f(\pi) \neq 0$。
+
+	\begin{proof}
+		我不会。
+	\end{proof}
+\end{theorem}
