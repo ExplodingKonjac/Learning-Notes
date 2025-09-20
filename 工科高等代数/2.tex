@@ -1,0 +1,224 @@
+\section{行列式 I}
+
+\subsection{定义}
+
+\begin{definition}[排列的定义]
+	由 $1,2,\cdots,n$ 组成的元素互不相同的有序数组称作 $n$ 阶排列。所有 $n$ 阶排列组成集合记作 $\mathscr{P}_n$。
+\end{definition}
+
+\begin{definition}[行列式的定义]
+	对于方阵 $\matr{A} = [a_{i,j}]_{n \times n}$，定义其行列式
+	$$
+	\det(\matr{A}) = |a_{i,j}|_{n \times n} = \sum_{p \in \mathscr{P}_n} (-1)^{\tau(p)} \prod_{i = 1}^n a_{i,p_i}
+	$$
+\end{definition}
+
+\subsection{性质}
+
+可以使用的性质：
+
+\begin{property}
+	$$
+	\det(\matr{A}) = \det(\matr{A}^{\text{T}})
+	$$
+\end{property}
+
+\begin{property}
+	$$
+	\begin{vmatrix}
+		\vect{a_1} \\
+		\vdots \\
+		k \vect{a_i} \\
+		\vdots \\
+		\vect{a_n}
+	\end{vmatrix} =
+	k \begin{vmatrix}
+		\vect{a_1} \\
+		\vdots \\
+		\vect{a_i} \\
+		\vdots \\
+		\vect{a_n}
+	\end{vmatrix}
+	$$
+\end{property}
+
+\begin{property}
+	$$
+	\begin{vmatrix}
+		\vect{a_1} \\
+		\vdots \\
+		\vect{b}+\vect{c} \\
+		\vdots \\
+		\vect{a_n}
+	\end{vmatrix} =
+	\begin{vmatrix}
+		\vect{a_1} \\
+		\vdots \\
+		\vect{b} \\
+		\vdots \\
+		\vect{a_n}
+	\end{vmatrix} +
+	\begin{vmatrix}
+		\vect{a_1} \\
+		\vdots \\
+		\vect{c} \\
+		\vdots \\
+		\vect{a_n}
+	\end{vmatrix}
+	$$
+\end{property}
+
+\begin{property}
+	行列式中有两行/两列成比例时，行列式为 $0$。
+\end{property}
+
+\begin{property}
+	将行列式一行/一列的倍数加到另一行/一列上，行列式不变。
+\end{property}
+
+\begin{property}
+	交换行列式中两行/两列，行列式取反。
+\end{property}
+
+\subsection{作业}
+
+\begin{problem}[课后习题 1]
+	题面略。
+
+	\begin{solution}
+		\begin{enumerate}
+			\item $\tau(1,3,4,7,8,2,6,9,5) = 4 + 2 + 4 = 10$，是偶排列；
+			\item $\tau(2,1,7,9,8,6,3,5,4) = 1 + 1 + 3 + 4 + 4 + 5 = 18$，是偶排列；
+			\item $\tau(9,8,7,6,5,4,3,2,1) = 9 \times 8 / 2 = 36$，是偶排列。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 2]
+	题面略。
+
+	\begin{solution}
+		\begin{enumerate}
+			\item $i = 8, k = 3$；
+			\item $i = 3, k = 6$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 4]
+	题面略。
+
+	\begin{solution}
+		$$
+		\tau(n,n-1,\cdots,1) = \frac{n(n-1)}{2}
+		$$
+		当 $n = 4k \text{ 或 } 4k-3\ (k \in \mathbb{Z}^+)$ 时，该排列为偶排列，否则为奇排列。
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 5]
+	题面略。
+
+	\begin{solution}
+		将原排列反转，所有顺序对变成逆序对，所有逆序对变成顺序对。因此：
+		$$
+		\tau(x_n,x_{n-1},\cdots,x_1) = \frac{n(n-1)}{2} - \tau(x_1,x_2,\cdots,x_n) = \frac{n(n-1)}{2} - k
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 6]
+	题面略。
+
+	\begin{solution}
+		$a_{23} a_{31} a_{42} a_{56} a_{14} a_{65} = a_{14} a_{23} a_{31} a_{42} a_{56} a_{65}$，带符号为正。
+
+		$a_{32} a_{43} a_{14} a_{51} a_{66} a_{25} = a_{14} a_{25} a_{32} a_{43} a_{51} a_{66}$，带符号为正。
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 7]
+	题面略。
+
+	\begin{solution}
+		\begin{itemize}
+			\item $a_{11} a_{23} a_{32} a_{44}$
+			\item $a_{12} a_{23} a_{34} a_{41}$
+			\item $a_{14} a_{23} a_{31} a_{42}$
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 8]
+	题面略。
+
+	\begin{solution}
+		\begin{enumerate}
+			\item $\displaystyle\text{原式} = \begin{vmatrix}
+				a_{11} & a_{12} & a_{13} & a_{14} \\
+				b_{21} & b_{22} & b_{23} & b_{24} \\
+				a_{31} & a_{32} & a_{33} & a_{34} \\
+				a_{41} & a_{42} & a_{43} & a_{44}
+			\end{vmatrix}$
+			\item $\displaystyle\text{原式} = \begin{vmatrix}
+				a_{11} & a_{12} & a_{13} & a_{14} \\
+				a_{31} & a_{32} & a_{33} & a_{34} \\
+				a_{21} & a_{22} & a_{23} & a_{24} \\
+				a_{41} & a_{42} & a_{43} & a_{44}
+			\end{vmatrix}$
+			\item $\displaystyle\text{原式} = \begin{vmatrix}
+				a_{11} & a_{12} & a_{13} & a_{14} \\
+				a_{31} & a_{32} & a_{33} & a_{34} \\
+				a_{31} & a_{32} & a_{33} & a_{34} \\
+				a_{41} & a_{42} & a_{43} & a_{44}
+			\end{vmatrix} = 0$
+			\item $\displaystyle\text{原式} = \begin{vmatrix}
+				a_{11} & a_{13} & a_{13} & a_{14} \\
+				a_{21} & a_{23} & a_{23} & a_{24} \\
+				a_{31} & a_{33} & a_{33} & a_{34} \\
+				a_{41} & a_{43} & a_{43} & a_{44}
+			\end{vmatrix} = 0$
+			\item $\displaystyle\text{原式} = \begin{vmatrix}
+				a_{11} & a_{12} & a_{13} & a_{14} \\
+				b_{21} & b_{22} & b_{23} & b_{24} \\
+				a_{31} & a_{32} & a_{33} & a_{34} \\
+				a_{41} & a_{42} & a_{43} & a_{44}
+			\end{vmatrix}$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}[课后习题 9]
+	题面略。
+
+	\begin{solution}
+		\begin{enumerate}
+			\item 仅 $a_{1,n} a_{2,n-1} \cdots a_{n,1}$ 项非 $0$，故原行列式为 $-\prod_{i=1}^n i$；
+			\item 仅 $a_{1,2} a_{2,3} \cdots a_{n-1,n} a_{n,1}$ 项非 $0$，故原行列式为 $(-1)^{n-1} \prod_{i=1}^n i$；
+			\item 仅 $a_{1,n-1} a_{2,n-2} \cdots a_{n-1,1} a_{n,n}$ 项非 $0$，故原行列式为 $(-1)^{(n-1)(n-2)/2} \prod_{i=1}^n i$。
+		\end{enumerate}
+	\end{solution}	
+\end{problem}
+
+\begin{problem}[课后习题 10]
+	题面略。
+
+	\begin{proof}
+		由定义知，行列式每项中不包含相同行或者相同列的元素。
+
+		而该行列式中不为 $0$ 的项，必然只能选择前两行或者前两列的元素。这样最多只能选择 $4$ 个元素，这是一个 $5$ 阶行列式，故不存在不为 $0$ 的项。
+
+		因此该行列式为 $0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}[课后习题 11]
+	题面略。
+
+	\begin{solution}
+		\begin{enumerate}
+			\item $x^4$ 系数：仅 $a_{11} a_{22} a_{33} a_{44}$ 项包含 $x^4$，故系数为 $2$。
+			\item $x^3$ 系数：仅 $a_{12} a_{21} a_{33} a_{44}$ 项包含 $x^3$，故系数为 $-1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}

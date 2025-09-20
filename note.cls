@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mybook}
+\ProvidesClass{note}
 
 % Package requirements
 \LoadClass[12pt]{ctexbook}
@@ -8,6 +8,7 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
+\RequirePackage{mathrsfs}
 \RequirePackage{yhmath}
 \RequirePackage{geometry}
 \RequirePackage{titling}
@@ -113,21 +114,34 @@
 }
 \newtheorem{theorem}{定理}[section]
 \AddTCB[theorem]
+
 \newtheorem{lemma}[theorem]{引理}
 \AddTCB[lemma]
-\newtheorem{corollary}[theorem]{推论}
+
+\newtheorem{corollary}{推论}[theorem]
 \AddTCB[corollary]
-\newtheorem{conclusion}{结论}[section]
-\AddTCB[conclusion]
+
+\newtheorem{property}{性质}[section]
+\AddTCB[property]
+
+\newtheorem{example}{例}[section]
+\AddTCB[example]
+
+\newtheorem{problem}{题}[section]
+\AddTCB[problem]
+
 \theoremstyle{definition}
 \newtheorem{definition}{定义}[section]
 \AddTCB[definition]
-\newtheorem{example}{例}[section]
-\AddTCB[example]
+
 \theoremstyle{remark}
-\newtheorem{remark}{备注}[section]
+\newtheorem*{remark}{备注}
 \AddTCB[remark]
-\newtheorem*{solution}{解}
+
+\newenvironment{solution}
+	{\begin{proof}[解]\let\qed\relax}
+	{\end{proof}}
+
 \undef\AddTCB
 
 % math definitions
