@@ -1,0 +1,82 @@
+\section{集合、映射、函数}
+
+\subsection{集合}
+
+一些集合之间运算的定义：
+
+\begin{definition}[集合运算]
+	\ 
+	\begin{itemize}
+		\item 交集：$A \cap B \coloneqq \{x \mid x \in A \land x \in B\}$；
+		\item 并集：$A \cup B \coloneqq \{x \mid x \in A \lor x \in B\}$;
+		\item 差集：$A \setminus B = \complement_{A} B \coloneqq \{x \mid x \in A \land x \notin B\}$；
+		\item 笛卡尔积：$A \times B \coloneqq \{(x,y) \mid x \in A \land y \in B\}$；
+		\item 补集：$A^C \coloneqq X \setminus A$，其中 $X$ 表示全集。
+	\end{itemize}
+\end{definition}
+
+一些集合之间关系的定义：
+
+\begin{definition}[集合关系]
+	\ 
+	\begin{itemize}
+		\item 包含于：$A \subseteq B \Leftrightarrow \forall \, x \in A: x \in B$；
+		\item 相等：$A = B \Leftrightarrow A \subseteq B \land B \subseteq A$。
+	\end{itemize}
+\end{definition}
+
+\subsection{映射}
+
+对于集合 $X,Y$，如果任意一个 $x \in X$ 都对应唯一一个 $y \in Y$，那么这个关系可记作一个映射 $f$：
+
+$$
+f: X \rightarrow Y \quad x \mapsto y
+$$
+
+也定义记号 $f(x) = y,\ f(S) = \{y \mid x \in S\},\ f^{-1}(T) = \{x \mid f(x) \in T\}$。
+
+映射之间可以进行复合：
+
+\begin{definition}[复合映射]
+	对于 $f: X \rightarrow Y,\ g: Y \rightarrow Z$，定义：
+	$$
+	f \circ g: X \rightarrow Z \quad x \mapsto g(f(x))
+	$$
+	同时，定义 $f^k\ (k \in \mathbb{N})$：
+	$$
+	f^k = \begin{cases}
+		x & k = 0 \\
+		f \circ f^{k-1} & k > 0
+	\end{cases}
+	$$
+\end{definition}
+
+一些特殊的映射的定义：
+
+\begin{definition}[单射]
+	$f: X \rightarrow Y$ 是单射当且仅当 $\forall\, x_1, x_2 \in X,\ x_1 \neq x_2: f(x_1) \neq f(x_2)$。
+\end{definition}
+
+\begin{definition}[满射]
+	$f: X \rightarrow Y$ 是满射当且仅当 $f(X) = Y$。
+\end{definition}
+
+\begin{definition}[双射]
+	$f: X \rightarrow Y$ 是双射当且仅当 $f$ 是单射且 $f$ 是满射。
+\end{definition}
+
+对于双射 $f$，可以定义其逆映射 $f^{-1}$：
+
+\begin{definition}[逆映射]
+	$f^{-1}: Y \rightarrow X \quad y \mapsto x$。其中 $x$ 为唯一的 $x \in X$，使得 $f(x) = y$。
+
+	我们也记 $f^{-k} = (f^{-1})^k$。
+\end{definition}
+
+显然存在关系：$(f \circ f^{-1})(x) = x$。
+
+\subsection{函数}
+
+若映射 $f: X \rightarrow Y$ 满足 $X,Y \in \mathbb{R}$，那么它就称为一个\textbf{一元实函数}，简称\textbf{函数}。
+
+常函数、幂函数、指数函数、对数函数、三角函数、反三角函数成为基本初等函数。它们经过加、减、乘、除、复合得到的函数称为初等函数。

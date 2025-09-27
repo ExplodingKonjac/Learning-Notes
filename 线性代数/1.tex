@@ -1,0 +1,58 @@
+\section{行列式 I}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 1.1.1
+	\begin{solution}
+		\begin{enumerate}
+			\item[(1)] $\tau = 3$，是奇排列；
+			\item[(2)] 排列的左半部分和右半部分内部递增，因此无逆序对。而排列中每个奇数都能与每个小于它的偶数形成逆序对，因此 $\tau = \sum_{i=1}^n (i-1) = n(n-1)/2$。因此当 $n=4k+2 \text{ 或 } 4k+3 (k \in \mathbb{N})$ 时排列是奇排列，否则是偶排列。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.1.2
+	\begin{solution}
+		\begin{enumerate}
+			\item[(1)] $a_{31} a_{25} a_{13} a_{54} a_{42} = a_{13} a_{25} a_{31} a_{42} a_{54}$，可知系数为 $-1$；
+			\item[(2)] $a_{14} a_{23} a_{51} a_{32} a_{45} = a_{14} a_{23} a_{32} a_{45} a_{51}$，可知系数为 $-1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.1.3
+	\begin{proof}
+		设长度为 $n$ 的奇排列集合为 $\mathscr{P}_{n,0}$，偶排列集合为 $\mathscr{P}_{n,1}$。那么定义操作 $F$：对于某个排列 $p$，交换 $p_1,p_2$ 可得到一个新排列 $F(p)=p'$，显然 $p,p'$ 奇偶性不同。那么存在单射 $f: \mathscr{P}_{n,0} \to \mathscr{P}_{n,1} \quad p \mapsto F(p)$ 和单射 $g: \mathscr{P}_{n,1} \to \mathscr{P}_{n,0} \quad p \mapsto F(p)$。可得 $\mathscr{P}_{n,0}$ 和 $\mathscr{P}_{n,1}$ 等势，即奇排列个数与偶排列相等。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 1.1.4
+	\begin{solution}
+		\begin{enumerate}
+			\item[(2)] 由题可知，行列式中唯一非零的项为 $a_{14} a_{21} a_{33} a_{42}$，其系数为 $1$，因此原行列式值为 $a_{14} a_{21} a_{33} a_{42}$。
+			\item[(4)] 行列式的每一项中，每行每列均占且只占一个元素。因此原行列式的 $3,4,5$ 行中需要选出三个不同列的元素，其中必定有 $0$。因此原行列式值为 $0$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.1.5
+	\begin{proof}
+		零元素数量 $> n^2 - n$ 等价于非零元素数量 $< n$。于是无法选出 $5$ 个非零元素。因此行列式必定为 $0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 1.1.6
+	\begin{proof}
+		记 $[x^k] F(x)$ 表示多项式 $F(x)$ 的 $x^k$ 项系数。
+
+		行列式每个元素均是次数不超过 $1$ 的多项式，因此行列式的值是次数不超过 $n$ 的多项式。而除了 $\prod_{i=1}^n (x - a_{i,i})$ 这一项外，其余项均不含 $n$ 个 $x$，因此得到 $[x^n] f(x) = [x^n] \prod_{i=1}^n (x - a_{i,i}) = 1$，非零，于是 $f(x)$ 是 $n$ 次多项式。
+
+		有 $[x^n] f(x) = 1,\ [x^{n-1}] f(x) = 0$。其中后者是因为有且仅有主对角线元素含 $x$，因此在选出 $n-1$ 个含 $x$ 的元素后，剩下的一个元素也只能在主对角线上，不可能得到含 $n-1$ 个 $x$ 的项。
+	\end{proof}
+\end{problem}

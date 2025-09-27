@@ -2,12 +2,14 @@
 \ProvidesClass{note}
 
 % Package requirements
-\LoadClass[12pt]{ctexbook}
+\LoadClass[10.5pt]{ctexbook}
 \RequirePackage{xeCJK,xeCJKfntef}
+\RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
+\RequirePackage{arydshln}
 \RequirePackage{mathrsfs}
 \RequirePackage{yhmath}
 \RequirePackage{geometry}
@@ -84,7 +86,7 @@
 	{\normalfont\Huge\bfseries}
 	{第\zhnum{chapter}章：}
 	{1em}
-	{\setcounter{section}{-1}\Huge}
+	{\setcounter{section}{0}\Huge}
 \titleformat{\section}
 	{\LARGE\bfseries}
 	{\thesection}
@@ -137,6 +139,8 @@
 \theoremstyle{remark}
 \newtheorem*{remark}{备注}
 \AddTCB[remark]
+
+\AtBeginEnvironment{proof}{\setlength{\parindent}{2em}}
 
 \newenvironment{solution}
 	{\begin{proof}[解]\let\qed\relax}

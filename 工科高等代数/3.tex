@@ -1,0 +1,408 @@
+\section{行列式 II}
+
+\subsection{拉普拉斯定理}
+
+\begin{definition}[子式、余子式、代数余子式]
+	在一个 $n$ 阶行列式中选定 $k$ 个不同的行标 $i_1,i_2,\cdots,i_k$ 和 $k$ 个不同的列标 $j_1,j_2,\cdots,j_k$，这些行列交叉处元素组成一个 \textbf{$k$ 阶子式} $M$。而在原行列式中划去这些行列后剩下元素组成的行列式称为 $M$ 的\textbf{余子式} $M'$。而 $(-1)^{\sum_{m=1}^k i_m + \sum_{m=1}^k j_m} M'$ 称为 $M$ 的\textbf{代数余子式}。
+\end{definition}
+
+\begin{theorem}[拉普拉斯定理]
+	在行列式 $D$ 中任意选定 $k$ 行，这 $k$ 行元素组成的所有 $k$ 阶子式记作 $M_1,M_2,\cdots,M_t$，它们的代数余子式分别为 $A_1,A_2,\cdots,A_t$。则 $D = \sum_{i=1}^t A_i M_i$。
+
+	\begin{proof}
+		先证明 $M_i A_i$ 的每一项都是 $D$ 的一项，且符号一致。当 $M$ 占据左上角的时候：
+		$$
+		D = \left|\begin{array}{ccc:ccc}
+			a_{1,1} & \cdots & a_{1,k} & a_{1,k+1} & \cdots & a_{1,n} \\
+			\vdots & M & \vdots & \vdots & \ddots & \vdots \\
+			a_{k,1} & \cdots & a_{k,k} & a_{k,k+1} & \cdots & a_{k,n} \\
+			\hdashline
+			a_{k+1,1} & \cdots & a_{k+1,k} & a_{k+1,k+1} & \cdots & a_{k+1,n} \\
+			\vdots & \ddots & \vdots & \vdots & M' & \vdots \\
+			a_{n,1} & \cdots & a_{n,k} & a_{n,k+1} & \cdots & a_{n,n}
+		\end{array}\right|
+		$$
+		那么 $M_i A_i$ 的每项：
+		$$
+		\begin{aligned}
+			& (-1)^{\tau(\alpha)} \prod_{i=1}^k a_{i,\alpha_i} \cdot (-1)^{\tau(\beta)} \prod_{i=k+1}^n a_{i,\beta_{i-k}} \\
+			= & (-1)^{\tau(\alpha)+\tau(\beta)} \prod_{i=1}^k a_{i,\alpha_i} \cdot \prod_{i=k+1}^n a_{i,\beta_{i-k}} \\
+			= & (-1)^{\tau(\alpha_1,\cdots,\alpha_k,\beta_1,\cdots,\beta_{n-k})} \prod_{i=1}^k a_{i,\alpha_i} \cdot  \prod_{i=k+1}^n a_{i,\beta_{i-k}} \\
+		\end{aligned}
+		$$
+		而 $(-1)^{\sum_{i=1}^k i + \sum_{i=1}^k i}=1$，不需考虑。所以这显然是 $D$ 的一项。
+
+		对于一般情形而言，通过不断交换行列到相应位置即可证明。
+
+		而原定理的右侧式子显然是可以覆盖到 $D$ 的每一项的，因此得证。
+	\end{proof}
+\end{theorem}
+
+行列式按行、按列展开其实就是拉普拉斯定理的 $k=1$ 特殊情形。
+
+据此有一个常用结论：
+
+\begin{theorem}
+	记 $A_{i,j}$ 表示行列式 $D = |a_{i,j}|_n$ 在 $(i,j)$ 的代数余子式，那么：
+	$$
+	\sum_{s=1}^n a_{k,s} A_{i,s} = [k=i] D
+	$$
+	对于列也适用。
+
+	\begin{proof}
+		根据行展开规则，$k=i$ 时其值就是 $D$，否则相当于求把 $i$ 行替换为 $k$ 行的新行列式，而这个行列式有两行相同，因此为 $0$。
+	\end{proof}
+\end{theorem}
+
+\subsection{克拉默法则}
+
+\begin{theorem}[克拉默法则]
+	对于一个线性方程组
+	$$
+	\sum_{i=1}^n a_{k,i} x_i = b_k \quad (k=1,\dots,n)
+	$$
+	记 $\matr{A} = [a_{i,j}]_n,\ d = \det(\matr{A})$，再记 $d_i$ 表示把 $\matr{A}$ 的第 $i$ 列替换为 $\vect{b}$ 的行列式，那么方程组有唯一解的充要条件是 $d \neq 0$，且解一定为：
+	$$
+	x_k = \frac{d_k}{d} \quad (k=1,\dots,n)
+	$$
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 12
+	\begin{proof}
+		我们有：
+		$$
+		\begin{vmatrix}
+			1 & 1 & \cdots & 1 \\
+			1 & 1 & \cdots & 1 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			1 & 1 & \cdots & 1
+		\end{vmatrix} = \sum_{p_1,\dots,p_n} (-1)^{\tau(p)} = 0
+		$$
+		和式的每一项中，$p$ 为奇排列时是 $-1$，为偶排列时是 $+1$，而求和后为 $0$，说明奇偶排列数量相等。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 13
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据行列式定义，行列式每一项中最多包含一个 $x^k$，而 $k$ 取值为 $1,2,\dots,n-1$，因此原行列式为 $n-1$ 次多项式
+			\item[\textbf{2)}] 注意到，当 $x=a_1,a_2,\dots,a_{n-1}$ 时，行列式中有两行相等，那么 $P(x) = 0$。这说明 $a_1,a_2,\dots,a_{n-1}$ 为 $P(x)$ 的 $n-1$ 个不同的根。根据代数基本定理，$n-1$ 次多项式有 $n-1$ 个复根，因此 $P(x)$ 的根就是 $a_1,a_2,\dots,a_{n-1}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 14
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \begin{vmatrix}
+					1 & 1 & 1 & 1 \\
+					0 & x & y & x+y \\
+					0 & y & x+y & x \\
+					0 & x+y & x & y
+				\end{vmatrix} & \\
+				& = \begin{vmatrix}
+					1 & 1 & 1 & 1 \\
+					-(x+y) & -y & -x & 0 \\
+					-(x+y) & -x & 0 & -y \\
+					-(x+y) & 0 & -y & -x
+				\end{vmatrix} & \text{（第 $1$ 行的 $-(x+y)$ 倍加到第 $2,3,4$ 行）} \\
+				& = \begin{vmatrix}
+					-2 & 1 & 1 & 1 \\
+					0 & -y & -x & 0 \\
+					0 & -x & 0 & -y \\
+					0 & 0 & -y & -x
+				\end{vmatrix} = -2(x^3 + y^3) & \text{（第 $2,3,4$ 列加到第 $1$ 列）}\\
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \begin{vmatrix}
+					1 & 2 & 3 & 4 \\
+					0 & -1 & -2 & -7 \\
+					0 & -2 & -8 & -10 \\
+					0 & -7 & -10 & -13
+				\end{vmatrix} = \begin{vmatrix}
+					1 & 2 & 3 & 4 \\
+					0 & -1 & -2 & -7 \\
+					0 & 0 & -4 & 4 \\
+					0 & 0 & 4 & 36
+				\end{vmatrix} = \begin{vmatrix}
+					1 & 2 & 3 & 4 \\
+					0 & -1 & -2 & -7 \\
+					0 & 0 & -4 & 4 \\
+					0 & 0 & 0 & 40
+				\end{vmatrix} = 160 \\
+			\end{aligned}
+			$$
+
+			\item[\textbf{5)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \begin{vmatrix}
+					1 & 1 & 1 & 1 & 1 \\
+					0 & 1 + x & 1 & 1 & 1 \\
+					0 & 1 & 1 - x & 1 & 1 \\
+					0 & 1 & 1 & 1 + y & 1 \\
+					0 & 1 & 1 & 1 & 1 - y
+				\end{vmatrix} \\
+				& = \begin{vmatrix}
+					1 & 1 & 1 & 1 & 1 \\
+					-1 & x & 0 & 0 & 0 \\
+					-1 & 0 & -x & 0 & 0 \\
+					-1 & 0 & 0 & y & 0 \\
+					-1 & 0 & 0 & 0 & -y	
+				\end{vmatrix} & \text{（将第一行的 $-1$ 倍加到其他行）} \\
+				& = \begin{vmatrix}
+					1 & 1 & 1 & 1 & 1 \\
+					0 & x & 0 & 0 & 0 \\
+					0 & 0 & -x & 0 & 0 \\
+					0 & 0 & 0 & y & 0 \\
+					0 & 0 & 0 & 0 & -y	
+				\end{vmatrix} = x^2 y^2 & \text{（用 $2,3,4,5$ 列消去第 $1$ 列的 $-1$）}\\
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 15
+	\begin{proof}
+		$$
+		\begin{aligned}
+			\text{LHS} & = \begin{vmatrix}
+				2(a + b + c) & c + a & a + b \\
+				2(a_1 + b_1 + c) & c_1 + a_1 & a_1 + b_1 \\
+				2(a_2 + b_2 + c) & c_2 + a_2 & a_2 + b_2
+			\end{vmatrix} = 2\begin{vmatrix}
+				a + b + c & c + a & a + b \\
+				a_1 + b_1 + c & c_1 + a_1 & a_1 + b_1 \\
+				a_2 + b_2 + c & c_2 + a_2 & a_2 + b_2
+			\end{vmatrix} \\
+			& = 2\begin{vmatrix}
+				a + b + c & -b & -c \\
+				a_1 + b_1 + c & -b_1 & -c_1 \\
+				a_2 + b_2 + c & -b_2 & -c_2
+			\end{vmatrix} = 2\begin{vmatrix}
+				a & -b & -c \\
+				a_1 & -b_1 & -c_1 \\
+				a_2 & -b_2 & -c_2
+			\end{vmatrix} \\
+			& = \text{RHS}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 17
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \begin{vmatrix}
+					1 & 1 & 1 & 1 \\
+					0 & -1 & -1 & -5 \\
+					0 & 1 & 1 & 4 \\
+					0 & -1 & -2 & -3
+				\end{vmatrix} = \begin{vmatrix}
+					1 & 1 & 1 & 1 \\
+					0 & -1 & -1 & -5 \\
+					0 & 0 & 0 & -1 \\
+					0 & 0 & -1 & -2
+				\end{vmatrix} \\
+				& = -\begin{vmatrix}
+					1 & 1 & 1 & 1 \\
+					0 & -1 & -1 & -5 \\
+					0 & 0 & -1 & -2 \\
+					0 & 0 & 0 & -1
+				\end{vmatrix} = 1 \\
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = -\begin{vmatrix}
+					-1 & 3 & 5 & 1 & 2 \\
+					2 & 0 & 1 & 2 & 1 \\
+					0 & 1 & 2 & -1 & 4 \\
+					3 & 3 & 1 & 2 & 1 \\
+					2 & 1 & 0 & 3 & 5
+				\end{vmatrix} = -\begin{vmatrix}
+					-1 & 3 & 5 & 1 & 2 \\
+					0 & 6 & 11 & 4 & 5 \\
+					0 & 1 & 2 & -1 & 4 \\
+					0 & 12 & 16 & 5 & 7 \\
+					0 & 7 & 10 & 5 & 9
+				\end{vmatrix} \\
+				& = \begin{vmatrix}
+					-1 & 3 & 5 & 1 & 2 \\
+					0 & 1 & 2 & -1 & 4 \\
+					0 & 6 & 11 & 4 & 5 \\
+					0 & 12 & 16 & 5 & 7 \\
+					0 & 7 & 10 & 5 & 9
+				\end{vmatrix} = \begin{vmatrix}
+					-1 & 3 & 5 & 1 & 2 \\
+					0 & 1 & 2 & -1 & 4 \\
+					0 & 0 & -1 & 10 & -19 \\
+					0 & 0 & -8 & 17 & -41 \\
+					0 & 0 & -4 & 12 & -19
+				\end{vmatrix} \\
+				& = \begin{vmatrix}
+					-1 & 3 & 5 & 1 & 2 \\
+					0 & 1 & 2 & -1 & 4 \\
+					0 & 0 & -1 & 10 & -19 \\
+					0 & 0 & 0 & -63 & 111 \\
+					0 & 0 & 0 & -28 & 57 \\
+				\end{vmatrix} = (-1) \cdot 1 \cdot (-1) \cdot ((-63) \cdot 57 - 111 \cdot (-28)) = -483
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 18
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对于某非 $0$ 项：若最后一行选择了 $a_{n,1}$，那么前 $n-1$ 行只能选择 $a_{1,2},a_{2,3},\dots,a_{n-1,n}$；若最后一行选择了 $a_{n,n}$，那么前 $n-1$ 行只能选择 $a_{1,1},a_{2,2},\dots,a_{n-1,n-1}$。由此可得，$\text{原式} = x^n + (-1)^{n-1} y^n$。
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \begin{vmatrix}
+					1 & 2 & 2 & 2 & \cdots & 2 \\
+					1 & 0 & 0 & 0 & \cdots & 0 \\
+					1 & 0 & 1 & 0 & \cdots & 0 \\
+					1 & 0 & 0 & 2 & \cdots & 0 \\
+					\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+					1 & 0 & 0 & 0 & \cdots & n-2
+				\end{vmatrix} & \text{（用第一行 $-1$ 倍加到其余行）} \\
+				& = \begin{vmatrix}
+					1 - \sum_{i=1}^{n-2} 2/i & 2 & 2 & 2 & \cdots & 2 \\
+					1 & 0 & 0 & 0 & \cdots & 0 \\
+					0 & 0 & 1 & 0 & \cdots & 0 \\
+					0 & 0 & 0 & 2 & \cdots & 0 \\
+					\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+					0 & 0 & 0 & 0 & \cdots & n-2
+				\end{vmatrix} & \text{（用 $3,\dots,n$ 列消去第一列的 $1$）} \\
+				& = \begin{vmatrix}
+					1 - \sum_{i=1}^{n-2} 2/i & 2 \\
+					1 & 0
+				\end{vmatrix} \cdot |\operatorname{diag}(1,2,\dots,n-2)| \\
+				& = -2(n-2)!
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 19
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}] 枚举第 $n$ 列选择了哪个元素，则剩下的选择可以推出来：
+			$$
+			\begin{aligned}
+				\text{LHS} & = x^{n-1}(x + a_{n-1}) + \sum_{k=0}^{n-2} x^k (-1)^{n-k-1} a_k \cdot \tau(1,2,\dots,k,n,k+1,k+2,\dots,n-1) \\
+				& = x^{n-1}(x + a_{n-1}) + \sum_{k=0}^{n-2} x^k (-1)^{n-k-1} a_k \cdot (-1)^{n-k-1} \\
+				& = x^{n-1}(x + a_{n-1}) + \sum_{k=0}^{n-2} x^k a_k \\
+				& = x^n + \sum_{k=0}^{n-1} x^k a_k = \text{RHS}
+			\end{aligned}
+			$$
+			于是得证。
+
+			\item[\textbf{3)}] 使用数学归纳法。设左式的值为 $f_n$。那么 $f_1 = \alpha + \beta,\ f_2 = \alpha^2 + \beta^2 + \alpha \beta$，均满足条件，归纳奠基完成。
+			
+			然后假设 $<n\ (n \ge 3)$ 时均满足条件，要证明 $f_n$ 也满足条件，考虑第 $n$ 行选择哪个元素：
+			
+			\begin{itemize}
+				\item 如果选择 $a_{n,n}$，那么贡献就是 $(\alpha + \beta) f_{n-1}$。
+				\item 如果选择 $a_{n,n-1}$，那么可以推出第 $n$ 列只能选取 $a_{n-1,n}$，所以贡献是 $-\alpha \beta f_{n-2}$。
+			\end{itemize}
+
+			于是我们得到：
+			$$
+			\begin{aligned}
+				f_n & = (\alpha + \beta) f_{n-1} - \alpha \beta f_{n-2} \\
+				& = \frac{(\alpha + \beta) (\alpha^n - \beta ^n) - \alpha \beta (\alpha^{n-1} - \beta^{n-1})}{\alpha - \beta} \\
+				& = \frac{\alpha^n - \beta^n}{\alpha - \beta}
+			\end{aligned}
+			$$
+			也满足条件，故得证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 20
+	\begin{solution}
+		对第一个行列式进行初等变换：
+		$$
+		\begin{aligned}
+			\begin{vmatrix}
+				x & y & z & x + y + z \\
+				3 & 0 & 2 & 0 \\
+				1 & 1 & 1 & 1 \\
+				2 & 2 & 2 & 1
+			\end{vmatrix} & \xrightarrow{\text{第 $3$ 行乘 $2$}} \begin{vmatrix}
+				x & y & z & x + y + z \\
+				3 & 0 & 2 & 0 \\
+				2 & 2 & 2 & 2 \\
+				2 & 2 & 2 & 1
+			\end{vmatrix} \\
+			& \xrightarrow{\text{第 $3$ 行减去第 $2$ 行}} \begin{vmatrix}
+				x & y & z & x + y + z \\
+				3 & 0 & 2 & 0 \\
+				2 - x & 2 - y & 2 - z & 2 - x - y - z \\
+				2 & 2 & 2 & 1
+			\end{vmatrix} \\
+			& \xrightarrow{\text{第 $3$ 列减去第 $1$ 列}} \begin{vmatrix}
+				x & y & z - x & x + y + z \\
+				3 & 0 & -1 & 0 \\
+				2 - x & 2 - y & x - z & 2 - x - y - z \\
+				2 & 2 & 0 & 1
+			\end{vmatrix} \\
+			& \xrightarrow{\text{第 $1$ 列减去第 $2$ 列}} \begin{vmatrix}
+				x - y & y & z - x & x + y + z \\
+				3 & 0 & -1 & 0 \\
+				y - x & 2 - y & x - z & 2 - x - y - z \\
+				0 & 2 & 0 & 1
+			\end{vmatrix} \\
+			& \xrightarrow{\text{第 $4$ 行加上第 $2$ 行}} \begin{vmatrix}
+				x - y & y & z - x & x + y + z \\
+				3 & 0 & -1 & 0 \\
+				y - x & 2 - y & x - z & 2 - x - y - z \\
+				3 & 2 & -1 & 1
+			\end{vmatrix}
+		\end{aligned}
+		$$
+		得到了下面的行列式。因此所求行列式为 $\frac{1}{2} \cdot 2 = 1$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 22 1)
+	\begin{solution}
+		$$
+		\begin{cases}
+			x_1 = 1 \\
+			x_2 = 1 \\
+			x_3 = 1 \\
+			x_4 = 1
+		\end{cases}
+		$$
+	\end{solution}
+\end{problem}
