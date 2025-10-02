@@ -1,0 +1,409 @@
+\section{数列极限 I}
+
+\subsection{定义与性质}
+
+\begin{definition}[数列极限的定义]
+	对于无穷项数列 $\{a_n\}_{n \ge 1}$，如果存在 $A$ 满足：
+	$$
+	\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: |a_n - A| < \varepsilon
+	$$
+	那么称数列 $\{a_n\}_{n \ge 1}$ 收敛于 $A$，或者称 $A$ 为 $\{a_n\}_{n \ge 1}$ 的极限。记作 $\lim\limits_{n \to \infty} a_n = A$。
+
+	存在极限的数列称为\textbf{收敛}的，不存在极限的数列称为\textbf{发散}的。
+\end{definition}
+
+这个定义在几何上是可以很直观地理解的。
+
+将数列极限定义取否定，可以得到数列发散的充要条件：
+
+$$
+\forall\,A \in \mathbb{R}: \exists\,\varepsilon > 0: \forall\,N \in \mathbb{Z}^+: \exists\,n \ge N: |a_n - A| \ge \varepsilon
+$$
+
+数列极限具有下面的一些性质：
+
+\begin{property}[唯一性]
+	若数列的极限存在，那么它是唯一的。
+
+	\begin{proof}
+		考虑反证。假设 $\{a_n\}$ 有两个极限 $a,b$，那么取 $\varepsilon = \frac{|a-b|}{2}$ 即可推出矛盾。
+	\end{proof}
+\end{property}
+
+\begin{property}[有界性]
+	收敛数列都是有界数列。
+
+	\begin{proof}
+		设 $\{a_n\}$ 的极限为 $A$。那么任取一个 $\varepsilon > 0$，都存在一个 $N$ 满足 $\forall\,n \ge N: |a_n - A| < \varepsilon$。那么，$\max\ab\{A + \varepsilon, \max_{i=1}^{N-1}\{a_i\}\}$ 是一个上界，$\min\ab\{A - \varepsilon, \min_{i=1}^{N-1}\{a_i\}\}$ 是一个下界，故 $\{a_n\}$ 是有界数列。
+	\end{proof}
+\end{property}
+
+\begin{property}[保序性]
+	\ 
+	\begin{enumerate}
+		\item 若 $A = \lim\limits_{n \to \infty} a_n > \lim\limits_{n \to \infty} b_n = B$，那么 $\exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: a_n > b_n$；
+		\item 若 $a_n \ge b_n$，那么 $\lim\limits_{n \to \infty} a_n \ge \lim\limits_{n \to \infty} b_n$。
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item 取 $\varepsilon = \frac{|A - B|}{2}$，那么根据极限定义可以得到 $\{a_n\},\{b_n\}$ 对应的两个 $N_1,N_2$，取 $N = \max\{N_1,N_2\}$ 即证。
+			\item 就是上面命题的逆否命题。
+		\end{enumerate}
+	\end{proof}
+\end{property}
+
+保序性的 $b_n = 0$ 的特殊情况也被称作保号性。
+
+\begin{property}[子列极限一致性]
+	若 $\{a_n\}$ 是一个收敛序列，那么对于任意递增正整数列 $n_1,n_2,\dots$，称 $a_{n_1},a_{n_2},\dots$ 是 $\{a_n\}$ 的一个子列。那么 $\{a_n\}$ 的任意子列都收敛，且极限等于 $\{a_n\}$ 的极限。
+
+	\begin{proof}
+		根据极限定义是很显然的。
+	\end{proof}
+\end{property}
+
+这个性质也说明，若存在一个发散子列，那么数列也是发散的。
+
+\begin{theorem}[极限的四则运算]
+	\ 
+	\begin{enumerate}
+		\item 若 $\lim\limits_{n \to \infty} a_n = A,\ \lim\limits_{n \to \infty} b_n = B$，那么 $\{a_n \pm b_n\}$ 收敛，且 $\lim\limits_{n \to \infty} (a_n \pm b_n) = A \pm B$；
+		\item 若 $\lim\limits_{n \to \infty} a_n = A,\ \lim\limits_{n \to \infty} b_n = B$，那么 $\{a_n b_n\}$ 收敛，且 $\lim\limits_{n \to \infty} (a_n b_n) = A B$；
+		\item 若 $\lim\limits_{n \to \infty} a_n = A,\ \lim\limits_{n \to \infty} b_n = B \neq 0$，那么 $\ab\{\frac{a_n}{b_n}\}$ 收敛，且 $\lim\limits_{n \to \infty} \frac{a_n}{b_n} = \frac{A}{B}$。
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item 绝对值三角不等式即可证明。
+			\item
+			$$
+			\begin{aligned}
+				|a_n b_n - a b| & = |a_n b_n - a_n b + a_n b - a b| \\
+				& \ge |a_n b_n - a_n b| + |a_n b - a b| \\
+				& = |a_n| |b_n - b| + |b| |a_n - a|
+			\end{aligned}
+			$$
+			而 $|a_n|$ 是有界的，之后n的构造证明就很容易了。
+			
+			\item 只需证明 $\lim\limits_{n \to \infty} \frac{1}{b_n} = \frac{1}{b}$：
+			$$
+			\ab|\frac{1}{b_n} - \frac{1}{b}| = \frac{|b - b_n|}{|b_n| |b|} \ge \frac{2 |b - b_n|}{|b|^2}
+			$$
+			这是因为当 $n$ 足够大时 $|b_n| \ge \frac{|b|}{2}$。然后就容易构造了。
+		\end{enumerate}
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[夹逼定理]
+	若数列 $\{a_n\},\{b_n\},\{c_n\}$ 满足 $a_n \ge b_n \ge c_n$，且 $\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} c_n = A$，那么 $\lim\limits_{n \to \infty} b_n = A$。
+
+	\begin{proof}
+		根据保序性即可推出。
+	\end{proof}
+\end{theorem}
+
+夹逼定理在求解极限时非常有用，因为可以通过放缩来转化复杂极限。
+
+\subsection{无穷小和无穷大}
+
+\begin{definition}[无穷小]
+	一般我们称极限为 $0$ 的数列为无穷小。
+\end{definition}
+
+无穷小有下面的性质：
+
+\begin{property}[无穷小性质]
+	\ 
+	\begin{enumerate}
+		\item 有限个无穷小的线性组合是无穷小；
+		\item 若 $\{a_n\}$ 是无穷小，$\{c_n\}$ 是有界数列，那么 $\{a_n c_n\}$ 也是无穷小；
+		\item 若 $\{b_n\}$ 是无穷小，$a_n \le b_n$，那么 $\{a_n\}$ 也是无穷小；
+		\item $\lim\limits_{n \to \infty} a_n = A$ 等价于 $\{a_n - A\}$ 是无穷小。
+	\end{enumerate}
+\end{property}
+
+\begin{definition}[无穷大]
+	\ 
+	\begin{enumerate}
+		\item 如果 $\forall\,A > 0: \exists N \in \mathbb{Z}^+: \forall\,n \ge N: a_n > A$，那么记 $\lim\limits_{n \to \infty} a_n = +\infty$。
+		\item 如果 $\forall\,A < 0: \exists N \in \mathbb{Z}^+: \forall\,n \ge N: a_n < A$，那么记 $\lim\limits_{n \to \infty} a_n = -\infty$。
+	\end{enumerate}
+
+	\textbf{这种记法不说明极限存在}。这两种数列都称为无穷大。
+\end{definition}
+
+无穷大有下面的性质：
+
+\begin{property}[无穷大性质]
+	\ 
+	\begin{enumerate}
+		\item $\{a_n\}$ 是无穷大，那么 $\{a_n\}$ 无界;
+		\item 无界数列中可以选出无穷大子列；
+		\item 无穷大数列的任何子列也是无穷大，并且正负一致；
+		\item $\{a_n\}$ 是无穷大等价于 $\ab\{\frac{1}{a_n}\}$ 是无穷小。
+	\end{enumerate}
+
+	\begin{proof}
+		只简单证明 2.
+
+		假设有无界数列 $\{a_n\}$，构造下标序列 $n_1,n_2,\dots$：
+		$$
+		n_k = \min\{i \mid a_i \ge k\}
+		$$
+		那么 $a_{n_1},a_{n_2},\dots$ 是一个无穷大子列。
+	\end{proof}
+\end{property}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 2.1.2
+	\begin{proof}
+		\begin{itemize}
+			\item[\textbf{1)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\frac{1}{\varepsilon^2}} + 1$，那么 $\forall\,n \ge N$：
+			$$
+			\ab|\frac{\cos n}{\sqrt n}| \le \ab|\frac{1}{\sqrt n}| \le \ab|\frac{1}{\sqrt N}| < \varepsilon
+			$$
+			即证。
+			
+			\item[\textbf{3)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\ab(\frac{5 - 2\varepsilon}{4\varepsilon})^2} + 1$，那么 $\forall\,n \ge N$：
+			$$
+			\begin{aligned}
+				\ab|\frac{3\sqrt n - 1}{2\sqrt n + 1} - \frac{3}{2}| & = \ab|\frac{3}{2} - \frac{5}{4\sqrt n 2} - \frac{3}{2}| \\
+				& = \ab|\frac{5}{4\sqrt n + 2}| \\\
+				& \le \ab|\frac{5}{4\sqrt N + 2}| < \varepsilon \\
+			\end{aligned}
+			$$
+			即证。
+
+			\item[\textbf{6)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\frac{1}{2\varepsilon}} + 1$，那么 $\forall\,n \ge N$：
+			$$
+			\begin{aligned}
+				\ab|\frac{\sum_{i=1}^n i}{n^2} - \frac{1}{2}| & = \ab|\frac{n(n+1)}{2n} - \frac{1}{2}| \\
+				& = \ab|\frac{1}{2} + \frac{1}{2n} - \frac{1}{2}| \\
+				& = \ab|\frac{1}{2n}| \le \ab|\frac{1}{2N}| < \varepsilon
+			\end{aligned}
+			$$
+			即证。
+			
+			\item[\textbf{7)}] 首先对原式进行放缩：
+			$$
+			\frac{n!}{n^n} < \frac{\prod_{i=1}^n i}{n \cdot \prod_{i=2}^n i} = \frac{1}{n}
+			$$
+			那么对于 $\forall\,\varepsilon > 0$，取 $N = \ceil{\frac{1}{\varepsilon}} + 1$，就有 $\forall\,n \ge N: \ab|\frac{n!}{n^n}| < \ab|\frac{1}{n}| < \varepsilon$。即证。
+
+			\item[\textbf{8)}] 记 $b = \sqrt[k]{a} - 1$，那么我们只需证，$\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: \ab|\frac{n}{(1+b)^n}| < \sqrt[k]\varepsilon$。不妨设 $n \ge N \ge 2$，考虑：
+			$$
+			\begin{aligned}
+				\ab|\frac{n}{(1+b)^n}| & < \ab|\frac{n}{\binom{n}{2} b^2}| = \ab|\frac{2}{(n-1) b^2}| \\
+				& \le \ab|\frac{2}{(N-1) b^2}|
+			\end{aligned}
+			$$
+			那么，取 $N = \ceil*{\frac{2}{b^2 \sqrt[k] \varepsilon}} + 2$ 即可让上式 $< \sqrt[k] \varepsilon$。即证。
+
+			\item[\textbf{9)}] 取 $m = \ceil{a}$，那么有：
+			$$
+			\frac{a^n}{n!} = \frac{a^{n-m}}{n^{\underline{n-m}}} \cdot \frac{a^m}{m!} < \ab(\frac{a}{m+1})^{n-m} \cdot \frac{a^m}{m!}
+			$$
+			记 $u = \frac{a}{m+1} < 1,\ v = \frac{a^m}{m!} \ge 1$，那么对于 $\forall\,\varepsilon > 0$，取 $N = \max\{1,\ceil*{\log_u \frac{\varepsilon}{v} + m} + 1\}$。对于 $\forall\,n \ge N$ 有：
+			$$
+			\ab|\frac{a^n}{n!}| < \ab|u^{n-m} \cdot v| \le \ab|u^{N-m} \cdot v| < \varepsilon
+			$$
+			即证。
+		\end{itemize}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 2.1.4
+	\begin{proof}
+		由题知
+		$$
+		\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: \ab|b_n - a_n| < \varepsilon
+		$$
+		那么可以得到
+		$$
+		|b_n - a_n| = |b_n - a + a - a_n| = |b_n - a| + |a - a_n| < \varepsilon
+		$$
+		因此 $|b_n - a| < \varepsilon,\ |a_n - a| < \varepsilon$，这说明了 $\lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} a_n = a$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 2.1.6
+	\begin{proof}
+		对于 $\forall\,A \in \mathbb{R},\ N \in \mathbb{Z}^+$，取 $n = 2\max\{N,\ceil*{A} + 1\}$，那么有 $n > N,\ n > A,\ |a_n - A| = |2n - A| > 1$。因此极限不存在。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 2.1.7
+	\begin{proof}
+		设 $M = \sup A$。那么如下构造数列 $\{a_n\}$：
+		$$
+		a_i = x \quad \ab(x \in A \land x > M - \frac{1}{i})
+		$$
+		根据上确界定义，这样的 $x$ 始终存在，任取一个即可。此时 $\ab|a_i - M| < \frac{1}{i}$，故 $\lim\limits_{n \to \infty} a_n = M$，即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 2.2.2
+	\begin{proof}
+		考虑反证。若 $\{\sin n\}$ 收敛于 $A$，那么取 $\varepsilon = \frac{1}{2}$，则
+		$$
+		\exists\,N \in \mathbb{Z}^+: \forall n \ge N: \ab|\sin n - A| < \varepsilon
+		$$
+		那么也就有
+		$$
+		\forall\,i,j \ge N: |\sin i - \sin j| < 2\varepsilon = 1
+		$$
+		但是，按照如下方式选取 $i,j$：
+		$$
+		\begin{aligned}
+			& i \in \mathbb{Z} \cap [N,+\infty) \cap \ab(2k_1\pi + \frac{\pi}{6}, 2k_1\pi + \frac{5\pi}{6}) & \quad (k_1 \in \mathbb{Z})\\
+			& j \in \mathbb{Z} \cap [N,+\infty) \cap \ab(2k_2\pi + \frac{7\pi}{6}, 2k_2\pi + \frac{11\pi}{6}) & \quad (k_2 \in \mathbb{Z})
+		\end{aligned}
+		$$
+		就得到 $\sin i > \frac{1}{2},\ \sin j < -\frac{1}{2}$，这与 $|\sin i - \sin j| < 1$ 矛盾，即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 2.2.4
+	\begin{solution}
+		是。理由如下：
+
+		$\lim\limits_{n \to \infty} a_n = 0$，因此取 $0 < \varepsilon < 1$，那么 $\exists\,N \in \mathbb{Z}^+: \forall\,n \geq N: |a_n| < \varepsilon$。
+
+		那么，当 $n \geq N$ 时，就有 $|b_n| < \ab|\prod_{i=1}^{N-1} a_i| \cdot \varepsilon^{n - N + 1}$。等号右侧是一个无穷小，因此 $\{b_n\}$ 也是无穷小，也即极限为 $0$。 
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.2.6
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \frac{(a^n - 1)(b - 1)}{(b^n -1)(a - 1)} \\
+				& = \frac{b - 1}{a - 1} \lim_{n \to \infty} \frac{a^n - 1}{b^n - 1} \\
+				& = \frac{b - 1}{a - 1} \frac{\lim\limits_{n \to \infty} (a^n - 1)}{\lim\limits_{n \to \infty} (b^n - 1)} \\
+				& = \frac{b - 1}{a - 1}
+			\end{aligned}
+			$$
+
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \frac{1 - (-1/2)^n}{2 - (-1/2)^n} \\
+				& = \frac{\lim\limits_{n \to \infty} (1 - (-1/2)^n)}{\lim\limits_{n \to \infty} (2 - (-1/2)^n)} \\
+				& = \frac{1}{2}
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \prod_{k=2}^n \frac{(k-1)(k+1)}{k^2} \\
+				& = \lim_{n \to \infty} \frac{n+1}{2n} \\
+				& = \frac{1}{2} + \lim_{n \to \infty} \frac{1}{2n} = \frac{1}{2}
+			\end{aligned}
+			$$
+
+			\item[\textbf{5)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \frac{n(n+1)}{2n^2} \\
+				& = \lim_{n \to \infty} \frac{n+1}{2n} \\
+				& = \frac{1}{2} + \lim_{n \to \infty} \frac{1}{2n} = \frac{1}{2}
+			\end{aligned}
+			$$
+
+			\item[\textbf{9)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \frac{1}{1-x} \cdot (1 - x)(1 + x)(1 + x^2) \dots \ab(1 + x^{2^{n-1}}) \\
+				& = \lim_{n \to \infty} \frac{1}{1-x} \cdot (1 - x^2)(1 + x^2)(1 + x^4) \dots \ab(1 + x^{2^{n-1}}) \\
+				& = \dots \\
+				& = \lim_{n \to \infty} \frac{1-x^{2^n}}{1-x} \\
+				& = \frac{\lim\limits_{n \to \infty} \ab(1-x^{2^n})}{\lim\limits_{n \to \infty} (1-x)} \\
+				& = \frac{1}{1} = 1
+			\end{aligned}
+			$$
+
+			\item[\textbf{12)}] 记 $[condition]$ 表示：$condition$ 为真时值为 $1$，否则为 $0$。
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \ab(\frac{n^m}{n^k} \cdot \frac{a_m + \sum_{i=0}^{m-1} a_i n^{i-m}}{b_k + \sum_{i=0}^{k-1} b_i n^{i-k}}) \\
+				& = \lim_{n \to \infty} \frac{n^m}{n^k} \cdot \frac{\lim\limits_{n \to \infty} \ab(a_m + \sum_{i=0}^{m-1} a_i n^{i-m})}{\lim\limits_{n \to \infty} \ab(b_k + \sum_{i=0}^{k-1} b_i n^{i-k})} \\
+				& = \frac{a_m}{b_k} \lim_{n \to \infty} \frac{n^m}{n^k} \\
+				& = [m=k] \frac{a_m}{b_k}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.2.8
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				& \sum_{i=0}^n \frac{1}{n(n+i)} < \sum_{i=0}^n \frac{1}{n^2} = \frac{n+1}{n^2} \\
+				& \sum_{i=0}^n \frac{1}{n(n+i)} > \sum_{i=0}^n \frac{1}{(2n)^2} = \frac{n+1}{4n^2}
+			\end{aligned}
+			$$
+			而 $\lim\limits_{n \to \infty} \frac{n+1}{n^2} = \lim\limits_{n \to \infty} \frac{n+1}{4n^2} = 0$，故原极限值也为 $0$。
+
+			\item[\textbf{4)}] 当 $n > \frac{\pi}{4}$ 时，有：
+			$$
+			1^{1/n} < (\arctan n)^{1/n} < \ab(\frac{\pi}{2})^{1/n}
+			$$
+			而 $\lim\limits_{n \to \infty} 1^{1/n} = \lim\limits_{n \to \infty} \ab(\frac{\pi}{2})^{1/n} = 1$，故 $\{(\arctan n)^{1/n}\}$ 在 $n > \frac{\pi}{4}$ 的子列极限为 $1$，进一步可得到 $\{(\arctan n)^{1/n}\}$ 的极限为 $1$。
+
+			\item[\textbf{6)}] 先证明 $\sqrt[n]{a^n + b^n} = a\ (a \geq b)$：
+			$$
+			\sqrt[n]{a^n} < \sqrt[n]{a^n + b^n} < \sqrt[n]{2 a^n}
+			$$
+			而
+			$$
+			\begin{aligned}
+				& \lim_{n \to \infty} \sqrt[n]{a^n} = a \\
+				& \lim_{n \to \infty} \sqrt[n]{2 a^n} = \lim_{n \to \infty} \sqrt[n]{a^n} \cdot \lim_{n \to \infty} \sqrt[n]{2} = a
+			\end{aligned}
+			$$
+			因此 $\lim\limits_{n \to \infty} \sqrt[n]{a^n + b^n} = a$。
+
+			同理可以继续扩展，得到 $\lim\limits_{n \to \infty} \sqrt[n]{\sum_{i=1}^n a_i^n} = \max_{i=1}^n\{a_i\}$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.2.9
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 我们知道 $x - 1 < \floor{x} < x + 1$，因此：
+			$$
+			\frac{n a_n - 1}{n} < \frac{\floor{n a_n}}{n} < \frac{n a_n + 1}{n}
+			$$
+			而
+			$$
+			\begin{aligned}
+				& \lim_{n \to \infty} \frac{n a_n - 1}{n} = \lim_{n \to \infty} \frac{\floor{n a_n}}{n} - \lim_{n \to \infty} \frac{1}{n} = a - 0 = a \\
+				& \lim_{n \to \infty} \frac{n a_n + 1}{n} = \lim_{n \to \infty} \frac{\floor{n a_n}}{n} + \lim_{n \to \infty} \frac{1}{n} = a + 0 = a
+			\end{aligned}
+			$$
+			所以 $\lim_{n \to \infty} \frac{\floor{n a_n}}{n} = a$。
+
+			\item[\textbf{2)}] 任取 $\varepsilon > 0$，那么 $\exists\,N \in \mathbb{Z}^+: \forall\,n \geq N: a - \varepsilon < a_n < a + \varepsilon$，也就是说 $\sqrt[n]{a - \varepsilon} < \sqrt[n] a_n < \sqrt[n]{a + \varepsilon}$。
+
+			显然 $\lim\limits_{n \to \infty} \sqrt[n]{a - \varepsilon} = \lim\limits_{n \to \infty} \sqrt[n]{a + \varepsilon} = 1$，于是也得到 $\lim\limits_{n \to \infty} \sqrt[n]{a_n} = 1$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}

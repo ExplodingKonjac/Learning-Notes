@@ -1,0 +1,427 @@
+\section{线性方程组 I}
+
+\subsection{消元法}
+
+一个线性方程组指如下形式的方程组：
+
+$$
+\sum_{i=1}^n a_{k,i} x_i = b_k \quad (k=1,2,\dots,n)
+$$
+
+其中 $x_1,x_2,\dots,x_n$ 是未知量。也可以记作：
+
+$$
+\matr{A} \vect{x} = \vect{b}
+$$
+
+其中 $A = [a_{i,j}]_n,\ x = [x_1,x_2,\dots,x_n]^\mathrm{T},\ b = [b_1,b_2,\dots,b_n]^\mathrm{T}$。
+
+一组 $k_1,k_2,\dots,k_n$ 在带入 $x_i = k_i$ 后使得方程组变成恒等式，那么 $(k_i)_{i=1}^n$ 就是方程组的一个\textbf{解}。所有 $(k_i)_{i=1}^n$ 的集合就是方程组的\textbf{解集}。两个具有相同解集的方程组称为\textbf{同解}的。
+
+再定义方程组的\textbf{增广矩阵}为：
+
+$$
+\ab[\begin{array}{cccc|c}
+	a_{1,1} & a_{1,2} & \dots & a_{1,n} & b_1 \\
+	a_{2,1} & a_{2,2} & \dots & a_{2,n} & b_2 \\
+	\vdots & \vdots & \ddots & \vdots & \vdots \\
+	a_{n,1} & a_{n,2} & \dots & a_{n,n} & b_n
+\end{array}]
+$$
+
+\begin{definition}[线性方程组的初等变换]
+	对增广矩阵进行初等行变换，对应到方程组上的变化就是线性方程组的\textbf{初等变换}。初等变换总是把方程组变为同解的方程组。
+\end{definition}
+
+应用初等变换消元后，方程组变为下面的阶梯形式：
+
+$$
+\begin{aligned}
+	\sum_{i=k}^n c_{k,i} x_i & = d_k & \quad (k=1,2,\dots,r) \\
+	0 & = d_{r+1} \\
+	0 & = 0 \\
+	& \cdots \\
+	0 & = 0
+\end{aligned}
+$$
+
+其中 $c_{k,k} \neq 0$。下面进行一些讨论：
+
+\begin{itemize}
+	\item 若存在方程 $0 = d_{r+1}$ 且 $d_{r+1} \neq 0$，那么方程组无解；
+	\item 如果不存在 $0 = d_{r+1}$ 或 $d_{r+1} = 0$，且 $r<n$，那么方程组有无穷多组解，且这些解由 $x_{r+1},x_{r+2},\dots,x_n$ 表示，这个解称为方程组的\textbf{一般解}，$x_{r+1},x_{r+2},\dots,x_n$ 称为方程组的\textbf{自由未知量}；
+	\item 否则，方程组有且仅有一组解。
+\end{itemize}
+
+这些结论可以应用于齐次线性方程组：
+
+\begin{theorem}
+	对于齐次线性方程组
+	$$
+	\sum_{i=1}^n a_{k,i} x_i \quad (k=1,2,\dots,s)
+	$$
+	若 $s < n$，那么该方程组有非零解。
+
+	\begin{proof}
+		消元后 $r \le s < n$，所以方程组并非唯一解，即有非零解。
+	\end{proof}
+\end{theorem}
+
+\subsection{$n$ 维向量空间}
+
+\begin{definition}[$n$ 维向量]
+	数域 $P$ 上的一个 $n$ 维向量是由数域 $P$ 中 $n$ 个元素组成的有序 $n$ 元组：
+	$$
+	[a_1,a_2,\dots,a_n]
+	$$
+	其中 $a_i$ 称为向量的\textbf{分量}。全体 $n$ 维向量的集合可记作 $P^n$。
+\end{definition}
+
+\begin{definition}[向量相等]
+	称两个向量相等当且仅当两个向量的每个分量都对应相等。
+\end{definition}
+
+\begin{definition}[零向量]
+	我们称 $(0,0,\dots,0)$ 为零向量，记作 $\vect{0}$。
+\end{definition}
+
+\begin{definition}[向量运算]
+	定义向量的运算：
+
+	\begin{itemize}
+		\item 加法：对于 $\vect{a} = [a_1,a_2,\dots,a_n],\ \vect{b} = [b_1,b_2,\dots,b_n]$，定义 $\vect{a} + \vect{b} = [a_1 + b_1, a_2 + b_2, \dots, a_n + b_n]$；
+		\item 负向量：对于 $\vect{a} = [a_1,a_2,\dots,a_n]$，定义 $-\vect{a} = [-a_1, -a_2, \dots, -a_n]$；
+		\item 减法：对于 $\vect{a},\vect{b} \in P^n$，定义 $\vect{a} - \vect{b} = \vect{a} + (-\vect{b})$；
+		\item 数乘：对于 $k \in P,\ \vect{a} = [a_1,a_2,\dots,a_n]$，定义 $k\vect{a} = [k a_1, k a_2, \dots, k a_n]$。
+	\end{itemize}
+\end{definition}
+
+根据向量运算的定义，我们可以推出，向量加法满足交换律和结合律，数乘和加法满足结合律。
+
+向量可以写成一行或者一列的形式，在仅讨论向量的时候它们是等价的：
+
+$$
+\vect{a} = \begin{bmatrix}
+	a_1 \\ a_2 \\ \vdots \\ a_n
+\end{bmatrix} = [a_1, a_2, \dots, a_n]
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	第二章课后习题 21
+	
+	\begin{solution}
+		行列式的某项 $\prod_{i=1}^{2n} a_{i,p_i}$ 非零当且仅当所有 $i$ 都有 $p_i=i \lor p_i=2n-i+1$。这说明 $p_i=i \Leftrightarrow p_{2n-i+1}=2n-i+1,\ p_i=2n-i+1 \Leftrightarrow p_{2n-i+1}=i$，也就是说把 $1,2,\dots,2n$ 按照 $(i,2n-i+1)$ 分成 $n$ 组，合法的 $p$ 一定是由 $1,2,\dots,2n$ 通过若干次交换一组的两个元素得到。
+
+		交换一次排列奇偶性改变，那么枚举最终有几个组是逆序的，就得到：
+		$$
+		\begin{aligned}
+			D_{2n} & = \sum_{k=0}^n \binom{n}{k} (-1)^k b^{2k} a^{2n-2k} \\
+			& = a^{2n} \sum_{k=0}^n \binom{n}{k} \ab(-\frac{b^2}{a^2})^k \\
+			& = a^{2n} \ab(1 - \frac{b^2}{a^2})^n \\
+			& = (a^2 - b^2)^n
+		\end{aligned}
+		$$
+
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第二章课后习题 23
+
+	\begin{solution}
+		求出 $f(x)$ 就是要解线性方程组：
+		$$
+		\sum_{i=0}^n c_i a_k^i = b_k \quad (k=1,\dots,n)
+		$$
+		那么这个方程组的系数矩阵为：
+		$$
+		\matr{A} = \begin{bmatrix}
+			1 & a_1^1 & a_1^2 & \cdots & a_1^{n-1} \\
+			1 & a_2^1 & a_2^2 & \cdots & a_2^{n-1} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			1 & a_n^1 & a_n^2 & \cdots & a_n^{n-1}
+		\end{bmatrix}
+		$$
+		它的行列式是一个范德蒙德行列式，$\det \matr{A} = \prod_{i<j} (a_i - a_j)$，因为 $a_i$ 互不相同，所以 $\det \matr{A} \neq 0$。根据克拉默法则，方程组有唯一解，也即存在这样的 $f(x)$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第三章课后习题 1
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对增广矩阵进行初等行变换：
+			$$
+			\begin{aligned}
+				\left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					1 & 3 & 2 & -2 & 1 & -1 \\
+					1 & -2 & 1 & -1 & -1 & 3 \\
+					1 & -4 & 1 & 1 & -1 & 3 \\
+					1 & 2 & 1 & -1 & 1 & -1
+				\end{array}\right]
+				& \xrightarrow{(2,3,4,5) - (1)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+					0 & -5 & -4 & 3 & -1 & 2 \\
+					0 & -7 & -4 & 5 & -1 & 2 \\
+					0 & -1 & -4 & 3 & 1 & -2
+				\end{array}\right] \\
+				& \xrightarrow{\operatorname{SWAP}(2,5)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & -5 & -4 & 3 & -1 & 2 \\
+					0 & -7 & -4 & 5 & -1 & 2 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+				\end{array}\right] \\
+			\end{aligned}
+			$$
+			$$
+			\begin{aligned}
+				& \xrightarrow{(3)-5 \times (2)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 16 & -12 & -6 & 12 \\
+					0 & -7 & -4 & 5 & -1 & 2 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+				\end{array}\right] \\
+				& \xrightarrow{(4)-7 \times (2)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 16 & -12 & -6 & 12 \\
+					0 & 0 & 24 & -16 & -8 & 16 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+				\end{array}\right] \\
+				& \xrightarrow{(4) \times \frac{1}{8},\ \operatorname{SWAP}(3,4)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 3 & -2 & -1 & 2 \\
+					0 & 0 & 16 & -12 & -6 & 12 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+				\end{array}\right] \\
+				& \xrightarrow{(4) - (3) \times \frac{16}{3}} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 3 & -2 & -1 & 2 \\
+					0 & 0 & 0 & -4/3 & -2/3 & -4/3 \\
+					0 & 0 & -3 & 2 & 1 & -2 \\
+				\end{array}\right] \\
+				& \xrightarrow{(5) + (3)} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 3 & -2 & -1 & 2 \\
+					0 & 0 & 0 & -4/3 & -2/3 & 4/3 \\
+					0 & 0 & 0 & 0 & 0 & 0 \\
+				\end{array}\right] \\
+				& \xrightarrow{(4) \times (-\frac{3}{4})} \left[\begin{array}{ccccc|c}
+					1 & 3 & 5 & -4 & 0 & 1 \\
+					0 & -1 & -4 & 3 & 1 & -2 \\
+					0 & 0 & 3 & -2 & -1 & 2 \\
+					0 & 0 & 0 & 1 & 1/2 & -1 \\
+					0 & 0 & 0 & 0 & 0 & 0 \\
+				\end{array}\right]
+			\end{aligned}
+			$$
+			也就是说，方程组有无穷多组解，以 $x_5$ 为自由元就有：
+			$$
+			\begin{cases}
+				x_1 = -\frac{x_5}{2} \\
+				x_2 = -1 - \frac{x_5}{2} \\
+				x_3 = 0 \\
+				x_4 = -1 - \frac{x_5}{2} \\
+			\end{cases}
+			$$
+
+			\item[\textbf{4)}] 对增广矩阵进行初等行变换：
+			$$
+			\begin{aligned}
+				\left[\begin{array}{cccc|c}
+					3 & 4 & -5 & 7 & 0 \\
+					2 & -3 & 3 & -2 & 0 \\
+					4 & 11 & -13 & 16 & 0 \\
+					7 & -2 & 1 & 3 & 0 \\
+				\end{array}\right]
+				& \xrightarrow{(2) - \frac{2}{3} \times (1)} \left[\begin{array}{cccc|c}
+					3 & 4 & -5 & 7 & 0 \\
+					0 & -\frac{17}{3} & \frac{19}{3} & -\frac{20}{3} & 0 \\
+					4 & 11 & -13 & 16 & 0 \\
+					7 & -2 & 1 & 3 & 0 \\
+				\end{array}\right] \\
+				& \xrightarrow{(3) - \frac{4}{3} \times (1)} \left[\begin{array}{cccc|c}
+					3 & 4 & -5 & 7 & 0 \\
+					0 & -\frac{17}{3} & \frac{19}{3} & -\frac{20}{3} & 0 \\
+					0 & \frac{17}{3} & -\frac{19}{3} & \frac{20}{3} & 0 \\
+					7 & -2 & 1 & 3 & 0 \\
+				\end{array}\right] \\
+				& \xrightarrow{(4) - \frac{7}{3} \times (1)} \left[\begin{array}{cccc|c}
+					3 & 4 & -5 & 7 & 0 \\
+					0 & -\frac{17}{3} & \frac{19}{3} & -\frac{20}{3} & 0 \\
+					0 & \frac{17}{3} & -\frac{19}{3} & \frac{20}{3} & 0 \\
+					0 & -\frac{34}{3} & \frac{38}{3} & -\frac{40}{3} & 0 \\
+				\end{array}\right] \\
+				& \xrightarrow{(3) + (2),\ (4) - 2 \times (2)} \left[\begin{array}{cccc|c}
+					3 & 4 & -5 & 7 & 0 \\
+					0 & -\frac{17}{3} & \frac{19}{3} & -\frac{20}{3} & 0 \\
+					0 & 0 & 0 & 0 & 0 \\
+					0 & 0 & 0 & 0 & 0 \\
+				\end{array}\right] \\
+			\end{aligned}
+			$$
+			故原方程有无穷多组解。将 $x_3,x_4$ 定为自由元就有：
+			$$
+			\begin{cases}
+				x_1 = \frac{3}{17} x_3 - \frac{13}{17} x_4 \\
+				x_2 = \frac{19}{17} x_3 - \frac{17}{20} x_4
+			\end{cases}
+			$$
+
+			\item[\textbf{6)}] 对增广矩阵进行初等行变换：
+			$$
+			\begin{aligned}
+				\left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					3 & 2 & 1 & -1 & 1 \\
+					2 & 3 & 1 & 1 & 1 \\
+					2 & 2 & 2 & -1 & 1 \\
+					5 & 5 & 2 & 0 & 2
+				\end{array}\right]
+				& \xrightarrow{(2) - 3 \times (1)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -4 & -8 & 2 & -2 \\
+					2 & 3 & 1 & 1 & 1 \\
+					2 & 2 & 2 & -1 & 1 \\
+					5 & 5 & 2 & 0 & 2
+				\end{array}\right] \\
+				& \xrightarrow{(3) - 2 \times (1)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -4 & -8 & 2 & -2 \\
+					0 & -1 & -5 & 3 & -1 \\
+					2 & 2 & 2 & -1 & 1 \\
+					5 & 5 & 2 & 0 & 2
+				\end{array}\right] \\
+				& \xrightarrow{(4) - 2 \times (1)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -4 & -8 & 2 & -2 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & -2 & -4 & 1 & -1 \\
+					5 & 5 & 2 & 0 & 2
+				\end{array}\right] \\
+			\end{aligned}
+			$$
+			$$
+			\begin{aligned}
+				& \xrightarrow{(5) - 5 \times (1)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -4 & -8 & 2 & -2 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & -2 & -4 & 1 & -1 \\
+					0 & -5 & -13 & 5 & -3
+				\end{array}\right] \\
+				& \xrightarrow{\operatorname{SWAP}(2,3)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & -4 & -8 & 2 & -2 \\
+					0 & -2 & -4 & 1 & -1 \\
+					0 & -5 & -13 & 5 & -3
+				\end{array}\right] \\
+				& \xrightarrow{3 - 4 \times (2)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & 0 & 12 & -10 & 2 \\
+					0 & -2 & -4 & 1 & -1 \\
+					0 & -5 & -13 & 5 & -3
+				\end{array}\right] \\
+				& \xrightarrow{4 - 2 \times (2)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & 0 & 12 & -10 & 2 \\
+					0 & 0 & 6 & -5 & 1 \\
+					0 & -5 & -13 & 5 & -3
+				\end{array}\right] \\
+				& \xrightarrow{5 - 5 \times (2)} \left[\begin{array}{cccc|c}
+					1 & 2 & 3 & -1 & 1 \\
+					0 & -1 & -5 & 3 & -1 \\
+					0 & 0 & 12 & -10 & 2 \\
+					0 & 0 & 6 & -5 & 1 \\
+					0 & 0 & 12 & -10 & 2
+				\end{array}\right] \\
+			\end{aligned}
+			$$
+
+			此时容易发现后三个方程组是等价的，最后化简为：
+			$$
+			\left[\begin{array}{cccc|c}
+				1 & 2 & 3 & -1 & 1 \\
+				0 & -1 & -5 & 3 & -1 \\
+				0 & 0 & 12 & -10 & 2 \\
+				0 & 0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 & 0
+			\end{array}\right]
+			$$
+
+			那么方程有无穷多组解。设 $x_4$ 为自由元就有：
+			$$
+			\begin{cases}
+				x_1 = \frac{1 + 5x_4}{6} \\
+				x_2 = \frac{1 - 7x_4}{6} \\
+				x_3 = \frac{1 + 5x_4}{6}
+			\end{cases}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	验证课本 P80 (6)(7)(8)(9)。
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{6)}]
+			$$
+			\begin{aligned}
+				k(\vect{\alpha} + \vect{\beta})
+				& = k \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ \vdots \\ a_n+b_n \end{bmatrix}
+				= \begin{bmatrix} k(a_1 + b_1) \\ k(a_2 + b_2) \\ \vdots \\ k(a_n + b_n) \end{bmatrix}
+				= \begin{bmatrix} k a_1 + k b_1 \\ k a_2 + k b_2 \\ \vdots \\ k a_n + k b_n \end{bmatrix} \\
+				& = \begin{bmatrix} k a_1 \\ k a_2 \\ \vdots \\ k a_n \end{bmatrix}
+				+ \begin{bmatrix} k b_1 \\ k b_2 \\ \vdots \\ k b_n \end{bmatrix}
+				= k \vect{\alpha} + k \vect{\beta} \\
+			\end{aligned}
+			$$
+
+			\item[\textbf{7)}]
+			$$
+			\begin{aligned}
+				(k + l) \vect{a}
+				& = \begin{bmatrix} (k + l) a_1 \\ (k + l) a_2 \\ \vdots \\ (k + l) a_n \end{bmatrix}
+				= \begin{bmatrix} k a_1 + l a_1 \\ k a_2 + l a_2 \\ \vdots \\ k a_n + l a_n \end{bmatrix}
+				= \begin{bmatrix} k a_1 \\ k a_2 \\ \vdots \\ k a_n \end{bmatrix}
+				+ \begin{bmatrix} l a_1 \\ l a_2 \\ \vdots \\ l a_n \end{bmatrix}
+				= k \vect{a} + l \vect{a}
+			\end{aligned}
+			$$
+
+			\item[\textbf{8)}]
+			$$
+			\begin{aligned}
+				k (l \vect{a})
+				& = k \begin{bmatrix} l a_1 \\ l a_2 \\ \vdots \\ l a_n \end{bmatrix}
+				= \begin{bmatrix} k l a_1 \\ k l a_2 \\ \vdots \\ k l a_n \end{bmatrix}
+				= \begin{bmatrix} (k l) a_1 \\ (k l) a_2 \\ \vdots \\ (k l) a_n \end{bmatrix}
+				= (k l) \vect{a}
+			\end{aligned}
+			$$
+
+			\item[\textbf{9)}]
+			$$
+			\begin{aligned}
+				1 \vect{a} = \begin{bmatrix} 1 \cdot a_1 \\ 1 \cdot a_2 \\ \vdots \\ 1 \cdot a_n \end{bmatrix}
+				= \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
+				= \vect{a}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}

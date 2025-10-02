@@ -123,7 +123,7 @@
 \newtheorem{corollary}{推论}[theorem]
 \AddTCB[corollary]
 
-\newtheorem{property}{性质}[section]
+\newtheorem{property}[theorem]{性质}
 \AddTCB[property]
 
 \newtheorem{example}{例}[section]
