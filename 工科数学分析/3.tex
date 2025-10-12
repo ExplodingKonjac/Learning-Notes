@@ -1,0 +1,415 @@
+\section{数列极限 II}
+
+\subsection{Stolz 定理}
+
+\begin{theorem}[Stolz 定理]
+	\ 
+	\begin{itemize}
+		\item $\frac{\infty}{\infty}$ 型：设 $\{b_n\}$ 是严格递增的无穷大数列，那么若
+		$$
+		\lim_{n \to \infty} \frac{a_n - a_{n-1}}{b_n - b_{n-1}} = A
+		$$
+		则 $\lim\limits_{n \to \infty} \frac{a_n}{b_n} = A$。
+
+		\item $\frac{0}{0}$ 型：设 $\{a_n\}, \{b_n\}$ 均为无穷小数列，且 $\{b_n\}$ 单调，那么若
+		$$
+		\lim_{n \to \infty} \frac{a_n - a_{n-1}}{b_n - b_{n-1}} = A
+		$$
+		则 $\lim\limits_{n \to \infty} \frac{a_n}{b_n} = A$。
+	\end{itemize}
+
+	\begin{proof}
+		懒得写。大概就是用定义、累加和放缩凑出来。
+	\end{proof}
+\end{theorem}
+
+注意 Stolz 定理的前提是要求的极限存在，否则结果不能说明任何事情。同时，Stolz 的逆定理也是不成立的。
+
+\subsection{单调数列极限}
+
+\begin{theorem}[单调有界定理]
+	单调且有界的数列必定有极限。
+	
+	\begin{proof}
+		不妨设数列单调递增。那么数列存在上确界，根据上确界定义容易得到上确界就是数列的极限。
+	\end{proof}
+\end{theorem}
+
+单调有界定理可以证明极限的存在性，进而用允许用一些神奇的方法求解极限。
+
+\begin{example}
+	求递推数列 $x_1 = \sqrt{3}, x_n = \sqrt{3 + x_{n-1}}\ (n \ge 2)$ 的极限。
+
+	\begin{solution}
+		通过解不等式得到，$0 < x < \frac{\sqrt{13} + 1}{2}$ 时，$x < \sqrt{3 + x_{n-1}} < \frac{\sqrt{13} + 1}{2}$。这样归纳可证 $x_{n-1} < x_n < \frac{\sqrt{13} + 1}{2}$，于是 $x_n$ 单调有界，必定存在极限 $A$。
+
+		而根据递推式得到 $x_n^2 = 3 + x_{n-1}$，两边取极限得
+		$$
+		\lim_{n \to \infty} x_n^2 = \lim_{n \to \infty} (3 + x_{n-1})
+		$$
+		根据极限四则运算法则得
+		$$
+		A^2 = 3 + A
+		$$
+		解得 $A = \frac{\sqrt{13} + 1}{2}$，另一解舍去。
+	\end{solution}
+\end{example}
+
+结合子列极限的性质，同时有推论：
+
+\begin{corollary}
+	\ 
+	\begin{itemize}
+		\item 若单调数列的一个子列收敛，则整个数列收敛。
+		\item 若单调数列的一个子列发散，则整个数列发散。
+		\item 一个单调数列要么存在极限，要么趋于无穷。
+		\item 一个单调数列收敛等价于它存在极限。
+	\end{itemize}
+\end{corollary}
+
+\subsection{$\E$ 的相关极限}
+
+\begin{theorem}
+	记数列 $b_n = \sum_{i=0}^n \frac{1}{i!},\ e_n = \ab(1 + \frac{1}{n})^n$，那么
+	$$
+	\lim_{n \to \infty} b_n = \lim_{n \to \infty} e_n = \E
+	$$
+
+	\begin{proof}
+		$b_n$ 的单调性是显而易见的，下面证明其有界：
+		
+		$$
+		\begin{aligned}
+			b_n & = \sum_{i=0}^n \frac{1}{i!} \\
+			& \le 2 + \sum_{i=2}^n \frac{1}{i(i-1)} \\
+			& = 2 + \sum_{i=2}^n \ab(\frac{1}{i-1} - \frac{1}{i}) \\
+			& = 3 - \frac{1}{n} < 3
+		\end{aligned}
+		$$
+
+		所以 $b_n$ 极限存在。再证明 $e_n$ 单调有界：
+
+		$$
+		\begin{aligned}
+			e_n & = \ab(1 + \frac{1}{n})^n = \sum_{i=0}^n \binom{n}{i} \ab(\frac{1}{n})^i \\
+			& = 2 + \sum_{i=2}^n \frac{n^{\underline{i}}}{i! n^i} \\
+			& = 2 + \sum_{i=2}^n \frac{1}{i!} \cdot \frac{n^{\underline{i}}}{n^i} \\
+			& \le 2 + \sum_{i=2}^n \frac{1}{i!} = b_n
+		\end{aligned}
+		$$
+
+		因此 $e_n$ 也是有界的。又因为：
+
+		$$
+		\begin{aligned}
+			e_{n+1} - e_n & = \frac{1}{(n+1)^{n+1}} + \sum_{i=2}^{n} \frac{1}{i!} \ab(\frac{(n+1)^{\underline{i}}}{(n+1)^i} - \frac{n^{\underline{i}}}{n^i}) \\
+			& > \frac{1}{(n+1)^{n+1}} > 0
+		\end{aligned}
+		$$
+
+		因此 $e_n$ 递增，故 $e_n$ 极限也存在。同时说明 $\lim\limits\limits_{n \to \infty} e_n \le \lim_{n \to \infty} b_n$。而对于 $\forall\,n \ge m$ 有：
+
+		$$
+		\begin{aligned}
+			e_n & \ge 2 + \sum_{i=1}^m \frac{1}{i!} \cdot \frac{n^{\underline{i}}}{n^i} \\
+			\lim_{n \to \infty} e_n & \ge 2 + \lim_{n \to \infty} \ab(\sum_{i=1}^m \frac{1}{i!} \cdot \frac{n^{\underline{i}}}{n^i}) \\
+			\lim_{n \to \infty} e_n & \ge 2 + \sum_{i=1}^m \frac{1}{i!} = b_m \\
+			\lim_{n \to \infty} e_n & \ge \lim_{m \to \infty} b_m \\
+		\end{aligned}
+		$$
+
+		因此 $\lim\limits\limits_{n \to \infty} e_n = \lim\limits_{n \to \infty} b_n$，这个极限记做自然常数 $\E$。
+	\end{proof}
+\end{theorem}
+
+下面分析一下 $b_n$ 趋向 $e$ 的误差。有
+
+$$
+\begin{aligned}
+	b_{n+m} - b_n & = \sum_{i=1}^m \frac{1}{(n+i)!} \\
+	& = \frac{1}{(n+1)!} \ab(1 + \sum_{i=2}^m \frac{1}{(n+2)^{\overline{i-1}}}) \\
+	& < \frac{1}{(n+1)!} \ab(\sum_{i=1}^m \frac{1}{(n+1)^{i-1}}) \\
+	& < \frac{1}{(n+1)!} \cdot \frac{1}{1 - 1/(n+1)} = \frac{1}{n \cdot n!} \\
+\end{aligned}
+$$
+
+令 $m \to \infty$ 就得到 $\E - b_n \le \frac{1}{n \cdot n!}$。可见收敛速度还是很快的。
+
+\begin{theorem}
+	$\E$ 是无理数。
+
+	\begin{proof}
+		考虑反证。若 $\E$ 是有理数，那么设 $\E = \frac{p}{q}$。因为 $2 < \E < 3$，因此 $q \ge 2$。
+
+		$$
+		\begin{aligned}
+			\E - b_q & \le \frac{1}{q \cdot q!} \\
+			q!(\E - b_q) & \le \frac{1}{q} \\
+			q!\ab(\frac{p}{q} - \sum_{i=0}^q \frac{1}{q!}) & \le \frac{1}{q} \\
+			p(q-1)! - \sum_{i=0}^q q^{\underline{i}} & \le \frac{1}{q}
+		\end{aligned}
+		$$
+
+		而左式是正整数，故矛盾。
+	\end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 2.3.2
+
+	\begin{proof}
+		由 $\{b_n\}$ 是无穷大得到，$\forall\,A > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: |b_n| > A$。而同时 $|a_n| \ge |b_n| > A$，说明 $\{a_n\}$ 也符合定义，是无穷大。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.3
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 因为 $\frac{n^2 - 1}{n + 6} = (n - 6) + \frac{35}{n + 6}$ 那么对于任意 $A > 0$，取 $N = \ceil{A + 6}$，那么任意 $n \ge N$ 都有 $\frac{n^2 - 1}{n + 6} > A$。即证。
+
+			\item[\textbf{2)}] 因为 $\ab|\frac{n}{\sin n}| \ge |n|$，所以对于任意 $A > 0$ 取 $N = \ceil{A} + 1$，那么任意 $n \ge N$ 都有 $\ab|\frac{n}{\sin n}| > A$。即证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.5
+
+	\begin{proof}
+		当 $n > \sqrt 3$ 时，$\arctan n > \frac{\pi}{3} > 1$。因此对于任意 $A > 0$ 取 $N = \ceil{\max\{A^2 + 1, \sqrt 3\}}$，那么任意 $n \ge N$ 都有 $\sqrt n \arctan n > \sqrt n > \sqrt{A^2} > A$。即证。 
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.6
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 因为 $\{a_n\}$ 是正无穷大，所以对于任意 $A > 0$，能找到 $m \in \mathbb{Z}^+$ 使得 $\forall\,n \ge m: a_n > 2A$。取 $N = 2m$，则 $\forall\,n \ge N$ 有：
+			$$
+			\frac{\sum_{i=1}^n a_i}{n} > \frac{(n - m) \cdot 2A}{n} = \frac{(n + n - 2m)A}{n} \ge A
+			$$
+			即证。
+
+			\item[\textbf{2)}] 令 $b_n = \ln a_n$，那么等价于证明 $\frac{\sum_{i=1}^n b_i}{n}$ 是负无穷大。而 $\lim\limits_{n \to \infty} a_n = 0$ 可以推得 $\lim\limits_{n \to \infty} b_n = -\infty$，接着套用 \textbf{1)} 证明即可。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.7
+
+	\begin{proof}
+		记 $c_n = \frac{\sum_{i=1}^{2n} a_i}{2n}$，那么
+		$$
+		\lim_{n \to \infty} \frac{a_{2n} + a_{2n - 1}}{2n - (2n - 2)} = \frac{\lim\limits_{n \to \infty} a_{2n} + \lim\limits_{n \to \infty} a_{2n - 1}}{2} = \frac{a + b}{2}
+		$$
+		根据 Stolz 定理 $\lim\limits_{n \to \infty} c_n = \frac{a + b}{2}$。带回原极限得到
+		$$
+		\begin{aligned}
+			\lim_{n \to \infty} \frac{\sum_{i=1}^n a_i}{n} & = \lim_{n \to \infty} \ab(c_{\ceil{n/2}} + \frac{[2 \nmid n] b}{n}) \\
+			& = \lim_{n \to \infty} c_{\ceil{n/2}} + \lim_{n \to \infty} \frac{[2 \nmid n] b}{n} \\
+			& = \frac{a + b}{2} + 0 = \frac{a + b}{2}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{lemma}
+	若正项数列 $\{a_n\}$ 满足 $\lim\limits_{n \to \infty} a_n = a$，则 $\lim\limits_{n \to \infty} \ln a_n = \ln a$。
+
+	\begin{proof}
+		要证明这个，我们需要对于任意 $\varepsilon > 0$ 找到 $N$ 使得 $\forall\,n \ge N: \ab|\ln a_n - \ln a| < \varepsilon$。对这个式子进行一些变形：
+		$$
+		\begin{gathered}
+			|\ln a_n - \ln a| < \varepsilon \\
+			\E^{-\varepsilon} < \frac{a_n}{a} < \E^{\varepsilon} \\
+			\E^{-\varepsilon} < \frac{a_n - a}{a} + 1 < \E^{\varepsilon} \\
+			a \ab(\E^{-\varepsilon} - 1) < a_n - a < a \ab(\E^{\varepsilon} - 1) \\
+		\end{gathered}
+		$$
+		根据 $\lim\limits_{n \to \infty} a_n = a$，我们可以取一个 $\varepsilon' = \min\ab\{\ab|a \ab(\E^{-\varepsilon} - 1)|, \ab|a \ab(\E^{\varepsilon} - 1)|\}$ 来找到所需的 $N$。
+	\end{proof}
+\end{lemma}
+
+\begin{problem}
+	课后习题 2.3.8
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据引理 2.3.5，$\lim\limits_{n \to \infty} \ln a_n = \ln a$。再根据 Stolz 定理，
+			$$
+			\lim_{n \to \infty} \frac{\sum_{i=1}^n \ln a_i}{n} = \lim_{n \to \infty} \frac{\ln a_n}{1} = \ln a
+			$$
+			再根据引理 2.3.5 推得 $\lim\limits_{n \to \infty} \sqrt[n]{a_1 a_2 \dots a_n} = a$。
+
+			\item[\textbf{2)}] 根据引理 2.3.5，$\lim\limits_{n \to \infty} \ab(\ln a_{n+1} - \ln a_n) = \ln l$，再根据 Stolz 定理：
+			$$
+			\lim_{n \to \infty} \frac{\ln a_n}{n} = \lim_{n \to \infty} \frac{\ln a_{n+1} - \ln a_n}{1} = \ln l
+			$$
+			再根据引理 2.3.5 推得 $\lim\limits_{n \to \infty} \sqrt[n]{a_n} = \lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n} = l$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.9
+
+	\begin{proof}
+		由题知 $\lim\limits\limits_{n \to \infty} (a_n - a) = \lim\limits_{n \to \infty} (b_n - b) = 0$。对所求极限进行一些变形：
+
+		$$
+		\begin{aligned}
+			\text{原式} & = \lim_{n \to \infty} \frac{1}{n} \ab(\sum_{i=1}^n a b + a(b_{n-i+1} - b) + b(a_i - a) + (a_i - a)(b_{n-i+1} - b)) \\
+			& = a b + \lim_{n \to \infty} \frac{1}{n} \ab(\sum_{i=1}^n a(b_{n-i+1} - b)) + \lim_{n \to \infty} \frac{1}{n} \ab(\sum_{i=1}^n b(a_i - a)) \\
+			& \quad + \lim_{n \to \infty} \frac{1}{n} \ab(\sum_{i=1}^n (a_i - a)(b_{n-i+1} - b)) \\
+		\end{aligned}
+		$$
+
+		根据 Stolz 定理可得中间两项都是 $0$。现在需要证明的是 $\lim\limits_{n \to \infty} \frac{\sum_{i=1}^n (a_i - a)(b_{n-i+1} - b)}{n} = 0$
+
+		由题知 $\{a_n - a\}, \{b_n - b\}$ 有界。取 $M>0$ 使得 $|a_n - a| < M, |b_n - b| < M$，且对于 $\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: |a_n - a| < \varepsilon,|b_n - b| < \varepsilon$。当 $n > 2N$ 时：
+
+		$$
+		\begin{aligned}
+			& \frac{1}{n} \ab(\sum_{i=1}^n (a_i - a)(b_{n-i+1} - b)) \\
+			= & \frac{1}{n} \ab(\sum_{i=1}^N (a_i - a)(b_{n-i+1} - b) + \sum_{i=N+1}^{n-N} (a_i - a)(b_{n-i+1} - b) + \sum_{i=n-N+1}^n (a_i - a)(b_{n-i+1} - b)) \\
+			< & \frac{2 N M^2 + (n - 2N) \varepsilon^2}{n} \\
+			< & \frac{2 N M^2}{n} + \frac{n - 2N}{n} \varepsilon^2
+		\end{aligned}
+		$$
+
+		令 $n \to \infty$ 得到 $\lim\limits_{n \to \infty} \frac{\sum_{i=1}^n (a_i - a)(b_{n-i+1} - b)}{n} \le \varepsilon^2$。而 $\varepsilon$ 可取任意正数，这说明这个极限为 $0$，即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.11
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 使用两次 Stolz 定理：
+			$$
+			\begin{aligned}
+				\lim_{n \to \infty} \frac{n^2}{a^n} & = \lim_{n \to \infty} \frac{(n+1)^2 - n^2}{a^{n+1} - a^n} \\
+				& = \frac{1}{a - 1} \lim_{n \to \infty} \frac{2n + 1}{a^n} \\
+				& = \frac{1}{a - 1} \lim_{n \to \infty} \frac{(2n + 3) - (2n + 1)}{a^{n+1} - a^n} \\
+				& = \frac{1}{(a - 1)^2} \lim_{n \to \infty} \frac{2}{a^n} \\
+				& = 0
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 依旧使用 Stolz 定理：
+			$$
+			\lim_{n \to \infty} \frac{\sum_{i=1}^n \sqrt[i]{i}}{n} = \lim_{n \to \infty} \frac{\sqrt[n]{n}}{1} = 1
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.3.12
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 仍然使用 Stolz 定理：
+			$$
+			\begin{aligned}
+				\lim_{n \to \infty} \frac{\sum_{i=1}^n i^p}{n^{p+1}} & = \lim_{n \to \infty} \frac{n^p}{n^{p+1} - (n-1)^{p+1}} \\
+				& = \lim_{n \to \infty} \frac{n^p}{-\sum_{i=0}^{p} \binom{p+1}{i} n^i (-1)^{p+1-i}} \\
+				& = \frac{1}{p + 1}
+			\end{aligned}
+			$$
+
+			\item[\textbf{2)}] 还是使用 Stolz 定理：
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} \frac{(p + 1) \sum_{i=1}^n i^p - n^{p + 1}}{(p + 1) n^p} \\
+				& = \lim_{n \to \infty} \frac{-(n + 1)^{p + 1} + (p + 1) (n + 1)^p + n^{p + 1}}{(p + 1) ((n + 1)^p - n^p)} \\
+				& = \lim_{n \to \infty} \frac{\frac{p(p+1)}{2} n^{p - 1} + \cdots}{p(p + 1) n^{p - 1} + \cdots} \\
+				& = \frac{1}{2}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.1
+
+	\begin{proof}
+		记 $c_n = b_n - a_n$，则 $c_n$ 单调递减，而 $\lim\limits_{n \to \infty} c_n = 0$，这说明 $\sup c_n = 0$，进而 $c_n \ge 0$，也就是 $b_n \ge a_n$。
+		
+		因此 $a_n \le b_1$，即 $\{a_n\}$ 有上界，同理得到 $\{b_n\}$ 有下界。所以 $\lim\limits_{n \to \infty} a_n$ 和 $\lim\limits_{n \to \infty} b_n$ 均存在。于是 $\lim\limits_{n \to \infty} c_n = \lim\limits_{n \to \infty} b_n - \lim\limits_{n \to \infty} a_n = 0$，即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.2
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 设 $f(x) = x(2 - x)$，那么 $0 < x < 1$ 时，可得 $x < f(x) < 1$。而 $a_{n+1} = f(a_n)$，归纳可证 $a_{n-1} < a_n < 1$。因此 $\{a_n\}$ 单调有界，极限存在。
+			
+			设 $\lim\limits_{n \to \infty} a_n = A$，那么
+
+			$$
+			A = \lim_{n \to \infty} a_n = \lim_{n \to \infty} a_{n-1} (2 - a_{n-1}) = A(2 - A)
+			$$
+
+			解得 $A = 0 \text{ 或 } 1$，其中 $0$ 舍去，故 $\lim\limits_{n \to \infty} a_n = 1$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.3
+
+	\begin{proof}
+		由题知，$\forall\,0 < \varepsilon < l - 1: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: \frac{a_n}{a_{n+1}} > l - \varepsilon$，那么对于所有 $n > N$：
+
+		$$
+		a_n < a_N \cdot \ab(\frac{1}{l - \varepsilon})^{n - N}
+		$$
+
+		而 $l - \varepsilon > 1$，说明 $\ab(\frac{1}{l - \varepsilon})^{n - N}$ 是无穷小，因此 $\{a_n\}$ 也是无穷小，即 $\lim\limits_{n \to \infty} a_n = 0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.5
+
+	\begin{proof}
+		设 $f(x) = \frac{c}{2} + \frac{x^2}{2}$。由 $f(x) > x$ 解得 $x < 1 - \sqrt{1 - c} \lor x > 1 + \sqrt{1 - c}$。同时 $f(x)$ 在 $(0, +\infty)$ 单调递增。因此 $0 < x < 1 - \sqrt{1 - c}$ 时，$x < f(x) < f(1 - \sqrt{1 - c}) = 1 - \sqrt{1 - c}$。
+
+		因为 $a_{n+1} = f(a_n),\ a_1 = \frac{c}{2} < 1 - \sqrt{1 - c}$，归纳可证 $a_n < a_{n+1} < 1 - \sqrt{1 - c}$。因此 $\{a_n\}$ 单调有界，极限存在。设极限为 $A$，递推式两侧同时取极限得 $A = \frac{c}{2} + \frac{A^2}{2}$，解得 $A = 1 \pm \sqrt{1 - c}$。根据 $\{a_n\}$ 上界判断 $\lim\limits_{n \to \infty} a_n = 1 - \sqrt{1 - c}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.6
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}] 设 $f(x) = \frac{1}{3}\ab(2x + \frac{a}{x^2})$。那么 $0 < x < \sqrt[3]{a}$ 时 $f(x) > \sqrt[3]{a}$，而 $x > \sqrt[3]{a}$ 时 $\sqrt[3]{a} < f(x) < x$。因为 $a_{n+1} = f(a_n)$，归纳可得 $a_2, a_3, \dots$ 这个子列一定单调递减且有下界，极限存在，故 $\{a_n\}$ 也存在极限。
+			
+			设 $\lim\limits_{n \to \infty} a_n = A$，递推式两边同时取极限得 $A = \frac{1}{3} \ab(2A + \frac{a}{A^2})$，解得 $A = \sqrt[3]{a}$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.7
+
+	\begin{proof}
+		设 $f(x) = \frac{1}{4(1 - x)}$，则 $0 \le x \le \frac{1}{2}$ 时 $x \le f(x) \le \frac{1}{2}$，$x > \frac{1}{2}$ 时 $f(x) > x$。
+
+		下证明 $a_1 \le \frac{1}{2}$：考虑反证。若 $a_1 > \frac{1}{2}$，首先归纳可得 $a_{n+1} > a_n > \frac{1}{2}$。记 $d_n = a_{n+1} - a_n = f(a_{n}) - a_n$。求导容易证明 $f(x) - x$ 在 $\ab(\frac{1}{2}, +\infty)$ 是单调递增的，因此 $d_n$ 单调递增，$d_n \ge d_1$。于是 $a_n > a_1 + (n - 1)d_1$。右侧是一个无穷大，因此 $\{a_n\}$ 是无穷大，这与 $a_n \le 1$ 矛盾。故 $a_1 \le \frac{1}{2}$。
+
+		而当 $0 \le x \le \frac{1}{2}$ 时，有 $x \le f(x) \le \frac{1}{2}$。和之前的题同理得到，$\{a_n\}$ 单调有界、极限存在，最后解方程得 $\lim\limits_{n \to \infty} a_n = \frac{1}{2}$。
+	\end{proof}
+\end{problem}

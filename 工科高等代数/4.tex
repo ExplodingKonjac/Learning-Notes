@@ -72,7 +72,7 @@ $$
 \begin{definition}[$n$ 维向量]
 	数域 $P$ 上的一个 $n$ 维向量是由数域 $P$ 中 $n$ 个元素组成的有序 $n$ 元组：
 	$$
-	[a_1,a_2,\dots,a_n]
+	\rvec{a_1, a_2, \dots, a_n}
 	$$
 	其中 $a_i$ 称为向量的\textbf{分量}。全体 $n$ 维向量的集合可记作 $P^n$。
 \end{definition}
@@ -89,10 +89,10 @@ $$
 	定义向量的运算：
 
 	\begin{itemize}
-		\item 加法：对于 $\vect{a} = [a_1,a_2,\dots,a_n],\ \vect{b} = [b_1,b_2,\dots,b_n]$，定义 $\vect{a} + \vect{b} = [a_1 + b_1, a_2 + b_2, \dots, a_n + b_n]$；
-		\item 负向量：对于 $\vect{a} = [a_1,a_2,\dots,a_n]$，定义 $-\vect{a} = [-a_1, -a_2, \dots, -a_n]$；
+		\item 加法：对于 $\vect{a} = \rvec{a_1, a_2, \dots, a_n},\ \vect{b} = \rvec{b_1, b_2, \dots, b_n}$，定义 $\vect{a} + \vect{b} = \rvec{a_1 + b_1, a_2 + b_2, \dots, a_n + b_n}$；
+		\item 负向量：对于 $\vect{a} = \rvec{a_1, a_2, \dots, a_n}$，定义 $-\vect{a} = \rvec{-a_1, -a_2, \dots, -a_n}$；
 		\item 减法：对于 $\vect{a},\vect{b} \in P^n$，定义 $\vect{a} - \vect{b} = \vect{a} + (-\vect{b})$；
-		\item 数乘：对于 $k \in P,\ \vect{a} = [a_1,a_2,\dots,a_n]$，定义 $k\vect{a} = [k a_1, k a_2, \dots, k a_n]$。
+		\item 数乘：对于 $k \in P,\ \vect{a} = \rvec{a_1, a_2, \dots, a_n}$，定义 $k\vect{a} = \rvec{k a_1, k a_2, \dots, k a_n}$。
 	\end{itemize}
 \end{definition}
 
@@ -101,9 +101,7 @@ $$
 向量可以写成一行或者一列的形式，在仅讨论向量的时候它们是等价的：
 
 $$
-\vect{a} = \begin{bmatrix}
-	a_1 \\ a_2 \\ \vdots \\ a_n
-\end{bmatrix} = [a_1, a_2, \dots, a_n]
+\vect{a} = \cvec{a_1, a_2, \vdots, a_n} = \rvec{a_1, a_2, \dots, a_n}
 $$
 
 \subsection{作业}
@@ -130,7 +128,7 @@ $$
 \begin{problem}
 	第二章课后习题 23
 
-	\begin{solution}
+	\begin{proof}
 		求出 $f(x)$ 就是要解线性方程组：
 		$$
 		\sum_{i=0}^n c_i a_k^i = b_k \quad (k=1,\dots,n)
@@ -145,7 +143,7 @@ $$
 		\end{bmatrix}
 		$$
 		它的行列式是一个范德蒙德行列式，$\det \matr{A} = \prod_{i<j} (a_i - a_j)$，因为 $a_i$ 互不相同，所以 $\det \matr{A} \neq 0$。根据克拉默法则，方程组有唯一解，也即存在这样的 $f(x)$。
-	\end{solution}
+	\end{proof}
 \end{problem}
 
 \begin{problem}
@@ -382,11 +380,11 @@ $$
 			$$
 			\begin{aligned}
 				k(\vect{\alpha} + \vect{\beta})
-				& = k \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ \vdots \\ a_n+b_n \end{bmatrix}
-				= \begin{bmatrix} k(a_1 + b_1) \\ k(a_2 + b_2) \\ \vdots \\ k(a_n + b_n) \end{bmatrix}
-				= \begin{bmatrix} k a_1 + k b_1 \\ k a_2 + k b_2 \\ \vdots \\ k a_n + k b_n \end{bmatrix} \\
-				& = \begin{bmatrix} k a_1 \\ k a_2 \\ \vdots \\ k a_n \end{bmatrix}
-				+ \begin{bmatrix} k b_1 \\ k b_2 \\ \vdots \\ k b_n \end{bmatrix}
+				& = k \cvec{a_1 + b_1, a_2 + b_2, \vdots, a_n+b_n}
+				= \cvec{k(a_1 + b_1), k(a_2 + b_2), \vdots, k(a_n + b_n)}
+				= \cvec{k a_1 + k b_1, k a_2 + k b_2, \vdots, k a_n + k b_n} \\
+				& = \cvec{k a_1, k a_2, \vdots, k a_n}
+				+ \cvec{k b_1, k b_2, \vdots, k b_n}
 				= k \vect{\alpha} + k \vect{\beta} \\
 			\end{aligned}
 			$$
@@ -395,10 +393,10 @@ $$
 			$$
 			\begin{aligned}
 				(k + l) \vect{a}
-				& = \begin{bmatrix} (k + l) a_1 \\ (k + l) a_2 \\ \vdots \\ (k + l) a_n \end{bmatrix}
-				= \begin{bmatrix} k a_1 + l a_1 \\ k a_2 + l a_2 \\ \vdots \\ k a_n + l a_n \end{bmatrix}
-				= \begin{bmatrix} k a_1 \\ k a_2 \\ \vdots \\ k a_n \end{bmatrix}
-				+ \begin{bmatrix} l a_1 \\ l a_2 \\ \vdots \\ l a_n \end{bmatrix}
+				& = \cvec{(k + l) a_1, (k + l) a_2, \vdots, (k + l) a_n}
+				= \cvec{k a_1 + l a_1, k a_2 + l a_2, \vdots, k a_n + l a_n}
+				= \cvec{k a_1, k a_2, \vdots, k a_n}
+				+ \cvec{l a_1, l a_2, \vdots, l a_n}
 				= k \vect{a} + l \vect{a}
 			\end{aligned}
 			$$
@@ -407,9 +405,9 @@ $$
 			$$
 			\begin{aligned}
 				k (l \vect{a})
-				& = k \begin{bmatrix} l a_1 \\ l a_2 \\ \vdots \\ l a_n \end{bmatrix}
-				= \begin{bmatrix} k l a_1 \\ k l a_2 \\ \vdots \\ k l a_n \end{bmatrix}
-				= \begin{bmatrix} (k l) a_1 \\ (k l) a_2 \\ \vdots \\ (k l) a_n \end{bmatrix}
+				& = k \cvec{l a_1, l a_2, \vdots, l a_n}
+				= \cvec{k l a_1, k l a_2, \vdots, k l a_n}
+				= \cvec{(k l) a_1, (k l) a_2, \vdots, (k l) a_n}
 				= (k l) \vect{a}
 			\end{aligned}
 			$$
@@ -417,8 +415,8 @@ $$
 			\item[\textbf{9)}]
 			$$
 			\begin{aligned}
-				1 \vect{a} = \begin{bmatrix} 1 \cdot a_1 \\ 1 \cdot a_2 \\ \vdots \\ 1 \cdot a_n \end{bmatrix}
-				= \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
+				1 \vect{a} = \cvec{1 \cdot a_1, 1 \cdot a_2, \vdots, 1 \cdot a_n}
+				= \cvec{a_1, a_2, \vdots, a_n}
 				= \vect{a}
 			\end{aligned}
 			$$

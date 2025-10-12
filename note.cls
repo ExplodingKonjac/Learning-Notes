@@ -158,6 +158,19 @@
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 \newcommand{\matr}[1]{\boldsymbol{#1}}
 
+\ExplSyntaxOn
+\NewDocumentCommand{\rvec}{m}{
+	\ensuremath{[\,\clist_use:nn {#1} {,\,}\,]}
+}
+\NewDocumentCommand{\cvec}{m}{
+	\ensuremath{
+		\begin{bmatrix}
+			\clist_use:nn {#1} { \\ }
+		\end{bmatrix}
+	}
+}
+\ExplSyntaxOff
+
 % calculus
 \newcommand{\dif}{\mathrm{d}}
 

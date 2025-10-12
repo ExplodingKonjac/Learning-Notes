@@ -1,0 +1,158 @@
+\section{线性方程组 II}
+
+\subsection{线性相关性}
+
+以下讨论均在某数域 $P$ 以及向量空间	$P^n$ 中进行。
+
+\begin{definition}
+	称向量 $\vect{\alpha}$ 是向量组 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 的一个\textbf{线性组合}，当且仅当存在 $k_1, k_2, \dots, k_s$ 使得：
+
+	$$
+	\vect{\alpha} = k_1\vect{\beta}_1 + k_2\vect{\beta}_2 + \cdots + k_s\vect{\beta}_s
+	$$
+
+	此时也称 $\vect{\alpha}$ 能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出。
+\end{definition}
+
+\begin{definition}
+	若向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_t$ 中每个向量均能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出，则称向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_t$ 能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出。
+
+	若两个向量组能够相互线性表出，则称它们\textbf{等价}。
+\end{definition}
+
+容易发现，向量组的等价是满足自反性、对称性和传递性的等价关系。
+
+\begin{definition}
+	若想两组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_s$ 中某个向量能被其余向量线性表出，则这个向量组\textbf{线性相关}，否则称这个向量组\textbf{线性无关}。
+
+	该定义等价于：向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{alpha}_s$ 线性相关当且仅当存在不全为 $0$ 的数 $k_1, k_2, \dots, k_s$ 使得 $k_1\vect{\alpha}_1 + k_2\vect{\$1}_2 + \cdots + k_s\vect{\alpha}_s = \vect{0}$。
+\end{definition}
+
+这也说明，判断向量组是否线性相关可以转换为一个判断其次线性方程组是否只有零解的问题。
+
+\begin{theorem}
+	若向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出，且 $r>s$，则 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性相关。
+
+	\begin{proof}
+		由题知，存在 $t_{i,j}$ 使得
+		$$
+		\vect{\alpha}_i = \sum_{j=1}^s t_{i,j} \vect{\beta}_j
+		$$
+		那么我们需要找到 $k_1, k_2, \dots, k_r$ 使得
+		$$
+		\begin{aligned}
+			\sum_{i=1}^r k_i\vect{\alpha}_i
+			& = \sum_{i=1}^r k_i \sum_{j=1}^s t_{i,j} \vect{\beta}_j \\
+			& = \sum_{j=1}^s \ab(\sum_{i=1}^r k_i t_{i,j}) \vect{\beta}_j & = \vect{0} \\
+		\end{aligned}
+		$$
+		而因为 $r>s$，所以方程组
+		$$
+		\sum_{i=1}^r k_i t_{i,j} = 0 \quad (j=1,2,\dots,s)
+		$$
+		一定有解。因此命题得证。
+	\end{proof}
+\end{theorem}
+
+这个定理可以得到很多推论：
+
+\begin{corollary}
+	若向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性无关且能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出，那么 $r \le s$。
+\end{corollary}
+
+\begin{corollary}
+	任意 $n+1$ 个 $n$ 维向量必定线性相关。
+\end{corollary}
+
+\begin{corollary}
+	两个等价的线性无关向量组必然含有相同数量的向量。
+\end{corollary}
+
+\subsection{作业}
+
+\begin{problem}
+	第三章课后习题 2
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\vect{\beta} = \frac{5}{4}\vect{\alpha}_1 + \frac{1}{4}\vect{\alpha}_2 - \frac{1}{4}\vect{\alpha}_3 - \frac{1}{4}\vect{\alpha}_4$；
+			\item[\textbf{2)}] $\vect{\beta} = \vect{\alpha}_1 - \vect{\alpha}_3$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第三章课后习题 3
+	\begin{proof}
+		由题知，存在不全为 $0$ 的数 $k_1, k_2, \dots k_{r+1}$ 使得
+		$$
+		\sum_{i=1}^r k_i \vect{\alpha}_i + k_{r+1} \vect{\beta} = \vect{0}
+		$$
+		分类讨论：
+
+		\begin{enumerate}
+			\item 若 $k_{r+1} \neq 0$：$\vect{\beta} = \sum_{i=1}^r \ab(-\frac{k_i}{k_{r+1}}) \vect{\alpha}_i$；
+			\item 若 $k_{r+1} = 0$：$\sum_{i=1}^r k_i \vect{\alpha}_i = \vect{0}$，这与 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性无关矛盾。
+		\end{enumerate}
+
+		故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章课后习题 5
+	\begin{proof}
+		考虑反证。若 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性相关，那么下面的方程组有非零解：
+
+		$$
+		\sum_{i=1}^r t_i^k x_i = 0 \quad (k=0,1,\dots,n-1)
+		$$
+
+		我们取出前 $r$ 个方程，其系数矩阵为
+		$$
+		\matr{A} = \begin{bmatrix}
+			1 & 1 & \cdots & 1 \\
+			t_1 & t_2 & \cdots & t_r \\
+			\vdots & \vdots & \ddots & \vdots \\
+			t_1^{r-1} & t_2^{r-1} & \cdots & t_r^{r-1}
+		\end{bmatrix}
+		$$
+		那么根据范德蒙德行列式的结论，$\det(A) = \prod_{i<j} (t_i - t_j) \neq 0$。因此仅考虑前 $r$ 个方程时方程组只有唯一解，这个解就是零解。而这也说明原方程只有一个零解，矛盾。
+
+		故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章课后习题 13
+	\begin{proof}
+		考虑反证。
+
+		若 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 线性相关，那么取出它的一个极大线性无关组 $\vect{\alpha'}_1, \vect{\alpha'}_2, \dots, \vect{\alpha'}_r$，这个极大线性无关组与原向量组等价。由等价的线性无关向量组必定向量数相同知，$\vect{\alpha'}_1, \vect{\alpha'}_2, \dots, \vect{\alpha'}_r$ 不可能等价于 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，也就是说原向量组不可能于单位向量组等价。
+		
+		这与题设矛盾，故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章课后习题 14
+	\begin{proof}
+		\begin{itemize}
+			\item 充分性：根据课后习题 13 的证明可知。
+			\item 必要性：记矩阵
+			$$
+			\matr{A} = \begin{bmatrix}
+				\vect{\alpha_1} & \vect{\alpha_2} & \cdots & \vect{\alpha_n} \\
+			\end{bmatrix}
+			$$
+			那么 $\vect{\alpha_1}, \vect{\alpha_2}, \dots, \vect{\alpha_n}$ 线性相关当且仅当方程组
+			$$
+			\matr{A} \vect{x} = \vect{0}
+			$$
+			有唯一解（零解）。根据克拉默法则逆定理，这等价于 $\det(\matr{A}) \neq 0$。这也说明，任意方程组
+			$$
+			\matr{A} \vect{x} = \vect{\beta}
+			$$
+			有唯一解。也即任意 $n$ 维向量 $\beta$ 都能被线性表出。
+		\end{itemize}
+	\end{proof}
+\end{problem}
