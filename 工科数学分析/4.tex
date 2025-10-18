@@ -1,0 +1,338 @@
+\section{数列极限 III \& 函数极限 I}
+
+\subsection{重要极限再放送}
+
+我们有：
+$$
+\lim_{n \to \infty} \ab(1 + \frac{1}{n})^{n + 1} = \lim_{n \to \infty} \ab(1 + \frac{1}{n})^n \cdot \lim_{n \to \infty} \ab(1 + \frac{1}{n}) = \E
+$$
+而 $\ab(1 + \frac{1}{n})^{n + 1}$ 单调递减。根据极限的保序性有：
+$$
+\ab(1 + \frac{1}{n})^n < \E < \ab(1 + \frac{1}{n})^{n + 1}
+$$
+两边取对数并且化简就能得到：
+$$
+\frac{1}{n + 1} < \ln\ab(1 + \frac{1}{n}) < \frac{1}{n}
+$$
+这是个可能比较有用的不等式。
+
+\begin{example}
+	设 $a_n = \sum_{i=1}^n \frac{1}{n} - \ln n$，证明 $\{a_n\}$ 收敛。
+
+	\begin{proof}
+		首先有：
+		$$
+		a_{n+1} - a_n = \frac{1}{n + 1} - \ln\ab(\frac{n + 1}{n}) = \frac{1}{n + 1} - \ln\ab(1 + \frac{1}{n}) < 0
+		$$
+		说明 $\{a_n\}$ 单调递减。只需要再证明有界即可。
+		$$
+		\begin{aligned}
+			a_n & > \sum_{i=1}^n \frac{1}{n} - \ln(n+1) \\
+			& = \sum_{i=1}^n - \sum_{i=1}^n \ln\ab(\frac{n + 1}{n}) \\
+			& = \sum_{i=1}^n \ab(\frac{1}{n} - \ln\ab(1 + \frac{1}{n})) > 0
+		\end{aligned}
+		$$
+		因此 $\{a_n\}$ 单调有界，极限存在。
+	\end{proof}
+\end{example}
+
+事实上，$\lim\limits_{n \to \infty} \ab(\sum_{i=1}^n \frac{1}{n} - \ln n) = \gamma$，其中 $\gamma \approx 0.57721$ 称为欧拉常数。
+
+\subsection{实数连续性基本定理}
+
+\begin{theorem}[闭区间套定理]
+	若 $I_n = [a_n, b_n]$ 满足：
+
+	\begin{itemize}
+		\item $I_{n+1} \subset I_n$；
+		\item $\lim\limits_{n \to \infty} (b_n - a_n) = 0$。
+	\end{itemize}
+
+	那么存在唯一的 $\xi$ 使得 $\xi \in \bigcap_{i=1}^{+\infty} I_i$。
+
+	\begin{proof}
+		因为 $a_1 \le a_2 \le \cdots \le a_n \le b_n \le \cdots \le b_2 \le b_1$，因此 $\{a_n\},\{b_n\}$ 均收敛。设 $\lim\limits_{n \to \infty} a_n = a,\ \lim\limits_{n \to \infty} b_n = b$，那么：
+		$$
+		\lim_{n \to \infty} (b_n - a_n) = \lim_{n \to \infty} b_n - \lim_{n \to \infty} a_n = b - a = 0
+		$$
+		于是 $a = b$。又因为 $a_n \le \xi \le b_n$，而 $a,b$ 分别是 $\{a_n\},\{b_n\}$ 的上/下确界，因此有 $a \le \xi \le b$，有唯一的 $\xi = a = b$。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[列紧性定理]
+	任意有界数列 $\{x_n\}$ 必有收敛子列。
+
+	\begin{proof}
+		使用二分法。设数列的上确界为 $R$，下确界为 $L$。那么构造 $I_n = [l_n, r_n]$ 和 $i_n$：
+		
+		\begin{itemize}
+			\item $I_1 = [L, R], i_1 = 1$；
+			\item 在 $\ab[l_n, \frac{l_n + r_n}{2}], \ab[\frac{l_n + r_n}{2}, r_n]$ 中选择包含无穷多项 $x_m (m > i_n)$ 的那个，记作 $[l', r']$，那么 $l_{n+1}, r_{n+1}$ 为 $\{a_m: m > i_n \land l_{n+1} \le a_m \le r_{n+1}\}$ 的下/上确界；
+			\item $i_n = \min\{i: i > i_{n-1} \land a_i \in I_n\}$。
+		\end{itemize}
+
+		归纳可知这个构造是合法的。因为 $I_n$ 构成闭区间套，因此 $\{a_{i_n}\}$ 就是一个合法的收敛子列。
+	\end{proof}
+\end{theorem}
+
+\begin{definition}[柯西基本列]
+	给定数列 $\{a_n\}$，若 $\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\, N \le n < m: |a_n - a_m| < \varepsilon$，那么称 $\{a_n\}$ 为基本列（Cauchy 列）。
+\end{definition}
+
+\begin{example}
+	证明：设 $a_n = \sum_{i=1}^n \frac{1}{i^\alpha}\ (0 < \alpha \le 1)$，那么 $\{a_n\}$ 不是 Cauchy 列。
+
+	\begin{proof}
+		取 $\varepsilon = \frac{1}{2}$。那么对于任意 $N$，取 $n = N, m = 2N + 1$，那么：
+		$$
+		a_m - a_n = \sum_{i=N+1}^{2N+1} \frac{1}{i^\alpha} \ge \sum_{i=N+1}^{2N+1} \frac{1}{i} \ge \frac{N + 1}{2N + 1} > \frac{1}{2}
+		$$
+		因此得证。
+	\end{proof}
+\end{example}
+
+\begin{theorem}[柯西收敛准则]
+	一个数列 $\{a_n\}$ 收敛当且仅当它是基本列。
+
+	\begin{proof}
+		\begin{itemize}
+			\item 充分性：设极限是 $a$，那么 $n$ 充分大时 $|a_n - a| < \frac{\varepsilon}{2}$。那么，$|a_n - a_m| \le |a_n - a| + |a_m - a| < \varepsilon$；
+
+			\item 必要性：使用列紧性定理。首先取 $\varepsilon_0 = 1$，那么 $\exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: |a_n - a_N| < \varepsilon_0 = 1$，这说明 $\{a_n\}$ 是有界的。那么 $\{a_n\}$ 有收敛子列 $\{a_{i_n}\}$，设其极限为 $a$。
+			
+			那么对于 $\forall\,\varepsilon > 0$，我们可以找到充分大的 $N = i_M$ 满足 $|a_N - a| < \frac{\varepsilon}{2}$ 且 $\forall\,n \ge N: |a_n - a_N| < \frac{\varepsilon}{2}$。这样就有 $\forall\,n \ge N: |a_n - a| < \varepsilon$，于是得证。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+结合上面的例，说明 $a_n = \sum_{i=1}^n \frac{1}{i^\alpha}\ (0 < \alpha \le 1)$ 是发散的。
+
+给定集合 $A$，若有开区间族 $\{I_\lambda: \lambda \in \Lambda\}$，使得 $A \subseteq \bigcup_{\lambda \in \Lambda} I_\lambda$，那么这个开区间族覆盖了 $A$。也即：$\{I_\lambda\}$ 覆盖了 $A$ 当且仅当 $\forall\,x \in A: \exists\, I_{\lambda_0} \in \{I_\lambda\}: x \in I_{\lambda_0}$。据此有定理：
+
+\begin{theorem}[有限覆盖定理（Heine-Borel 定理）]
+	若有限闭区间 $[a,b]$ 被 $\{I_\lambda\}$ 开覆盖，则必可从中选择有限个开区间来覆盖 $[a,b]$。
+\end{theorem}
+
+\subsection{函数的极限}
+
+和数列极限类似，给出函数趋于无穷的极限：
+
+\begin{definition}
+	若函数 $f(x)$ 在 $(a,\infty)$ 有定义，并且存在常数 $A$ 使得 $\forall\,\varepsilon > 0: \exists\,X > 0: \forall x > X: |f(x) - A| < \varepsilon$，那么称 $x \to +\infty$ 时函数 $f(x)$ 以 $A$ 为极限，记作
+
+	$$
+	\lim_{x \to +\infty} f(x) = A \text{ 或 } f(x) \to A\ (x \to +\infty) \text{ 或 } f(+\infty) = A
+	$$
+
+	同理也可以得到 $x \to -\infty$ 的极限的定义。一样可以记作：
+
+	$$
+	\lim_{x \to -\infty} f(x) = A \text{ 或 } f(x) \to A\ (x \to -\infty) \text{ 或 } f(-\infty) = A
+	$$
+\end{definition}
+
+除此之外，函数的极限可以趋近于定点：
+
+\begin{definition}
+	若 $\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x \in \mathring{U}(x_0, \delta): |f(x) - A| < \varepsilon$，那么称 $A$ 为 $x \to x_0$ 的极限，记作：
+	$$
+	\lim_{x \to x_0} f(x) = A \text{ 或 } f(x) \to A\ (x \to x_0)
+	$$
+
+	这个定义就是所谓 $\varepsilon\text{-}\delta$ 语言。
+\end{definition}
+
+注意函数极限的定义不要求 $f(x)$ 在 $x = x_0$ 处有定义。
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 2.4.8
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} (1 + \frac{1}{n - 2})^{n - 2} \cdot (1 + \frac{1}{n - 2})^2 \\
+				& = \lim_{n \to \infty} \ab(1 + \frac{1}{n - 2})^{n - 2} \cdot \ab(\lim_{n \to \infty} 
+				\ab(1 + \frac{1}{n - 2}))^2 \\
+				& = \E				
+			\end{aligned}
+			$$
+
+			\item[\textbf{2)}] 当 $n \ge 2$ 时：
+			$$
+			\ab(\frac{1}{2})^{\frac{1}{n}} \le \ab(1 - \frac{1}{n})^{\frac{1}{n}} < 1^{\frac{1}{n}}
+			$$
+			而 $\lim\limits_{n \to \infty} \ab(\frac{1}{2})^{\frac{1}{n}} = \lim\limits_{n \to \infty} 1^{\frac{1}{n}} = 1$，由夹逼定理知 $\lim\limits_{n \to \infty} \ab(1 - \frac{1}{n})^{\frac{1}{n}} = 1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.9
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 使用 Stolz 定理：
+			$$
+			\text{原式} = \lim_{n \to \infty} \frac{\ln(n+1) - \ln n}{1} = \lim_{n \to \infty} \ln\ab(1 + \frac{1}{n})
+			$$
+			而 $0 < \ln\ab(1 + \frac{1}{n}) < \frac{1}{n}$，因此 $\lim\limits_{n \to \infty} \ln\ab(1 + \frac{1}{n}) = 0$。
+
+			\item[\textbf{2)}] 使用 Stolz 定理：
+			$$
+			\text{原式} = \lim_{n \to \infty} \frac{1}{n (\ln n - \ln(n - 1))} = \lim_{n \to \infty} \frac{1}{n \ln\ab(1 + \frac{1}{n - 1})}
+			$$
+			而根据某不知名重要不等式，有：
+			$$
+			1 - \frac{1}{n} = \frac{1}{n \cdot \frac{1}{n - 1}} < \frac{1}{n \ln\ab(1 + \frac{1}{n - 1})} < \frac{1}{n \cdot \frac{1}{n}} = 1
+			$$
+			根据夹逼定理得到原极限为 $1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.4.11
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{gathered}
+				\begin{aligned}
+					& \quad & \sqrt{n + 1} - \sqrt{n} & > \frac{1}{2 \sqrt{n + 1}} \\
+					& \Leftrightarrow & 2(n + 1) - 2 \sqrt{n(n + 1)} & > 1 \\
+					& \Leftrightarrow & (2n + 1)^2 & > 4n(n + 1) \\
+					& \Leftrightarrow & 1 & > 0
+				\end{aligned}
+				\\
+				\begin{aligned}
+					& \quad & \sqrt{n + 1} - \sqrt{n} & < \frac{1}{2 \sqrt{n}} \\
+					& \Leftrightarrow & 2 \sqrt{n(n + 1)} - 2n & < 1 \\
+					& \Leftrightarrow & 4n(n + 1) & < (2n + 1)^2 \\
+					& \Leftrightarrow & 0 & < 1
+				\end{aligned}
+			\end{gathered}
+			$$
+
+			\item[\textbf{2)}] 先证明 $\{x_n\}$ 的单调性：
+			$$
+			x_{n+1} - x_n = \frac{1}{\sqrt{n + 1}} - (2 \sqrt{n + 1} - 2 \sqrt{n}) < 0
+			$$
+			因此 $\{x_n\}$ 单调递减。再证明 $\{x_n\}$ 的有界性：
+			$$
+			\begin{aligned}
+				x_n & = \frac{1}{\sqrt{n}} + \sum_{i=1}^{n-1} \frac{1}{\sqrt{i}} - 2 - 2 \sum_{i=1}^{n-1} \ab(\sqrt{i+1} - \sqrt{i}) \\
+				& = -2 + \frac{1}{\sqrt{n}} + \sum_{i=1}^{n-1} \ab(\frac{1}{\sqrt{i}} - 2 \ab(\sqrt{i + 1} - \sqrt{i})) \\
+				& > -2 + \frac{1}{\sqrt{n}} > -2
+			\end{aligned}
+			$$
+			所以 $\{x_n\}$ 单调有界，极限存在。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.5.1
+
+	\begin{proof}
+		归纳证明 $x_n < y_n$。首先对于 $n = 1$ 成立，然后假设 $n$ 成立，那么根据基本不等式就有：
+		$$
+		x_n < x_{n+1} = \sqrt{x_n y_n} < \frac{x_n + y_n}{2} = y_{n+1} < y_n
+		$$
+		同时有
+		$$
+		y_{n+1} - x_{n+1} < \frac{x_n + y_n}{2} - x_n = \frac{y_n - x_n}{2}
+		$$
+		所以 $\lim\limits_{n \to \infty} (y_n - x_n) = 0$。因此 $I_n = [x_n, y_n]$ 构成一个闭区间套，根据闭区间套定理，$\lim\limits_{n \to \infty} x_n = \lim\limits_{n \to \infty} y_n$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.5.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 注意到 $a_n = \ln n$ 满足条件并且发散。因此这种情况下 $\{a_n\}$ 不一定收敛。
+
+			\item[\textbf{2)}] 此时有 $|a_{n+1} - a_n| < \frac{1}{n^2}$，因此：
+			$$
+			\begin{aligned}
+				a_{n+p} - a_n & < \sum_{i=n+1}^{n+p} \frac{1}{i^2} \\
+				& < \sum_{i=n+1}^{n+p} \frac{1}{i(i-1)} \\
+				& = \frac{1}{n} - \frac{1}{n+p} < \frac{1}{n}
+			\end{aligned}
+			$$
+			因此对于任意 $\varepsilon > 0$ 均可取到 $N = \ceil*{\frac{1}{\varepsilon}}$，使得 $\forall,N \le n < m: |a_n - a_m| < \varepsilon$。所以 $\{a_n\}$ 是 Cauchy 列，根据柯西收敛准则 $\{a_n\}$ 收敛。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.5.4
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 考察 $a_{n+p} - a_n$：
+			$$
+			a_{n+p} - a_n = \sum_{i=n+1}^{n+p} \frac{(-1)^{i+1}}{i} = (-1)^n \sum_{i=1}^p \frac{(-1)^{i+1}}{n+i}
+			$$
+			若 $p$ 为偶数，将每一项分组：
+			$$
+			\begin{aligned}
+				|a_{n+p} - a_n| & = \frac{1}{n+1} + \ab(-\frac{1}{n+2} + \frac{1}{n+3}) + \cdots + \ab(-\frac{1}{n+p-2} + \frac{1}{n+p-1}) - \frac{1}{n+p} \\
+				& < \frac{1}{n+1} - \frac{1}{n+p} \\
+				& < \frac{1}{n+1}
+			\end{aligned}
+			$$
+			同理，若 $p$ 为奇数，也能得到 $a_{n+p} - a_n < \frac{1}{n+1}$。
+
+			这样实际上证明了 $\{a_n\}$ 是 Cauchy 列，因此 $\{a_n\}$ 收敛。
+
+			\item[\textbf{2)}]
+			$$
+			|a_{n+p} - a_n| = \ab|\sum_{i=n+1}^{n+p} \frac{\sin i}{2^i}| \le \sum_{i=n+1}^{n+p} \frac{1}{2^i} = \frac{1}{2^n} - \frac{1}{2^{n+p}} < \frac{1}{2^n}
+			$$
+			因此 $\{a_n\}$ 是 Cauchy 列，$\{a_n\}$ 收敛。
+
+			\item[\textbf{3)}]
+			$$
+			|x_{n+p} - x_n| = \ab|\sum_{i=n+1}^{n+p} \frac{\cos i!}{i(i+1)}| \le \sum_{i=n+1}^{n+p} \frac{1}{i(i+1)} = \frac{1}{n+1} - \frac{1}{n+p+1} < \frac{1}{n+1}
+			$$
+			因此 $\{x_n\}$ 是 Cauchy 列，$\{x_n\}$ 收敛。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.5.7
+
+	\begin{proof}
+		考虑二分法证明列紧性定理的过程：
+
+		\begin{enumerate}
+			\item 初始时令 $l = \inf a_n,\ r = \sup a_n$；
+			\item 找一个落在 $[l, r]$ 内且下标排在已选子列之后的 $a_i$ 加入子列；
+			\item 令 $[l, r]$ 成为 $[l,\frac{l+r}{2}],[\frac{l+r}{2},r]$ 中包含无穷项 $\{a_n\}$ 的那个区间。回到第 2 步进行下一次迭代。
+		\end{enumerate}
+
+		若在某次迭代，第 3 步的两个区间都包含无穷项 $\{a_n\}$，那么就可以找到至少两个极限不同的子列。若每一次迭代中，第 3 步都只有一个选择，那么根据闭区间套定理可以证明 $\{a_n\}$ 收敛，矛盾。
+
+		故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 2.5.8
+
+	\begin{proof}
+		$x_{n+2} = 1 - \frac{1}{x_n + 2}$。设 $f(x) = 1 - \frac{1}{x + 2}$，定义 $a_n = x_{2n},\ b_n = x_{2n+1}$，那么 $a_{n+1} = f(a_n),\ b_{n+1} = f(b_n)$。
+
+		解不等式可得 $\frac{1}{2} \le x < \frac{\sqrt{5} - 1}{2}$ 时，$x < f(x) < \frac{\sqrt{5} - 1}{2}$；$\frac{\sqrt{5} - 1}{2} < x \le 1$ 时，$\frac{\sqrt{5} - 1}{2} < f(x) < x$。而 $a_0 = 1,\ b_0 = \frac{1}{2}$，归纳可证 $\{a_n\}, \{b_n\}$ 单调有界，均收敛。
+
+		设 $\lim\limits_{n \to \infty} a_n = A$，那么 $A = f(A)$，解得 $A = \frac{\sqrt{5} - 1}{2}$。同理解得 $\lim\limits_{n \to \infty} b_n = \frac{\sqrt{5} - 1}{2}$。因此 $\{x_n\}$ 的极限也是 $\frac{\sqrt{5} - 1}{2}$。
+	\end{proof}
+\end{problem}

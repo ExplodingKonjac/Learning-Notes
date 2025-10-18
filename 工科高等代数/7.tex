@@ -1,0 +1,126 @@
+\section{线性方程组 IV}
+
+\subsection{求解秩}
+
+求解向量组的秩相当于求解这些向量拼接形成的矩阵的秩。求解矩阵的秩只需要用初等行变换将矩阵化为阶梯矩阵，那么非零行的数量就是矩阵的秩。
+
+\subsection{克拉默法则及其逆定理}
+
+首先对于齐次线性方程组考虑：
+
+\begin{lemma} \label{lemma:齐次线性方程组唯一解}
+	设矩阵 $\matr{A} = [a_{i,j}]_n$，那么齐次线性方程组
+	$$
+	\matr{A} \vect{x} = \vect{0}
+	$$
+	有非零解的充要条件是 $\det \matr{A} = 0$。
+
+	\begin{proof}
+		方程组有非零解 $\Leftrightarrow$ 矩阵 $\matr{A}$ 的行向量组线性相关 $\Leftrightarrow$ 矩阵 $\matr{A}$ 不满秩 $\Leftrightarrow \det \matr{A} = 0$。
+	\end{proof}
+\end{lemma}
+
+\begin{theorem}[克拉默法则及其逆定理]
+	给定矩阵 $\matr{A} = [a_{i,j}]_n$ 和向量 $\vect{b} = [b_i]_{n \times 1}$，那么线性方程组
+	$$
+	\matr{A} \vect{x} = \vect{b}
+	$$
+	有唯一解的充要条件是 $\det \matr{A} \neq 0$。
+
+	\begin{proof}
+		充分性是克拉默法则。下证明必要性：
+
+		若 $\det \matr{A} \neq 0$，那么方程组要么无解，要么有至少两个解。因为若存在一个解 $\vect{x}_1$，根据引理 \ref{lemma:齐次线性方程组唯一解}，一定存在非零向量 $\vect{x}_0$ 使得 $\matr{A} \vect{x_0} = \vect{0}$，于是 $\matr{A} (\vect{x_1} + \vect{x_0}) = \vect{b}$，这说明 $(\vect{x}_1 + \vect{x}_0)$ 也是一个解。
+	\end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	第三章习题 7
+
+	\begin{proof}
+		考虑反证。若这 $r$ 个向量不是极大线性无关组，那么再添加一个向量后依然线性无关，这说明秩 $\ge r + 1$，矛盾。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 8
+
+	\begin{proof}
+		只需证明 $\vect{\alpha}_{i_1}, \vect{\alpha}_{i_2}, \dots, \vect{\alpha}_{i_r}$ 线性无关
+		
+		考虑反证。若它们线性相关，找到它一个极大线性无关组 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s\ (s<r)$，那么 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 能表出 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$，因此也能表出它的任意一个极大线性无关组 $\vect{\gamma}_1, \vect{\gamma}_2, \dots, \vect{\gamma}_r$。根据向量组相关推论，$r > s$ 说明 $\vect{\gamma}_1, \vect{\gamma}_2, \dots, \vect{\gamma}_r$ 线性相关，矛盾。
+		
+		故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 9
+
+	\begin{proof}
+		设这个部分组为 $\mathcal{G}$，只需要一直在向量组中找一个未加入的向量，使得 $\mathcal{G}$ 加入该向量后依然线性无关，并将该向量加入 $\mathcal{G}$，即可得到一个极大线性无关组。显然该过程的步数是有限的。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 10
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 即证，不存在不全为 $0$ 的 $k_1,k_2$ 使得 $k_1 \alpha_1 + k_2 \alpha_2 = \vect{0}$。要使这个方程成立，先考察第一维分量得到 $k_1 = 0$，然后可知仅有 $k_2 = 0$ 才满足条件。故不存在不全为 $0$ 的 $k_1,k_2$。
+			
+			\item[\textbf{2)}] $\vect{\alpha}_1, \vect{\alpha}_2, \vect{\alpha}_4$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 11
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}] 所有极大线性无关组为：$(\vect{\alpha}_1, \vect{\alpha_2}, \vect{\alpha}_4)$, $(\vect{\alpha}_1, \vect{\alpha_2}, \vect{\alpha}_5)$, $(\vect{\alpha}_1, \vect{\alpha_3}, \vect{\alpha}_4)$, $(\vect{\alpha}_1, \vect{\alpha_3}, \vect{\alpha}_5)$, $(\vect{\alpha}_2, \vect{\alpha_3}, \vect{\alpha}_4)$, $(\vect{\alpha}_2, \vect{\alpha_3}, \vect{\alpha}_5)$；
+			
+			故原向量组的秩为 $3$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 12
+
+	\begin{proof}
+		若 (I) 能被 (II) 表出，则 (I) 的极大线性无关组能被 (II) 的极大线性无关组表出，那么 (I) 的极大线性无关组的大小不大于 (II) 的极大线性无关组的大小，即 (I) 的秩不大于 (II) 的秩。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 18
+
+	\begin{proof}
+		只需要构造一组初等变换将 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 变换为 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_r$ 即证。构造如下：
+
+		\begin{enumerate}
+			\item 初始时 $\vect{\beta}_i = \vect{\alpha}_i$；
+			\item 令 $\vect{\beta}_i \gets \vect{\beta}_i + \sum_{i=2}^r \vect{\beta}_i$（此次操作后，$\vect{\beta}_1 = \sum_{k=1}^r \vect{\alpha}_k$）；
+			\item 对于 $2 \le i \le r$，令 $\vect{\beta}_i \gets \vect{\beta}_i - \vect{\beta}_1$；
+			\item 对于 $2 \le i \le r$，令 $\vect{\beta}_i \gets -\vect{\beta}_i$（此次操作后，$\forall\,2 \le i \le r: \vect{\beta}_i = \sum_{k=1}^r \vect{\alpha}_k - \vect{\alpha}_i$）；
+			\item 令 $\vect{\beta}_i \gets (r - 1) \vect{\beta}_i$；
+			\item 令 $\vect{\beta}_i \gets \vect{\beta}_i - \sum_{k=2}^r \vect{\beta}_k$（此次操作后，$\vect{\beta}_1 = \sum_{k=2}^r \vect{\alpha}_k$）。
+		\end{enumerate}
+
+		最终得到 $\vect{\beta}_i = \sum_{k=1}^r \vect{\alpha}_k - \vect{\alpha}_i$，得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第三章习题 19
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{3)}] 设矩阵的行向量为 $\vect{\alpha}_1, \vect{\alpha}_2, \vect{\alpha}_3, \vect{\alpha}_4$。那么有 $\vect{\alpha}_1 = 2 \vect{\alpha}_3 = \frac{2}{5} \vect{\alpha}_4$。这说明 $\vect{\alpha}_1, \vect{\alpha}_3, \vect{\alpha}_4$ 两两之间线性相关。因此 $\vect{\alpha}_1, \vect{\alpha}_2$ 是一个极大线性无关组，矩阵的秩为 $2$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}

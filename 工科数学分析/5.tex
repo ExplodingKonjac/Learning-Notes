@@ -1,0 +1,128 @@
+\section{函数极限 II}
+
+\subsection{函数左右极限}
+
+\begin{definition}
+	若 $\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x \in (x_0, x_0 + \delta): |f(x) - A| < \varepsilon$，那么称 $A$ 为 $x$ 从右侧趋近于 $x_0$ 的极限，也称为 $f(x)$ 在 $x_0$ 的右极限，记作：
+	$$
+	\lim_{x \to x_0^+} f(x) = A \text{ 或 } f(x) \to A\ (x \to x_0^+) \text{ 或 } f(x_0^+) = A \text{ 或 } f(x_0+0) = a
+	$$
+	同理得到左极限的定义。记作：
+	$$
+	\lim_{x \to x_0^-} f(x) = A \text{ 或 } f(x) \to A\ (x \to x_0^-) \text{ 或 } f(x_0^-) = A \text{ 或 } f(x_0-0) = a
+	$$
+\end{definition}
+
+结合左右极限的定义和 $\mathring{U}(x_0, \delta) = (x_0, x_0 + \delta) \cap (x_0 - \delta, x_0)$，得到定理：
+
+\begin{theorem}
+	$$
+	\lim_{x \to x_0} f(x) = A \Leftrightarrow \lim_{x \to x_0^+} f(x) = \lim_{x \to x_0^-} f(x) = A
+	$$
+\end{theorem}
+
+这个定理可用于证明某点的极限不存在。
+
+\subsection{函数极限的性质}
+
+函数极限具有和数列极限类似的一些性质：
+
+\begin{theorem}[极限的唯一性]
+	若函数极限存在，则极限唯一。	
+\end{theorem}
+
+\begin{theorem}[极限的局部有界性]
+	若 $\lim\limits_{x \to x_0} f(x) = A$，则存在 $\delta > 0$ 使得 $f(x)$ 在 $\mathring{U}(x_0, \delta)$ 有界。	
+\end{theorem}
+
+\begin{theorem}[极限的局部保号性]
+	若 $\lim\limits_{x \to x_0} f(x) = A > 0$，则存在 $\delta > 0$ 使得 $\forall\,x \in \mathring{U}(x_0, \delta): f(x) > 0$。大于号也可以同理换成小于号。
+\end{theorem}
+
+\begin{corollary}[极限的局部保序性]
+	若 $\lim\limits_{x \to x_0} f(x) > \lim\limits_{x \to x_0} g(x)$，则存在 $\delta > 0$ 使得 $\forall\,x \in \mathring{U}(x_0, \delta): f(x) > g(x)$。
+\end{corollary}
+
+\begin{theorem}[极限的四则运算法则]
+	若 $\lim\limits_{x \to x_0} f(x) = A,\ \lim\limits_{x \to x_0} g(x) = B$，则：
+
+	\begin{itemize}
+		\item $\lim\limits_{x \to x_0} f(x) + g(x) = A + B$；
+		\item $\lim\limits_{x \to x_0} f(x) - g(x) = A - B$；
+		\item $\lim\limits_{x \to x_0} f(x) \times g(x) = A \times B$；
+		\item 若 $B \neq 0$ 且 $g(x)$ 在某个 $x_0$ 的去心邻域非零，$\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \frac{A}{B}$。
+	\end{itemize}
+\end{theorem}
+
+上述定理中 $x \to x_0$ 可替换为 $x \to x_0^+,\ x \to x_0^-,\ x \to +\infty,\ x \to -\infty$。
+
+\begin{theorem}[夹逼定理]
+	若 $\forall\,x \in \mathring{U}(x_0, \delta): g(x) \le f(x) \le h(x)$ 且 $\lim\limits_{x \to x_0} g(x) = \lim\limits_{x \to x_0} h(x) = A$，那么 $\lim\limits_{x \to x_0} f(x) = A$。
+
+	同理也有 $x$ 趋向于正负无穷的版本。
+\end{theorem}
+
+\begin{theorem}[Heine 定理]
+	$\lim\limits_{x \to x_0} f(x) = A$ 的充要条件是任意数列 $\{a_n\}$ 满足 $a_n \neq x_0 \land \lim\limits_{x \to \infty} a_n = x_0$，有 $\lim\limits_{n \to \infty} f(a_n) = A$。
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：因为 $\lim\limits_{x \to x_0} f(x) = A$，那么
+			$$
+			\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x \in \mathring{U}(x_0, \delta): |f(x) - A| < \varepsilon
+			$$
+			又因为 $\lim\limits_{x \to \infty} a_n = x_0$，有
+			$$
+			\exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: |a_n - x_0| < \delta \Rightarrow |f(a_n) - A|<\varepsilon
+			$$
+			于是得证。
+
+			\item 充分性：考虑反证。若 $f(x)$ 在 $x_0$ 不存在极限或极限不为 $A$，那么：
+			$$
+			\exists\,\varepsilon_0 > 0: \forall\,\delta > 0: \exists\,x \in \mathring{U}(x_0, \delta): |f(x) - A| \ge \varepsilon_0
+			$$
+			令 $\delta_1 = 1, \delta_2 = \frac{1}{2}, \dots, \delta_n = \frac{1}{n}, \dots$，可以构造一个数列 $\{x_n\}$ 满足 $|x_n - x_0| < \frac{1}{n}$ 且 $|f(x_n) - A| \ge \varepsilon_0$。得到矛盾，故得证。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+如果只关注收敛性，也可以得到类似的定理：
+
+\begin{theorem}
+	$f(x)$ 在 $x_0$ 处极限存在当且仅当任意 $\{a_n\}$ 满足 $a_n \neq x \land \lim\limits_{n \to \infty} a_n = x_0$，都有 $\{f(a_n)\}$ 收敛。
+
+	\begin{proof}
+		只需要证明所有趋于 $x_0$ 的数列 $\{a_n\}$ 都有 $\lim\limits_{n \to \infty} f(a_n)$ 相等。
+
+		对于两个趋于 $x_0$ 的数列 $\{x_n\},\{y_n\}$，构造新数列 $z_n$：
+		$$
+		z_n = \begin{cases}
+			x_k & , n = 2k - 1\ (k \in \mathbb{Z}^+) \\
+			y_k & , n = 2k\ (k \in \mathbb{Z}^+)
+		\end{cases}
+		$$
+		那么 $\{f(z_n)\}$ 收敛，而 $\{f(x_n)\},\{f(y_n)\}$ 是它的子列，因此也具有相同的极限。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[函数极限的 Cauchy 收敛原理]
+	设 $f(x)$ 在 $x_0$ 的某个去心邻域内有定义，那么 $\lim\limits_{x \to x_0} f(x)$ 存在的充要条件是 $\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,0 < |x_0 - x_1|,|x_0 - x_2| < \delta: |f(x_1) - f(x_2)| < \varepsilon$。
+
+	\begin{proof}
+		\begin{enumerate}
+			\item 充分性：绝对值三角不等式随便放缩即可；
+			\item 必要性：取任意收敛于 $x_0$ 的数列 $\{a_n\}$，那么可得 $\{f(a_n)\}$ 是基本列，再根据 Heine 定理即证。
+		\end{enumerate}
+	\end{proof}
+\end{theorem}
+
+函数极限相比数列极限不同的是其还可以进行复合运算。
+
+\begin{theorem}[复合函数的极限]
+	设 $\lim\limits_{u \to u_0} f(u) = A,\ \lim\limits_{x \to x_0} g(x) = u_0$，且在 $x_0$ 的某个去心邻域中 $g(x) \neq u_0$，那么：
+	$$
+	\lim_{x \to x_0} f(g(x)) = \lim_{u \to u_0} f(u) = A
+	$$
+\end{theorem}
+
+定理中必须有 $g(x) \neq u_0$。

@@ -1,0 +1,106 @@
+\section{线性方程组 III}
+
+\subsection{向量组的秩}
+
+\begin{definition}[极大线性无关组]
+	如果一个向量组的某个子集线性无关，并且加入任意一个原向量组中的向量后线性相关，那么这个子集称为原向量组的\textbf{极大线性无关组}。
+\end{definition}
+
+极大线性无关组具有下面性质：
+
+\begin{property}
+	\ 
+	\begin{itemize}
+		\item 一个向量组和它所有极大线性无关组等价；
+		\item 一个向量组的所有极大线性无关组大小相等。
+	\end{itemize}
+\end{property}
+
+由此得到向量组的秩的定义：
+
+\begin{definition}[向量组的秩]
+	向量组的秩定义为它的极大线性无关组的大小。
+\end{definition}
+
+根据定理 \ref{theorem:线性表出与向量组大小关系} 及其推论可知下面的性质：
+
+\begin{property}
+	\ 
+	\begin{itemize}
+		\item $\rank(\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_s) \le s$，当且仅当向量组线性无关时取等；
+		\item 等价的向量组拥有相同的秩；
+		\item 若 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_s$ 能被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_t$ 线性表出，那么 $\rank \vect{\alpha} \le \rank \vect{\beta}$。
+	\end{itemize}
+\end{property}
+
+\subsection{矩阵的秩}
+
+\begin{definition}[行秩和列秩]
+	矩阵的行向量组的秩称为它的行秩，矩阵的列向量组的秩称为它的列秩。
+\end{definition}
+
+\begin{theorem}
+	矩阵的行秩等于列秩
+
+	\begin{proof}
+		设 $\matr{A}$ 的行秩为 $r$，列秩为 $r'$，那么只需要证明 $r \le r'$，由对称性即可得到 $r = r'$。
+		
+		取出 $\matr{A}$ 的行向量组的任意一个极大无关组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$，那么方程组
+		$$
+		\begin{bmatrix}
+			\vect{\alpha}_1 & \vect{\alpha}_2 & \cdots & \vect{\alpha}_r
+		\end{bmatrix} \vect{x} = \vect{0}
+		$$
+		只有零解。因此该方程组的系数矩阵（记做 $\matr{B}$）的行秩 $\ge r$（否则取出一个极大无关组，得到等价的方程组有非零解）。
+
+		取出 $\matr{B}$ 的行向量组的一个极大无关组，这个向量组对应 $\matr{A}$ 的一个列向量组保留 $r$ 个分量。而显然线性无关的向量组添加若干个分量后仍然线性无关，因此 $\matr{A}$ 对应的这些列向量也是线性无关的。因此 $r' \ge r$。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	设 $\matr{A} \in P^{n \times m}$，那么对 $A$ 进行有限次初等变换使其变为 $\matr{I}_r$，那么 $\matr{A}$ 的行秩和列秩都是 $r$。
+
+	\begin{proof}
+		经过初等行（列）变换后行（列）向量组仍然等价，因此行（列）秩不变。使用高斯-约旦消元法消成 $\matr{I}_r$ 后行秩和列秩也和原本相同。而显然 $I_r$ 的行秩和列秩都是 $r$。
+	\end{proof}
+\end{theorem}
+
+于是可以简单给出矩阵的秩的定义：
+
+\begin{definition}[矩阵的秩]
+	矩阵的秩定义为它的行秩/列秩。
+\end{definition}
+
+显然一个 $\matr{A} \in P^{n \times n}$ 的秩应当 $\le n$。而对此有定理：
+
+\begin{theorem}
+	$\rank \matr{A} = n$ 当且仅当 $|A| \neq 0$。
+
+	\begin{proof}
+		将 $\matr{A}$ 进行高斯-约旦消元消成 $\matr{I}_r$，在此过程中 $\rank \matr{A}$ 不变，行列式是否为 $0$ 的性质也不变，因此每步都是等价推导。而显然 $\matr{I}_r$ 满足定理，于是得证。
+	\end{proof}
+\end{theorem}
+
+矩阵的秩与行列式也有联系。我们记矩阵的某 $k$ 行某 $k$ 列的交点组成的矩阵的行列式为一个 \textbf{$k$ 阶子式}，那么有：
+
+\begin{theorem}
+	矩阵的秩等于矩阵的最高阶非零子式的阶数。
+
+	\begin{proof}
+		设 $\rank \matr{A} = r$，最高阶非零子式阶数为 $k$。
+		
+		$\matr{A}$ 的任意 $r'\ (r' > r)$ 个行向量组都线性相关，那么 $\matr{A}$ 的任意一个 $r'$ 阶子式的行向量组都线性相关，行列式为 $0$。因此 $k \le r$。
+
+		取出 $\matr{A}$ 的一个极大无关组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$，那么矩阵
+		$$
+		A' = \begin{bmatrix}
+			\vect{\alpha}_1 \\ \vect{\alpha}_2 \\ \vdots \\ \vect{\alpha}_r
+		\end{bmatrix}
+		$$
+		的秩也是 $r$。因此 $\matr{A'}$ 的列秩也是 $r$。取出 $\matr{A'}$ 的列向量组的一个极大无关组，它们构成一个 $\matr{A}$ 的 $r$ 阶非零子式。因此 $k \ge r$。
+
+		综上 $k = r$。
+	\end{proof}
+\end{theorem}
+
+这也是矩阵的秩的另一个等价定义。

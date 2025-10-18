@@ -142,9 +142,11 @@
 
 \AtBeginEnvironment{proof}{\setlength{\parindent}{2em}}
 
-\newenvironment{solution}
-	{\begin{proof}[解]\let\qed\relax}
-	{\end{proof}}
+\newenvironment{solution}{
+	\begin{proof}[解]\let\qed\relax
+}{
+	\end{proof}
+}
 
 \undef\AddTCB
 
@@ -177,6 +179,7 @@
 % some functions
 \newcommand{\sgn}{\operatorname{sgn}}
 \newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\rank}{\operatorname{rank}}
 \newcommand{\bitnot}{\operatorname{NOT}}
 \newcommand{\bitand}{\operatorname{AND}}
 \newcommand{\bitor}{\operatorname{OR}}
