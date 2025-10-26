@@ -1,0 +1,147 @@
+\section{线性方程组 V \& 矩阵 I}
+
+\subsection{线性方程组解的结构}
+
+线性方程组 $\matr{A} \vect{x} = \vect{b}$ 的一个解是一个向量，集合 $V = \{\vect{\gamma} \in P^n: \matr{A} \vect{\gamma} = \vect{b}\}$ 称为方程组的解集。
+
+对于齐次线性方程组而言，解的线性组合仍然是方程组的解。
+
+\begin{definition}
+	齐次线性方程组的一组解 $\vect{\eta}_1, \vect{\eta}_2, \cdots, \vect{\eta}_r$ 称为一个\textbf{基础解系}，当且仅当：
+
+	\begin{itemize}
+		\item 方程组的所有解都可以被 $\vect{\eta}_1, \vect{\eta}_2, \cdots, \vect{\eta}_r$ 线性表出；
+		\item $\vect{\eta}_1, \vect{\eta}_2, \cdots, \vect{\eta}_r$ 是线性无关的;
+	\end{itemize}
+
+	\sout{其实就是解空间的基}
+\end{definition}
+
+\begin{theorem} \label{theorem:齐次线性方程组解的结构}
+	齐次线性方程组 $\matr{A} \vect{x} = \vect{0}$ 存在基础解系，且其中包含 $n - \rank \matr{A}$ 个解。
+
+	\sout{其实就是说解集是一个线性空间}
+
+	\begin{proof}
+		记 $r = \rank \matr{A}$。消元后得到 $n - r$ 个自由元，那么自由元的一组取值和线性方程组的一组解一一对应。于是用
+		$$
+		\cvec{1, 0, \vdots, 0}, \cvec{0, 1, \vdots, 0}, \cdots, \cvec{0, 0, \vdots, 1}
+		$$
+		带入自由元即可得到一组基础解系：
+		$$
+		\vect{\eta}_1 = \cvec{c_{1,1}, c_{1,2}, \vdots, c_{1,r}, 1, 0, \vdots, 0},
+		\vect{\eta}_2 = \cvec{c_{2,1}, c_{2,2}, \vdots, c_{2,r}, 0, 1, \vdots, 0},
+		\cdots,
+		\vect{\eta}_r = \cvec{c_{r,1}, c_{r,2}, \vdots, c_{r,r}, 0, 0, \vdots, 1},
+		$$
+		显然这些向量线性无关。而方程组的每组解 $\rvec{t_1, \dots, t_r, t_{r+1}, \dots, t_n}$ 都可以表示为
+		$$
+		\sum_{i=r+1}^n t_i \vect{\eta}_i
+		$$
+		因此 $\vect{\eta}_1, \vect{\eta}_2, \cdots, \vect{\eta}_r$ 是一组基础解系。
+	\end{proof}
+\end{theorem}
+
+有基础解系的定义可以看出，任何与基础解系等价的线性无关向量组都是一个基础解系。
+
+再看一般的线性方程组 $\matr{A} \vect{x} = \vect{b}$。我们称其对应的齐次线性方程组 $\matr{A} \vect{x} = \vect{b}$ 是它的\textbf{导出组}。那么可以看出：
+
+\begin{itemize}
+	\item 原方程组的两个解之差是导出组的解；
+	\item 原方程组的一个解加上导出组的一个解是原方程组的解。
+\end{itemize}
+
+总结起来就是：
+
+\begin{theorem}
+	设 $\matr{A} \vect{x} = \vect{b}$ 有一个特解 $\vect{\gamma}_0$，那么该方程组的所有解可以表示为
+	$$
+	\vect{\gamma} = \vect{\gamma}_0 + \vect{\eta}
+	$$
+	其中 $\vect{\eta}$ 是导出组的一个解。
+\end{theorem}
+
+再根据定理 \ref{theorem:齐次线性方程组解的结构}，设 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_r$ 是导出组的基础解系，那么方程组的所有解都能表示为
+$$
+\vect{\gamma} = \vect{\gamma}_0 + \sum_{i=1}^r k_i \vect{\eta}_i
+$$
+\sout{其实就是说解集是导出组解空间的一个仿射。}
+
+\begin{corollary}
+	若线性方程组有解，那么有唯一解的充要条件是导出组只有零解。
+\end{corollary}
+
+\subsection{矩阵的概念和运算}
+
+用数域 $P$ 中的数排列成的 $n \times m$ 的数表称为 $P$ 上的 $n \times m$ 矩阵。这些矩阵全体组成的集合记作 $P^{n \times m}$。
+
+一个矩阵可以有下面的记法：
+$$
+\begin{bmatrix}
+	a_{1,1} & a_{1,2} & \cdots & a_{1,m} \\
+	a_{2,1} & a_{2,2} & \cdots & a_{2,m} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	a_{n,1} & a_{n,2} & \cdots & a_{n,m}
+\end{bmatrix} = [a_{i,j}] = \matr{A}
+$$
+
+\begin{definition}[矩阵的加法]
+	若 $\matr{A} = [a_{i,j}]_{n \times m},\ \matr{B} = [b_{i,j}]_{n \times m}$，那么矩阵 $\matr{C} = [a_{i,j} + b_{i,j}]_{n \times m}$ 称为 $\matr{A}$ 和 $\matr{B}$ 的\textbf{和}。记作：
+	$$
+	\matr{C} = \matr{A} + \matr{B}
+	$$
+\end{definition}
+
+\begin{definition}[零矩阵]
+	记元素全为 $0$ 的矩阵为零矩阵，记作 $\matr{O}$。	
+\end{definition}
+
+\begin{definition}[负矩阵]
+	记矩阵 $[-a_{i,j}]_{n \times m}$ 为 $\matr{A}$ 的负矩阵，记作 $-\matr{A}$。
+\end{definition}
+
+\begin{definition}[矩阵的减法]
+	$$
+	\matr{A} - \matr{B} = \matr{A} + (-\matr{B})
+	$$
+\end{definition}
+
+根据矩阵加法的定义可以得到下面的性质：
+
+\begin{property}[矩阵的加法的性质]
+	\ 
+	\begin{itemize}
+		\item 矩阵的加法满足交换律和结合律；
+		\item $\matr{A} + \matr{O} = \matr{O} + \matr{A} = \matr{A}$；
+		\item $\matr{A} + (-\matr{A}) = \matr{O}$；
+		\item $\rank(\matr{A} + \matr{B}) \le \rank\matr{A} + \rank\matr{B}$。
+	\end{itemize}
+\end{property}
+
+\begin{definition}[矩阵的乘法]
+	若 $\matr{A} = [a_{i,k}]_{s \times n},\ \matr{B} = [b_{k,j}]_{n \times m}$，那么记
+	$$
+	c_{i,j} = \sum_{k=1}^n a_{i,k} b_{k,j}
+	$$
+	则 $\matr{C} = [c_{i,j}]_{s \times m}$ 称为 $\matr{A}$ 和 $\matr{B}$ 的\textbf{乘积}，记作
+	$$
+	\matr{C} = \matr{A} \matr{B} \text{ 或 } \matr{C} = \matr{A} \times \matr{B}
+	$$
+\end{definition}
+
+\begin{definition}[单位矩阵]
+	矩阵 $[[i=j]]_{n \times n}$ 称为 $n$ 阶单位矩阵，记作 $\matr{I}_n$。
+\end{definition}
+
+显然单位矩阵是矩阵乘法的幺元，有 $\matr{I}_n \times \matr{A}_{n \times m} = \matr{A}_{n \times m},\ \matr{B}_{n \times m} \times \matr{I}_m = \matr{B}_{n \times m}$。
+
+矩阵的乘法满足以下性质：
+
+\begin{property}[矩阵的乘法的性质]
+	\ 
+	\begin{itemize}
+		\item 矩阵的乘法满足结合律;
+		\item 矩阵的乘法\textbf{不}满足交换律；
+		\item 矩阵乘法和矩阵加法满足左/右分配律。
+	\end{itemize}
+\end{property}

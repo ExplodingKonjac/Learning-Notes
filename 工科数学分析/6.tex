@@ -1,0 +1,100 @@
+\section{函数极限 III}
+
+\subsection{重要极限}
+
+\begin{theorem}
+	$$
+	\lim_{x \to 0} \frac{\sin x}{x} = 1
+	$$
+	\begin{proof}
+		画图得到 $\forall\,0 < x < \frac{\pi}{2}: \sin x < x < \tan x$，那么
+		$$
+		1 < \frac{x}{\sin x} < \frac{1}{\cos x}
+		$$
+		夹逼定理即证。
+	\end{proof}
+\end{theorem}
+
+结合 Heine 定理得到 $\lim\limits_{x \to x_0} f(x) = 0 \Rightarrow \lim\limits_{x \to x_0} \frac{\sin f(x)}{f(x)} = 1$。
+
+\begin{theorem}
+	$$
+	\lim_{x \to \infty} \ab(1 + \frac{1}{x})^x = \E
+	$$
+	这里 $\infty$ 指对于 $\pm\infty$ 均成立。
+
+	\begin{proof}
+		先证 $+\infty$ 方向：首先有 $\forall\,x \ge 1: \floor{x} \le x \le \floor{x} + 1$，那么：
+		$$
+		\ab(1 + \frac{1}{\floor{x} + 1})^{\floor{x}} < x < \ab(1 + \frac{1}{\floor{x}})^{\floor{x} + 1}
+		$$
+		而
+		$$
+		\lim_{n \to \infty} \ab(1 + \frac{1}{n + 1})^n = \lim_{n \to \infty} \ab(1 + \frac{1}{n + 1})^{n + 1} \cdot \lim_{n \to \infty} \ab(1 + \frac{1}{n + 1})^{-1} = \E
+		$$
+		同理右侧的极限也是 $\E$。夹逼定理即证。
+
+		再证 $-\infty$ 方向：令 $t = -x > 1$，那么：
+		$$
+		\lim_{x \to -\infty} \ab(1 + \frac{1}{x})^x = \lim_{t \to +\infty} \ab(\frac{t - 1}{t})^{-t} = \lim_{t \to +\infty} \ab(1 + \frac{1}{t - 1})^t = \E
+		$$
+		于是得证。
+	\end{proof}
+\end{theorem}
+
+\subsection{函数的连续性}
+
+\begin{definition}[函数的连续性]
+	函数 $f(x)$ 在 $x = x_0$ 连续当且仅当：
+
+	\begin{itemize}
+		\item $f(x_0)$ 有定义；
+		\item $\lim_{x \to x_0} f(x)$ 存在；
+		\item $\lim_{x \to x_0} f(x) = f(x_0)$。
+	\end{itemize}
+
+	将极限换成左/右极限可以得到左/右连续的定义。
+\end{definition}
+
+函数在某点连续可推出极限存在，因此局部有界性、局部保号性均成立。
+
+\begin{theorem}[连续函数的复合]
+	若 $\varphi(x)$ 在 $x = x_0$ 连续，$f(u)$ 在 $u = \varphi(x_0)$ 连续，那么 $f(\varphi(x))$ 也在 $x = x_0$ 连续。
+\end{theorem}
+
+函数连续性也能化简复合函数极限的计算，若 $f(x)$ 在 $\lim\limits_{x \to x_0} g(x)$ 连续，那么：
+$$
+\lim_{x \to x_0} f(g(x)) = f\ab(\lim_{x \to x_0} g(x))
+$$
+
+\begin{theorem}[反函数定理]
+	设 $f(x)$ 在区间 $I$ 上连续且严格单调递增/递减，那么 $f^{-1}(x)$ 在区间 $f(I)$ 上连续且严格单调递增/递减。
+\end{theorem}
+
+\subsection{函数的间断点}
+
+\begin{definition}[函数的间断点]
+	函数 $f(x)$ 在 $x = x_0$ 间断点当且仅当：
+
+	\begin{itemize}
+		\item 第一类间断点：$f(x_0^-),f(x_0^+)$ 均存在，但：
+		\begin{itemize}
+			\item 若 $f(x_0^-) \neq f(x_0^+)$，那么称为\textbf{跳跃间断点}；
+			\item 若 $f(x_0^-) = f(x_0^+) \neq f(x_0)$，那么称为\textbf{可去间断点}；
+		\end{itemize}
+
+		\item 第二类间断点：$f(x_0^-),f(x_0^+)$ 至少有一个不存在，其中：
+		\begin{itemize}
+			\item 若 $f(x_0^-),f(x_0^+)$ 中一个是 $\pm \infty$，那么称为\textbf{无穷间断点}；
+			\item 否则称为\textbf{振荡间断点}。
+		\end{itemize}
+	\end{itemize}
+\end{definition}
+
+函数的间断点不一定是连续的，比如狄利克雷函数 $D(x) = [x \in \mathbb{Q}]$ 处处间断。
+
+\subsection{无穷小}
+
+若 $\lim\limits_{x \to x_0} f(x) = 0$，那么称 $f(x)$ 是 $x \to x_0$ 的无穷小。
+
+性质和数列里无穷小几乎一样。

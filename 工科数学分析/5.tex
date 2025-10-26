@@ -126,3 +126,231 @@
 \end{theorem}
 
 定理中必须有 $g(x) \neq u_0$。
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 3.1.1
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对于 $\forall\,\varepsilon > 0$，取 $\delta = \min\{1, \frac{\varepsilon}{3}\}$，那么：
+			$$
+			\forall\,x \in \mathring{U}(2, \delta): x^2 - 6x + 10 - 2 = (x - 2)(x - 4) < 3 \delta < \varepsilon 
+			$$
+			即证。
+
+			\item[\textbf{2)}] 对于 $\forall\,\varepsilon > 0$，设 $\varepsilon' = \min\{\varepsilon, \frac{1}{3}\}$，取 $\delta = \frac{4\varepsilon'}{1 + 2 \varepsilon'}$，那么：
+			$$
+			\forall\,x \in \mathring{U}(1, \delta): \frac{x - 1}{x^2 - 1} = \frac{1}{x + 1} \in \ab(\frac{1}{2 + \frac{4\varepsilon'}{1 - 2\varepsilon'}}, \frac{1}{2 - \frac{4\varepsilon'}{1 + 2\varepsilon'}}) = \ab(\frac{1 - 2\varepsilon'}{2}, \frac{1 + 2\varepsilon'}{2})
+			$$
+			而 $\varepsilon' \le \varepsilon$，即证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.3
+
+	\begin{proof}
+		由题知：
+		$$
+		\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x \in \mathring{U}(x_0, \delta): |f(x) - A| < \varepsilon
+		$$
+		那么可以得到：
+		$$
+		\begin{gathered}
+			A - \varepsilon < f(x) < A + \varepsilon \\
+			\min\{|A - \varepsilon|, |A + \varepsilon|\} < |f(x)| < \max\{|A - \varepsilon|, |A + \varepsilon|\} \\
+			|A| - \varepsilon < |f(x)| < |A| + \varepsilon
+		\end{gathered}
+		$$
+		也就是说 $\ab||f(x)|-|A|| < \varepsilon$，因此得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.4
+
+	\begin{proof}
+		$$
+		|f(x) - 0| < \varepsilon \Leftrightarrow |f(x)| < \varepsilon \Leftrightarrow \ab||f(x)| - 0| < \varepsilon
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.6
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 存在一个 $\delta > 0$，使得
+			$$
+			\forall\,x \in (0, \delta): 1 - x = x \ab(\frac{1}{x} - 1) \le x \floor*{\frac{1}{x}} \le x \cdot \frac{1}{x} = 1
+			$$
+			而 $\lim\limits_{x \to 0^+} (1 - x) = \lim\limits_{x \to 0^+} 1 = 1$，因此 $\lim\limits_{x \to 0^+} x \floor*{\frac{1}{x}} = 1$。
+
+			\item[\textbf{2)}] 当 $x \in (0,1)$ 时：
+			$$
+			\begin{gathered}
+				\ab(\frac{1}{x})^x > 1 \\
+				\ab(\frac{1}{x})^x = \E^{x \ln \frac{1}{x}} < \E^{x \sqrt{\frac{2}{x}}} = \E^{\sqrt{2x}}
+			\end{gathered}
+			$$
+			而 $\lim\limits_{x \to 0^+} \E^{\sqrt{2x}} = 1$，因此 $\lim\limits_{x \to 0^+} \ab(\frac{1}{x})^x = 1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.7
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\sum_{i=1}^10 \binom{10}{i} x^i}{x} \\
+				& = \lim_{x \to 0} \sum_{i=1}^10 \binom{10}{i} x^{i-1} \\
+				& = \binom{10}{1} = 10
+			\end{aligned}
+			$$
+
+			\item[\textbf{5)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 1} \sum_{i=1}^k i x^{k-i} = k
+			\end{aligned}
+			$$
+
+			\item[\textbf{7)}] 令 $t = x - 1$，那么：
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{t \to 0} \ab(\frac{k}{t \sum_{i=0}^{k-1} x^i} - \frac{l}{t \sum_{i=0}^{l-1} x^i}) \\
+				& = \lim_{t \to 0} \frac{k \sum_{i=0}^{l-1} (t+1)^i - l \sum_{i=0}^{k-1} (t+1)^i}{t \sum_{i=0}^{k-1} x^i \sum_{i=0}^{l-1} x^i} \\
+				& = \lim_{t \to 0} \frac{k \frac{l(l-1)}{2} t - l \frac{t(t-1)}{2} + O(t^2)}{t} \lim_{x \to 1} \frac{1}{\sum_{i=0}^{k-1} x^i \sum_{i=0}^{l-1} x^i} \\
+				& = \frac{k l (l - k)}{2} - \frac{1}{k l} \\
+				& = \frac{l - k}{2}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.8
+
+	\begin{proof}
+		由题知：
+		$$
+		\forall\,0 < \varepsilon < A: \exists\,\delta > 0: \forall\,x \in \mathring{U}(x_0, \delta): |f(x) - A| < \varepsilon
+		$$
+		那么可以得到
+		$$
+		\ab|\frac{f(x)}{A} - 1| = \ab|\sqrt[n]{\frac{f(x)}{A}} - 1| \sum_{i=0}^{n-1} \ab(\frac{f(x)}{A})^{\frac{i}{n}} < \frac{\varepsilon}{A}
+		$$
+		又因为 $\frac{f(x)}{A} < 1 + \frac{\varepsilon}{A} < 2$，有：
+		$$
+		\ab|\sqrt[n]{\frac{f(x)}{A}} - 1| < \frac{\varepsilon}{2^n A} \Rightarrow \ab|\sqrt[n]{f(x)} - \sqrt[n]{A}| < \frac{\varepsilon}{2^n A^{\frac{n-1}{n}}}
+		$$
+		于是能够得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.11
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\frac{\sin 3x}{x} - \frac{\sin x}{x}}{\frac{\sin 2x}{x}} \\
+				& = \frac{\lim\limits_{x \to 0} \frac{\sin 3x}{x} - \lim\limits_{x \to 0} \frac{\sin x}{x}}{\lim\limits_{x \to 0} \frac{\sin 2x}{x}} \\
+				& = \frac{3 - 1}{2} = 1
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{1 - \cos(2x - x) \cos(2x + x)}{x^2} \\
+				& = \lim_{x \to 0} \frac{1 - \cos^2 2x \cos^2 x + \sin^2 2x \sin^2 x}{x^2} \\
+				& = \lim_{x \to 0} \frac{1 - (1 - \sin^2 2x)(1 - \sin^2 x) + \sin^2 2x + \sin^2 x}{x^2} \\
+				& = \lim_{x \to 0} \frac{\sin^2 2x + \sin^2 x}{x^2} \\
+				& = \ab(\lim_{x \to 0} \frac{\sin 2x}{x})^2 + \ab(\lim_{x \to 0} \frac{\sin x}{x})^2 = 5
+			\end{aligned}
+			$$
+
+			\item[\textbf{6)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\tan(\tan x)}{\tan x} \cdot \frac{\tan x}{x} \\
+				& = \ab(\lim_{x \to 0} \frac{\tan(\tan x)}{\tan x}) \cdot \ab(\lim_{x \to 0} \frac{\tan x}{x}) \\
+				& = 1
+			\end{aligned}
+			$$
+
+			\item[\textbf{7)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 1} \frac{x - 1}{\tan\ab(\frac{\pi}{2} - \frac{\pi x}{2})} \\
+				& = \lim_{t \to 0} \frac{-t}{\tan \frac{\pi t}{2}} \\
+				& = -\frac{2}{\pi} \ab(\lim_{t \to 0} \frac{\tan \frac{\pi t}{2}}{\frac{\pi t}{2}})^{-1} \\
+				& = -\frac{2}{\pi}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.12
+
+	\begin{solution}
+		对于第一个极限：
+		$$
+		\begin{aligned}
+			\text{原式} & = \lim_{n \to \infty} \sin\ab(\pi \sqrt{n^2 + \sqrt{n}} - n \pi) \\
+			& = \lim_{n \to \infty} \sin\ab(\frac{\sqrt{n} \pi}{\sqrt{n^2 + \sqrt{n}} + n}) \\
+			& = \lim_{n \to \infty} \frac{\sin\ab(\frac{\sqrt{n} \pi}{\sqrt{n^2 + \sqrt{n}} + n})}{\frac{\sqrt{n} \pi}{\sqrt{n^2 + \sqrt{n}} + n}} \cdot \lim_{n \to \infty} \frac{\sqrt{n} \pi}{\sqrt{n^2 + \sqrt{n}} + n} \\
+			& = 0 \cdot 1 = 0
+		\end{aligned}
+		$$
+		对于另一个极限：
+		$$
+		\begin{aligned}
+			\text{原式} & = \lim_{n \to \infty} 2n \sin\ab(\pi \sqrt{4n^2 + 1} - 2n \pi) \\
+			& = \lim_{n \to \infty} 2n \sin\ab(\frac{\pi}{\sqrt{4n^2 + 1} + 2n}) \\
+			& = \lim_{n \to \infty} \frac{\sin\ab(\frac{\pi}{\sqrt{4n^2 + 1} + 2n})}{\frac{\pi}{\sqrt{4n^2 + 1} + 2n}} \cdot \lim_{n \to \infty} \frac{2n \pi}{\sqrt{4n^2 + 1} + 2n} \\
+			& = \frac{\pi}{2}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.1.13
+
+	\begin{solution}
+		记 $f(x,n) = \prod_{k=0}^n \cos \frac{x}{2^k}$，那么：
+		$$
+		\begin{aligned}
+			f(x,n) \cdot \sin \frac{x}{2^n} & = \frac{1}{2} \cos x \cos \frac{x}{2} \cdots \cos \frac{x}{2^{n-1}} \sin \frac{x}{2^{n-1}} \\
+			& = \frac{1}{4} \cos x \cos \frac{x}{2} \cdots \cos \frac{x}{2^{n-2}} \sin \frac{x}{2^{n-2}} \\
+			& \vdots \\
+			& = \frac{1}{2^{n+1}} \sin x \\
+			f(x,n) & = \frac{\sin x}{2^{n+1} \sin \frac{x}{2^n}}
+		\end{aligned}
+		$$
+		先对 $n$ 取极限：
+		$$
+		\begin{aligned}
+			\lim_{n \to \infty} f(x,n) & = \lim_{n \to \infty} \frac{\sin x}{2x \cdot \frac{\sin (x / 2^n)}{x / 2^n}} \\
+			& = \frac{\sin x}{2x} \ab(\lim_{n \to \infty} \frac{\sin (x / 2^n)}{x / 2^n})^{-1} \\
+			& = \frac{\sin x}{2x}
+		\end{aligned}
+		$$
+		再对 $x$ 取极限即可得到答案为 $\frac{1}{2}$。
+	\end{solution}
+\end{problem}

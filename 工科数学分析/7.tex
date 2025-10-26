@@ -1,0 +1,490 @@
+\section{函数极限 IV}
+
+\subsection{无穷小的比较}
+
+\begin{definition}[无穷小的比较]
+	若 $f(x),g(x)$ 是 $x \to x_0$ 的无穷小，那么若：
+	\begin{itemize}
+		\item $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = 0$，那么称 $f(x)$ 是 $g(x)$ 的高阶无穷小，$f(x) = o(g(x))$；
+		\item $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = l \neq 0$，那么称 $f(x)$ 和 $g(x)$ 是同阶无穷小；
+		\item $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = 1$，那么称 $f(x)$ 和 $g(x)$ 是等价无穷小。
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[无穷小的阶]
+	\begin{itemize}
+		\item 设 $\lim\limits_{x \to x_0} f(x) = 0$，那么若 $\lim\limits_{x \to x_0} \frac{f(x)}{(x - x_0)^k} = l \neq 0\ (k > 0)$，称 $f(x)$ 是 $x \to x_0$ 的 $k$ 阶无穷小；
+		\item 设 $\lim\limits_{x \to \infty} f(x) = 0$，那么若 $\lim\limits_{x \to x_0} \frac{f(x)}{(x - x_0)^k} = l \neq 0\ (k > 0)$，称 $f(x)$ 是 $x \to \infty$ 的 $k$ 阶无穷小。
+	\end{itemize}
+\end{definition}
+
+等价无穷小可以化简极限运算，我们有定理：
+
+\begin{theorem}[等价代换定理]
+	若 $f(x),g(x),h(x)$ 在 $x_0$ 的某个邻域有定义，且 $f(x) \sim g(x)\ (x \to x_0)$，那么：
+	
+	\begin{itemize}
+		\item 若 $\lim\limits_{x \to x_0} g(x) h(x) = a$，那么 $\lim\limits_{x \to x_0} g(x) h(x) = a$；
+		\item 若 $\lim\limits_{x \to x_0} \frac{h(x)}{g(x)} = a$，那么 $\lim\limits_{x \to x_0} \frac{h(x)}{f(x)} = a$。
+	\end{itemize}
+
+	\begin{proof}
+		用极限的四则运算法则和等价无穷小定义代换即可。
+	\end{proof}
+\end{theorem}
+
+注意在有无穷小的加减法时\textbf{不能}轻易进行等价代换。一个典型的\textbf{错误}是：
+
+$$
+\lim_{x \to 0} \frac{\tan x - \sin x}{x^3} = \lim_{x \to 0} \frac{x - x}{x^3} = 0
+$$
+
+常见的等价无穷小有（$x \to 0$）：
+
+\begin{itemize}
+	\item $\sin x \sim x$；
+	\item $\arcsin x \sim x$；
+	\item $\tan x \sim x$；
+	\item $\arctan x \sim x$；
+	\item $\ln(1 + x) \sim x$；
+	\item $\E^x - 1 \sim x$；
+	\item $1 - \cos x \sim \frac{x^2}{2}$；
+	\item $(1 + x)^a - 1 \sim ax$。
+\end{itemize}
+
+\subsection{无穷大}
+
+\begin{definition}
+	若对于 $\forall\,M > 0: \exists\,\delta > 0: \forall\,x \in \mathring{U}(x_0, \delta): |f(x)| > M$，那么称 $f(x)$ 是 $x \to x_0$ 的无穷大。记作 $\lim\limits_{x \to x_0} f(x) = \infty$。
+
+	类似也能定义 $x \to x_0^-,\ x \to x_0^+,\ x \to \pm \infty$。
+
+	特别地，若在足够小邻域中 $f(x) > 0$（或 $f(x) < 0$），那么称 $f(x)$ 是正无穷大（或负无穷大）。
+\end{definition}
+
+同理能得到无穷大的比较方式和阶：
+
+\begin{definition}[无穷大的比较]
+	若 $f(x),g(x)$ 是 $x \to x_0$ 的无穷大，那么若：
+	\begin{itemize}
+		\item $\lim\limits_{x \to x_0} \frac{g(x)}{f(x)} = 0$，那么称 $f(x)$ 是 $g(x)$ 的高阶无穷大，$f(x) = \omega(g(x))$；
+		\item $\lim\limits_{x \to x_0} \frac{g(x)}{f(x)} \neq 0$，那么称 $f(x)$ 和 $g(x)$ 是同阶无穷大；
+		\item $\lim\limits_{x \to x_0} \frac{g(x)}{f(x)} = 1$，那么称 $f(x)$ 和 $g(x)$ 是等价无穷大。
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[无穷大的阶]
+	\begin{itemize}
+		\item 设 $\lim\limits_{x \to x_0} f(x) = \infty$，那么若 $\lim\limits_{x \to x_0} \frac{f(x)}{(x - x_0)^k} = l \neq 0\ (k > 0)$，称 $f(x)$ 是 $x \to x_0$ 的 $k$ 阶无穷大；
+		\item 设 $\lim\limits_{x \to \infty} f(x) = \infty$，那么若 $\lim\limits_{x \to x_0} \frac{f(x)}{(x - x_0)^k} = l \neq 0\ (k > 0)$，称 $f(x)$ 是 $x \to \infty$ 的 $k$ 阶无穷大。
+	\end{itemize}
+\end{definition}
+
+\subsection{幂指函数的极限}
+
+先给出这类函数的定义：
+
+\begin{definition}[幂指函数]
+	我们称形式为 $u(x)^{v(x)}$ 的函数为幂指函数。
+\end{definition}
+
+这类函数的极限比较常见。通常而言有平凡的 $a^b$ 型和不那么容易的 $1^\infty$ 型“
+
+\begin{theorem}
+	设 $f(x) = u(x)^{v(x)}$，那么在某个趋近过程中：
+	
+	\begin{itemize}
+		\item 若 $\lim u(x) = a,\ \lim v(x) = b$，那么 $\lim f(x) = a^b$；
+		\item 若 $\lim u(x) = 1,\ \lim v(x) = \infty$，且 $\lambda = \lim (u(x) - 1) v(x)$ 存在，那么 $\lim f(x) = \E^{\lambda}$；
+	\end{itemize}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 3.2.1
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{3)}] $\forall\,\varepsilon > 0$，取 $X = \frac{1}{\varepsilon}$，那么 $\forall\,x > X$：
+			$$
+			0 < x - \sqrt{x^2 - 1} = \frac{1}{x + \sqrt{x^2 + 1}} < \frac{1}{X} < \varepsilon
+			$$
+			即证。
+
+			\item[\textbf{4)}] $\forall\,0 < \varepsilon < 1$，取 $X = -\ln \varepsilon$，那么 $\forall\,x < -X$：
+			$$
+			0 < \E^x < \E^{\ln \varepsilon} = \varepsilon
+			$$
+			即证。
+
+			\item[\textbf{5)}] $\forall\,\varepsilon > 0$，取 $X = \ab|\frac{\ln a}{\varepsilon}|$，那么 $\forall\,x > X$：
+			$$
+			\ab|\frac{\ln a}{x}| < \varepsilon
+			$$
+			因此 $\lim\limits_{x \to +\infty} \frac{\ln a}{x} = 0$，因此 $\lim\limits_{x \to +\infty} \sqrt[x]{a} = \E^{\lim\limits_{x \to +\infty} \frac{\ln a}{x}} = \E^0 = 1$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.2.2
+
+	\begin{proof}
+		$$
+		\begin{aligned}
+			\text{原式} & = \lim_{x \to +\infty} \sum_{k=1}^n a_k \ab(\sin \sqrt{x + k} - \sin \sqrt{x} + \sin \sqrt{x}) \\
+			& = \lim_{x \to +\infty} \sin \sqrt{x} \sum_{k=1}^n a_k + \lim_{x \to +\infty} \sum_{k=1}^n a_k \ab(\sin \sqrt{x + k} - \sin \sqrt{x}) \\
+			& = \sum_{k=1}^n a_k \lim_{x \to +\infty} \ab(\sin \sqrt{x + k} - \sin \sqrt{x})
+		\end{aligned}
+		$$
+		其中
+		$$
+		\lim_{x \to +\infty} \ab(\sin \sqrt{x + k} - \sin \sqrt{x}) = \lim_{x \to +\infty} \cos \frac{\sqrt{x + k} + \sqrt{x}}{2} \sin \frac{\sqrt{x + k} - \sqrt{x}}{2} \\
+		$$
+		而 $\cos \frac{\sqrt{x + k} + \sqrt{x}}{2}$ 是有界函数，并且
+		$$
+		\begin{aligned}
+			\lim_{x \to +\infty} \sin \frac{\sqrt{x + k} - \sqrt{x}}{2} & = \sin \lim_{x \to +\infty} \frac{\sqrt{x + k} - \sqrt{x}}{2} \\
+			& = \sin \lim_{x \to +\infty} \frac{k}{2 (\sqrt{x + k} + \sqrt{x})} \\
+			& = \sin 0 = 0
+		\end{aligned}
+		$$
+		是无穷小，因此 $\lim\limits_{x \to +\infty} \ab(\sin \sqrt{x + k} - \sin \sqrt{x}) = 0$，原极限也为 $0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.2.3
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to +\infty} \ab(\ab(1 - \frac{2}{x})^{-\frac{x}{2}})^2 \\
+				& = \ab(\lim_{x \to +\infty} \ab(1 - \frac{2}{x})^{-\frac{x}{2}})^2 \\
+				& = \E^2
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 令 $t = \frac{1}{x}$，那么
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{t \to \infty} \ab(\frac{t + 1}{t - 1})^t \\
+				& = \lim_{t \to \infty} \ab(1 + \frac{2}{t - 1})^t \\
+				& = \lim_{t \to \infty} \ab(\ab(1 + \frac{2}{t - 1})^{\frac{t - 1}{2}})^2 \cdot \ab(1 + \frac{2}{t - 1})^{\frac{1}{2}} \\
+				& = \E^2
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.2.5
+
+	\begin{proof}
+		$$
+		\lim_{x \to +\infty} \ab(\frac{x - a}{x + a})^x = \ab(1 - \frac{2a}{x + a})^x = \E^{-2a}
+		$$
+		因此 $a = -1$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.2.6
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：由极限定义
+			$$
+			\forall\,\varepsilon > 0: \exists\,X > 0: \forall\,x > X: |f(x) - A| < \varepsilon
+			$$
+			那么可以得到
+			$$
+			\forall\,\varepsilon > 0: \exists\,N \in \mathbb{Z}^+: \forall\,n \ge N: x_n > X \Rightarrow |f(x_n) - A| < \varepsilon
+			$$
+			因此 $\lim\limits_{n \to \infty} f(x_n) = A$。
+
+			\item 充分性：考虑反证。若 $f(x)$ 在 $X$ 不存在极限或极限不为 $A$，那么
+			$$
+			\exists\,\varepsilon_0 > 0: \forall\,X > 0: \exists\,x > X: |f(x) - A| \ge \varepsilon_0
+			$$
+			那么取数列 $x_n = \operatorname{select} \ab\{x \mid x > N \land |f(x) - A| \ge \varepsilon_0\}$，其中 $\operatorname{select} S$ 表示在集合 $S$ 中选择任意元素。那么 $\lim\limits_{x \to \infty} x_n = +\infty$ 且 $\lim\limits_{x \to \infty} f(x_n) \neq A$，得到矛盾，故得证。
+		\end{itemize}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.2.7
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：根据极限定义
+			$$
+			\begin{gathered}
+				\forall\,\varepsilon > 0: \exists\,X > 0: \forall\,x > X: |f(x) - A| < \frac{\varepsilon}{2} \\
+				\Rightarrow \forall\,\varepsilon > 0: \exists\,X > 0: \forall\,x_1,x_2 > X: |f(x_1) - f(x_2)| < |f(x_1) - A| + |f(x_2) - A| < \varepsilon
+			\end{gathered}
+			$$
+
+			\item 充分性：对于任意一个递增数列 $\{x_n\}$ 满足 $\lim\limits_{x \to \infty} x_n = +\infty$，可知 $\{f(x_n)\}$ 是基本列，因此收敛。而任意两个这样的数列归并成的数列也满足一样的条件，因此也收敛，因此所有这样的数列极限相同。根据课后习题 3.2.6 证明可知 $\lim\limits_{x \to \infty} f(x)$ 存在。
+		\end{itemize}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.1
+
+	\begin{proof}
+		因为 $f(x) > 0$，根据极限运算法则：
+		$$
+		\forall\,x_0 \in (a,b): \lim_{x \to x_0} \frac{1}{f(x_0)} = \frac{1}{\lim\limits_{x \to x_0} f(x_0)} = \frac{1}{f(x_0)}
+		$$
+		同理可得 $\frac{1}{f(a^+)} = \frac{1}{f(a)},\ \frac{1}{f(b^-)} = \frac{1}{f(b)}$。因此 $f(x)$ 在 $[a,b]$ 连续。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 显然 $f(x)$ 在 $(-\infty, 0), (0, +\infty)$ 上连续。而
+			$$
+			\lim_{x \to 0^-} f(x) = 1,\ \lim_{x \to 0^+} f(x) = 0,\ f(0) = 0
+			$$
+			因此 $f(x)$ 只有一个跳跃间断点 $x = 0$。
+
+			\item[\textbf{3)}] 当 $x \neq \frac{k \pi}{2}\ (k \in \mathbb{Z})$ 时，$f(x)$ 连续。
+			\begin{itemize}
+				\item 若 $x = 0$：$\lim\limits_{x \to 0} f(x) = 1$，这是一个可去间断点；
+				\item 若 $x = k\pi\ (k \in \mathbb{Z}^*)$：$f(k \pi^+) = +\infty,\ f(k \pi^-) = -\infty$，这是一个无穷间断点；
+				\item 若 $x = k\pi + \frac{pi}{2}\ (k \in \mathbb{Z})$：$\lim\limits_{x \to k\pi + \frac{\pi}{2}} f(x) = 0$，这是一个可去间断点。
+			\end{itemize}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.4
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\ab((1 + x)^{\frac{m}{2}} - 1) - \ab((1 - 2x)^{\frac{n}{2}} - 1)}{x} \\
+				& = \lim_{x \to 0} \frac{\frac{m}{2} \cdot x}{x} - \lim_{x \to 0} \frac{-\frac{n}{2} \cdot 2x}{x} \\
+				& = \frac{m}{2} + n
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\tan x - \sin x}{x^3} \cdot \frac{1}{\sqrt{1 + \tan x} + \sqrt{1 + \sin x}} \\
+				& = \frac{1}{2} \lim_{x \to 0} \frac{\tan x - \sin x}{x^3} \\
+				& = \frac{1}{2} \lim_{x \to 0} \frac{\sin x}{x} \cdot \frac{1 - \cos x}{x^2} \cdot \frac{1}{\cos x} \\
+				& = \frac{1}{2} \lim_{x \to 0} \frac{\sin x}{x} \lim_{x \to 0} \frac{1 - \cos x}{x^2} \\
+				& = \frac{1}{4}
+			\end{aligned}
+			$$
+
+			\item[\textbf{6)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\ln\ab((\E^x - 2x^3 - 1) + 1)}{\ln\ab((\E^{3x} - x^2 - 1) + 1)} \\
+				& = \lim_{x \to 0} \frac{\E^x - 2x^3 - 1}{\E^{3x} - x^2 - 1} \\
+				& = \lim_{x \to 0} \frac{\frac{\E^x - 1}{x} - 2x^2}{\frac{\E^{3x} - 1}{x} - x} \\
+				& = \frac{\lim\limits_{x \to 0} \frac{\E^x - 1}{x} - \lim\limits_{x \to 0} 2x^2}{\lim\limits_{x \to 0} \frac{\E^{3x} - 1}{x} - \lim\limits_{x \to 0} x} \\
+				& = \frac{1 - 0}{3 - 0} = \frac{1}{3}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.8
+
+	\begin{proof}
+		注意到
+		$$
+		\lim_{x \to 0} \frac{|f(x)|}{|\sin x|} = \ab|\lim_{x \to 0} \sum_{i=1}^k \frac{a_i \sin ix}{\sin x}| = \ab|\sum_{i=1}^k i a_i|
+		$$
+		若 $\ab|\sum_{i=1}^k i a_i| > 1$，那么根据极限的局部保序性，存在一个邻域 $\mathring{U}(0, \delta)$ 使得其中 $\frac{|f(x)|}{|\sin x|} > 1$，矛盾。故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.9
+
+	\begin{proof}
+		先归纳证明 $\{x_n\}$ 单调：
+
+		\begin{itemize}
+			\item 若 $x_{i+1} = f(x_i) < x_i$，那么 $x_{i+2} = f(x_{i+1}) < f(x_i) = x_{i+1}$；
+			\item 若 $x_{i+1} = f(x_i) > x_i$，那么 $x_{i+2} = f(x_{i+1}) > f(x_i) = x_{i+1}$。
+		\end{itemize}
+
+		同时 $x_n \in [a,b]$，说明 $\{x_n\}$ 有界，因此极限必定存在。
+
+		于是 $\lim\limits_{x \to \infty} x_n = \lim\limits_{x \to \infty} f(x_n)$，而 $f(x) \in C[a,b]$，因此 $\lim\limits_{x \to \infty} f(x_n) = f\ab(\lim\limits_{x \to \infty} x_n)$，即 $c = f(c)$。于是得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.3.10
+
+	\begin{proof}
+		由题可知，当 $x \to y$ 时，有 $f(x) \to f(y)$，因此 $f(x)$ 是连续函数。
+
+		设 $g(x) = f(x) - x$。考虑 $f(0)$：
+
+		\begin{itemize}
+			\item 若 $f(0) = 0$，则存在 $x = 0$ 使得 $f(x) = x$；
+			\item 若 $f(0) = a > 0$，则 $g\ab(\frac{a}{1 - k}) \le a + \frac{a k}{1 - k} - \frac{a}{1 - k} \le 0$，根据零点存在定理 $\exists\,x_0 \in \ab[0, \frac{a}{1 - k}]: g(x_0) = 0$；
+			\item 若 $f(0) = a < 0$，同理能找到 $x_0$ 使得 $g(x_0) = 0$。
+		\end{itemize}
+
+		因此存在 $\xi$，下面证明唯一性。若有 $\xi_1 \neq \xi_2,\ g(\xi_1) = g(\xi_2) = 0$，那么：
+		$$
+		|f(\xi_1) - f(\xi_2)| = |\xi_1 - \xi_2| > k|\xi_1 - \xi_2|
+		$$
+		矛盾。于是得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 阶为 $\frac{2}{5}$，因为：
+			$$
+			\lim_{x \to 0} \frac{\sqrt[5]{3x^2 - 4x^3}}{x^{\frac{2}{5}}} = \lim_{x \to 0} \sqrt[5]{3 - 4x} = 3
+			$$
+
+			\item[\textbf{4)}] 阶为 $3$，因为：
+			$$
+			\lim_{x \to 0} \frac{\sqrt{1 + \tan x} - \sqrt{1 - \sin x}}{x^3} = \lim_{x \to 0} \frac{\tan x - \sin x}{x^3 \ab(\sqrt{1 + \tan x} + \sqrt{1 - \sin x})} = \frac{1}{4}
+			$$
+
+			\item[\textbf{6)}] 阶为 $\frac{1}{2}$，因为：
+			$$
+			\lim_{x \to 0^+} \frac{\sqrt{x + \sqrt{x + \sqrt{x}}}}{\sqrt{x}} = \lim_{x \to 0^+} \sqrt{1 + \frac{\sqrt{x + \sqrt{x}}}{x}} = 1
+			$$
+
+			\item[\textbf{10)}] 阶为 $\sum_{i=1}^n i = \frac{n(n + 1)}{2}$，因为：
+			$$
+			\lim_{x \to \infty} \frac{1}{x^{n(n+1)/2}} \prod_{i=1}^n (1 + x^n) = \prod_{i=1}^n \ab(\frac{1}{x^n} + 1) = 1
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 成立，因为
+			$$
+			\lim_{x \to 0} \frac{f(x)}{x^2} = 0 \Rightarrow \lim_{x \to 0} \frac{f(x)}{x} = \lim_{x \to 0} \frac{f(x)}{x^2} \cdot \lim_{x \to 0} x = 0
+			$$
+
+			\item[\textbf{5)}] 不成立，因为 $x \to 0$ 时
+			$$
+			x^2 = o(x^2),\ x^3 = o(x),\ \frac{x^2}{x^3} = \frac{1}{x} \neq o(x)
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 可知 $x \to +\infty$ 时 $x^2 + 1 \sim x^2,\ x + 1 \sim x$，因此
+			$$
+			\lim_{x \to +\infty} \ab(\frac{x^2 + 1}{x + 1} - ax - b) = \lim_{x \to +\infty} \ab(x - ax - b) = 0
+			$$
+			所以 $a = 1,\ b = 0$。
+
+			\item[\textbf{2)}] 因为
+			$$
+			\begin{aligned}
+				\lim_{x \to +\infty} \frac{\sqrt{x^2 - x + 1}}{x - \frac{1}{2}} & = \lim_{x \to +\infty} \frac{\sqrt{\ab(x - \frac{1}{2})^2 + \frac{3}{4}}}{x - \frac{1}{2}} \\
+				& = \lim_{x \to +\infty} \sqrt{1 + \frac{3}{4 \ab(x - \frac{1}{2})^2}} = 1
+			\end{aligned}
+			$$
+			所以 $a = 1,\ b = -\frac{1}{2}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.4
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\text{原式} = \lim_{x \to 0} \frac{\sin x}{2 x} = \frac{x}{2 x} = \frac{1}{2}
+			$$
+	
+			\item[\textbf{5)}]
+			$$
+			\text{原式} = \frac{\frac{1}{2} x \sin x}{x^2} = \frac{\frac{1}{2} x^2}{x^2} = \frac{1}{2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.5
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to \infty} \E^{x \ln\ab(\sin \frac{1}{x} + \cos \frac{1}{x})} \\
+				& = \exp\ab(\lim_{t \to 0} \frac{\ln\ab(\sin t + \cos t)}{t}) \\
+				& = \exp\ab(\lim_{t \to 0} \frac{\sin t + \cos t - 1}{t}) \\
+				& = \exp\ab(\lim_{t \to 0} \frac{\sin t}{t} + \lim_{t \to 0} \frac{\frac{t^2}{2}}{t}) \\
+				& = \exp\ab(1 \cdot 1) = \E
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 1} \E^{\frac{2x^2}{x - 1} \ln\ab(3 \E^{\frac{x - 1}{x + 2}} - 2)} \\
+				& = \exp\ab(\lim_{x \to 1} \frac{2x^2}{x - 1} \ab(3\E^{\frac{x - 1}{x + 2}} - 3)) \\
+				& = \exp\ab(\lim_{x \to 1} \frac{6x^2}{x - 1} \cdot \frac{x - 1}{x + 2}) \\
+				& = \exp\ab(\lim_{x \to 1} \frac{6x^2}{x + 2}) = \E^2
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.4.6
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\text{原式} & = \exp\ab(\lim_{x \to 0} \frac{1}{x} \ln\ab(\frac{1}{n} \sum_{i=1}^n a_i^x)) \\
+			& = \exp\ab(\lim_{x \to 0} \frac{1}{x} \ln\ab(\frac{1}{n} \sum_{i=1}^n (a_i^x - 1) + 1)) \\
+			& = \exp\ab(\lim_{x \to 0} \frac{1}{x} \cdot \frac{1}{n} \sum_{i=1}^n (a_i^x - 1)) \\
+			& = \exp\ab(\frac{1}{n} \sum_{i=1}^n \lim_{x \to 0} \frac{a_i^x - 1}{x}) \\
+			& = \exp\ab(\frac{1}{n} \sum_{i=1}^n \ln a_i) = \ab(\prod_{i=1}^n a_i)^{\frac{1}{n}}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
