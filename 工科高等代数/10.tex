@@ -1,0 +1,607 @@
+\section{矩阵 III}
+
+\subsection{矩阵的分块}
+
+对于一个矩阵 $\matr{A} \in P^{n \times m}$，将行标号 $1, 2, \dots, n$ 和列标号 $1, 2, \dots, m$ 分别划分成一些连续子段 $R_1, R_2, \dots, R_r$ 和 $C_1, C_2, \dots, C_c$，那么就将 $\matr{A}$ 分成了 $r \times c$ 个小矩阵，记作：
+
+$$
+\matr{A} = \begin{bmatrix}
+	\matr{A_{1,1}} & \matr{A_{1,2}} & \cdots & \matr{A_{1,c}} \\
+	\matr{A_{2,1}} & \matr{A_{2,2}} & \cdots & \matr{A_{2,c}} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\matr{A_{r,1}} & \matr{A_{r,2}} & \cdots & \matr{A_{r,c}}
+\end{bmatrix}
+$$
+
+\subsection{分块矩阵的运算}
+
+\begin{definition}[分块矩阵的加法]
+	若 $\matr{A}, \matr{B} \in P^{n \times m}$ 且 $\matr{A}, \matr{B}$ 具有相同的分块方式：
+	$$
+	\matr{A} = \begin{bmatrix}
+		\matr{A}_{1,1} & \matr{A}_{1,2} & \cdots & \matr{A}_{1,c} \\
+		\matr{A}_{2,1} & \matr{A}_{2,2} & \cdots & \matr{A}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{A}_{r,1} & \matr{A}_{r,2} & \cdots & \matr{A}_{r,c}
+	\end{bmatrix},\ 
+	\matr{B} = \begin{bmatrix}
+		\matr{B}_{1,1} & \matr{B}_{1,2} & \cdots & \matr{B}_{1,c} \\
+		\matr{B}_{2,1} & \matr{B}_{2,2} & \cdots & \matr{B}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{B}_{r,1} & \matr{B}_{r,2} & \cdots & \matr{B}_{r,c}
+	\end{bmatrix}
+	$$
+	那么：
+	$$
+	\matr{A} + \matr{B} = \begin{bmatrix}
+		\matr{A}_{1,1} + \matr{B}_{1,2} & \matr{A}_{1,2} + \matr{B}_{1,2} & \cdots & \matr{A}_{1,c} + \matr{B}_{1,c} \\
+		\matr{A}_{2,1} + \matr{B}_{2,2} & \matr{A}_{2,2} + \matr{B}_{2,2} & \cdots & \matr{A}_{2,c} + \matr{B}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{A}_{r,1} + \matr{B}_{r,2} & \matr{A}_{r,2} + \matr{B}_{r,2} & \cdots & \matr{A}_{r,c} + \matr{B}_{r,c}
+	\end{bmatrix}
+	$$
+\end{definition}
+
+\begin{definition}[分块矩阵的数乘]
+	若 $\matr{A} \in P^{n \times m},\ k \in P$，且：
+	$$
+	\matr{A} = \begin{bmatrix}
+		\matr{A}_{1,1} & \matr{A}_{1,2} & \cdots & \matr{A}_{1,c} \\
+		\matr{A}_{2,1} & \matr{A}_{2,2} & \cdots & \matr{A}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{A}_{r,1} & \matr{A}_{r,2} & \cdots & \matr{A}_{r,c}
+	\end{bmatrix}
+	$$
+	那么：
+	$$
+	k \matr{A} = \begin{bmatrix}
+		k \matr{A}_{1,1} & k \matr{A}_{1,2} & \cdots & k \matr{A}_{1,c} \\
+		k \matr{A}_{2,1} & k \matr{A}_{2,2} & \cdots & k \matr{A}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		k \matr{A}_{r,1} & k \matr{A}_{r,2} & \cdots & k \matr{A}_{r,c}
+	\end{bmatrix}
+	$$
+\end{definition}
+
+\begin{definition}[分块矩阵的乘法]
+	若 $\matr{A} \in P^{n \times m},\ \matr{B} \in P^{m \times s}$，且 $\matr{A}$ 的\textbf{列}和 $\matr{B}$ 的\textbf{行}有相同的分法：
+	$$
+	\matr{A} = \begin{bmatrix}
+		\matr{A}_{1,1} & \matr{A}_{1,2} & \cdots & \matr{A}_{1,c} \\
+		\matr{A}_{2,1} & \matr{A}_{2,2} & \cdots & \matr{A}_{2,c} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{A}_{r,1} & \matr{A}_{r,2} & \cdots & \matr{A}_{r,c}
+	\end{bmatrix},\ 
+	\matr{B} = \begin{bmatrix}
+		\matr{B}_{1,1} & \matr{B}_{1,2} & \cdots & \matr{B}_{1,t} \\
+		\matr{B}_{2,1} & \matr{B}_{2,2} & \cdots & \matr{B}_{2,t} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{B}_{c,1} & \matr{B}_{c,2} & \cdots & \matr{B}_{c,t}
+	\end{bmatrix}
+	$$
+	那么记
+	$$
+	\matr{C}_{i,j} = \sum_{k=1}^c \matr{A}_{i,k} \matr{B}_{k,j}
+	$$
+	则有：
+	$$
+	\matr{A} \matr{B} = \begin{bmatrix}
+		\matr{C}_{1,1} & \matr{C}_{1,2} & \cdots & \matr{C}_{1,t} \\
+		\matr{C}_{2,1} & \matr{C}_{2,2} & \cdots & \matr{C}_{2,t} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\matr{C}_{r,1} & \matr{C}_{r,2} & \cdots & \matr{C}_{r,t}
+	\end{bmatrix}
+	$$
+\end{definition}
+
+也就是说，分块矩阵的运算就是把子矩阵当作数字进行计算。
+
+\begin{example}
+	设 $\matr{D} \in P^{n \times n}$ 有分块
+	$$
+	\matr{D} = \begin{bmatrix}
+		\matr{A} & \matr{O} \\
+		\matr{C} & \matr{B}
+	\end{bmatrix}
+	$$
+	其中 $\matr{A} \in P^{k \times k},\ \matr{B} \in P^{r \times r}$ 且 $\matr{A}, \matr{B}$ 可逆。求 $\matr{D}^{-1}$。
+
+	\begin{solution}
+		设
+		$$
+		\matr{D}^{-1} = \begin{bmatrix}
+			\matr{X} & \matr{Y} \\
+			\matr{Z} & \matr{W}
+		\end{bmatrix}
+		$$
+		那么：
+		$$
+		\matr{D} \matr{D}^{-1} = \begin{bmatrix}
+			\matr{A} \matr{X} & \matr{A} \matr{Y} \\
+			\matr{C} \matr{X} + \matr{B} \matr{Z} & \matr{C} \matr{Y} + \matr{B} \matr{W}
+		\end{bmatrix} = \begin{bmatrix}
+			\matr{E}_k & \matr{O} \\
+			\matr{O} & \matr{E}_r
+		\end{bmatrix}
+		$$
+		因此：
+		$$
+		\begin{cases}
+			\matr{A} \matr{X} = \matr{E}_k \\
+			\matr{A} \matr{Y} = \matr{O} \\
+			\matr{C} \matr{X} + \matr{B} \matr{Z} = \matr{O} \\
+			\matr{C} \matr{Y} + \matr{B} \matr{W} = \matr{E}_r
+		\end{cases}
+		$$
+		因此 $\matr{X} = \matr{A}^{-1},\ \matr{Y} = \matr{O},\ \matr{W} = \matr{B}^{-1},\ \matr{Z} = -\matr{B}^{-1} \matr{C} \matr{A}^{-1}$，也即：
+		$$
+		\matr{D}^{-1} = \begin{bmatrix}
+			\matr{A}^{-1} & \matr{O} \\
+			-\matr{B}^{-1} \matr{C} \matr{A}^{-1} & \matr{B}^{-1}
+		\end{bmatrix}
+		$$
+		这说明了，下三角分块矩阵的逆仍然是下三角分块矩阵。
+	\end{solution}
+\end{example}
+
+\subsection{初等矩阵}
+
+\begin{definition}[初等矩阵]
+	用单位矩阵经过\textbf{一次}初等变换得到的矩阵称为初等矩阵。
+\end{definition}
+
+可以发现初等矩阵就是初等变换表示成矩阵的形式。具体而言，一个矩阵左乘一个初等矩阵就是进行了一次初等行变换，右乘一个初等矩阵就是进行了一次初等列变换。
+
+\begin{definition}[矩阵的等价]
+	若矩阵 $\matr{A}$ 能够通过一系列初等变换变成 $\matr{B}$，那么称 $\matr{A}$ 和 $\matr{B}$ \textbf{等价}，记作 $A \sim B$。 
+\end{definition}
+
+\begin{definition}[标准型矩阵]
+	一个矩阵 $\matr{A}$ 是标准型矩阵，当且仅当其可以分块成如下形式：
+	$$
+	\matr{A} = \begin{bmatrix}
+		\matr{E}_r & \matr{O} \\
+		\matr{O} & \matr{O}
+	\end{bmatrix}
+	$$
+\end{definition}
+
+根据消元法可知，所有的矩阵 $\matr{A}$ 都与某个 $r$ 阶标准型矩阵等价，其中 $r = \rank \matr{A}$。于是可以推导得到一系列定理：
+
+\begin{theorem}
+	两个矩阵 $\matr{A}, \matr{B}$ 等价的充要条件是存在初等矩阵 $\matr{P}_1, \matr{P}_2, \dots, \matr{P}_s, \matr{Q}_1, \matr{Q}_2, \dots, \matr{Q}_t$ 使得：
+	$$
+	\matr{A} = \matr{P}_1 \matr{P}_2 \cdots \matr{P}_s \matr{B} \matr{Q}_1 \matr{Q}_2 \cdots \matr{Q}_t
+	$$
+\end{theorem}
+
+\begin{theorem}
+	$n$ 阶方阵 $A$ 可逆的充要条件是它可以表示为一系列初等矩阵 $\matr{Q}_1, \matr{Q}_2, \dots, \matr{Q}_m$ 的乘积。
+\end{theorem}
+
+\begin{corollary}
+	两个矩阵 $\matr{A}, \matr{B} \in P^{n \times s}$ 等价的充要条件是存在可逆矩阵 $\matr{P} \in P^{s \times s},\ \matr{Q} \in P^{n \times n}$ 使得：
+	$$
+	\matr{A} = \matr{P} \matr{B} \matr{Q}
+	$$
+\end{corollary}
+
+\begin{corollary}
+	可逆矩阵可以通过一系列初等行变换（或一系列初等列变换）化为单位矩阵。
+\end{corollary}
+
+由该推论可以得到求逆矩阵的一种算法：
+
+\begin{enumerate}
+	\item 假设要求矩阵 $\matr{A}$ 的逆，那么构造一个增广矩阵
+	$$
+	\matr{M} = \ab[\begin{array}{c:c}
+		\matr{A} & \matr{E}
+	\end{array}]
+	$$
+
+	\item 然后，对增广矩阵使用初等行变换使得左侧的 $\matr{A}$ 消成单位矩阵，同时右侧同步变化，最终得到
+	$$
+	\matr{\hat M} = \ab[\begin{array}{c:c}
+		\matr{E} & \matr{A}^{-1}
+	\end{array}]
+	$$
+\end{enumerate}
+
+正确性是显然的。同时，如果将增广矩阵右侧的 $\matr{E}$ 换成任意矩阵 $\matr{B}$，就能够求出 $\matr{A}^{-1} \matr{B}$：
+$$
+\ab[\begin{array}{c:c}
+	\matr{A} & \matr{B}
+\end{array}] \longrightarrow
+\ab[\begin{array}{c:c}
+	\matr{E} & \matr{A}^{-1} \matr{B}
+\end{array}]
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	第四章习题 20
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				\frac{d}{ad - bc} & \frac{-b}{ad - bc} \\
+				\frac{-c}{ad - bc} & \frac{a}{ad - bc}
+			\end{bmatrix}
+			$$
+			
+			\item[\textbf{4)}] 使用消元法：
+			$$
+			\begin{aligned}
+				& \ab[\begin{array}{cccc:cccc}
+					1 & 2 & 3 & 4 & 1 & 0 & 0 & 0 \\
+					2 & 3 & 1 & 2 & 0 & 1 & 0 & 0 \\
+					1 & 1 & 1 & -1 & 0 & 0 & 1 & 0 \\
+					1 & 0 & -2 & -6 & 0 & 0 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 2 & 3 & 4 & 1 & 0 & 0 & 0 \\
+					0 & -1 & -5 & -6 & -2 & 1 & 0 & 0 \\
+					0 & -1 & -2 & -5 & -1 & 0 & 1 & 0 \\
+					0 & -2 & -5 & -10 & -1 & 0 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 2 & 3 & 4 & 1 & 0 & 0 & 0 \\
+					0 & 1 & 5 & 6 & 2 & -1 & 0 & 0 \\
+					0 & -1 & -2 & -5 & -1 & 0 & 1 & 0 \\
+					0 & -2 & -5 & -10 & -1 & 0 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & -7 & -8 & -3 & 2 & 0 & 0 \\
+					0 & 1 & 5 & 6 & 2 & -1 & 0 & 0 \\
+					0 & 0 & 3 & 1 & 1 & -1 & 1 & 0 \\
+					0 & 0 & 5 & 2 & 3 & -2 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & -7 & -8 & -3 & 2 & 0 & 0 \\
+					0 & 1 & 5 & 6 & 2 & -1 & 0 & 0 \\
+					0 & 0 & 1 & \frac{1}{3} & \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & 0 \\
+					0 & 0 & 5 & 2 & 3 & -2 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & -\frac{17}{3} & -\frac{2}{3} & -\frac{1}{3} & \frac{7}{3} & 0 \\
+					0 & 1 & 0 & \frac{13}{3} & \frac{1}{3} & \frac{2}{3} & -\frac{5}{3} & 0 \\
+					0 & 0 & 1 & \frac{1}{3} & \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & 0 \\
+					0 & 0 & 0 & \frac{1}{3} & \frac{4}{3} & -\frac{1}{3} & -\frac{5}{3} & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & -\frac{17}{3} & -\frac{2}{3} & -\frac{1}{3} & \frac{7}{3} & 0 \\
+					0 & 1 & 0 & \frac{13}{3} & \frac{1}{3} & \frac{2}{3} & -\frac{5}{3} & 0 \\
+					0 & 0 & 1 & \frac{1}{3} & \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & 0 \\
+					0 & 0 & 0 & 1 & 4 & -1 & -5 & 3
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & 0 & 22 & -6 & -26 & 17 \\
+					0 & 1 & 0 & 0 & -17 & 5 & 20 & -13 \\
+					0 & 0 & 1 & 0 & -1 & 0 & 2 & -1 \\
+					0 & 0 & 0 & 1 & 4 & -1 & -5 & 3
+				\end{array}]
+			\end{aligned}
+			$$
+			因此
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				22 & -6 & -26 & 17 \\
+				-17 & 5 & 20 & -13 \\
+				-1 & 0 & 2 & -1 \\
+				4 & -1 & -5 & 3
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{7)}] 将矩阵分块：
+			$$
+			\matr{A} = \begin{bmatrix}
+				\matr{X} & \matr{Y} \\
+				\matr{O} & \matr{Z}
+			\end{bmatrix},\ \matr{X} = \begin{bmatrix}
+				1 & 3 \\
+				0 & 1
+			\end{bmatrix},\ \matr{Y} = \begin{bmatrix}
+				-5 & 7 \\
+				2 & -3
+			\end{bmatrix},\ \matr{Z} = \begin{bmatrix}
+				1 & 2 \\
+				0 & 1
+			\end{bmatrix}
+			$$
+			那么
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				\matr{X}^{-1} & -\matr{X}^{-1} \matr{Y} \matr{Z}^{-1} \\
+				\matr{O} & \matr{Z}^{-1}
+			\end{bmatrix}
+			$$
+			计算可得：
+			$$
+			\matr{X}^{-1} = \begin{bmatrix}
+				1 & -3 \\
+				0 & 1
+			\end{bmatrix},\ \matr{Z}^{-1} = \begin{bmatrix}
+				1 & -2 \\
+				0 & 1
+			\end{bmatrix},\ \matr{X}^{-1} \matr{Y} \matr{Z}^{-1} = \begin{bmatrix}
+				11 & -38 \\
+				-2 & 7
+			\end{bmatrix}
+			$$
+			因此
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				1 & -3 & 11 & -38 \\
+				0 & 1 & -2 & 7 \\
+				0 & 0 & 1 & -2 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第四章习题 21
+
+	\begin{solution}
+		设
+		$$
+		\matr{X}^{-1} = \begin{bmatrix}
+			\matr{M} & \matr{N} \\
+			\matr{P} & \matr{Q}
+		\end{bmatrix}
+		$$
+		那么
+		$$
+		\begin{cases}
+			\matr{A} \matr{P} = \matr{E} \\
+			\matr{A} \matr{Q} = \matr{O} \\
+			\matr{C} \matr{M} = \matr{O} \\
+			\matr{C} \matr{N} = \matr{E}
+		\end{cases}
+		$$
+		可得：
+		$$
+		\matr{P} = \matr{A}^{-1},\ \matr{N} = \matr{C}^{-1},\ \matr{Q} = \matr{M} = \matr{O}
+		$$
+		因此
+		$$
+		\matr{X}^{-1} = \begin{bmatrix}
+			\matr{O} & \matr{C}^{-1} \\
+			\matr{A}^{-1} & \matr{O}
+		\end{bmatrix}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第四章习题 22
+
+	\begin{solution}
+		对 $A$ 进行一系列初等行变换：依次交换第 $n$ 行和第 $n-1$ 行、第 $n-1$ 行和第 $n-2$ 行、……、第 $2$ 行和第 $1$ 行，得到：
+		$$
+		\matr{M} \matr{X} = \begin{bmatrix}
+			a_n & 0 & 0 & \cdots & 0 \\
+			0 & a_1 & 0 & \cdots & 0 \\
+			0 & 0 & a_2 & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & a_{n-1}
+		\end{bmatrix}
+		$$
+		其中 $\matr{M}$ 是 $n-1$ 个初等矩阵的乘积。那么可知
+		$$
+		(\matr{M} \matr{X})^{-1} = \matr{X}^{-1} \matr{M}^{-1} = \begin{bmatrix}
+			\frac{1}{a_n} & 0 & 0 & \cdots & 0 \\
+			0 & \frac{1}{a_1} & 0 & \cdots & 0 \\
+			0 & 0 & \frac{1}{a_2} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & \frac{1}{a_{n-1}}
+		\end{bmatrix}
+		$$
+		因此
+		$$
+		\matr{X}^{-1} = \begin{bmatrix}
+			\frac{1}{a_n} & 0 & 0 & \cdots & 0 \\
+			0 & \frac{1}{a_1} & 0 & \cdots & 0 \\
+			0 & 0 & \frac{1}{a_2} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & \frac{1}{a_{n-1}}
+		\end{bmatrix} \matr{M} = \begin{bmatrix}
+			0 & 0 & \cdots & 0 & \frac{1}{a_n} \\
+			\frac{1}{a_1} & 0 & \cdots & 0 & 0 \\
+			0 & \frac{1}{a_2} & \cdots & 0 & 0 \\
+			\vdots & \vdots & \ddots & \vdots & \vdots \\
+			0 & 0 & \cdots & \frac{1}{a_{n-1}} & 0
+		\end{bmatrix}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第四章习题 27
+
+	\begin{proof}
+		\begin{itemize}
+			\item 若 $\rank \matr{A} = n$：那么 $\det \matr{A}^* = \det \matr{A}^{-1} \neq 0$，因此 $\rank \matr{A}^* = n$；
+			\item 若 $\rank \matr{A} = n-1$：可得 $\matr{A}^* \matr{A} = \matr{O}$。根据第四章习题 18 的结论，$\rank \matr{A}^* \le n - \rank \matr{A} = 1$。而根据秩的定义，$\matr{A}$ 存在 $n-1$ 阶非零子式，因此 $\matr{A}^* \neq \matr{O}$，即 $\rank \matr{A}^* \neq 0 \Rightarrow \rank \matr{A}^* = 1$。
+			\item 若 $\rank \matr{A} < n-1$：根据秩的定义 $\matr{A}$ 的所有 $n-1$ 阶子式均为 $0$，因此 $\matr{A}^* = \matr{O}$，即 $\rank \matr{A}^* = 0$。
+		\end{itemize}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第四章习题 28
+
+	\begin{solution}
+		\begin{itemize}
+			\item 初等变换：
+			$$
+			\begin{aligned}
+				& \ab[\begin{array}{cccc:cccc}
+					1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+					1 & -1 & 1 & -1 & 0 & 1 & 0 & 0 \\
+					1 & 1 & -1 & -1 & 0 & 0 & 1 & 0 \\
+					1 & -1 & -1 & 1 & 0 & 0 & 0 & 1				
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+					0 & -2 & 0 & -2 & -1 & 1 & 0 & 0 \\
+					0 & 0 & -2 & -2 & -1 & 0 & 1 & 0 \\
+					0 & -2 & -2 & 0 & -1 & 0 & 0 & 1
+				\end{array}]
+			\end{aligned}
+			$$
+			$$
+			\begin{aligned}
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+					0 & 1 & 0 & 1 & \frac{1}{2} & -\frac{1}{2} & 0 & 0 \\
+					0 & 0 & -2 & -2 & -1 & 0 & 1 & 0 \\
+					0 & -2 & -2 & 0 & -1 & 0 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 1 & 0 & \frac{1}{2} & \frac{1}{2} & 0 & 0 \\
+					0 & 1 & 0 & 1 & \frac{1}{2} & -\frac{1}{2} & 0 & 0 \\
+					0 & 0 & -2 & -2 & -1 & 0 & 1 & 0 \\
+					0 & 0 & -2 & 2 & 0 & -1 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 1 & 0 & \frac{1}{2} & \frac{1}{2} & 0 & 0 \\
+					0 & 1 & 0 & 1 & \frac{1}{2} & -\frac{1}{2} & 0 & 0 \\
+					0 & 0 & 1 & 1 & \frac{1}{2} & 0 & -\frac{1}{2} & 0 \\
+					0 & 0 & -2 & 2 & 0 & -1 & 0 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & -1 & 0 & \frac{1}{2} & \frac{1}{2} & 0 \\
+					0 & 1 & 0 & 1 & \frac{1}{2} & -\frac{1}{2} & 0 & 0 \\
+					0 & 0 & 1 & 1 & \frac{1}{2} & 0 & -\frac{1}{2} & 0 \\
+					0 & 0 & 0 & 4 & 1 & -1 & -1 & 1
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & -1 & 0 & \frac{1}{2} & \frac{1}{2} & 0 \\
+					0 & 1 & 0 & 1 & \frac{1}{2} & -\frac{1}{2} & 0 & 0 \\
+					0 & 0 & 1 & 1 & \frac{1}{2} & 0 & -\frac{1}{2} & 0 \\
+					0 & 0 & 0 & 1 & \frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} & \frac{1}{4}
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{cccc:cccc}
+					1 & 0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} \\
+					0 & 1 & 0 & 0 & \frac{1}{4} & -\frac{1}{4} & \frac{1}{4} & -\frac{1}{4} \\
+					0 & 0 & 1 & 0 & \frac{1}{4} & \frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} \\
+					0 & 0 & 0 & 1 & \frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} & \frac{1}{4}
+				\end{array}] \\
+			\end{aligned}
+			$$
+			因此
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				\frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} \\
+				\frac{1}{4} & -\frac{1}{4} & \frac{1}{4} & -\frac{1}{4} \\
+				\frac{1}{4} & \frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} \\
+				\frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} & \frac{1}{4}
+			\end{bmatrix}
+			$$
+
+			\item 分块矩阵乘法的初等变换：设
+			$$
+			\matr{A} = \begin{bmatrix}
+				\matr{B} & \matr{B} \\
+				\matr{B} & -\matr{B}
+			\end{bmatrix},\ \matr{B} = \begin{bmatrix}
+				1 & 1 \\
+				1 & -1
+			\end{bmatrix}
+			$$
+			那么进行初等变换：
+			$$
+			\begin{aligned}
+				& \begin{bmatrix}
+					\matr{E} & \frac{1}{2} \matr{E} \\
+					\matr{O} & \matr{E}
+				\end{bmatrix}
+				\begin{bmatrix}
+					\matr{E} & \matr{O} \\
+					-\matr{E} & \matr{E}
+				\end{bmatrix} \begin{bmatrix}
+					\matr{B} & \matr{B} \\
+					\matr{B} & -\matr{B}
+				\end{bmatrix} \\
+				= & \begin{bmatrix}
+					\matr{E} & \frac{1}{2} \matr{E} \\
+					\matr{O} & \matr{E}
+				\end{bmatrix}
+				\begin{bmatrix}
+					\matr{B} & \matr{B} \\
+					\matr{O} & -2 \matr{B}
+				\end{bmatrix} \\
+				= & \begin{bmatrix}
+					\matr{B} & \matr{O} \\
+					\matr{O} & -2 \matr{B}
+				\end{bmatrix}
+			\end{aligned}
+			$$
+			因此
+			$$
+			\ab(\begin{bmatrix}
+				\matr{E} & \frac{1}{2} \matr{E} \\
+				\matr{O} & \matr{E}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\matr{E} & \matr{O} \\
+				-\matr{E} & \matr{E}
+			\end{bmatrix} \begin{bmatrix}
+				\matr{B} & \matr{B} \\
+				\matr{B} & -\matr{B}
+			\end{bmatrix})^{-1} = \begin{bmatrix}
+				\matr{B}^{-1} & \matr{O} \\
+				\matr{O} & -\frac{1}{2} \matr{B}^{-1}
+			\end{bmatrix}
+			$$
+			把逆拆开，得到：
+			$$
+			\begin{aligned}
+				\begin{bmatrix}
+					\matr{B} & \matr{B} \\
+					\matr{B} & -\matr{B}
+				\end{bmatrix}^{-1} & = \begin{bmatrix}
+					\matr{B}^{-1} & \matr{O} \\
+					\matr{O} & -\frac{1}{2} \matr{B}^{-1}
+				\end{bmatrix}
+				\begin{bmatrix}
+					\matr{E} & \frac{1}{2} \matr{E} \\
+					\matr{O} & \matr{E}
+				\end{bmatrix}
+				\begin{bmatrix}
+					\matr{E} & \matr{O} \\
+					-\matr{E} & \matr{E}
+				\end{bmatrix} \\
+				& = \begin{bmatrix}
+					\matr{B}^{-1} & \frac{1}{2} \matr{B}^{-1} \\
+					\matr{O} & -\frac{1}{2} \matr{B}^{-1}
+				\end{bmatrix}
+				\begin{bmatrix}
+					\matr{E} & \matr{O} \\
+					-\matr{E} & \matr{E}
+				\end{bmatrix} \\
+				& = \begin{bmatrix}
+					\frac{1}{2} \matr{B}^{-1} & \frac{1}{2} \matr{B}^{-1} \\
+					\frac{1}{2} \matr{B}^{-1} & -\frac{1}{2} \matr{B}^{-1}
+				\end{bmatrix}
+			\end{aligned}
+			$$
+			带入 $\matr{B}^{-1} = \begin{bmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} \end{bmatrix}$ 得：
+			$$
+			\matr{A}^{-1} = \begin{bmatrix}
+				\frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} \\
+				\frac{1}{4} & -\frac{1}{4} & \frac{1}{4} & -\frac{1}{4} \\
+				\frac{1}{4} & \frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} \\
+				\frac{1}{4} & -\frac{1}{4} & -\frac{1}{4} & \frac{1}{4}
+			\end{bmatrix}
+			$$
+		\end{itemize}
+	\end{solution}
+\end{problem}

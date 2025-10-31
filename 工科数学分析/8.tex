@@ -1,0 +1,232 @@
+\section{函数极限 V}
+
+\subsection{一致连续}
+
+\begin{definition}[函数的一致连续性]
+	设函数 $f(x)$ 在区间 $I$ 上有定义，若：
+	$$
+	\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x_1, x_2 \in I \land |x_1 - x_2| < \delta: |f(x_1) - f(x_2)| < \varepsilon
+	$$
+	则称 $f(x)$ 在 $I$ 上一致连续。
+\end{definition}
+
+容易看出，一致连续一定连续，反之则未必，如 $f(x) = \frac{1}{x}$。
+
+\begin{example}
+	证明 $f(x) = \sin x$ 一致连续。
+
+	\begin{proof}
+		$$
+		|\sin x_1 - \sin x_2| = \ab|2 \sin \frac{x_1 - x_2}{2} \cos \frac{x_1 + x_2}{2}| \le \ab|2 \sin \frac{x_1 - x_2}{2}| \le x_1 - x_2
+		$$
+		取 $\delta = \varepsilon$ 即可。
+	\end{proof}
+\end{example}
+
+将一致连续定义取反得到不一致连续的定义：
+
+\begin{definition}[函数不一致连续]
+	设函数 $f(x)$ 在区间 $I$ 上有定义，若：
+	$$
+	\exists\,\varepsilon > 0: \forall\,\delta > 0: \exists\,x_1, x_2 \in I \land |x_1 - x_2| < \delta: |f(x_1) - f(x_2)| > \varepsilon
+	$$
+	则称 $f(x)$ 在 $I$ 上不一致连续。
+\end{definition}
+
+根据定义可得到一个重要性质：
+
+\begin{theorem}
+	若 $f(x)$ 在 $(a, b)$ 上一致连续，那么 $f(a^+), f(b^-)$ 存在。
+
+	\begin{proof}
+		用定义结合 Cauchy 收敛准则即可证明。
+	\end{proof}
+\end{theorem}
+
+这说明对于任意一个 $(a, b)$ 上一致连续的 $f(x)$，都可以延拓一个新的函数
+$$
+f^*(x) = \begin{cases}
+	f(x) & , x \in (a, b) \\
+	f(a^+) & , x = a \\
+	f(b^-) & , x = b
+\end{cases}
+$$
+那么 $f^*(x)$ 是 $[a, b]$ 上的连续函数。
+
+证明函数是否一致连续一般不会直接用定义，我们有定理：
+
+\begin{theorem}
+	$f(x)$ 在 $I$ 上一致连续的充要条件是：任意 $I$ 中的数列 $\{x_n'\},\{x_n''\}$，若 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$，那么 $\lim\limits_{n \to \infty} (f(x_n') - f(x_n'')) = 0$。
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：函数一致连续，即
+			$$
+			\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,x_1, x_2 \in I \land |x_1 - x_2| < \delta: |f(x_1) - f(x_2)| < \varepsilon
+			$$
+			而根据 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$，有：
+			$$
+			\exists\,N \in \mathbb{Z}^+: \forall n \ge N: |x_n' - x_n''| < \delta \Rightarrow |f(x_n') - f(x_n'')| < \varepsilon
+			$$
+			于是得证。
+
+			\item 充分性：类似 Heine 定理，使用反证法，若 $f(x)$ 不一致连续：
+			$$
+			\exists\,\varepsilon_0 > 0: \forall\,\delta > 0: \exists\,x_1, x_2 \in I \land |x_1 - x_2| < \delta: |f(x_1) - f(x_2)| > \varepsilon_0
+			$$
+			那么取 $x_n', x_n''$ 为 $\delta = \frac{1}{n}$ 时的一对 $x_1, x_2$。那么显然 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$ 但 $\lim\limits_{n \to \infty} (f(x_n') - f(x_n''))$ 不存在或不等于 $0$，矛盾。故得证。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+\begin{example}
+	证明 $f(x) = x^2$ 在 $[0, +\infty)$ 不一致连续，但在 $[0, A]\ (A \ge 0)$ 上一致连续。
+
+	\begin{proof}
+		取 $x_n' = \sqrt{n},\ x_n'' = \sqrt{n + 1}$，那么：
+		$$
+		\lim_{n \to \infty} (x_n' - x_n'') = \lim_{n \to \infty} \frac{1}{\sqrt{n} + \sqrt{n + 1}} = 0
+		$$
+		但
+		$$
+		f(x_n') - f(x_n'') = \ab(\sqrt{n})^2 - \ab(\sqrt{n+1})^2 = -1
+		$$
+		因此函数不一致连续。
+
+		而对于 $[0, A]$ 的情况，有：
+		$$
+		\ab|f(x_n') - f(x_n'')| = \ab|(x_n' + x_n'') (x_n' - x_n'')| \le 2A \ab|x_n' - x_n''|
+		$$
+		根据有界函数乘无穷小还是无穷小，$\lim\limits_{n \to \infty} (f(x_n') - f(x_n'')) = 0$，因此函数一致连续。
+	\end{proof}
+\end{example}
+
+\subsection{有限闭区间上连续函数的性质}
+
+\begin{theorem}[Cantor 定理]
+	若 $f(x)$ 在 $[a, b]$ 上连续，那么 $f(x)$ 在 $[a, b]$ 上一致连续。
+
+	\begin{proof}
+		考虑反证法。假设 $f(x)$ 不一致连续，那么：
+		$$
+		\exists\,\varepsilon_0 > 0: \forall\,n \in \mathbb{Z}^+: \exists\,s_n, t_n \in [a, b] \land |s_n - t_n| < \frac{1}{n}: |f(s_n) - f(t_n)| > \varepsilon_0
+		$$
+		因为 $s_n \in [a, b]$，则 $\{s_n\}$ 有收敛子列 $\{s_{n_k}\}$，设 $\lim\limits_{k \to \infty} s_{n_k} = s \in [a, b]$。
+
+		而 $\lim\limits_{k \to \infty} (s_{n_k} - t_{n_k}) = \lim\limits_{n \to \infty} (s_n - t_n) = 0$，因此 $\lim\limits_{k \to \infty} t_{n_k} = \lim\limits_{k \to \infty} s_{n_k} = s$。于是：
+		$$
+		\begin{aligned}
+			\lim_{k \to \infty} \ab(f(s_{n_k}) - f(t_{n_k})) & = \lim_{k \to \infty} f(s_{n_k}) - \lim_{k \to \infty} f(t_{n_k}) \\
+			& = f\ab(\lim_{k \to \infty} s_{n_k}) - f\ab(\lim_{k \to \infty} t_{n_k}) \\
+			& = f(s) - f(s) = 0
+		\end{aligned}
+		$$
+		矛盾。故得证。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[有界性定理]
+	若 $f(x)$ 在 $[a, b]$ 上连续，那么 $f(x)$ 在 $[a, b]$ 上有界。
+
+	\begin{proof}
+		考虑反证法。假设 $f(x)$ 在 $[a, b]$ 上无界，那么：
+		$$
+		\forall\,n \in \mathbb{Z}^+: \exists\,x_n \in [a, b]: f(x_n) > n
+		$$
+		而 $x_n \in [a, b]$，根据列紧性定理有子列 $\{x_{n_k}\}$ 收敛。设 $\lim\limits_{n \to \infty} x_{n_k} = \xi$，则 $\lim\limits_{n \to \infty} f(x_{n_k}) = f(\xi)$。但是这与 $f(x_n) > n$ 矛盾。故得证。
+	\end{proof}
+\end{theorem}
+
+\begin{corollary}
+	若 $f(x)$ 在 $(a, b)$ 上一致连续，那么 $f(x)$ 在 $(a, b)$ 上有界。
+\end{corollary}
+
+\begin{theorem}[最值定理]
+	若 $f(x)$ 在 $I = [a, b]$ 上连续，那么 $f(I)$ 有最大值和最小值。
+
+	\begin{proof}
+		下面证明最大值存在，最小值同理：记 $M = \sup f(I)$，那么：
+		$$
+		\forall\,n \in \mathbb{Z}^+: \exists\,x_n \in [a, b]: M - f(x_n) < \frac{1}{n}
+		$$
+		而 $\{x_n\}$ 有界，根据列紧性定理有收敛子列 $\{x_{n_k}\}$，设其极限为 $\xi$，那么：
+		$$
+		\lim_{k \to \infty} f(x_{n_k}) = f\ab(\lim_{k \to \infty} x_{n_k}) = f(\xi)
+		$$
+		而根据 $x_n$ 定义知 $\lim\limits_{k \to \infty} f(x_{n_k}) = \lim\limits_{n \to \infty} f(x_n) = M$，即 $f(\xi) = M$，于是 $f(x)$ 有最大值。故得证。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[零点存在性定理]
+	若 $f(x)$ 在 $[a, b]$ 上连续且 $f(a) f(b) < 0$，那么 $\exists\,\xi \in (a, b): f(\xi) = 0$。
+
+	\begin{proof}
+		使用二分法，归纳构造一列区间 $I_n = [a_n, b_n]$：$a_1 = a,\ b_1 = b$，设 $m_n = \frac{a_n + b_n}{2}$，不妨设 $f(a) < 0 \land f(b) > 0$，进行讨论：
+
+		\begin{itemize}
+			\item 若 $f(m_n) = 0$：取 $\xi = m_n$，命题得证；
+			\item 若 $f(m_n) < 0$：那么 $a_{n+1} = m_n,\ b_{n+1} = b_n$；
+			\item 若 $f(m_n) > 0$：那么 $a_{n+1} = a_n,\ b_{n+1} = m_n$。
+		\end{itemize}
+
+		归纳可知始终有 $f(a_n) < 0 \land f(b_n) > 0$。
+
+		那么 $I_{n+1} \subset I_n$ 且 $\lim\limits_{n \to \infty} (b_n - a_n) = \lim\limits_{n \to \infty} \frac{b - a}{2^{n - 1}} = 0$。于是 $\{I_n\}$ 构成闭区间套，因此：
+		$$
+		\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = \xi
+		$$
+		而根据函数连续性和极限的保号性，有：
+		$$
+		\begin{gathered}
+			f(a_n) > 0 \Rightarrow \lim_{n \to \infty} f(a_n) = f(\xi) \ge 0 \\
+			f(b_n) < 0 \Rightarrow \lim_{n \to \infty} f(b_n) = f(\xi) \le 0
+		\end{gathered}
+		$$
+		因此 $f(\xi) = 0$，得证。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[介值定理]
+	若 $f(x)$ 在 $[a, b]$ 连续，且 $C \in \ab(\min\{f(a), f(b)\}, \max\{f(a), f(b)\})$，那么 $\exists\,\xi \in (a, b): f(\xi) = C$。
+
+	\begin{proof}
+		构造 $g(x) = f(x) - C$ 使用零点存在性定理即可。
+	\end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 3.5.2
+
+	\begin{proof}
+		对于任意 $[0, +\infty)$ 上数列 $\{x_n'\}, \{x_n''\}$ 满足 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$，那么：
+		$$
+		\begin{aligned}
+			|f(x_n') - f(x_n'')| & = |\sqrt{x_n'} - \sqrt{x_n''}| \\
+			& = \ab|\frac{x_n' - x_n''}{\sqrt{x_n'} + \sqrt{x_n''}}| \\
+			& \le \ab|\frac{x_n' - x_n''}{\sqrt{|x_n' - x_n''|}}| \\
+			& = \sqrt{|x_n' - x_n''|}
+		\end{aligned}
+		$$
+		因此 $\lim\limits_{n \to \infty} |f(x_n') - f(x_n'')| = 0$，得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.5.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			\begin{enumerate}
+				\item[\textbf{a)}] 不一致连续，原因：
+				$$
+				\begin{aligned}
+					f(x_n') - f(x_n'') & = \ln{\frac{x_n'}{x_n''}} = \ln{1 + \frac{x_n' - x_n''}{x_n''}}
+				\end{aligned}
+				$$
+			\end{enumerate}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
