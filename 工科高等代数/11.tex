@@ -1,0 +1,67 @@
+\section{矩阵 IV}
+
+\subsection{二次型的定义}
+
+\begin{definition}[二次型]
+	设 $P$ 是一个数域，一个系数在数域 $P$ 中的 $n$ 元齐次多项式
+	$$
+	f(x) = \sum_{i=1}^n \sum_{j=1}^n a_{i,j} x_i x_j
+	$$
+	满足 $a_{i,j}=a_{j,i}$，那么它称为\textbf{数域 $P$ 上的 $n$ 元二次型}。
+\end{definition}
+
+显然，二次型可以用矩阵表示。我们把 $\matr{A} = [a_{i,j}]$ 称为\textbf{二次型的矩阵}，那么有 $\matr{A} = \matr{A}^\textrm{T}$，即二次型矩阵一定是对称的。若我们设
+$$
+\vect{x} = \cvec{x_1, x_2, \vdots, x_n}
+$$
+那么二次型可以表示为：
+$$
+f(\vect{x}) = \vect{x}^\mathrm{T} \matr{A} \vect{x}
+$$
+这里认为 $1 \times 1$ 矩阵和数域 $P$ 中的数\sout{可隐式转化}同等。
+
+\begin{definition}[线性替换]
+	设 $x_1, x_2, \dots, x_n, y_1, y_2, \dots, y_n$ 是两组变元，那么称
+	$$
+	x_i = \sum_{j=1}^n c_{i,j} y_j
+	$$
+	为一个\textbf{线性替换}。线性替换可以表示称矩阵形式：
+	$$
+	\cvec{x_1, x_2, \vdots, x_n} = \begin{bmatrix}
+		c_{1,1} & c_{1,2} & \cdots & c_{1,n} \\
+		c_{2,1} & c_{2,2} & \cdots & c_{2,n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		c_{n,1} & c_{n,2} & \cdots & c_{n,n}
+	\end{bmatrix} \cvec{y_1, y_2, \vdots, y_n}
+	$$
+	记 $\matr{C} = [c_{i,j}]$ 为\textbf{线性替换的矩阵}。若 $\det \matr{C} \neq 0$，则称线性替换是\textbf{非退化}的，否则称线性替换是\textbf{退化}的。
+\end{definition}
+
+\begin{property}
+	线性替换总是把二次型变成二次型。
+
+	\begin{proof}
+		设有二次型 $f(\vect{x}) = \vect{x}^\mathrm{T} \matr{A} \vect{x}$ 和线性替换 $\vect{x} = \matr{C} \vect{y}$，那么：
+		$$
+		f(\vect{x}) = (\matr{C} \vect{y})^\mathrm{T} \matr{A} (\matr{C} \vect{y}) = \vect{y}^\mathrm{T} (\matr{C}^\mathrm{T} \matr{A} \matr{C}) \vect{y}
+		$$
+	\end{proof}
+\end{property}
+
+从线性替换对二次型矩阵的影响，我们可以引入一种等价关系：
+
+\begin{definition}[合同变换]
+	数域 $P$ 上的 $n$ 阶方阵 $\matr{A}, \matr{B}$ 称为\textbf{合同的}，当且仅当存在 $n$ 阶可逆方阵 $\matr{C}$ 使得：
+	$$
+	\matr{B} = \matr{C}^\mathrm{T} \matr{A} \matr{C}
+	$$
+	那么变换 $\matr{A} \mapsto \matr{C}^\mathrm{T} \matr{A} \matr{C}$ 称为矩阵的一个\textbf{合同变换}。
+\end{definition}
+
+合同关系具有等价关系的性质：
+
+\begin{itemize}
+	\item 自反性：$\matr{A} = \matr{E}^\mathrm{T} \matr{A} \matr{E}$；
+	\item 对称性：$\matr{B} = \matr{C}^\mathrm{T} \matr{A} \matr{C} \Leftrightarrow \matr{A} = (\matr{C}^{-1})^\mathrm{T} \matr{B} \matr{C}^{-1}$；
+	\item 传递性：$\matr{A}_1 = \matr{C}_1^\mathrm{T} \matr{A} \matr{C}_1 \land \matr{A}_2 = \matr{C}_2^\mathrm{T} \matr{A}_1 \matr{C}_2 \Rightarrow \matr{A}_2 = (\matr{C}_1 \matr{C}_2)^\mathrm{T} \matr{A} (\matr{C}_1 \matr{C}_2)$。
+\end{itemize}

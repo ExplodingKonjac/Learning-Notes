@@ -218,15 +218,150 @@ $$
 
 	\begin{solution}
 		\begin{enumerate}
-			\item[\textbf{2)}]
+			\item[\textbf{2)}] 取定义域上任意两个数列 $\{x_n'\},\{x_n''\}$ 满足 $\lim\limits_{n \to \infty} (x_n' - x_n'') = 0$。
 			\begin{enumerate}
 				\item[\textbf{a)}] 不一致连续，原因：
+				
+				取 $x_n' = \frac{2}{n},\ x_n'' = \frac{1}{n}$，那么：
 				$$
-				\begin{aligned}
-					f(x_n') - f(x_n'') & = \ln{\frac{x_n'}{x_n''}} = \ln{1 + \frac{x_n' - x_n''}{x_n''}}
-				\end{aligned}
+				\lim_{n \to \infty} f(x_n') - f(x_n'') = \lim_{n \to \infty} \ln 2 \neq 0
 				$$
+				于是得证。
+
+				\item[\textbf{b)}] 一致连续，原因：
+				$$
+				\lim_{n \to \infty} (f(x_n') - f(x_n'')) = \lim_{n \to \infty} \ln{\frac{x_n'}{x_n''}} = \lim_{n \to \infty} \ln \ab(1 + \frac{x_n' - x_n''}{x_n''})
+				$$
+				因为 $x_n'' \ge 1$，因此 $\ab|\frac{x_n' - x_n''}{x_n''}| \le |x_n' - x_n''|$，于是：
+				$$
+				\lim_{n \to \infty} (f(x_n') - f(x_n'')) = \ln \ab(1 + \lim_{n \to \infty} \frac{x_n' - x_n''}{x_n''}) = \ln(1 + 0) = 0
+				$$
+				于是得证。
 			\end{enumerate}
 		\end{enumerate}
 	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.5.4
+
+	\begin{proof}
+		由题知：
+		$$
+		\forall\,\varepsilon > 0: \forall\,x, y \in I \land |x - y| < \frac{\varepsilon}{L}: |f(x) - f(y)| < \varepsilon
+		$$
+		因此 $f(x)$ 在 $I$ 上一致连续。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.5.5
+
+	\begin{solution}
+		取 $x_n = 2n \pi + \frac{\pi}{2}, y_n = 2n \pi$，那么：
+		$$
+		f(x_n) - f(y_n) = \ab(2n \pi + \frac{\pi}{2}) - \frac{2n \pi}{1 + 2n \pi} = 2n \pi + \frac{1}{1 + 2n \pi} + \frac{\pi}{2} - 1
+		$$
+		因此
+		$$
+		\lim_{n \to \infty} (f(x_n) - f(y_n)) = +\infty
+		$$
+		若 $f(x)$ 一致连续，那么
+		$$
+		\forall\,\varepsilon > 0: \exists\,\delta > 0: |f(x_n) - f(y_n)| < \varepsilon \cdot \ceil*{\frac{\pi / 2}{\delta}}
+		$$
+		这说明在选定 $\varepsilon, \delta$ 时 $|f(x_n) - f(y_n)|$ 有界，而这与上面结果矛盾，因此 $f(x)$ 不一致连续。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.3
+
+	\begin{proof}
+		根据无穷大定义，任取 $A$，存在 $\delta_1 > 0$ 使得
+		$$
+		\begin{gathered}
+			\forall\,x \in (a, a + \delta_1): f(x) > A \\
+			\forall\,x \in (b - \delta_1, b): f(x) > A
+		\end{gathered}
+		$$
+		不妨设 $\delta_1$ 足够小，使得 $b - \delta_1 > a + \delta_1$。那么 $f(x)$ 在 $[a + \delta_1, b - \delta_1]$ 上有最小值 $m$，则 $\min\{m, A\}$ 是 $f(x)$ 在 $(a, b)$ 的一个下界。
+
+		那么设 $f(x)$ 在 $(a, b)$ 的下确界为 $m'$，那么同理存在 $\delta_2 > 0$ 使得
+		$$
+		\begin{gathered}
+			\forall\,x \in (a, a + \delta_2): f(x) > m'+1 \\
+			\forall\,x \in (b - \delta_2, b): f(x) > m'+1
+		\end{gathered}
+		$$
+		可知 $f(x)$ 在 $[a + \delta_2, b - \delta_2]$ 的下确界是 $m'$，根据最值定理，$f(x)$ 在 $[a + \delta_2, b + \delta_2]$ 中可取到最小值 $m'$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.4
+
+	\begin{proof}
+		和上题同理。任取 $A$ 都存在 $X_1 > 0$ 使得：
+		$$
+		\begin{gathered}
+			\forall\,x < -X_1: f(x) < A \\
+			\forall\,x > X_1: f(x) < A
+		\end{gathered}
+		$$
+		而 $f(x)$ 在 $[-X,X]$ 有最大值 $m$，那么 $\max\{m, A\}$ 是 $f(x)$ 的一个上界，因此 $f(x)$ 也有上确界。
+
+		设 $m'$ 为 $f(x)$ 的上确界，那么存在 $X_2 > 0$：
+		$$
+		\begin{gathered}
+			\forall\,x < -X_2: f(x) < m' - 1 \\
+			\forall\,x > X_2: f(x) < m' - 1
+		\end{gathered}
+		$$
+		则 $m'$ 也是 $f(x)$ 在 $[-X, X]$ 的上确界，根据最值定理 $f(x)$ 在 $[-X, X]$ 中可取到最大值 $m'$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.6
+
+	\begin{proof}
+		考虑反证法。任取 $\varepsilon_0 \in (0, \min\{x^* - a, b - x^*\})$，若 $\lim\limits_{x \to \infty} x_n \neq x^*$ 那么：
+		$$
+		\forall N > \mathbb{Z}^+: \exists\, n \ge N: |x_n - x^*| \ge \varepsilon_0
+		$$
+		根据最值定理，存在 $M = \max\limits \{f(x) \mid x \in [a, x^* - \varepsilon_0] \cup [x^* + \varepsilon_0, b]\} > f(x^*)$。于是：
+		$$
+		\forall N > \mathbb{Z}^+: \exists\, n \ge N: f(x_n) - f(x^*) \ge M - f(x^*) > 0
+		$$
+		这说明 $\{f(x_n)\}$ 不收敛于 $f(x^*)$，矛盾，故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.7
+
+	\begin{proof}
+		记 $f(x) = 2^x - 4x$。注意到 $f(0) = 1 > 0,\ f\ab(\frac{1}{2}) = \sqrt{2} - 2 < 0$，根据零点存在性定理得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.9
+
+	\begin{proof}
+		取一个 $\varepsilon_0 \in (0, \min\{\eta - A, B - \eta\})$，那么根据极限定义和极限的保序性可知，存在 $N \in \mathbb{Z}^+$ 使得：
+		$$
+		\forall n \ge N: f(x_n) < A + \varepsilon_0 \land f(y_n) > B - \varepsilon_0 \land x_n < y_n
+		$$
+		根据介值定理，$\exists\,z_n \in (x_{n-N+1}, y_{n-N+1}): f(z_n) = \eta$，那么 $\{z_n\}$ 就是一个符合题意的数列。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 3.6.10
+
+	\begin{proof}
+		若 $f(x)$ 在 $[a, b]$ 上等号，那么显然结论成立。否则，不妨设有 $f(x_1) > 0,\ f(x_2) < 0,\ x_1 < x_2$，那么根据介值定理 $\exists\,\xi \in (x_1, x_2): f(\xi) = 0$。于是 $|f(x_1)| > |f(\xi)|$ 但 $|f(\xi)| < |f(x_2)|$，这与 $|f(x)|$ 单调性矛盾。因此得证。
+	\end{proof}
 \end{problem}

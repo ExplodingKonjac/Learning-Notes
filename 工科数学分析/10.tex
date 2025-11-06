@@ -1,0 +1,147 @@
+\section{求导法}
+
+\subsection{对数求导法}
+
+对于一系列幂指函数的连乘求导，可以先取对数后求导，然后使用复合函数的求导法则以化简运算。具体而言，若：
+$$
+f(x) = \prod_{i=1}^n u_i(x)^{v_i(x)}
+$$
+那么我们可以取对数：
+$$
+\ln f(x) = \sum_{i=1}^n v_i(x) \ln u_i(x)
+$$
+根据复合函数的求导法则：
+$$
+f'(x) = f(x) \cdot (\ln f(x))'
+$$
+
+\subsection{反函数的导数}
+
+设 $y = f(x)$ 在 $(a, b)$ 上可导且单调，那么其存在反函数 $x = g(y)$。我们对 $x = g(f(x))$ y两边对 $x$ 求导得到：
+$$
+1 = g'(f(x)) \cdot f'(x) \Rightarrow g'(y) = \frac{1}{f'(g(y))}
+$$
+这就是反函数的求导法则。
+
+\begin{example}[反三角函数的导数]
+	求 $y = \arcsin x$ 的导数。
+
+	\begin{solution}
+		$\arcsin x\ (x \in [-1, 1])$ 的反函数是 $\sin x\ \ab(x \in \ab[-\frac{\pi}{2}, \frac{\pi}{2}])$，那么：
+		$$
+		(\arcsin x)' = \frac{1}{\cos(\arcsin x)} = \frac{1}{\sqrt{1 - x^2}}
+		$$
+	\end{solution}
+\end{example}
+
+于是现在我们可以求出所有常见初等函数的导数：
+
+\begin{itemize}
+	\item 反正弦：$(\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}$；
+	\item 反余弦：$(\arccos x)' = -\frac{1}{\sqrt{1 - x^2}}$；
+	\item 反正切：$(\arctan x)' = \frac{1}{1 + x^2}$。
+\end{itemize}
+
+\subsection{隐函数的求导}
+
+\begin{definition}
+	若在某个区间上存在函数 $x \mapsto y$，那么：
+
+	\begin{itemize}
+		\item 若函数关系由 $y = f(x)$ 确定，那么其称为\textbf{显函数}；
+		\item 若函数关系由 $F(x, y) = 0$ 确定，那么其称为\textbf{隐函数}。
+	\end{itemize}
+\end{definition}
+
+要求隐函数的导数，可以对关系式两边同时对 $x$ 求导，得到关系式 $A(x, y) \frac{\dif y}{\dif x} = B(x, y)$，然后求出 $\frac{\dif y}{\dif x} = \frac{B(x, y)}{A(x, y)}$。
+
+\begin{example}
+	若
+	$$
+	F(x, y) = y - x - \varepsilon \sin y = 0
+	$$
+	求 $y'(x)$。
+
+	\begin{solution}
+		两边同时对 $x$ 求导得到：
+		$$
+		\frac{\dif y}{\dif x} - 1 - \varepsilon \cos y \frac{\dif y}{\dif x} = 0
+		$$
+		解得
+		$$
+		\frac{\dif y}{\dif x} = \frac{1}{1 - \varepsilon \cos y}
+		$$
+	\end{solution}
+\end{example}
+
+\subsection{参数方程的求导}
+
+\begin{definition}
+	若在某个区间存在函数 $x \mapsto y$，且满足：
+	$$
+	\begin{cases}
+		x = \varphi(t) \\
+		y = \psi(t)
+	\end{cases}
+	$$
+	那么称 $y(x)$ 为参数方程确定的函数。
+\end{definition}
+
+在特定条件下，参数方程确定的函数可以进行求导。具体而言，若 $\varphi(t)$ 存在连续单调的反函数 $\varphi^{-1}(x)$，且 $\varphi(t), \psi(t)$ 可导，那么
+$$
+\frac{\dif y}{\dif x} = \frac{\frac{\dif y}{\dif t}}{\frac{\dif x}{\dif t}} = \frac{\psi'(t)}{\varphi'(t)} = \frac{\psi'(\varphi^{-1}(x))}{\varphi'(\varphi^{-1}(x))}
+$$
+
+\begin{example}
+	求参数曲线
+	$$
+	\begin{cases}
+		x = a \cos^3 t \\
+		y = a \sin^3 t
+	\end{cases}\quad \ab(t \in \ab[0, \frac{\pi}{2}])
+	$$
+	的导数。
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\frac{\dif y}{\dif x} & = \frac{3a \sin^2 t \cos t}{-3a \cos^2 t \sin t} \\
+			& = -\tan t \\
+			& = -\tan \arccos \sqrt[3]{\frac{x}{a}}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{example}
+
+\subsection{高阶导数}
+
+\begin{definition}
+	$f(x)$ 的 $n\ (n \in \mathbb{N})$ 阶导数记作 $f^{(n)}(x)$，定义为：
+	$$
+	f^{(n)}(x) = \begin{cases}
+		f(x) & , n = 0 \\
+		\ab(f^{(n-1)}(x))' & , n \ge 1
+	\end{cases}
+	$$
+\end{definition}
+
+对于高阶导数也有一些运算法则：
+
+\begin{theorem}[高阶导数运算法则]
+	\begin{itemize}
+		\item 加减法：$(u \pm v)^{(n)} = u^{(n)} \pm v^{(n)}$；
+		\item 乘常数：$(C u)^{(n)} = C u^{(n)}$；
+		\item 乘法：$(u \cdot v)^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(k)} v^{(n - k)}$。
+	\end{itemize}
+
+	\begin{proof}
+		只证明乘法法则。观察导数的乘法法则的组合意义：
+		$$
+		(uv)' = u'v + uv'
+		$$
+		相当于在 $u, v$ 中选择一个，使其的导数阶数 $+1$，并对所有选择求和。因此可得 $(uv)^{(n)}$ 就相当于进行 $n$ 次这样的操作，并对所有可能情况求和。于是可以直接得到：
+		$$
+		(uv)^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(k)} v^{(n - k)}
+		$$
+	\end{proof}
+\end{theorem}
