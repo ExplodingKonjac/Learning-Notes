@@ -1,0 +1,174 @@
+\section{二次型 III}
+
+\subsection{二次型的规范型}
+
+\begin{definition}[二次型的秩]
+	二次型矩阵的秩称做二次型的秩。
+\end{definition}
+
+因为二次型总是能够通过初等变换变成标准型，所以合同的二次型的秩都相等。
+
+进一步地，如果是一个复数域的二次型，在化成标准型后，能够通过变元乘系数和交换顺序来得到更简洁标准的形式：
+
+\begin{definition}[规范型]
+	对于一个复系数二次型，总是能够化成一个唯一的二次型
+	$$
+	\begin{bmatrix}
+		1 & ~ & ~ & ~ & ~ & ~ \\
+		~ & \ddots & ~ & ~ & ~ & ~ \\
+		~ & ~ & 1 & ~ & ~ & ~ \\
+		~ & ~ & ~ & 0 & ~ & ~ \\
+		~ & ~ & ~ & ~ & \ddots & ~ \\
+		~ & ~ & ~ & ~ & ~ & 0
+	\end{bmatrix}
+	$$
+	这个二次型称做\textbf{复数域上二次型的规范型}。
+\end{definition}
+
+而规范型的秩显然就是 $1$ 的数量，因此复数域中的二次型的合同关系等价于秩相等。
+
+而对于实数域则有些不同，因为未必能够开方。因此需要保留一些负数。
+
+\begin{definition}[实数域的规范型]
+	对于一个实系数二次型，总是能够化成一个二次型
+	$$
+	\begin{bmatrix}
+		1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+		~ & \ddots & ~ & ~ & ~ & ~ & ~ & ~ & ~  \\
+		~ & ~ & 1 & ~ & ~ & ~ & ~ & ~ & ~  \\
+		~ & ~ & ~ & -1 & ~ & ~ & ~ & ~ & ~  \\
+		~ & ~ & ~ & ~ & \ddots & ~ & ~ & ~ & ~  \\
+		~ & ~ & ~ & ~ & ~ & -1 & ~ & ~ & ~ \\
+		~ & ~ & ~ & ~ & ~ & ~ & 0 & ~ & ~ \\
+		~ & ~ & ~ & ~ & ~ & ~ & ~ & \ddots & ~ \\
+		~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & 0
+	\end{bmatrix}
+	$$
+	这个二次型被称为\textbf{实数域上二次型的规范型}。
+\end{definition}
+
+但是唯一性不太显然，有定理：
+
+\begin{theorem}[惯性定理]
+	每个实系数二次型都能化成唯一的一个规范型。即，每个实系数二次型化为标准型后正负系数的数量一定是确定的。
+
+	\begin{proof}
+		假设 $f(\vect{x})$ 能够通过两种线性替换变成两个不同的规范型：
+		$$
+		\begin{gathered}
+			f(\vect{x}) = \sum_{i=p}^n y_i - \sum_{i=p+1}^n y_i \\
+			f(\vect{x}) = \sum_{i=q}^n z_i + \sum_{i=p+1}^n z_i
+		\end{gathered}
+		$$
+		那么 $\vect{y}, \vect{z}$ 也可以相互线性替换得到，假设 $\vect{z} = \matr{C} \vect{y}$，其中 $\matr{C} = [c_{i,j}]$。
+		
+		不妨设 $p > q$。考虑其次线性方程组
+		$$
+		\begin{cases}
+			\sum_{j=1}^n c_{i,j} y_j = 0 & , (i = 1, 2, \dots, q) \\
+			y_i = 0 & , (i = p+1, p+2, \dots, n)
+		\end{cases}
+		$$
+		它含有 $n$ 个未知量和 $q + (n-p) < n$ 个方程，因此它有非零解。假设这个解是 $\vect{k}$，那么把它代入
+		$$
+		\sum_{i=p}^n y_i - \sum_{i=p+1}^n y_i = \sum_{i=q}^n z_i - \sum_{i=p+1}^n z_i
+		$$
+		因为 $k_{p+1} = k_{p+2} = \cdots = k_n = 0$，那么等式左端 $> 0$。而 $z_1 = z_2 = \cdots = z_q = 0$，那么等式右端 $\le 0$，矛盾。故得证。
+	\end{proof}
+\end{theorem}
+
+\begin{definition}[惯性指数]
+	一个实二次型化为规范型后正项的数量称为\textbf{正惯性指数}，负项的数量称为\textbf{负惯性指数}。
+\end{definition}
+
+\subsection{正定二次型}
+
+\begin{definition}[二次型的正定性]
+	实二次型 $f(\vect{x})$ 称为\textbf{正定的}，当且仅当任意一组 $\vect{c} \neq \vect{0}$ 都有 $f(\vect{c}) > 0$。
+\end{definition}
+
+\begin{definition}[矩阵的正定性]
+	实对称矩阵 $\matr{A}$ 称为正定的，当且仅当其对应的二次型是正定的。
+\end{definition}
+
+那么可以得到一些基础性质：
+
+\begin{property}
+	实二次型 $f(\vect{x}) = \sum_{i=1}^n d_i x_i^2$ 正定的充分必要条件是 $d_i > 0\ (i = 1, 2, \dots, n)$
+
+	\begin{proof}
+		充分性是显然的。必要性使用反证。若 $d_k \le 0$，那么构造 $x_i = [i=k]$ 即可推出矛盾。
+	\end{proof}
+\end{property}
+
+\begin{property}
+	非退化线性变换总是保持正定性不变。
+
+	\begin{proof}
+		若进行非退化线性替换 $\vect{x} = \matr{C} \vect{y}$，那么因为 $\matr{C}$ 可逆，因此总是可以从 $\vect{y}$ 反解 $\vect{x}$，它们构双射。于是正定性不会被破坏。
+	\end{proof}
+\end{property}
+
+判断矩阵的正定性可以直接使用合同变换来将其化简为标准型。也可以使用顺序主子式法：
+
+\begin{definition}[顺序主子式]
+	对于方阵 $\matr{A}$，子式
+	$$
+	\begin{vmatrix}
+		a_{1,1} & a_{1,2} & \cdots & a_{1,i} \\
+		a_{2,1} & a_{2,2} & \cdots & a_{2,i} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{i,1} & a_{i,2} & \cdots & a_{i,i}
+	\end{vmatrix},\ (i = 1, 2, \cdots, n)
+	$$
+	称为 $\matr{A}$ 的顺序主子式。
+\end{definition}
+
+\begin{theorem}
+	实二次型 $f(\vect{x}) = \transpose{\vect{x}} \matr{A} \vect{x}$ 正定的充要条件是 $\matr{A}$ 的顺序主子式全部 $>0$。
+
+	\begin{proof}
+		记 $\matr{A}$ 的顺序主子式为 $A_1, A_2, \dots, A_n$。
+
+		\begin{itemize}
+			\item 必要性：正定性可以推得 $\det(\matr{A}) \neq 0$，即 $A_n \neq 0$。显然，若 $\matr{A}$ 正定，那么 $\matr{A}$ 的前 $n-1$ 行和前 $n-1$ 列构成的子矩阵必须也是正定的，于是可以递归证明。
+
+			\item 充分性：考虑归纳证明。若
+			$$
+			\begin{bmatrix}
+				\matr{B} & \vect{\alpha} \\
+				\transpose{\vect{\alpha}} & a_{n,n}
+			\end{bmatrix}
+			$$
+			那么 $\matr{B}$ 是正定矩阵，存在 $\transpose{\matr{G}} \matr{B} \matr{G} = \matr{E}_{n-1}$，那么令：
+			$$
+			\matr{C}_1 = \begin{bmatrix}
+				\matr{G} & \vect{0} \\
+				\vect{0} & 1
+			\end{bmatrix}
+			$$
+			就有
+			$$
+			\transpose{\matr{C}_1} \matr{A} \matr{C}_1 = \begin{bmatrix}
+				\matr{E}_{n-1} & \transpose{\matr{G}} \vect{\alpha} \\
+				\matr{G} \transpose{\vect{\alpha}} & a_{n,n}
+			\end{bmatrix}
+			$$
+			再令
+			$$
+			\matr{C}_2 = \begin{bmatrix}
+				\matr{E}_{n-1} & -\transpose{\matr{G}} \vect{\alpha} \\
+				\vect{0} & 1
+			\end{bmatrix}
+			$$
+			就有：
+			$$
+			\transpose{\matr{C}_2} \transpose{\matr{C}_1} \matr{A} \matr{C}_1 \matr{C}_2 = \begin{bmatrix}
+				\matr{E}_{n-1} & \vect{0} \\
+				\vect{0} & a_{n,n} - \transpose{\vect{\alpha}} \transpose{\matr{G}} \matr{G} \vect{\alpha}
+			\end{bmatrix}
+			$$
+			到这里就得证了。
+		\end{itemize}
+	\end{proof}
+\end{theorem}

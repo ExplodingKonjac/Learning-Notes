@@ -1,0 +1,32 @@
+\section{线性空间 II}
+
+\subsection{线性相关与线性无关}
+
+与之前讨论的向量组类似，我们也可以得到一些定义和性质：
+
+\begin{definition}[线性相关]
+	线性空间中的一组向量 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性相关当且仅当存在不全为零的 $k_1, k_2, \dots, k_r$ 使得 $\sum_{i=1}^n k_i \vect{\alpha}_i = \vect{0}$。否则称这组向量线性无关。
+\end{definition}
+
+\begin{property}
+	若向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性无关，且可以被 $\vect{\beta}_1, \vect{\beta}_2, \dots, \vect{\beta}_s$ 线性表出，那么 $r \le s$。
+\end{property}
+
+\begin{property}
+	若向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 线性无关且向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r, \vect{\beta}$ 线性相关，那么 $\vect{\beta}$ 可以被 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_r$ 以唯一方式线性表出。
+\end{property}
+
+\begin{definition}[极大线性无关组]
+	向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_m$ 的一个部分组 $\vect{\alpha}_{i_1}, \vect{\alpha}_{i_2}, \dots, \vect{\alpha}_{i_r}$ 满足：
+
+	\begin{itemize}
+		\item 它线性无关；
+		\item 再加入任意一个 $\vect{\alpha}_j\ (j \neq i_k)$ 后它线性相关。
+	\end{itemize}
+
+	那么称向量组 $\vect{\alpha}_{i_1}, \vect{\alpha}_{i_2}, \dots, \vect{\alpha}_{i_r}$ 是原向量组的一个极大线性无关组。
+\end{definition}
+
+\begin{definition}[向量组的秩]
+	向量组的秩定义为向量组的极大线性无关组包含的向量数量。
+\end{definition}

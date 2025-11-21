@@ -1,0 +1,463 @@
+\section{微分中值定理}
+
+\subsection{}
+
+\begin{theorem}[Darboux 定理]
+	若 $f(x)$ 在 $[a, b]$ 可导且 $f'_+(a) \cdot f'_-(b) < 0$，那么 $\exists\,\xi \in (a, b): f'(\xi) = 0$。
+
+	\begin{proof}
+		不妨设 $f'_+(a) > 0, f'_-(b) < 0$，那么
+		$$
+		\exists\,\delta > 0: \forall x \in (a, a + \delta): f(x) > f(a)
+		$$
+		因此 $a$ 不是极大值点。同理 $b$ 也不是极大值点。而根据 Fermat 引理，在 $(a, b)$ 存在极值点，其导数为 $0$。
+	\end{proof}
+\end{theorem}
+
+\begin{corollary}[导函数的介值性定理]
+	若 $f(x)$ 在 $[a, b]$ 可导，那么 $\forall\, c \in (\min\{f'_+(a) \cdot f'_-(b)\}, \max\{f'_+(a) \cdot f'_-(b)\}): \exists\,\xi \in (a, b): f'(\xi) = c$
+\end{corollary}
+
+首先是最基本的中值定理：
+
+\begin{theorem}[Rolle 定理]
+	若 $f(x)$ 满足：
+
+	\begin{itemize}
+		\item 在 $[a, b]$ 连续；
+		\item 在 $(a, b)$ 可导；
+		\item $f(a) = f(b)$。
+	\end{itemize}
+
+	那么 $\exists\,\xi \in (a, b): f(\xi) = 0$。
+
+	\begin{proof}
+		设 $M = \max\{f(x): x \in (a, b)\},\ m = \min\{f(x): x \in (a, b)\}$，那么分类讨论：
+ 
+		\begin{itemize}
+			\item $m = M$：那么 $f(x)$ 在区间上是常函数，满足条件；
+			\item $m < M$：那么最大值或最小值之一不在端点，则该点是一个满足条件的 $\xi$。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+Rolle 定理在几何上的解释是一段起点和终点平齐的曲线，中间一定存在水平切线。用 Rolle 定理解决问题时核心就是注意力（观察、构造函数）。
+
+由 Rolle 定理的几何解释可以自然推广得到起点和终点不平齐的情况：
+
+\begin{theorem}[Lagrange 中值定理]
+	若 $f(x)$ 满足：
+	
+	\begin{itemize}
+		\item $f(x)$ 在 $[a, b]$ 连续；
+		\item $f(x)$ 在 $(a, b)$ 可导;
+	\end{itemize}
+
+	那么 $\exists\,\xi \in (a, b): (b - a) f'(\xi) = f(b) - f(a)$。
+
+	\begin{proof}
+		连接 $(a, f(a)), (b, f(b))$ 的弦方程为：
+		$$
+		y = f(a) + \frac{f(b) - f(a)}{b - a} (x - a)
+		$$
+		构造函数
+		$$
+		g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a} (x - a)
+		$$
+		那么 $g(a) = g(b) = 0,\ g'(x) = f(x) - \frac{f(b) - f(a)}{b - a}$。根据 Rolle 定理就得证。
+	\end{proof}
+\end{theorem}
+
+\begin{example}
+	求
+	$$
+	\lim_{x \to 0} \frac{(2 + \tan x)^{10} - (2 - \sin x)^{10})}{\sin x}
+	$$
+	\begin{proof}
+		$x \to 0$ 时有 $\sin x < x < \tan x$，设 $f(x) = (2 + x)^10$，根据 Lagrange 中值定理：
+		$$
+		\exists\,\xi_x: (2 + \tan x)^{10} - (2 - \sin x)^{10}) = f'(\xi_x) (\tan x - \sin x)
+		$$
+		而 $x \to 0$ 时 $\xi_x \to 0$，因此：
+		$$
+		\begin{aligned}
+			& \lim_{x \to 0} \frac{(2 + \tan x)^{10} - (2 - \sin x)^{10})}{\sin x} \\
+			= & \lim_{x \to 0} \frac{10 (2 + \xi_x)^9 (\tan x - \sin x)}{\sin x} \\
+			= 10 \cdot 2^9 \lim_{x \to 0} \frac{\tan x - \sin x}{\sin x}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{example}
+
+从几何意义出发，我们还能推广到更一般的曲线，这就是 Cauchy 中值定理：
+
+\begin{theorem}[Cauchy 中值定理]
+	若 $f(x), g(x)$ 在 $[a, b]$ 上连续，在 $(a, b)$ 可导，且 $\forall x \in (a, b): g'(x) \neq 0$，那么：
+	$$
+	\exists\,\xi \in (a, b): \frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+	$$
+
+	\begin{proof}
+		依旧构造辅助函数：$F(x) = (f(b) - f(a)) g(x) + (g(b) - g(a)) f(x)$，那么 $F(x)$ 在 $[a, b]$ 连续且在 $(a, b)$ 可导，同时：
+		$$
+		\begin{gathered}
+			F(a) = F(b) = f(b) g(a) - f(a) g(b) \\
+			F'(x) = (f(b) - f(a)) g'(x) + (g(b) - g(a)) f'(x)
+		\end{gathered}
+		$$
+		那么根据 Rolle 中值定理：
+		$$
+		\exists\,\xi \in (a, b): (f(b) - f(a)) g'(\xi) + (g(b) - g(a)) f'(\xi) = 0 \Rightarrow \frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+		$$
+	\end{proof}
+\end{theorem}
+
+Cauchy 中值定理的几何意义是明显的：在一个参数曲线的线段上，必然存在一个点处切线与割线平行。
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 4.4.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $y'' = -\frac{x^3}{(1 - x^2)^{3/2}} - \frac{3x}{\sqrt{1 - x^2}}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.2
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{3)}] $y^{(n)} = \begin{cases}
+				-4^{n-1} (-1)^k \sin x & , n = 2k + 1 \\
+				4^{n-1} (-1)^k \cos x & , n = 2k 
+			\end{cases}$；
+			\item[\textbf{5)}] $y^{(n)} = \begin{cases}
+				-\frac{(-1)^k}{2} \ab((a - b)^n \sin (a - b)x - (a + b)^n \sin (a + b)x) & , n = 2k + 1 \\
+				\frac{(-1)^k}{2} \ab((a - b)^n \cos (a - b)x - (a + b)^n \cos (a + b)x) & , n = 2k
+			\end{cases}$；
+			\item[\textbf{7)}] $y^{(n)} = \sqrt 2 \E^x \sum_{i=1}^n \binom{n}{i} \ab(\sin \ab(x + \frac{\pi}{4}))^{(i)}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.3
+
+	\begin{solution}
+		为简单起见记 $f_n(x) = (\sin x)^{(n)}$。
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			y^{(n)} = 3^n x^2 f_n(x) + 2 \cdot 3^{n-1} n \cdot x f_{n-1}(x) + 3^{n-2} n(n-1) f_{n-2}(x) 
+			$$
+	
+			\item[\textbf{2)}]
+			$$
+			y^{(n)} = h^n (2x^2 + 1) f_n(x) + 4 h^{n-1} n x f_{n-1}(x) + 2 h^{n-2} n(n-1) f_{n-2}(x)
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.4
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对等式两边求导：
+			$$
+			\ab(\frac{\dif y}{\dif x} + 1) \sec^2 (x + y) - y - x \frac{\dif y}{\dif x} = 0
+			$$
+			解得
+			$$
+			\frac{\dif y}{\dif x} = \frac{y \cos^2 (x + y) - 1}{1 - x \cos^2 (x + y)}
+			$$
+			再求一次导得到：
+			$$
+			\frac{\dif^2 y}{\dif x^2} = \frac {2\left (x y + \sec^4 (x + y) + \left ((x - y)^2\tan (x + y) - x - y \right)\sec^2 (x + y) \right)} {\left (x - \sec^2 (x + y) \right)^3}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.5
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 由题得到：
+			$$
+			\frac{\dif x}{\dif t} = -at \sin t + a \cos t,\ \frac{\dif y}{\dif x} = at \cos t + a \sin t
+			$$
+			那么：
+			$$
+			\frac{\dif y}{\dif x} = \frac{at \cos t + a \sin t}{-at \sin t + a \cos t}
+			$$
+			于是得到：
+			$$
+			\begin{aligned}
+				\frac{\dif^2 y}{\dif x^2} & = \frac{\dif}{\dif t} \ab(\frac{t \cos t + \sin t}{-t \sin t + \cos t}) \cdot \frac{\dif t}{\dif x} \\
+				& = \frac{\dif}{\dif t} \ab(\frac{t + \tan t}{1 - t \tan t}) \cdot \frac{1}{-at \sin t + a \cos t} \\
+				& = \frac{a(2 + t^2)}{(\cos t - t \sin t)^3}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.6
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 求得：
+			$$
+			\begin{aligned}
+				y' & = \frac{2 \arcsin x}{\sqrt{1 - x^2}} \\
+				y'' & = \frac{2}{1 - x^2} + \frac{2x \arcsin x}{(1 - x^2)^{3/2}}
+			\end{aligned}
+			$$
+			代入得到：
+			$$
+			(2 + \frac{2x \arcsin x}{1 - x^2}) - \frac{2 x \arcsin x}{\sqrt{1 - x^2}} = 2 \\
+			$$
+			显然是成立的。
+
+			\item[\textbf{2)}] 注意到：
+			$$
+			(1 - x^2) y^{(n)} = (2n - 3) x y^{(n-1)} + (n - 2)^2 y^{(n-2)}
+			$$
+			该递推式符合第一问的式子再求一次导，可以两侧同时求导来归纳证明。
+
+			设 $a_n = y^{(n)}(0)$，那么 $a_2 = 2, a_3 = 0, a_n = (n-2)^2 a_{n-2}$，那么可以得到：
+			$$
+			y^{(n)}(0) = \begin{cases}
+				0 & , n = 2k + 1 \\
+				2^{n-1} (\ab(\frac{n-2}{2})!)^2
+			\end{cases}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.7
+
+	\begin{solution}
+		\begin{proof}
+			$$
+			\begin{gathered}
+				F_n'(x) = \frac{n}{2^{n-1} \sqrt{1 - x^2}} \sin (n \arccos x) \\
+				F''_n(x) = \frac{n^2}{2^{n-1}} \ab(\frac{x \sin (n \arccos x)}{(1 - x^2)^{3/2}} - \frac{n \cos (n \arccos x)}{1 - x^2})
+			\end{gathered}
+			$$
+			代入原式容易验证。
+		\end{proof}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.4.8
+
+	\begin{solution}
+		\begin{proof}
+			我们可以归纳证明前 $f^{(k)}(0) = 0\ (1 \le k \le n-1)$。假设已经有 $f^{(k-1)}(0) = 0$，那么：
+			$$
+			\begin{aligned}
+				f^{(k)}(0) & = \lim_{x \to 0} \frac{f^{(k-1)}(x)}{x} \\
+				& = \lim_{x \to 0} \frac{1}{x} \sum_{i=0}^{k-1} \binom{k-1}{i} (2n)^{\underline{i}} x^{2n - i} \ab(\sin \frac{1}{x})^{(k-1-i)} \\
+			\end{aligned}
+			$$
+			而我们可以知道当 $x \to 0$ 时，$\ab(\sin \frac{1}{x})^{(i)} = O\ab(\frac{1}{x^{2i}})$，因此：
+			$$
+			\begin{aligned}
+				f^{(k)}(0) & = \lim_{x \to 0^+} \frac{1}{x} \sum_{i=0}^{k-1} \binom{k-1}{i} (2n)^{\underline{i}} x^{2n - i} \cdot O\ab(\frac{1}{x^{2k - 2i -2}}) \\
+				& = \lim_{x \to 0^+} \frac{1}{x} \sum_{i=0}^{k-1} O\ab(x^{2n - 2k + i + 2}) \\
+				& = O(x^{2n - 2k + 1})
+			\end{aligned}
+			$$
+			当 $k \le n$ 时，$2n - 2k + 1 > 0$，可以推出 $f^{(k)}(0)$。而当 $k = n + 1$ 时，$2n - 2k + 1 = -1$，极限不存在，导数不存在。
+		\end{proof}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.2
+
+	\begin{proof}
+		根据 Darboux 定理，导函数满足介值性。那么对于某一点 $x_0 \in (a, b)$，考虑一列闭区间套 $I_n = [a_n, b_n]$ 满足：
+		$$
+		\begin{gathered}
+			a_n < a_{n+1} < x_0 \land |f'(x_0) - f'(a_{n+1})| < \frac{1}{2} |f'(x_0) - f'(a_n)| \\
+			b_n > b_{n+1} > x_0 \land |f'(x_0) - f'(b_{n+1})| < \frac{1}{2} |f'(x_0) - f'(b_n)|
+		\end{gathered}
+		$$
+		那么 $a_n \to x_0,\ b_n \to x_0,\ f(a_n) \to f(x_0),\ f(b_n) \to f(x_0)$。于是对于任意一个 $\varepsilon > 0$ 都能找到一个 $[a_k, b_k]$ 使得 $f'(x_0) - \varepsilon < f'(a_k) < f'(b_k) < f'(x_0) + \varepsilon$，这就证明了 $f'(x)$ 在 $x_0$ 连续，因此 $f'(x)$ 在 $(a, b)$ 连续。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.3
+
+	\begin{proof}
+		记 $f(x) = \sum_{i=1}^n ((i+1) a_i x^i - a_i),\ g(x) = \sum_{i=1}^n (a_i x^{i+1} - a_i x)$，那么 $f(x) = g'(x)$。而 $g(0) = g(1) = 0$，根据 Rolle 定理 $\exists\,x \in (0, 1): f(x) = 0$。得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.6
+
+	\begin{proof}
+		计算 $F^{(k)}(0)$：
+		$$
+		F^{k}(0) = \sum_{i=0}^{k} \binom{k}{i} (n-1)^{\underline{i}} x^{n-1-i} f^{(k-i)}(0)
+		$$
+		那么当 $k < n - 1$ 时，$f^{(k)}(0) = 0$；而 $k = n - 1$ 时，$F^{(k)}(0) = (n-1)! f^{(0)}(0) = 0$。因此 $\forall\,k \in [1, n - 1] \cap \mathbb{Z}: F^{(k)} = 0$。
+
+		记 $c_0 = b$，那么对于 $1 \le i \le n$，根据 Rolle 定理：
+		$$
+		F^{(i-1)}(0) = F^{(i-1)}(c_{i-1}) = 0 \Rightarrow \exists\,c_i \in (0, c_{i-1}): F^{(i)}(c_i) = 0
+		$$
+		于是可以得到 $\xi = c_n$，得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.9
+
+	\begin{proof}
+		令 $g(x) = f(\sqrt{x})$，那么 $g'(x) = \frac{f'(\sqrt x)}{2 \sqrt x}$。根据 Lagrange 中值定理：
+		$$
+		\exists\,\lambda \in (a^2, b^2): g'(\lambda) = \frac{g(a^2) - g(b^2)}{a^2 - b^2}
+		$$
+		代入 $\xi = \sqrt{\lambda}$：
+		$$
+		\exists\,\xi \in (a, b): \frac{f'(\xi)}{2 \xi} = \frac{f(a) - f(b)}{a^2 - b^2}
+		$$
+		即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.10
+
+	\begin{proof}
+		构造函数 $g(x) = f(x) - \frac{f(b) - f(a)}{b - a}(x - a) - f(a)$，现在只需要证任意非常数函数 $g(x)$ 在 $[a, b]$ 连续、在 $(a, b)$ 可导、$g(a) = g(b) = 0$，那么 $\exists\,\eta \in (a, b): g'(\eta) > 0$。
+
+		随便找到一点 $x_0$，那么：
+
+		\begin{itemize}
+			\item 若 $g(x_0) > 0$：根据拉格朗日中值定理，$\exists\,\eta \in (a, x_0): g'(\eta) = \frac{g(x_0) - g(a)}{x_0 - a} > 0$；
+			\item 若 $g(x_0) < 0$：根据拉格朗日中值定理，$\exists\,\eta \in (a, x_0): g'(\eta) = \frac{g(x_0) - g(b)}{x_0 - b} > 0$；
+		\end{itemize}
+
+		即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.11
+
+	\begin{proof}
+		根据 Darboux 定理，按照习题 4.5.2 中的证明，其中的 $\{a_n\}, \{b_n\}$ 即为所数列。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.13
+
+	\begin{solution}
+		\begin{itemize}
+			\item 若 $0 < \alpha \le 1$：$f(x)$ 一致连续，因为 $f(x)$ 在 $[0, 1]$ 是闭区间上连续函数，一致连续；在 $[1, +\infty)$ 中导函数 $f'(x) = \alpha x^{\alpha - 1}$ 有界，一致连续。
+			
+			\item 若 $\alpha > 1$：$f(x)$ 不一致连续，因为对于任意 $\varepsilon > 0$，有 $f(x+\varepsilon) - f(x) = f'(\xi) \varepsilon > f'(x) \varepsilon = \varepsilon \alpha x^{\alpha - 1}$，这是发散的。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.15
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 记左式为 $f(x)$，那么：
+			$$
+			\begin{aligned}
+				f'(x) & = \frac{2}{1 + x^2} + \frac{\frac{2 - 2x^2}{(1 + x^2)^2}}{\sqrt{1 - \ab(\frac{2x}{1 + x^2})^2}} \\
+				& = \frac{2}{1 + x^2} + \frac{\frac{2 - 2x^2}{(1 + x^2)^2}}{\frac{1 - x^2}{1 + x^2}} = 0
+			\end{aligned}
+			$$
+			这说明该函数是常函数。容易验证 $f(1) = \pi$，即证。
+
+			\item[\textbf{2)}] 记左式减右式为 $f(x)$，那么：
+			$$
+			\begin{aligned}
+				f'(x) & = \frac{1}{1 + x^2} - \frac{\frac{1}{\sqrt{1 + x^2}} - \frac{x^2}{(1 + x^2)^{3/2}}}{\sqrt{1 - \frac{x^2}{1 + x^2}}} \\
+				& = \frac{1}{1 + x^2} - (1 - \frac{x^2}{1 + x^2}) = 0
+			\end{aligned}
+			$$
+			这说明该函数是常函数，即证。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.16
+
+	\begin{proof}
+		根据 Lagrange 中值定理：
+		$$
+		\frac{\tan \beta - \tan \alpha}{\beta - \alpha} = \frac{1}{\cos^2 \xi} \quad (\alpha < \xi < \beta)
+		$$
+		而在 $\ab(0, \frac{\pi}{2})$ 上，$\cos x$ 单调递减，因此：
+		$$
+		\frac{1}{\cos^2 \alpha} < \frac{1}{\cos^2 \xi} < \frac{1}{\cos^2 \beta}
+		$$
+		整理一下即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.17
+
+	\begin{proof}
+		将原式整理一下即得：
+		$$
+		\frac{\E^{x_2}}{x_2} - \frac{\E^{x_1}}{x_1} = \ab(1 - \xi) \E^{\xi} \ab(\frac{1}{x_2} - \frac{1}{x_1})
+		$$
+		令 $g(x) = x \E^{\frac{1}{x}}$，那么上式等价于
+		$$
+		g\ab(\frac{1}{x_2}) - g\ab(\frac{1}{x_1}) = g'\ab(\frac{1}{\xi}) \ab(\frac{1}{x_2} - \frac{1}{x_1})
+		$$
+		根据 Larange 中值定理得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.5.18
+
+	\begin{proof}
+		不妨设 $f'_+(a) > 0, f'_-(b) > 0$。
+
+		\begin{enumerate}
+			\item 由 $a, b$ 处左右导数和极限的局部保序性可知，$\exists\,\delta > 0: \forall h \in [0, \delta): f(a + h) > 0 \land f(b - h) < 0$。那么就可以找到 $x_1, x_2$ 使得 $f(x_1) > 0, f(x_2) < 0$，根据介值定理可得 $\exists\,\xi \in (x_1, x_2) \subseteq (a, b): f(\xi) = 0$；
+			
+			\item 构造 $g(x) = \E^x f(x)$，那么 $g(x)$ 在 $(a, b)$ 可导。而由 \textbf{1)} 知 $g(x)$ 有三个零点 $a, \xi, b$，于是：
+			$$
+			\begin{gathered}
+				\exists\,\eta_1 \in (a, \xi),\ \eta_2 \in (\xi, b): g'(\eta_1) = g'(\eta_2) = 0 \\
+				\Leftrightarrow f(\eta_1) + f'(\eta_1) = f(\eta_2) + f'(\eta_2) = 0
+			\end{gathered}
+			$$
+			再构造 $h(x) = \E^{-x} (f(x) + f'(x))$，那么 $h(\eta_1) = h(\eta_2) = 0$，再使用 Rolle 定理：
+			$$
+			\exists\,\eta \in (\eta_1, \eta_2): h'(\eta) = \E^{-x}(f''(x) - f(x)) = 0
+			$$
+			于是 $f''(\eta) = f(\eta)$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}

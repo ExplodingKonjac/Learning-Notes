@@ -1,4 +1,4 @@
-\section{矩阵 IV}
+\section{二次型 I}
 
 \subsection{二次型的定义}
 
@@ -16,7 +16,7 @@ $$
 $$
 那么二次型可以表示为：
 $$
-f(\vect{x}) = \vect{x}^\mathrm{T} \matr{A} \vect{x}
+f(\vect{x}) = \transpose{\vect{x}} \matr{A} \vect{x}
 $$
 这里认为 $1 \times 1$ 矩阵和数域 $P$ 中的数\sout{可隐式转化}同等。
 
@@ -41,9 +41,9 @@ $$
 	线性替换总是把二次型变成二次型。
 
 	\begin{proof}
-		设有二次型 $f(\vect{x}) = \vect{x}^\mathrm{T} \matr{A} \vect{x}$ 和线性替换 $\vect{x} = \matr{C} \vect{y}$，那么：
+		设有二次型 $f(\vect{x}) = \transpose{\vect{x}} \matr{A} \vect{x}$ 和线性替换 $\vect{x} = \matr{C} \vect{y}$，那么：
 		$$
-		f(\vect{x}) = (\matr{C} \vect{y})^\mathrm{T} \matr{A} (\matr{C} \vect{y}) = \vect{y}^\mathrm{T} (\matr{C}^\mathrm{T} \matr{A} \matr{C}) \vect{y}
+		f(\vect{x}) = \transpose{(\matr{C} \vect{y})} \matr{A} (\matr{C} \vect{y}) = \transpose{\vect{y}} (\transpose{\matr{C}} \matr{A} \matr{C}) \vect{y}
 		$$
 	\end{proof}
 \end{property}
@@ -53,15 +53,15 @@ $$
 \begin{definition}[合同变换]
 	数域 $P$ 上的 $n$ 阶方阵 $\matr{A}, \matr{B}$ 称为\textbf{合同的}，当且仅当存在 $n$ 阶可逆方阵 $\matr{C}$ 使得：
 	$$
-	\matr{B} = \matr{C}^\mathrm{T} \matr{A} \matr{C}
+	\matr{B} = \transpose{\matr{C}} \matr{A} \matr{C}
 	$$
-	那么变换 $\matr{A} \mapsto \matr{C}^\mathrm{T} \matr{A} \matr{C}$ 称为矩阵的一个\textbf{合同变换}。
+	那么变换 $\matr{A} \mapsto \transpose{\matr{C}} \matr{A} \matr{C}$ 称为矩阵的一个\textbf{合同变换}。
 \end{definition}
 
 合同关系具有等价关系的性质：
 
 \begin{itemize}
-	\item 自反性：$\matr{A} = \matr{E}^\mathrm{T} \matr{A} \matr{E}$；
-	\item 对称性：$\matr{B} = \matr{C}^\mathrm{T} \matr{A} \matr{C} \Leftrightarrow \matr{A} = (\matr{C}^{-1})^\mathrm{T} \matr{B} \matr{C}^{-1}$；
-	\item 传递性：$\matr{A}_1 = \matr{C}_1^\mathrm{T} \matr{A} \matr{C}_1 \land \matr{A}_2 = \matr{C}_2^\mathrm{T} \matr{A}_1 \matr{C}_2 \Rightarrow \matr{A}_2 = (\matr{C}_1 \matr{C}_2)^\mathrm{T} \matr{A} (\matr{C}_1 \matr{C}_2)$。
+	\item 自反性：$\matr{A} = \transpose{\matr{E}} \matr{A} \matr{E}$；
+	\item 对称性：$\matr{B} = \transpose{\matr{C}} \matr{A} \matr{C} \Leftrightarrow \matr{A} = \transpose{(\matr{C}^{-1})} \matr{B} \matr{C}^{-1}$；
+	\item 传递性：$\matr{A}_1 = \transpose{\matr{C}_1} \matr{A} \matr{C}_1 \land \matr{A}_2 = \transpose{\matr{C}_2} \matr{A}_1 \matr{C}_2 \Rightarrow \matr{A}_2 = \transpose{(\matr{C}_1 \matr{C}_2)} \matr{A} (\matr{C}_1 \matr{C}_2)$。
 \end{itemize}

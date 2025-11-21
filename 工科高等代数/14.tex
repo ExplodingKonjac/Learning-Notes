@@ -1,0 +1,292 @@
+\section{二次型 IV \& 线性空间 I}
+
+\subsection{实二次型的其它类型及判别法}
+
+\begin{definition}
+	对于 $\forall\,\vect{x} \in \mathbb{R}^n$，若
+
+	\begin{itemize}
+		\item $f(\vect{x}) < 0$，称二次型 $f(\vect{x})$ 是\textbf{负定的}。
+		\item $f(\vect{x}) \ge 0$，称二次型 $f(\vect{x})$ 是\textbf{半正定的}。
+		\item $f(\vect{x}) \le 0$，称二次型 $f(\vect{x})$ 是\textbf{半负定的}。
+	\end{itemize}
+
+	否则称二次型 $f(\vect{x})$ 是\textbf{不定的}。
+\end{definition}
+
+某个二次型 $f(\vect{x}) = \transpose{\matr{x}} \matr{A} \vect{x}$ 是正定的可以等价于下面的条件：
+
+\begin{itemize}
+	\item $\matr{A}$ 的正惯性指数 $>0$；
+	\item $\matr{A}$ 合同于 $\matr{E}$。
+\end{itemize}
+
+而半正定可以等价于：
+
+\begin{itemize}
+	\item $\matr{A}$ 的正惯性指数 $=\rank \matr{A}$；
+	\item $\matr{A}$ 合同于 $\matr{E}_r$；
+	\item 存在 $\matr{C}$ 使得 $\matr{A} = \transpose{\matr{C}} \matr{C}$
+	\item $\matr{A}$ 的所有顺序主子式 $\ge 0$。
+\end{itemize}
+
+同时，显然 $\matr{A}$ 正定等价于 $-\matr{A}$ 负定，$\matr{A}$ 半正定等价于 $-\matr{A}$ 半负定。
+
+下面给出一个正定矩阵应用例子：
+
+\begin{example}
+	设 $\matr{A} \in \mathbb{R}^{n \times n}$ 正定，$b \in \mathbb{R}^n$，证明：
+	
+	$$
+	p(\vect{x}) = \frac{\transpose{\vect{x}} \matr{A} \vect{x}}{2} - \transpose{\vect{x}} \vect{b}
+	$$
+
+	在 $\vect{x}_0 = \matr{A}^{-1} \vect{b}$ 取最小值且 $\min p = - \frac{1}{2} \transpose{\vect{b}} \matr{A}^{-1} \vect{b}$。
+
+	\begin{proof}
+		首先有：
+		$$
+		\begin{aligned}
+			p(\vect{x}_0) & = \frac{\transpose{\ab(\matr{A}^{-1} \vect{b})} \matr{A} \ab(\matr{A}^{-1} \vect{b})}{2} - \transpose{\ab(\matr{A}^{-1} \vect{b})} \vect{b} \\
+			& = \frac{\transpose{\vect{b}} \transpose{\ab(\matr{A}^{-1})} \matr{A} \matr{A}^{-1} \vect{b}}{2} - \transpose{\vect{b}} \transpose{\ab(\matr{A}^{-1})} \vect{b} \\
+			& = -\frac{1}{2} \transpose{\vect{b}} \ab(\transpose{\matr{A}})^{-1} \vect{b} \\
+			& = - \frac{1}{2} \transpose{\vect{b}} \matr{A}^{-1} \vect{b}
+		\end{aligned}
+		$$
+		然后考虑 $p(\vect{x}) - p(\vect{x}_0)$。
+		$$
+		\begin{aligned}
+			p(\vect{x}) - p(\vect{x}_0) & = \frac{\transpose{\vect{x}} \matr{A} \vect{x}}{2} - \transpose{\vect{x}} \vect{b} + \frac{1}{2} \transpose{\vect{b}} \matr{A}^{-1} \vect{b}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{example}
+
+\subsection{集合与映射 strikes back}
+
+给出几个特殊的映射：
+
+\begin{itemize}
+	\item 恒等映射 $1_M: M \to M,\ x \mapsto x$。这个映射是映射复合运算的幺元；
+	\item 笛卡尔积 $\times: (A, B) \mapsto \{(a, b): a \in A, b \in B\}$。
+\end{itemize}
+
+\subsection{线性空间}
+
+\begin{definition}[线性空间]
+	若对于数域 $P$ 和一个集合 $V$，满足：
+
+	\begin{enumerate}
+		\item 存在加法 $+: V \times V \to V$，满足：
+		\begin{itemize}
+			\item 交换律：$\vect{\alpha} + \vect{\beta} = \vect{\beta} + \vect{\alpha}$；
+			\item 结合律：$\vect{\alpha} + (\vect{\beta} + \vect{\gamma}) = \vect{\alpha} + \vect{\beta} + \vect{\gamma}$；
+			\item 存在零元：$\exists\,\vect{0} \in V: \vect{\alpha} + \vect{0} = \vect{\alpha}$；
+			\item 存在负元素：$\forall\,\vect{\alpha} \in V: \exists\,\vect{\beta} \in V: \vect{\alpha} + \vect{\beta} = \vect{0}$。
+		\end{itemize}
+
+		\item 存在数量乘法 $\cdot: P \times V \to V$，满足：
+		\begin{itemize}
+			\item $1 \vect{\alpha} = \vect{\alpha}$；
+			\item 数量乘法结合律：$k (l \vect{\gamma}) = (k l) \vect{\gamma}$。
+		\end{itemize}
+
+		\item 数量乘法和加法之间满足分配率：
+		\begin{itemize}
+			\item $(k + l) \vect{\alpha} = k \vect{\alpha} + l \vect{\alpha}$；
+			\item $k (\vect{\alpha} + \vect{\beta}) = k \vect{\alpha} + k \vect{\beta}$。
+		\end{itemize}
+	\end{enumerate}
+\end{definition}
+
+根据定义可以得到：
+
+\begin{itemize}
+	\item $n$ 维向量 $P^n$ 对于数域 $P$ 构成线性空间；
+	\item 多项式环 $P[x]$ 对于数域 $P$ 构成线性空间；
+	\item 若数域 $F, P$ 满足 $P \subseteq F$，数域 $F$ 对于数域 $P$ 构成线性空间。
+\end{itemize}
+
+\subsection{作业}
+
+\begin{problem}
+	第五章习题 1. II)
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 原式可化为：
+			$$
+			-(x_1 + x_2 - x_3)^2 + (x_1 - x_2)^2 + x_3^2
+			$$
+			在实数范围内的规范型为：
+			$$
+			(x_1 - x_2)^2 + x_3^2 - (x_1 + x_2 - x_3)^2
+			$$
+			在复数范围内的规范型为：
+			$$
+			(\I x_1 + \I x_2 - \I x_3)^2 + (x_1 - x_2)^2 + x_3^2
+			$$
+
+			\item[\textbf{2)}] 原式可化为：
+			$$
+			(x_1 - x_2 + x_3)^2 - (2x_2 + x_3)^2
+			$$
+			在实数范围内的规范型为：
+			$$
+			(x_1 - x_2 + x_3)^2 - (2x_2 + x_3)^2
+			$$
+			在复数范围内的规范型为：
+			$$
+			(x_1 - x_2 + x_3)^2 + (2\I x_2 + \I x_3)^2
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第五章习题 7
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 该二次型的矩阵为：
+			$$
+			\begin{bmatrix}
+				99 & -6 & 24 \\
+				-6 & 130 & -30 \\
+				24 & -30 & 71
+			\end{bmatrix}
+			$$
+			那么显然该矩阵的前两阶顺序主子式 $>0$，而：
+			$$
+			\begin{vmatrix}
+				99 & -6 & 24 \\
+				-6 & 130 & -30 \\
+				24 & -30 & 71
+			\end{vmatrix} = 755874 > 0
+			$$
+			因此该矩阵所有顺序主子式均 $>0$，二次型正定。
+
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \sum_{i=1}^n x_i + \frac{1}{2} \ab(\ab(\sum_{i=1}^n x_i)^2 - \sum_{i=1}^n x_i^2) \\
+				& = \frac{1}{2} \sum_{i=1}^n x_i^2 + \frac{1}{2} \ab(\sum_{i=1}^n x_i)^2 > 0
+			\end{aligned}
+			$$
+			因此是正定的。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第五章习题 8
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 二次型的矩阵为：
+			$$
+			\begin{bmatrix}
+				1 & t & -1 \\
+				t & 1 & 2 \\
+				-1 & 2 & 5
+			\end{bmatrix}
+			$$
+			需要二阶、三阶顺序主子式不为 $0$，那么：
+			$$
+			\begin{gathered}
+				1 - t^2 > 0 \\
+				5 - 2t - 2t - 1 - 5t^2 - 4 > 0
+			\end{gathered}
+			$$
+			因此 $-\frac{4}{5} < t < 0$。
+
+			\item[\textbf{2)}] 二次型的矩阵为：
+			$$
+			\begin{bmatrix}
+				1 & t & 5 \\
+				t & 4 & 3 \\
+				5 & 3 & 1
+			\end{bmatrix}
+			$$
+			需要二阶、三阶顺序主子式不为 $0$，那么：
+			$$
+			\begin{gathered}
+				4 - t^2 \neq 0 \\
+				4 + 15t + 15t - 100 - 9 - t^2 \neq 0
+			\end{gathered}
+			$$
+			无解，因此矩阵一定不正定。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第五章习题 9
+
+	\begin{proof}
+		合同变换不改变矩阵的正定性。因此对于任意一个主子式 $(i_1, i_2, \dots, i_k)$，都可以通过同时交换行/列的合同变换来把它变成 $(1, 2, \dots, k)$。这样根据顺序主子式均不为 $0$ 就得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第五章习题 10
+
+	\begin{proof}
+		对于一组 $x_1, x_2, \dots, x_n$，我们只需要考虑其中的非零项，因此不妨认为所有 $x_i \neq 0$。那么设 $M = \max\{|x_i|\}$，再设 $K = \max_{1 \le i < j \le n}\{|a_{i,j}|\}$，就有：
+		$$
+		f(\vect{x}) \ge (t - K)  M^2 - n (n - 1) K M^2
+		$$
+		那么只需要 $t > K + n (n - 1) K$ 即可保证 $f(\vect{x}) > 0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第五章习题 13
+
+	\begin{proof}
+		显然：
+		$$
+		\transpose{\vect{x}} (\matr{A} + \matr{B}) \vect{x} = \transpose{\vect{x}} \matr{A} \vect{x} + \transpose{\vect{x}} \matr{B} \vect{x} > 0
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第五章习题 14
+
+	\begin{proof}
+		正惯性指数与秩相等 $\Leftrightarrow$ 负惯性指数为 $0$ $\Leftrightarrow$ 规范型矩阵半正定 $\Leftrightarrow$ 原矩阵半正定。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第五章习题 15
+
+	\begin{proof}
+		设 $\matr{A} \in P^{n \times m}$，那么 $\transpose{\matr{A}} \matr{A} \in P^{m \times m}$。设方程组
+		$$
+		\matr{A} \vect{x} = \vect{0},\ \transpose{\matr{A}} \matr{A} \vect{x} = \vect{0}
+		$$
+		的解空间分别为 $V_1, V_2$。那么只需要证明 $V_1, V_2$ 的维数相等。而
+		$$
+		\begin{gathered}
+			\matr{A} \vect{x} = \vect{0} \Rightarrow \transpose{\matr{A}} \matr{A} \vect{x} = \vect{0} \\
+			\transpose{\matr{A}} \matr{A} \vect{x} = \vect{0} \Rightarrow \transpose{\vect{x}} \transpose{\matr{A}} \matr{A} \vect{x} = 0 \Rightarrow |\matr{A} \vect{x}|^2 = 0 \Rightarrow \matr{A} \vect{x} = \vect{0}
+		\end{gathered}
+		$$
+		于是 $V_1 = V_2$，得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第六章习题 3
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 不构成。$(x^n) - (x^n) = 0$ 不是 $n$ 次多项式；
+			\item[\textbf{2)}] 是线性空间。对称、反称、上三角矩阵在相加、数乘之后仍然是对称、反称、上三角矩阵；
+			\item[\textbf{7)}] 不是线性空间。$0\vect{\alpha} \neq 1\cdot \vect{\alpha} - 1 \cdot \vect{\alpha}$；
+			\item[\textbf{8)}] 是线性空间。把 $x \mapsto \ln x$ 之后就是线性空间，而这是一个双射。
+		\end{enumerate}
+	\end{solution}
+\end{problem}

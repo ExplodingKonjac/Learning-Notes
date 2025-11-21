@@ -35,6 +35,7 @@
 \RequirePackage{ifplatform}
 \RequirePackage{mathtools}
 \RequirePackage{physics2}
+\RequirePackage{etoolbox}
 
 % Define page layout
 \geometry{a4paper,bottom=20mm,top=25mm,left=20mm,right=20mm}
@@ -193,6 +194,14 @@
 \newcommand{\var}[1]{\operatorname{Var}\left(#1\right)}
 \newcommand{\cov}[2]{\operatorname{Cov}\left(#1, #2\right)}
 \newcommand{\prob}[1]{\operatorname{\mathbb{P}}\left(#1\right)}
+
+% linear alhebra
+\newcommand{\transpose}[1]{{#1}^\top}
+
+\let\bbordermatrix\bordermatrix
+\patchcmd{\bbordermatrix}{8.75}{4.75}{}{}
+\patchcmd{\bbordermatrix}{\left(}{\left[}{}{}
+\patchcmd{\bbordermatrix}{\right)}{\right]}{}{}
 
 % paired delimiters
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}

@@ -1,0 +1,138 @@
+\section{单调性、极值、凹凸性}
+
+\subsection{单调性}
+
+\begin{theorem}
+	设函数 $f(x)$ 在 $[a, b]$ 上连续，在 $(a, b)$ 内可导，那么：
+
+	\begin{itemize}
+		\item $f(x)$ 在 $[a, b]$ 上单调不降的充要条件是 $\forall\,x \in (a, b): f'(x) \ge 0$；
+		\item $f(x)$ 在 $[a, b]$ 上单调不升的充要条件是 $\forall\,x \in (a, b): f'(x) \le 0$。
+	\end{itemize}
+
+	\begin{proof}
+		下面仅证明单调不降的情况。
+
+		\begin{itemize}
+			\item 必要性：
+			$$
+			f'(x) = f'_+(x) = \lim_{h \to 0^+} \frac{f(x + h) - f(x)}{h}
+			$$
+			根据极限的保号性得证。注意这里即使函数严格递增，也只能得到 $f'(x) \ge 0$。
+
+			\item 充分性：根据 Larange 中值定理：
+			$$
+			\forall\,a \le x_1 < x_2 \le b: f(x_2) - f(x_1) = f'(\xi)(x_2 - x_1) > 0
+			$$
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+而关于严格单调的情况，我们也有定理：
+
+\begin{theorem}
+	若 $f(x)$ 在 $[a, b]$ 连续，在 $(a, b)$ 内可导，那么 $f(x)$ 严格单调递增/递减的充要条件是：
+
+	\begin{enumerate}
+		\item $\forall\,x \in (a, b): f'(x) \ge 0$（或 $\le 0$）；
+		\item 在 $(a, b)$ 的任意子开区间内，$f'(x)$ 不恒等于 $0$。
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：显然 1. 成立。而对于 2. 使用反证，使用 Lagrange 中值定理得到函数在某个子区间内是常函数，矛盾，因此得证。
+
+			\item 充分性：由 1. 成立得到 $f(x)$ 单调不降。而若 $f(x)$ 不是严格单调，则可以找到一个区间内 $f(x)$ 是常函数，与 2. 矛盾，因此得证。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+\subsection{极值点}
+
+之前已经给出过极值点的定义。简而言之：函数某点值是某个邻域内的严格最大/最小值，那么这个值称为函数的极大/极小值。
+
+对于极值点有若干个必要性判定方法：
+
+\begin{itemize}
+	\item 函数的单调区间的分界点必然是极值点；
+	\item 若函数的驻点处二阶可导，并且 $f''(x_0) > 0$（或 $<0$），那么该点是极小值（或极大值）。 
+\end{itemize}
+
+注意，极值点不能推出两侧具有单调性，反例：
+
+$$
+f(x) = \begin{cases}
+	x^2 \ab(1 + \sin \frac{1}{x}) & , x \neq 0 \\
+	0 & , x = 0
+\end{cases}
+$$
+
+\subsection{曲线的凹凸性}
+
+\begin{definition}[凸函数]
+	设 $f(x)$ 在区间 $I$ 上连续，如果 $f(x)$ 在 $I$ 上任意一条弦都在函数图像的上方，那么称 $f(x)$ 是下凸函数。形式化地：
+	$$
+	\forall\, x_1, x_2 \in I,\ \lambda \in (0, 1): f(\lambda x_1 + (1 - \lambda) x_2) \le \lambda f(x_1) + (1 - \lambda) f(x_2)
+	$$
+	若把 $\le$ 换成 $<$，那么称函数是严格下凸函数。
+
+	把 $\le, <$ 换成 $\ge, >$，就得到了 $f(x)$ 是（严格）上凸函数的定义。
+\end{definition}
+
+对于函数下凸性有定理：
+
+\begin{theorem}
+	$f(x)$ 在区间 $I$ 下凸的充要条件是：
+	$$
+	\forall\, x_1 < x < x_2 \in I: \frac{f(x) - f(x_1)}{x - x_1} \le \frac{f(x_2) - f(x_1)}{x_2 - x_1} \le \frac{f(x_2) - f(x)}{x_2 - x}
+	$$
+	同理，把 $\le$ 换成 $<$，就得到了 $f(x)$ 在 $I$ 上严格下凸的充要条件。
+\end{theorem}
+
+凸性也可以与导函数结合考虑：
+
+\begin{theorem}
+	若 $f(x)$ 在 $(a, b)$ 可导，那么 $f(x)$ （严格）下凸的充要条件是 $f'(x)$ 在 $(a, b)$ 内（严格）单调增。
+
+	\begin{proof}
+		\begin{itemize}
+			\item 必要性：对于 $x_1, x_2$，那么根据下凸函数基本性质有：
+			$$
+			\frac{f(x) - f(x_1)}{x - x_1} \le \frac{f(x_2) - f(x_1)}{x_2 - x_1} \le \frac{f(x_2) - f(x)}{x_2 - x}
+			$$
+			根据极限保号性就得到 $f'(x_1) \le f'(x_2)$。
+
+			\item 充分性：使用下凸函数基本性质结合 Lagrange 中值定理证明。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+考察凹凸性地变化，我们的处函数拐点的定义：
+
+\begin{definition}[曲线拐点]
+	曲线上下凸性改变的点称为曲线地拐点。
+
+	注意，\textbf{拐点真的是点} /oh，不是 $x=a$ 类似物。
+\end{definition}
+
+当曲线二阶可导的时候，可以用二阶导数的正负性来判定，而二阶不可导甚至一阶不可导的时候也可能有拐点。
+
+\begin{theorem}[Jensen 不等式]
+	若 $f(x)$ 在 $I$ 上下凸，那么
+	$$
+	\forall\,x_1, x_2, \dots, x_n \in I,\ \lambda_1, \lambda_2, \dots, \lambda_n > 0, \sum_{i=1}^n \lambda_i = 1: f\ab(\sum_{i=1}^n \lambda_i x_i) \le \sum_{i=1}^n \lambda_i f(x_i)
+	$$
+	当 $f(x)$ 严格下凸时，上式加强为小于号。
+
+	\begin{proof}
+		归纳法。假设求和到 $k$ 并且归一化之后结论成立（记 $u_i = \frac{\lambda_i}{\sum_{i=1}^k \lambda_I}$）。那么：
+		$$
+		\begin{aligned}
+			f\ab(\sum_{i=1}^{k+1} \lambda_i x_i) & = f\ab((1 - \lambda_{k+1}) \sum_{i=1}^k u_i x_i + \lambda_{k+1} x_{x+1}) \\
+			& \le (1 - \lambda_{k+1}) f\ab(\sum_{i=1}^k u_i x_i) + \lambda_{k+1} f(x_{k+1}) \\
+			& \le (1 - \lambda_{k+1}) \sum_{i=1}^k u_i f(x_i) + \lambda_{k+1} f(x_{k+1}) \\
+			& = \sum_{i=1}^{k+1} \lambda_i f(x_i)
+		\end{aligned}
+		$$
+	\end{proof}
+\end{theorem}

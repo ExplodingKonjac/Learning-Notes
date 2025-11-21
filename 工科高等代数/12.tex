@@ -1,0 +1,441 @@
+\section{二次型 II}
+
+\subsection{标准型}
+
+\begin{theorem}
+	数域 $P$ 上的任何一个二次型都能经过非退化的线性替换变为标准型，即具有如下矩阵的形式：
+	$$
+	\matr{D} = \operatorname{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)
+	$$
+
+	\begin{proof}
+		使用数学归纳。假设结论对于 $\le n - 1$ 阶二次型均成立，现在要将 $n$ 阶二次型 $\matr{A} = [a_{i,j}]$ 化为标准型，那么：
+		\begin{itemize}
+			\item 若至少存在一个 $a_{k,k} \neq 0$，那么把 $x_1, x_k$ 交换就得到 $a_{1,1} \neq 0$。于是有
+			$$
+			\begin{aligned}
+				f(\vect{x}) & = a_{1,1} x_{1,1}^2 + 2 \sum_{i=2}^n a_{1,i} x_1 x_i + \sum_{i=2}^n \sum_{j=2}^n a_{i,j} x_i x_j \\
+				& = a_{1,1} \ab(x_{1,1}^2 + 2 x_1 \sum_{i=2}^n \frac{a_{1,i} x_i}{a_{1,1}}) + \sum_{i=2}^n \sum_{j=2}^n a_{i,j} x_i x_j \\
+				& = a_{1,1} \ab(x_{1,1} + \sum_{i=2}^n \frac{a_{1,i} x_i}{a_{1,1}})^2 - \frac{1}{a_{1,1}} \ab(\sum_{i=2}^n a_{1,i} x_i)^2 + \sum_{i=2}^n \sum_{j=2}^n a_{i,j} x_i x_j
+			\end{aligned}
+			$$
+			于是我们可以进行线性替换
+			$$
+			\cvec{z_1, z_2, \vdots, z_n} = \begin{bmatrix}
+				1 & \frac{a_{1,2}}{a_{1,1}} & \cdots & \frac{a_{1,n}}{a_{1,1}} \\
+				0 & 1 & \cdots & 0 \\
+				\vdots & \vdots & \ddots & \vdots \\
+				0 & 0 & \cdots & 1
+			\end{bmatrix} \cvec{x_1, x_2, \vdots, x_n}
+			$$
+			转换成 $n - 1$ 阶的情形。
+
+			\item 若不存在 $a_{k,k} = 0$，那么设存在一个 $a_{p,q} \neq 0\ (p \neq q)$，那么进行线性替换：
+			$$
+			\begin{cases}
+				z_p = \frac{x_p + x_q}{2} \\
+				z_q = \frac{x_p - x_q}{2} \\
+				z_i = x_i & , i \neq p \land i \neq q \\
+			\end{cases}
+			$$
+			于是二次型就变为
+			$$
+			\begin{aligned}
+				f(\vect{x}) & = 2 a_{p,q} x_p x_q + \dots \\
+				& = 2 a_{p,q} (z_p + z_q) (z_p - z_q) + \dots \\
+				& = 2 a_{p,q} (z_p^2 - z_q^2) + \dots
+			\end{aligned}
+			$$
+			转化为第一种情况。
+		\end{itemize}
+
+		于是得证。
+	\end{proof}
+\end{theorem}
+
+把二次型化为标准型的过程实际上就是通过线性替换来进行配方的过程。
+
+\subsection{初等变换法配方}
+
+也可以使用初等变换来将二次型化做标准型。根据配方法我们知道，任意对称矩阵 $\matr{A}$ 都存在可逆矩阵 $\matr{C}$ 使得：
+$$
+\transpose{\matr{C}} \matr{A} \matr{C} = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)
+$$
+那么 $\matr{C}$ 可以表示为若干个初等矩阵的乘积：
+$$
+\matr{C} = \matr{P}_1 \matr{P}_2 \cdots \matr{P}_k
+$$
+回带到合同变换里就得到：
+$$
+\transpose{\matr{P}_k} \cdots \transpose{\matr{P}_2} \transpose{\matr{P}_1} \matr{A} \matr{P}_1 \matr{P}_2 \cdots \matr{P}_k = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)
+$$
+
+这说明任何对称矩阵都能通过\textbf{相同类型的初等行变换和列变换}变成对角矩阵。具体的构造也很简单，只需要对于每一个 $k = 1, 2, \dots, n$，都用 $a_{k,k}$ 去消掉 $a_{k,k+1}, a_{k, k+2}, \dots, a_{k,n}, a_{k+1,k}, a_{k+2,k}, \dots, a_{n,k}$。类似于求逆的过程。我们可以对增广矩阵
+$$
+\ab[\begin{array}{c}
+	\matr{A} \\
+	\hdashline
+	\matr{E}
+\end{array}]
+$$
+做整个变换。因为
+$$
+\begin{bmatrix}
+	\transpose{\matr{P}} & \matr{O} \\
+	\matr{O} & \matr{E}
+\end{bmatrix} \ab[\begin{array}{c}
+	\matr{A} \\
+	\hdashline
+	\matr{E}
+\end{array}] = \ab[\begin{array}{c}
+	\transpose{\matr{P}} \matr{A} \\
+	\hdashline
+	\matr{E}
+\end{array}],\ \ab[\begin{array}{c}
+	\matr{A} \\
+	\hdashline
+	\matr{E}
+\end{array}] \matr{P} = \ab[\begin{array}{c}
+	\matr{A} \matr{P} \\
+	\hdashline
+	\matr{E} \matr{P}
+\end{array}] 
+$$
+因此最后将 $\matr{A}$ 消成对角矩阵后，$\matr{E} = \matr{P}_1, \matr{P}_2, \dots, \matr{P}_n$。
+
+\subsection{作业}
+
+\begin{problem}
+	第四章习题 23
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 化简得到
+			$$
+			\matr{X} = \begin{bmatrix}
+				1 & 1 & -1 \\
+				0 & 2 & 2 \\
+				1 & -1 & 0
+			\end{bmatrix}^{-1} \begin{bmatrix}
+				1 & -1 & 1 \\
+				1 & 1 & 0 \\
+				2 & 1 & 1
+			\end{bmatrix}
+			$$
+			使用初等变换法求解：
+			$$
+			\begin{aligned}
+				\ab[\begin{array}{ccc:ccc}
+					1 & 1 & -1 & 1 & -1 & 1 \\
+					0 & 2 & 2 & 1 & 1 & 0 \\
+					1 & -1 & 0 & 2 & 1 & 1
+				\end{array}]
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 1 & -1 & 1 & -1 & 1 \\
+					0 & 2 & 2 & 1 & 1 & 0 \\
+					0 & -2 & 1 & 1 & 2 & 0
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 1 & -1 & 1 & -1 & 1 \\
+					0 & 1 & 1 & \frac{1}{2} & \frac{1}{2} & 0 \\
+					0 & -2 & 1 & 1 & 2 & 0
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & -2 & \frac{1}{2} & -\frac{3}{2} & 1 \\
+					0 & 1 & 1 & \frac{1}{2} & \frac{1}{2} & 0 \\
+					0 & 0 & 3 & 2 & 3 & 0
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & -2 & \frac{1}{2} & -\frac{3}{2} & 1 \\
+					0 & 1 & 1 & \frac{1}{2} & \frac{1}{2} & 0 \\
+					0 & 0 & 1 & \frac{2}{3} & 1 & 0
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 0 & \frac{11}{6} & \frac{1}{2} & 1 \\
+					0 & 1 & 0 & -\frac{1}{6} & -\frac{1}{2} & 0 \\
+					0 & 0 & 1 & \frac{2}{3} & 1 & 0
+				\end{array}]
+			\end{aligned}
+			$$
+			因此
+			$$
+			\matr{X} = \begin{bmatrix}
+				\frac{11}{6} & \frac{1}{2} & 1 \\
+				-\frac{1}{6} & -\frac{1}{2} & 0 \\
+				\frac{2}{3} & 1 & 0
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{2)}] 化简得到
+			$$
+			\matr{X} = \begin{bmatrix}
+				1 & -1 & 1 \\
+				1 & 1 & 0 \\
+				2 & 1 & 1
+			\end{bmatrix} \begin{bmatrix}
+				1 & 1 & -1 \\
+				0 & 2 & 2 \\
+				1 & -1 & 0
+			\end{bmatrix}^{-1}
+			$$
+			由于是右乘，我们可以用初等列变换来解决。但是为了符合平时习惯，我们可以求解 $\transpose{\matr{X}}$：
+			$$
+			\begin{aligned}
+				\ab[\begin{array}{ccc:ccc}
+					1 & 0 & 1 & 1 & 1 & 2 \\
+					1 & 2 & -1 & -1 & 1 & 1 \\
+					-1 & 2 & 0 & 1 & 0 & 1
+				\end{array}]
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 1 & 1 & 1 & 2 \\
+					0 & 2 & -2 & -2 & 0 & -1 \\
+					0 & 2 & 1 & 2 & 1 & 3
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 1 & 1 & 1 & 2 \\
+					0 & 1 & -1 & -1 & 0 & -\frac{1}{2} \\
+					0 & 2 & 1 & 2 & 1 & 3
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 1 & 1 & 1 & 2 \\
+					0 & 1 & -1 & -1 & 0 & -\frac{1}{2} \\
+					0 & 0 & 3 & 4 & 1 & 4
+				\end{array}] \\
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 1 & 1 & 1 & 2 \\
+					0 & 1 & -1 & -1 & 0 & -\frac{1}{2} \\
+					0 & 0 & 1 & \frac{4}{3} & \frac{1}{3} & \frac{4}{3}
+				\end{array}] \\
+			\end{aligned}
+			$$
+			$$
+			\begin{aligned}
+				\longrightarrow & \ab[\begin{array}{ccc:ccc}
+					1 & 0 & 0 & -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+					0 & 1 & 0 & \frac{1}{3} & \frac{1}{3} & \frac{5}{6} \\
+					0 & 0 & 1 & \frac{4}{3} & \frac{1}{3} & \frac{4}{3}
+				\end{array}]
+			\end{aligned}
+			$$
+			因此
+			$$
+			\matr{X} = \transpose{\ab(\transpose{\matr{X}})} = \begin{bmatrix}
+				-\frac{1}{3} & \frac{1}{3} & \frac{4}{3} \\
+				\frac{2}{3} & \frac{1}{3} & \frac{1}{3} \\
+				\frac{2}{3} & \frac{5}{6} & \frac{4}{3}
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第四章习题 29
+
+	\begin{proof}
+		第一行减去第二行左乘 $\matr{B}$ 得到：
+		$$
+		\begin{bmatrix}
+			\matr{E}_m & \matr{B} \\
+			\matr{A} & \matr{E}_n
+		\end{bmatrix} \longrightarrow \begin{bmatrix}
+			\matr{E}_m - \matr{B} \matr{A} & \matr{O} \\
+			\matr{A} & \matr{E}_n
+		\end{bmatrix}
+		$$
+		第二列见取第一列右乘 $\matr{B}$ 得到：
+		$$
+		\begin{bmatrix}
+			\matr{E}_m & \matr{B} \\
+			\matr{A} & \matr{E}_n
+		\end{bmatrix} \longrightarrow \begin{bmatrix}
+			\matr{E}_m & \matr{O} \\
+			\matr{A} & \matr{E}_n - \matr{A} \matr{B}
+		\end{bmatrix}
+		$$
+		由于过程是初等变换，行列式不变，再结合准对角矩阵的行列式，因此就有
+		$$
+		\det\ab(\begin{bmatrix}
+			\matr{E}_m & \matr{B} \\
+			\matr{A} & \matr{E}_n
+		\end{bmatrix}) = \det\ab(\matr{E}_n - \matr{A} \matr{B}) = \det\ab(\matr{E}_m - \matr{B} \matr{A})
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第四章习题 30
+
+	\begin{proof}
+		由题知：
+		$$
+		\det(\lambda \matr{E}_n - \matr{A} \matr{B}) = \begin{vmatrix}
+			\matr{E}_m & \matr{B} \\
+			\matr{A} & \lambda \matr{E}_n
+		\end{vmatrix}
+		$$
+		用第一行减去第二行左乘 $\frac{1}{\lambda} \matr{B}$ 即得：
+		$$
+		\begin{aligned}
+			\det(\lambda \matr{E}_n - \matr{A} \matr{B}) & = \begin{vmatrix}
+				\matr{E}_m - \frac{1}{\lambda} \matr{B} \matr{A} & \matr{O} \\
+				\matr{A} & \lambda \matr{E}_n
+			\end{vmatrix} \\
+			& = \lambda^n \det(\matr{E}_m - \frac{1}{\lambda} \matr{B} \matr{A}) \\
+			& = \lambda^{n - m} \det(\lambda \matr{E}_m - \matr{B} - \matr{A})
+		\end{aligned}
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第五章习题 1 (I)
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 令
+			$$
+			\vect{z} = \begin{bmatrix}
+				1 & 1 & 0 \\
+				0 & 1 & 2 \\
+				0 & 0 & 1
+			\end{bmatrix} \vect{x}
+			$$
+			那么二次型化为 $z_1^2 + z_2^2$。使用矩阵检验：
+			$$
+			\transpose{\ab(\begin{bmatrix}
+				1 & 1 & 0 \\
+				0 & 1 & 2 \\
+				0 & 0 & 1
+			\end{bmatrix}^{-1})} \begin{bmatrix}
+				1 & 1 & 0 \\
+				1 & 2 & 2 \\
+				0 & 2 & 4
+			\end{bmatrix} \begin{bmatrix}
+				1 & 1 & 0 \\
+				0 & 1 & 2 \\
+				0 & 0 & 1
+			\end{bmatrix}^{-1} = \begin{bmatrix}
+				1 & 0 & 0 \\
+				0 & 1 & 0 \\
+				0 & 0 & 0
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{6)}] 令
+			$$
+			\vect{z} = \begin{bmatrix}
+				1 & 2 & 2 & 1 \\
+				0 & 1 & \frac{3}{2} & \frac{1}{2} \\
+				0 & 0 & 1 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix} \vect{x}
+			$$
+			那么二次型化为 $z_1^2 - 2 z_2^2 + \frac{1}{2} z_3^2$。使用矩阵检验：
+			$$
+			\transpose{\ab(\begin{bmatrix}
+				1 & 2 & 2 & 1 \\
+				0 & 1 & \frac{3}{2} & \frac{1}{2} \\
+				0 & 0 & 1 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}^{-1})} \begin{bmatrix}
+				1 & 2 & 2 & 1 \\
+				2 & 2 & 1 & 1 \\
+				2 & 1 & 0 & 1 \\
+				1 & 1 & 1 & 1
+			\end{bmatrix} \begin{bmatrix}
+				1 & 2 & 2 & 1 \\
+				0 & 1 & \frac{3}{2} & \frac{1}{2} \\
+				0 & 0 & 1 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}^{-1} = \begin{bmatrix}
+				1 & 0 & 0 & 0 \\
+				0 & -2 & 0 & 0 \\
+				0 & 0 & \frac{1}{2} & 0 \\
+				0 & 0 & 0 & 0
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{7)}] 令
+			$$
+			\vect{z} = \begin{bmatrix}
+				1 & 1 & 0 & 0 \\
+				0 & 1 & 1 & 1 \\
+				0 & 1 & 0 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix} \vect{x}
+			$$
+			那么二次型化为 $z_1^2 + z_2^2 - z_3^2 + x_4^2$。使用矩阵检验：
+			$$
+			\transpose{\ab(\begin{bmatrix}
+				1 & 1 & 0 & 0 \\
+				0 & 1 & 1 & 1 \\
+				0 & 1 & 0 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}^{-1})} \begin{bmatrix}
+				1 & 1 & 0 & 0 \\
+				1 & 1 & 1 & 0 \\
+				0 & 1 & 1 & 1 \\
+				0 & 0 & 1 & 1
+			\end{bmatrix} \begin{bmatrix}
+				1 & 1 & 0 & 0 \\
+				0 & 1 & 1 & 1 \\
+				0 & 1 & 0 & 1 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}^{-1} = \begin{bmatrix}
+				1 & 0 & 0 & 0 \\
+				0 & 1 & 0 & 0 \\
+				0 & 0 & -1 & 0 \\
+				0 & 0 & 0 & 1
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第五章习题 3
+	
+	\begin{proof}
+		只需证明合同变换能够实现交换对角上两个相邻元素即可。
+
+		注意到存在矩阵
+		$$
+		\matr{C} = \bbordermatrix{
+			~ & 1 & ~ & ~ & k & k+1 & ~ & ~ & n \cr
+			1 & 1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ \cr
+			~ & ~ & \ddots & ~ & ~ & ~ & ~ & ~ & ~ \cr
+			~ & ~ & ~ & 1 & ~ & ~ & ~ & ~ & ~ \cr
+			k & ~ & ~ & ~ & 0 & 1 & ~ & ~ & ~ \cr
+			k+1 & ~ & ~ & ~ & 1 & 0 & ~ & ~ & ~ \cr
+			~ & ~ & ~ & ~ & ~ & ~ & 1 & ~ & ~ \cr
+			~ & ~ & ~ & ~ & ~ & ~ & ~ & \ddots & ~ \cr
+			n & ~ & ~ & ~ & ~ & ~ & ~ & ~ & 1 \cr
+		}
+		$$
+		那么可以得到：
+		$$
+		\transpose{\matr{C}} \operatorname{diag}(\lambda_1, \dots, \lambda_k, \lambda_{k+1}, \dots, \lambda_n) \matr{C} = \operatorname{diag}(\lambda_1, \dots, \lambda_{k+1}, \lambda_k, \dots, \lambda_n)
+		$$
+		相当于先交换 $i, i+1$ 行再交换 $i, i+1$ 列。于是得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 令 $f(\vect{x}) = \sum_{i=1}^n \sum_{j=1}^n a_{i,j} x_i x_j$，那么：
+			$$
+			\matr{A} = -\transpose{\matr{A}} \Leftrightarrow f(\vect{x}) \equiv 0 \Leftrightarrow \forall \transpose{\vect{x}} \matr{A} \vect{x} \equiv 0
+			$$
+
+			\item[\textbf{2)}] 
+			$$
+			\forall \vect{x} \in P^n: \transpose{\vect{x}} \matr{A} \vect{x} = 0 \Rightarrow \matr{A} = -\transpose{\matr{A}}
+			$$
+			而又有 $\matr{A} = \transpose{\matr{A}}$，因此 $\matr{A} = \matr{O}$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}

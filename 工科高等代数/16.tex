@@ -1,0 +1,53 @@
+\section{线性空间 III}
+
+\subsection{线性空间的维与基}
+
+\begin{definition}[线性空间的维]
+	对于线性空间 $V$，如果其中存在 $n$ 个线性无关的向量，并且任意 $n+1$ 个向量都线性相关，那么称 $V$ 是 $n$ 维的，记作 $\dim V = n$。特别地，如果线性空间中可以存在任意多个线性无关的向量，那么称 $V$ 是无限维的。
+\end{definition}
+
+\begin{definition}[线性空间的基]
+	$n$ 维线性空间 $V$ 中的 $n$ 个线性无关的向量 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 称为线性空间 $V$ 的一组基。设 $\vect{\alpha} \in V$，那么 $\vect{\alpha}$ 能被这组基唯一地线性表出：
+	$$
+	\vect{\alpha} = a_1 \vect{\varepsilon}_1 + a_2 \vect{\varepsilon}_2 + \cdots + a_n \vect{\varepsilon}_n
+	$$
+	那么称 $(a_1, a_2, \dots, a_n)$ 是 $\vect{\alpha}$ 在基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下的坐标。
+\end{definition}
+
+线性空间的基和维的关系可由如下定理刻画：
+
+\begin{theorem}
+	若线性空间 $V$ 中有 $n$ 个线性无关的向量 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$，且 $V$ 中任何一个向量都能被它们线性表出，那么 $\dim V = n$ 且 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 是 $V$ 的一组基。
+
+	\begin{proof}
+		只需证明任意 $n+1$ 个向量组 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_{n+1}$ 都线性相关即可。
+		
+		而根据向量组的性质，因为 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_{n+1}$ 能被 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 线性表出，并且 $n+1 > n$，因此 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_{n+1}$ 一定线性相关。
+	\end{proof}
+\end{theorem}
+
+对于线性空间的两组基，可以研究它们之间的关系：
+
+\begin{definition}
+	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 和 $\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \dots, \vect{\varepsilon'}_n$ 是线性空间 $V$ 的两组基，且满足：
+	$$
+	\rvec{\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \cdots, \vect{\varepsilon'}_n} = \cvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \cdots, \vect{\varepsilon}_n} \begin{bmatrix}
+		a_{1,1}, & a_{1,2} & \cdots & a_{1,n} \\
+		a_{2,1}, & a_{2,2} & \cdots & a_{2,n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{n,1}, & a_{n,2} & \cdots & a_{n,n}
+	\end{bmatrix}
+	$$
+	这称为线性空间 $V$ 上的一组\textbf{基变换}。也称矩阵
+	$$
+	A = [a_{i,j}]
+	$$
+	为 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 到 $\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \dots, \vect{\varepsilon'}_n$ 的\textbf{过渡矩阵}。显然过渡矩阵是满秩、可逆的。
+\end{definition}
+
+\subsection{线性子空间}
+
+\begin{definition}
+	对于线性空间 $V$，如果它的一个子集 $W \subset V$ 关于与 $V$ 相同的数域和运算也构成线性空间，那么称 $W$ 为 $V$ 的一个\textbf{线性子空间}
+\end{definition}
+

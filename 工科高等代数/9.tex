@@ -36,17 +36,17 @@
 特别地，通常记 $k\matr{E}_n$ 为\textbf{数量矩阵}。数量矩阵在矩阵乘法中表现和数一样。同时，若某个矩阵和所有 $n \times n$ 矩阵的乘法是可交换的，那么这个矩阵一定是数量矩阵。
 
 \begin{definition}[矩阵的转置]
-	对于矩阵 $\matr{A} = [a_{i,j}]_{n \times m}$，定义 $\matr{A}^\mathrm{T} = [a_{j,i}]_{m \times n}$。
+	对于矩阵 $\matr{A} = [a_{i,j}]_{n \times m}$，定义 $\transpose{\matr{A}} = [a_{j,i}]_{m \times n}$。
 \end{definition}
 
 那么矩阵转置具有下面性质：
 
 \begin{property}[矩阵转置的性质]
 	\begin{itemize}
-		\item $\ab(\matr{A}^\mathrm{T})^\mathrm{T} = \matr{A}$；
-		\item $(\matr{A} + \matr{B})^\mathrm{T} = \matr{A}^\mathrm{T} + \matr{B}^\mathrm{T}$；
-		\item $(k \matr{A})^\mathrm{T} = k \matr{A}^\mathrm{T}$；
-		\item $(\matr{A} \matr{B})^\mathrm{T} = \matr{B}^\mathrm{T} \matr{A}^\mathrm{T}$。
+		\item $\transpose{\ab(\transpose{\matr{A}})} = \matr{A}$；
+		\item $\transpose{(\matr{A} + \matr{B})} = \transpose{\matr{A}} + \transpose{\matr{B}}$；
+		\item $\transpose{(k \matr{A})} = k \transpose{\matr{A}}$；
+		\item $\transpose{(\matr{A} \matr{B})} = \transpose{\matr{B}} \transpose{\matr{A}}$。
 	\end{itemize}
 \end{property}
 
@@ -330,7 +330,7 @@
 
 	\begin{proof}
 		$$
-		(\matr{A} \matr{B})^\mathrm{T} = \matr{A} \matr{B} \Leftrightarrow \matr{B}^\mathrm{T} \matr{A}^\mathrm{T} = \matr{A} \matr{B} \Leftrightarrow \matr{B} \matr{A} = \matr{A} \matr{B}
+		\transpose{(\matr{A} \matr{B})} = \matr{A} \matr{B} \Leftrightarrow \transpose{\matr{B}} \transpose{\matr{A}} = \matr{A} \matr{B} \Leftrightarrow \matr{B} \matr{A} = \matr{A} \matr{B}
 		$$
 	\end{proof}
 \end{problem}

@@ -1,0 +1,243 @@
+\section{函数的导数 II}
+
+\subsection{隐函数和参数方程的高阶导数}
+
+对于隐函数 $F(x, y) = 0$ 的高阶导数，可以通过计算函数表达式的高阶导数来计算，即使用方程
+$$
+\frac{\dif^n F(x, y)}{\dif x^n} = 0
+$$
+来求解 $\frac{\dif^n y}{\dif x}$。
+
+\begin{example}
+	求解隐函数 
+	$$
+	x \mapsto y,\ \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+	$$
+	的二阶导数。
+
+	\begin{solution}
+		等式两侧同时求一阶导数：
+		$$
+		\frac{2x}{a^2} + \frac{2y y'}{b^2} = 0
+		$$
+		得到 $y' = -\frac{b^2 x}{a^2 y}$。再求一次导数：
+		$$
+		\frac{2}{a^2} + \frac{2}{b^2} \ab((y')^2 + y y'') = 0
+		$$
+	\end{solution}
+\end{example}
+
+而对于参数方程
+$$
+\begin{cases}
+	x = \varphi(t) \\
+	y = \psi(t)
+\end{cases}
+$$
+的高阶导数，我们合理利用莱布尼茨记号进行推导：
+$$
+\frac{\dif^n y}{\dif x^n} = \frac{\frac{\dif^n y}{\dif t^n}}{\ab(\frac{\dif x}{\dif t})^n} = \frac{\psi^{(n)}(t)}{\varphi'(t)^n}
+$$
+
+\subsection{微分中值定理}
+
+首先给出极值点相关的定义：
+
+\begin{definition}[极值和极值点]
+	若函数 $f(x)$ 对于某个 $x_0$ 满足，存在 $\delta > 0$ 使得当 $x \in U(x_0, \delta)$ 时，$f(x)$ 有定义且 $f(x) \le f(x_0)$，那么称 $x_0$ 是 $f(x)$ 的一个极大值点，$f(x_0)$ 是 $f(x)$ 的一个极大值。同理也可以得到极小值点和极小值的定义。
+\end{definition}
+
+\begin{lemma}[Fermat 引理]
+	若 $x_0$ 是 $f(x)$ 的一个极值点且 $f(x)$ 在 $x_0$ 可导，那么 $f'(x_0) = 0$。
+
+	\begin{proof}
+		不妨设 $x_0$ 是极大值点，那么在某个邻域内 $f(x) \le f(x_0)$。于是：
+		$$
+		\begin{gathered}
+			\frac{f(x) - f(x_0)}{x - x_0} \ge 0 \quad (x < x_0) \\
+			\frac{f(x) - f(x_0)}{x - x_0} \le 0 \quad (x > x_0)
+		\end{gathered}
+		$$
+		根据极限的保序性，有：
+		$$
+		f'_-(x_0) \ge 0, f'_+(x_0) \le 0
+		$$
+		而 $f'(x_0)$ 存在，左右极限存在且相等，那么得到：
+		$$
+		f'(x_0) = f'_-(x_0) = f'_+(x_0) = 0
+		$$
+	\end{proof}
+\end{lemma}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 4.2.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\displaystyle \sin x + \cos x + 2 \E^x - \frac{1}{2 \sqrt x}$；
+			\item[\textbf{3)}] $\displaystyle \E^x \ab(\tan x - x^3 + 2\cos x + \sec^2 x - 3x^2 - 2\sin x)$；
+			\item[\textbf{5)}] $\displaystyle \cos x \ab(2^x \ln 2 + \frac{1}{x \ln 3}) - \sin x \ab(2^x + \log_3 x)$；
+			\item[\textbf{7)}] $\displaystyle \frac{2 \cot x - 3x}{x \ln^2 x} + \frac{3 + 2 \csc x}{\ln x}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.2.4
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] $\displaystyle \frac{1}{\ln \ln x} + \frac{1}{\ln x} + \frac{1}{x}$；
+			\item[\textbf{4)}] $\displaystyle -\frac{x}{\sqrt{1 - x^2}}$；
+			\item[\textbf{6)}] $\displaystyle \frac{\cos x - \sin x}{\cos x + \sin x}$；
+			\item[\textbf{8)}] $\displaystyle \frac{1}{1 - x^2} + \frac{x \arcsin x}{(1 - x^2)^{3/2}}$；
+			\item[\textbf{10)}] $\displaystyle \frac{1}{\sqrt{a^2 + x^2}}$；
+			\item[\textbf{12)}] $\displaystyle \sqrt{x^2 - a^2}$；
+			\item[\textbf{14)}] $\displaystyle -\frac{1 + x + x^2 + x \ln \frac{1}{x}}{x \ab(1 + x \ln \frac{1}{x}) \ab(1 + x \ln \ab(\frac{1}{x} + \ln \frac{1}{x}))}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.2.6
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\displaystyle \frac{1 - \ln x}{x^2} \sqrt[x]{x}$；
+			\item[\textbf{2)}] $\displaystyle \ab(2x + \frac{\cos x - x \sin x}{x^2}) (x^3 + \cos x)^{\frac{1}{x}}$；
+			\item[\textbf{5)}] $\displaystyle x \ab(\frac{1}{x} - \frac{x}{1 - x^2} + \frac{3x^2}{2 + 2x^3}) \sqrt{\frac{1 - x^2}{1 + x^3}}$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.2.8
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{3)}] $\displaystyle \frac{\frac{g'(x)}{g(x)} \ln f(x) + \frac{f'(x)}{f(x)} \ln g(x)}{\ln^2 f(x)}$；
+			\item[\textbf{4)}] $\frac{2 g(x) f'(g(x)^2) g'(x)}{f(g(x)^2)}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.2.11
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 即要使 $\lim\limits_{x \to 0} f(x) = 0$。有：
+			$$
+			\lim_{x \to 0} |x|^\mu \arctan \frac{1}{x} = \lim_{x \to 0} \frac{|x|^\mu}{x} = 0
+			$$
+			因此 $\mu > 1$。
+
+			\item[\textbf{2)}] 即要在连续的基础上，使 $\lim\limits_{x \to 0} \frac{f(x)}{x}$ 存在。有：
+			$$
+			\lim_{x \to 0} \frac{|x|^\mu \arctan \frac{1}{x}}{x} = \lim_{x \to 0} \frac{|x|^\mu}{x^2}
+			$$
+			因此 $\mu \ge 2$。
+
+			\item[\textbf{3)}] 由上一问可知
+			$$
+			f'(0) = \begin{cases}
+				1 & , \mu = 2 \\
+				0 & , \mu > 2
+			\end{cases}
+			$$
+			而对于 $x_0 \neq 0$，有
+			$$
+			f'(x_0) = \mu |x|^{\mu - 1} \arctan \frac{1}{|x|} - \frac{|x|^{\mu}}{1 + x^2} \\
+			$$
+			那么
+			$$
+			\begin{aligned}
+				\lim_{x \to 0} f'(x) & = \lim_{t \to 0^+} \mu t^{\mu - 1} \arctan \frac{1}{t} - \lim_{t \to 0^+} \frac{t^{\mu}}{1 + t^2} \\
+				& = \lim_{t \to 0^+} \frac{\mu t^{\mu - 1}}{t} - 0 \\
+				& = \mu [\mu=2]
+			\end{aligned}
+			$$
+			因此要使 $\lim\limits_{x \to 0} f'(x) = f'(0)$，只有 $\mu > 2$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\displaystyle \frac{\dif y}{\dif x} = \frac{y \E^{\arctan(y/x)} + x \sqrt{x^2 + y^2}}{x \E^{\arctan(y/x)} - y \sqrt{x^2 + y^2}}$；
+			\item[\textbf{3)}] $\displaystyle \frac{\dif y}{\dif x} = -\ab(\frac{y}{x})^{\frac{1}{3}}$；
+			\item[\textbf{5)}] $\displaystyle \frac{\dif y}{\dif x} = -\frac{y}{\E^y + x}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] $\displaystyle \frac{\dif y}{\dif x} = 1$；
+			\item[\textbf{4)}] $\displaystyle \frac{\dif y}{\dif x} = -\sqrt{\frac{1 + t}{1 - t}}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3.4
+	
+	\begin{solution}
+		记 $x = \varphi(t),\ y = \psi(t)$。有 $\varphi(1) = \psi(1) = \frac{1}{2}$。而
+		$$
+		\begin{gathered}
+			\varphi'(t) = \frac{1 - 2t^3}{(1 + t^3)^2} \\
+			\psi'(t) = -\frac{3t^2}{(1 + t^3)^2}
+		\end{gathered}
+		$$
+		那么 $\varphi'(1) = -\frac{1}{4},\ \psi'(1) = -\frac{3}{4}$。因此切线方程为
+		$$
+		3x - y = 2
+		$$
+		法线方程为
+		$$
+		x + 3y = 4
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3.5
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\frac{\dif y}{\dif x} & = \frac{\frac{\dif(f(\theta) \sin \theta)}{\dif \theta}}{\frac{\dif(f(\theta) \cos \theta)}{\dif \theta}} \\
+			& = \frac{f'(\theta) \sin \theta + f(\theta) \cos \theta}{f'(\theta) \cos \theta - f(\theta) \sin \theta}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3.6
+
+	\begin{solution}
+		对于 Archimedes 螺线：
+		$$
+		\frac{\dif y}{\dif x} = \frac{a \sin \theta + a \theta \cos \theta}{a \cos \theta - a \theta \sin \theta}
+		$$
+		对于双曲螺线：
+		$$
+		\frac{\dif y}{\dif x} = \frac{-\frac{a}{\theta^2} \sin \theta + \frac{a}{\theta} \cos \theta}{-\frac{a}{\theta^2} \cos \theta - \frac{a}{\theta} \sin \theta} = \frac{-a \sin \theta + a \theta \cos \theta}{-a \cos \theta - a \theta \sin \theta}
+		$$
+		而当两螺线相交时，有
+		$$
+		a \theta = \frac{a}{\theta} \Rightarrow \theta = \pm 1
+		$$
+		此时可以发现两螺线切线斜率之积为 $-1$，即两切线垂直。
+	\end{solution}
+\end{problem}
