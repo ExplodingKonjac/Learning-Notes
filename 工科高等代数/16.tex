@@ -32,17 +32,23 @@
 	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 和 $\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \dots, \vect{\varepsilon'}_n$ 是线性空间 $V$ 的两组基，且满足：
 	$$
 	\rvec{\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \cdots, \vect{\varepsilon'}_n} = \cvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \cdots, \vect{\varepsilon}_n} \begin{bmatrix}
-		a_{1,1}, & a_{1,2} & \cdots & a_{1,n} \\
-		a_{2,1}, & a_{2,2} & \cdots & a_{2,n} \\
+		a_{1,1}, & a_{2,1} & \cdots & a_{n,1} \\
+		a_{1,2}, & a_{2,2} & \cdots & a_{n,2} \\
 		\vdots & \vdots & \ddots & \vdots \\
-		a_{n,1}, & a_{n,2} & \cdots & a_{n,n}
+		a_{1,n}, & a_{2,n} & \cdots & a_{n,n}
 	\end{bmatrix}
 	$$
 	这称为线性空间 $V$ 上的一组\textbf{基变换}。也称矩阵
 	$$
-	A = [a_{i,j}]
+	\matr{A} = [a_{j,i}]
 	$$
 	为 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 到 $\vect{\varepsilon'}_1, \vect{\varepsilon'}_2, \dots, \vect{\varepsilon'}_n$ 的\textbf{过渡矩阵}。显然过渡矩阵是满秩、可逆的。
+
+	而对于原本基下的坐标，可以通过过渡矩阵来得到新基下的坐标：
+	$$
+	\vect{x}' = \matr{A}^{-1} \vect{x}
+	$$
+	这就是 $V$ 上的\textbf{坐标变换}。
 \end{definition}
 
 \subsection{线性子空间}
@@ -51,3 +57,204 @@
 	对于线性空间 $V$，如果它的一个子集 $W \subset V$ 关于与 $V$ 相同的数域和运算也构成线性空间，那么称 $W$ 为 $V$ 的一个\textbf{线性子空间}
 \end{definition}
 
+\subsection{作业}
+
+\begin{problem}
+	第六章习题 7
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 设 $\vect{\xi} = \sum_{i=1}^4 x_i \vect{\varepsilon}_i$，那么：
+			$$
+			\begin{cases}
+				x_1 + x_2 + x_3 + x_4 = 1 \\
+				x_1 + x_2 - x_3 - x_4 = 2 \\
+				x_1 - x_2 + x_3 - x_4 = 1 \\
+				x_1 - x_2 - x_3 + x_4 = 1
+			\end{cases}
+			$$
+			解得
+			$$
+			x_1 = \frac{5}{4}, x_2 = \frac{1}{4}, x_3 = \frac{1}{4}, x_4 = \frac{1}{4}
+			$$
+			因此 $\vect{\xi}$ 的坐标为 $(\frac{5}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4})$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第六章习题 8
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 记矩阵 $\matr{1}_{i,j}$ 为第 $i$ 行第 $j$ 列为 $1$、其余位置为 $0$ 的 $n$ 阶方阵。
+			\begin{itemize}
+				\item 对于对称矩阵，构造一组基：
+				$$
+				\mathscr{B}_1 = \ab\{\matr{1}_{i,j} + \matr{1}_{j,i}: 1 \le i < j \le n\} \cup \ab\{\matr{1}_{i,i}: 1 \le i \le n\}
+				$$
+				那么这些矩阵是线性无关的，且对于任意一个对称矩阵 $\matr{A} = [a_{i,j}]$：
+				$$
+				\matr{A} = \sum_{i=1}^n \sum_{j=i+1}^n a_{i,j} (\matr{1}_{i,j} + \matr{1}_{j,i}) + \sum_{i=1}^n a_{i,i} (\matr{1}_{i,i})
+				$$
+				因此所有对称矩阵都能被 $\mathscr{B}_1$ 线性表示。所以该线性空间维数为 $\frac{n(n+1)}{2}$。
+
+				\item 对于反称矩阵，类似地构造一组基：
+				$$
+				\mathscr{B}_2 = \ab\{\matr{1}_{i,j} - \matr{1}_{j,i}: 1 \le i \le j \le n\}
+				$$
+				那么这些矩阵线性无关，且对于任意一个反称矩阵 $\matr{A} = [a_{i,j}]$：
+				$$
+				\matr{A} = \sum_{i=1}^n \sum_{j=i}^n a_{i,j} (\matr{1}_{i,j} - \matr{1}_{j,i})
+				$$
+				因此所有反称矩阵都能被 $\mathscr{B}_2$ 线性表示。所以该线性空间维数为 $\frac{n(n+1)}{2}$。
+
+				\item 对于上三角矩阵，类似地构造一组基：
+				$$
+				\mathscr{B}_3 = \ab\{\matr{1}_{i,j}: 1 \le i \le j \le n\}
+				$$
+				那么这些矩阵线性无关，且对于任意一个上三角矩阵 $\matr{A} = [a_{i,j}]$：
+				$$
+				\matr{A} = \sum_{i=1}^n \sum_{j=i}^n a_{i,j} \matr{1}_{i,j}
+				$$
+				因此所有上三角矩阵都能被 $\mathscr{B}_3$ 线性表示。所以该线性空间维数为 $\frac{n(n+1)}{2}$。
+			\end{itemize}
+
+			\item[\textbf{3)}] 显然该空间的零向量为 $1$。注意到，对于空间中任意两个不同元素 $x, y$ 有：
+			$$
+			x^{\ln y} \cdot y^{-\ln x} = 1 \Rightarrow (\ln y) \circ x \oplus (-\ln x) \circ y = 1
+			$$
+			因为 $x \neq y$，因此 $\ln x, \ln y$ 不全为 $0$。所以该空间中任意两个不同元素线性相关，该空间维数为 $1$。$\{x\}$ 就是一组基（其中 $x \in \mathbb{R^+} \setminus \{1\}$）。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第六章习题 9
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 可以看出：
+			$$
+			\begin{cases}
+				\vect{\eta}_1 = 2 \vect{\varepsilon}_1 + \vect{\varepsilon}_2 - \vect{\varepsilon}_3 + \vect{\varepsilon}_4 \\
+				\vect{\eta}_2 = 3 \vect{\varepsilon}_2 + \vect{\varepsilon}_3 \\
+				\vect{\eta}_1 = 5 \vect{\varepsilon}_1 + 3 \vect{\varepsilon}_2 + 2 \vect{\varepsilon}_3 + \vect{\varepsilon}_4 \\
+				\vect{\eta}_1 = 6 \vect{\varepsilon}_1 + 6 \vect{\varepsilon}_2 + \vect{\varepsilon}_3 + 3 \vect{\varepsilon}_4 \\
+			\end{cases}
+			$$
+			因此过渡矩阵为：
+			$$
+			\matr{A} = \begin{bmatrix}
+				2 & 0 & 5 & 6 \\
+				1 & 3 & 3 & 6 \\
+				-1 & 1 & 2 & 1 \\
+				1 & 0 & 1 & 3
+			\end{bmatrix}
+			$$
+			$\vect{\xi}$ 在 $\vect{\eta}_1, \vect{\eta}_2, \vect{\eta}_3, \vect{\eta}_4$ 下的坐标为：
+			$$
+			\cvec{x_1', x_2', x_3', x_4'} = \matr{A}^{-1} \cvec{x_1, x_2, x_3, x_4} = \cvec{\frac{4}{9} x_1 + \frac{1}{3} x_2 - x_3 - \frac{11}{9} x_4, \frac{1}{27} x_1 + \frac{4}{9} x_2 - \frac{1}{3} x_3 - \frac{23}{27} x_4, \frac{1}{3} x_1 - \frac{2}{3} x_4, -\frac{7}{27} x_1 - \frac{1}{9} x_2 + \frac{1}{3} x_3 + \frac{26}{27} x_4}
+			$$
+
+			\item[\textbf{2)}] 注意到：
+			$$
+			\begin{cases}
+				\vect{\eta}_1 = \vect{\varepsilon}_1 + \vect{\varepsilon}_2 \\
+				\vect{\eta}_2 = \vect{\varepsilon}_2 + \vect{\varepsilon}_3 \\
+				\vect{\eta}_3 = \vect{\varepsilon}_3 + \vect{\varepsilon}_4 \\
+				\vect{\eta}_4 = \vect{\varepsilon}_1 + \vect{\varepsilon}_2 + \vect{\varepsilon}_3
+			\end{cases}
+			$$
+			那么过渡矩阵为：
+			$$
+			\begin{bmatrix}
+				1 & 0 & 0 & 1 \\
+				1 & 1 & 0 & 1 \\
+				0 & 1 & 1 & 1 \\
+				0 & 0 & 1 & 0
+			\end{bmatrix}
+			$$
+			设 $\vect{\xi}$ 在 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \vect{\varepsilon}_3, \vect{\varepsilon}_4$ 下的坐标为 $\transpose{[x_1, x_2, x_3, x_4]}$，那么：
+			$$
+			\begin{cases}
+				x_1 + x_2 - x_3 - x_4 = 1 \\
+				2x_1 - x_2 + 2x_3 - x_4 = 0 \\
+				-x_1 + x_2 + x_3 = 0 \\
+				x_2 + x_3 + x_4 = 0
+			\end{cases}
+			$$
+			解得 $\vect{\xi}$ 的坐标为：
+			$$
+			\cvec{\frac{3}{13}, \frac{5}{13}, -\frac{2}{13}, -\frac{5}{13}}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第六章习题 10
+
+	\begin{solution}
+		从基 $\vect{\eta}_1, \vect{\eta}_2, \vect{\eta}_3, \vect{\eta}_4$ 到基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \vect{\varepsilon}_3, \vect{\varepsilon}_4$ 的坐标变换矩阵为：
+		$$
+		\matr{A} = \begin{bmatrix}
+			2 & 0 & 5 & 6 \\
+			1 & 3 & 3 & 6 \\
+			-1 & 1 & 2 & 1 \\
+			1 & 0 & 1 & 3
+		\end{bmatrix}
+		$$
+		那么设所求的 $\vect{\xi}$ 在 $\vect{\eta}_1, \vect{\eta}_2, \vect{\eta}_3, \vect{\eta}_4$ 下坐标为 $\transpose{[x_1, x_2, x_3, x_4]}$，那么：
+		$$
+		\matr{A} \cvec{x_1, x_2, x_3, x_4} = \cvec{x_1, x_2, x_3, x_4} \Rightarrow (\matr{A} - \matr{E}) \cvec{x_1, x_2, x_3, x_4} = \vect{0}
+		$$
+		也就是说我们需要解线性方程组
+		$$
+		\begin{bmatrix}
+			1 & 0 & 5 & 6 \\
+			1 & 2 & 3 & 6 \\
+			-1 & 1 & 1 & 1 \\
+			1 & 0 & 1 & 2
+		\end{bmatrix} \cvec{x_1, x_2, x_3, x_4} = \vect{0}
+		$$
+		可以得到一个特解 $\transpose{[1, 1, 1, -1]}$。回带得到：
+		$$
+		\vect{\xi} = \vect{\eta}_1 + \vect{\eta}_2 + \vect{\eta}_3 - \vect{\eta}_4 = \cvec{1, 1, 1, -1}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第六章习题 13
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 需要证明加法和数乘封闭。设 $\matr{M}, \matr{N}$ 是两个和 $\matr{A}$ 可交换的矩阵，那么：
+			\begin{itemize}
+				\item $(\matr{M} + \matr{N}) \matr{A} = \matr{M} \matr{A} + \matr{N} \matr{A} = \matr{A} \matr{M} + \matr{A} \matr{N} = \matr{A} (\matr{M} + \matr{N})$。因此加法封闭性得证。
+				\item $(k \matr{M}) \matr{A} = k (\matr{M} \matr{A}) = k (\matr{A} \matr{M}) = \matr{A} (k \matr{M})$。因此数乘封闭性得证。
+			\end{itemize}
+
+			\item[\textbf{2)}] 对于任意 $\matr{M} \in P^{n \times n}$，都有 $\matr{M} \matr{E} = \matr{E} \matr{M} = \matr{M}$。因此 $C(\matr{A}) = P^{n \times n}$。
+			
+			\item[\textbf{3)}] 下面证明 $C(\matr{A})$ 是 $P^{n \times n}$ 中的全体对角矩阵。
+			
+			考虑 $\matr{A}$ 在初等变换的意义，可以得到，若 $\matr{C} = [c_{i,j}]$，那么：
+			$$
+			\matr{A} \matr{C} = [c_{i,j} \cdot i],\ \matr{C} \matr{A} = [c_{i,j} \cdot j]
+			$$
+			于是，若某个 $c_{i,j} \neq 0 (i \neq j)$，那么 $c_{i,j} \cdot i \neq c_{i,j} \cdot j$，因此 $\matr{C}, \matr{A}$ 不可交换。同理，若 $\matr{C}$ 是对角矩阵，则 $\matr{C}, \matr{A}$ 可交换。于是得证。
+
+			记 $\matr{1}_{i,j}$ 表示 $i$ 行 $j$ 列为 $1$、其余位置为 $0$ 的 $n$ 阶方阵。下面就可以构造对角矩阵的一组基：
+			$$
+			\mathscr{B} = \{\matr{1}_{i,i}: 1 \le i \le n\}
+			$$
+			那么 $\mathscr{B}$ 内的向量显然是线性无关的，且对于任何一个对角矩阵 $\matr{C} = [c_{i,j}]$ 有：
+			$$
+			\matr{C} = \sum_{i=1}^n c_{i,i} \matr{1}_{i,i}
+			$$
+			因此 $\mathscr{B}$ 就是 $C(\matr{A})$ 的一组基，$\dim C(\matr{A}) = n$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}

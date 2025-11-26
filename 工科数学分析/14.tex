@@ -1,0 +1,327 @@
+\section{L'Hospital 法则 \& 微分}
+
+\subsection{L'Hospital 法则}
+
+如果当 $x \to a\ (x \to \pm \infty)$ 时两个函数 $f(x), F(x)$ 均趋于零或均趋于无穷大，那么成极限 $\lim \frac{f(x)}{F(x)}$ 为未定式。通常我们把这种极限简记为 $\frac{0}{0}$ 型和 $\frac{\infty}{\infty}$ 型。
+
+\begin{theorem}[趋于定点时 $\frac{0}{0}$ 型的 L'Hospital 法则]
+	设 $f(x), g(x)$ 在 $x_0$ 的某个去心邻域内可导，且 $g(x) \neq 0$，如果：
+
+	\begin{itemize}
+		\item $\lim\limits_{x \to x_0} f(x) = \lim\limits_{x \to x_0} g(x) = 0$；
+		\item $g'(x) \neq 0$；
+		\item $\lim\limits_{x \to x_0} \frac{f'(x)}{g'(x)} = a$（$a$ 可以为有限数或无穷大）。
+	\end{itemize}
+
+	那么 $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \frac{f'(x)}{g'(x)} = a$。极限为单侧的时候也有类似结论。
+
+	\begin{proof}
+		因为 $f(x), g(x)$ 在 $x_0$ 去心邻域内连续，那么也在这个邻域内连续。分类讨论：
+
+		\begin{itemize}
+			\item 若 $f(x), g(x)$ 在 $x_0$ 连续：那么 $f(x_0) = g(x_0) = 0$。根据柯西中值定理：
+			$$
+			\frac{f(x)}{g(x)} = \frac{f(x) - f(x_0)}{g(x) - g(x_0)} = \frac{f'(\xi_x)}{g'(\xi_x)}
+			$$
+			而 $|\xi_x - x_0| < |x - x_0|$，因此 $\xi_x \to x_0$，于是就证明了。
+
+			\item 若 $f(x), g(x)$ 在 $x_0$ 不连续：那么 $x_0$ 是一个可去间断点。构造一个连续函数：
+			$$
+			\hat{f}(x) = \begin{cases}
+				f(x) & , x \neq x_0 \\
+				0 & , x = x_0
+			\end{cases},\quad \hat{g}(x) = \begin{cases}
+				g(x) & , x \neq x_0 \\
+				0 & , x = x_0
+			\end{cases}
+			$$
+			那么 $\hat{f}(x), \hat{g}(x)$ 在去心邻域内可导。仍然可以用上面的证明。
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[趋于无穷时 $\frac{0}{0}$ 型的 L'Hospital 法则]
+	设 $f(x), g(x)$ 在 $(a, +\infty)$ 可导，且 $g(x) \neq 0$，如果：
+
+	\begin{itemize}
+		\item $\lim\limits_{x \to +\infty} f(x) = \lim\limits_{x \to x_0} g(x) = 0$；
+		\item $g'(x) \neq 0$；
+		\item $\lim\limits_{x \to +\infty} \frac{f'(x)}{g'(x)} = a$（$a$ 可以为有限数或无穷大）。
+	\end{itemize}
+
+	那么 $\lim\limits_{x \to +\infty} \frac{f(x)}{g(x)} = \lim\limits_{x \to +\infty} \frac{f'(x)}{g'(x)} = a$。趋于负无穷也有类似结论。
+
+	\begin{proof}
+		$$
+		\begin{aligned}
+			\lim_{x \to +\infty} \frac{f(x)}{g(x)} & = \lim_{t \to 0^+} \frac{f\ab(\frac{1}{t})}{g\ab(\frac{1}{t})} \\
+			& = \lim_{t \to 0^+} \frac{\ab(f\ab(\frac{1}{t}))'}{\ab(g\ab(\frac{1}{t}))'} \\
+			& = \lim_{t \to 0^+} \frac{-f'(\frac{1}{t}) \cdot \frac{1}{t^2}}{-g'(\frac{1}{t}) \cdot \frac{1}{t^2}} \\
+			& = \lim_{t \to 0^+} \frac{f'(\frac{1}{t})}{g'(\frac{1}{t})} = \lim_{x \to +\infty} \frac{f'(x)}{g'(x)}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[趋于定点时 $\frac{\infty}{\infty}$ 型的 L'Hospital 法则]
+	设 $f(x), g(x)$ 在 $x_0$ 的某个去心邻域内可导，且 $g(x) \neq 0$，如果：
+
+	\begin{itemize}
+		\item $\lim\limits_{x \to x_0} g(x) = \infty$；
+		\item $g'(x) \neq 0$；
+		\item $\lim\limits_{x \to x_0} \frac{f'(x)}{g'(x)} = a$（$a$ 可以为有限数或无穷大）。
+	\end{itemize}
+
+	那么 $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \frac{f'(x)}{g'(x)} = a$。极限为单侧的时候也有类似结论。
+
+	\begin{proof}
+		类似地使用 Cauchy 中值定理证明。
+	\end{proof}
+\end{theorem}
+
+同理，趋于无穷时 $\frac{\infty}{\infty}$ 型的 L'Hospital 法则也成立。注意在 $\frac{\infty}{\infty}$ 的 L'Hospital 法则描述中，没有要求 $f(x) \to \infty$。
+
+L'Hospital 法则的描述是，$\lim \frac{f'(x)}{g'(x)}$ \textbf{存在或为无穷时}才能推得原本的极限，如果不是这种情况，洛必大法则失效，此时原极限不一定不存在。
+
+\subsection{函数的微分}
+
+为了研究在自变量有微小改变的时候，函数值相应的改变，我们定义了函数的微分。
+
+\begin{definition}[函数的微分]
+	若有函数 $y = f(x)$，当 $x$ 有一个增加量 $\Delta x$ 时，记 $\Delta y = f(x_0 + \Delta x) - f(x_0)$，如果存在一个常数 $A$ 使得 $\Delta x \to 0$ 时有：
+	$$
+	\Delta y = f(x_0) + A \Delta x + o(\Delta x)
+	$$
+	那么称 $f(x)$ 在 $x_0$ 处\textbf{可微}，记 $A \Delta x$ 为 $f(x)$ 在 $x_0$ 处的\textbf{微分}，记作：
+	$$
+	\left.\dif f\right|_{x = x_0} = A \dif x
+	$$
+	函数的微分也被称为函数增加量的\textbf{线性主要部分}。
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 4.6.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			f'(x) = \ab(\ln \ab(1 + \frac{1}{x}) - \frac{1}{x}) \ab(1 + \frac{1}{x})^{x + 1}
+			$$
+			而 $\ln\ab(1 + \frac{1}{x}) \le \frac{1}{x}$，因此 $f'(x) \le 0$，$f(x)$ 在 $(0, +\infty)$ 单调递减。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 设 $f(x) = \sin x - x$，那么 $x > 0$ 时：
+			$$
+			f'(x) = \cos x - 1 \le 0
+			$$
+			因此 $f(x)$ 单调递减， $f(x) < f(0) = 0$。
+
+			再设 $g(x) = \sin x - x + \frac{x^3}{6}$，那么：
+			$$
+			\begin{gathered}
+				g'(x) = \cos x - 1 + \frac{x^2}{2} \\
+				g''(x) = -\sin x + x \ge 0
+			\end{gathered}
+			$$
+			因此 $g'(x)$ 单调递增，$g'(x) > g'(0) = 0$；于是 $g(x)$ 单调递增，$g(x) > g(0) = 0$。得证。
+
+			\item[\textbf{3)}] 设 $f(x) = x^2 - (1 + x) \ln^2 (1 + x)$，那么
+			$$
+			\begin{aligned}
+				f'(x) & = 2x - \ln^2 (x + 1) - 2 \ln(x + 1) \\
+				f''(x) & = 2 - 2 \frac{\ln(x + 1)}{x + 1} - \frac{2}{x + 1} \\
+				& = 2 \ab(1 - \frac{\ln(x + 1) - 1}{x + 1}) \\
+				& > 2 \ab(1 - \frac{x}{x + 1}) > 0
+			\end{aligned}
+			$$
+			因此 $f'(x)$ 单调递增，$f'(x) > f'(0) = 0$；因此 $f(x)$ 单调递增，$f(x) > f(0) = 0$。得证。
+
+			\item[\textbf{5)}] 设 $f(x) = \tan x + 2 \sin x - 3x$，那么：
+			$$
+			f'(x) = \frac{1}{\cos^2 x} + 2 \cos x - 3 = \frac{1 - 3 \cos^2 x + 2 \cos^3 x}{\cos^2 x}
+			$$
+			那么 $\cos x \in (0, 1)$。再设 $g(t) = 1 - 3t^2 + 2t^3$，那么：
+			$$
+			g'(t) = -6t + 6t^2 = 6t(t - 6)
+			$$
+			那么当 $t \in (0, 1)$ 时 $g'(t) < 0$，$g(t)$ 单调递减，$g(t) > g(1) = 0$。因此 $f'(x) > 0$，得到 $f(x)$ 单调递增，于是 $f(x) > f(0) = 0$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.4
+
+	\begin{solution}
+		使用反证法。若存在 $f(x) \neq 0$，不妨设 $f(x) > 0$，那么存在一个区间 $(a, a + \varepsilon)$ 使得 $f(a) = 0,\ \forall x \in (a, b),\ f(x) > 0$。
+
+		那么设 $g(x) = \ln f(x)$，则 $g'(x) = \frac{f'(x)}{f(x)}$，由题知 $|g'(x)| \le A$，也就是说 $g(x)$ 在 $(a, a + \varepsilon)$ 一致连续。然而 $x \to a^+, f(x) \to 0^+, g(x) \to -\infty$，因此 $g(x)$ 肯定不一致连续，矛盾。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.7
+
+	\begin{solution}
+		$f(x)$ 是极大值，可得 $f(x)$ 在一个邻域内是最大值，因此
+		$$
+		\begin{gathered}
+			\lim_{x \to x_0^+} \frac{f(x) - f(x_0)}{x - x_0} \le 0 \\
+			\lim_{x \to x_0^-} \frac{f(x) - f(x_0)}{x - x_0} \ge 0
+		\end{gathered}
+		$$
+		因此 $f'(x) = 0$。
+
+		同时 $f'(x)$ 在一个左邻域内必须 $\ge 0$，在一个右邻域内必须 $\le 0$。否则根据 $f(x)$ 单调性推出矛盾。因此：
+		$$
+		\lim_{x \to x_0} \frac{f'(x) - f'(x_0)}{x - x_0} \ge 0
+		$$
+		于是得证。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.12
+
+	\begin{solution}
+		将椭圆沿 $x, y$ 轴拉伸变为半径为 $1$ 的圆。设切点为 $(\cos \theta, \sin \theta)\ (\theta \in (0, \frac{\pi}{2}))$，那么 $x, y$ 轴上的截距分别为：
+		$$
+		\frac{1}{\cos \theta}, \frac{1}{\sin \theta}
+		$$
+		那么三角形面积为：
+		$$
+		S = \frac{1}{2 \cos \theta \sin \theta} = \frac{1}{\sin 2 \theta}
+		$$
+		当 $\theta = \frac{\pi}{4}$ 时 $S$ 取到最小值 $1$。将椭圆还原为原本的坐标系，得到 $\min S = ab$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.15
+
+	\begin{solution}
+		对于某点 $x_0$，设 $\varphi(x) = \frac{f(x) - f(x_0)}{x - x_0}$，那么根据凸函数性质，$\varphi(x)$ 在 $(a, x_0), (x_0, b)$ 上单调递增。且任意 $x_1 \in (a, x_0), x_2 \in (x_0, b)$ 都有 $\varphi(x_1) < \varphi(x_2)$。因此 $\varphi(x)$ 在 $(a, x_0), (x_0, b)$ 上均单调有界，因此 $f'_-(x_0), f'_+(x_0)$ 存在，这也说明 $f(x)$ 在 $x_0$ 连续。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.16
+
+	\begin{proof}
+		设 $g(x) = \frac{f(x) - f(0)}{x - 0}$，那么可得
+		$$
+		\lim_{x \to \infty} g(x) = \lim_{x \to \infty} \frac{f(x) - f(0)}{x - 0} = \lim_{x \to \infty} \frac{f(x)}{x} + \lim_{x \to \infty} \frac{f(0)}{x} = \lim_{x \to \infty} \frac{f(x)}{x} = 0
+		$$
+		而根据凸函数性质，$g(x)$ 在 $\mathbb{R} \setminus \{0\}$ 单调递增。因此
+		$$
+		0 = \lim_{x \to -\infty} g(x) \le g(x) \le \lim_{x \to +\infty} g(x) = 0
+		$$
+		于是 $g(x) = 0$，也就是说 $f(x)$ 是常函数。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.18
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{gathered}
+				f'(x) = \frac{1}{x} - \frac{1}{x+1} \\
+				f''(x) = -\frac{1}{x^2} + \frac{1}{(x+1)^2} < 0
+			\end{gathered}
+			$$
+			因此 $f(x)$ 是凹函数。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.19
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{4)}] 
+			$$
+			y'' = \frac{2 \ab(x^2 - 10 x - 2)}{9 (x - 2)^3} \ab(\frac{(x + 1)^2}{x - 2})^{-2/3}
+			$$
+			由 $y'' = 0$ 解得，$x = 5 \pm 3 \sqrt 3$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.20
+
+	\begin{solution}
+		要证的不等式等价于：
+		$$
+		\frac{1}{p} \ln x + \frac{1}{q} \ln y \le \ln(\frac{x}{p} + \frac{y}{q})
+		$$
+		因为 $\frac{1}{p} + \frac{1}{q} = 1$，根据 $\ln x$ 的凹性和 Jensen 不等式得证。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.21
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 要证的不等式等价于：
+			$$
+			\frac{|a|^p}{2} + \frac{|b|^p}{2} \ge \ab(\frac{|a| + |b|}{2})^p
+			$$
+			因为 $p > 1$ 时 $y = |x|^p$ 是凸的，因此根据 Jensen 不等式得证。
+
+			\item[\textbf{2)}] 同理，$0 < p < 1$ 时 $y = x^p\ (x > 0)$ 是凹的，根据 Jensen 不等式得证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.22
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}] 等式两侧取对数：
+			$$
+			\begin{aligned}
+				\frac{a + b + c}{3}(\ln a + \ln b + \ln c) & \le a \ln a + b \ln b + c \ln c \\
+				\frac{1}{3}\ab((b + c - 2a) \ln a + (a + c - 2b) \ln b + (a + b - 2c) \ln c) & \le 0 \\
+				\frac{1}{3}\ab((a - b) (\ln b - \ln a) + (b - c) (\ln c - \ln b) + (c - a) (\ln a - \ln c)) & \le 0
+			\end{aligned}
+			$$
+			根据 $\ln x$ 单调性，$(a - b) (\ln b - \ln a) \le 0$，故得证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.6.23
+
+	\begin{proof}
+		$$
+		\begin{aligned}
+			\ln \text{RHS} - \ln \text{LHS} & = \sum_{i=1}^n \ln \frac{1 + x_i}{x_i} - n \ln \ab(\frac{n + \sum_{i=1}^n x_i}{\sum_{i=1}^n x_i}) \\
+			& \ge \sum_{i=1}^n \frac{1}{x_i} - \frac{n^2}{\sum_{i=1}^n x_i} \\
+			= n \ab(\frac{\sum_{i=1}^n \frac{1}{x_i}}{n} - \frac{1}{\frac{\sum_{i=1}^n x_i}{n}})
+		\end{aligned}
+		$$
+		记 $f(x) = \frac{1}{x}$，那么上式等价于：
+		$$
+		n \ab(\frac{\sum_{i=1}^n f(x_i)}{n} - f\ab(\frac{\sum_{i=1}^n x_i}{n}))
+		$$
+		那么根据 Jensen 不等式得到 $\ln \text{RHS} - \ln \text{LHS} \ge 0$，得证。
+	\end{proof}
+\end{problem}

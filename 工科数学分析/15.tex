@@ -1,0 +1,72 @@
+\section{微分 II \& 泰勒公式}
+
+\subsection{函数的微分 continue}
+
+\begin{theorem}
+	函数 $f(x)$ 在 $x$ 处可微的充要条件是函数 $f(x)$ 在 $x_0$ 处可导。
+
+	\begin{proof}
+		\begin{itemize}
+			\item 充分性：取 $A = f'(x_0)$，那么：
+			$$
+			\lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0) - A \Delta x}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} - A = 0
+			$$
+			也就是说 $f(x + \Delta x) - f(x) = o(\Delta x)$。
+
+			\item 必要性：可微即 $f(x) - f(x_0) = A \Delta x + o(\Delta x)$，那么：
+			$$
+			f'(x_0) = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{A \Delta x + o(\Delta x)}{\Delta x} = A
+			$$
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+这也就说明，导数的记号 $\frac{\dif y}{\dif x}$ 可以看作一个整体，也可以看作 $y, x$ 的微分之商。因此导数也被称做微商。
+
+\subsection{微分的运算法则}
+
+微分的四则运算法则类似于求导法则：
+
+\begin{itemize}
+	\item $\dif (u + v) = \dif u + \dif v$；
+	\item $\dif (u - v) = \dif u - \dif v$；
+	\item $\dif (C u) = C \dif u$；
+	\item $\dif (u \cdot v) = u \dif v + v \dif u$；
+	\item $\dif \frac{u}{v} = \frac{v \dif u - u \dif v}{v^2}$；
+\end{itemize}
+
+\subsection{微分的形式不变性}
+
+微分的形式不变性说的是，对于函数 $y = f(x)$，无论 $x$ 是自变量还是一个中间变量（即关于“真正”自变量的函数），微分总是有下面的形式：
+$$
+\dif y = f'(x) \dif x
+$$
+链式法则就是微分的形式不变性的体现。
+
+\subsection{二阶与高阶微分}
+
+\begin{definition}[函数的高阶微分]
+	我们这样定义 $n$ 阶微分：
+	$$
+	\dif^n y = 
+	\begin{cases}
+		y & , n = 0 \\
+		\dif (\dif^{n-1} y) & , n > 0
+	\end{cases}
+	$$
+	那么我们可以得到：
+	$$
+	\begin{gathered}
+		\dif y = y' \dif x \\
+		\dif^2 y = \dif (y' \dif x) = y'' \dif x^2 \\
+		\cdots \\
+		\dif^n y = y^{(n)} \dif x^n
+	\end{gathered}
+	$$
+	这里面出现 $\dif x$ 的高次幂的原因是，在求 $y' \dif x$ 微分时，$\dif x$ 被视作常数。因此 $\dif(y' \dif x) = \dif(y'') \dif x = y'' \dif x^2$。更高阶也同理。
+\end{definition}
+
+注意， \textbf{高阶微分不再具有形式不变性}。
+
+\subsection{泰勒公式}
+
