@@ -1,0 +1,155 @@
+\section{线性空间 V}
+
+\section{子空间的直和}
+
+\begin{definition}
+	设 $V_1, V_2$ 是线性空间 $V$ 的子空间，那么如果 $V_1 + V_2$ 中每个向量 $\vect{\alpha}$ 的分解式
+	$$
+	\vect{\alpha} = \vect{\alpha}_1 + \vect{\alpha}_2 \quad (\vect{\alpha}_1 \in V_1, \vect{\alpha}_2 \in V_2)
+	$$
+	那么这个和就称为 $V_1, V_2$ 的直和，记作 $V_1 \oplus V_2$。
+\end{definition}
+
+\begin{theorem}
+	对于线性空间 $V$ 的两个子空间 $V_1, V_2$，下面的四个条件等价：
+	
+	\begin{enumerate}
+		\item 和 $V_1 + V_2$ 是直和；
+		\item $\vect{\alpha}_1 + \vect{\alpha}_2 = \vect{0}\ (\vect{\alpha}_1 \in V_1, \vect{\alpha}_2 \in V_2)$ 成立当且仅当 $\vect{\alpha}_1 = \vect{\alpha}_2 = \vect{0}$。
+		\item $V_1 \cap V_2 = \{\vect{0}\}$；
+		\item $\dim (V_1 + V_2) = \dim V_1 + \dim V_2$
+	\end{enumerate}
+\end{theorem}
+
+有一些和直和相关的性质：
+
+\begin{theorem}[补空间]
+	设 $U$ 是有限维线性空间 $V$ 的一个子空间，那么存在另一个子空间 $W$，满足 $U \oplus W = V$。
+
+	\begin{proof}
+		从 $U$ 的一组基扩充到 $V$ 的一组基，扩充的那些向量张成的空间就是一个合法的 $W$。
+	\end{proof}
+\end{theorem}
+
+注意，子空间的补空间并不一定是唯一的。
+
+\begin{definition}[矩阵的迹]
+	对于矩阵 $\matr{A} = [a_{i,j}]$，定义 $\matr{A}$ 的迹（trace）为：
+	$$
+	\tr \matr{A} = \sum_{id=1}^n a_{i,i}
+	$$
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+	第六章习题 15
+
+	\begin{proof}
+		分类讨论：
+		\begin{enumerate}
+			\item 若 $\vect{\alpha}, \vect{\gamma}$ 线性相关：那么 $\vect{\alpha}, \vect{\gamma}$ 成比例，则显然 $L(\vect{\alpha}, \vect{\beta}) = L(\vect{\gamma}, \vect{\beta})$。
+			
+			\item 若 $\vect{\alpha}, \vect{\gamma}$ 线性无关：那么 $\vect{\beta} = -\frac{c_1}{c_2} \vect{\alpha} - \frac{c_3}{c_2} \vect{\gamma}$。则 $L(\vect{\alpha}, \vect{\beta}) = \ab\{\ab(k_1 - \frac{k_2 c_1}{c_2}) \vect{\alpha} -  \frac{k_2 c_3}{c_2} \vect{\gamma}: k_1, k_2 \in P\}$, $L(\vect{\gamma}, \vect{\beta}) = \ab\{\ab(k_1 - \frac{k_2 c_3}{c_2}) \vect{\gamma} - \frac{k_2 c_1}{c_2} \vect{\alpha}: k_1, k_2 \in P\}$。可见这两个线性空间实际上都是 $L(\vect{\alpha}, \vect{\gamma})$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第六章习题 16
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{2)}] 对矩阵进行消元：
+			$$
+			\begin{aligned}
+				\begin{bmatrix}
+					2 & 1 & 3 & -1 \\
+					-1 & 1 & -3 & 1 \\
+					4 & 5 & 3 & -1 \\
+					1 & 5 & -3 & 1 \\
+				\end{bmatrix} & \Longrightarrow \begin{bmatrix}
+					1 & 5 & -3 & 1 \\
+					2 & 1 & 3 & -1 \\
+					-1 & 1 & -3 & 1 \\
+					4 & 5 & 3 & -1 \\
+				\end{bmatrix} \\
+				& \Longrightarrow \begin{bmatrix}
+					1 & 5 & -3 & 1 \\
+					0 & -9 & 9 & -3 \\
+					0 & 6 & -6 & 2 \\
+					0 & -15 & 15 & -5 \\
+				\end{bmatrix} \\
+				& \Longrightarrow \begin{bmatrix}
+					1 & 5 & -3 & 1 \\
+					0 & -9 & 9 & -3 \\
+					0 & 0 & 0 & 0 \\
+					0 & 0 & 0 & 0 \\
+				\end{bmatrix} \\
+			\end{aligned}
+			$$
+			因此 $\dim L(\vect{\alpha}_1, \vect{\alpha}_2, \vect{\alpha}_3, \vect{\alpha}_4) = 2$，其中一组基为 $\ab\{\transpose{[1, 5, -3, 1]}, \transpose{[0, -9, 9, -3]}\}$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第六章习题 18
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对于 $A \cap B$ 中的一个向量 $\vect{\gamma}$，有 $\vect{\gamma} = k_1 \vect{\alpha}_1 + k_2 \vect{\alpha}_2 = k_3 \vect{\beta}_1 + k_4 \vect{\beta}_2$。那么：
+			$$
+			\begin{cases}
+				k_1 - k_2 - 2k_3 + k_4 = 0 \\
+				2k_1 + k_2 + k_3 + k_4 = 0 \\
+				k_1 + k_2 - 3k_4 = 0 \\
+				k_2 - k_3 - 7k_4 = 0
+			\end{cases}
+			$$
+			那么可以得到该方程组的基础解系：
+			$$
+			\vect{\eta}_1 = \cvec{-\frac{31}{2}, -\frac{19}{2}, -\frac{5}{2}, 1}
+			$$
+			那么可知 $\dim (A \cap B) = 1$，一组基为 $\ab\{-\frac{5}{2} \vect{\beta}_1 + \vect{\beta}_2\} = \ab\{\transpose{\ab[-4, \frac{3}{2}, 3, \frac{9}{2}]}\}$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第六章习题 19
+
+	\begin{proof}
+		记 $V_1$ 为 $x_1 + x_2 + \cdots + x_n = 0$ 的解空间，$V_2$ 为 $x_1 = x_2 = \cdots = x_n$ 的解空间。
+
+		那么容易得到，$V_1 \cap V_2 = \{\vect{0}\}$，因此 $V_1 + V_2$ 是直和。
+
+		对于一个向量 $\vect{x} \in P^n$，记 $t = x_1 + x_2 + \cdots + x_n$。那么，可以构造：
+		$$
+		\begin{gathered}
+			\vect{\alpha} = \transpose{\ab[x_1 - \frac{t}{n}, x_2 - \frac{t}{n}, \cdots, x_n - \frac{t}{n}]} \\
+			\vect{\beta} = \transpose{\ab[\frac{t}{n}, \frac{t}{n}, \cdots, \frac{t}{n}]}
+		\end{gathered}
+		$$
+		可知 $\vect{\alpha} + \vect{\beta} = \vect{x}$，且 $\vect{\alpha} \in V_1, \vect{\alpha} V_2$。因此 $V_1 \oplus V_2 = P^n$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第六章习题 21
+
+	\begin{proof}
+		对于线性空间 $V$ 满足 $\dim V = n$，取一组基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，那么 $V = \{\vect{\varepsilon}_1\} \oplus \{\vect{\varepsilon}_2\} \oplus \cdots \oplus \{\vect{\varepsilon}_n\}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第六章习题 22
+
+	\begin{proof}
+		$$
+		\sum_{i=1}^s V_i = (((V_1 + V_2) + V_3) + \cdots) + V_{s}
+		$$
+		$\sum_{i=1}^s V_i$ 是直和 $\Leftrightarrow$ 每一步和都是直和 $\Leftrightarrow V_i \cap \sum_{j=1}^{i-1} V_j = \{\vect{0}\}$。
+	\end{proof}
+\end{problem}

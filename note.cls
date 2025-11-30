@@ -160,6 +160,7 @@
 % linear algebra
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 \newcommand{\matr}[1]{\boldsymbol{#1}}
+\newcommand{\tr}{\operatorname{tr}}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\rvec}{m}{

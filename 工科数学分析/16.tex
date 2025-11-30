@@ -1,0 +1,566 @@
+\section{泰勒公式 II}
+
+\subsection{泰勒公式 continue}
+
+\begin{theorem}[带 Larange 余项的泰勒公式]
+	设 $f(x)$ 在 $[a, b]$ 具有连续的 $n$ 阶导数，在 $(a, b)$ 有 $n + 1$ 阶导数，那么：
+	$$
+	\forall x_0, x \in [a, b]: f(x) = T_n(f, x_0; x) + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1}
+	$$
+	其中 $\xi$ 是 $x_0, x$ 之间的一个数。式子
+	$$
+	\frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1}
+	$$
+	被称为 \textbf{Lagrange 余项}
+
+	\begin{proof}
+		设 $F(x) = f(x) - T_n(f, x_0; x),\ G(x) = (x - x_0)^{n+1}$。那么我们有：
+		$$
+		F^{(k)}(x) = f^{(k)}(x) - \sum_{i=k}^n \frac{f^{(i)}(x_0)}{(i - k)!} (x - x_0)^{i - k}
+		$$
+		于是可以得到，当 $k \le n$ 时，有 $F^{(k)}(x_0) = f^{(k)}(x_0) - \frac{f^{(k)}(x_0)}{0!} (x - x_0)^0 = 0$。同时也有 $G^{(k)}(x_0) = 0$。
+
+		然后，多次应用 Cauchy 中值定理：
+		$$
+		\begin{aligned}
+			\frac{F(x)}{G(x)} & = \frac{F(x) - F(x_0)}{G(x) - G(x_0)} = \frac{F'(\xi_1)}{G'(\xi_1)} \\
+			& = \frac{F'(\xi_1) - F'(x_0)}{G'(\xi_1) - G'(x_0)} = \frac{F''(\xi_2)}{G''(\xi_2)} \\
+			& \cdots \\
+			& = \frac{F^{(n)}(\xi_n)}{G^{(n)}(\xi_n)} = \frac{F^{(n)}(\xi_n) - F^{(n)}(x_0)}{G^{(n)}(\xi_n) - G^{(n)}(x_0)} \\
+			& = \frac{f^{(n+1)}(\xi)}{G^{(n+1)}(\xi)} = \frac{f^{(n+1)}(\xi)}{(n + 1)!}
+		\end{aligned}
+		$$
+		而 $\xi_1, \xi_2, \dots, \xi_n, \xi$ 一直都是 $x, x_0$ 之间的，故得证。
+	\end{proof}
+\end{theorem}
+
+Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$。
+
+\subsection{不定积分}
+
+\begin{definition}[原函数]
+	若区间 $I$ 上的函数 $f(x), F(x)$ 满足 $F'(x) = f(x)$，那么称 $F(x)$ 为 $f(x)$ 在区间 $I$ 上的一个\textbf{原函数}。
+\end{definition}
+
+\begin{definition}[不定积分]
+	函数 $f(x)$ 在区间 $I$ 上的全体原函数称为 $f(x)$ 在区间 $I$ 上的\textbf{不定积分}，记作：
+	$$
+	\int f(x) \dif x = F(x) + C
+	$$
+	其中 $F(x)$ 是其中一个原函数。
+\end{definition}
+
+求不定积分和求导是某种程度上的互逆关系。根据导数的性质，可以直接推导出不定积分的若干个性质：
+
+\begin{property}[不定积分的线性性质]
+	\ 
+	\begin{itemize}
+		\item $\displaystyle \int (f(x) \pm g(x)) \dif x = \int f(x) \dif x \pm \int g(x) \dif x$；
+		\item $\displaystyle \int cf(x) \dif x = c \int f(x) \dif x$。
+	\end{itemize}
+\end{property}
+
+同样，根据一些初等函数的导数，也可以得到一些基本的不定积分：
+
+\begin{itemize}
+	\item $\displaystyle \int k \dif x = kx + C$
+	\item $\displaystyle \int x^{\mu} \dif x = \frac{x^{1 + \mu}}{1 + \mu} + C\ (\mu \neq -1)$
+	\item $\displaystyle \int \frac{\dif x}{x} = \ln |x| + C$
+	\item $\displaystyle \int \E^x \dif x = \E^x + C$
+	\item $\displaystyle \int \cos x \dif x = \sin x + C$
+	\item $\displaystyle \int \sin x \dif x = -\cos x + C$
+	\item $\displaystyle \int \sec^2 x \dif x = \tan x + C$
+	\item $\displaystyle \int \csc^2 x \dif x = -\cot x + C$
+	\item $\displaystyle \int \sec x \tan x \dif x = \sec x + C$
+	\item $\displaystyle \int \csc x \cot x \dif x = -\csc x + C$
+	\item $\displaystyle \int \frac{\dif x}{\sqrt{1 - x^2}} = \arcsin x + C$
+	\item $\displaystyle \int \frac{\dif x}{1 + x^2} = \arctan x + C$
+\end{itemize}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 4.7.1
+
+	\begin{solution}
+		
+		\begin{enumerate}
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{1 - x - \frac{1}{1 + x}}{3x^2} \\
+				& = \lim_{x \to 0} \frac{(1 - x)(1 + x) - 1}{3x^2 (1 + x)} \\
+				& = \lim_{x \to 0} \frac{-x^2}{3x^2 (1 + x)} = -\frac{1}{3}
+			\end{aligned}
+			$$
+			\item[\textbf{6)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 1} \frac{1 - (1 + \ln x) x^x}{-1 + \frac{1}{x}} \\
+				& = \lim_{x \to 1} x \lim_{x \to 1} \frac{1 - (1 + \ln x) x^x}{1 - x} \\
+				& = \lim_{x \to 1} \frac{-\ab(\frac{1}{x} + (1 + \ln x)^2) x^x}{-1} \\
+				& = 2
+			\end{aligned}
+			$$
+			\item[\textbf{7)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\E^x - \frac{1}{\sqrt{1 + 2x}}}{\frac{2x}{1 + x^2}} \\
+				& = \lim_{x \to 0} \frac{1 + x^2}{\sqrt{1 + 2x}} \lim_{x \to 0} \frac{\sqrt{1 + 2x}\E^x - 1}{2x} \\
+				& = \lim_{x \to 0} \frac{\ab(\frac{1}{\sqrt{1 + 2x}} + \sqrt{1 + 2x}) \E^x}{2} \\
+				& = 1
+			\end{aligned}
+			$$
+			\item[\textbf{9)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\E^{1/x^2}}{1/x^2} \\
+				& = \lim_{t \to +\infty} \frac{\E^t}{t} \\
+				& = +\infty
+			\end{aligned}
+			$$
+			\item[\textbf{13)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\E^x - x - 1}{x (\E^x - 1)} \\
+				& = \lim_{x \to 0} \frac{\E^x - 1}{(x + 1)\E^x - 1} \\
+				& = \lim_{x \to 0} \frac{\E^x}{(x + 2)\E^x} \\
+				& = 2
+			\end{aligned}
+			$$
+			\item[\textbf{15)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \exp\ab(\lim_{x \to 0} \frac{\ln \frac{\tan x}{x}}{x^2}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{\frac{\tan x}{x} - 1}{x^2}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{\tan x - x}{x^3}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{\sec^2 x - 1}{3x^2}) \\
+				& = \exp\ab(\frac{1}{3} \lim_{x \to 0} \frac{1 - \cos^2 x}{x^2 \sin^2 x}) \\
+				& = \exp\ab(\frac{1}{3} \ab(\lim_{x \to 0} \frac{\tan x}{x})^2) \\
+				& = \sqrt[3]{\E}
+			\end{aligned}
+			$$
+			\item[\textbf{20)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \exp\ab(\lim_{x \to 0} \frac{\ln(1 + x) - x}{x^2}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{\frac{1}{1 + x} - 1}{2x}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{-1}{2(1 + x)}) \\
+				& = \sqrt{\E}
+			\end{aligned}
+			$$
+			\item[\textbf{21)}] 令 $t = \frac{x}{2x + 1}$ 那么：
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{t \to \frac{1}{2}} \ab(\tan t \pi)^{\frac{1}{t} - 2} \\
+				& = \exp\ab(\lim_{t \to \frac{1}{2}} \ab(\frac{1}{t} - 2) \ln \tan t \pi) \\
+				& = \exp\ab(\lim_{t \to \frac{1}{2}} \frac{\ln \tan t \pi}{\frac{t}{1 - 2t}}) \\
+				& = \exp\ab(\lim_{t \to \frac{1}{2}} \frac{\frac{2\pi}{\sin 2\pi t}}{\frac{1}{(1 - 2t)^2}}) \\
+				& = \exp\ab(2\pi \lim_{t \to \frac{1}{2}} \frac{(1 - 2t)^2}{\sin 2\pi t}) \\
+				& = \exp\ab(2\pi \lim_{t \to \frac{1}{2}} \frac{-4(1 - 2t)}{2\pi \cos 2\pi t}) \\
+				& = \E^0 = 1
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.9.2
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			& \lim_{x \to +\infty} x \ab(\E - \ab(1 + \frac{1}{x})^x) \\
+			= & \lim_{x \to +\infty} \frac{\E - \ab(1 + \frac{1}{x})^x}{\frac{1}{x}} \\
+			= & \lim_{x \to +\infty} \frac{\ab(\frac{1}{x + 1} - \ln\ab(1 + \frac{1}{x}))(1 + \frac{1}{x})^x}{-\frac{1}{x^2}} \\
+			= & -\lim_{x \to +\infty} \ab(1 + \frac{1}{x})^x \lim_{x \to +\infty} \frac{x}{x + 1} \lim_{x \to +\infty} x\ab(1 - (x + 1) \ln \ab(1 + \frac{1}{x})) \\
+			= & -\E \lim_{t \to 0^+} \frac{t - (t + 1) \ln (t + 1)}{t^2} \\
+			= & -\E \lim_{t \to 0^+} \frac{1 - 1 - \ln(t + 1)}{2t} \\
+			= & -\E \cdot \ab(-\frac{1}{2}) = \frac{\E}{2} 
+		\end{aligned}
+		$$
+		因此 $\{n a_n\}$ 的极限是 $\frac{\E}{2}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.9.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item 当 $a = 0$ 时：
+			$$
+			\begin{aligned}
+				\text{原式} & = \exp\ab(\lim_{x \to 0} \frac{\ln \sum_{i=1}^n a_i^x - \ln n}{x}) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{\sum_{i=1}^n a_i^x \ln a_i}{\sum_{i=1}^n a_i^x}) \\
+				& = \exp\ab(\frac{\sum_{i=1}^n \ln a_i}{n}) = \sqrt[n]{\prod_{i=1}^n a_i}
+			\end{aligned}
+			$$
+
+			\item 当 $a = +\infty$ 时：
+			$$
+			\text{原式} = \exp\ab(\lim_{x \to +\infty} \frac{\ln \sum_{i=1}^n a_i^x}{x}) \\
+			$$
+			记 $M = \max_{i=1}^n \{a_i\}$，若 $M > 1$ 那么 $\sum_{i=1}^n a_i^x = O(M^x)$，原式为 $M$；否则 $\sum_{i=1}^n a_i^x = O(1)$，原式为 $1$。
+
+			\item 当 $a = -\infty$ 时：
+			$$
+			\text{原式} = \exp\ab(\lim_{x \to -\infty} \frac{\ln \sum_{i=1}^n a_i^x}{x}) \\
+			$$
+			记 $m = \min_{i=1}^n \{a_i\}$，若 $m < 1$ 那么 $\sum_{i=1}^n a_i^x = O(m^x)$，原式为 $m$；否则 $\sum_{i=1}^n a_i^x = O(1)$，原式为 $1$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.9.5
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			f'(0) & = \lim_{x \to 0} \frac{f(x)}{x} \\
+			& = \lim_{x \to 0} \frac{g(x)}{x^2} \\
+			& = \lim_{x \to 0} \frac{g'(x)}{2x} \\
+			& = \lim_{x \to 0} \frac{g''(x)}{2} \\
+			& = 5
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.9.8
+
+	\begin{proof}
+		由题知：
+		$$
+		\theta_x = \frac{\ln(\E^x - 1) - \ln x}{x}
+		$$
+		那么：
+		$$
+		\begin{aligned}
+			\lim_{x \to 0} \theta_x & = \lim_{x \to 0} \frac{\ln(\E^x - 1) - \ln x}{x} \\
+			& = \lim_{x \to 0} \frac{\frac{\E^x}{\E^x - 1} - \frac{1}{x}}{1} \\
+			& = \lim_{x \to 0} \ab(\frac{\E^x}{\E^x - 1} - \frac{1}{x}) \\
+			& = \lim_{x \to 0} \ab(\frac{(x - 1) \E^x + 1}{x \E^x - x}) \\
+			& = \lim_{x \to 0} \frac{x \E^x}{(x + 1) \E^x - 1} \\
+			& = \lim_{x \to 0} \frac{x}{x + 1 - \E^{-x}} \\
+			& = \lim_{x \to 0} \frac{1}{1 + \E^{-x}} = \frac{1}{2}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 4.9.9
+
+	\begin{proof}
+		显然 $n \to \infty$ 时 $x_n \to 0$。
+
+		根据 Stolz 定理，$\lim\limits_{n \to \infty} n x_n = \lim\limits_{n \to \infty} \frac{n}{\frac{1}{x_n}} = \lim\limits_{n \to \infty} \frac{1}{\frac{1}{x_{n+1}} - \frac{1}{x_n}}$。
+		$$
+		\begin{aligned}
+			\lim_{n \to \infty} \ab(\frac{1}{x_{n+1}} - \frac{1}{x_n}) & = \lim_{n \to \infty} \ab(\frac{1}{\ln (1 + x_n)} - \frac{1}{x_n}) \\
+			& = \lim_{x \to 0} \ab(\frac{1}{\ln (1 + x)} - \frac{1}{x}) \\
+			& = \lim_{x \to 0} \frac{x - \ln(1 + x)}{x \ln(1 + x)} \\
+			& = \lim_{x \to 0} \frac{\frac{x}{1 + x}}{\ln(1 + x) + \frac{x}{1 + x}} \\
+		\end{aligned}
+		$$
+		再对这个式子取倒数：
+		$$
+		\begin{aligned}
+			\lim_{n \to \infty} \frac{1}{\frac{1}{x_{n+1}} - \frac{1}{x_n}} & = \lim_{x \to 0} \frac{\ln(1 + x) + \frac{x}{1 + x}}{\frac{x}{1 + x}} \\
+			& = 1 + \lim_{x \to 0} \frac{(1 + x) \ln(1 + x)}{x} \\
+			& = 1 + \lim_{x \to 0} \frac{x (1 + x)}{x} = 2
+		\end{aligned}
+		$$
+		因此 $\lim\limits_{n \to \infty} n a_n = 2$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.1.1
+	
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\frac{x^2}{2}$；
+			\item[\textbf{3)}] $2\sqrt{x}$；
+			\item[\textbf{5)}] $\sin x - \cos x$；
+			\item[\textbf{7)}] $-\frac{\E^{-ax}}{a}$；
+			\item[\textbf{9)}] $\ln \ln x$；
+			\item[\textbf{11)}] $-\frac{\cos^3 x}{3}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.1.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] $\dif y = -n \sin nx \dif x,\ \dif^2 y = -n^2 \cos nx \dif x^2$；
+			\item[\textbf{4)}] $\dif y = \frac{t \dif t}{\sqrt{1 + t^2}},\ \dif^2 y = \frac{\dif t^2}{(1 + t^2)^{3/2}}$；
+			\item[\textbf{6)}] $\dif y = -10 (1 + 2r)^{-6} \dif r,\ \dif^2 y = 120 (1 + 2r)^{-7} \dif r^2$；
+			\item[\textbf{8)}] $\dif y = -\frac{x}{2} \E^{-\frac{x^2}{4}} \dif x,\ \dif^2 y = \ab(\frac{x^2}{4} - \frac{1}{2}) \E^{-\frac{x^2}{4}} \dif x^2$；
+			\item[\textbf{10)}] $\dif y = (3 \sin 2x + (6x - 4) \cos 2x) \dif x,\ \dif^2 y = (12 \cos 2x - (12x - 8) \sin 2x) \dif x^2$；
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.1.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] $\dif y = -\frac{\dif x}{(x + 1)^2} = 0.00025$；
+			\item[\textbf{4)}] $\dif y = \sec^2 x \dif x = -0.2$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{5)}]
+			$$
+			\frac{x^3 + 2x + 1}{x + 1} = 1 + x - x^2 + \sum_{k=3}^n 2 (-1)^{k-1} x^k + o(x^n)
+			$$
+			\item[\textbf{6)}]
+			$$
+			\cos^3 x + \sin^3 x = \sum_{k=0}^n \frac{(-1)^{\ceil*{n/2}} (3^n - 3)}{n!} x^n + o(x^n)
+			$$
+			\item[\textbf{7)}]
+			$$
+			\ln \frac{1 + x}{1 - 2x} = \sum_{k=1}^n \frac{(-1)^{k+1} (1 + (-2)^k)}{k} x^k + o(x^n)
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.4
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\E^x \cos x = 1 + x - \frac{x^2}{3} - \frac{x^4}{6} + o(x^4)
+			$$
+			\item[\textbf{3)}]
+			$$
+			\frac{x}{2x^2 + x - 1} = -x - x^2 - 3x^3 - 5x^4 + o(x^4)
+			$$
+			\item[\textbf{5)}]
+			$$
+			\sqrt{1 - 3x + x^3} + \sqrt[3]{1 - 2x + x^2} = -\frac{5}{6}x - \frac{73}{72}x^2 - \frac{1475}{1296}x^3 + o(x^3)
+			$$
+			\item[\textbf{7)}]
+			$$
+			\ln(\sin x + \cos x) = x - x^2 + \frac{2}{3} x^3 - \frac{2}{3} x^4 + o(x^4)
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.5
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\sin x = \sum_{2k \le n} \frac{(-1)^k \sin 1}{(2k)!} x^{2k} + \sum_{2k + 1 \le n} \frac{(-1)^k \cos 1}{(2k + 1) !} x^{2k+1} + o(x^n)
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.6
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to +\infty} x \ab(\ab(1 + \frac{3}{x^2})^{1/3} - (1 - \frac{2}{x})^{1/2}) \\
+				& = \lim_{x \to +\infty} x \ab(1 + \frac{1}{x^2} + o\ab(\frac{1}{x^2}) - 1 + \frac{1}{x} + o(\frac{1}{x})) \\
+				& = \lim_{x \to +\infty} x \cdot \frac{1}{x} = 1
+			\end{aligned}
+			$$
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{\E^x \sin x - x - x^2}{x^3} \\
+				& = \lim_{x \to 0} \frac{\ab(1 + x + \frac{x^2}{2} + o(x^2)) \ab(x - \frac{x^3}{6} + o(x^3)) - x - x^2}{x^3} \\
+				& = \lim_{x \to 0} \frac{-\frac{x^3}{6} + o(x^3)}{x^3} = \frac{1}{6}
+			\end{aligned}
+			$$
+			\item[\textbf{6)}] 首先有
+			$$
+			\sin x \ln \cos x = \ab(x - \frac{1}{6} x^3 + o(x^3))\ab(\ab(-\frac{1}{2} x^2 + o(x^3)) + o\ab(-\frac{1}{2} x^2)) = -\frac{1}{2} x^3 + o(x^3)
+			$$
+			那么回到原式：
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{x \to 0} \frac{1 - \E^{\sin x \ln \cos x}}{x^3} \\
+				& = \lim_{x \to 0} \frac{1 - 1 - (\sin x \ln \cos x) + o(\sin x \ln \cos x)}{x^3} \\
+				& = \lim_{x \to 0} \frac{\frac{1}{2} x^3 + o(x^3)}{x^3} = \frac{1}{2}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.7
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \lim_{n \to \infty} n^2 \ln \ab(n \ab(\frac{1}{n} - \frac{1}{6n^3} + o\ab(\frac{1}{n^4}))) \\
+				& = \lim_{n \to \infty} n^2 \ln \ab(1 - \frac{1}{6n^2} + o\ab(\frac{1}{n^3})) \\
+				& = \lim_{n \to \infty} n^2 \ab(\ab(-\frac{1}{6n^2} + o\ab(\frac{1}{n^3})) + o\ab(\frac{1}{n^2})) \\
+				& = -\frac{1}{6}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.8
+
+	\begin{solution}
+		由题知
+		$$
+		\lim_{x \to 0} \frac{\ln\ab(1 + \frac{f(x)}{x})}{x} = 3
+		$$
+		那么可知 $\frac{f(x)}{x} \to 0$，从而
+		$$
+		\lim_{x \to 0} \frac{f(x)}{x^2} = 3 \Rightarrow f(x) = 3x^2 + o(x^2)
+		$$
+		\begin{enumerate}
+			\item[\textbf{1)}] $f(0) = 0,\ f'(0) = \left.(6x + o(x^2))\right|_{x=0} = 0,\ f''(0) = \left.(6 + o(x))\right|_{x=0} = 6$。
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				\text{原式} & = \exp\ab(\lim_{x \to 0} \frac{1}{x}\ln\ab(1 - x + \frac{f(x)}{x})) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{1}{x} \ln\ab(1 - x + 3x^2 + o(x^2))) \\
+				& = \exp\ab(\lim_{x \to 0} \frac{(-x + 3x^2) + o(x)}{x}) \\
+				& = \E^{-1} = \frac{1}{\E}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.10
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] Lagrange 余项为：
+			$$
+			\frac{\left.(\cos x)^{(8)}\right|_{x=\xi}}{8!} x^8 = \frac{\cos \xi}{8!} x^8
+			$$
+			那么误差不超过 $\frac{1}{8!}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.12
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{gathered}
+				f(x + h) = \sum_{k=1}^n \frac{f^{(k)}(x)}{k!} h^k + \frac{f^{(k+1)}(\xi_1))}{(k+1)!} h^{k+1} \quad (x < \xi_1 < x + h) \\
+				f(x - h) = \sum_{k=1}^n \frac{f^{(k)}(x)}{k!} (-h)^k - \frac{f^{(k+1)}(\xi_2)}{(k+1)!} (-h)^{k+1} \quad (x - h < \xi_2 < x)
+			\end{gathered}
+			$$
+
+			\item[\textbf{2)}] 分别重写 $x - h, x + h$ 处的泰勒展开式：
+			$$
+			\begin{gathered}
+				f'(x) = \frac{f(x + h)}{h} - \frac{f(x)}{h} - \frac{f''(\xi_1)}{2} h \\
+				f'(x) = \frac{f(x)}{h} - \frac{f(x - h)}{h} + \frac{f''(\xi_2)}{2} h
+			\end{gathered}
+			$$
+			两式相加，得到：
+			$$
+			\begin{aligned}
+				|f'(x)| & = \ab|\frac{1}{2} \ab(\frac{f(x + h)}{h} + \frac{f(x - h)}{h}) - \frac{1}{2} \ab(\frac{f''(\xi_1)}{2} h - \frac{f''(\xi_2)}{2} h)| \\
+				& \le \ab|\frac{1}{2} \cdot \frac{2M_0}{h} + \frac{1}{2} \cdot 2M_2 h| \\
+				& = \frac{M_0}{h} + \frac{h}{2} M_2
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 根据 \textbf{2)} 中结论，取 $h = \sqrt{\frac{2 M_0}{M_2}}$ 即证。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.13
+
+	\begin{proof}
+		设最大值在 $x = x_0$ 取到。对 $f'(x)$ 在 $x = x_0$ 处展开：
+		$$
+		\begin{gathered}
+			f'(0) = f'(x_0) + f''(\xi_1) (0 - x_0) \\
+			f'(a) = f'(x_0) + f''(\xi_2) (a - x_0)
+		\end{gathered}
+		$$
+		因为最大值处 $f'(x_0) = 0$，所以：
+		$$
+		|f'(0)| + |f'(a)| = |f''(\xi_1)| (x_0 - 0) + |f''(\xi_2)| (a - x_0) \le M a
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.15
+
+	\begin{proof}
+		令 $g(x) = f(x) - k (x - a)^2 (x - b)$。其中常数 $k$ 取值满足 $g(x_0) = 0$。
+
+		那么可得：$g(a) = g(b) = g'(a) = 0$。
+		
+		根据 Rolle 定理，$\exists\,\lambda_1 \in (a, x_0), \lambda_2 \in (x_0, b): g'(\lambda_1) = g'(\lambda_2) = 0$。
+
+		再应用 Rolle 定理，$\exists\,\eta_1 \in (a, \lambda_1), \eta_2 \in (\lambda_1, \lambda_2): g''(\eta_1) = g''(\eta_2) = 0$。
+
+		最后再应用 Rolle 定理，$\exists\,\xi \in (\eta_1, \eta_2): g'''(\xi) = 0$。此时将 $g'''(\xi)$ 展开：
+		$$
+		\begin{aligned}
+			g'''(\xi) & = f'''(\xi) - k ((x - a)^2 (x - b))''' \\
+			& = f'''(\xi) - 6k \\
+			& = f'''(\xi) - \frac{6 f(x_0)}{(x_0 - a)^2 (x_0 - b)}
+		\end{aligned}
+		$$
+		这也就说明 $f(x_0) = \frac{f'''(\xi)}{6} (x_0 - a)^2 (x_0 - b)$，得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 5.2.16
+
+	\begin{proof}
+		在 $x = 0$ 处进行泰勒展开：
+		$$
+		\begin{gathered}
+			f(1) = \frac{f''(0)}{2} + \frac{f'''(\xi_1)}{6} = 1 \\
+			f(-1) = \frac{f''(0)}{2} - \frac{f'''(\xi_2)}{6} = 0
+		\end{gathered}
+		$$
+		两式想减，得到 $\frac{f'''(\xi_1) + f'''(\xi_2)}{6} = 1$。那么 $f'''(\xi_1)$ 和 $f'''(\xi_2)$ 中至少一个 $\ge 3$。 
+	\end{proof}
+\end{problem}

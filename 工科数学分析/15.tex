@@ -70,3 +70,47 @@ $$
 
 \subsection{泰勒公式}
 
+\begin{theorem}[Taylor 定理]
+	设 $f(x)$ 在 $x_0$ 处有 $1 \sim n$ 阶导数，那么：
+	$$
+	f(x) = \sum_{i=0}^n \frac{f^{(i)}(x)}{i!} (x - x_0)^i + o((x - x_0)^n)
+	$$
+	其中前面的求和部分称为\textbf{Taylor 多项式}，最后的一项称为\textbf{Peano 余项}。Taylor 定理也记作：
+	$$
+	f(x) = T_n(f, x_0; x) + o((x - x_0)^n)
+	$$
+
+	\begin{proof}
+		为方便记 $T_k = T_k(f, x_0; x)$。
+
+		对 $n$ 使用归纳法。首先根据微分的定义，$n = 1$ 时成立。然后设 $n = k$ 时成立，那么考虑 $n = k + 1$，我们有：
+		$$
+		\begin{aligned}
+			T_{k+1}' & = \sum_{i=0}^{k+1} \frac{f^{(i)}(x_0)}{i!} \cdot i (x - x_0)^{i-1} \\
+			& = \sum_{i=0}^k \frac{f^{(i+1)}(x_0)}{i!} (x - x_0)^i \\
+			& = T_k(f', x_0; x)
+		\end{aligned}
+		$$
+		然后，使用洛必达法则：
+		$$
+		\begin{aligned}
+			& \lim_{x \to x_0} \frac{f(x) - T_{k+1}(x)}{(x - x_0)^{k+1}} \\
+			= & \lim_{x \to x_0} \frac{f'(x) - T_{k}(f', x_0; x)}{(k+1) (x - x_0)^k} \\
+			= & \lim_{x \to x_0} \frac{o(x^k)}{(k+1) (x - x_0)^k} \\
+			= & 0
+		\end{aligned}
+		$$
+		因此就证明了余项是 $o((x - x_0)^{k+1})$，归纳完成。
+	\end{proof}
+\end{theorem}
+
+特别地，在 $x_0 = 0$ 处的 Taylor 展开式被称为\textbf{Maclaurin 展开式}。下面时一些常见的 Maclaurin 展开式：
+
+$$
+\begin{gathered}
+	\E^x = \sum_{i=0}^n \frac{x^i}{i!} + o(x^n) \\
+	\sin x = \sum_{i=1}^n \frac{(-1)^{i-1}}{(2i - 1)!} x^{2i - 1} + o(x^{2n})
+\end{gathered}
+$$
+
+对于复合函数 $f(g(x))$，也可以直接把 $g(x)$ 代入 Taylor 多项式和 Peano 余项。
