@@ -1,0 +1,65 @@
+\section{线性空间 VI \& 线性变换}
+
+\subsection{线性空间的同构}
+
+\begin{definition}[线性空间的同构]
+	若对于两个线性空间 $V_1, V_2$，使得存在\textbf{双射} $\sigma: V_1 \to V_2$，满足：
+	$$
+	\begin{gathered}
+		\vect{\alpha} + \vect{\beta} = \vect{\gamma} \Leftrightarrow \sigma(\vect{\alpha}) + \sigma(\vect{\beta}) = \sigma(\vect{\gamma}) \\
+		k \vect{\alpha} = \vect{\beta} \Leftrightarrow k \sigma(\vect{\alpha}) = \sigma(\vect{\beta})
+	\end{gathered}
+	$$
+	那么称 $V_1$ 和 $V_2$ 是\textbf{同构}的，而 $\sigma$ 被称为一个\textbf{同构映射}。
+\end{definition}
+
+对于同构映射，可以发现一些基本性质：
+
+\begin{property}[同构映射的基本性质]
+	\ 
+	\begin{itemize}
+		\item $\sigma(\vect{0}) = \sigma(\vect{0}),\ \sigma(-\vect{\alpha}) = -\sigma(\vect{\alpha})$；
+		\item $\sigma\ab(\sum_{i=1}^n k_i \vect{\alpha}_i) = \sum_{i=1}^n k_i \sigma(\vect{\alpha}_i)$；
+		\item $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 线性相关的充要条件是 $\sigma(\vect{\alpha}_1), \sigma(\vect{\alpha}_2), \dots, \sigma(\vect{\alpha}_n)$ 线性相关；
+		\item $\dim V = \dim \sigma(V)$；
+		\item 若 $V_1$ 是 $V$ 的子空间，那么 $\sigma(V_1)$ 是 $\sigma(V)$ 的子空间；
+		\item 同构映射的逆映射和同构映射的复合还是同构映射。
+	\end{itemize}
+\end{property}
+
+\subsection{线性变换}
+
+\begin{definition}[线性变换的定义]
+	对于一个线性空间 $V$，若一个变换 $\mathscr{A}: V \to V$ 满足：
+	$$
+	\mathscr{A}\ab(\sum_{i=1}^n k_i \vect{\alpha}_1) = \sum_{i=1}^n k_i \mathscr{A}(\vect{\alpha}_i)
+	$$
+	那么称 $\mathscr{A}$ 是 $V$ 上的线性变换。
+\end{definition}
+
+\begin{definition}[线性变换的乘积]
+	对于 $V$ 上两个线性变换 $\mathscr{A}, \mathscr{B}$，它们的乘积也是一个线性变换：
+	$$
+	(\mathscr{AB}) (\vect{\alpha}) = \mathscr{A}(\mathscr{B}(\vect{\alpha}))
+	$$
+\end{definition}
+
+那么，线性变换的乘积是封闭的，并且满足结合律。
+
+\begin{definition}[线性变换的加法]
+	对于 $V$ 上两个线性变换 $\mathscr{A}, \mathscr{B}$，它们的和也是一个线性变换：
+	$$
+	(\mathscr{A + B}) (\vect{\alpha}) = \mathscr{A}(\vect{\alpha}) + \mathscr{B}(\vect{\alpha})
+	$$
+\end{definition}
+
+可知线性变换的加法也是封闭的，满足交换律和结合律。并且，乘法和加法满足左右分配律。
+
+\begin{definition}[线性变换的数量乘法]
+	对于 $V$ 上的线性变换 $\mathscr{A}$ 和数域 $P$ 中的数 $k$，它们的数量乘积是一个线性变换：
+	$$
+	(k \mathscr{A}) (\vect{\alpha}) = k \mathscr{A}(\vect{\alpha})
+	$$
+\end{definition}
+
+在定义了线性变换的加法和数量乘法后 $V$ 上的全体线性变换 $\operatorname{End}(V)$ 也构成关于 $P$ 的线性空间。

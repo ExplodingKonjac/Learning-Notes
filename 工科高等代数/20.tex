@@ -1,0 +1,412 @@
+\section{线性变换 II}
+
+\subsection{线性变换的逆变换}
+
+\begin{definition}[线性变换的逆变换]
+	若对于 $\mathscr{A} \in \operatorname{End}(V)$，存在 $\mathscr{B} \in \operatorname{End}(V)$ 满足 $\mathscr{A} \circ \mathscr{B} = \mathscr{B} \circ \mathscr{A} = \operatorname{Id}$，那么称 $\mathscr{A}$ 为\textbf{可逆的}线性变换，$\mathscr{B}$ 为它的\textbf{逆变换}。记作 $\mathscr{B} = \mathscr{A}^{-1}$。
+\end{definition}
+
+\subsection{线性变换的多项式}
+
+首先可以定义线性变换的幂：
+
+\begin{definition}[线性变换的幂]
+	对于 $\mathscr{A} \in \operatorname{End}(V)$，定义 $\mathscr{A}^n\ (n \in \mathbb{N})$：
+	$$
+	\mathscr{A}^n = \begin{cases}
+		\operatorname{Id} & , n = 0 \\
+		\mathscr{A}^{n-1} \circ \mathscr{A} & , n > 0
+	\end{cases}
+	$$
+	特别地，若 $\mathscr{A}$ 可逆，那么定义
+	$$
+	\mathscr{A}^{-n} = \ab(\mathscr{A}^{-1})^n
+	$$
+\end{definition}
+
+那么我们就可以定义线性变换的多项式：
+
+\begin{definition}[线性变换的多项式]
+	对于 $\mathscr{A} \in \operatorname{End}(V)$，定义 $P[\mathscr{A}]$ 为以下形式的线性变换的全体：
+	$$
+	f(\mathscr{A}) = \sum_{i=0}^n a_i \mathscr{A}^i \quad (a_n \neq 0)
+	$$
+	以及无穷次数的多项式：
+	$$
+	f(\mathscr{A}) = \sum_{i=0}^{\infty} a_i \mathscr{A}^i
+	$$
+\end{definition}
+
+那么 $P[\mathscr{A}]$ 中元素可以进行加法和乘法。且加法满足交换律、结合律；乘法满足交换律、结合律；加法和乘法满足左右分配律。
+
+\subsection{线性变换的矩阵}
+
+先从 $P^n$ 出发。在 $P^n$ 上，线性变换和矩阵有一一对应的关系。对 $\matr{A} \in P^{n \times n}$，记 $\sigma_{\matr{A}}: P^n \to P^n,\ \vect{x} \mapsto \matr{A} \vect{x}$，那么可以观察到：
+
+\begin{itemize}
+	\item $\sigma_{\matr{E}} = \operatorname{Id}$；
+	\item $\forall\,\matr{A}, \matr{B} \in P^{n \times n}: \sigma_{\matr{A}} = \sigma_{\matr{B}} \Leftrightarrow \matr{A} = \matr{B}$；
+	\item $\forall\,\matr{A}, \matr{B} \in P^{n \times n}, k \in P: \sigma_{\matr{A} + \matr{B}} = \sigma_{\matr{A}} + \sigma_{\matr{B}},\ \sigma_{k \matr{A}} = k \sigma_{\matr{A}}$；
+	\item $\forall\,\matr{A}, \matr{B} \in P^{n \times n}: \sigma_{\matr{A} \matr{B}} = \sigma_{\matr{A}} \sigma_{\matr{B}}$。
+	\item $\forall\,\matr{A} \in P^{n \times n}, \det(A) \neq 0: \ab(\sigma_{\matr{A}})^{-1} = \sigma_{\matr{A}^{-1}}$。
+\end{itemize}
+
+并且最重要的一点：
+
+\begin{theorem}
+	$\forall\,\mathscr{A} \in \operatorname{End}(P^n): \exists\,\matr{A} \in P^{n \times n}: \mathscr{A} = \sigma_{\matr{A}}$。
+	\begin{proof}
+		我们找到 $P^n$ 的一组基：
+		$$
+		\vect{\varepsilon_1} = \cvec{1,0,\vdots,0}, \vect{\varepsilon_2} = \cvec{0,1,\vdots,0}, \cdots, \vect{\varepsilon_n} = \cvec{0,0,\vdots,1}
+		$$
+		那么就可以构造：
+		$$
+		\matr{A} = \begin{bmatrix}
+			\mathscr{A}(\vect{\varepsilon}_1) & \mathscr{A}(\vect{\varepsilon}_2) & \cdots & \mathscr{A}(\vect{\varepsilon}_n)
+		\end{bmatrix}
+		$$
+	\end{proof}
+\end{theorem}
+
+这就说明，$P^{n \times n}$ 和 $\operatorname{End}(P^n)$ 之间构成双射，这两个线性空间是同构的。
+
+这个结论可以逐步推广到更一般的线性空间上。
+
+\begin{theorem}
+	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 是线性空间 $V$ 的一组基，$\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 是 $V$ 中任意 $n$ 个向量。那么存在唯一的 $\mathscr{A} \in \operatorname{End}(V)$ 使得：
+	$$
+	\mathscr{A}(\vect{\varepsilon}_i) = \vect{\alpha}_i
+	$$
+	\begin{proof}
+		对于任意 $\vect{v} \in V$，它能被 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 唯一地线性表示：
+		$$
+		\vect{v} = \sum_{i=1}^n x_i \vect{\varepsilon}_i
+		$$
+		那么我们定义变换：
+		$$
+		\mathscr{A}(\vect{v}) = \sum_{i=1}^n x_i \vect{\alpha}_i
+		$$
+		不难验证 $\mathscr{A}$ 是一个符合条件的线性变换。
+	\end{proof}
+\end{theorem}
+
+有了这个定理之后，我们就可以定义线性变换的矩阵了。
+
+\begin{definition}[线性变换的矩阵]
+	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 是线性空间 $V$ 的一组基，$\mathscr{A} \in \operatorname{End}(V)$ 是一个线性变换，那么存在 $a_{i,j}$ 使得：
+	$$
+	\mathscr{A}(\vect{\varepsilon}_i) = \sum_{j=1}^n a_{j,i} \vect{\varepsilon}_j
+	$$
+	那么 $\matr{A} = [a_{i,j}]$ 称为 $\mathscr{A}$ 在基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下的\textbf{矩阵}。
+\end{definition}
+
+线性变换的矩阵反映的是某个向量 $\mathscr{A}$ 作用下的坐标变化。设
+$$
+\vect{v} = \sum_{i=1}^n x_i \vect{\varepsilon}_i,\ \mathscr{A}(\vect{v}) = \sum_{i=1}^n x'_i \vect{\varepsilon}_i
+$$
+进行一些代数推导：
+$$
+\mathscr{A}(\vect{v}) = \sum_{i=1}^n x_i \mathscr{A}(\vect{\varepsilon}_i) = \sum_{i=1}^n x_i \sum_{j=1}^n a_{j,i} \vect{\varepsilon}_j = \sum_{j=1}^n \vect{\varepsilon}_j \sum_{i=1}^n x_i a_{j,i}
+$$
+因此 $x'_j = \sum_{i=1}^n x_i a_{j,i}$，用矩阵表示就是：
+$$
+\cvec{x'_1, x'_2, \vdots, x'_n} = \matr{A} \cvec{x_1, x_2, \vdots, x_n}
+$$
+
+\begin{definition}[投影变换]
+	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_m$ 是 $V$ 的子空间 $W$ 的一组基，那么将其扩充到 $V$ 的一组基 $
+	\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_m, \vect{\varepsilon}_{m+1}, \vect{\varepsilon}_{m+2}, \dots, \vect{\varepsilon}_n$，然后定义变换：
+	$$
+	\mathscr{A}(\vect{\varepsilon}_i) = \begin{cases}
+		\vect{\varepsilon}_i, & i \leq m \\
+		\vect{0}, & i > m
+	\end{cases}
+	$$
+	那么称这样的线性变换 $\mathscr{A}$ 为对子空间 $W$ 的一个\textbf{投影变换}。它在 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下的矩阵为
+	$$
+	\begin{bmatrix}
+		\matr{E}_m & \matr{O} \\
+		\matr{O} & \matr{O}
+	\end{bmatrix}
+	$$
+	反映在坐标上就是 $\transpose{[x_1, x_2, \dots, x_m, x_{m+1}, x_{m+2}, \dots, x_n]} \mapsto \transpose{[x_1, x_2, \dots, x_m, 0, 0, \dots, 0]}$。
+\end{definition}
+
+进一步探讨线性变换和它的矩阵的关系，我们可以得到：
+
+\begin{theorem}
+	设 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 是数域 $P$ 上的线性空间 $V$ 的一组基，那么 $V$ 上所有线性变换构成的线性空间，和这些线性变换在基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下的矩阵构成的线性空间是同构的。
+	
+	也就是说，我们设 $\Phi: \operatorname{End}(V) \to P^{n \times n}$ 表示 $\mathscr{A}$ 到它的矩阵的映射，那么有：
+	
+	\begin{itemize}
+		\item $\Phi(\mathscr{A} + \mathscr{B}) = \Phi(\mathscr{A}) + \Phi(\mathscr{B})$；
+		\item $\Phi(\mathscr{A} \mathscr{B}) = \Phi(\mathscr{A}) \Phi(\mathscr{B})$；
+		\item $\Phi(\lambda \mathscr{A}) = \lambda \Phi(\mathscr{A})$；
+		\item $\Phi(\mathscr{A}^{-1}) = \ab(\Phi(\mathscr{A}))^{-1}$（若 $\mathscr{A}$ 可逆）。
+	\end{itemize}
+
+	这也说明 $\Phi$ 是一个线性映射。
+
+	\begin{proof}
+		根据线性变换的矩阵的坐标变换意义可证。
+	\end{proof}
+\end{theorem}
+
+那么线性变换在不同的基下的矩阵有什么关系呢？
+
+\begin{theorem}
+	设线性变换 $\mathscr{A} \in \operatorname{End}(V)$ 在两组基
+	$$
+	\begin{gathered}
+		\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n \\
+		\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n
+	\end{gathered}
+	$$
+	下的矩阵分别为 $\matr{A}, \matr{B}$，且 $\{\vect{\varepsilon}_i\}$ 到 $\{\vect{\eta}_j\}$ 的过渡矩阵为 $\matr{X}$，那么：
+	$$
+	\matr{B} = \matr{X}^{-1} \matr{A} \matr{X}
+	$$
+	\begin{proof}
+		仍然使用坐标变换的意义进行证明。设 $\vect{v} \in V$ 在 $\{\vect{\varepsilon}_i\}$ 下变换前后的坐标为 $\vect{x}, \vect{x}'$，在 $\{\vect{\eta}_i\}$ 下变换前后的坐标为 $\vect{y}, \vect{y}'$。那么：
+		$$
+		\vect{y}' = \matr{X}^{-1} \vect{x}' = \matr{X}^{-1} \matr{A} \vect{x} = \matr{X}^{-1} \matr{A} \matr{X} \matr{y}
+		$$
+		也就是说 $\matr{B} = \matr{X}^{-1} \matr{A} \matr{X}$
+	\end{proof}
+\end{theorem}
+
+于是，基于同一个线性变换在不同基下的矩阵，我们可以定义矩阵的相似：
+
+\begin{definition}[相似矩阵]
+	设 $\matr{A}, \matr{B} \in P^{n \times n}$，若存在可逆矩阵 $\matr{X} \in P^{n \times n}$，满足：
+	$$
+	\matr{B} = \matr{X}^{-1} \matr{A} \matr{X}
+	$$
+	那么称矩阵 $\matr{A}$ 和 $\matr{B}$ 相似。
+\end{definition}
+
+容易发现，相似关系是一种等价关系，满足自反性、对称性、传递性。
+
+\subsection{作业}
+
+\begin{problem}
+	第六章习题 11
+
+	\begin{proof}
+		构造双射：
+		$$
+		\sigma: \mathbb{R} \to \mathbb{R}^+,\ x \mapsto \E^x
+		$$
+		那么有：
+		\begin{itemize}
+			\item $\sigma(a + b) = \E^{a + b} = \E^a \cdot \E^b = \sigma(a) \oplus \sigma(b)$；
+			\item $\sigma(k a) = \E^{k a} = \ab(\E^a)^k = k \circ \sigma(a)$。
+		\end{itemize}
+		因此 $\sigma$ 是同构映射，这两个线性空间是同构的。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第七章习题 1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 不是。$\mathscr{A}(\vect{0} + \vect{0}) = \vect{\alpha} \neq \mathscr{A}(\vect{0}) + \mathscr{A}(\vect{0})$；
+			\item[\textbf{3)}] 不是。$\mathscr{A}(2, 0, 0) = (4, 0, 0) \neq \mathscr{A}(1, 0, 0) + \mathscr{A}(1, 0, 0)$；
+			\item[\textbf{5)}] 是。
+			\item[\textbf{8)}] 是。$\mathscr{A}(\lambda \matr{X} + \mu \matr{Y}) = \matr{B}(\lambda \matr{X} + \mu \matr{Y}) \matr{C} = \lambda \matr{B} \matr{X} \matr{C} + \mu \matr{B} \matr{Y} \matr{C} = \lambda \mathscr{A}(\matr{X}) + \mu \mathscr{A}(\matr{Y})$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第七章习题 3
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			(\mathscr{A B - B A})(f(x)) & = (\mathscr{A B})(f(x)) - (\mathscr{B A})(f(x)) \\
+			& = \mathscr{A}(\mathscr{B}(f(x))) - \mathscr{B}(\mathscr{A}(f(x))) \\
+			& = \mathscr{A}(x f(x)) - \mathscr{B}(f'(x)) \\
+			& = f(x) + x f'(x) - x f'(x) = f(x)
+		\end{aligned}
+		$$
+		因此 $\mathscr{A B - B A} = \operatorname{Id}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第七章习题 4
+
+	\begin{proof}
+		归纳证明。当 $k=1$ 时
+		$$
+		\mathscr{A}^k \mathscr{B} - \mathscr{B} \mathscr{A}^k = \mathscr{A B - B A} = \operatorname{Id} = k \mathscr{A}^{k-1}
+		$$
+		条件成立。再假设 $k=m$ 时条件成立，那么：
+		$$
+		\begin{aligned}
+			\mathscr{A} (\mathscr{A}^m \mathscr{B} - \mathscr{B} \mathscr{A}^m) + \mathscr{A}^m & = \mathscr{A}^{m+1} \mathscr{B} + (\operatorname{Id} - \mathscr{A} \mathscr{B}) \mathscr{A}^m \\
+			& = \mathscr{A}^{m+1} \mathscr{B} + \mathscr{B A A}^{m} \\
+			(m+1) \mathscr{A}^m & = \mathscr{A}^{m+1} \mathscr{B} + \mathscr{B} \mathscr{A}^{m+1} \\
+		\end{aligned}
+		$$
+		因此 $k=m+1$ 时条件成立。归纳得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第七章习题 6
+	
+	\begin{proof}
+		设线性变换 $\mathscr{A}$ 的矩阵为 $\matr{A}$，那么：
+		$$
+		\mathscr{A}(\vect{\varepsilon}_1), \mathscr{A}(\vect{\varepsilon}_2), \dots, \mathscr{A}(\vect{\varepsilon}_n)
+		$$
+		线性无关，等价于
+		$$
+		\rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n} \matr{A}
+		$$
+		的元素线性无关，等价于 $\matr{A}$ 的列向量线性无关，等价于 $\matr{A}$ 可逆，等价于 $\mathscr{A}$ 可逆。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第七章习题 7
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{gathered}
+				\mathscr{A}(\vect{\varepsilon}_1) = (2, 0, 1) = 2\vect{\varepsilon}_1 + \vect{\varepsilon}_3 \\
+				\mathscr{A}(\vect{\varepsilon}_2) = (-1, 1, 0) = -\vect{\varepsilon}_1 + \vect{\varepsilon}_2 \\
+				\mathscr{A}(\vect{\varepsilon}_3) = (0, 1, 0) = \vect{\varepsilon}_2
+			\end{gathered}
+			$$
+			因此 $\mathscr{A}$ 的矩阵为
+			$$
+			\matr{A} = \begin{bmatrix}
+				2 & -1 & 0 \\
+				0 & 1 & 1 \\
+				1 & 0 & 0
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{gathered}
+				\mathscr{D}(\vect{\varepsilon}_1) = a \E^{a x} \cos b x - b \E^{a x} \sin b x = a \vect{\varepsilon}_1 - b \vect{\varepsilon}_2 \\
+				\mathscr{D}(\vect{\varepsilon}_2) = b \E^{a x} \cos b x + a \E^{a x} \sin b x = b \vect{\varepsilon}_1 + a \vect{\varepsilon}_2 \\
+				\mathscr{D}(\vect{\varepsilon}_3) = \E^{a x} \cos b x + a x \E^{a x} \cos b x - b x \E^{a x} \sin b x = \vect{\varepsilon}_1 + a \vect{\varepsilon}_3 - b \vect{\varepsilon}_4 \\
+				\mathscr{D}(\vect{\varepsilon}_4) = \E^{a x} \sin b x + b x \E^{a x} \cos b x + a x \E^{a x} \sin b x = \vect{\varepsilon}_2 + b \vect{\varepsilon}_3 + a \vect{\varepsilon}_4 \\
+				\mathscr{D}(\vect{\varepsilon}_5) = x \E^{a x} \sin b x + \frac{b}{2} x^2 \E^{a x} \cos b x + \frac{a}{2} x^2 \E^{a x} \sin b x = \vect{\varepsilon}_4 + \frac{b}{2} \vect{\varepsilon}_5 + \frac{a}{2} \vect{\varepsilon}_6 \\
+				\mathscr{D}(\vect{\varepsilon}_6) = x \E^{a x} \cos b x + \frac{a}{2} x^2 \E^{a x} \cos b x + \frac{b}{2} x^2 \E^{a x} \sin b x = \vect{\varepsilon}_3 + \frac{a}{2} \vect{\varepsilon}_5 + \frac{b}{2} \vect{\varepsilon}_6
+			\end{gathered}
+			$$
+			因此 $\mathscr{D}$ 的矩阵为：
+			$$
+			\matr{D} = \begin{bmatrix}
+				a & b & 1 & 0 & 0 & 0 \\
+				-b & a & 0 & 1 & 0 & 0 \\
+				0 & 0 & a & b & 0 & 1 \\
+				0 & 0 & -b & a & 1 & 0 \\
+				0 & 0 & 0 & 0 & \frac{b}{2} & \frac{a}{2} \\
+				0 & 0 & 0 & 0 & \frac{a}{2} & \frac{b}{2}
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{5)}] 由题可知：
+			$$
+			\rvec{\vect{\eta}_1, \vect{\eta}_2, \vect{\eta}_3} = \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \vect{\varepsilon}_3} \begin{bmatrix}
+				-1 & 1 & 0 \\
+				1 & 0 & 1 \\
+				1 & -1 & 1
+			\end{bmatrix}
+			$$
+			所以 $\mathscr{A}$ 在 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \vect{\varepsilon}_3$ 下的矩阵为
+			$$
+			\matr{A}' = \begin{bmatrix}
+				-1 & 1 & 0 \\
+				1 & 0 & 1 \\
+				1 & -1 & 1
+			\end{bmatrix} \begin{bmatrix}
+				1 & 0 & 1 \\
+				1 & 1 & 0 \\
+				-1 & 2 & 1
+			\end{bmatrix} \begin{bmatrix}
+				-1 & 1 & 0 \\
+				1 & 0 & 1 \\
+				1 & -1 & 1
+			\end{bmatrix}^{-1} = \begin{bmatrix}
+				-1 & 1 & 2 \\
+				2 & 2 & 0 \\
+				3 & 0 & 2
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第七章习题 9
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{bmatrix}
+				a_{3,1} & a_{3,2} & a_{3,3} \\
+				a_{2,1} & a_{2,2} & a_{2,3} \\
+				a_{1,1} & a_{1,2} & a_{1,3}
+			\end{bmatrix}
+			$$
+			\item[\textbf{2)}]
+			$$
+			\begin{bmatrix}
+				a_{1,1} & a_{1,2} & a_{1,3} \\
+				\frac{a_{2,1}}{k} & \frac{a_{2,2}}{k} & \frac{a_{2,3}}{k} \\
+				a_{3,1} & a_{3,2} & a_{3,3}
+			\end{bmatrix}
+			$$
+			\item[\textbf{3)}]
+			$$
+			\begin{bmatrix}
+				a_{1,1} - a_{2,1} & a_{1,2} - a_{2,2} & a_{1,3} - a_{2,3} \\
+				a_{2,1} & a_{2,2} & a_{2,3} \\
+				a_{3,1} & a_{3,2} & a_{3,3}
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第七章习题 13
+
+	\begin{proof}
+		设 $\mathscr{A}$ 在任意一组基下的矩阵为 $\matr{A}$。那么可知，对于任意可逆矩阵 $\matr{X} \in P^{n \times n}$，都有：
+		$$
+		\matr{X}^{-1} \matr{A} \matr{X} = \matr{A} \Leftrightarrow \matr{A} \matr{X} = \matr{X} \matr{A}
+		$$
+		记 $\matr{1}_{x,y} = [[i=x \land j=y]]$，那么 $\matr{E} + \matr{1}_{x,y}$ 是一个初等矩阵，有：
+		$$
+		\begin{aligned}
+			\matr{A} \ab(\matr{E} + \matr{1}_{x,y}) & = \ab(\matr{1}_{x,y} + \matr{E}) \matr{A} \\
+			\matr{A} \matr{1}_{x,y} & = \matr{1}_{x,y} \matr{A}
+		\end{aligned}
+		$$
+		记
+		$$
+		\begin{gathered}
+			\matr{B} = \matr{1}_{x,y} \matr{A} = [b_{i,j}] \\
+			\matr{C} = \matr{A} \matr{1}_{x,y} = [c_{i,j}]
+		\end{gathered}
+		$$
+		那么可知，$b_{i,j} = [i=x] a_{y,j},\ c_{i,j} = [j=y] a_{i,x}$。由 $\matr{B} = \matr{C}$ 得，当 $a_{y,j} = 0,\ a_{i,x} = 0, a_{x,x} = a_{y,y}\ (j \neq x,\ i \neq y)$。
+
+		取遍所有 $x,y$ 就可以得到，$i \neq j$ 时 $a_{i,j} = 0$，且 $\matr{A}$ 所有对角元素均相等。因此 $\matr{A}$ 是数量矩阵，对应 $\mathscr{A}$ 是数乘变换。
+	\end{proof}
+\end{problem}

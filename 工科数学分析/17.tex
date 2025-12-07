@@ -1,0 +1,144 @@
+\section{不定积分 II}
+
+\subsection{换元积分法}
+
+\begin{theorem}[第一类换元法]
+	设 $f(u)$ 在区间 $J$ 上有原函数 $G(u)$，且 $u=\varphi(x)$ 在区间 $I$ 上可导，$\{\varphi(x): x \in I\} \subseteq J$，那么：
+	$$
+	\int f(\varphi(x)) \varphi'(x) \dif x = G(\varphi(x)) + C
+	$$
+	或者记作下面的形式：
+	$$
+	\int f(\varphi(x)) \dif \varphi(x) = \left.\int f(u) \dif u\right|_{u=\varphi(x)}
+	$$
+\end{theorem}
+
+\begin{example}
+	求 $\displaystyle \int \sin 2x \dif x$。
+	\begin{solution}
+		$$
+		\int \sin 2x \dif x = \frac{1}{2} \int \sin 2x \dif (2x) = -\frac{1}{2} \cos 2x + C
+		$$
+		或者：
+		$$
+		\int \sin 2x \dif x = 2 \int \sin x \cos x \dif x = 2 \int \sin x \dif (\sin x) = \sin^2 x + C_2
+		$$
+	\end{solution}
+\end{example}
+
+\begin{example}
+	求 $\displaystyle \int \frac{\dif x}{x^2 - 8x + 25}$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \frac{\dif x}{x^2 - 8x + 25} & = \int \frac{\dif x}{(x - 4)^2 + 9} \\
+			& = \frac{1}{3} \int \frac{\frac{1}{3} \dif x}{\ab(\frac{x - 4}{3})^2 + 1} \\
+			& = \frac{1}{3} \arctan \frac{x - 4}{3} + C
+		\end{aligned}
+		$$
+	\end{solution}
+\end{example}
+
+\begin{theorem}[第二类换元法]
+	设 $x = \psi(t)$ 单调且可导，并且 $\psi(t) \neq 0$，且 $f(\psi(t)) \psi'(t)$ 有原函数 $G(t)$，那么：
+	$$
+	\int f(x) \dif x = G(\psi^{-1}(t))
+	$$
+	或者记作下面的形式：
+	$$
+	\int f(x) \dif x = \left.\int f(\psi(t)) \dif \psi(t)\right|_{t = \psi^{-1}(x)}
+	$$
+\end{theorem}
+
+\begin{example}
+	求 $\displaystyle \int \frac{\dif x}{\sqrt{x^2 + a^2}}$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \frac{\dif x}{\sqrt{x^2 + a^2}} & = \frac{\dif (a \tan t)}{\sqrt{a^2 \tan^2 t + a^2}} \\
+			& = \int \frac{a \sec^2 t \dif t}{a \sec t} \\
+			& = \int \sec t \dif t \\
+			& = \ln |\sec t + \tan t| + C \\
+			& = \ln \ab(\frac{x}{a} + \frac{\sqrt{x^2 + a^2}}{a}) + C
+		\end{aligned}
+		$$
+	\end{solution}
+\end{example}
+
+\begin{example}
+	求 $\displaystyle \int \frac{\dif x}{x(x^7 + 2)}$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \frac{\dif x}{x(x^7 + 2)} & = \int \frac{\dif \frac{1}{t}}{\frac{1}{t} \ab(\frac{1}{t^7} + 2)} \\
+			& = \int \frac{t^8}{1 + 2 t^7} \cdot \ab(-\frac{1}{t^2}) \dif t \\
+			& = -\int \frac{t^6}{1 + 2 t^7} \dif t \\
+			& = -\frac{1}{14} \ln |1 + 2 t^7| + C
+		\end{aligned}
+		$$
+	\end{solution}
+\end{example}
+
+\subsection{分部积分法}
+
+\begin{theorem}[分部积分法]
+	设函数 $u(x), v(x)$ 可导，那么：
+	$$
+	\int u(x) v'(x) \dif x = u(x) v(x) - \int v(x) u'(x) \dif x
+	$$
+	或者记作下面的形式：
+	$$
+	\int u \dif v = u v - \int v \dif u
+	$$
+\end{theorem}
+
+\begin{example}
+	求 $\displaystyle x^2 \E^x \dif x$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int x^2 \E^x \dif x & = \int x^2 \dif \E^x \\
+			& = x^2 \E^x - \int 2x \E^x \dif x \\
+			& = x^2 \E^x - \int 2x \dif \E^x \\
+			& = x^2 \E^x - \ab(2x \E^x - \int 2 \E^x) \\
+			& = x^2 \E^x - 2x \E^x + 2\E^x + C
+		\end{aligned}
+		$$
+	\end{solution}
+\end{example}
+
+\begin{example}
+	求 $\displaystyle \sin \ln x \dif x$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \sin \ln x \dif x & = x \sin \ln x - \int x \dif (\sin \ln x) \\
+			& = x \sin x \ln x - \int \cos \ln x \dif x \\
+			& = x \sin \ln x - \ab(x \cos \ln x - \int x \dif (\cos \ln x)) \\
+			& = x \sin \ln x - x \cos \ln x - \int \sin \ln x \dif x \\
+		\end{aligned}
+		$$
+		那么就可以解出来
+		$$
+		\int \sin \ln x \dif x = \frac{x \sin \ln x - x \cos \ln x}{2}
+		$$
+	\end{solution}
+\end{example}
+
+\begin{example}
+	求 $\displaystyle \int \cos^n \dif x$。
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \cos^n \dif x & = \int \cos^{n-1} x \dif \sin x \\
+			& = \sin x \cos^{n-1} x + (n-1) \int \cos^{n-2} x \sin^2 x \dif x \\
+			& = \sin x \cos^{n-1} x + (n-1) \int \cos^{n-2} x \dif x - (n-1) \int \cos^n x \dif x
+		\end{aligned}
+		$$
+		记 $\displaystyle I_n = \int \cos^n \dif x$，那么：
+		$$
+		n I_n = \sin x \cos^{n-1} x + (n-1) I_{n-2}
+		$$
+		并且我们有 $\displaystyle I_1 = \int \cos x \dif x = \sin x + C$，因此我们可以递归求出 $I_n$。
+	\end{solution}
+\end{example}
