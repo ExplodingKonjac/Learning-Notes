@@ -1,0 +1,177 @@
+\section{线性变换 III}
+
+\subsection{特征值和特征向量}
+
+\begin{definition}[特征值和特征向量]
+	设 $\mathscr{A}$ 是数域 $P$ 上线性空间 $V$ 上的一个线性变换，若存在 $\lambda_0 \in P$，使得存在 $\vect{\xi} \in V \setminus \{\vect{0}\}$，使得：
+	$$
+	\mathscr{A}(\vect{\xi}) = \lambda_0 {\vect{\xi}}
+	$$
+	那么称 $\lambda_0$ 为 $\mathscr{A}$ 的一个\textbf{特征值}，而 $\vect{\xi}$ 为 $\mathscr{A}$ 的一个\textbf{特征向量}。
+\end{definition}
+
+在 $\mathbb{R}^2, \mathbb{R}^3$ 中，特征值和特征向量有很明显的几何意义：在线性变换 $\mathscr{A}$ 的作用下，$\vect{\xi}$ 的变化为沿着本来的方向缩放 $\lambda_0$ 倍。
+
+线性变换不一定存在特征值和特征向量。比如 $\mathbb{R}^2, \mathbb{R}^3$ 中的旋转变换。
+
+下面给出求某个线性变换的特征值和特征向量的方法：
+
+对于一个线性变换 $\mathscr{A}$ 和 $V$ 的一组基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，并且 $\mathscr{A}$ 在这组基下的矩阵为 $\matr{A}$，$\vect{\xi}$ 在这组基下的坐标为 $\vect{x} \in P^n$，那么：
+
+$$
+\mathscr{A}(\vect{\xi}) = \lambda_0 \vect{\xi} \Leftrightarrow \matr{A} \vect{x} = \lambda_0 \vect{x}
+$$
+
+进一步化简，得到：
+
+$$
+(\matr{A} - \lambda_0 \matr{E}) \vect{x} = \vect{0}
+$$
+
+那么 $\lambda_0, \vect{\xi}$ 就可以从这个方程的解得到。而该方程要有非零解，必须有 $\det(\matr{A - \lambda_0 \matr{E}}) = 0$，于是我们有：
+
+\begin{definition}[特征多项式]
+	对于矩阵 $\matr{A} \in P^{n \times n}$，定义 $f(\lambda) = \det(\lambda \matr{E} - \matr{A})$ 为 $\matr{A}$ 的\textbf{特征多项式}，$f(\lambda) = 0$ 为 $\matr{A}$ 的\textbf{特征方程}。特征方程的所有 $P$ 中的根为 $\matr{A}$ 的一个特征值。
+\end{definition}
+
+于是，根据特征多项式求得所有特征根之后，代入原方程就可以求出每个特征根对应的特征向量。
+
+特征值、特征向量、特征多项式有许多性质：
+
+\begin{definition}[特征子空间]
+	对于线性变换 $\mathscr{A}$ 的某个特征值 $\lambda$ 的所有特征向量 $\vect{\xi}_1, \vect{\xi}_2, \dots, \vect{\xi}_s$，它们可以张成一个子空间，这个空间被称为 $\mathscr{A}$ 在特征值 $\lambda$ 下的特征子空间。
+\end{definition}
+
+\begin{theorem}
+	若矩阵 $\matr{A} \in P^{n \times n}$ 的有 $n$ 个特征值 $\lambda_1, \lambda_2, \dots, \lambda_n$，那么：
+
+	\begin{itemize}
+		\item $\displaystyle \sum_{i=1}^n \lambda_i = \sum_{i=1}^n a_{i,i} = \tr \matr{A}$；
+		\item $\displaystyle \prod_{i=1}^n \lambda_i = \det(\matr{A})$。
+	\end{itemize}
+
+	\begin{proof}
+		设 $\matr{A}$ 的特征多项式为 $f(\lambda) = \det(\lambda \matr{E} - \matr{A})$。
+		将 $f(\lambda)$ 展开，得到一个关于 $\lambda$ 的 $n$ 次多项式。其展开式为：
+		$$
+		f(\lambda) = \det \begin{pmatrix}
+			\lambda - a_{11} & -a_{12} & \dots & -a_{1n} \\
+			-a_{21} & \lambda - a_{22} & \dots & -a_{2n} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			-a_{n1} & -a_{n2} & \dots & \lambda - a_{nn}
+		\end{pmatrix}
+		$$
+		展开此行列式，最高次项 $\lambda^n$ 来自主对角线元素的乘积 $(\lambda - a_{11})(\lambda - a_{22})\dots(\lambda - a_{nn})$。
+		$\lambda^{n-1}$ 的系数为 $-(a_{11} + a_{22} + \dots + a_{nn}) = -\tr \matr{A}$。
+		常数项 (令 $\lambda = 0$) 为 $\det(-\matr{A}) = (-1)^n \det(\matr{A})$。
+		因此，有：
+		$$
+		f(\lambda) = \lambda^n - (\tr \matr{A}) \lambda^{n-1} + \dots + (-1)^n \det(\matr{A})
+		$$
+		另一方面，由于 $\lambda_1, \lambda_2, \dots, \lambda_n$ 是 $f(\lambda)$ 的 $n$ 个根，因此 $f(\lambda)$ 也可以表示为：
+		$$
+		f(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2)\dots(\lambda - \lambda_n)
+		$$
+		展开此式，得到：
+		$$
+		f(\lambda) = \lambda^n - \ab(\sum_{i=1}^n \lambda_i) \lambda^{n-1} + \dots + (-1)^n \ab(\prod_{i=1}^n \lambda_i)
+		$$
+		比较两种展开形式中 $\lambda^{n-1}$ 的系数和常数项，根据 Vieta 定理，我们有：
+		\begin{itemize}
+			\item $\displaystyle -\ab(\sum_{i=1}^n \lambda_i) = -(\tr \matr{A}) \implies \sum_{i=1}^n \lambda_i = \tr \matr{A}$；
+			\item $\displaystyle (-1)^n \ab(\prod_{i=1}^n \lambda_i) = (-1)^n \det(\matr{A}) \implies \prod_{i=1}^n \lambda_i = \det(\matr{A})$。
+		\end{itemize}
+		于是定理得证。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	相似的矩阵有相同的特征多项式。
+
+	\begin{proof}
+		从直观上很好理解，因为相似矩阵实际上是同一个线性变换在不同的基下的矩阵，因此特征多项式应当相同。
+
+		也可以进行更为严谨的数学推导，设 $\matr{B} = \matr{X}^{-1} \matr{A} \matr{X}$：
+		$$
+		\begin{aligned}
+			\det(\lambda \matr{E} - \matr{B}) & = \det(\lambda \matr{X}^{-1} \matr{E} \matr{X} - \matr{X}^{-1} \matr{A} \matr{X}) \\
+			& = \det\ab(\matr{X}^{-1} (\lambda \matr{E} - \matr{A}) \matr{X}) \\
+			& = \det(\matr{X}^{-1}) \det(\lambda \matr{E} - \matr{A}) \det(\matr{X}) \\
+			& = \det(\lambda \matr{E} - \matr{A})
+		\end{aligned}
+		$$
+		于是得证。
+	\end{proof}
+\end{theorem}
+
+\begin{corollary}
+	相似矩阵具有相同的特征根和迹。
+\end{corollary}
+
+在有了这个定理之后，我们就可以定义线性变换的特征多项式、迹和行列式：
+
+\begin{definition}
+	设 $\mathscr{A} \in \operatorname{End}(V)$，且 $\mathscr{A}$ 在 $V$ 的某组基下的矩阵为 $\matr{A}$，那么定义：
+	\begin{itemize}
+		\item $\mathscr{A}$ 的特征多项式为 $\matr{A}$ 的特征多项式；
+		\item $\mathscr{A}$ 的迹：$\tr \mathscr{A} = \tr \matr{A}$；
+		\item $\mathscr{A}$ 的行列式：$\det \mathscr{A} = \det \matr{A}$。
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}[Hanmilton-Caylay 定理]
+	设 $\matr{A} \in P^{n \times n}$，$f(\lambda)$ 是 $\matr{A}$ 的特征多项式，那么：
+	$$
+	f(\matr{A}) = \matr{O}
+	$$
+	\begin{proof}
+		设 $\matr{A}$ 的特征多项式为 $f(\lambda) = \det(\lambda \matr{E} - \matr{A}) = \lambda^n + c_{n-1} \lambda^{n-1} + \dots + c_1 \lambda + c_0 = \sum_{k=0}^n c_k \lambda^k$ (其中 $c_n=1$)。
+		
+		我们知道 $(\lambda \matr{E} - \matr{A}) (\lambda \matr{E} - \matr{A})^* = \det(\lambda \matr{E} - \matr{A}) \matr{E} = f(\lambda) \matr{E}$。
+		
+		由于 $(\lambda \matr{E} - \matr{A})^*$ 的每个元素都是 $\lambda \matr{E} - \matr{A}$ 的代数余子式，它们是关于 $\lambda$ 的次数不超过 $n-1$ 的多项式。因此，我们可以将 $(\lambda \matr{E} - \matr{A})^*$ 写成关于 $\lambda$ 的多项式，其系数是 $n \times n$ 矩阵：
+		$$
+		(\lambda \matr{E} - \matr{A})^* = \sum_{j=0}^{n-1} \matr{B}_j \lambda^j
+		$$
+		将此式代入前面的等式：
+		$$
+		(\lambda \matr{E} - \matr{A}) \left( \sum_{j=0}^{n-1} \matr{B}_j \lambda^j \right) = \left( \sum_{k=0}^n c_k \lambda^k \right) \matr{E}
+		$$
+		展开左侧并比较 $\lambda$ 的同次幂的系数：
+		$$
+		\begin{aligned}
+			\lambda^n: & \quad \matr{B}_{n-1} = c_n \matr{E} = \matr{E} \\
+			\lambda^k ( 1 \le k \le n-1): & \quad \matr{B}_{k-1} - \matr{A} \matr{B}_k = c_k \matr{E} \\
+			\lambda^0: & \quad -\matr{A} \matr{B}_0 = c_0 \matr{E}
+		\end{aligned}
+		$$
+		现在，将这些方程分别从左边乘以 $\matr{A}^{n-k}$ (对于 $k$ 次项的方程)，然后将所有结果相加：
+		$$
+		\begin{aligned}
+			\matr{A}^n \matr{B}_{n-1} & = \matr{A}^n \\
+			\sum_{k=1}^{n-1} \matr{A}^{n-k} (\matr{B}_{k-1} - \matr{A} \matr{B}_k) & = \sum_{k=1}^{n-1} c_k \matr{A}^{n-k} \matr{E} \\
+			\matr{A}^0 (-\matr{A} \matr{B}_0) & = c_0 \matr{E}
+		\end{aligned}
+		$$
+		将所有方程相加：
+		$$
+		\matr{A}^n \matr{B}_{n-1} + \sum_{k=1}^{n-1} (\matr{A}^{n-k} \matr{B}_{k-1} - \matr{A}^{n-k+1} \matr{B}_k) - \matr{A} \matr{B}_0 = \matr{A}^n + \sum_{k=1}^{n-1} c_k \matr{A}^{n-k} + c_0 \matr{E}
+		$$
+		左侧是一个伸缩和：
+		$$
+		\matr{A}^n \matr{B}_{n-1} + (\matr{A}^{n-1} \matr{B}_0 - \matr{A}^n \matr{B}_1) + (\matr{A}^{n-2} \matr{B}_1 - \matr{A}^{n-1} \matr{B}_2) + \dots + (\matr{A} \matr{B}_{n-2} - \matr{A}^2 \matr{B}_{n-1}) - \matr{A} \matr{B}_0
+		$$
+		所有项相加后为 $\matr{O}$。因此，我们得到：
+		$$
+		\matr{O} = \matr{A}^n + c_{n-1} \matr{A}^{n-1} + \dots + c_1 \matr{A} + c_0 \matr{E}
+		$$
+		这正是 $f(\matr{A}) = \matr{O}$。
+	\end{proof}
+\end{theorem}
+
+\begin{corollary}
+	设 $\mathscr{A} \in \operatorname{End}(V)$ 的特征多项式为 $f(\lambda)$，那么：
+	$$
+	f(\mathscr{A}) = \mathscr{O}
+	$$
+\end{corollary}

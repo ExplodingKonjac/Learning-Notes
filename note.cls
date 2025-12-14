@@ -161,6 +161,9 @@
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 \newcommand{\matr}[1]{\boldsymbol{#1}}
 \newcommand{\tr}{\operatorname{tr}}
+\newcommand{\image}{\operatorname{Im}}
+\newcommand{\transpose}[1]{{#1}^\top}
+\newcommand{\diag}{\operatorname{diag}}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\rvec}{m}{
@@ -195,9 +198,6 @@
 \newcommand{\var}[1]{\operatorname{Var}\left(#1\right)}
 \newcommand{\cov}[2]{\operatorname{Cov}\left(#1, #2\right)}
 \newcommand{\prob}[1]{\operatorname{\mathbb{P}}\left(#1\right)}
-
-% linear alhebra
-\newcommand{\transpose}[1]{{#1}^\top}
 
 \let\bbordermatrix\bordermatrix
 \patchcmd{\bbordermatrix}{8.75}{4.75}{}{}

@@ -5,7 +5,7 @@
 \begin{theorem}
 	数域 $P$ 上的任何一个二次型都能经过非退化的线性替换变为标准型，即具有如下矩阵的形式：
 	$$
-	\matr{D} = \operatorname{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)
+	\matr{D} = \diag(\lambda_1, \lambda_2, \ldots, \lambda_n)
 	$$
 
 	\begin{proof}
@@ -59,7 +59,7 @@
 
 也可以使用初等变换来将二次型化做标准型。根据配方法我们知道，任意对称矩阵 $\matr{A}$ 都存在可逆矩阵 $\matr{C}$ 使得：
 $$
-\transpose{\matr{C}} \matr{A} \matr{C} = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)
+\transpose{\matr{C}} \matr{A} \matr{C} = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)
 $$
 那么 $\matr{C}$ 可以表示为若干个初等矩阵的乘积：
 $$
@@ -67,7 +67,7 @@ $$
 $$
 回带到合同变换里就得到：
 $$
-\transpose{\matr{P}_k} \cdots \transpose{\matr{P}_2} \transpose{\matr{P}_1} \matr{A} \matr{P}_1 \matr{P}_2 \cdots \matr{P}_k = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)
+\transpose{\matr{P}_k} \cdots \transpose{\matr{P}_2} \transpose{\matr{P}_1} \matr{A} \matr{P}_1 \matr{P}_2 \cdots \matr{P}_k = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)
 $$
 
 这说明任何对称矩阵都能通过\textbf{相同类型的初等行变换和列变换}变成对角矩阵。具体的构造也很简单，只需要对于每一个 $k = 1, 2, \dots, n$，都用 $a_{k,k}$ 去消掉 $a_{k,k+1}, a_{k, k+2}, \dots, a_{k,n}, a_{k+1,k}, a_{k+2,k}, \dots, a_{n,k}$。类似于求逆的过程。我们可以对增广矩阵
@@ -415,7 +415,7 @@ $$
 		$$
 		那么可以得到：
 		$$
-		\transpose{\matr{C}} \operatorname{diag}(\lambda_1, \dots, \lambda_k, \lambda_{k+1}, \dots, \lambda_n) \matr{C} = \operatorname{diag}(\lambda_1, \dots, \lambda_{k+1}, \lambda_k, \dots, \lambda_n)
+		\transpose{\matr{C}} \diag(\lambda_1, \dots, \lambda_k, \lambda_{k+1}, \dots, \lambda_n) \matr{C} = \diag(\lambda_1, \dots, \lambda_{k+1}, \lambda_k, \dots, \lambda_n)
 		$$
 		相当于先交换 $i, i+1$ 行再交换 $i, i+1$ 列。于是得证。
 	\end{proof}
