@@ -23,6 +23,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 \RequirePackage{tikz}
+\usetikzlibrary{intersections}
 \RequirePackage{xcolor}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{fancyhdr}
@@ -167,7 +168,7 @@
 
 \ExplSyntaxOn
 \NewDocumentCommand{\rvec}{m}{
-	\ensuremath{[\,\clist_use:nn {#1} {,\,}\,]}
+	\ensuremath{\left[\,\clist_use:nn {#1} {,\,}\,\right]}
 }
 \NewDocumentCommand{\cvec}{m}{
 	\ensuremath{

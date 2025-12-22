@@ -1,0 +1,464 @@
+\section{欧几里德空间 II}
+
+\subsection{正交矩阵}
+
+\begin{definition}[正交矩阵]
+	若 $n$ 阶实矩阵 $\matr{A}$ 满足：
+	$$
+	\matr{A} \transpose{\matr{A}} = \transpose{\matr{A}} \matr{A} = \matr{E}
+	$$
+	那么称 $\matr{A}$ 为正交矩阵。
+\end{definition}
+
+\begin{property}
+	\begin{itemize}
+		\item 正交矩阵可逆；
+		\item 正交矩阵的乘积还是正交矩阵；
+		\item 正交矩阵的逆还是正交矩阵。
+		\item 正交矩阵的行列式为 $\pm 1$。
+	\end{itemize}
+\end{property}
+
+\begin{property}
+	标准正交基到标准正交基的过渡矩阵为正交矩阵。
+\end{property}
+
+\subsection{同构}
+
+\begin{definition}[欧几里德空间的同构]
+	$\mathbb{R}$ 上的欧几里德空间 $V, W$ 是\textbf{同构}的，当且仅当存在映射 $\sigma: V \to W$ 满足：
+	\begin{itemize}
+		\item $\sigma$ 是双射；
+		\item $\forall\,\vect{\alpha}, \vect{\beta} \in V: \sigma(\vect{\alpha}, \vect{\alpha}) = \sigma(\vect{\alpha}) + \sigma(\vect{\beta})$；
+		\item $\forall\,\vect{\alpha} \in V, k \in \mathbb{R}: \sigma(k \vect{\alpha}) = k \sigma(\vect{\alpha})$；
+		\item $\forall\,\vect{\alpha}, \vect{\beta} \in V: (\vect{\alpha}, \vect{\beta}) = (\sigma(\vect{\alpha}), \sigma(\vect{\beta}))$。
+	\end{itemize}
+	$\sigma$ 称为欧几里德空间的一个\textbf{同构映射}。
+\end{definition}
+
+可见，欧几里德空间的同构也是线性空间的同构。其也是一种等价关系，具有自反性、对称性和传递性。
+
+\subsection{正交变换}
+
+\begin{definition}[正交变换]
+	若欧几里德空间 $V$ 上的线性变换 $\mathscr{A}$ 满足：
+	$$
+	\forall\,\vect{\alpha}, \vect{\beta} \in V: (\vect{\alpha}, \vect{\beta}) = (\mathscr{A}(\vect{\alpha}), \mathscr{A}(\vect{\beta}))
+	$$
+	那么称 $\mathscr{A}$ 为\textbf{正交变换}。
+\end{definition}
+
+\begin{theorem}
+	设 $\mathscr{A}$ 是 $n$ 维欧几里德空间 $V$ 上的线性变换，那么下面条件等价：
+	\begin{enumerate}
+		\item $\mathscr{A}$ 是正交变换；
+		\item $\forall\,\vect{\alpha} \in V: |\vect{\alpha}| = |\mathscr{A}(\vect{\alpha})|$；
+		\item 若 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 是标准正交基，那么 $\mathscr{A}(\vect{\varepsilon}_1), \mathscr{A}(\vect{\varepsilon}_2), \dots, \mathscr{A}(\vect{\varepsilon}_n)$ 也是标准正交基；
+		\item $\mathscr{A}$ 在任意一组标准正交基下的矩阵都是正交矩阵。
+	\end{enumerate}
+
+	\begin{proof}
+		\ 
+		\begin{itemize}
+			\item $1 \Rightarrow 2$：$|\mathscr{A}(\vect{\alpha})|^2 = (\mathscr{A}(\vect{\alpha}), \mathscr{A}(\vect{\alpha})) = (\vect{\alpha}, \vect{\alpha}) = |\vect{\alpha}|^2$。
+			
+			\item $2 \Rightarrow 1$：取任意一组标准正交基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，那么：
+			$$
+			\begin{aligned}
+				|\vect{\varepsilon}_i + \vect{\varepsilon}_j|^2 & = |\mathscr{A}(\vect{\varepsilon}_i + \mathscr{A}(\vect{\varepsilon}_j)| \\
+				(\vect{\varepsilon}_i + \vect{\varepsilon}_j, \vect{\varepsilon}_i + \vect{\varepsilon}_j) & = (\mathscr{A}(\vect{\varepsilon}_i) + \mathscr{A}(\vect{\varepsilon}_j), \mathscr{A}(\vect{\varepsilon}_i) + \mathscr{A}(\vect{\varepsilon}_j)) \\
+				|\vect{\varepsilon}_i|^2 + |\vect{\varepsilon}_j|^2 + 2 (\vect{\varepsilon}_i, \vect{\varepsilon}_j) & = |\mathscr{A}(\vect{\varepsilon}_i)|^2 + |\mathscr{A}(\vect{\varepsilon}_j)|^2 + 2 (\mathscr{A}(\vect{\varepsilon}_i), \mathscr{A}(\vect{\varepsilon}_j)) \\
+			\end{aligned}
+			$$
+			而 $|\vect{\varepsilon}_i| = |\mathscr{A}(\vect{\varepsilon}_i)|, |\vect{\varepsilon}_j| = |\mathscr{A}(\vect{\varepsilon}_j)|$，因此 $(\vect{\varepsilon}_i, \vect{\varepsilon}_j) = (\mathscr{A}(\vect{\varepsilon}_i), \mathscr{A}(\vect{\varepsilon}_j))$。于是得证。
+			
+			\item $1 \Rightarrow 3$：$(\vect{\varepsilon}_i \vect{\varepsilon}_j) = (\mathscr{A}(\vect{\varepsilon}_i), \mathscr{A}(\vect{\varepsilon}_j)) = 0$。
+			
+			\item $3 \Rightarrow 4$：根据线性变换的矩阵的定义，若 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 是标准正交基，那么
+			$$
+			[\mathscr{A}(\vect{\varepsilon}_1), \mathscr{A}(\vect{\varepsilon}_2), \dots, \mathscr{A}(\vect{\varepsilon}_n)] = [\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n] \matr{A}
+			$$
+			而 $\mathscr{A}(\vect{\varepsilon}_1), \mathscr{A}(\vect{\varepsilon}_2), \dots, \mathscr{A}(\vect{\varepsilon}_n)$ 也是标准正交基，那么 $\matr{A}$ 也是正交矩阵。
+
+			\item $4 \Rightarrow 1$：取一组标准正交基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，设 $\matr{A}$ 是 $\mathscr{A}$ 在这组基下的矩阵。设：
+			$$
+			\vect{\alpha} = [\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n] \vect{x},\ \vect{\beta} = [\vect{\varepsilon}_1, \vect{\varepsilon}_2), \dots, \vect{\varepsilon}_n] \vect{y}
+			$$
+			其中 $\vect{x}, \vect{y} \in \mathbb{R}^n$。因此
+			$$
+			(\mathscr{A}(\vect{\alpha}), \mathscr{A}(\vect{\beta})) = \transpose{(\matr{A} \vect{x})} (\matr{A} \vect{y}) = \transpose{\vect{x}} \transpose{\matr{A}} \matr{A} \vect{y} = \transpose{\vect{x}} \vect{y} = (\vect{\alpha}, \vect{\beta})
+			$$
+		\end{itemize}
+	\end{proof}
+\end{theorem}
+
+\subsection{子空间}
+
+\begin{definition}[正交子空间]
+	对于欧几里德空间的两个子空间 $V, W$，若
+	$$
+	\forall\,\vect{\alpha} \in V, \vect{\beta} \in W: (\vect{\alpha}, \vect{\beta}) = 0
+	$$
+	则称 $V$ 与 $W$ 为\textbf{正交子空间}。
+\end{definition}
+
+\begin{theorem}
+	若 $V_1, V_2, \dots, V_n$ 两两正交，那么 $V_1 + V_2 + \cdots + V_n$ 是直和。
+
+	\begin{proof}
+		只需证明 $\vect{0}$ 表示唯一。设
+		$$
+		\vect{0} = \sum_{i=1}^n \vect{\alpha}_i \quad (\vect{\alpha}_i \in V_i)
+		$$
+		那么：
+		$$
+		0 = (\vect{0}, \vect{\alpha}_j) = \sum_{i=1}^n (\vect{\alpha}_i, \vect{\alpha}_j) = (\vect{\alpha}_j, \vect{\alpha}_j)
+		$$
+		因此 $\vect{\alpha}_j = \vect{0}$。
+	\end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	第九章习题 1
+
+	\begin{proof}
+		记 $\matr{A} = [c_{i,j}]$，那么：
+		$$
+		(\vect{\alpha}, \vect{\beta}) = \sum_{i=1}^n \sum_{j=1}^n x_i y_j c_{i,j}
+		$$
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			\begin{itemize}
+				\item 可交换：因为 $\matr{A}$ 是对称矩阵，易得 $(\vect{\alpha}, \vect{\beta}) = (\vect{\beta}, \vect{\alpha})$。
+				\item 双线性：$(k_1 \vect{\alpha}_1 + k_2 \vect{\alpha}_2, \vect{\beta}) = \transpose{(k_1 \vect{\alpha}_1 + k_2 \vect{\alpha}_2)} \matr{A} \vect{\beta} = k_1 \transpose{\vect{\alpha}_1} \matr{A} \vect{\beta} + k_2 \transpose{\vect{\alpha}_2} \matr{A} \vect{\beta} = k_1 (\vect{\alpha}_1, \vect{\beta}) + k_2 (\vect{\alpha}_2, \vect{\beta})$。
+				\item 正定性：因为 $\matr{A}$ 是正定矩阵，因此 $\transpose{\vect{x}} \matr{A} \vect{x} \ge 0$。
+			\end{itemize}
+			
+			故这是一个合法的内积，在此定义下 $\mathbb{R}^n$ 是欧几里德空间。
+
+			\item[\textbf{2)}] $(\vect{\varepsilon}_i, \vect{\varepsilon}_j) = c_{i,j}$，因此度量矩阵就是 $\matr{A}$。
+			\item[\textbf{3)}]
+			$$
+			\ab(\sum_{i=1}^n \sum_{j=1}^n x_i y_j c_{i,j})^2 \le \ab(\sum_{i=1}^n \sum_{j=1}^n x_i x_j c_{i,j}) \ab(\sum_{i=1}^n \sum_{j=1}^n y_i y_j c_{i,j})
+			$$
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\langle \vect{\alpha}, \vect{\beta} \rangle = \arccos \frac{0}{2 \sqrt{3} \cdot \sqrt{10}} = \frac{\pi}{2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 3
+
+	\begin{proof}
+		只需证 $\abs*{\vect{\alpha} + \vect{\beta}} \le \abs*{\vect{\alpha}} + \abs*{\vect{\beta}}$。而：
+		$$
+		\begin{aligned}
+			\abs*{\vect{\alpha} + \vect{\beta}}^2 & = (\vect{\alpha} + \vect{\beta}, \vect{\alpha} + \vect{\beta}) \\
+			& = \abs*{\vect{\alpha}}^2 + 2 (\vect{\alpha}, \vect{\beta}) + \abs*{\vect{\beta}}^2 \\
+			& \le \abs*{\vect{\alpha}}^2 + 2 \abs*{\vect{\alpha}} \abs*{\vect{\beta}} + \abs*{\vect{\beta}}^2 \\
+			& = (\abs*{\vect{\alpha}} + \abs*{\vect{\beta}})^2
+		\end{aligned}
+		$$
+		故得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 4
+
+	\begin{solution}
+		$$
+		\vect{\alpha} = \transpose{\rvec{-\frac{4}{\sqrt{26}}, 0, -\frac{1}{\sqrt{26}}, \frac{3}{\sqrt{26}}}}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 5
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 若 $\vect{\gamma} \neq \vect{0}$，那么取 $V$ 的一组正交基 $\vect{\varepsilon}_1', \vect{\varepsilon}_2', \dots, \vect{\varepsilon}_n'$，则
+			$$
+			\vect{\varepsilon}_1', \vect{\varepsilon}_2', \dots, \vect{\varepsilon}_n', \vect{\gamma}
+			$$
+			是正交向量组，因此也是线性无关组，而这是不可能的。因此 $\vect{\gamma} = \vect{0}$。
+
+			\item[\textbf{2)}]
+			$$
+			\begin{gathered}
+				\forall\,\vect{\alpha} \in V: (\vect{\gamma}_1, \vect{\alpha}) = (\vect{\gamma}_2, \vect{\alpha}) \\
+				\Rightarrow \forall\,\vect{\alpha} \in V: (\vect{\gamma}_1 - \vect{\gamma}_2, \vect{\alpha}) = 0 \\
+				\Rightarrow (\vect{\gamma}_1 - \vect{\gamma}_2, \vect{\gamma}_1 - \vect{\gamma}_2) = 0 \\
+				\Rightarrow \vect{\gamma}_1 - \vect{\gamma}_2 = \vect{0} \\
+			\end{gathered}
+			$$
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 7
+
+	\begin{solution}
+		使用 Schmidt 正交化方法，得到：
+		$$
+		\begin{gathered}
+			\vect{\eta}_1 = \frac{1}{\sqrt{2}} \ab(\vect{\varepsilon}_1 + \vect{\varepsilon}_5) \\
+			\vect{\eta}_2 = \frac{\sqrt{2}}{\sqrt{5}} \ab(-\frac{1}{2} \vect{\varepsilon}_1 + \vect{\varepsilon}_2 - \vect{\varepsilon}_4 + \frac{1}{2} \vect{\varepsilon}_5) \\
+			\vect{\eta}_3 = \frac{1}{2} \ab(\vect{\varepsilon}_1 + \vect{\varepsilon}_2 + \vect{\varepsilon}_3 - \vect{\varepsilon}_5)
+		\end{gathered}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 8
+	
+	\begin{solution}
+		解得一组基础解系：
+		$$
+		\vect{\varepsilon}_1 = \cvec{4, -5, 0, 0, 1},\ \vect{\varepsilon}_2 = \cvec{-1, 1, 0, 1, 0},\ \vect{\varepsilon}_3 = \cvec{0, 1, 1, 0, 0}
+		$$
+		运用 Schmidt 正交化方法：
+		$$
+		\vect{\eta}_1 = \frac{1}{\sqrt{42}} \cvec{4, -5, 0, 0, 1},\ \vect{\eta}_2 = \frac{1}{\sqrt{210}} \cvec{-2, -1, 0, 14, 3},\ \vect{\eta}_3 = \frac{1}{3 \sqrt{35}} \cvec{7, 6, 15, 1, 2}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 11
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 设有两组基
+			\begin{gather}
+				\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n \tag{1} \\
+				\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n \tag{2}
+			\end{gather}
+
+			设 $(1)$ 的度量矩阵为 $\matr{A}$，$(2)$ 的度量矩阵为 $\matr{B}$，$(1)$ 到 $(2)$ 的过渡矩阵为 $\matr{X}$。
+			
+			对于任意 $\vect{\alpha}, \vect{\beta} \in V$，设它们在基 $(1)$ 下坐标分别为 $\vect{x}, \vect{y}$，在基 $(2)$ 下坐标分别为 $\vect{x}', \vect{y}'$，那么：
+			$$
+			(\vect{\alpha}, \vect{\beta}) = \transpose{\vect{x}} \matr{A} \vect{y} = \transpose{\vect{x}'} \matr{B} \vect{y}'
+			$$
+
+			而根据基变换，有：
+			$$
+			\vect{x} = \matr{X} \vect{x}',\ \vect{y} = \matr{X} \vect{y}'
+			$$
+			于是得到
+			$$
+			(\vect{\alpha}, \vect{\beta}) = \transpose{(\matr{X} \vect{x}')} \matr{A} (\matr{X} \vect{y}') = \transpose{\vect{x}'} \ab(\transpose{\matr{X}} \matr{A} \matr{X}) \vect{y}'
+			$$
+			因此
+			$$
+			\matr{B} = \transpose{\matr{X}} \matr{A} \matr{X}
+			$$
+			也就是说 $\matr{A}, \matr{B}$ 合同。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 12
+
+	\begin{proof}
+		可以发现，当对矩阵
+		$$
+		\begin{bmatrix}
+			\vect{\alpha}_1 & \vect{\alpha}_2 & \cdots & \vect{\alpha}_n
+		\end{bmatrix}
+		$$
+		执行一次矩阵为 $P$ 的初等列变换，$\matr{\Delta}$ 就会相应地进行变换：
+		$$
+		\matr{\Delta} \mapsto \transpose{\matr{P}} \matr{\Delta} \matr{P}
+		$$
+		这样的变换不改变 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 的线性相关性，$\matr{\Delta}$ 也一直保持合同，$\det \matr{\Delta}$ 不变。
+
+		因此我们可以执行变换直到将 $\matr{\Delta}$ 对角化：
+		$$
+		\matr{\Delta} = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)
+		$$
+		也就是说，$\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 两两正交。在此条件下，我们有：
+		$$
+		\det \matr{\Delta} \neq 0 \Leftrightarrow \prod_{i=1}^n \lambda_i \neq 0 \Leftrightarrow \forall\,i \in \{1, 2, \dots, n\}: \vect{\alpha}_i \neq 0 \Leftrightarrow \vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n \text{ 线性无关}
+		$$
+		于是得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 13
+
+	\begin{proof}
+		使用数学归纳法。首先 $n = 1$ 时命题显然成立。下面假设 $n - 1$ 时命题成立，那么 $n$ 时：
+
+		对于一个 $n$ 阶上三角正交矩阵 $\matr{A}$，前 $n - 1$ 个列向量两两正交，第 $n$ 行的前 $n - 1$ 个元素均为 $0$，因此可以推得前 $n - 1$ 行、前 $n - 1$ 列组成的子矩阵是正交矩阵，根据归纳假设，它也是对角矩阵。因此 $\matr{A}$ 可以写为：
+		$$
+		\matr{A} = \begin{bmatrix}
+			\lambda_1 & & & & a_1 \\
+			& \lambda_2 & & & a_2 \\
+			& & \ddots & & \vdots \\
+			& & & \lambda_{n-1} & a_{n-1} \\
+			0 & 0 & \cdots & 0 & a_n
+		\end{bmatrix}
+		$$
+		又因为 $\matr{A}$ 的行向量两两正交，容易得到：
+		$$
+		\forall\, i, j \in \{1, 2, \dots, n\}: a_i a_j = 0
+		$$
+		而正交矩阵不能出现全 $0$ 的行，因此 $a_n \neq 0$，于是 $a_1 = a_2 = \cdots = a_{n-1} = 0$。因此 $\matr{A}$ 是对角矩阵。再根据 $\det \matr{A} = \pm 1$ 易证 $a_n = \pm 1$。
+		
+		至此命题得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 14
+
+	\begin{proof}
+		\begin{itemize}
+			\item[\textbf{1)}] 先证明存在性：设
+			$$
+			\matr{A} = \begin{bmatrix}
+				\vect{\alpha}_1 & \vect{\alpha}_2 & \cdots & \vect{\alpha}_n
+			\end{bmatrix}
+			$$
+			那么对 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 做 Schmidt 正交化：
+			$$
+			\vect{\eta}_k = \vect{\alpha}_k - \sum_{j=1}^{k-1} \frac{(\vect{\alpha}_k, \vect{\alpha}_j)}{(\vect{\alpha}_j, \vect{\alpha}_j)} \vect{\eta}_j
+			$$
+			那么很容易得到 $\vect{\eta}_k$ 可以由 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_k$ 线性表示，也就是说：
+			$$
+			\matr{A} = \begin{bmatrix}
+				\vect{\eta}_1 & \vect{\eta}_2 & \cdots & \vect{\eta}_n
+			\end{bmatrix} \begin{bmatrix}
+				t_{1,1} & t_{1,2} & \cdots & t_{1,n} \\
+				0 & t_{2,2} & \cdots & t_{2,n} \\
+				\vdots & \vdots & \ddots & \vdots \\
+				0 & 0 & \cdots & t_{n,n}
+			\end{bmatrix}
+			$$
+			那么就得到 $\matr{A} = \matr{Q} \matr{T}$。
+
+			再证明唯一性：若存在
+			$$
+			\matr{A} = \matr{Q}_1 \matr{T}_1 = \matr{Q}_2 \matr{T}_2
+			$$
+			那么：
+			$$
+			\matr{Q}_2^{-1} \matr{Q}_1 = \matr{T}_2 \matr{T}_1^{-1} \
+			$$
+			等式左侧是正交矩阵，右侧是上三角矩阵，根据习题 13 的结论，它们一定是对角矩阵，且对角元为 $\pm 1$。
+
+			而 $\matr{T}_1, \matr{T}_2^{-1}$ 对角元均为正，因此：
+			$$
+			\matr{Q}_2^{-1} \matr{Q}_1 = \matr{T}_2 \matr{T}_1^{-1} = \matr{E}
+			$$
+			于是自然得到 $\matr{Q}_1 = \matr{Q}_2,\ \matr{T}_1 = \matr{T}_2$。
+
+			\item[\textbf{2)}] 正定矩阵可以化为标准型 $\matr{E}$。下面构造一种算法将其化为 $\matr{E}$：
+			
+			首先，对于任何正定矩阵，角元必定为正，否则容易构造一组数代入得到非正数。
+
+			假设已经将矩阵化为如下形式：
+			$$
+			\matr{A} = \begin{bmatrix}
+				1 & & & & & \\
+				& 1 & & & & \\
+				& & \ddots & & & \\
+				& & & 1 & & \\
+				& & & & a_{m,m} & a_{m,m+1} & \cdots & a_{m,n} \\
+				& & & & a_{m+1,m} & a_{m+1,m+1} & \cdots & a_{m+1,n} \\
+				& & & & \vdots & \vdots & \ddots & \vdots \\
+				& & & & a_{n,m} & a_{n,m+1} & \cdots & a_{n,n}
+			\end{bmatrix}
+			$$
+			那么构造合同变换矩阵：
+			$$
+			\matr{C} = \begin{bmatrix}
+				1 & & & & & \\
+				& 1 & & & & \\
+				& & \ddots & & & \\
+				& & & 1 & & \\
+				& & & & \frac{1}{a_{m,m}} & -\frac{a_{m,m+1}}{a_{m,m}} & \cdots & -\frac{a_{m,n}}{a_{m,m}} \\
+				& & & & & 1 & & \\
+				& & & & & & \ddots & \\
+				& & & & & & & 1
+			\end{bmatrix}
+			$$
+			那么 $\transpose{\matr{C}} \matr{A} \matr{C}$ 的变换效果就是用 $a_{m,m}$ 来将第 $m$ 行、第 $m$ 列都消成 $0$，再把 $a_{m,m}$ 归一。
+
+			将上述过程进行 $n$ 次，就成功使用合同变换将 $\matr{A}$ 化为 $\matr{E}$。而每次变换矩阵都是上三角矩阵，因此总的矩阵也是上三角矩阵。即 $\matr{E} = \transpose{\matr{T}} \matr{A} \matr{T} \Rightarrow \matr{A} = \transpose{\ab(\matr{T}^{-1})} \matr{T}^{-1}$。
+		\end{itemize}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 15
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				(\mathscr{A}(\vect{\alpha}), \mathscr{A}(\vect{\beta})) & = (\vect{\alpha} - 2 (\vect{\eta}, \vect{\alpha}) \vect{\eta}, \vect{\beta} - 2 (\vect{\eta}, \vect{\beta}) \vect{\eta}) \\
+				& = (\vect{\alpha}, \vect{\beta}) - 2 (\vect{\eta}, \vect{\alpha}) (\vect{\eta}, \vect{\beta}) - 2 (\vect{\eta}, \vect{\beta}) (\vect{\eta}, \vect{\alpha}) + 4 (\vect{\eta}, \vect{\alpha}) (\vect{\eta}, \vect{\beta}) (\vect{\eta}, \vect{\eta}) \\
+				& = (\vect{\alpha}, \vect{\beta})
+			\end{aligned}
+			$$
+			其中因为 $\vect{\eta}$ 是单位向量，所以 $(\vect{\eta}, \vect{\eta}) = 1$。
+		
+			\item[\textbf{2)}] 设 $\mathscr{A}$ 在某组标准正交基下的矩阵为 $\matr{A}$，$\eta$ 在这组基下坐标为 $\vect{\xi}$，那么：
+			$$
+			\matr{A} \vect{x} = \vect{x} - 2 \vect{\xi} (\transpose{\vect{\xi}} \vect{x}) \Rightarrow \matr{A} = \matr{E} - 2 \vect{\xi} \transpose{\vect{\xi}}
+			$$
+			因为基变换不影响 $\det \matr{A}$，不妨取一个巧妙的基使得 $\vect{\xi} = \transpose{[1, 0, \dots, 0]}$。那么 $\det \matr{A} = \det \diag(-1, 1, \dots, 1) = -1$。
+			
+			故 $\mathscr{A}$ 是第二类的。
+
+			\item[\textbf{3)}] 取 $V_1$ 的一组标准正交基
+			$$
+			\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_{n-1}
+			$$
+			再扩充一个向量，使其成为 $V$ 的一组标准正交基
+			$$
+			\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_{n-1}, \vect{\varepsilon}_n
+			$$
+			那么可得 $\mathscr{A}$ 在这组基下的矩阵为
+			$$
+			\matr{A} = \begin{bmatrix}
+				1 & & & & a_1 \\
+				& 1 & & & a_2 \\
+				& & \ddots & & \vdots \\
+				& & & 1 & a_{n-1} \\
+				& & & & x
+			\end{bmatrix}
+			$$
+			因为 $\matr{A}$ 是正交矩阵，根据行向量两两正交、列向量两两正交，可得 $a_1 = a_2 = \cdots = a_{n-1} = 0$。再根据 $\det \matr{A} = \pm 1$，可得 $x = \pm 1$。若 $x = 1$ 那么 $\vect{\varepsilon}_n$ 的特征值也为 $1$，这与 $\dim V_1 = n - 1$ 矛盾。因此 $x = -1$。
+
+			那么，对于任意向量 $\vect{\alpha} = \sum_{i=1}^n a_i \vect{\varepsilon}_i$，我们有：
+			$$
+			\mathscr{A}(\vect{\alpha}) = \sum_{i=1}^n a_i \mathscr{A}(\vect{\varepsilon}_i) = \sum_{i=1}^{n-1} a_i \vect{\varepsilon}_i - a_n \vect{\varepsilon}_n = \vect{\alpha} - 2 (\vect{\varepsilon}_n, \vect{\alpha}) \vect{\varepsilon}_n
+			$$
+			也就是说 $\vect{\varepsilon}_n$ 就是镜面反射对应的 $\vect{\eta}$，$\mathscr{A}$ 就是一个镜面反射。可喜可贺，可喜可贺。
+		\end{enumerate}
+	\end{proof}
+\end{problem}

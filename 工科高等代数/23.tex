@@ -1,0 +1,226 @@
+\section{欧几里德空间}
+
+\subsection{欧几里德空间}
+
+\begin{definition}[内积与欧几里德空间]
+	设 $V$ 是 $\mathbb{R}$ 上的线性空间，若能在 $V$ 上定义一个二元实函数，称为\textbf{内积}，记作 $(\vect{\alpha}, \vect{\beta})$，其满足：
+	\begin{itemize}
+		\item $(\vect{\alpha}, \vect{\beta}) = (\vect{\beta}, \vect{\alpha})$；
+		\item $(k \vect{\alpha}, \vect{\beta}) = k (\vect{\alpha}, \vect{\beta})$；
+		\item $(\vect{\alpha} + \vect{\gamma}, \vect{\beta}) = (\vect{\alpha}, \vect{\beta}) + (\vect{\gamma}, \vect{\beta})$；
+		\item $(\vect{\alpha}, \vect{\alpha}) \ge 0$。
+	\end{itemize}
+	那么就称 $V$ 为一个\textbf{欧几里得空间}。
+\end{definition}
+
+\begin{example}
+	如在线性空间 $\mathbb{R}^n$ 中，我们可以定义内积：
+	$$
+	\ab(\transpose{[x_1, x_2, \dots, x_n]}, \transpose{[y_1, y_2, \dots, y_n]}) = \sum_{i=1}^n x_i y_i
+	$$
+	那么 $\mathbb{R}^n$ 就成一个欧几里得空间。
+
+	这种内积被称为标准内积。
+\end{example}
+
+\begin{example}
+	在 $[a, b]$ 上的所有实连续函数构成的空间 $C[a, b]$ 中，定义内积：
+	$$
+	(f, g) = \int_a^b f(x) g(x) \,\dif{x}
+	$$
+	那么 $C[a, b]$ 就成一个欧几里得空间。
+\end{example}
+
+由于 $(\vect{\alpha}, \vect{\alpha}) \ge 0$，我们可以对其开平方根，于是可以定义欧几里德空间中向量的长度：
+
+\begin{definition}
+	对于欧几里德空间 $V$ 中的向量 $\vect{\alpha}$，定义其长度为：
+	$$
+	\abs*{\vect{\alpha}} = \sqrt{(\vect{\alpha}, \vect{\alpha})}
+	$$
+\end{definition}
+
+\begin{property}
+	设 $V$ 是一个欧几里德空间，那么： 
+	$$
+	\forall\,k \in \mathbb{R}, \vect{\alpha} \in V: \abs*{k \vect{\alpha}} = |k| |\vect{\alpha}|
+	$$
+\end{property}
+
+\begin{property}[柯西-布涅科夫斯基不等式]
+	设 $V$ 是一个欧几里德空间，那么：
+	$$
+	\forall\,\vect{\alpha}, \vect{\beta} \in V: |(\vect{\alpha}, \vect{\beta})| \le \abs*{\vect{\alpha}} \abs*{\vect{\beta}}
+	$$
+	等号在 $\vect{\alpha}, \vect{\beta}$ 线性相关时取等。
+	\begin{proof}
+		不妨先设 $\vect{\beta} \neq \vect{0}$。那么我们要证：
+		$$
+		(\vect{\alpha}, \vect{\beta})^2 \le (\vect{\alpha}, \vect{\alpha})(\vect{\beta}, \vect{\beta})
+		$$
+		令 $\vect{\gamma} = \vect{\alpha} + t \vect{\beta}$，那么：
+		$$
+		(\vect{\gamma}, \vect{\gamma}) = (\vect{\alpha}, \vect{\alpha})^2 + 2 (\vect{\alpha}, \vect{\beta}) t + (\vect{\beta}, \vect{\beta}) t^2 \ge 0
+		$$
+		而 $(\vect{\beta}, \vect{\beta}) > 0$，那么：
+		$$
+		\Delta = \ab(2(\vect{\alpha}, \vect{\beta}))^2 - 4(\vect{\alpha}, \vect{\alpha})(\vect{\beta}, \vect{\beta}) \le 0
+		$$
+		即证。
+	\end{proof}
+\end{property}
+
+在空间 $\mathbb{R}^n$ 中，上述不等式就具有下面的形式：
+$$
+\ab(\sum_{i=1}^n a_i b_i)^2 \le \ab(\sum_{i=1}^n a_i^2) \ab(\sum_{i=1}^n b_i^2)
+$$
+
+此外，从柯西不等式还能推导得到三角不等式：
+$$
+|\vect{\alpha} + \vect{\beta}| \le |\vect{\alpha}| + |\vect{\beta}|
+$$
+
+\begin{definition}[单位向量]
+	在欧几里德空间中，长度为 $1$ 的向量称为单位向量。
+
+	对于任意非零向量 $\vect{\alpha}$，可知 $\frac{\vect{\alpha}}{|\vect{\alpha}|}$，这个过程称为向量的单位化。
+\end{definition}
+
+\begin{definition}[夹角]
+	在欧几里德空间中，定义两向量 $\vect{\alpha}, \vect{\beta}$ 的夹角：
+	$$
+	\ab\langle \vect{\alpha}, \vect{\beta} \rangle = \arccos \frac{|(\vect{\alpha}, \vect{\beta})|}{|\vect{\alpha}| |\vect{\beta}|}
+	$$
+\end{definition}
+
+\subsection{正交向量组}
+
+\begin{definition}[正交]
+	若 $V$ 是欧几里德空间，$\vect{\alpha}, \vect{\beta} \in V$ 满足
+	$$
+	(\vect{\alpha}, \vect{\beta}) = 0
+	$$
+	或等价地满足
+	$$
+	\ab\langle \vect{\alpha}, \vect{\beta} \rangle = \frac{\pi}{2}
+	$$
+	那么称 $\vect{\alpha}, \vect{\beta}$ 正交。记作 $\vect{\alpha} \bot \vect{\beta}$。
+\end{definition}
+
+\begin{property}[勾股定理]
+	若欧几里德空间 $V$ 中的向量 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 两两正交，那么：
+	$$
+	\abs*{\sum_{i=1}^n \vect{\alpha}_i}^2 = \sum_{i=1}^n \abs*{\vect{\alpha}_i}^2
+	$$
+\end{property}
+
+对于欧几里德空间 $V$ 的一组基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，若：
+$$
+\vect{\alpha} = \sum_{i=1}^n x_i \vect{\varepsilon}_i,\ \vect{\beta} = \sum_{i=1}^n y_i \vect{\varepsilon}_i
+$$
+那么可以发现：
+$$
+(\vect{\alpha}, \vect{\beta}) = \sum_{i=1}^n \sum_{j=1}^n x_i y_j (\varepsilon_i, \varepsilon_j) = \transpose{\vect{x}} \matr{A} \vect{y}
+$$
+其中 $\matr{A} = [(\varepsilon_i, \varepsilon_j)]$。
+
+\begin{definition}[度量矩阵]
+	对于欧几里德空间 $V$ 下的一组基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，定义
+	$$
+	\matr{A} = \cvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \vdots, \vect{\varepsilon}_n} \cdot \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n} = \begin{bmatrix}
+		(\vect{\varepsilon}_1, \vect{\varepsilon}_1) & (\vect{\varepsilon}_1, \vect{\varepsilon}_2) & \cdots & (\vect{\varepsilon}_1, \vect{\varepsilon}_n) \\
+		(\vect{\varepsilon}_2, \vect{\varepsilon}_1) & (\vect{\varepsilon}_2, \vect{\varepsilon}_2) & \cdots & (\vect{\varepsilon}_2, \vect{\varepsilon}_n) \\
+		\vdots & \vdots & \ddots & \vdots \\
+		(\vect{\varepsilon}_n, \vect{\varepsilon}_1) & (\vect{\varepsilon}_n, \vect{\varepsilon}_2) & \cdots & (\vect{\varepsilon}_n, \vect{\varepsilon}_n)
+	\end{bmatrix}
+	$$
+	为 $V$ 在这组基下的\textbf{度量矩阵}。
+\end{definition}
+
+当知道度量矩阵后，任意两向量的内积都可以根据坐标进行计算。因而度量矩阵完全确定内积。
+
+\begin{property}
+	对于欧几里德空间中的两组基：
+	$$
+	\begin{gathered}
+		\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n \\
+		\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n
+	\end{gathered}
+	$$
+	若其满足：
+	$$
+	\rvec{\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n} = \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n} \matr{C}
+	$$
+	且 $\matr{A}$ 是 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 的度量矩阵，$\matr{B}$ 是 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n$ 的度量矩阵，那么：
+	$$
+	\matr{B} = \transpose{\matr{C}} \matr{A} \matr{C}
+	$$
+\end{property}
+
+也就是说，欧几里德空间下的基变换对应于度量矩阵的合同变换。
+
+\begin{definition}[正交向量组]
+	若欧几里德空间 $V$ 下的一组非零向量 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 满足其两两正交，那么称这组向量为\textbf{正交向量组}。
+\end{definition}
+
+\begin{property}
+	正交向量组是线性无关的。
+\end{property}
+
+\begin{definition}[标准正交基]
+	对于欧几里德空间 $V$ 下的一组基，若它的向量两两正交且长度为 $1$，那么称这组基为\textbf{标准正交基}。
+\end{definition}
+
+因为任意正定矩阵都合同于单位矩阵，因此可以断言标准正交基是存在的。
+
+\begin{property}
+	在标准正交基下，$\vect{\alpha}, \vect{\beta}$ 的坐标分别为 $\vect{x}, \vect{y}$，那么：
+	$$
+	(\vect{\alpha}, \vect{\beta}) = \sum_{i=1}^n x_i y_i = \transpose{\vect{x}} \vect{y}
+	$$
+\end{property}
+
+\begin{theorem}
+	对于 $V$ 的一组正交向量组 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_m$，且 $|\vect{\alpha}_i| = 1$，其可以扩充成一组标准正交基。
+\end{theorem}
+
+\begin{theorem}
+	对于欧几里德空间 $V$ 中一个线性无关向量组 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，存在一个正交向量组 $\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n$ 使得
+	$$
+	L(\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n) = L(\vect{\eta}_1, \vect{\eta}_2, \dots, \vect{\eta}_n)
+	$$
+
+	\begin{proof}
+		首先，令 $\vect{\eta}_1 = \vect{\varepsilon}_1$。由于 $\vect{\varepsilon}_1$ 是非零向量，因此 $|\vect{\eta}_1| \ne 0$。对于 $k=2, 3, \dots, n$，我们构造向量 $\vect{\eta}_k$ 如下：
+		$$
+		\vect{\eta}_k = \vect{\varepsilon}_k - \sum_{j=1}^{k-1} \frac{(\vect{\varepsilon}_k, \vect{\eta}_j)}{|\vect{\eta}_j|^2} \vect{\eta}_j
+		$$
+		其中 $\frac{(\vect{\varepsilon}_k, \vect{\eta}_j)}{|\vect{\eta}_j|^2}$ 是将 $\vect{\varepsilon}_k$ 在 $\vect{\eta}_j$ 方向上的投影系数。
+
+		下面我们证明 $\vect{\eta}_k$ 与 $\vect{\eta}_1, \dots, \vect{\eta}_{k-1}$ 正交。我们采用归纳法。假设 $\vect{\eta}_1, \dots, \vect{\eta}_{k-1}$ 已经两两正交。对于任意 $i \in \{1, 2, \dots, k-1\}$，计算内积：
+		$$
+		\begin{aligned}
+			(\vect{\eta}_k, \vect{\eta}_i) &= \left(\vect{\varepsilon}_k - \sum_{j=1}^{k-1} \frac{(\vect{\varepsilon}_k, \vect{\eta}_j)}{|\vect{\eta}_j|^2} \vect{\eta}_j, \vect{\eta}_i\right) \\
+			&= (\vect{\varepsilon}_k, \vect{\eta}_i) - \sum_{j=1}^{k-1} \frac{(\vect{\varepsilon}_k, \vect{\eta}_j)}{|\vect{\eta}_j|^2} (\vect{\eta}_j, \vect{\eta}_i)
+		\end{aligned}
+		$$
+		由于 $\vect{\eta}_1, \dots, \vect{\eta}_{k-1}$ 两两正交，所以当 $j \ne i$ 时，$(\vect{\eta}_j, \vect{\eta}_i) = 0$；当 $j=i$ 时，$(\vect{\eta}_j, \vect{\eta}_i) = |\vect{\eta}_i|^2$。
+		因此，求和项中只有 $j=i$ 的那一项非零：
+		$$
+		\sum_{j=1}^{k-1} \frac{(\vect{\varepsilon}_k, \vect{\eta}_j)}{|\vect{\eta}_j|^2} (\vect{\eta}_j, \vect{\eta}_i) = \frac{(\vect{\varepsilon}_k, \vect{\eta}_i)}{|\vect{\eta}_i|^2} (\vect{\eta}_i, \vect{\eta}_i) = \frac{(\vect{\varepsilon}_k, \vect{\eta}_i)}{|\vect{\eta}_i|^2} |\vect{\eta}_i|^2 = (\vect{\varepsilon}_k, \vect{\eta}_i)
+		$$
+		代回原式，得到：
+		$$
+		(\vect{\eta}_k, \vect{\eta}_i) = (\vect{\varepsilon}_k, \vect{\eta}_i) - (\vect{\varepsilon}_k, \vect{\eta}_i) = 0
+		$$
+		这证明了 $\vect{\eta}_k$ 与所有 $\vect{\eta}_1, \dots, \vect{\eta}_{k-1}$ 都是正交的。
+		由于 $\vect{\varepsilon}_1, \dots, \vect{\varepsilon}_n$ 线性无关，所以 $\vect{\eta}_k \ne \vect{0}$。
+
+		于是我们就得到了一个正交向量组 $\vect{\eta}_1, \dots, \vect{\eta}_n$ 满足
+		$$
+		L(\vect{\varepsilon}_1, \dots, \vect{\varepsilon}_k) = L(\vect{\eta}_1, \dots, \vect{\eta}_k)
+		$$
+
+		这种构造称为 \textbf{Schmidt 正交化方法}。
+	\end{proof}
+\end{theorem}
