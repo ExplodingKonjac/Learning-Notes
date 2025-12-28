@@ -35,6 +35,7 @@
 \RequirePackage{pgfkeys}
 \RequirePackage{ifplatform}
 \RequirePackage{mathtools}
+\RequirePackage{physics}
 \RequirePackage{physics2}
 \RequirePackage{etoolbox}
 
@@ -161,7 +162,7 @@
 % linear algebra
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 \newcommand{\matr}[1]{\boldsymbol{#1}}
-\newcommand{\tr}{\operatorname{tr}}
+% \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\image}{\operatorname{Im}}
 \newcommand{\transpose}[1]{{#1}^\top}
 \newcommand{\diag}{\operatorname{diag}}
@@ -179,13 +180,10 @@
 }
 \ExplSyntaxOff
 
-% calculus
-\newcommand{\dif}{\mathrm{d}}
-
 % some functions
 \newcommand{\sgn}{\operatorname{sgn}}
 \newcommand{\lcm}{\operatorname{lcm}}
-\newcommand{\rank}{\operatorname{rank}}
+% \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\bitnot}{\operatorname{NOT}}
 \newcommand{\bitand}{\operatorname{AND}}
 \newcommand{\bitor}{\operatorname{OR}}
@@ -196,7 +194,6 @@
 
 % probability theory
 \newcommand{\expect}[1]{\operatorname{\mathbb{E}}\left[#1\right]}
-\newcommand{\var}[1]{\operatorname{Var}\left(#1\right)}
 \newcommand{\cov}[2]{\operatorname{Cov}\left(#1, #2\right)}
 \newcommand{\prob}[1]{\operatorname{\mathbb{P}}\left(#1\right)}
 
@@ -206,7 +203,10 @@
 \patchcmd{\bbordermatrix}{\right)}{\right]}{}{}
 
 % paired delimiters
-\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+
+% some texts
+\newcommand{\lhs}{\text{LHS}}
+\newcommand{\rhs}{\text{RHS}}
+\newcommand{\origin}{\text{原式}}

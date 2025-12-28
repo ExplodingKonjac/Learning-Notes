@@ -35,21 +35,21 @@ $$
 	\item $\frac{M x + N}{(x^2 + p x + q)^k}$：因为 $x^2 + p x + q = \ab(x + \frac{p}{2})^2 + \ab(q - \frac{p^2}{4})$，因此可以令 $t \gets x + \frac{p}{2}$。设 $x^2 + p x + q = t^2 + a^2,\ M x + N = M t + b$。
 	$$
 	\begin{aligned}
-		\int \frac{M x + N}{(x^2 + p x + q)^k} \dif x & = \int \frac{M t + b}{(t^2 + a^2)^k} \dif t \\
-		& = M \int \frac{t}{(t^2 + a^2)^k} \dif t + \int \frac{b}{(t^2 + a^2)^k} \dif t \\
+		\int \frac{M x + N}{(x^2 + p x + q)^k} \dd x & = \int \frac{M t + b}{(t^2 + a^2)^k} \dd t \\
+		& = M \int \frac{t}{(t^2 + a^2)^k} \dd t + \int \frac{b}{(t^2 + a^2)^k} \dd t \\
 	\end{aligned}
 	$$
 	对这两部分分开考虑。先考虑简单的：
 	$$
 	\begin{aligned}
-		I_1 & = \int \frac{\dif t}{t^2 + a^2} = \frac{1}{a} \arctan \frac{t}{a} + C \\
-		I_k & = \int \frac{\dif t}{(t^2 + a^2)^k} = \frac{1}{a^2} \int \frac{(t^2 + a^2) - t^2}{(t^2 + a^2)^k} \dif t \\
-		& = \frac{1}{a^2} I_{n-1} - \frac{1}{a^2} \int \frac{t^2}{(t^2 + a^2)^k} \dif t \\
-		& = \frac{1}{a^2} I_{n-1} + \frac{1}{2 a^2 (n-1)} \int t \dif \ab(\frac{1}{(t^2 + a^2)^{n-1}}) \\
+		I_1 & = \int \frac{\dd t}{t^2 + a^2} = \frac{1}{a} \arctan \frac{t}{a} + C \\
+		I_k & = \int \frac{\dd t}{(t^2 + a^2)^k} = \frac{1}{a^2} \int \frac{(t^2 + a^2) - t^2}{(t^2 + a^2)^k} \dd t \\
+		& = \frac{1}{a^2} I_{n-1} - \frac{1}{a^2} \int \frac{t^2}{(t^2 + a^2)^k} \dd t \\
+		& = \frac{1}{a^2} I_{n-1} + \frac{1}{2 a^2 (n-1)} \int t \dd \ab(\frac{1}{(t^2 + a^2)^{n-1}}) \\
 		& = \frac{1}{a^2} I_{n-1} + \frac{1}{2 a^2 (n-1)} \ab(\frac{t}{(t^2 + a^2)^{n-1}} - I_{n-1}) \\
 	\end{aligned}
 	$$
-	于是可以进行递推。同时在这个推导过程中实际上也解决了 $\displaystyle \int \frac{t}{(t^2 + a^2)^k} \dif t$ 的求法。于是这个积分被解决了。
+	于是可以进行递推。同时在这个推导过程中实际上也解决了 $\displaystyle \int \frac{t}{(t^2 + a^2)^k} \dd t$ 的求法。于是这个积分被解决了。
 \end{itemize}
 
 至此我们成功证明，所有有理函数都可积，并且原函数是初等函数。
@@ -67,7 +67,7 @@ $$
 \end{gathered}
 $$
 
-同时，若记 $u = \tan \frac{x}{2}$，我们可以得到 $\dif x = \dif \ab(2 \arctan u) = \frac{2}{1 + u^2} \dif u$，也是一个有理函数。因此三角有理式的积分在使用万能公式代换之后，可以转换为关于 $u$ 的有理函数积分。
+同时，若记 $u = \tan \frac{x}{2}$，我们可以得到 $\dd x = \dd \ab(2 \arctan u) = \frac{2}{1 + u^2} \dd u$，也是一个有理函数。因此三角有理式的积分在使用万能公式代换之后，可以转换为关于 $u$ 的有理函数积分。
 
 \subsection{简单无理函数的积分}
 
@@ -82,23 +82,23 @@ $$
 		\begin{enumerate}
 			\item[\textbf{2)}]
 			$$
-			\text{原式} = \int \E^x \dif x - 2 \int \sin x \dif x + 2 \int x^{1.5} \dif x = \E^x + 2 \cos x + \frac{4}{5} x^{2.5} + C
+			\text{原式} = \int \E^x \dd x - 2 \int \sin x \dd x + 2 \int x^{1.5} \dd x = \E^x + 2 \cos x + \frac{4}{5} x^{2.5} + C
 			$$
 			\item[\textbf{4)}]
 			$$
-			\text{原式} = \int \frac{1 - \cos^2 x}{\cos x} \dif x = \int \ab(\sec^2 x - 1) \dif x = \tan x - x + C
+			\text{原式} = \int \frac{1 - \cos^2 x}{\cos x} \dd x = \int \ab(\sec^2 x - 1) \dd x = \tan x - x + C
 			$$
 			\item[\textbf{6)}]
 			$$
-			\text{原式} = \int \frac{\cos^2 x - \sin^2 x}{\sin^2 x \cos^2 x} \dif x = \int \ab(\csc^2 x - \sec^2 x) \dif x = -\cot x - \tan x + C
+			\text{原式} = \int \frac{\cos^2 x - \sin^2 x}{\sin^2 x \cos^2 x} \dd x = \int \ab(\csc^2 x - \sec^2 x) \dd x = -\cot x - \tan x + C
 			$$
 			\item[\textbf{8)}]
 			$$
-			\text{原式} = \int \sec^2 x + \int \frac{\sin x}{\cos^2 x} \dif x = \tan x - \int \frac{\dif \cos x}{\cos^2 x} = \tan x + \sec x + C
+			\text{原式} = \int \sec^2 x + \int \frac{\sin x}{\cos^2 x} \dd x = \tan x - \int \frac{\dd \cos x}{\cos^2 x} = \tan x + \sec x + C
 			$$
 			\item[\textbf{10)}]
 			$$
-			\text{原式} = \int \ab(\E^{2x} + \E^x + 1) \dif x = \frac{1}{2} \E^{2x} + \E^x + x + C
+			\text{原式} = \int \ab(\E^{2x} + \E^x + 1) \dd x = \frac{1}{2} \E^{2x} + \E^x + x + C
 			$$
 			\item[\textbf{12)}]
 			$$
@@ -106,23 +106,23 @@ $$
 			$$
 			\item[\textbf{14)}]
 			$$
-			\text{原式} = \int \frac{\E^x \dif x}{\E^x (\E^x - 1)} = \int \ab(\frac{1}{\E^x - 1} - \frac{1}{\E^x}) \dif \E^x = \ln (\E^x - 1) - x + C
+			\text{原式} = \int \frac{\E^x \dd x}{\E^x (\E^x - 1)} = \int \ab(\frac{1}{\E^x - 1} - \frac{1}{\E^x}) \dd \E^x = \ln (\E^x - 1) - x + C
 			$$
 			\item[\textbf{16)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int 2 \sin x \cos x (4 \cos^3 x - 3 \cos x) \dif x \\
-				& = -2 \int (4 \cos^4 x - 3 \cos^2 x) \dif \cos x \\
+				\text{原式} & = \int 2 \sin x \cos x (4 \cos^3 x - 3 \cos x) \dd x \\
+				& = -2 \int (4 \cos^4 x - 3 \cos^2 x) \dd \cos x \\
 				& = -\frac{8}{5} \cos^5 x + 2 \cos^3 x + C
 			\end{aligned}
 			$$
 			\item[\textbf{18)}]
 			$$
-			\text{原式} = \int (x^3 - 3x^{2.5} + 3x^2 - x^{1.5}) \dif x = \frac{1}{4} x^4 - \frac{6}{7} x^{3.5} + x^3 - \frac{2}{5} x^{2.5} + C
+			\text{原式} = \int (x^3 - 3x^{2.5} + 3x^2 - x^{1.5}) \dd x = \frac{1}{4} x^4 - \frac{6}{7} x^{3.5} + x^3 - \frac{2}{5} x^{2.5} + C
 			$$
 			\item[\textbf{20)}]
 			$$
-			\text{原式} = \int \frac{\dif x}{1 + 2 \cos^2 x - 1} = \frac{1}{2} \int \sec^2 x \dif x = \frac{1}{2} \tan x + C
+			\text{原式} = \int \frac{\dd x}{1 + 2 \cos^2 x - 1} = \frac{1}{2} \int \sec^2 x \dd x = \frac{1}{2} \tan x + C
 			$$
 		\end{enumerate}
 	\end{solution}
@@ -136,64 +136,64 @@ $$
 			\item[\textbf{3)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\dif x}{1 - 2 \sin \frac{x}{2} \cos \frac{x}{2}} = \int \frac{\dif x}{\ab(\sin \frac{x}{2} + \cos \frac{x}{2})^2} \\
-				& = \int \frac{\dif x}{2 \cos^2 \ab(\frac{x}{2} - \frac{\pi}{4})} = \int \frac{\dif \ab(\frac{x}{2} - \frac{\pi}{4})}{\cos^2 (\frac{x}{2} - \frac{\pi}{4})} \\
+				\text{原式} & = \int \frac{\dd x}{1 - 2 \sin \frac{x}{2} \cos \frac{x}{2}} = \int \frac{\dd x}{\ab(\sin \frac{x}{2} + \cos \frac{x}{2})^2} \\
+				& = \int \frac{\dd x}{2 \cos^2 \ab(\frac{x}{2} - \frac{\pi}{4})} = \int \frac{\dd \ab(\frac{x}{2} - \frac{\pi}{4})}{\cos^2 (\frac{x}{2} - \frac{\pi}{4})} \\
 				& = \tan\ab(\frac{x}{2} - \frac{\pi}{4}) + C
 			\end{aligned}
 			$$
 			\item[\textbf{4)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{2(x + 2)}{((x + 2)^2 + 1)^2} \dif x = \int \frac{\dif (x + 2)^2}{((x + 2)^2 + 1)^2} \\
+				\text{原式} & = \int \frac{2(x + 2)}{((x + 2)^2 + 1)^2} \dd x = \int \frac{\dd (x + 2)^2}{((x + 2)^2 + 1)^2} \\
 				& = -\frac{1}{(x + 2)^2 + 1}
 			\end{aligned}
 			$$
 			\item[\textbf{6)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = -\frac{1}{3} \int (5 - 3x)^{-\frac{1}{3}} \dif (5 - 3x) = -\frac{1}{2} (5 - 3x)^{\frac{2}{3}}
+				\text{原式} & = -\frac{1}{3} \int (5 - 3x)^{-\frac{1}{3}} \dd (5 - 3x) = -\frac{1}{2} (5 - 3x)^{\frac{2}{3}}
 			\end{aligned}
 			$$
 			\item[\textbf{7)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\dif \ab(\ln x)}{\ln x \ln \ln x}  = \int \frac{\dif (\ln \ln x)}{\ln \ln x} = \ln \ln \ln x + C
+				\text{原式} & = \int \frac{\dd \ab(\ln x)}{\ln x \ln \ln x}  = \int \frac{\dd (\ln \ln x)}{\ln \ln x} = \ln \ln \ln x + C
 			\end{aligned}
 			$$
 			\item[\textbf{8)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\E^x \dif x}{\E^{2x} + 1} = \int \frac{\dif (\E^x)}{(\E^x)^2 + 1} = \arctan \E^x + C
+				\text{原式} & = \int \frac{\E^x \dd x}{\E^{2x} + 1} = \int \frac{\dd (\E^x)}{(\E^x)^2 + 1} = \arctan \E^x + C
 			\end{aligned}
 			$$
 			\item[\textbf{10)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = 2 \int \arctan \sqrt{x} \dif \ab(\arctan \sqrt{x}) = \ab(\arctan \sqrt{x})^2
+				\text{原式} & = 2 \int \arctan \sqrt{x} \dd \ab(\arctan \sqrt{x}) = \ab(\arctan \sqrt{x})^2
 			\end{aligned}
 			$$
 			\item[\textbf{12)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\dif \ab(\sin t)}{1 + \sqrt{1 - \sin^2 t}} = \int \frac{\cos t}{1 + \cos t} \dif t \\
-				& = \int \ab(1 - \frac{1}{1 + \cos t}) \dif t = t - \tan \frac{t}{2} + C \\
+				\text{原式} & = \int \frac{\dd \ab(\sin t)}{1 + \sqrt{1 - \sin^2 t}} = \int \frac{\cos t}{1 + \cos t} \dd t \\
+				& = \int \ab(1 - \frac{1}{1 + \cos t}) \dd t = t - \tan \frac{t}{2} + C \\
 				& = \arcsin x - \tan \frac{\arcsin x}{2} + C 
 			\end{aligned}
 			$$
 			\item[\textbf{14)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \ab(a^2 \tan^2 t + a^2)^{-\frac{3}{2}} \dif \ab(a \tan t) \\
-				& = \int \frac{\cos^3 t}{a^3} \cdot \frac{a}{\cos^2 t} \dif t \\
+				\text{原式} & = \int \ab(a^2 \tan^2 t + a^2)^{-\frac{3}{2}} \dd \ab(a \tan t) \\
+				& = \int \frac{\cos^3 t}{a^3} \cdot \frac{a}{\cos^2 t} \dd t \\
 				& = \frac{\sin t}{a} + C = \frac{x}{a^2 \sqrt{a^2 + x^2}} + C
 			\end{aligned}
 			$$
 			\item[\textbf{15)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \sqrt{3^2 - (x + 2)^2} \dif x \\
-				& = \int 3 \sqrt{1 - \sin^2 t} \dif \ab(3 \sin t - 2) \\
-				& = 9 \int \cos^2 t \dif t  = \frac{9}{2} \int \ab(\cos 2t + 1) \dif t \\
+				\text{原式} & = \int \sqrt{3^2 - (x + 2)^2} \dd x \\
+				& = \int 3 \sqrt{1 - \sin^2 t} \dd \ab(3 \sin t - 2) \\
+				& = 9 \int \cos^2 t \dd t  = \frac{9}{2} \int \ab(\cos 2t + 1) \dd t \\
 				& = \frac{9}{2} t + \frac{9}{2} \sin t \cos t + C \\
 				& = \frac{9}{2} \arcsin \frac{x + 2}{3} + \frac{x + 2}{2} \sqrt{5 - 4x - x^2} + C
 			\end{aligned}
@@ -210,34 +210,34 @@ $$
 			\item[\textbf{2)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = x \ln(1 + x) - \int x \dif \ab(\ln(1 + x)) \\
-				& = x \ln(1 + x) - \int \frac{x}{1 + x} \dif x \\
+				\text{原式} & = x \ln(1 + x) - \int x \dd \ab(\ln(1 + x)) \\
+				& = x \ln(1 + x) - \int \frac{x}{1 + x} \dd x \\
 				& = x \ln(1 + x) - x + \ln(1 + x) + C
 			\end{aligned}
 			$$
 			\item[\textbf{3)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \arctan x \dif x - \int \arctan x \cdot \frac{\dif x}{1 + x^2} \\
-				& = \ab(x \arctan x - \int x \dif (\arctan x)) - \int \arctan x \dif \arctan x \\
-				& = \ab(x \arctan x - \int \frac{x}{1 + x^2} \dif x) - \frac{1}{2} (\arctan x)^2 \\
-				& = \ab(x \arctan x - \frac{1}{2} \int \frac{\dif \ab(x^2)}{1 + x^2}) - \frac{1}{2} (\arctan x)^2 \\
+				\text{原式} & = \int \arctan x \dd x - \int \arctan x \cdot \frac{\dd x}{1 + x^2} \\
+				& = \ab(x \arctan x - \int x \dd (\arctan x)) - \int \arctan x \dd \arctan x \\
+				& = \ab(x \arctan x - \int \frac{x}{1 + x^2} \dd x) - \frac{1}{2} (\arctan x)^2 \\
+				& = \ab(x \arctan x - \frac{1}{2} \int \frac{\dd \ab(x^2)}{1 + x^2}) - \frac{1}{2} (\arctan x)^2 \\
 				& = x \arctan x - \frac{1}{2} \ln(1 + x^2) - \frac{1}{2} (\arctan x)^2 + C
 			\end{aligned}
 			$$
 			\item[\textbf{5)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = -\int x^2 \dif \ab(\E^{-x}) \\
-				& = -x^2 \E^{-x} + \int \E^{-x} \dif \ab(x^2) = -x^2 \E^x + 2 \int x \E^{-x} \dif x \\
-				& = -x^2 \E^{-x} - 2 \int x \dif \E^{-x} = -x^2 \E^{-x} - 2x \E^{-x} + 2 \int \E^{-x} \dif x \\
+				\text{原式} & = -\int x^2 \dd \ab(\E^{-x}) \\
+				& = -x^2 \E^{-x} + \int \E^{-x} \dd \ab(x^2) = -x^2 \E^x + 2 \int x \E^{-x} \dd x \\
+				& = -x^2 \E^{-x} - 2 \int x \dd \E^{-x} = -x^2 \E^{-x} - 2x \E^{-x} + 2 \int \E^{-x} \dd x \\
 				& = -x^2 \E^{-x} - 2x \E^{-x} - 2 \E^{-x} + C
 			\end{aligned}
 			$$
 			\item[\textbf{6)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \E^t \dif \ab(t^3) = 3 \int t^2 \E^t \dif t \\
+				\text{原式} & = \int \E^t \dd \ab(t^3) = 3 \int t^2 \E^t \dd t \\
 				& = 3 \E^t (t^2 - 2t + 2) + C \\
 				& = 3 \E^{\sqrt[3]{x}} \ab(x^{\frac{2}{3}} - 2 \sqrt[3]{x} + 2) + C
 			\end{aligned}
@@ -245,17 +245,17 @@ $$
 			\item[\textbf{8)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{1}{2} \ab(\frac{1}{x} - \frac{x^9}{2 + x^{10}}) \dif x \\
-				& = \frac{1}{2} \int \frac{\dif x}{x} - \frac{1}{20} \int \frac{\dif \ab(x^{10})}{2 + x^{10}} \\
+				\text{原式} & = \int \frac{1}{2} \ab(\frac{1}{x} - \frac{x^9}{2 + x^{10}}) \dd x \\
+				& = \frac{1}{2} \int \frac{\dd x}{x} - \frac{1}{20} \int \frac{\dd \ab(x^{10})}{2 + x^{10}} \\
 				& = \frac{1}{2} \ln x - \frac{1}{20} \ln \ab(2 + x^{10})
 			\end{aligned}
 			$$
 			\item[\textbf{9)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{1}{2x^4} \cdot \frac{2 x^3}{\sqrt{1 + x^4}} \dif x \\
-				& = \int \frac{1}{2x^4} \dif \ab(\sqrt{1 + x^4}) \\
-				& = \int \frac{\dif t}{2(t^2 - 1)} = \frac{1}{4} \int \ab(\frac{1}{t - 1} - \frac{1}{t + 1}) \dif t \\
+				\text{原式} & = \int \frac{1}{2x^4} \cdot \frac{2 x^3}{\sqrt{1 + x^4}} \dd x \\
+				& = \int \frac{1}{2x^4} \dd \ab(\sqrt{1 + x^4}) \\
+				& = \int \frac{\dd t}{2(t^2 - 1)} = \frac{1}{4} \int \ab(\frac{1}{t - 1} - \frac{1}{t + 1}) \dd t \\
 				& = \frac{1}{4} \ln |t - 1| - \frac{1}{4} \ln |t + 1| + C \\
 				& = \frac{1}{4} \ln \frac{\sqrt{1 + x^4} - 1}{\sqrt{1 + x^4} + 1} + C
 			\end{aligned}
@@ -270,7 +270,7 @@ $$
 	\begin{solution}
 		由题可知 $f(x) = \ab(\frac{\sin x}{x})' = \frac{x \cos x - \sin x}{x^2}$，那么：
 		$$
-		\int x f'(x) \dif x = \int x \dif f(x) = x f(x) - \int f(x) \dif x = \frac{x \cos x - \sin x}{x} - \frac{\sin x}{x} + C
+		\int x f'(x) \dd x = \int x \dd f(x) = x f(x) - \int f(x) \dd x = \frac{x \cos x - \sin x}{x} - \frac{\sin x}{x} + C
 		$$
 	\end{solution}
 \end{problem}
@@ -283,8 +283,8 @@ $$
 			\item[\textbf{2)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\ab(\frac{t - b}{a})^2}{t} \dif \ab(\frac{t - b}{a}) \\
-				& = \frac{1}{a} \int \ab(\frac{t}{a^2} - \frac{2b}{a^2} + \frac{b^2}{a^2 t}) \dif t \\
+				\text{原式} & = \int \frac{\ab(\frac{t - b}{a})^2}{t} \dd \ab(\frac{t - b}{a}) \\
+				& = \frac{1}{a} \int \ab(\frac{t}{a^2} - \frac{2b}{a^2} + \frac{b^2}{a^2 t}) \dd t \\
 				& = \frac{1}{a^3} \ab(\frac{1}{2} t^2 - 2b t + b^2 \ln |t|) + C_1 \\
 				& = \frac{1}{2 a^2} x^2 - \frac{b}{a^2} x + \frac{b^2}{a^3} \ln |a x + b| + C_2
 			\end{aligned}
@@ -292,8 +292,8 @@ $$
 			\item[\textbf{4)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\frac{t - b}{a}}{t^2} \dif \ab(\frac{t - b}{a}) \\
-				& = \frac{1}{a^2} \int \frac{\dif t}{t} - \frac{b}{a^3} \int \frac{\dif t}{t^2} \\
+				\text{原式} & = \int \frac{\frac{t - b}{a}}{t^2} \dd \ab(\frac{t - b}{a}) \\
+				& = \frac{1}{a^2} \int \frac{\dd t}{t} - \frac{b}{a^3} \int \frac{\dd t}{t^2} \\
 				& = \frac{1}{a^2} \ln |t| + \frac{b}{a^2} \frac{1}{t} + C_1 \\
 				& = \frac{1}{a^2} \ln |a x + b| + \frac{b}{a^2(a x + b)} + C_2
 			\end{aligned}
@@ -301,8 +301,8 @@ $$
 			\item[\textbf{6)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{t^2 - b}{a} t \dif \ab(\frac{t^2 - b}{a}) \\
-				& = \frac{2}{a^2} \int t^2 (t^2 - b) \dif t \\
+				\text{原式} & = \int \frac{t^2 - b}{a} t \dd \ab(\frac{t^2 - b}{a}) \\
+				& = \frac{2}{a^2} \int t^2 (t^2 - b) \dd t \\
 				& = \frac{2}{5a^2} t^5 - \frac{2b}{3a^2} t^3 + C_1 \\
 				& = \frac{2}{15 a^2} (a x + b)^{\frac{3}{2}} (3a x - 2b) + C_2
 			\end{aligned}
@@ -310,14 +310,14 @@ $$
 			\item[\textbf{8)}] 记原积分式为 $I$，那么：
 			$$
 			\begin{aligned}
-				I & = x (x^2 + a^2)^{\frac{3}{2}} - 3 \int x^2 (x^2 + a^2)^{\frac{1}{2}} \dif x \\
-				& = x (x^2 + a^2)^{\frac{3}{2}} - 3 \int ((x^2 + a^2) - a^2) (x^2 + a^2)^{\frac{1}{2}} \dif x \\
-				& = x (x^2 + a^2)^{\frac{3}{2}} - 3I + 3a^2 \int \sqrt{x^2 + a^2} \dif x \\
+				I & = x (x^2 + a^2)^{\frac{3}{2}} - 3 \int x^2 (x^2 + a^2)^{\frac{1}{2}} \dd x \\
+				& = x (x^2 + a^2)^{\frac{3}{2}} - 3 \int ((x^2 + a^2) - a^2) (x^2 + a^2)^{\frac{1}{2}} \dd x \\
+				& = x (x^2 + a^2)^{\frac{3}{2}} - 3I + 3a^2 \int \sqrt{x^2 + a^2} \dd x \\
 			\end{aligned}
 			$$
 			我们知道
 			$$
-			\int \sqrt{x^2 + a^2} \dif x = \frac{1}{2} x \sqrt{a^2 + x^2} + \frac{1}{2} a^2 \ln \ab|x + \sqrt{x^2 + a^2}| + C
+			\int \sqrt{x^2 + a^2} \dd x = \frac{1}{2} x \sqrt{a^2 + x^2} + \frac{1}{2} a^2 \ln \ab|x + \sqrt{x^2 + a^2}| + C
 			$$
 			代入回原式得到：
 			$$
@@ -326,9 +326,9 @@ $$
 			\item[\textbf{10)}] 记原积分式为 $I$
 			$$
 			\begin{aligned}
-				I & = \frac{1}{a} \int \sin b x \dif \ab(\E^{a x}) \\
-				& = \frac{1}{a} \E^{a x} \sin b x - \frac{b}{a} \int \E^{a x} \cos b x \dif x \\
-				& = \frac{1}{a} \E^{a x} \sin b x - \frac{b}{a^2} \ab(\E^{a x} \cos b x + b \int \E^{a x} \sin b x \dif x) \\
+				I & = \frac{1}{a} \int \sin b x \dd \ab(\E^{a x}) \\
+				& = \frac{1}{a} \E^{a x} \sin b x - \frac{b}{a} \int \E^{a x} \cos b x \dd x \\
+				& = \frac{1}{a} \E^{a x} \sin b x - \frac{b}{a^2} \ab(\E^{a x} \cos b x + b \int \E^{a x} \sin b x \dd x) \\
 				& = \frac{1}{a} \E^{a x} \sin b x - \frac{b}{a^2} \E^{a x} \cos b x - \frac{b^2}{a^2} I \\
 				\ab(1 + \frac{b^2}{a^2}) I & = \frac{\E^{a x}}{a^2} \ab(a \sin b x - b \cos b x) \\
 				I & = \frac{\E^{a x}}{a^2 + b^2} \ab(a \sin b x - b \cos b x) \\
@@ -337,7 +337,7 @@ $$
 			\item[\textbf{12)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \E^t \dif \ab(\frac{t^2 - b}{a}) = \frac{2}{a} \int t \E^t \dif t \\
+				\text{原式} & = \int \E^t \dd \ab(\frac{t^2 - b}{a}) = \frac{2}{a} \int t \E^t \dd t \\
 				& = \frac{2}{a} (t - 1) \E^t + C \\
 				& = \frac{2}{a} \ab(\sqrt{a x + b} - 1) \E^{\sqrt{a x + b}} + C
 			\end{aligned}
@@ -349,17 +349,17 @@ $$
 			那么进行换元：
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \sqrt{\ln \ab(x + \sqrt{1 + x^2})} \dif \ab(\ln \ab(x + \sqrt{1 + x^2})) \\
+				\text{原式} & = \int \sqrt{\ln \ab(x + \sqrt{1 + x^2})} \dd \ab(\ln \ab(x + \sqrt{1 + x^2})) \\
 				& = \frac{2}{3} \ab(\ln \ab(x + \sqrt{1 + x^2}))^{\frac{3}{2}} + C
 			\end{aligned}
 			$$
 			\item[\textbf{16)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int \frac{\E^x}{\E^x \sqrt{1 + \E^x}} \dif x = \int \frac{\dif \ab(\E^x)}{\E^x (1 + \E^x)} \\
-				& = \int \frac{\dif t}{t \sqrt{1 + t^2}} & \quad & (t \gets \E^x) \\
-				& = \int \frac{\dif \ab(\tan^2 \theta)}{\tan^2 \theta \sec \theta} & \quad & (t \gets \tan^2 \theta) \\
-				& = 2 \int \frac{\sec \theta}{\tan \theta} \dif \theta = 2 \int \frac{\dif \theta}{\sin \theta} \\
+				\text{原式} & = \int \frac{\E^x}{\E^x \sqrt{1 + \E^x}} \dd x = \int \frac{\dd \ab(\E^x)}{\E^x (1 + \E^x)} \\
+				& = \int \frac{\dd t}{t \sqrt{1 + t^2}} & \quad & (t \gets \E^x) \\
+				& = \int \frac{\dd \ab(\tan^2 \theta)}{\tan^2 \theta \sec \theta} & \quad & (t \gets \tan^2 \theta) \\
+				& = 2 \int \frac{\sec \theta}{\tan \theta} \dd \theta = 2 \int \frac{\dd \theta}{\sin \theta} \\
 				& = -\ln \frac{1 + \cos \theta}{1 - \cos \theta} + C \\
 				& = -\ln \frac{\sqrt{1 + \E^x} + 1}{\sqrt{1 + \E^x} - 1} + C
 			\end{aligned}
@@ -367,11 +367,11 @@ $$
 			\item[\textbf{18)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int t \ln^2 t^2 \dif \ab(t^2) & \quad & (x \gets t^2) \\
-				& = 8 \int t^2 \ln^2 t \dif t = \frac{8}{3} \int \ln^2 t \dif (t^3) \\
-				& = \frac{8}{27} \int \ln^2 u \dif u & \quad & (u \gets t^3) \\
-				& = \frac{8}{27} \ab(u \ln^2 u - \int u \dif \ab(\ln^2 u)) \\
-				& = \frac{8}{27} \ab(u \ln^2 u - 2 \int \ln u \dif u) \\
+				\text{原式} & = \int t \ln^2 t^2 \dd \ab(t^2) & \quad & (x \gets t^2) \\
+				& = 8 \int t^2 \ln^2 t \dd t = \frac{8}{3} \int \ln^2 t \dd (t^3) \\
+				& = \frac{8}{27} \int \ln^2 u \dd u & \quad & (u \gets t^3) \\
+				& = \frac{8}{27} \ab(u \ln^2 u - \int u \dd \ab(\ln^2 u)) \\
+				& = \frac{8}{27} \ab(u \ln^2 u - 2 \int \ln u \dd u) \\
 				& = \frac{8}{27} \ab(u \ln^2 u - 2 u \ln u + 2u) + C \\
 				& = \frac{2}{27} x^{\frac{3}{2}} \ab(9 \ln^2 x - 12 \ln x + 8) + C
 			\end{aligned}
@@ -379,12 +379,12 @@ $$
 			\item[\textbf{20)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int t^2 \cos t \dif \ab(t^2) = 2 \int t^3 \cos t \dif t & \quad & (x \gets t^2) \\
-				& = 2 \int t^3 \dif (\sin t) = 2t^3 \sin t - 6 \int t^2 \sin t \dif t \\
-				& = 2t^3 \sin t + 6 \int t^2 \dif (\cos t) \\
-				& = 2t^3 \sin t + 6t^2 \cos t - 12 \int t \cos t \dif t \\
-				& = 2t^3 \sin t + 6t^2 \cos t - 12 \int t \dif (\sin t) \\
-				& = 2t^3 \sin t + 6t^2 \cos t - 12t \sin t + 12 \int \sin t \dif t \\
+				\text{原式} & = \int t^2 \cos t \dd \ab(t^2) = 2 \int t^3 \cos t \dd t & \quad & (x \gets t^2) \\
+				& = 2 \int t^3 \dd (\sin t) = 2t^3 \sin t - 6 \int t^2 \sin t \dd t \\
+				& = 2t^3 \sin t + 6 \int t^2 \dd (\cos t) \\
+				& = 2t^3 \sin t + 6t^2 \cos t - 12 \int t \cos t \dd t \\
+				& = 2t^3 \sin t + 6t^2 \cos t - 12 \int t \dd (\sin t) \\
+				& = 2t^3 \sin t + 6t^2 \cos t - 12t \sin t + 12 \int \sin t \dd t \\
 				& = 2t^3 \sin t + 6t^2 \cos t - 12t \sin t - 12 \cos t + C \\
 				& = 2x^{\frac{3}{2}} \sin \sqrt{x} + 6x \cos \sqrt{x} - 12 \sqrt{x} \sin \sqrt{x} - 12 \cos \sqrt{x} + C
 			\end{aligned}

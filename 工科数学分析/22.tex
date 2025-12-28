@@ -13,7 +13,7 @@ $$
 $$
 决定，且在 $[t_1, t_2]$ 上，$\varphi(t)$ 有连续导数，$\varphi(t_1) \neq 0$，$\psi(t)$ 连续，那么曲边梯形的面积为：
 $$
-A = \int_{t_1}^{t_2} |\psi(t) \,\dif \varphi(t)| = \int_{t_1}^{t_2} |\psi(t) \varphi'(t)| \,\dif t
+A = \int_{t_1}^{t_2} |\psi(t) \,\dd \varphi(t)| = \int_{t_1}^{t_2} |\psi(t) \varphi'(t)| \dd{t}
 $$
 
 \subsubsection{极坐标情形}
@@ -48,20 +48,20 @@ $$
 		
 		% Label the differential angle
 		\draw[<->] (\angleA:0.8) arc (\angleA:\angleB:0.8);
-		\node at (52.5:1.0) {$\dif \theta$};
+		\node at (52.5:1.0) {$\dd \theta$};
 
 		% Label the curve
 		\node at (2.4, 0.5) {$r = \varphi(\theta)$};
 		
 		% Label the area element
-		\node at (1.2, 1.6) {$\dif A \approx \frac{1}{2} r^2 \dif \theta$};
+		\node at (1.2, 1.6) {$\dd A \approx \frac{1}{2} r^2 \dd \theta$};
 	\end{tikzpicture}
 	\caption{极坐标系下曲边扇形的面积微元}
 \end{figure}
 
 得到图形面积为：
 $$
-A = \int_\alpha^\beta \frac{1}{2} \varphi(\theta)^2 \,\dif \theta
+A = \int_\alpha^\beta \frac{1}{2} \varphi(\theta)^2 \,\dd \theta
 $$
 
 \subsection{立体图形的体积}
@@ -136,12 +136,12 @@ $$
 		
 		% dx label
 		\draw[<->] (\xslice, -0.5) -- (\xslice+\dx, -0.5); 
-		\node[below, font=\footnotesize] at (\xslice+0.5*\dx, -0.5) {$\dif x$};
+		\node[below, font=\footnotesize] at (\xslice+0.5*\dx, -0.5) {$\dd x$};
 		\draw[dashed, thin] (\xslice, -0.5) -- (\xslice, 0);
 		\draw[dashed, thin] (\xslice+\dx, -0.5) -- (\xslice+\dx, \rnext);
 		
 		% dV label - move higher and use a cleaner arrow
-		\draw[->] (3.2, 1.5) node[right, align=left] {$\dif V \approx \pi f(x)^2 \dif x$} to[out=180, in=45] (\xslice+0.5*\dx, 0.8*\rnext);
+		\draw[->] (3.2, 1.5) node[right, align=left] {$\dd V \approx \pi f(x)^2 \dd x$} to[out=180, in=45] (\xslice+0.5*\dx, 0.8*\rnext);
 
 		% 1. Draw Axis (Background parts)
 		\draw (-0.5,0) -- (\xslice-\xr,0); % Solid before disk
@@ -154,31 +154,38 @@ $$
 
 得到体积为：
 $$
-V = \pi \int_a^b f(x)^2 \,\dif x
+V = \pi \int_a^b f(x)^2 \dd{x}
 $$
 
 \subsubsection{$x = f(y)$ 绕 $y$ 轴旋转}
 
 与上面同理，面积为：
 $$
-V = \pi \int_a^b f(y)^2 \,\dif y
+V = \pi \int_a^b f(y)^2 \dd{y}
 $$
 
 \subsubsection{$y = f(x)$ 绕 $y$ 轴旋转}
 
 要求连续曲线 $y = f(x)$、直线 $x = a$、直线 $x = b$、$x$ 轴围成的图形，\textbf{绕 $y$ 轴}旋转一周得到的旋转体，体积为：
 $$
-V = 2\pi \int_a^b x |f(x)| \,\dif x
+V = 2\pi \int_a^b x |f(x)| \dd{x}
 $$
 
 \subsubsection{截面面积已知的立体图形体积}
 
 若在平面 $x = a, x = b$ 之间的立体图形，由平面 $x = t$ 截出的面积为 $f(t)$，那么图形的体积为：
 $$
-V = \int_a^b f(t) \,\dif t
+V = \int_a^b f(t) \dd{t}
 $$
 
-\subsection{求曲线的弧长和曲率}
+\subsubsection{极坐标下旋转体的体积}
+
+要求一个极坐标曲线 $\rho = f(\theta)$ 绕极轴旋转得到的旋转体，可以使用微元法加上重心的方法。对于一个半径为 $r$ 的微小扇形，其重心离圆心的距离为 $\frac{2}{3} r$，重心移动的距离为 $\frac{2\pi}{3} r \sin \theta$，那么得到整个图形的体积：
+$$
+V = \frac{2\pi}{3}\int_\alpha^\beta f(\theta)^3 \sin \theta \,\dd \theta
+$$
+
+\subsection{求曲线的弧长}
 
 \subsubsection{$y = f(x)$ 的弧长}
 
@@ -212,15 +219,15 @@ $$
 		\coordinate (C) at (\xb, \ya); % Right angle vertex
 		
 		% dx and dy sides
-		\draw[dashed] (A) -- (C) node[midway, below] {$\dif x$};
-		\draw[dashed] (C) -- (B) node[midway, right] {$\dif y$};
+		\draw[dashed] (A) -- (C) node[midway, below] {$\dd x$};
+		\draw[dashed] (C) -- (B) node[midway, right] {$\dd y$};
 		
 		% Hypothenuse (Chord approximations ds)
 		\draw[red] (A) -- (B);
 		
 		% 5. Highlight the Arc Element
 		\draw[blue, very thick] plot[domain=\xa:\xb, samples=50] (\x, {\f{\x}});
-		\node[blue, above right] at (\xa + 0.3*\dx, \ya + 0.4) {$\dif s$};
+		\node[blue, above right] at (\xa + 0.3*\dx, \ya + 0.4) {$\dd s$};
 		
 		% 6. Points
 		\fill (A) circle (1.5pt);
@@ -228,7 +235,7 @@ $$
 		
 		% 8. Axis projections (Optional, but good for clarity)
 		\draw[dashed, thin, gray] (A) -- (\xa, 0) node[below, black] {$x$};
-		\draw[dashed, thin, gray] (C) -- (\xb, 0) node[below, black] {$x+\dif x$};
+		\draw[dashed, thin, gray] (C) -- (\xb, 0) node[below, black] {$x+\dd x$};
 		
 	\end{tikzpicture}
 	\caption{弧长微元示意图}
@@ -236,7 +243,7 @@ $$
 
 得到弧长为：
 $$
-s = \int_a^b \dif s = \int_a^b \sqrt{\dif y^2 + \dif x^2} = \int_a^b \sqrt{1 + f'(x)^2} \dif x
+s = \int_a^b \dd s = \int_a^b \sqrt{\dd y^2 + \dd x^2} = \int_a^b \sqrt{1 + f'(x)^2} \dd x
 $$
 
 \subsubsection{参数方程情形}
@@ -250,7 +257,7 @@ $$
 $$
 使用类似的微元分析，可以得到：
 $$
-s = \int_a^b \sqrt{\dif \varphi(t)^2 + \dif \psi(t)^2} = \int_a^b \sqrt{\varphi'(t)^2 + \psi'(t)^2} \,\dif t
+s = \int_a^b \sqrt{\dd \varphi(t)^2 + \dd \psi(t)^2} = \int_a^b \sqrt{\varphi'(t)^2 + \psi'(t)^2} \dd{t}
 $$
 
 \subsubsection{极坐标情形}
@@ -264,7 +271,7 @@ $$
 $$
 于是得到弧长为：
 $$
-s = \int_\alpha^\beta \sqrt{f(\theta)^2 + f'(\theta)^2} \, \dif \theta
+s = \int_\alpha^\beta \sqrt{f(\theta)^2 + f'(\theta)^2} \, \dd \theta
 $$
 
 \subsection{作业}
@@ -279,7 +286,7 @@ $$
 			\begin{aligned}
 				\text{原式} & = \lim_{n \to \infty} \sum_{k=1}^n \frac{n^2}{(n + k)^2} \cdot \frac{1}{n} \\
 				& = \lim_{n \to \infty} \frac{1}{\ab(1 + \frac{k}{n})^2} \cdot \frac{1}{n} \\
-				& = \int_0^1 \frac{1}{(1 + x)^2} \dif x \\
+				& = \int_0^1 \frac{1}{(1 + x)^2} \dd x \\
 				& = \ab[-\frac{1}{1 + x}]_0^1 = \frac{1}{2}
 			\end{aligned}
 			$$
@@ -290,7 +297,7 @@ $$
 				\text{原式} & = \lim_{n \to \infty} \sum_{k=1}^n \ab(1 + \frac{k}{n}) \ab(\frac{k \pi}{n^2} + O\ab(\frac{k^3 \pi^3}{n^6})) \\
 				& = \lim_{n \to \infty} \sum_{k=1}^n \ab(1 + \frac{k}{n}) \frac{k \pi}{n^2} \\
 				& = \lim_{n \to \infty} \ab(1 + \frac{k}{n}) \frac{k}{n} \cdot \frac{1}{n} \\
-				& = \int_0^1 (1 + x) x \,\dif x \\
+				& = \int_0^1 (1 + x) x \dd{x} \\
 				& = \ab[\frac{1}{2} x^2 + \frac{1}{3} x^3]_0^1 = \frac{5}{6}
 			\end{aligned}
 			$$
@@ -305,15 +312,15 @@ $$
 		\begin{enumerate}
 			\item[\textbf{2)}] 由题可知：
 			$$
-			\int_0^x \E^{t^2} \,\dif t > x \cdot \E^0 = x \\
-			\int_0^x \E^{2 t^2} \,\dif t > x \cdot \E^0 = x
+			\int_0^x \E^{t^2} \dd{t} > x \cdot \E^0 = x \\
+			\int_0^x \E^{2 t^2} \dd{t} > x \cdot \E^0 = x
 			$$
-			因此 $x \to \infty$ 时，$\int_0^x \E^{t^2} \,\dif t \to \infty,\ \int_0^x \E^{2 t^2} \,\dif t \to \infty$。
+			因此 $x \to \infty$ 时，$\int_0^x \E^{t^2} \dd{t} \to \infty,\ \int_0^x \E^{2 t^2} \dd{t} \to \infty$。
 
 			对于原题，利用 L'Hospital 法则：
 			$$
 			\begin{aligned}
-				\text{原式} & = \lim_{x \to \infty} \frac{2 \E^{x^2} \int_0^x \E^{t^2} \,\dif t}{\E^{2 x^2}} = \lim_{x \to \infty} \frac{2 \int_0^x \E^{t^2} \,\dif t}{\E^{x^2}} \\
+				\text{原式} & = \lim_{x \to \infty} \frac{2 \E^{x^2} \int_0^x \E^{t^2} \dd{t}}{\E^{2 x^2}} = \lim_{x \to \infty} \frac{2 \int_0^x \E^{t^2} \dd{t}}{\E^{x^2}} \\
 				& = \lim_{x \to \infty} \frac{2 \E^{x^2}}{2 x \E^{x^2}} = \lim_{x \to \infty} \frac{1}{x} = 0
 			\end{aligned}
 			$$
@@ -329,7 +336,7 @@ $$
 		\begin{enumerate}
 			\item[\textbf{2)}]
 			$$
-			\text{原式} = \int_{1/4}^{1/2} 2 \arcsin \sqrt{x} \,\dif \arcsin \sqrt{x} = \ab[\ab(\arcsin \sqrt{x})^2]_{1/4}^{1/2} = \frac{5 \pi^2}{144}
+			\text{原式} = \int_{1/4}^{1/2} 2 \arcsin \sqrt{x} \,\dd \arcsin \sqrt{x} = \ab[\ab(\arcsin \sqrt{x})^2]_{1/4}^{1/2} = \frac{5 \pi^2}{144}
 			$$
 			\item[\textbf{4)}]
 			$$
@@ -338,19 +345,19 @@ $$
 			\item[\textbf{6)}] 令 $x \gets a \sin t$，那么：
 			$$
 			\begin{aligned}
-				\text{原式} & = \int_0^{\pi/2} a^2 \sin^2 t \cdot a \cos t \cdot a \cos t \,\dif t \\
-				& = a^4 \int_0^{\pi/2} \sin^2 t \cos^2 t \,\dif t \\
+				\text{原式} & = \int_0^{\pi/2} a^2 \sin^2 t \cdot a \cos t \cdot a \cos t \dd{t} \\
+				& = a^4 \int_0^{\pi/2} \sin^2 t \cos^2 t \dd{t} \\
 				& = \ab[\frac{a^4}{4} \ab(\frac{1}{2} t - \frac{1}{8} \sin 4t)]_0^{\pi/2} = \frac{a^4 \pi}{16}
 			\end{aligned}
 			$$
 			\item[\textbf{8)}] 令 $x \gets \sec t$，那么：
 			$$
-			\text{原式} = \int_{2\pi/3}^{\pi} \frac{1}{\sec t \tan t} \cdot \sec t \tan t \,\dif t = [t]_{2\pi/3}^{\pi} = \frac{\pi}{3}
+			\text{原式} = \int_{2\pi/3}^{\pi} \frac{1}{\sec t \tan t} \cdot \sec t \tan t \dd{t} = [t]_{2\pi/3}^{\pi} = \frac{\pi}{3}
 			$$
 			\item[\textbf{10)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = \int_0^2 \frac{1 + \frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \, \dif x = \int_0^2 \frac{\dif \ab(x - \frac{1}{x})}{\ab(x - \frac{1}{x})^2 + 2} \\
+				\text{原式} & = \int_0^2 \frac{1 + \frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \, \dd x = \int_0^2 \frac{\dd \ab(x - \frac{1}{x})}{\ab(x - \frac{1}{x})^2 + 2} \\
 				& = \ab[\frac{1}{\sqrt{2}} \arctan \frac{x - \frac{1}{x}}{\sqrt{2}}]_0^2 = \frac{1}{\sqrt{2}} \ab(\frac{\pi}{2} + \arctan \frac{3}{2 \sqrt{2}})
 			\end{aligned}
 			$$
@@ -366,25 +373,25 @@ $$
 			\item[\textbf{3)}]
 			$$
 			\begin{aligned}
-				\text{原式} & = 2 \int_0^{\pi/2} \sqrt{\sin^3 x (1 - \sin^2 x)} \,\dif x \\
-				& = 2 \int_0^{\pi/2} \sqrt{\sin^3 x \cos^2 x} \,\dif x \\
-				& = 2 \int_0^{\pi/2} \sin^{\frac{3}{2}} x \cos x \,\dif x \\
-				& = 2 \int_0^{\pi/2} \sin^{\frac{3}{2}} x \,\dif (\sin x) \\
+				\text{原式} & = 2 \int_0^{\pi/2} \sqrt{\sin^3 x (1 - \sin^2 x)} \dd{x} \\
+				& = 2 \int_0^{\pi/2} \sqrt{\sin^3 x \cos^2 x} \dd{x} \\
+				& = 2 \int_0^{\pi/2} \sin^{\frac{3}{2}} x \cos x \dd{x} \\
+				& = 2 \int_0^{\pi/2} \sin^{\frac{3}{2}} x \,\dd (\sin x) \\
 				& = 2 \ab[\frac{2}{5} \sin^{\frac{5}{2}} x]_0^{\pi/2} = \frac{4}{5}
 			\end{aligned}
 			$$
 
 			\item[\textbf{4)}]
 			$$
-			\text{原式} = \int_{1/\E}^1 -\ln x \,\dif x + \int_1^{\E} \ln x \,\dif x = \E + \frac{1}{\E} - 2
+			\text{原式} = \int_{1/\E}^1 -\ln x \dd{x} + \int_1^{\E} \ln x \dd{x} = \E + \frac{1}{\E} - 2
 			$$
 
 			\item[\textbf{6)}]
 			$$
 			\begin{aligned}
-				\int x (\arctan x)^2 \,\dif x & = \frac{1}{2} (\arctan x)^2 \,\dif (x^2) \\
-				& = \frac{1}{2} x^2 (\arctan x)^2 - \int \frac{x^2}{1 + x^2} \arctan x \,\dif x \\
-				& = \frac{1}{2} x^2 (\arctan x)^2 - \int \arctan x \,\dif x + \int \frac{\arctan x}{1 + x^2} \,\dif x \\
+				\int x (\arctan x)^2 \dd{x} & = \frac{1}{2} (\arctan x)^2 \,\dd (x^2) \\
+				& = \frac{1}{2} x^2 (\arctan x)^2 - \int \frac{x^2}{1 + x^2} \arctan x \dd{x} \\
+				& = \frac{1}{2} x^2 (\arctan x)^2 - \int \arctan x \dd{x} + \int \frac{\arctan x}{1 + x^2} \dd{x} \\
 				& = \frac{1}{2} x^2 (\arctan x)^2 - x \arctan x + \frac{1}{2} \ln\ab(1 + x^2) + \frac{1}{2} (\arctan x)^2 \\
 				& = \frac{1}{2} \ab(x^2 + 1) (\arctan x)^2 - x \arctan x + \frac{1}{2} \ln\ab(1 + x^2) + C
 			\end{aligned}
@@ -401,13 +408,13 @@ $$
 
 			\item[\textbf{10)}]
 			$$
-			\text{原式} = \int_0^2 \sqrt{4 - x^2} \,\dif \ab(\sqrt{4 + x^2})
+			\text{原式} = \int_0^2 \sqrt{4 - x^2} \,\dd \ab(\sqrt{4 + x^2})
 			$$
 			注意到 $\ab(\sqrt{4 - x^2})^2 + \ab(\sqrt{4 + x^2})^2 = 8$。于是令 $\sqrt{4 - x^2} = 2 \sqrt{2} \cos t,\ \sqrt{4 + x^2} = 2 \sqrt{2} \sin t$，那么：
 			$$
 			\begin{aligned}
-				\text{原式} & = 8 \int_{\pi/4}^{\pi/2} \cos t \,\dif (\sin t) = 8 \int_{\pi/4}^{\pi/2} \cos^2 t \,\dif t \\
-				& = 8 \int_{\pi/4}^{\pi/2} \frac{1 + \cos 2t}{2} \,\dif t \\
+				\text{原式} & = 8 \int_{\pi/4}^{\pi/2} \cos t \,\dd (\sin t) = 8 \int_{\pi/4}^{\pi/2} \cos^2 t \dd{t} \\
+				& = 8 \int_{\pi/4}^{\pi/2} \frac{1 + \cos 2t}{2} \dd{t} \\
 				& = \ab[4t + 2 \sin 2t]_{\pi/4}^{\pi/2} = \pi - 2
 			\end{aligned}
 			$$
@@ -421,7 +428,7 @@ $$
 	\begin{proof}
 		$$
 		\begin{aligned}
-			\frac{1}{\E} = \ab[f(x) \E^{-x}]_0^1 = \int_0^1 \ab(f'(x) - f(x)) \E^{-x} \,\dif x \le \int_0^1 |f'(x) - f(x)| \E^{-x} \,\dif x \le \int_0^1 |f'(x) - f(x)| \,\dif x
+			\frac{1}{\E} = \ab[f(x) \E^{-x}]_0^1 = \int_0^1 \ab(f'(x) - f(x)) \E^{-x} \dd{x} \le \int_0^1 |f'(x) - f(x)| \E^{-x} \dd{x} \le \int_0^1 |f'(x) - f(x)| \dd{x}
 		\end{aligned}
 		$$
 	\end{proof}
@@ -435,7 +442,7 @@ $$
 
 		首先根据题目条件和定积分的线性性，有：
 		$$
-		\int_a^b \ab(\sum_{i=1}^n a_i x^i) f(x) \,\dif x = 0
+		\int_a^b \ab(\sum_{i=1}^n a_i x^i) f(x) \dd{x} = 0
 		$$
 
 		考虑反证。假设 $f(x)$ 有 $m\ (m < n + 1)$ 个零点 $x_1, x_2, \dots, x_m$。它们把 $[a, b]$ 分成若干段 $[a, x_1], [x_1, x_2], \dots, [x_m, b]$。取出那些 $f(x)$ 两侧异号的分隔点 $x_1', x_2', \dots, x_{m'}'$，构造多项式
@@ -444,7 +451,7 @@ $$
 		$$
 		那么易知 $F(x), f(x)$ 始终同号，并且 $f(x) \not\equiv 0$，于是：
 		$$
-		\int_a^b F(x) f(x) \,\dif x > 0
+		\int_a^b F(x) f(x) \dd{x} > 0
 		$$
 		这与条件矛盾。因此 $f(x)$ 至少有 $n + 1$ 个零点。
 	\end{proof}
@@ -495,7 +502,7 @@ $$
 		那么所求面积为：
 		$$
 		\begin{aligned}
-			A & = \int_{-2 \sqrt{p(R - p)}}^{2 \sqrt{p(R - p)}} \ab(2(R - p) - \frac{y^2}{2p}) \,\dif y \\
+			A & = \int_{-2 \sqrt{p(R - p)}}^{2 \sqrt{p(R - p)}} \ab(2(R - p) - \frac{y^2}{2p}) \dd{y} \\
 			& = \ab[2(R - p) y - \frac{y^3}{6p}]_{-2 \sqrt{p(R - p)}}^{2 \sqrt{p(R - p)}} \\
 			& = \frac{16}{3} p^{\frac{1}{2}} (R - p)^{\frac{3}{2}}
 		\end{aligned}
@@ -544,7 +551,7 @@ $$
 
 		用三角形面积减去曲线下方的面积，就得到所求面积：
 		$$
-		A = \frac{1}{2} \cdot \sqrt{t} \cdot 2t - \int_0^t \sqrt{x} \,\dif x = t^{\frac{3}{2}} - \ab[\frac{2}{3} x^\frac{3}{2}]_0^t = \frac{1}{3} t^{\frac{3}{2}}
+		A = \frac{1}{2} \cdot \sqrt{t} \cdot 2t - \int_0^t \sqrt{x} \dd{x} = t^{\frac{3}{2}} - \ab[\frac{2}{3} x^\frac{3}{2}]_0^t = \frac{1}{3} t^{\frac{3}{2}}
 		$$
 		由题，$A = \frac{1}{3}$，因此 $t = 1$，$M(1, 1)$。
 	\end{solution}
@@ -583,20 +590,20 @@ $$
 		\end{cases}, \quad t \in [0, 2\pi]
 		$$
 
-		因为曲线的对称性，我们先计算 $t \in [0, \frac{\pi}{2}]$ 的面积。考虑使用微元法。当 $t$ 有微小增量 $\dif t$ 时，有：
+		因为曲线的对称性，我们先计算 $t \in [0, \frac{\pi}{2}]$ 的面积。考虑使用微元法。当 $t$ 有微小增量 $\dd t$ 时，有：
 		$$
-		\dif V = \frac{1}{2} (x (y + \dif y) - (x + \dif x) y) = \frac{1}{2} (x \dif y - y \dif x)
+		\dd V = \frac{1}{2} (x (y + \dd y) - (x + \dd x) y) = \frac{1}{2} (x \dd y - y \dd x)
 		$$
 
 		那么：
 		$$
 		\begin{aligned}
-			A_1 & = \int_0^{\pi/2} a \cos^3 t \cdot 3a \cos t \sin^2 t \,\dif t \\
-			& = 3a^2 \int_0^{\pi/2} \cos^4 t \sin^2 t \,\dif t \\
-			& = 3a^2 \int_0^{\pi/2} \cos^4 t (1 - \cos^2 t) \,\dif t \\
-			& = 3a^2 \ab(\int_0^{\pi/2} \cos^4 t \,\dif t - \int_0^{\pi/2} \cos^6 t \,\dif t) \\
+			A_1 & = \int_0^{\pi/2} a \cos^3 t \cdot 3a \cos t \sin^2 t \dd{t} \\
+			& = 3a^2 \int_0^{\pi/2} \cos^4 t \sin^2 t \dd{t} \\
+			& = 3a^2 \int_0^{\pi/2} \cos^4 t (1 - \cos^2 t) \dd{t} \\
+			& = 3a^2 \ab(\int_0^{\pi/2} \cos^4 t \dd{t} - \int_0^{\pi/2} \cos^6 t \dd{t}) \\
 			& = 3a^2 \ab(\frac{3 \cdot 1}{4 \cdot 2} \cdot \frac{\pi}{2} - \frac{5 \cdot 3 \cdot 1}{6 \cdot 4 \cdot 2} \cdot \frac{\pi}{2}) = \frac{3 \pi}{32} a^2 \\
-			A_2 & = \int_0^{\pi/2} a \sin^3 t \cdot \ab(-3a \sin t \cos^2 t) \,\dif t = -\frac{3 \pi}{32} a^2 
+			A_2 & = \int_0^{\pi/2} a \sin^3 t \cdot \ab(-3a \sin t \cos^2 t) \dd{t} = -\frac{3 \pi}{32} a^2 
 		\end{aligned}
 		$$
 		最终整个图形的面积为：
@@ -636,8 +643,8 @@ $$
 		曲线是对称的，先计算 $\theta \in [0, \frac{\pi}{2}]$ 的面积：
 		$$
 		\begin{aligned}
-			A' & = \int_0^{\pi/2} \frac{1}{2} \rho^2 \,\dif \theta = \frac{a^2}{2} \int_0^{\pi/2} \sin^2 2\theta \,\dif \theta \\
-			& = \frac{a^2}{2} \int_0^{\pi/2} \frac{1 - \cos 4\theta}{2} \,\dif \theta \\
+			A' & = \int_0^{\pi/2} \frac{1}{2} \rho^2 \,\dd \theta = \frac{a^2}{2} \int_0^{\pi/2} \sin^2 2\theta \,\dd \theta \\
+			& = \frac{a^2}{2} \int_0^{\pi/2} \frac{1 - \cos 4\theta}{2} \,\dd \theta \\
 			& = \frac{a^2}{2} \ab[\frac{1}{2} \theta - \frac{1}{8} \sin 4\theta]_0^{\pi/2} = \frac{\pi}{8} a^2
 		\end{aligned}
 		$$
@@ -651,7 +658,7 @@ $$
 
 	\begin{solution}
 		$$
-		V = \int_0^8 \pi y^{\frac{2}{3}} \,\dif y = \pi \ab[\frac{3}{5} y^{\frac{5}{3}}]_0^8 = \frac{32}{5} \pi
+		V = \int_0^8 \pi y^{\frac{2}{3}} \dd{y} = \pi \ab[\frac{3}{5} y^{\frac{5}{3}}]_0^8 = \frac{32}{5} \pi
 		$$
 	\end{solution}
 \end{problem}
@@ -660,13 +667,13 @@ $$
 	课后习题 8.2.4
 
 	\begin{solution}
-		先考虑 $x \ge 0$ 的部分，此时 $t \in [0, \frac{\pi}{2}]$。对 $x$ 轴方向做微元法，那么在 $t$ 有微小增量 $\dif t$ 时，圆盘半径为 $y$，高为 $\dif x$，于是有：
+		先考虑 $x \ge 0$ 的部分，此时 $t \in [0, \frac{\pi}{2}]$。对 $x$ 轴方向做微元法，那么在 $t$ 有微小增量 $\dd t$ 时，圆盘半径为 $y$，高为 $\dd x$，于是有：
 		$$
 		\begin{aligned}
-			V' & = \int_0^{\pi/2} \pi \ab(a \sin^3 t)^2 \cdot 3a \sin t \cos^2 t \dif t \\
-			& = 3a^3 \int_0^{\pi/2} \sin^7 t \cos^2 t \dif t \\
-			& = 3a^3 \int_0^{\pi/2} \sin^7 t (1 - \sin^2 t) \dif t \\
-			& = 3a^3 \ab(\int_0^{\pi/2} \sin^7 t \dif t - \int_0^{\pi/2} \sin^9 t \dif t) \\
+			V' & = \int_0^{\pi/2} \pi \ab(a \sin^3 t)^2 \cdot 3a \sin t \cos^2 t \dd t \\
+			& = 3a^3 \int_0^{\pi/2} \sin^7 t \cos^2 t \dd t \\
+			& = 3a^3 \int_0^{\pi/2} \sin^7 t (1 - \sin^2 t) \dd t \\
+			& = 3a^3 \ab(\int_0^{\pi/2} \sin^7 t \dd t - \int_0^{\pi/2} \sin^9 t \dd t) \\
 			& = 3a^3 \ab(\frac{6 \cdot 4 \cdot 2}{7 \cdot 5 \cdot 3} - \frac{8 \cdot 6 \cdot 4 \cdot 2}{9 \cdot 7 \cdot 5 \cdot 3}) = \frac{16}{105} a^3
 		\end{aligned}
 		$$
@@ -681,8 +688,8 @@ $$
 	\begin{solution}
 		$$
 		\begin{aligned}
-			V & = \int_{-1}^1 \pi \ab(\ab(2 + \sqrt{1 - y^2})^2 - \ab(2 - \sqrt{1 - y^2})^2) \,\dif y \\
-			& = \pi \int_{-1}^1 8 \sqrt{1 - y^2} \,\dif y \\
+			V & = \int_{-1}^1 \pi \ab(\ab(2 + \sqrt{1 - y^2})^2 - \ab(2 - \sqrt{1 - y^2})^2) \dd{y} \\
+			& = \pi \int_{-1}^1 8 \sqrt{1 - y^2} \dd{y} \\
 			& = 8 \pi \cdot \pi = 8\pi^2
 		\end{aligned}
 		$$
@@ -698,11 +705,11 @@ $$
 		\begin{itemize}
 			\item 对于切线围出的部分：
 			$$
-			V_1 = \int_0^\E \pi \ab(\frac{1}{\E} x)^2 \,\dif x = \frac{\pi}{\E^2} \ab[\frac{1}{3} x^3]_0^\E = \frac{\pi \E}{3}
+			V_1 = \int_0^\E \pi \ab(\frac{1}{\E} x)^2 \dd{x} = \frac{\pi}{\E^2} \ab[\frac{1}{3} x^3]_0^\E = \frac{\pi \E}{3}
 			$$
 			\item 对于 $y = \ln x$ 围出的部分：
 			$$
-			V_2 = \int_1^\E \pi \ln^2 x \,\dif x = \pi \ab[2x - 2x \ln x - x \ln^2 x]_1^\E = (\E - 2) \pi
+			V_2 = \int_1^\E \pi \ln^2 x \dd{x} = \pi \ab[2x - 2x \ln x - x \ln^2 x]_1^\E = (\E - 2) \pi
 			$$
 		\end{itemize}
 		
@@ -716,8 +723,8 @@ $$
 	\begin{solution}
 		$$
 		\begin{aligned}
-			V & = \frac{2\pi}{3} \int_0^\pi \ab(a (1 - \cos \theta))^3 \sin \theta \,\dif \theta \\
-			& = \frac{2\pi}{3} \int_0^\pi a^3 (1 - \cos \theta)^3 \,\dif (1 - \cos \theta) \\
+			V & = \frac{2\pi}{3} \int_0^\pi \ab(a (1 - \cos \theta))^3 \sin \theta \,\dd \theta \\
+			& = \frac{2\pi}{3} \int_0^\pi a^3 (1 - \cos \theta)^3 \,\dd (1 - \cos \theta) \\
 			& = \frac{2\pi}{3} \ab[\frac{a^3}{4} (1 - \cos \theta)^4]_0^\pi = \frac{8\pi}{3} a^3
 		\end{aligned}
 		$$
@@ -731,7 +738,7 @@ $$
 		平面 $x = x_0$ 截图形得到的是椭圆 $\frac{y^2}{b^2} + \frac{z^2}{c^2} = 1 - \frac{x_0^2}{a^2}$，其面积 $S = \pi b c \ab(1 - \frac{x_0^2}{a^2})$。
 		$$
 		\begin{aligned}
-			V & = \int_{-a}^a \pi b c \ab(1 - \frac{x^2}{a^2}) \,\dif x = \pi b c \int_{-a}^a \ab(1 - \frac{x^2}{a^2}) \dif x \\
+			V & = \int_{-a}^a \pi b c \ab(1 - \frac{x^2}{a^2}) \dd{x} = \pi b c \int_{-a}^a \ab(1 - \frac{x^2}{a^2}) \dd x \\
 			& = \pi b c \ab[x - \frac{1}{3a^2} x^3]_{-a}^a = \frac{4\pi a b c}{3}
 		\end{aligned}
 		$$
@@ -753,9 +760,9 @@ $$
 			那么根据公式，旋转曲面面积为：
 			$$
 			\begin{aligned}
-				A & = 2\pi \int_{-\pi/2}^{\pi/2} 2 \cos t \sqrt{4 \sin^2 t + \cos^2 t} \,\dif t \\
-				& = 4\pi \int_{-\pi/2}^{\pi/2} \sqrt{3 \sin^2 t + 1} \,\dif (\sin t) \\
-				& = 4\sqrt{3} \pi \int_{-1}^1 \sqrt{u^2 + \frac{1}{3}} \,\dif u \\
+				A & = 2\pi \int_{-\pi/2}^{\pi/2} 2 \cos t \sqrt{4 \sin^2 t + \cos^2 t} \dd{t} \\
+				& = 4\pi \int_{-\pi/2}^{\pi/2} \sqrt{3 \sin^2 t + 1} \,\dd (\sin t) \\
+				& = 4\sqrt{3} \pi \int_{-1}^1 \sqrt{u^2 + \frac{1}{3}} \dd{u} \\
 				& = 4\sqrt{3} \pi \ab[\frac{u}{2} \sqrt{u^2 + \frac{1}{3}} + \frac{1}{6} \ln \ab(u + \sqrt{u^2 + \frac{1}{3}})]_{-1}^1 \\
 				& = 4\pi \ab(2 + \frac{1}{\sqrt{3}} \ln \ab(2 + \sqrt{3}))
 			\end{aligned}
@@ -764,9 +771,9 @@ $$
 			\item[\textbf{4)}] 曲线方程化为 $y = \frac{x^2}{4}$，那么：
 			$$
 			\begin{aligned}
-				A & = 2\pi \int_0^2 x \sqrt{1 + \ab(\frac{x}{2})^2} \,\dif x \\
-				& = \pi \int_0^2 \sqrt{1 + \frac{x^2}{4}} \,\dif (x^2) \\
-				& = \frac{\pi}{2} \int_0^4 \sqrt{4 + u} \,\dif u \\
+				A & = 2\pi \int_0^2 x \sqrt{1 + \ab(\frac{x}{2})^2} \dd{x} \\
+				& = \pi \int_0^2 \sqrt{1 + \frac{x^2}{4}} \,\dd (x^2) \\
+				& = \frac{\pi}{2} \int_0^4 \sqrt{4 + u} \dd{u} \\
 				& = \frac{\pi}{2} \ab[\frac{2}{3} (4 + u)^{\frac{3}{2}}]_0^4 = \frac{8\pi}{3} \ab(2 \sqrt{2} - 1)
 			\end{aligned}
 			$$
@@ -783,14 +790,14 @@ $$
 		\begin{itemize}
 			\item 对于切线形成的面积：
 			$$
-			A_1 = 2\pi \int_0^2 \frac{1}{2} x \sqrt{1 + \ab(\frac{1}{2})^2} \,\dif x = \frac{\sqrt{5} \pi}{2} \int_0^2 x \,\dif x = \sqrt{5} \pi
+			A_1 = 2\pi \int_0^2 \frac{1}{2} x \sqrt{1 + \ab(\frac{1}{2})^2} \dd{x} = \frac{\sqrt{5} \pi}{2} \int_0^2 x \dd{x} = \sqrt{5} \pi
 			$$
 
 			\item 对于曲线形成的面积：
 			$$
 			\begin{aligned}
-				A_2 & = 2\pi \int_1^2 \sqrt{x - 1} \sqrt{1 + \ab(\frac{1}{2 \sqrt{x - 1}})^2} \,\dif x \\
-				& = \pi \int_1^2 \sqrt{4x - 3} \,\dif x \\
+				A_2 & = 2\pi \int_1^2 \sqrt{x - 1} \sqrt{1 + \ab(\frac{1}{2 \sqrt{x - 1}})^2} \dd{x} \\
+				& = \pi \int_1^2 \sqrt{4x - 3} \dd{x} \\
 				& = \pi \ab[\frac{1}{6} (4x - 3)^{\frac{3}{2}}]_1^2 = \frac{(5 \sqrt{5} - 1)\pi}{6}
 			\end{aligned}
 			$$
@@ -806,10 +813,10 @@ $$
 			\item[\textbf{1)}]
 			$$
 			\begin{aligned}
-				A & = 2\pi \int_0^\pi r \sin \theta \cdot \sqrt{r^2 + r'^2} \,\dif \theta \\
-				& = 2\pi \int_0^\pi 2 a^2 (1 - \cos \theta) \sin \theta \sin \frac{\theta}{2} \,\dif \theta \\
-				& = 2\pi \int_0^\pi 2 a^2 \cdot 2 \sin^2 \frac{\theta}{2} \cdot 2 \sin \frac{\theta}{2} \cos \frac{\theta}{2} \cdot \sin \frac{\theta}{2} \,\dif \theta \\
-				& = 32\pi a^2 \int_0^\pi \sin^4 \frac{\theta}{2} \,\dif\ab(\sin \frac{\theta}{2}) \\
+				A & = 2\pi \int_0^\pi r \sin \theta \cdot \sqrt{r^2 + r'^2} \,\dd \theta \\
+				& = 2\pi \int_0^\pi 2 a^2 (1 - \cos \theta) \sin \theta \sin \frac{\theta}{2} \,\dd \theta \\
+				& = 2\pi \int_0^\pi 2 a^2 \cdot 2 \sin^2 \frac{\theta}{2} \cdot 2 \sin \frac{\theta}{2} \cos \frac{\theta}{2} \cdot \sin \frac{\theta}{2} \,\dd \theta \\
+				& = 32\pi a^2 \int_0^\pi \sin^4 \frac{\theta}{2} \,\dd(\sin \frac{\theta}{2}) \\
 				& = 32\pi a^2 \ab[\frac{1}{5} \sin^5 \frac{\theta}{2}]_0^\pi = \frac{32\pi}{5} a^2
 			\end{aligned}
 			$$
@@ -850,9 +857,9 @@ $$
 			最后求面积：
 			$$
 			\begin{aligned}
-				A & = 2 \cdot 2\pi \int_0^{\pi/4} r \sin \theta \cdot \sqrt{r^2 + r'^2} \,\dif \theta \\
-				& = 4\pi \int_0^{\pi/4} a \sqrt{\cos 2\theta} \sin \theta \sqrt{a^2 \cos 2\theta + \frac{a^2 \sin^2 2\theta}{\cos 2\theta}} \,\dif \theta \\
-				& = 4\pi a^2 \int_0^{\pi/4} \sin \theta \,\dif \theta \\
+				A & = 2 \cdot 2\pi \int_0^{\pi/4} r \sin \theta \cdot \sqrt{r^2 + r'^2} \,\dd \theta \\
+				& = 4\pi \int_0^{\pi/4} a \sqrt{\cos 2\theta} \sin \theta \sqrt{a^2 \cos 2\theta + \frac{a^2 \sin^2 2\theta}{\cos 2\theta}} \,\dd \theta \\
+				& = 4\pi a^2 \int_0^{\pi/4} \sin \theta \,\dd \theta \\
 				& = 4\pi a^2 \ab[-\cos \theta]_0^{\pi/4} = 2(2 - \sqrt{2}) \pi a^2
 			\end{aligned}
 			$$

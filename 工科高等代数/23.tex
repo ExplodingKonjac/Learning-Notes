@@ -26,7 +26,7 @@
 \begin{example}
 	在 $[a, b]$ 上的所有实连续函数构成的空间 $C[a, b]$ 中，定义内积：
 	$$
-	(f, g) = \int_a^b f(x) g(x) \,\dif{x}
+	(f, g) = \int_a^b f(x) g(x) \,\dd{x}
 	$$
 	那么 $C[a, b]$ 就成一个欧几里得空间。
 \end{example}
@@ -36,21 +36,21 @@
 \begin{definition}
 	对于欧几里德空间 $V$ 中的向量 $\vect{\alpha}$，定义其长度为：
 	$$
-	\abs*{\vect{\alpha}} = \sqrt{(\vect{\alpha}, \vect{\alpha})}
+	\abs{\vect{\alpha}} = \sqrt{(\vect{\alpha}, \vect{\alpha})}
 	$$
 \end{definition}
 
 \begin{property}
 	设 $V$ 是一个欧几里德空间，那么： 
 	$$
-	\forall\,k \in \mathbb{R}, \vect{\alpha} \in V: \abs*{k \vect{\alpha}} = |k| |\vect{\alpha}|
+	\forall\,k \in \mathbb{R}, \vect{\alpha} \in V: \abs{k \vect{\alpha}} = |k| |\vect{\alpha}|
 	$$
 \end{property}
 
 \begin{property}[柯西-布涅科夫斯基不等式]
 	设 $V$ 是一个欧几里德空间，那么：
 	$$
-	\forall\,\vect{\alpha}, \vect{\beta} \in V: |(\vect{\alpha}, \vect{\beta})| \le \abs*{\vect{\alpha}} \abs*{\vect{\beta}}
+	\forall\,\vect{\alpha}, \vect{\beta} \in V: |(\vect{\alpha}, \vect{\beta})| \le \abs{\vect{\alpha}} \abs{\vect{\beta}}
 	$$
 	等号在 $\vect{\alpha}, \vect{\beta}$ 线性相关时取等。
 	\begin{proof}
@@ -110,7 +110,7 @@ $$
 \begin{property}[勾股定理]
 	若欧几里德空间 $V$ 中的向量 $\vect{\alpha}_1, \vect{\alpha}_2, \dots, \vect{\alpha}_n$ 两两正交，那么：
 	$$
-	\abs*{\sum_{i=1}^n \vect{\alpha}_i}^2 = \sum_{i=1}^n \abs*{\vect{\alpha}_i}^2
+	\abs{\sum_{i=1}^n \vect{\alpha}_i}^2 = \sum_{i=1}^n \abs{\vect{\alpha}_i}^2
 	$$
 \end{property}
 

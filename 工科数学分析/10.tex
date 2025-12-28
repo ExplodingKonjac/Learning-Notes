@@ -53,7 +53,7 @@ $$
 	\end{itemize}
 \end{definition}
 
-要求隐函数的导数，可以对关系式两边同时对 $x$ 求导，得到关系式 $A(x, y) \frac{\dif y}{\dif x} = B(x, y)$，然后求出 $\frac{\dif y}{\dif x} = \frac{B(x, y)}{A(x, y)}$。
+要求隐函数的导数，可以对关系式两边同时对 $x$ 求导，得到关系式 $A(x, y) \frac{\dd y}{\dd x} = B(x, y)$，然后求出 $\frac{\dd y}{\dd x} = \frac{B(x, y)}{A(x, y)}$。
 
 \begin{example}
 	若
@@ -65,11 +65,11 @@ $$
 	\begin{solution}
 		两边同时对 $x$ 求导得到：
 		$$
-		\frac{\dif y}{\dif x} - 1 - \varepsilon \cos y \frac{\dif y}{\dif x} = 0
+		\frac{\dd y}{\dd x} - 1 - \varepsilon \cos y \frac{\dd y}{\dd x} = 0
 		$$
 		解得
 		$$
-		\frac{\dif y}{\dif x} = \frac{1}{1 - \varepsilon \cos y}
+		\frac{\dd y}{\dd x} = \frac{1}{1 - \varepsilon \cos y}
 		$$
 	\end{solution}
 \end{example}
@@ -89,7 +89,7 @@ $$
 
 在特定条件下，参数方程确定的函数可以进行求导。具体而言，若 $\varphi(t)$ 存在连续单调的反函数 $\varphi^{-1}(x)$，且 $\varphi(t), \psi(t)$ 可导，那么
 $$
-\frac{\dif y}{\dif x} = \frac{\frac{\dif y}{\dif t}}{\frac{\dif x}{\dif t}} = \frac{\psi'(t)}{\varphi'(t)} = \frac{\psi'(\varphi^{-1}(x))}{\varphi'(\varphi^{-1}(x))}
+\frac{\dd y}{\dd x} = \frac{\frac{\dd y}{\dd t}}{\frac{\dd x}{\dd t}} = \frac{\psi'(t)}{\varphi'(t)} = \frac{\psi'(\varphi^{-1}(x))}{\varphi'(\varphi^{-1}(x))}
 $$
 
 \begin{example}
@@ -105,7 +105,7 @@ $$
 	\begin{solution}
 		$$
 		\begin{aligned}
-			\frac{\dif y}{\dif x} & = \frac{3a \sin^2 t \cos t}{-3a \cos^2 t \sin t} \\
+			\frac{\dd y}{\dd x} & = \frac{3a \sin^2 t \cos t}{-3a \cos^2 t \sin t} \\
 			& = -\tan t \\
 			& = -\tan \arccos \sqrt[3]{\frac{x}{a}}
 		\end{aligned}

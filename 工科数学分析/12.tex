@@ -170,15 +170,15 @@ Cauchy 中值定理的几何意义是明显的：在一个参数曲线的线段�
 		\begin{enumerate}
 			\item[\textbf{1)}] 对等式两边求导：
 			$$
-			\ab(\frac{\dif y}{\dif x} + 1) \sec^2 (x + y) - y - x \frac{\dif y}{\dif x} = 0
+			\ab(\frac{\dd y}{\dd x} + 1) \sec^2 (x + y) - y - x \frac{\dd y}{\dd x} = 0
 			$$
 			解得
 			$$
-			\frac{\dif y}{\dif x} = \frac{y \cos^2 (x + y) - 1}{1 - x \cos^2 (x + y)}
+			\frac{\dd y}{\dd x} = \frac{y \cos^2 (x + y) - 1}{1 - x \cos^2 (x + y)}
 			$$
 			再求一次导得到：
 			$$
-			\frac{\dif^2 y}{\dif x^2} = \frac {2\left (x y + \sec^4 (x + y) + \left ((x - y)^2\tan (x + y) - x - y \right)\sec^2 (x + y) \right)} {\left (x - \sec^2 (x + y) \right)^3}
+			\frac{\dd^2 y}{\dd x^2} = \frac {2\left (x y + \sec^4 (x + y) + \left ((x - y)^2\tan (x + y) - x - y \right)\sec^2 (x + y) \right)} {\left (x - \sec^2 (x + y) \right)^3}
 			$$
 		\end{enumerate}
 	\end{solution}
@@ -191,17 +191,17 @@ Cauchy 中值定理的几何意义是明显的：在一个参数曲线的线段�
 		\begin{enumerate}
 			\item[\textbf{2)}] 由题得到：
 			$$
-			\frac{\dif x}{\dif t} = -at \sin t + a \cos t,\ \frac{\dif y}{\dif x} = at \cos t + a \sin t
+			\frac{\dd x}{\dd t} = -at \sin t + a \cos t,\ \frac{\dd y}{\dd x} = at \cos t + a \sin t
 			$$
 			那么：
 			$$
-			\frac{\dif y}{\dif x} = \frac{at \cos t + a \sin t}{-at \sin t + a \cos t}
+			\frac{\dd y}{\dd x} = \frac{at \cos t + a \sin t}{-at \sin t + a \cos t}
 			$$
 			于是得到：
 			$$
 			\begin{aligned}
-				\frac{\dif^2 y}{\dif x^2} & = \frac{\dif}{\dif t} \ab(\frac{t \cos t + \sin t}{-t \sin t + \cos t}) \cdot \frac{\dif t}{\dif x} \\
-				& = \frac{\dif}{\dif t} \ab(\frac{t + \tan t}{1 - t \tan t}) \cdot \frac{1}{-at \sin t + a \cos t} \\
+				\frac{\dd^2 y}{\dd x^2} & = \frac{\dd}{\dd t} \ab(\frac{t \cos t + \sin t}{-t \sin t + \cos t}) \cdot \frac{\dd t}{\dd x} \\
+				& = \frac{\dd}{\dd t} \ab(\frac{t + \tan t}{1 - t \tan t}) \cdot \frac{1}{-at \sin t + a \cos t} \\
 				& = \frac{a(2 + t^2)}{(\cos t - t \sin t)^3}
 			\end{aligned}
 			$$

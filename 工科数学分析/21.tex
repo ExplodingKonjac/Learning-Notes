@@ -11,31 +11,31 @@
 	\end{itemize}
 	那么
 	$$
-	\int_a^b f(x) \,\dif x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) \,\dif t
+	\int_a^b f(x) \dd{x} = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) \dd{t}
 	$$
 \end{theorem}
 
 \begin{theorem}[定积分的分部积分法]
 	设 $u(x), v(x)$ 在 $[a, b]$ 连续可导，那么：
 	$$
-	\int_a^b u(x) \,\dif v(x) = \left.\ab(u(x) v(x))\right|_a^b - \int_a^b v(x) \,\dif u(x)
+	\int_a^b u(x) \dd{v}(x) = \left.\ab(u(x) v(x))\right|_a^b - \int_a^b v(x) \dd{u}(x)
 	$$
 \end{theorem}
 
 \begin{example}[Wallice 公式]
 	证明：
 	$$
-	\int_0^{\pi/2} \sin^n x \,\dif x = \int_0^{\pi/2} \cos^n x \,\dif x = \begin{cases}
+	\int_0^{\pi/2} \sin^n x \dd{x} = \int_0^{\pi/2} \cos^n x \dd{x} = \begin{cases}
 		\frac{(n-1)!!}{n!!} \cdot \frac{\pi}{2} &, n = 2k \\
 		\frac{(n-1)!!}{n!!} &, n = 2k + 1
 	\end{cases}
 	$$
 	\begin{proof}
-		使用分部积分法，令 $u = \sin^{n-1} x, \dif v = \sin x \dif x$，那么：
+		使用分部积分法，令 $u = \sin^{n-1} x, \dd v = \sin x \dd x$，那么：
 		$$
 		\begin{aligned}
-			I_n & = \left.\ab(-\sin^{n-1} x \cos x)\right|_0^{\pi/2} + (n - 1) \int_0^{\pi/2} \sin^{n-2} \cos^2 x \,\dif x \\
-			& = (n - 1) \int_0^{\pi/2} \sin^{n-2} (1 - \sin^2 x) \,\dif x \\
+			I_n & = \left.\ab(-\sin^{n-1} x \cos x)\right|_0^{\pi/2} + (n - 1) \int_0^{\pi/2} \sin^{n-2} \cos^2 x \dd{x} \\
+			& = (n - 1) \int_0^{\pi/2} \sin^{n-2} (1 - \sin^2 x) \dd{x} \\
 			& = (n - 1) (I_{n-2} - I_n) \\
 			n I_n & = (n - 1) I_{n-2} \\
 			I_n & = \frac{n - 1}{n} I_{n-2}
@@ -51,12 +51,12 @@
 
 一般而言，平面直角坐标系下的平面图形可以表示为：由曲线 $y = f_1(x), y = f_2(x), x = a, x = b\ (f_1(x) \le f_2(x))$ 围出的图形。那么这样的图形围成的面积为：
 $$
-A = \int_a^b (f_1(x) - f_2(x)) \,\dif x
+A = \int_a^b (f_1(x) - f_2(x)) \dd{x}
 $$
 
 除了使用上曲线和下曲线，有时候用 $y$ 做自变量，将图形表示为由曲线 $y = g_1(x), y = g_2(x), y = a, y = b$ 围出的图形可能方便计算。此时面积为：
 $$
-A = \int_a^b (g_1(y) - g_2(y)) \,\dif y
+A = \int_a^b (g_1(y) - g_2(y)) \dd{y}
 $$
 
 对于更复杂的图形，需要将其拆分为上述两种简单的情形。

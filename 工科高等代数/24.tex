@@ -118,6 +118,21 @@
 	\end{proof}
 \end{theorem}
 
+\begin{definition}[正交补]
+	对于欧几里德空间 $V$ 的子空间 $W$，定义 $W$ 的正交补为：
+	$$
+	W^\perp = \{\vect{v}: \vect{v} \in V \land \forall\,\vect{w} \in W: (\vect{v}, \vect{w}) = 0\}
+	$$
+\end{definition}
+
+\begin{property}
+	$$
+	W \oplus W^\perp = V
+	$$
+\end{property}
+
+可见，一个空间的补空间不是唯一的，但是它的正交补是唯一的。
+
 \subsection{作业}
 
 \begin{problem}
@@ -164,13 +179,13 @@
 	第九章习题 3
 
 	\begin{proof}
-		只需证 $\abs*{\vect{\alpha} + \vect{\beta}} \le \abs*{\vect{\alpha}} + \abs*{\vect{\beta}}$。而：
+		只需证 $\abs{\vect{\alpha} + \vect{\beta}} \le \abs{\vect{\alpha}} + \abs{\vect{\beta}}$。而：
 		$$
 		\begin{aligned}
-			\abs*{\vect{\alpha} + \vect{\beta}}^2 & = (\vect{\alpha} + \vect{\beta}, \vect{\alpha} + \vect{\beta}) \\
-			& = \abs*{\vect{\alpha}}^2 + 2 (\vect{\alpha}, \vect{\beta}) + \abs*{\vect{\beta}}^2 \\
-			& \le \abs*{\vect{\alpha}}^2 + 2 \abs*{\vect{\alpha}} \abs*{\vect{\beta}} + \abs*{\vect{\beta}}^2 \\
-			& = (\abs*{\vect{\alpha}} + \abs*{\vect{\beta}})^2
+			\abs{\vect{\alpha} + \vect{\beta}}^2 & = (\vect{\alpha} + \vect{\beta}, \vect{\alpha} + \vect{\beta}) \\
+			& = \abs{\vect{\alpha}}^2 + 2 (\vect{\alpha}, \vect{\beta}) + \abs{\vect{\beta}}^2 \\
+			& \le \abs{\vect{\alpha}}^2 + 2 \abs{\vect{\alpha}} \abs{\vect{\beta}} + \abs{\vect{\beta}}^2 \\
+			& = (\abs{\vect{\alpha}} + \abs{\vect{\beta}})^2
 		\end{aligned}
 		$$
 		故得证。

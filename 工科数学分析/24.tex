@@ -1,0 +1,393 @@
+\section{反常积分 II}
+
+\subsection{无界函数的广义积分}
+
+\begin{definition}[瑕积分]
+	设函数 $f(x)$ 在区间 $(a, b]$ 上连续，在 $x = a$ 的右邻域内无界，若极限
+	$$
+	I = \lim_{\varepsilon \to 0^+} \int_{a + \varepsilon}^{b} f(x) \dd{x}
+	$$
+	存在，那么称 $I$ 为函数 $f(x)$ 在 $(a, b]$ 上的瑕积分。记做
+	$$
+	\int_{a}^{b} f(x) \dd{x} \dd{x} \dd[2]{x} \dd(\sin x)
+	$$
+
+	同理，若函数 $f(x)$ 在 $[a, b)$ 上连续，在 $x = b$ 的左邻域内无界，若极限
+	$$
+	I = \lim_{\varepsilon \to 0^+} \int_{a}^{b - \varepsilon} f(x) \dd{x}
+	$$
+	存在，那么称 $I$ 为函数 $f(x)$ 在 $[a, b)$ 上的瑕积分。记做
+	$$
+	\int_{a}^{b} f(x) \dd{x}
+	$$
+\end{definition}
+
+\begin{definition}
+	设函数 $f(x)$ 在区间 $[a, c) \cap (c, b]$ 上有定义，在 $c$ 附近无界，如果两个瑕积分
+	$$
+	\int_{a}^{c} f(x) \dd{x}, \int_{c}^{b} f(x) \dd{x}  
+	$$
+	都收敛，那么定义 $[a, b]$ 上的瑕积分为
+	$$
+	\int_{a}^{b} f(x) \dd{x} = \int_{a}^{c} f(x) \dd{x} + \int_{c}^{b} f(x) \dd{x}
+	$$
+\end{definition}
+
+\begin{definition}
+	设函数 $f(x)$ 在区间 $[a, c) \cap (c, b)$ 上有定义，在 $c$ 附近无界，如果两个瑕积分
+	$$
+	\int_a^c f(x) \dd{x}, \int_c^b f(x) \dd{x}
+	$$
+	都收敛，那么定义 $[a, b]$ 上的瑕积分为
+	$$
+	\int_a^b f(x) \dd{x} = \int_a^c f(x) \dd{x} + \int_c^b f(x) \dd{x}
+	$$
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+	课后习题 8.3.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{aligned}
+				s & = \int_0^{2 \pi} a \sqrt{(1 - \cos t)^2 +(\sin t)^2} \dd{t} \\
+				& = a \int_0^{2 \pi} \sqrt{1 - 2 \cos t + \cos^2 t + \sin^2 t} \dd{t} \\
+				& = a \int_0^{2 \pi} \sqrt{2 - 2 \cos t} \dd{t} \\
+				& = a \int_0^{2 \pi} 2 \sin \frac{t}{2} \dd{t} \\
+				& = a \ab[-4 \cos \frac{t}{2}]_0^{2 \pi} = 8a
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}]
+			$$
+			\begin{aligned}
+				s & = \int_0^{\frac{\pi}{3}} \sqrt{1 + \tan^2 x} \dd{x} \\
+				& = \int_0^{\frac{\pi}{3}} \sec x \dd{x} \\
+				& = \ab[ln \abs{\sec x + \tan x}]_0^{\frac{\pi}{3}} = \ln(2 + \sqrt{3})
+			\end{aligned}
+			$$
+
+			\item[\textbf{5)}]
+			$$
+			\begin{aligned}
+				s & = \int_0^{2\pi} a \sqrt{(1 + \cos \theta)^2 + \sin^2 \theta} \dd{\theta} \\
+				& = \int_0^{2\pi} a \sqrt{2 + 2 \cos \theta} \dd{\theta} \\
+				& = a \int_0^{2\pi} 2 \cos \frac{\theta}{2} \dd{\theta} \\
+				& = 2 a \ab[2 \sin \frac{\theta}{2}]_0^{2\pi} = 8a
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 8.3.2
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			K = \abs{\frac{y''}{(1 + y'^2)^{\frac{3}{2}}}} = \abs{\frac{1/x^3}{(1 - 1 / x^4)^{\frac{3}{2}}}} = 2^{-\frac{3}{2}}
+			$$
+
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				K & = \frac{1}{a} \abs{\frac{x' y'' - x'' y'}{(x'^2 + y'^2)^{\frac{3}{2}}}} \\
+				& = \frac{1}{a} \abs{\frac{(1 - \cos t) \cos t - \sin^2 t}{((1 - \cos t)^2 + \sin^2 t)^{\frac{3}{2}}}} \\
+				& = \frac{1}{a} \abs{\frac{\cos t - 1}{(2 - 2 \cos t)^{\frac{3}{2}}}} = \frac{1}{2^{\frac{3}{2}} a}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 8.3.3
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\begin{aligned}
+				K(t) & = \frac{1}{a} \abs{\frac{x' y'' - y' x''}{(x'^2 + y'^2)^{\frac{3}{2}}}} \\
+				& = \frac{1}{a} \abs{\frac{3 (\sin^3 t - \sin t) (6 \sin t - 9 \sin^3 t) - 3 (\cos t - \cos^3 t) (6 \cos t - 9 \cos^3 t)}{(9 (\sin^3 t - \sin t)^2 + 9 (\cos t - \cos^3 t)^2)^{\frac{3}{2}}}} \\
+				& = \frac{2}{3} \abs{\frac{4 + 3 \cos 2t}{\sin 2t}}
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			\begin{aligned}
+				K(x) & = \abs{\frac{y''}{(1 + y'^2)^{\frac{3}{2}}}} \\
+				& = \abs{\frac{\frac{1}{2a} (\E^{x / a} + \E^{-x / a})}{\ab(1 + \ab(\frac{1}{2} \ab(\E^{x / a} - \E^{-x / a}))^2)^{\frac{3}{2}}}} \\
+				& = \abs{\frac{\E^{x / a} + \E^{-x / a}}{2 \ab(\E^{2x / a} + \E^{-2x / a} + \frac{1}{2})^{\frac{3}{2}}}}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.1
+
+	\begin{solution}
+		\begin{itemize}
+			\item[\textbf{3)}] 做换元 $x \gets \tan t$：
+			$$
+			\begin{aligned}
+				\origin & = \int_0^{+\frac{\pi}{2}} \frac{\dd(a \tan t)}{(a^2 \tan^2 t + a^2)^2} \\
+				& = \frac{1}{a^3} \int_0^{\frac{\pi}{2}} \cos^2 t \dd{t} \\
+				& = \frac{1}{a^3} \ab[\frac{1}{2} x + \frac{1}{4} \sin 2t]_0^{\frac{\pi}{2}} = \frac{\pi}{4a^3}
+			\end{aligned}
+			$$
+
+			\item[\textbf{7)}] 先求不定积分：
+			$$
+			\begin{aligned}
+				\origin & = \frac{1}{3} \int \frac{\dd{x}}{1 + x} - \frac{1}{3} \int \frac{x + 2}{x^2 - x + 1} \dd{x} \\
+				& = \frac{1}{3} \ln |1 + x| - \frac{1}{3} \ab(\frac{1}{2} \int \frac{2x + 1}{x^2 - x + 1} \dd{x} + \frac{3}{2} \int \frac{\dd{x}}{x^2 - x + 1}) \\
+				& = \frac{1}{3} \ln |1 + x| - \frac{1}{6} \ln |x^2 - x + 1| + \frac{1}{2} \int \frac{\dd{x}}{(x - \frac{1}{2})^2 + (\frac{\sqrt{3}}{2})^2} \\
+				& = \frac{1}{6} \ln \abs{\frac{(1 + x)^2}{x^2 - x + 1}} + \frac{1}{\sqrt{3}} \arctan \frac{2x - 1}{\sqrt{3}}
+			\end{aligned}
+			$$
+			那么可以计算定积分：
+			$$
+			\int_0^{+\infty} \frac{\dd{x}}{1 + x^3} = \ab[\frac{1}{6} \ln \abs{\frac{(1 + x)^2}{x^2 - x + 1}} + \frac{1}{\sqrt{3}} \arctan \frac{2x - 1}{\sqrt{3}}]_0^{+\infty} = \frac{2\pi}{3\sqrt{3}}
+			$$
+
+			\item[\textbf{8)}] 使用分部积分法：
+			$$
+			\begin{aligned}
+				\origin & = -\frac{1}{2} \int_0^{+\infty} x^2 \cdot (-2x) \E^{-x^2} \dd{x} \\
+				& = -\frac{1}{2} \int_0^{+\infty} x^2 \dd(\E^{-x^2}) \\
+				& = -\frac{1}{2} \ab[x^2 \E^{-x^2}]_0^{+\infty} + \frac{1}{2} \int_0^{+\infty} \E^{-x^2} \dd(x^2) \\
+				& = \frac{1}{2} \ab[-\E^{-x^2}]_0^{+\infty} = \frac{1}{2}
+			\end{aligned}
+			$$
+
+			\item[\textbf{9)}]
+			$$
+			\begin{aligned}
+				\origin & = \int_1^{+\infty} \frac{1}{2} \ab(\frac{1}{x + 1} - \frac{1}{x + 3}) \dd{x} \\
+				& = \frac{1}{2} \ab[\ln \abs{\frac{x + 1}{x + 3}}]_1^{+\infty} = \frac{1}{2} \ln \frac{3}{2}
+			\end{aligned}
+			$$
+			
+			\item[\textbf{10)}]
+			$$
+			\begin{aligned}
+				\origin & = -\frac{1}{a} \int_0^{+\infty} \sin b x \dd(\E^{-a x}) \\
+				& = -\frac{1}{a} \ab[\E^{-a x} \sin b x]_0^{+\infty} + \frac{b}{a} \int_0^{+\infty} \E^{-a x} \cos b x \dd{x} \\
+				& = -\frac{b}{a^2} \int_0^{+\infty} \cos b x \dd(\E^{-a x}) \\
+				& = -\frac{b}{a^2} \ab[-\E^{-a x} \cos b x]_0^{+\infty} - \frac{b^2}{a^2} \int_0^{+\infty} \E^{-a x} \sin b x \dd{x} \\
+				& = -\frac{b}{a^2} - \origin
+			\end{aligned}
+			$$
+			因此 $\origin = -\frac{b}{2a^2}$。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.1.2
+
+	\begin{solution}
+		$$
+		\origin = \int_2^{+\infty} \frac{\dd(\ln x)}{(\ln x)^{p}} = \int_{\ln 2}^{+\infty} \frac{\dd t}{t^p}
+		$$
+		那么可知，$0 < p \le 1$ 时原积分发散，$p > 1$ 时原积分收敛。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.1.3
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\int \ab(\frac{2x}{x^2 + 1} - \frac{c}{2x + 1}) \dd{x} & = \int \frac{\dd(x^2 + 1)}{x^2 + 1} - \int \frac{c}{2x + 1} \dd{x} \\
+			& = \ln |x^2 + 1| - \frac{c}{2} \ln |2x + 1| \\
+			& = \ln \abs{\frac{x^2 + 1}{(2x + 1)^{\frac{c}{2}}}} + C
+		\end{aligned}
+		$$
+		那么原无穷积分的值为：
+		$$
+		\origin = \lim_{x \to +\infty} \ln \abs{\frac{x^2 + 1}{(2x + 1)^{\frac{c}{2}}}}
+		$$
+		那么可知，当 $c \ge 4$ 时，原积分收敛，当 $c < 4$ 时，原积分发散。
+
+		\begin{itemize}
+			\item 若 $c = 4$： $\origin = \lim\limits_{x \to +\infty} \ln \abs{\frac{x^2 + 1}{4x^2 + 4x + 1}} = -\ln 4$；
+			\item 若 $c > 4$： $\origin = 0$。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.1.5
+
+	\begin{solution}
+		$$
+		\begin{aligned}
+			I_n & = -\frac{1}{s} \int_0^{+\infty} x^{n} \dd(\E^{-s x}) \\
+			& = -\frac{1}{s} \ab[x^{n} \E^{-s x}]_0^{+\infty} + \frac{n}{s} \int_0^{+\infty} x^{n - 1} \E^{-s x} \dd{x} \\
+			& = \frac{1}{s} [n = 0] + \frac{n}{s} I_{n - 1}
+		\end{aligned}
+		$$
+		于是可得：
+		$$
+		I_n = \begin{cases}
+			1 &, n = 0 \\
+			\frac{n!}{s^{n}} &, n \ge 1
+		\end{cases}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.1.6
+
+	\begin{proof}
+		我们取一个数列 $a_n = \ceil{a} + n$。那么根据 Cauchy 收敛准则得到
+		$$
+		\int_{a_n}^{a_{n+1}} f(x) \dd{x}
+		$$
+		趋近于 $0$。再根据积分中值定理，得到：
+		$$
+		\exists\,x_n \in [a_n, a_{n+1}]: f(x_n) = \int_{a_n}^{a_{n+1}} f(x) \dd{x}
+		$$
+		于是我们就找到了符合要求的 $\{x_n\}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.2.1
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}]
+			$$
+			\lim_{x \to +\infty} \frac{\frac{1}{x \sqrt{1 + x^2}}}{\frac{1}{x^2}} = \lim_{x \to +\infty} \frac{x}{\sqrt{1 + x^2}} = \lim_{x \to +\infty} \frac{1}{\sqrt{1 + \frac{1}{x^2}}} = 1
+			$$
+			而我们知道 $\int_0^{+\infty} \frac{\dd{x}}{x^2}$ 是收敛的，因此题目给出的积分也是收敛的。
+
+			\item[\textbf{4)}]
+			$$
+			\lim_{x \to +\infty} \frac{\cos \frac{1}{x} - 1}{\frac{1}{x^2}} = \lim_{x \to +\infty} \frac{1 - \frac{1}{2 x^2} - 1 + o(x^3)}{\frac{1}{x^2}} = -\frac{1}{2}
+			$$
+			而我们知道 $\int_0^{+\infty} \frac{\dd{x}}{x^2}$ 是收敛的，因此题目给出的积分也是收敛的。
+
+			\item[\textbf{6)}]
+			\begin{itemize}
+				\item 若 $0 < n \le 1$：
+				$$
+				\lim_{x \to +\infty} \frac{\frac{(\ln x)^{p}}{x^{n}}}{\frac{1}{x^{n}}} = \lim_{x \to +\infty} (\ln x)^{p} = +\infty
+				$$
+				而 $\int_0^{+\infty} \frac{\dd{x}}{x^{n}}$ 是发散的，因此原积分是发散的。
+
+				\item 若 $n > 1$：
+				$$
+				\lim_{x \to +\infty} \frac{\frac{(\ln x)^{p}}{x^{n}}}{\frac{1}{x^{(n + 1) / 2}}} = \lim_{x \to +\infty} \frac{(\ln x)^{p}}{x^{(n - 1) / 2}} = 0
+				$$
+				而 $\int_0^{+\infty} \frac{\dd{x}}{x^{(n + 1) / 2}}$ 是收敛的，因此原积分是收敛的。
+			\end{itemize}
+
+			\item[\textbf{8)}] 先做一个换元：
+			$$
+			\origin = \int_{\E^2}^{+\infty} \frac{\dd(\ln x)}{(\ln \ln x)^{p}} = \int_2^{+\infty} \frac{\dd{u}}{(\ln u)^{p}}
+			$$
+			\begin{itemize}
+				\item 若 $p \le 0$：
+				$$
+				\lim_{u \to +\infty} (\ln u)^{-p} > 0
+				$$
+				因此原积分发散。
+
+				\item 若 $p > 0$：
+				$$
+				\lim_{u \to +\infty} \frac{\frac{1}{(\ln u)^{p}}}{\frac{1}{x}} = \lim_{u \to +\infty} \frac{u}{(\ln u)^{p}} = +\infty
+				$$
+				因此原积分发散。
+			\end{itemize}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.2.2
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 不一定。可以构造函数：
+			$$
+			f(x) = \begin{cases}
+				x &, x \in \mathbb{Z} \\
+				\frac{1}{x^2} &, x \in \mathbb{R} \setminus \mathbb{Z}
+			\end{cases}
+			$$
+			那么 $f(x)$ 在 $[1, +\infty]$ 上的积分是收敛的，但是本身极限不存在。
+			
+			\item[\textbf{2)}] 根据 Cauchy 收敛准则：
+			$$
+			\forall\,\varepsilon > 0: \exists\,X > 0: \forall\,a > X: \abs{\int_a^{a + 1} f(x) \dd{x}} < \varepsilon
+			$$
+			而根据积分中值定理：
+			$$
+			\exists\,\xi \in [a, a + 1]: \int_a^{a + 1} f(x) \dd{x} = f(\xi) \implies |f(\xi)| < \varepsilon
+			$$
+			由此推得 $b = 0$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.2.3
+
+	\begin{solution}
+		记 $f(x) = \frac{x}{1 + x^{6} \sin^2 x}$。我们取一个充分大的 $A$，然后判定 $[A, +\infty]$ 上积分的散敛性。
+
+		我们期望找到 $t_k$ 使得 $\forall\,x \in [k \pi - t_k, k \pi + t_k]: \sin^2 x < \frac{1}{x^p}$，其中 $k \pi \ge A$。因为 $k$ 充分大，$k \pi - k > \pi$，我们可以取 $t_k = \arcsin \frac{1}{x^{p / 2}}$。
+
+		\begin{itemize}
+			\item 取 $p = 6, t_k = \frac{1}{x^{3}}$：也就是说：
+			$$
+			\forall\,x \in [k \pi - t_k, k \pi + t_k]: f(x) \le k \pi
+			$$
+			那么这部分的积分可以放缩为：
+			$$
+			\sum_{k = \ceil{A / \pi}}^{+\infty} 2 \arcsin \frac{1}{k^3} \cdot k \pi
+			$$
+			
+			\item 取 $p = 3, t_k = \frac{1}{x^{1.5}}$：也就是说：
+			$$
+			\forall\,x \in [k \pi - t_k, k \pi + t_k]: f(x) \le \frac{x}{1 + x^3} < C
+			$$
+			那么这部分的积分可以放缩为：
+			$$
+			\sum_{k = \ceil{A / \pi}}^{+\infty} 2 \arcsin \frac{1}{k^{1.5}} \cdot C
+			$$
+
+			\item 对于剩余的部分，因为 $\sin x > \frac{1}{x^3}$，我们可以将积分放缩为：
+			$$
+			\int_A^{+\infty} \frac{x}{1 + x^3} \dd{x}
+			$$
+		\end{itemize}
+		
+		因为 $k$ 充分大，所以存在一个常数 $M$ 使得 $\arcsin u < M u$，也就是说 $\arcsin x^k \sim x^k$。因此可知，上面三种情况讨论的式子都是收敛的。因此它们加起来也是收敛的，于是原积分收敛。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	课后习题 9.2.4
+
+	\begin{proof}
+		当 $\displaystyle \int_a^{+\infty} f(x) \dd{x}, \int_a^{+\infty} h(x) \dd{x}$ 均收敛时，根据比较判别法得到 $\displaystyle \int_a^{+\infty} |f(x)| \dd{x}, \int_a^{+\infty} h(x) \dd{x}$ 收敛。
+
+		而由 $g(x) \le f(x) \le h(x)$ 得到，$|f(x)| \le |g(x)| \lor |f(x)| \le |h(x)|$。因此 $\displaystyle \int_a^{+\infty} |f(x)| \dd{x}$ 收敛。根据比较判别法，$\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 收敛。
+	\end{proof}
+\end{problem}

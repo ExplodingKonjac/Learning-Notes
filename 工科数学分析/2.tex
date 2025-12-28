@@ -164,13 +164,13 @@ $$
 	习题 2.1.2
 	\begin{proof}
 		\begin{itemize}
-			\item[\textbf{1)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\frac{1}{\varepsilon^2}} + 1$，那么 $\forall\,n \ge N$：
+			\item[\textbf{1)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil{\frac{1}{\varepsilon^2}} + 1$，那么 $\forall\,n \ge N$：
 			$$
 			\ab|\frac{\cos n}{\sqrt n}| \le \ab|\frac{1}{\sqrt n}| \le \ab|\frac{1}{\sqrt N}| < \varepsilon
 			$$
 			即证。
 			
-			\item[\textbf{3)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\ab(\frac{5 - 2\varepsilon}{4\varepsilon})^2} + 1$，那么 $\forall\,n \ge N$：
+			\item[\textbf{3)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil{\ab(\frac{5 - 2\varepsilon}{4\varepsilon})^2} + 1$，那么 $\forall\,n \ge N$：
 			$$
 			\begin{aligned}
 				\ab|\frac{3\sqrt n - 1}{2\sqrt n + 1} - \frac{3}{2}| & = \ab|\frac{3}{2} - \frac{5}{4\sqrt n 2} - \frac{3}{2}| \\
@@ -180,7 +180,7 @@ $$
 			$$
 			即证。
 
-			\item[\textbf{6)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil*{\frac{1}{2\varepsilon}} + 1$，那么 $\forall\,n \ge N$：
+			\item[\textbf{6)}] 对于 $\forall\,\varepsilon > 0$，取 $N = \ceil{\frac{1}{2\varepsilon}} + 1$，那么 $\forall\,n \ge N$：
 			$$
 			\begin{aligned}
 				\ab|\frac{\sum_{i=1}^n i}{n^2} - \frac{1}{2}| & = \ab|\frac{n(n+1)}{2n} - \frac{1}{2}| \\
@@ -203,13 +203,13 @@ $$
 				& \le \ab|\frac{2}{(N-1) b^2}|
 			\end{aligned}
 			$$
-			那么，取 $N = \ceil*{\frac{2}{b^2 \sqrt[k] \varepsilon}} + 2$ 即可让上式 $< \sqrt[k] \varepsilon$。即证。
+			那么，取 $N = \ceil{\frac{2}{b^2 \sqrt[k] \varepsilon}} + 2$ 即可让上式 $< \sqrt[k] \varepsilon$。即证。
 
 			\item[\textbf{9)}] 取 $m = \ceil{a}$，那么有：
 			$$
 			\frac{a^n}{n!} = \frac{a^{n-m}}{n^{\underline{n-m}}} \cdot \frac{a^m}{m!} < \ab(\frac{a}{m+1})^{n-m} \cdot \frac{a^m}{m!}
 			$$
-			记 $u = \frac{a}{m+1} < 1,\ v = \frac{a^m}{m!} \ge 1$，那么对于 $\forall\,\varepsilon > 0$，取 $N = \max\{1,\ceil*{\log_u \frac{\varepsilon}{v} + m} + 1\}$。对于 $\forall\,n \ge N$ 有：
+			记 $u = \frac{a}{m+1} < 1,\ v = \frac{a^m}{m!} \ge 1$，那么对于 $\forall\,\varepsilon > 0$，取 $N = \max\{1,\ceil{\log_u \frac{\varepsilon}{v} + m} + 1\}$。对于 $\forall\,n \ge N$ 有：
 			$$
 			\ab|\frac{a^n}{n!}| < \ab|u^{n-m} \cdot v| \le \ab|u^{N-m} \cdot v| < \varepsilon
 			$$
@@ -236,7 +236,7 @@ $$
 \begin{problem}
 	习题 2.1.6
 	\begin{proof}
-		对于 $\forall\,A \in \mathbb{R},\ N \in \mathbb{Z}^+$，取 $n = 2\max\{N,\ceil*{A} + 1\}$，那么有 $n > N,\ n > A,\ |a_n - A| = |2n - A| > 1$。因此极限不存在。
+		对于 $\forall\,A \in \mathbb{R},\ N \in \mathbb{Z}^+$，取 $n = 2\max\{N,\ceil{A} + 1\}$，那么有 $n > N,\ n > A,\ |a_n - A| = |2n - A| > 1$。因此极限不存在。
 	\end{proof}
 \end{problem}
 

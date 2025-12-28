@@ -1,0 +1,280 @@
+\section{欧几里德空间 IV}
+
+\subsection{对称变换 continue}
+
+\begin{definition}[正交线性替换]
+	对于一个线性替换 $\vect{x} = \matr{C} \vect{y}$，若其矩阵 $\matr{C}$ 是正交矩阵，那么称这个线性替换是正交线性替换。
+\end{definition}
+
+\begin{theorem}
+	任意实二次型
+	$$
+	f(\vect{x}) = \sum_{i=1}^n \sum_{j=1}^n a_{i,j} x_i x_j
+	$$
+	都可以经过正交的线性替换变为平方和的形式，即。
+	$$
+	f(\vect{y}) = \sum_{i=1}^n \lambda_i y_i^2
+	$$
+	\begin{proof}
+		设 $f(\vect{x}) = \transpose{\vect{x}} \matr{A} \vect{x}$。
+
+		根据之前的定理，存在正交矩阵 $\matr{C}$，使得 $\transpose{\matr{C}} \matr{A} \matr{C} = \matr{D}$，其中 $\matr{D}$ 是对角矩阵。于是我们可以取线性替换 $\vect{x} = \matr{C} \vect{y}$，那么：
+		$$
+		f(\vect{x}) = \transpose{(\matr{C} \vect{y})} \matr{A} (\matr{C} \vect{y}) = \transpose{\vect{y}} (\transpose{\matr{C}} \matr{A} \matr{C}) \vect{y} = \transpose{\vect{y}} \matr{D} \vect{y}
+		$$
+	\end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	第九章习题 10
+
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\forall\,\vect{x}_1, \vect{x}_2 \in V_1, k_1, k_2 \in P: (k_1 \vect{x}_1 + k_2 \vect{x}_2, \vect{\alpha}) = k_1 (\vect{x}_1, \vect{\alpha}) + k_2 (\vect{x}_2, \vect{\alpha}) = 0 
+			$$
+			这说明 $k_1 \vect{x}_1 + k_2 \vect{x}_2$ 也是 $V_1$ 中的向量，因此 $V_1$ 是 $V$ 的一个子空间。
+
+			\item[\textbf{2)}] 记 $V_2 = L(\vect{\alpha})$，那么可知：
+			$$
+			\forall\,\vect{x}_1 \in V_1, \vect{x}_2 \in V_2: (\vect{x}_1, \vect{x}_2) = 0 \implies \vect{x}_1, \vect{x}_2 \text{ 线性无关}
+			$$
+			因此 $V_1 \oplus V_2$ 是直和。
+
+			同时，我们有：
+			$$
+			\forall\,\vect{x} \in V: \vect{x} = \frac{(\vect{x}, \vect{\alpha})}{\abs{\vect{\alpha}}^2} \vect{\alpha} + \ab(\vect{x} - \frac{(\vect{x}, \vect{\alpha})}{\abs{\vect{\alpha}}^2} \vect{\alpha})
+			$$
+			那么可知：
+			$$
+			\begin{gathered}
+				\ab(\vect{x} - \frac{(\vect{x}, \vect{\alpha})}{\abs{\vect{\alpha}}^2}, \vect{\alpha}) = (\vect{x} - \vect{\alpha}) - \frac{(\vect{x}, \vect{\alpha})}{\abs{\vect{\alpha}}^2} \cdot \abs{\vect{\alpha}}^2 = 0 \\
+			\end{gathered}
+			$$
+			因此 $V_1 + V_2 = V$。由此得到 $\dim V_1 + \dim V_2 = n$，因此 $\dim V_1 = n - 1$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 16
+
+	\begin{proof}
+		取 $\matr{A}$ 的一个特征向量 $\vect{\xi}$ 和它的特征值 $\lambda$，那么：
+		$$
+		\begin{gathered}
+			\overline{\vect{\xi}}^\top \matr{A} \vect{\xi} = \lambda \overline{\vect{\xi}}^\top \vect{\xi} \\
+			\overline{\vect{\xi}}^\top \matr{A} \vect{\xi} = -\overline{\vect{\xi}}^\top \matr{A}^\top \vect{\xi} = -(\overline{\matr{A} \vect{\xi}}^\top \vect{\xi}) = -\overline{\lambda} \overline{\vect{\xi}}^\top \vect{\xi}
+		\end{gathered}
+		$$
+		而我们知道 $\overline{\vect{\xi}}^\top \vect{\xi} = \sum_{i=1}^n x_i \overline{x_i} = \sum_{i=1}^n \real(x_i)^2 \neq 0$。因此 $\lambda = -\overline{\lambda}$，即 $\lambda$ 是纯虚数或 $0$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 17
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 矩阵的特征多项式为：
+			$$
+			f(\lambda) = \begin{vmatrix}
+				\lambda - 2 & -2 & 2 \\
+				-2 & \lambda - 5 & 4 \\
+				2 & 4 & \lambda - 5
+			\end{vmatrix} = (\lambda - 1)^2 (\lambda - 10)
+			$$
+			因此矩阵的特征值为 $\lambda_1 = 1, \lambda_2 = 10$。
+
+			\begin{itemize}
+				\item $\lambda_1 = 1$：解得特征向量 $\vect{\xi}_1 = \rvec{-2, 1, 0}^\top, \vect{\xi}_2 = \rvec{2, 0, 1}^\top$，求得一组正交基为 $\vect{\eta}_1 = \rvec{-2, 1, 0}^\top, \vect{\eta}_2 = \rvec{-8, 4, 5}^\top$。
+				\item $\lambda_2 = 10$ 的特征向量为 $\vect{\xi}_3 = \rvec{1, 2, -2}^\top$，求得一组正交基为 $\vect{\eta}_3 = \rvec{1, 2, -2}^\top$。
+			\end{itemize}
+
+			于是我们得到所求的正交矩阵：
+			$$
+			\matr{T} = \begin{bmatrix}
+				-2 & -8 & 1 \\
+				1 & 4 & 2 \\
+				0 & 5 & -2
+			\end{bmatrix}
+			$$
+
+			\item[\textbf{4)}] 矩阵的特征多项式为：
+			$$
+			f(\lambda) = \begin{vmatrix}
+				\lambda + 1 & 3 & -3 & 3 \\
+				3 & \lambda + 1 & 3 & -3 \\
+				-3 & 3 & \lambda + 1 & 3 \\
+				3 & -3 & 3 & \lambda + 1
+			\end{vmatrix} = (\lambda + 4)^3 (\lambda - 8)
+			$$
+			因此矩阵的特征值为 $\lambda_1 = -4, \lambda_2 = 8$。
+
+			\begin{itemize}
+				\item $\lambda_1 = -4$：解得特征向量 $\vect{\xi}_1 = \rvec{1, 1, 0, 0}^\top, \vect{\xi}_2 = \rvec{1, 0, -1, 0}^\top, \vect{\xi}_3 = \rvec{1, 0, 0, 1}^\top$，求得一组正交基为 $\vect{\eta}_1 = \rvec{1, 1, 0, 0}^\top, \vect{\eta}_2 = \rvec{1, -1, -2, 0}^\top, \vect{\eta}_3 = \rvec{1, -1, 1, 3}^\top$；
+				\item $\lambda_2 = 8$：解得特征向量 $\vect{\xi}_4 = \rvec{-1, 1, -1, 1}^\top$，求得一组正交基为 $\vect{\xi}_4 = \rvec{-1, 1, -1, 1}^\top$。
+			\end{itemize}
+
+			于是我们得到所求的正交矩阵：
+			$$
+			\matr{T} = \begin{bmatrix}
+				1 & 1 & 1 & -1 \\
+				1 & -1 & -1 & 1 \\
+				0 & -2 & 1 & -1 \\
+				0 & 0 & 3 & 1
+			\end{bmatrix}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 18
+
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{3)}] 注意到存在正交线性替换：
+			$$
+			\vect{x} = \begin{bmatrix}
+				1 & 1 & 0 & 0 \\
+				1 & -1 & 0 & 0 \\
+				0 & 0 & 1 & 1 \\
+				0 & 0 & 1 & -1
+			\end{bmatrix} \vect{y}
+			$$
+			可以使得 $f(\vect{x}) = 2 y_1^2 - 2 y_2^2 + 2 y_3^2 - 2y_4^2$，符合题意。
+
+			\item[\textbf{4)}] 该二次型的矩阵为：
+			$$
+			\begin{bmatrix}
+				1 & -1 & 3 & -2 \\
+				-1 & 1 & -2 & 3 \\
+				3 & -2 & 1 & -1 \\
+				-2 & 3 & -1 & 1
+			\end{bmatrix}
+			$$
+			其特征多项式为：
+			$$
+			f(\lambda) = \begin{vmatrix}
+				\lambda - 1 & 1 & -3 & 2 \\
+				1 & \lambda - 1 & 2 & -3 \\
+				-3 & 2 & \lambda - 1 & 1 \\
+				2 & -3 & 1 & \lambda - 1
+			\end{vmatrix} = (\lambda + 1)(\lambda + 3)(\lambda - 1)(\lambda - 7) 
+			$$
+			因此矩阵的特征值为 $\lambda_1 = -1, \lambda_2 = -3, \lambda_3 = 1, \lambda_4 = 7$。解得矩阵的特征向量为：
+			$$
+			\vect{\xi}_1 = \cvec{-1, 1, -1, 1}, \vect{\xi}_2 = \cvec{1, -1, -1, 1}, \vect{\xi}_3 = \cvec{-1, -1, 1, 1}, \vect{\xi}_4 = \cvec{1, 1, 1, 1}
+			$$
+			因此所求的线性替换为：
+			$$
+			\vect{x} = \begin{bmatrix}
+				-1 & 1 & -1 & 1 \\
+				1 & -1 & -1 & 1 \\
+				-1 & -1 & 1 & 1 \\
+				1 & 1 & 1 & 1
+			\end{bmatrix} \vect{y}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	第九章习题 19
+	
+	\begin{proof}
+		存在一个正交矩阵 $\matr{T}$ 使得
+		$$
+		\matr{T}^\top \matr{A} \matr{T} = \matr{D} \implies \matr{T}^{-1} \matr{A} \matr{T} = \matr{D}
+		$$
+		也就是说，$\matr{A}$ 相似于一个矩阵 $\matr{D} = \diag(\lambda_1, \lambda_2,\dots, \lambda_n)$，而 $\matr{D}$ 的特征值就是 $\matr{A}$ 的特征值，也就是 $\lambda_1, \lambda_2,\dots, \lambda_n$。
+		
+		同时，$\matr{D}$ 的正定性也和 $\matr{A}$ 的正定性相同，而 $\matr{D}$ 正定的充要条件是 $\lambda_1, \lambda_2,\dots, \lambda_n$ 都大于 $0$，于是得证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 21
+	
+	\begin{proof}
+		类似于矩阵的相似，我们可以定义矩阵的正交相似：
+		$$
+		\matr{A} \overset{\perp}{\sim} \matr{B} \iff \exists\,\matr{T} \in P^{n \times n}, \matr{T}^\top \matr{T} = \matr{E}: \matr{B} = \matr{T}^\top \matr{A} \matr{T} 
+		$$
+		因为正交矩阵的逆、正交矩阵的乘积还是正交矩阵，因此正交相似也符合等价变换的自反性、对称性、传递性。
+
+		我们知道任意一个矩阵都和某个对角矩阵正交相似，那么：$\matr{A}, \matr{B}$ 的特征根相同 $\iff \exists\,\lambda_1, \lambda_2, \dots, \lambda_n: \matr{A} \overset{\perp}{\sim} \diag(\lambda_1, \lambda_2, \dots, \lambda_n) \overset{\perp}{\sim} \matr{B} \iff \matr{A} \overset{\perp}{\sim} \matr{B}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 24
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据内积的线性性，只需要一组标准正交基满足反称性质即可。设在标准正交基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下线性变换 $\mathscr{A}$ 的矩阵为 $\matr{A} = [a_{i,j}]$，则：
+			$$
+			\begin{gathered}
+				(\mathscr{A}(\vect{\varepsilon}_i), \vect{\varepsilon}_j) = -(\vect{\varepsilon}_i, \mathscr{A}(\vect{\varepsilon}_j)) \\
+				\iff \ab(\ab(\sum_{k=1}^n a_{k,i} \vect{\varepsilon}_k), \vect{\varepsilon}_j) = -\ab(a_i, \ab(\sum_{k=1}^n a_{k,j} \vect{\varepsilon}_k)) \\
+				\iff a_{j,i} = -a_{i,j}
+			\end{gathered}
+			$$
+			
+			\item[\textbf{2)}] 由题可知：
+			$$
+			\forall\,\vect{\alpha} \in V_1,\ \vect{\beta} \in V_1^\top: (\mathscr{A}(\vect{\alpha}), \vect{\beta}) = 0 \implies -(\vect{\alpha}, \mathscr{A}(\vect{\beta})) = 0 \implies \mathscr{A}(V_1^\perp) = V_1^\perp
+			$$
+			故得证。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 25
+
+	\begin{proof}
+		记 $\vect{\alpha} = \vect{\beta} + \vect{\gamma}$，其中 $\vect{\beta}$ 是 $\vect{\alpha}$ 在 $V_1$ 上的内射影，则 $\vect{\gamma} \perp V_1$。那么对于任意 $\vect{\xi} \in V_1$，有：
+		$$
+		\abs{\vect{\alpha} - \vect{\xi}}^2 = \abs{\vect{\gamma} + (\vect{\xi} - \vect{\beta})}^2 = \abs{\vect{\gamma}}^2 + \abs{\vect{\xi} - \vect{\beta}}^2 + 2(\vect{\gamma}, \vect{\xi} - \vect{\beta}) = \abs{\vect{\gamma}}^2 + \abs{\vect{\xi} - \vect{\beta}}^2 \le \abs{\vect{\gamma}}^2
+		$$
+		当且仅当在 $\vect{\xi} = \vect{\beta}$ 时等号成立。即证。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	第九章习题 26
+
+	\begin{proof}
+		对于第一个式子：
+		$$
+		\begin{aligned}
+			(V_1 + V_2)^{\perp} & = \{\vect{v} \in V: \forall\,\vect{\alpha} \in V_1,\ \vect{\beta} \in V_2,\ k_1, k_2 \in \mathbb{R}: (\vect{v}, k_1 \vect{\alpha} + k_2 \vect{\beta})\} \\
+			& = \{\vect{v} \in V: \forall\,\vect{\alpha} \in V_1,\ \vect{\beta} \in V_2: (\vect{v}, \vect{\alpha}) = (\vect{v}, \vect{\beta}) = 0\} \\
+			& = V_1^{\perp} \cap V_2^{\perp} \\
+		\end{aligned}
+		$$
+
+		对于第二个式子：
+		$$
+		\begin{gathered}
+			\forall\,\vect{\alpha} \in V_1^\perp,\ \vect{\beta} \in V_2^\perp,\ \vect{\gamma} \in V_1 \cap V_2,\ k_1, k_2 \in \mathbb{R}: (k_1 \vect{\alpha} + k_2 \vect{\beta}, \vect{\gamma}) = k_1 (\vect{\alpha}, \vect{\gamma}) + k_2 (\vect{\beta}, \vect{\gamma}) = 0 \\
+			\implies (V_1^\perp + V_2^\perp) \perp (V_1 \cap V_2)
+		\end{gathered}
+		$$
+		同时：
+		$$
+		\begin{aligned}
+			& \dim (V_1 \cap V_2) + \dim \ab(V_1^\perp + V_2^\perp) \\
+			= & \dim (V_1 \cap V_2) + \ab(\dim V_1^\perp + \dim V_2^\perp - \dim \ab(V_1^\perp \cap V_2^\perp)) \\
+			= & \dim (V_1 \cap V_2) + (n - \dim V_1) + (n - \dim V_2) - (n - \dim (V_1 + V_2)) \\
+			= & n - (\dim (V_1 + V_2) - \dim V_1 - \dim V_2 + \dim (V_1 \cap V_2)) = n
+		\end{aligned}
+		$$
+		因此 $(V_1 \cap V_2)^\perp = V_1^\perp + V_2^\perp$。
+	\end{proof}
+\end{problem}

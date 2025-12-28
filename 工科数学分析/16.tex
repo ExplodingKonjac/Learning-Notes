@@ -45,7 +45,7 @@ Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$�
 \begin{definition}[不定积分]
 	函数 $f(x)$ 在区间 $I$ 上的全体原函数称为 $f(x)$ 在区间 $I$ 上的\textbf{不定积分}，记作：
 	$$
-	\int f(x) \dif x = F(x) + C
+	\int f(x) \dd x = F(x) + C
 	$$
 	其中 $F(x)$ 是其中一个原函数。
 \end{definition}
@@ -55,26 +55,26 @@ Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$�
 \begin{property}[不定积分的线性性质]
 	\ 
 	\begin{itemize}
-		\item $\displaystyle \int (f(x) \pm g(x)) \dif x = \int f(x) \dif x \pm \int g(x) \dif x$；
-		\item $\displaystyle \int cf(x) \dif x = c \int f(x) \dif x$。
+		\item $\displaystyle \int (f(x) \pm g(x)) \dd x = \int f(x) \dd x \pm \int g(x) \dd x$；
+		\item $\displaystyle \int cf(x) \dd x = c \int f(x) \dd x$。
 	\end{itemize}
 \end{property}
 
 同样，根据一些初等函数的导数，也可以得到一些基本的不定积分：
 
 \begin{itemize}
-	\item $\displaystyle \int k \dif x = kx + C$
-	\item $\displaystyle \int x^{\mu} \dif x = \frac{x^{1 + \mu}}{1 + \mu} + C\ (\mu \neq -1)$
-	\item $\displaystyle \int \frac{\dif x}{x} = \ln |x| + C$
-	\item $\displaystyle \int \E^x \dif x = \E^x + C$
-	\item $\displaystyle \int \cos x \dif x = \sin x + C$
-	\item $\displaystyle \int \sin x \dif x = -\cos x + C$
-	\item $\displaystyle \int \sec^2 x \dif x = \tan x + C$
-	\item $\displaystyle \int \csc^2 x \dif x = -\cot x + C$
-	\item $\displaystyle \int \sec x \tan x \dif x = \sec x + C$
-	\item $\displaystyle \int \csc x \cot x \dif x = -\csc x + C$
-	\item $\displaystyle \int \frac{\dif x}{\sqrt{1 - x^2}} = \arcsin x + C$
-	\item $\displaystyle \int \frac{\dif x}{1 + x^2} = \arctan x + C$
+	\item $\displaystyle \int k \dd x = kx + C$
+	\item $\displaystyle \int x^{\mu} \dd x = \frac{x^{1 + \mu}}{1 + \mu} + C\ (\mu \neq -1)$
+	\item $\displaystyle \int \frac{\dd x}{x} = \ln |x| + C$
+	\item $\displaystyle \int \E^x \dd x = \E^x + C$
+	\item $\displaystyle \int \cos x \dd x = \sin x + C$
+	\item $\displaystyle \int \sin x \dd x = -\cos x + C$
+	\item $\displaystyle \int \sec^2 x \dd x = \tan x + C$
+	\item $\displaystyle \int \csc^2 x \dd x = -\cot x + C$
+	\item $\displaystyle \int \sec x \tan x \dd x = \sec x + C$
+	\item $\displaystyle \int \csc x \cot x \dd x = -\csc x + C$
+	\item $\displaystyle \int \frac{\dd x}{\sqrt{1 - x^2}} = \arcsin x + C$
+	\item $\displaystyle \int \frac{\dd x}{1 + x^2} = \arctan x + C$
 \end{itemize}
 
 \subsection{作业}
@@ -299,11 +299,11 @@ Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$�
 
 	\begin{solution}
 		\begin{enumerate}
-			\item[\textbf{2)}] $\dif y = -n \sin nx \dif x,\ \dif^2 y = -n^2 \cos nx \dif x^2$；
-			\item[\textbf{4)}] $\dif y = \frac{t \dif t}{\sqrt{1 + t^2}},\ \dif^2 y = \frac{\dif t^2}{(1 + t^2)^{3/2}}$；
-			\item[\textbf{6)}] $\dif y = -10 (1 + 2r)^{-6} \dif r,\ \dif^2 y = 120 (1 + 2r)^{-7} \dif r^2$；
-			\item[\textbf{8)}] $\dif y = -\frac{x}{2} \E^{-\frac{x^2}{4}} \dif x,\ \dif^2 y = \ab(\frac{x^2}{4} - \frac{1}{2}) \E^{-\frac{x^2}{4}} \dif x^2$；
-			\item[\textbf{10)}] $\dif y = (3 \sin 2x + (6x - 4) \cos 2x) \dif x,\ \dif^2 y = (12 \cos 2x - (12x - 8) \sin 2x) \dif x^2$；
+			\item[\textbf{2)}] $\dd y = -n \sin nx \dd x,\ \dd^2 y = -n^2 \cos nx \dd x^2$；
+			\item[\textbf{4)}] $\dd y = \frac{t \dd t}{\sqrt{1 + t^2}},\ \dd^2 y = \frac{\dd t^2}{(1 + t^2)^{3/2}}$；
+			\item[\textbf{6)}] $\dd y = -10 (1 + 2r)^{-6} \dd r,\ \dd^2 y = 120 (1 + 2r)^{-7} \dd r^2$；
+			\item[\textbf{8)}] $\dd y = -\frac{x}{2} \E^{-\frac{x^2}{4}} \dd x,\ \dd^2 y = \ab(\frac{x^2}{4} - \frac{1}{2}) \E^{-\frac{x^2}{4}} \dd x^2$；
+			\item[\textbf{10)}] $\dd y = (3 \sin 2x + (6x - 4) \cos 2x) \dd x,\ \dd^2 y = (12 \cos 2x - (12x - 8) \sin 2x) \dd x^2$；
 		\end{enumerate}
 	\end{solution}
 \end{problem}
@@ -313,8 +313,8 @@ Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$�
 
 	\begin{solution}
 		\begin{enumerate}
-			\item[\textbf{2)}] $\dif y = -\frac{\dif x}{(x + 1)^2} = 0.00025$；
-			\item[\textbf{4)}] $\dif y = \sec^2 x \dif x = -0.2$。
+			\item[\textbf{2)}] $\dd y = -\frac{\dd x}{(x + 1)^2} = 0.00025$；
+			\item[\textbf{4)}] $\dd y = \sec^2 x \dd x = -0.2$。
 		\end{enumerate}
 	\end{solution}
 \end{problem}
@@ -330,7 +330,7 @@ Lagrange 余项进一步说明，Taylor 公式的误差是 $O((x - x_0)^{n+1})$�
 			$$
 			\item[\textbf{6)}]
 			$$
-			\cos^3 x + \sin^3 x = \sum_{k=0}^n \frac{(-1)^{\ceil*{n/2}} (3^n - 3)}{n!} x^n + o(x^n)
+			\cos^3 x + \sin^3 x = \sum_{k=0}^n \frac{(-1)^{\ceil{n/2}} (3^n - 3)}{n!} x^n + o(x^n)
 			$$
 			\item[\textbf{7)}]
 			$$

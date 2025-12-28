@@ -1,0 +1,113 @@
+\section{欧几里德空间 III}
+
+\subsection{对称变换}
+
+\begin{definition}[对称变换]
+	对于欧几里德空间 $V$ 上的线性变换 $\mathscr{A}$，若：
+	$$
+	\forall\,\vect{v}, \vect{w} \in V: (\mathscr{A}(\vect{v}), \vect{w}) = (\vect{v}, \mathscr{A}(\vect{w}))
+	$$
+	则称 $\mathscr{A}$ 为\textbf{对称变换}。
+\end{definition}
+
+\begin{property}
+	对称变换都是线性变换。
+
+	\begin{proof}
+		对于任意 $\vect{\gamma} \in V$：
+		$$
+		\begin{aligned}
+			(\mathscr{A}(k_1 \vect{\alpha} + k_2 \vect{\beta}), \vect{\gamma}) & = (k_1 \vect{\alpha} + k_2 \vect{\beta}, \mathscr{A}(\vect{\gamma})) \\
+			& = k_1 (\vect{\alpha}, \mathscr{A}(\vect{\gamma})) + k_2 (\vect{\beta}, \mathscr{A}(\vect{\gamma})) \\
+			& = k_1 (\mathscr{A}(\vect{\alpha}), \vect{\gamma}) + k_2 (\mathscr{A}(\vect{\beta}), \vect{\gamma}) \\
+			& = (k_1 \mathscr{A}(\vect{\alpha}) + k_2 \mathscr{A}(\vect{\beta}), \vect{\gamma})
+		\end{aligned}
+		$$
+		这说明 $\mathscr{A}(k_1 \vect{\alpha} + k_2 \vect{\beta}) = k_1 \mathscr{A}(\vect{\alpha}) + k_2 \mathscr{A}(\vect{\beta})$，
+	\end{proof}
+\end{property}
+
+\begin{property}
+	在标准正交基下，对称变换的矩阵是实对称矩阵。
+
+	\begin{proof}
+		设对称变换 $\mathscr{A}$ 在标准正交基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$ 下的矩阵为 $\matr{A} = [a_{i,j}]$，那么：
+		$$
+		\begin{aligned}
+			(\mathscr{A}(\vect{\varepsilon}_j), \vect{\varepsilon}_i) & = \ab(\sum_{i=1}^n a_{k,j} \vect{\varepsilon}_j, \vect{\varepsilon}_i) \\
+			& = \ab(a_{i,j} \vect{\varepsilon}_i, \vect{\varepsilon}_i) = a_{i,j}
+		\end{aligned}
+		$$
+		而 $(\mathscr{A}(\vect{\varepsilon}_j), \vect{\varepsilon}_i) = (\vect{\varepsilon}_j, \mathscr{A}(\vect{\varepsilon}_i))$，因此 $a_{i,j} = a_{j,i}$。
+	\end{proof}
+\end{property}
+
+\begin{lemma}
+	实对称矩阵的特征值都是实数。
+
+	\begin{proof}
+		设 $\lambda \in \mathbb{C}$ 是实对称矩阵 $\matr{A}$ 的特征值，设其对应的一个特征向量 $\vect{z}$，那么：
+
+		\begin{gather}
+			\matr{A} \vect{z} = \lambda \vect{z} \tag{1} \\
+			\overline{\matr{A}} \overline{\vect{z}} = \overline{\lambda} \overline{\vect{z}} \tag{2}
+		\end{gather}
+
+		而 $\matr{A}$ 是实矩阵，因此 $\overline{\matr{A}} = \matr{A}$，所以 $\overline{\lambda} \overline{\vect{z}} = \matr{A} \overline{\vect{z}} \quad (2.1)$。
+
+		根据 (1) 可以得到：
+		$$
+		\transpose{\overline{\vect{z}}} \matr{A} \vect{z} = \lambda \transpose{\overline{\vect{z}}} \vect{z}
+		$$
+		再对 (2.1) 式取转置、右乘 $\vect{z}$ 得到：
+		$$
+		\transpose{\overline{\vect{z}}} \matr{A} \vect{z} = \overline{\lambda} \transpose{\overline{\vect{z}}} \vect{z}
+		$$
+		两式联立就得到
+		$$
+		\lambda \transpose{\overline{\vect{z}}} \vect{z} = \overline{\lambda} \transpose{\overline{\vect{z}}} \vect{z}
+		$$
+		而 $\vect{z} \neq 0$，因此 $\lambda = \overline{\lambda}$，即 $\lambda$ 是实数。
+	\end{proof}
+\end{lemma}
+
+\begin{theorem}
+	对称变换的不同特征值对应的特征子空间正交。
+
+	\begin{proof}
+		设 $\lambda_1, \lambda_2$ 是 $\mathscr{A}$ 的两个不同的特征值，$\vect{\alpha}_1, \vect{\alpha}_2$ 分别是属于它们的一个特征向量。那么有：
+		$$
+		\mathscr{A}(\vect{\alpha}_1) = \lambda_1 \vect{\alpha}_1, \quad \mathscr{A}(\vect{\alpha}_2) = \lambda_2 \vect{\alpha}_2
+		$$
+		由对称变换的定义：
+		$$
+		(\mathscr{A}(\vect{\alpha}_1), \vect{\alpha}_2) = (\vect{\alpha}_1, \mathscr{A}(\vect{\alpha}_2))
+		$$
+		将特征值的关系代入上式，得到：
+		$$
+		\lambda_1 (\vect{\alpha}_1, \vect{\alpha}_2) = \lambda_2 (\vect{\alpha}_1, \vect{\alpha}_2)
+		$$
+		由于 $\lambda_1 \neq \lambda_2$，所以 $(\vect{\alpha}_1, \vect{\alpha}_2) = 0$。即 $\vect{\alpha}_1 \perp \vect{\alpha}_2$。
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	对于任意 $n$ 阶实对称矩阵 $\matr{A}$，存在正交方阵 $\matr{T}$ 使得 $\transpose{\matr{T}} \matr{A} \matr{T}$ 是对角矩阵。
+
+	\begin{proof}
+		实对称矩阵可以对应于 $\mathbb{R}^n$ 上的对称变换。
+
+		根据实对称矩阵特征子空间的性质，我们可以通过不断从特征子空间扩展正交基的方式，取出一组标准正交基 $\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n$，使得它们都是 $\matr{A}$ 的特征向量。也即：
+		$$
+		\matr{A} \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n} = \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n} \diag(\lambda_1, \lambda_2, \dots, \lambda_n)
+		$$
+		那么我们取
+		$$
+		\matr{T} = \rvec{\vect{\varepsilon}_1, \vect{\varepsilon}_2, \dots, \vect{\varepsilon}_n}
+		$$
+		因为 $\matr{T}$ 正交，$\matr{T}^{-1} = \transpose{\matr{T}}$，因此：
+		$$
+		\matr{T}^{-1} \matr{A} \matr{T} = \transpose{\matr{T}} \matr{A} \matr{T} = \diag(\lambda_1, \lambda_2, \dots, \lambda_n)
+		$$
+	\end{proof}
+\end{theorem}

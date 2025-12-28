@@ -1,0 +1,114 @@
+\section{定积分的应用 III \& 反常积分}
+
+\subsection{求曲线的曲率}
+
+曲率描述了曲线在某个位置的弯曲程度。
+
+\begin{definition}[曲率]
+	假设曲线 $C$ 是参数曲线 $\vect{p}(t)$，那么定义 $C$ 在 $t = t_0$ 处的曲率为：
+	$$
+	K = \lim_{t \to t_0} \abs{\frac{\Delta \alpha}{\Delta s}} = \abs{\frac{\alpha'(t_0)}{s'(t_0)}}
+	$$
+	其中 $\alpha(t)$ 为切向量的辐角，$s(t)$ 为曲线的弧长，即：
+	$$
+	\alpha(t) = \arg \vect{p}'(t),\ s(t) = \int_{t_0}^{t} \abs{\vect{p}'(u)} \dd{u}
+	$$
+\end{definition}
+
+那么可以得到：
+
+\begin{itemize}
+	\item 对于直线，曲率恒为 $0$；
+	\item 对于圆，因为有 $s = r \alpha$，因此曲率 $K = \frac{1}{r}$。
+\end{itemize}
+
+\begin{definition}[曲率圆和曲率半径]
+	对于曲线 $\vect{p}(t)$，设 $t = t_0$ 时曲率为 $k$，在曲线该处的法线凹侧取一个点 $D$，使得 $|D - \vect{p}(t_0)| = \frac{1}{k} = \rho$，以 $D$ 为圆心作半径为 $\rho$ 的圆。这个圆称为曲线 $\vect{p}(t)$ 在 $t = t_0$ 处的曲率圆，$\rho$ 称为曲线 $\vect{p}(t)$ 在 $t = t_0$ 处的曲率半径。
+\end{definition}
+
+\subsubsection{函数曲线的曲率}
+
+对于曲线 $y = f(x)$，我们将其看作参数曲线 $\vect{p}(t) = (t, f(t))$。那么我们可以得到：
+$$
+\alpha(t) = \arctan f'(t),\ s(t) = \int_{t_0}^{t} \sqrt{1 + f'(u)^2} \dd{u}
+$$
+然后根据曲率的定义，曲线在 $x = x_0$ 处的曲率是：
+$$
+K(x_0) = \abs{\frac{\alpha'(t)}{s'(t)}} = \abs{\frac{f''(t)}{(1 + f'(t)^2)^{\frac{3}{2}}}}
+$$
+
+\subsubsection{参数方程的曲率}
+
+对于参数方程 $\vect{p}(t) = (\varphi(t), \psi(t))$，我们可以得到：
+$$
+\alpha(t) = \arctan \frac{\psi'(t)}{\varphi'(t)},\ s(t) = \int_{t_0}^{t} \sqrt{\varphi'(u)^2 + \psi'(u)^2} \dd{u}
+$$
+然后根据曲率的定义，曲线在 $t = t_0$ 处的曲率是：
+$$
+K(t_0) = \abs{\frac{\alpha'(t)}{s'(t)}} = \abs{\frac{\varphi''(t)\psi'(t) - \varphi'(t)\psi''(t)}{(\varphi'(t)^2 + \psi'(t)^2)^{\frac{3}{2}}}}
+$$
+
+\subsection{求旋转曲面的侧面积}
+
+\subsubsection{$y = f(x)$ 绕 $x$ 轴旋转}
+
+要求连续曲线 $y = f(x)$、直线 $x = a$、直线 $x = b$、$x$ 轴围成的图形，绕 $x$ 轴旋转一周得到的旋转曲面的侧面积，我们可以使用微元法，考虑一个微小圆台的侧面积：
+$$
+\begin{aligned}
+	\dd S & = \pi (r_1 + r_2) \dd l = \pi (f(x) + f(x + \dd x)) \dd l \\
+	& = \pi(f(x) + f(x) + f'(x) \dd{x} + o(\dd x)) \ab(\sqrt{1 + f'(x)^2} \dd{x} + o(\dd x)) \\
+	& = 2\pi f(x) \sqrt{1 + f'(x)^2} \dd{x} + o(\dd x)
+\end{aligned}
+$$
+因此，旋转曲面的侧面积为：
+$$
+S = 2\pi \int_a^b f(x) \sqrt{1 + f'(x)^2} \dd{x}
+$$
+
+\subsubsection{极坐标曲线绕极轴旋转}
+
+要求极坐标曲线 $\rho = f(\theta)$ 在 $\theta \in [\alpha, \beta]$ 的部分绕极轴旋转一周得到的旋转曲面的侧面积，我们也可以使用类似的微元法，得到：
+$$
+S = 2\pi \int_\alpha^\beta f(\theta) \sqrt{f(\theta)^2 + f'(\theta)^2} \sin \theta \,\dd \theta
+$$
+
+\subsection{广义积分}
+
+\begin{definition}[无穷积分]
+	对于连续函数 $f(x)$：
+
+	\begin{itemize}
+		\item 若极限 $\displaystyle I = \lim_{b \to +\infty} \int_a^b f(x) \dd{x}$ 存在，那么称积分 $\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 收敛，其值为 $I$，否则称这个积分发散；
+		\item 若极限 $\displaystyle I = \lim_{a \to -\infty} \int_a^b f(x) \dd{x}$ 存在，那么称积分 $\displaystyle \int_{-\infty}^b f(x) \dd{x}$ 收敛，其值为 $I$，否则称这个积分发散；
+		\item 定义 $\displaystyle \int_{-\infty}^{+\infty} f(x) \dd{x} = \int_{-\infty}^c f(x) \dd{x} + \int_c^{+\infty} f(x) \dd{x}\ (\forall c \in \mathbb{R})$，若两个积分都收敛，那么称这个积分收敛，否则称这个积分发散。 
+	\end{itemize}
+\end{definition}
+
+只要确定广义积分收敛，那么包括 Newton-Leibniz 公式、换元法、分部积分法在内的所有积分学定理都适用。
+
+\begin{theorem}[比较判别法]
+	设 $f(x), g(x)$ 是 $[a, +\infty)$ 上的函数，且在任意区间 $[a, A]$ 上 Riemann 可积，满足 
+	$$
+	\exists\,X \ge a: \forall\,x > X: 0 \le f(x) \le g(x)
+	$$
+	那么：
+
+	\begin{itemize}
+		\item 若 $\displaystyle \int_a^{+\infty} g(x) \dd{x}$ 收敛，那么 $\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 也收敛；
+		\item 若 $\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 发散，那么 $\displaystyle \int_a^{+\infty} g(x) \dd{x}$ 也发散。
+	\end{itemize}
+\end{theorem}
+
+\begin{theorem}[比较判别法的极限形式]
+	设 $f(x), g(x)$ 是 $[a, +\infty)$ 上的非负函数，且在任意区间 $[a, A]$ 上 Riemann 可积，满足
+	$$
+	l = \lim_{x \to +\infty} \frac{f(x)}{g(x)}
+	$$
+	那么：
+
+	\begin{itemize}
+		\item 若 $0 < l < +\infty$：$\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 和 $\displaystyle \int_a^{+\infty} g(x) \dd{x}$ 同收敛；
+		\item 若 $l = 0$：$\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 收敛 $\implies \displaystyle \int_a^{+\infty} g(x) \dd{x}$ 收敛；
+		\item 若 $l = +\infty$：$\displaystyle \int_a^{+\infty} f(x) \dd{x}$ 发散 $\implies \displaystyle \int_a^{+\infty} g(x) \dd{x}$ 发散。
+	\end{itemize}
+\end{theorem}

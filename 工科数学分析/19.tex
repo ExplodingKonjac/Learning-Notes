@@ -96,7 +96,7 @@ $$
 	$$
 	那么就称 $A$ 为 $f(x)$ 在 $[a, b]$ 上的\textbf{定积分}或 \textbf{Riemann 积分}，记作：
 	$$
-	A = \int_a^b f(x) \dif x
+	A = \int_a^b f(x) \dd x
 	$$
 	此时称 $f(x)$ 在 $[a, b]$ 上 \textbf{Riemann 可积}。
 
@@ -205,28 +205,28 @@ $$
 \begin{property}[定积分的线性性]
 	设 $f(x), g(x)$ 在 $[a, b]$ 可积，$\alpha, \beta \in \mathbb{R}$，那么：
 	$$
-	\int_a^b \ab(\alpha f(x) + \beta g(x)) \dif x = \alpha \int_a^b f(x) \dif x + \beta \int_a^b g(x) \dif x
+	\int_a^b \ab(\alpha f(x) + \beta g(x)) \dd x = \alpha \int_a^b f(x) \dd x + \beta \int_a^b g(x) \dd x
 	$$
 \end{property}
 
 \begin{property}[定积分的保号性]
 	若 $f(x)$ 在区间 $[a, b]\ (a < b)$ 上可积且非负，那么：
 	$$
-	\int_a^b f(x) \dif x \ge 0
+	\int_a^b f(x) \dd x \ge 0
 	$$
 \end{property}
 
 \begin{property}[估值不等式]
 	若 $f(x)$ 在区间 $[a, b]$ 上可积，且 $m \le f(x) \le M$，那么
 	$$
-	m(b - a) \le \int_a^b f(x) \dif x \le M(b - a)
+	m(b - a) \le \int_a^b f(x) \dd x \le M(b - a)
 	$$
 \end{property}
 
 \begin{property}[积分区间可加性]
 	$f(x)$ 在 $[a, b]$ 可积 $\Leftrightarrow$ 任意 $c \in [a, b]$，$f(x)$ 在 $[a, c], [c, b]$ 上也可积，并且
 	$$
-	\int_a^b f(x) \dif x = \int_a^c f(x) \dif x + \int_c^b f(x) \dif x
+	\int_a^b f(x) \dd x = \int_a^c f(x) \dd x + \int_c^b f(x) \dd x
 	$$
 	\begin{proof}
 		根据 $[a, b]$ 上可积，可知对任意 $\varepsilon > 0$ 存在划分 $T$ 使得 $\lVert T \rVert \to 0$ 时 $\sum_{i=1}^n \omega_i |\Delta_i| < \varepsilon$。那么给 $T$ 增加一个分割点 $c$ 得到新的划分 $T^*$，因为上和不增、下和不减，因此：
@@ -235,24 +235,24 @@ $$
 		$$
 		而 $T^*$ 也可以分成 $[a, c], [c, b]$ 上的划分 $T_1, T_2$，因此 $f(x)$ 在 $[a, c], [c, b]$ 也可积。反之亦可以类似证明。
 
-		下面再证明 $\int_a^b f(x) \dif x = \int_a^c f(x) \dif x + \int_c^b f(x) \dif x$。
+		下面再证明 $\int_a^b f(x) \dd x = \int_a^c f(x) \dd x + \int_c^b f(x) \dd x$。
 
 		\begin{itemize}
 			\item 若 $c \in [a, b]$：此时可以取 $c$ 为第 $k$ 个分割点，那么：
 			$$
 			\begin{aligned}
-				\int_a^b f(x) \dif x & = \lim_{\lambda \to 0} \sum_{i=1}^n f(\xi_i) |\Delta_i| \\
+				\int_a^b f(x) \dd x & = \lim_{\lambda \to 0} \sum_{i=1}^n f(\xi_i) |\Delta_i| \\
 				& = \lim_{\lambda \to 0} \sum_{i=1}^k f(\xi_i) |\Delta_i| + \lim_{\lambda \to 0} \sum_{i=k+1}^n f(\xi_i) |\Delta_i| \\
-				& = \int_a^c f(x) \dif x + \int_c^b f(x) \dif x
+				& = \int_a^c f(x) \dd x + \int_c^b f(x) \dd x
 			\end{aligned}
 			$$
 
 			\item 若 $c \notin [a, b]$，不妨设 $c > b > a$，那么：
 			$$
 			\begin{aligned}
-				\int_a^c f(x) \dif x & = \int_a^b f(x) \dif x + \int_b^c f(x) \dif x \\
-				\int_a^b f(x) \dif x & = \int_a^c f(x) \dif x - \int_b^c f(x) \dif x \\
-				& = \int_a^c f(x) \dif x + \int_c^b f(x) \dif x
+				\int_a^c f(x) \dd x & = \int_a^b f(x) \dd x + \int_b^c f(x) \dd x \\
+				\int_a^b f(x) \dd x & = \int_a^c f(x) \dd x - \int_b^c f(x) \dd x \\
+				& = \int_a^c f(x) \dd x + \int_c^b f(x) \dd x
 			\end{aligned}
 			$$
 		\end{itemize}

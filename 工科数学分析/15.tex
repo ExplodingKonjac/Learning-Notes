@@ -21,25 +21,25 @@
 	\end{proof}
 \end{theorem}
 
-这也就说明，导数的记号 $\frac{\dif y}{\dif x}$ 可以看作一个整体，也可以看作 $y, x$ 的微分之商。因此导数也被称做微商。
+这也就说明，导数的记号 $\frac{\dd y}{\dd x}$ 可以看作一个整体，也可以看作 $y, x$ 的微分之商。因此导数也被称做微商。
 
 \subsection{微分的运算法则}
 
 微分的四则运算法则类似于求导法则：
 
 \begin{itemize}
-	\item $\dif (u + v) = \dif u + \dif v$；
-	\item $\dif (u - v) = \dif u - \dif v$；
-	\item $\dif (C u) = C \dif u$；
-	\item $\dif (u \cdot v) = u \dif v + v \dif u$；
-	\item $\dif \frac{u}{v} = \frac{v \dif u - u \dif v}{v^2}$；
+	\item $\dd (u + v) = \dd u + \dd v$；
+	\item $\dd (u - v) = \dd u - \dd v$；
+	\item $\dd (C u) = C \dd u$；
+	\item $\dd (u \cdot v) = u \dd v + v \dd u$；
+	\item $\dd \frac{u}{v} = \frac{v \dd u - u \dd v}{v^2}$；
 \end{itemize}
 
 \subsection{微分的形式不变性}
 
 微分的形式不变性说的是，对于函数 $y = f(x)$，无论 $x$ 是自变量还是一个中间变量（即关于“真正”自变量的函数），微分总是有下面的形式：
 $$
-\dif y = f'(x) \dif x
+\dd y = f'(x) \dd x
 $$
 链式法则就是微分的形式不变性的体现。
 
@@ -48,22 +48,22 @@ $$
 \begin{definition}[函数的高阶微分]
 	我们这样定义 $n$ 阶微分：
 	$$
-	\dif^n y = 
+	\dd^n y = 
 	\begin{cases}
 		y & , n = 0 \\
-		\dif (\dif^{n-1} y) & , n > 0
+		\dd (\dd^{n-1} y) & , n > 0
 	\end{cases}
 	$$
 	那么我们可以得到：
 	$$
 	\begin{gathered}
-		\dif y = y' \dif x \\
-		\dif^2 y = \dif (y' \dif x) = y'' \dif x^2 \\
+		\dd y = y' \dd x \\
+		\dd^2 y = \dd (y' \dd x) = y'' \dd x^2 \\
 		\cdots \\
-		\dif^n y = y^{(n)} \dif x^n
+		\dd^n y = y^{(n)} \dd x^n
 	\end{gathered}
 	$$
-	这里面出现 $\dif x$ 的高次幂的原因是，在求 $y' \dif x$ 微分时，$\dif x$ 被视作常数。因此 $\dif(y' \dif x) = \dif(y'') \dif x = y'' \dif x^2$。更高阶也同理。
+	这里面出现 $\dd x$ 的高次幂的原因是，在求 $y' \dd x$ 微分时，$\dd x$ 被视作常数。因此 $\dd(y' \dd x) = \dd(y'') \dd x = y'' \dd x^2$。更高阶也同理。
 \end{definition}
 
 注意， \textbf{高阶微分不再具有形式不变性}。
