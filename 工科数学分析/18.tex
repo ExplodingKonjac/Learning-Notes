@@ -41,6 +41,10 @@ $$
 	$$
 	对这两部分分开考虑。先考虑简单的：
 	$$
+	\int \frac{t}{(t^2 + a^2)^{k}} \dd{t} = \frac{1}{2} \int \frac{\dd(t^2)}{(t^2 + a^2)^{k}}
+	$$
+	然后就能直接计算。对于另一部分：
+	$$
 	\begin{aligned}
 		I_1 & = \int \frac{\dd t}{t^2 + a^2} = \frac{1}{a} \arctan \frac{t}{a} + C \\
 		I_k & = \int \frac{\dd t}{(t^2 + a^2)^k} = \frac{1}{a^2} \int \frac{(t^2 + a^2) - t^2}{(t^2 + a^2)^k} \dd t \\
@@ -49,7 +53,7 @@ $$
 		& = \frac{1}{a^2} I_{n-1} + \frac{1}{2 a^2 (n-1)} \ab(\frac{t}{(t^2 + a^2)^{n-1}} - I_{n-1}) \\
 	\end{aligned}
 	$$
-	于是可以进行递推。同时在这个推导过程中实际上也解决了 $\displaystyle \int \frac{t}{(t^2 + a^2)^k} \dd t$ 的求法。于是这个积分被解决了。
+	于是可以进行递推，这个积分被解决了。
 \end{itemize}
 
 至此我们成功证明，所有有理函数都可积，并且原函数是初等函数。

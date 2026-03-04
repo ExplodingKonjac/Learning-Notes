@@ -1,0 +1,112 @@
+\section{最小二乘法}
+
+\subsection{基本最小二乘}
+
+对于线性方程组 $\matr{A} \vect{x} = \vect{y}$ 不一定存在解，\textbf{最小二乘问题}就是要最小化下面的代价函数：
+$$
+f(\vect{x}) = \norm{\matr{A} \vect{x} - \vect{y}}_2^2
+$$
+其中向量的 $L_2$ 范数定义为 $\norm{\vect{x}}_2 = \sqrt{\vect{x}^\top \vect{x}}$。
+
+我们希望寻找到 $f(x)$ 的一个极值点，那么我们希望得到：
+$$
+\pdv{f}{x_1} = \pdv{f}{x_2} = \cdots = \pdv{f}{x_n} = 0 \iff \pdv{f}{\vect{x}} = 0
+$$
+也就是说：
+$$
+\begin{gathered}
+    \pdv{f}{\vect{x}} = \pdv{\vect{x}}((\matr{A} \vect{x} - \vect{y})^\top (\matr{A} \vect{x} - \vect{y})) = 0
+    \iff \matr{A}^\top \matr{A} \vect{x} = \matr{A}^\top \vect{y}
+\end{gathered}
+$$
+下面分类讨论：
+
+\begin{itemize}
+    \item 若 $\matr{A}^\top \matr{A}$ 可逆，即 $\matr{A}$ 列满秩，那么我们取
+    $$
+    \vect{x}_0 = \ab(\matr{A}^\top \matr{A})^{-1} \matr{A}^\top \vect{y}
+    $$
+    此时的误差为
+    $$
+    \norm{\matr{A} \vect{x}_0 - \vect{y}}_2^2 = \norm{\matr{A} \ab(\matr{A}^\top \matr{A})^{-1} \matr{A}^\top \vect{y} - \vect{y}}_2^2
+    $$
+    
+    \item 若 $\matr{A}^\top \matr{A}$ 不可逆，即 $\matr{A}$ 列不满秩。
+\end{itemize}
+
+\subsection{加权最小二乘}
+
+我们引入一个矩阵 $\matr{L} \in \mathbb{R}^{m \times m}$，我们给出一个一般形式的最小二乘问题：
+$$
+\begin{aligned}
+    & \min_{\vect{x}} & & \norm{\vect{\varepsilon}}_2^2 \\
+    & \text{s.t.} & & \vect{y} = \matr{A} \vect{x} + \matr{L} \vect{\varepsilon}
+\end{aligned}
+$$
+其中 $\matr{A} \in \mathbb{R}^{m \times n}, \vect{y} \in \mathbb{R}^{m}$。
+
+\begin{itemize}
+    \item 若 $\matr{L}$ 可逆，那么可以把约束转化为 $\matr{L}^{-1} = \matr{L}^{-1} \matr{A} \vect{x} + \vect{\varepsilon}$，然后就可以使用标准做法求解。
+    \item 若 $\matr{L}$ 不可逆，【没讲】。
+\end{itemize}
+
+\subsection{序贯最小二乘估计}
+
+当 $\matr{A}, \vect{y}$ 的分量是在线给出时，我们需要另一种做法。
+
+我们定义输入向量和输入矩阵的一个前缀为：
+$$
+\matr{A}_k = \cvec{\vect{a}_1^\top, \vect{a}_2^\top, \dots, \vect{a}_k^\top}, \quad \vect{y}_k = \cvec{y_1, y_2, \dots, y_k}
+$$
+那么每个前缀的最小二乘估计为：
+$$
+\hat{\vect{x}}_k = \ab(\matr{A}_k^\top \matr{A}_k)^{-1} \matr{A}_k^\top \vect{y}_k
+$$
+为了方便讨论，我们定义 $\matr{P}_k = (\matr{A}_k^\top \matr{A}_k)^{-1}$，那么有 $\hat{\vect{x}_k} = \matr{P}_k \matr{A}_k^\top \vect{y}_k$。
+
+考虑从时刻 $k - 1$ 转移到时刻 $k$，我们将矩阵分块：
+$$
+\matr{A}_k = \cvec{\matr{A}_{k - 1}, \vect{a}_k^\top}, \vect{y}_k = \cvec{\vect{y}_{k - 1}, y_k}
+$$
+那么我们发现：
+$$
+\matr{P}_k^{-1} = \begin{bmatrix}
+    \matr{A}_{k-1}^\top & \vect{a}_{k - 1}
+\end{bmatrix} \cvec{\matr{A}_{k-1}, \vect{a}_{k - 1}^\top} = \matr{P}_{k - 1}^{-1} + \vect{a}_k \vect{a}_k^\top
+$$
+同理，我们有：
+$$
+\matr{A}_k \vect{y}_k = \begin{bmatrix}
+    \matr{A}_{k-1}^\top & \vect{a}_{k - 1}
+\end{bmatrix} \cvec{\vect{y}_{k-1}, y_k} = \matr{A}_{k-1}^\top \vect{y}_{k-1} + \vect{a}_k y_k
+$$
+
+下面我们给出\textbf{矩阵求逆引理}：
+
+\begin{lemma}[矩阵求逆引理]
+    $$
+    (\matr{A} + \vect{u} \vect{v}^\top)^{-1} = \matr{A}^{-1} - \frac{\matr{A}^{-1} \vect{u} \vect{v}^\top \matr{A}^{-1}}{1 + \vect{v}^\top \matr{A}^{-1} \vect{u}}
+    $$
+\end{lemma}
+
+我们将 $\matr{A} \gets \matr{P}_{k - 1},\ \vect{u} \gets \vect{a}_k,\ \vect{v} \gets \vect{a}_k$ 得到：
+$$
+\matr{P}_k = \matr{P}_{k - 1} - \frac{\matr{P}_{k - 1} \vect{a}_k \vect{a}_k^\top \matr{P}_{k - 1}}{1 + \vect{a}_k^\top \matr{P}_{k - 1} \vect{a}_k}
+$$
+为了方便描述，我们定义 $\matr{K}_k = \frac{\matr{P}_{k - 1} \vect{a}_k}{1 + \vect{a}_k^\top \matr{P}_{k - 1} \vect{a}_k}$，那么有：
+$$
+\matr{P}_k = \ab(\matr{I} - \matr{K}_k \vect{a}_k^\top) \matr{P}_{k - 1},\ \matr{K}_k = \matr{P}_k \vect{a}_k
+$$
+
+最后，我们将 $\matr{P}_k, \matr{K}_k$ 代入到原来的式子：
+$$
+\begin{aligned}
+    \hat{\vect{x}_k} & = \matr{P}_k \matr{A}_k^\top \vect{y}_k \\
+    & = \matr{P}_k \ab(\matr{A}_{k - 1}^\top \vect{y}_{k - 1} + \vect{a}_k y_k) \\
+    & = \matr{P}_k \matr{A}_{k - 1}^\top \vect{y}_{k - 1} + \matr{P}_k \vect{a}_k y_k \\
+    & = \matr{P}_k \matr{P}_{k - 1}^{-1} \hat{\vect{x}}_{k - 1} + \matr{K}_k y_k \\
+    & = \ab(\matr{I} - \matr{K}_k \vect{a}_k^\top) \matr{P}_{k - 1} \matr{P}_{k - 1}^{-1} \hat{\vect{x}}_{k - 1} + \matr{K}_k y_k \\
+    & = \ab(\matr{I} - \matr{K}_k \vect{a}_k^\top) \hat{\vect{x}}_{k - 1} + \matr{K}_k y_k \\
+    & = \hat{\vect{x}}_{k - 1} + \matr{K}_k \ab(y_k - \vect{a}_k^\top \hat{\vect{x}}_{k - 1})
+\end{aligned}
+$$

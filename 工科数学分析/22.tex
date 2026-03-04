@@ -27,9 +27,6 @@ $$
 		\draw[->] (-0.5,0) -- (2.5,0) node[right] {$x$};
 		\draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
 		
-		% Define the cardioid function r = a(1 + cos(theta)), let a=1
-		\draw[thick, domain=0:360, samples=200, smooth] plot ({ (1 + cos(\x)) * cos(\x) }, { (1 + cos(\x)) * sin(\x) });
-		
 		% Draw the sector (differential element)
 		\def\angleA{45}
 		\def\angleB{60}
@@ -37,14 +34,14 @@ $$
 		\pgfmathsetmacro{\radiusB}{1 + cos(\angleB)}
 		
 		% Fill the sector
-		\fill[gray!30] (0,0) -- (\angleA:\radiusA) arc (\angleA:\angleB:\radiusA) -- cycle;
+		\fill[gray!30] (0,0) -- (\angleA:\radiusA) plot[domain=\angleA:\angleB, samples=100] ({ (1 + cos(\x)) * cos(\x) }, { (1 + cos(\x)) * sin(\x) }) -- (0,0);
+		
+		% Define the cardioid function r = a(1 + cos(theta)), let a=1
+		\draw[thick, domain=0:360, samples=200, smooth] plot ({ (1 + cos(\x)) * cos(\x) }, { (1 + cos(\x)) * sin(\x) });
 		
 		% Draw the rays for the sector
 		\draw (0,0) -- (\angleA:\radiusA) node[midway, below right] {$r$};
 		\draw (0,0) -- (\angleB:\radiusB);
-		
-		% Draw the arc approximation
-		\draw[dashed] (\angleA:\radiusA) arc (\angleA:\angleB:\radiusA);
 		
 		% Label the differential angle
 		\draw[<->] (\angleA:0.8) arc (\angleA:\angleB:0.8);
@@ -193,7 +190,7 @@ $$
 
 \begin{figure}[H]
 	\centering
-\begin{tikzpicture}[scale=1.5, >=stealth]
+	\begin{tikzpicture}[scale=1.5, >=stealth]
 		% Axes
 		\draw[->] (-0.5,0) -- (3.5,0) node[right] {$x$};
 		\draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};

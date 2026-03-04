@@ -21,7 +21,7 @@
 	\end{proof}
 \end{theorem}
 
-这也就说明，导数的记号 $\frac{\dd y}{\dd x}$ 可以看作一个整体，也可以看作 $y, x$ 的微分之商。因此导数也被称做微商。
+这也就说明，导数的记号 $\dv{y}{x}$ 可以看作一个整体，也可以看作 $y, x$ 的微分之商。因此导数也被称做微商。
 
 \subsection{微分的运算法则}
 
@@ -73,7 +73,7 @@ $$
 \begin{theorem}[Taylor 定理]
 	设 $f(x)$ 在 $x_0$ 处有 $1 \sim n$ 阶导数，那么：
 	$$
-	f(x) = \sum_{i=0}^n \frac{f^{(i)}(x)}{i!} (x - x_0)^i + o((x - x_0)^n)
+	f(x) = \sum_{i=0}^n \frac{f^{(i)}(x_0)}{i!} (x - x_0)^i + o((x - x_0)^n)
 	$$
 	其中前面的求和部分称为\textbf{Taylor 多项式}，最后的一项称为\textbf{Peano 余项}。Taylor 定理也记作：
 	$$
@@ -104,7 +104,7 @@ $$
 	\end{proof}
 \end{theorem}
 
-特别地，在 $x_0 = 0$ 处的 Taylor 展开式被称为\textbf{Maclaurin 展开式}。下面时一些常见的 Maclaurin 展开式：
+特别地，在 $x_0 = 0$ 处的 Taylor 展开式被称为\textbf{Maclaurin 展开式}。下面是一些常见的 Maclaurin 展开式：
 
 $$
 \begin{gathered}

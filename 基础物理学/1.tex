@@ -1,0 +1,40 @@
+\section{位移、速度、加速度}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1.1
+    \begin{solution}
+        \item 设质点坐标为 $(x(t), y(t))$，那么可得 $x(t)^2 + y(t)^2 = R^2$。因此质点轨道是以 $(0, 0)$ 为圆心，半径为 $R$ 的圆。
+        \item 质点的速度为 $\vect{v}(t) = \dv{\vect{r}}{t} = R(-\vect{e}_i \sin \omega t + \vect{e}_j \cos \omega t)$。质点的速率为 $\abs{\vect{v}(t)} = R$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.4
+    \begin{solution}
+        设角速度为 $\omega =\dv{\theta}{t}$。那么质点的速度为：
+        $$
+        \vect{v}(t) = \dv{\vect{r}}{t} = \dv{t}(R((\theta - \sin \theta) \vect{e}_i + (1 - \cos \theta) \vect{e}_j)) = R((1 - \cos \theta) \vect{e}_i + \sin \theta \vect{e}_j) \omega
+        $$
+        当 $\omega$ 为常量时：
+        $$
+        \vect{v}(t) = \vect{0} \iff (1 - \cos \theta) = 0 \land \sin \theta = 0 \iff \theta = 2k \pi\ (k \in \mathbb{N})
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.5
+    \begin{solution}
+        以路灯的底座处为原点，那么路灯坐标为 $(0, h_1)$，小人的最高处的坐标为 $(v_1 t, h_2)$，那么影子的顶端的坐标为
+        $$
+        \vect{r}(t) = \ab(v_1 t \cdot \frac{h_1}{h_1 - h_2}, 0)
+        $$
+        可知影子顶端的速度为
+        $$
+        \vect{v}_2(t) = \ab(v_1 \cdot \frac{h_1}{h_1 - h_2}, 0)
+        $$
+        因此影子顶端做匀速直线运动。
+    \end{solution}
+\end{problem}

@@ -1,0 +1,66 @@
+\section{无穷级数}
+
+\subsection{无穷级数的收敛性}
+
+\begin{definition}
+    对于一个无穷项数列 $\{a_n\}$，我们有部分和数列 $S_n = \sum_{i=1}^{n} a_i$。那么我们称
+    $$
+    \sum_{i=1}^{\infty} a_i = \lim_{n \to \infty} S_n
+    $$
+    是一个无穷级数。当 $\lim_{n \to \infty} S_n$ 存在时称级数收敛，否则称级数发散。
+\end{definition}
+
+无穷级数具有一系列性质：
+
+\begin{theorem}
+    如果级数 $\sum\limits_{n = 1}^{\infty} a_n$ 收敛，那么 $\lim\limits_{n \to \infty} a_n = 0$。
+
+    或等价描述为，若 $\lim\limits_{n \to \infty} a_n \neq 0$，那么 $\sum\limits_{n = 1}^{\infty} a_n$ 发散。
+\end{theorem}
+
+\begin{theorem}[线性性]
+    如果级数 $\sum\limits_{n = 1}^{\infty} a_n$ 和 $\sum\limits_{n = 1}^{\infty} b_n$ 都收敛，那么 $\sum\limits_{n = 1}^{\infty} (\lambda a_n + \mu b_n)$ 也收敛，且
+    $\sum\limits_{n = 1}^{\infty} (\lambda a_n + \mu b_n) = \lambda \sum\limits_{n = 1}^{\infty} a_n + \mu \sum\limits_{n = 1}^{\infty} b_n$。
+\end{theorem}
+
+\begin{theorem}
+    若 $\sum\limits_{n = 1}^{\infty}$ 收敛，那么任意加括号之后组成的新级数也收敛。
+\end{theorem}
+
+\begin{theorem}
+    若给级数加括号后收敛，并且括号中各项符号相同，那么原级数也收敛于同一个值。
+
+    \begin{proof}
+        我们考虑加括号后的数列
+        $$
+        b_k = \sum_{i = n_{k - 1} + 1}^{n_k} a_i
+        $$
+        设 $\{b_k\}$ 的部分和为 $A_1, A_2, \dots, A_k, \dots$，原级数法部分和是 $S_1, S_2, \dots, S_k, \dots$, $\lim\limits_{n \to \infty} A_n = S$。那么当 $n_{k - 1} + 1 \le n \le n_k$ 时，有：
+        $$
+        A_{k - 1} \le S_n \le A_k \lor A_{k - 1} \ge S_n \ge A_k
+        $$
+        于是得证。
+    \end{proof}
+\end{theorem}
+
+利用 Cauchy 收敛法则，我们可以得到无穷级数的 Cauchy 收敛定理：
+
+\begin{theorem}[Cauchy 收敛定理]
+    $\sum\limits_{i = 1}^{\infty} a_i$ 收敛等价于：
+    $$
+    \forall\,\varepsilon > 0, \exists\,N \in \mathbb{N}, \forall\,m \ge n \ge N, \abs{\sum_{i = n}^{m} a_i} < \varepsilon
+    $$
+\end{theorem}
+
+\subsection{级数散敛性判别法}
+
+\begin{theorem}[比较判别法]
+    设 $\exists\,N: \forall\,n > N: 0 \le a_n \le b_n$，那么
+
+    \begin{itemize}
+        \item 若 $\sum\limits_{n = 1}^{\infty} b_n$ 收敛，那么 $\sum\limits_{n = 1}^{\infty} a_n$ 也收敛；
+        \item 若 $\sum\limits_{n = 1}^{\infty} b_n$ 发散，那么 $\sum\limits_{n = 1}^{\infty} a_n$ 也发散。
+    \end{itemize}
+\end{theorem}
+
+无穷级数的比较判别法也同样有极限形式。
