@@ -1,0 +1,363 @@
+\section{无穷级数 II}
+
+\subsection{正项级数的根值判别法}
+
+\begin{theorem}[Cauchy 判别法]
+    设 $\sum\limits_{n = 1}^{\infty} x_n$ 是正项级数。
+    \begin{itemize}
+        \item 若 $\exists\,0 < q < 1, N \in \mathbb{N}^{+}: \forall\,n > N: \sqrt[n]{x_n} \le q$，那么级数收敛。
+        \item 若存在无穷多个 $n$ 使得 $\sqrt[n]{x_n} \ge 1$，那么级数发散。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}[Cauchy 判别法的极限形式]
+    设 $\sum\limits_{n = 1}^{\infty} x_n$ 是正项级数，$q = \limsup\limits_{n \to \infty} \sqrt[n]{a_n}$，那么：
+    \begin{itemize}
+        \item 若 $q < 1$，那么级数收敛；
+        \item 若 $q > 1$，那么级数发散。
+    \end{itemize}
+\end{theorem}
+
+\begin{remark}
+    当 $q = 1$ 时，判别法失效。如级数 $\sum\limits_{n = 1}^{\infty} \frac{1}{n}$ 和 $\sum\limits_{n = 1}^{\infty} \frac{1}{n^2}$。
+\end{remark}
+
+\subsection{正项级数的比值判别法}
+
+\begin{theorem}[D'Alembert 判别法]
+    设 $\sum\limits_{n = 1}^{\infty} x_n$ 是正项级数。
+    \begin{itemize}
+        \item 若 $\exists\,0 < q < 1, N \in \mathbb{N}^{+}: \forall\,n > N: \frac{x_{n + 1}}{x_n} \le q$，那么级数收敛。
+        \item 若存在无穷多个 $n$ 使得 $\frac{x_{n + 1}}{x_n} \ge 1$，那么级数发散。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}[D'Alembert 判别法的极限形式]
+    设 $\sum\limits_{n = 1}^{\infty} x_n$ 是正项级数，$q = \lim\limits_{n \to \infty} \frac{x_{n + 1}}{x_n}$，那么：
+    \begin{itemize}
+        \item 若 $q < 1$，那么级数收敛；
+        \item 若 $q > 1$，那么级数发散。
+    \end{itemize}
+\end{theorem}
+
+\begin{remark}
+    \begin{itemize}
+        \item 当 $q = 1$ 时，判别法失效。
+        \item D'Alembert 判别法可以使用上下极限的形式，即上极限 $< 1$ 和下极限 $> 1$。
+    \end{itemize}
+\end{remark}
+
+\subsection{正项级数的积分判别法}
+
+\begin{theorem}[Cauchy 积分判别法]
+    设函数 $f(x)\ (x \ge 1)$ 满足 $f(x) \ge 0$ 且递减，那么 $\sum \limits_{n = 1}^{\infty} f(n)$ 和 $\displaystyle \int_1^{\infty} f(x) \dd{x}$ 同敛散。 
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 11.1.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \begin{aligned}
+                \origin & = \sum_{n = 1}^{\infty} \frac{1}{m} \ab(\frac{1}{n} - \frac{1}{n + m}) \\
+                & = \frac{1}{m} \sum_{n = 1}^m \frac{1}{n} \\
+                & = \frac{1}{m} \cdot \frac{m (m + 1)}{2n} = \frac{m + 1}{2n}
+            \end{aligned}
+            $$
+            \item[\textbf{4)}]
+            $$
+            \begin{aligned}
+                \origin & = \sum_{n = 1}^{\infty} \frac{1}{2} \ab(\frac{1}{2n - 1} - \frac{1}{2n + 1})  \\
+                & = \lim_{n \to \infty} \frac{1}{2} \ab(1 - \frac{1}{2n + 1}) \\
+                & = \frac{1}{2}
+            \end{aligned}
+            $$
+            \item[\textbf{6)}] 设 $S = \origin$，那么：
+            $$
+            \begin{aligned}
+                S - \frac{1}{2} S & = \sum_{n = 2}^{\infty} \frac{(2n - 1) - (2n - 3)}{2^{n}} \\
+                & = \sum_{n = 2}^{\infty} \frac{2}{2^{n}} \\
+                & = \sum_{n = 1}^{\infty} \frac{1}{2^{n}} = 1
+            \end{aligned}
+            $$
+            因此 $S = 2$。
+            \item[\textbf{8)}]
+            $$
+            \begin{aligned}
+                \origin & = \sum_{n = 1}^{\infty} \ab(\ln \frac{n}{2n - 1} - \ln \frac{n + 1}{2n + 1}) \\
+                & = \ln 1 - \lim_{n \to \infty} \ln \frac{n + 1}{2n + 1} \\
+                & = \ln 2
+            \end{aligned}
+            $$
+            \item[\textbf{9)}]
+            $$
+            \begin{aligned}
+                \origin & = \sum_{n = 1}^{\infty} \ab(\ab(\sqrt{n} - \sqrt{n + 1}) - (\sqrt{n + 1} - \sqrt{n + 2})) \\
+                & = (1 - \sqrt{2}) -\lim_{n \to \infty} \ab(\sqrt{n} - \sqrt{n + 1}) \\
+                & = 1 - \sqrt{2}
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.1.2
+    \begin{proof}
+        \begin{enumerate}
+            \item[\textbf{1)}] $\lim\limits_{n \to \infty} \frac{1}{\sqrt[n]{n}} = 1$，因此级数必定发散。
+            \item[\textbf{3)}] $\lim\limits_{n \to \infty} \ab(1 - \frac{1}{n})^{n} = \frac{1}{\E}$，因此级数必定发散。
+        \end{enumerate}
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.1.3
+    \begin{proof}
+        设 $z_n = x_n + y_n$。若 $\sum\limits_{n = 1}^{\infty} z_n$ 收敛，那么根据极限的性质 $\sum\limits_{n = 1}^{\infty} y_n = \sum\limits_{n = 1}^{\infty} (z_n - x_n)$ 也收敛，与题意矛盾。因此 $\sum\limits_{n = 1}^{\infty} z_n$ 发散。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.1.4
+    \begin{proof}
+        设 $S_n = \sum\limits_{i = 1}^{n} x_i$。那么
+        $$
+        \sum_{i = 1}^n (x_i + x_{i + 1}) = S_n + S_{n + 1} - x_1
+        $$
+        由题知 $\lim\limits_{n \to \infty} S_n$ 收敛，那么根据极限性质显然 $\lim\limits_{n \to \infty} (S_n + S_{n + 1} - x_1)$ 收敛。故得证。
+
+        逆命题不成立的例子：$x_n = \frac{(-1)^{n}}{n}$。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.1.5
+    \begin{proof}
+        设 $S_n = \sum\limits_{i = 1}^{n} n(x_n - x_{n + 1})$。那么：
+        $$
+        \begin{aligned}
+            S_n + (n + 1) x_{n + 1} & = \sum_{i = 1}^{n} i x_i - \sum_{i = 2}^{n + 1} (i - 1) x_i \\
+            & = \sum_{i = 1}^{n + 1} i x_i - \sum_{i = 1}^{n + 1} (i - 1) x_i \\
+            & = \sum_{i = 1}^{n + 1} x_i
+        \end{aligned}
+        $$
+        因为 $\lim\limits_{n \to \infty} S_n, \lim\limits_{n \to \infty} n x_n$ 均收敛，因此 $\sum\limits_{n = 1}^{\infty} x_n = \lim\limits_{n \to \infty} (S_n + (n + 1) x_{n + 1})$ 也收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.1.6
+    \begin{proof}
+        根据比较判别法，因为 $\sum\limits_{n = 1}^{\infty} x_n$ 收敛，因此 $\lim\limits_{n \to \infty} \frac{x_n}{\frac{1}{n}} = 0$，即 $x_n = o\ab(\frac{1}{n})$。所以：
+        $$
+        \frac{1}{n} \sum_{i = 1}^{n} i x_i = \frac{1}{n} \sum_{i = 1}^{n} i o\ab(\frac{1}{i}) = \frac{o(n)}{n} = o(1)
+        $$
+        因此 $\lim\limits_{n \to \infty} \frac{1}{n} \sum\limits_{i = 1}^n i x_i = 0$。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.1
+    \begin{proof}
+        设 $y_k = \sum\limits_{i = n_{k - 1} + 1}^{n_k} x_n\ (0 = n_0 < n_1 < n_2 < \cdots)$。那么由题可知 $y_k$ 有界，即 $\exists\,M > 0: \forall\,k \in \mathbb{N}^{+}: y_k \le M$。
+
+        那么，我们设 $f(n) = \min\{n_k: k \in \mathbb{N} \land n_k \ge n\}$，就有
+        $$
+        \sum_{n = 1}^N x_n \le \sum_{n = 1}^{f(N)} y_n \le M
+        $$
+        因此 $\sum\limits_{n = 1}^{\infty} x_n$ 有界，因此也收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 因为
+            $$
+            \lim_{n \to \infty} \frac{\frac{3n}{n^3 + 1}}{\frac{1}{n^2}} = 3
+            $$
+            因此该级数收敛。
+
+            \item[\textbf{3)}] 因为
+            $$
+            \lim_{n \to \infty} \frac{n!}{n^2} = 0
+            $$
+            因此该级数收敛。
+
+            \item[\textbf{5)}] 因为
+            $$
+            \lim_{n \to \infty} \frac{\frac{1}{(\ln n)^{k}}}{\frac{1}{n}} = \lim_{n \to \infty} \frac{n}{(\ln n)^{k}} = +\infty
+            $$
+            因此该级数发散。
+
+            \item[\textbf{7)}] 因为
+            $$
+            \lim_{n \to \infty} \frac{\frac{1}{n} \sin \frac{1}{n}}{\frac{1}{n^2}} = \lim_{n \to \infty} n \sin \frac{1}{n} = 1
+            $$
+            因此该级数收敛。
+
+            \item[\textbf{9)}] 因为
+            $$
+            \lim_{n \to \infty} \sqrt[n]{n^{k} \E^{-n}} = \frac{1}{\E} \ab(\lim_{n \to \infty} \sqrt[n]{n})^{k} = \frac{1}{\E} < 1
+            $$
+            因此该级数收敛。
+
+            \item[\textbf{11)}] 因为
+            $$
+            \frac{(2 + (-1)^{n})^{n}}{2^{2n + 1}} \le \frac{3^{n}}{2 \cdot 4^n} = \frac{1}{2} \ab(\frac{3}{4})^{n} 
+            $$
+            因此该级数收敛。
+
+            \item[\textbf{13)}] 因为
+            $$
+            -\ln \cos \frac{\pi}{n} = -\ln\ab(1 - \frac{\pi^2}{n^2} + O\ab(n^{4})) = \frac{\pi^2}{n^2} + O\ab(n^{4})
+            $$
+            因此该级数收敛。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.3
+    \begin{proof}
+        由题知
+        $$
+        \lim_{n \to \infty} \frac{x_n}{\frac{1}{n}} = a > 0
+        $$
+        根据比值判别法，$\sum_{n = 1}^{\infty} x_n$ 和 $\sum_{n = 1}^{\infty} \frac{1}{n}$ 同敛散，因此它发散。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.5
+    \begin{proof}
+        因为 $|x_n y_n| \le \frac{x_n^2 + y_n^2}{2}$，因此 $\sum\limits_{n = 1}^{\infty} |x_n y_n|$ 收敛。$(x_n + y_n)^2 \le x_n^2 + y_n^2 + 2|x_n y_n|$，因此 $\sum\limits_{n = 1}^\infty (x_n + y_n)^2$ 收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.6
+    \begin{proof}
+        因为 $\sum\limits_{n = 1}^{\infty} x_n$ 收敛，所以有 $\lim\limits_{n \to \infty} \frac{x_n}{\frac{1}{n}} = 0$。因此：
+        $$
+        \lim_{n \to \infty} \frac{\frac{\sqrt{x_n}}{n^{p}}}{n^{p + \frac{1}{2}}} = \lim_{n \to \infty} \frac{\frac{\sqrt{n x_n}}{n^{p + \frac{1}{2}}}}{n^{p + \frac{1}{2}}} = \lim_{n \to \infty} \sqrt{n x_n} = 0
+        $$
+        而 $\sum\limits_{n = 1}^{\infty} \frac{1}{n^{p + \frac{1}{2}}}$ 收敛，因此得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.8
+    \begin{proof}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{aligned}
+                I_n + I_{n + 2} & = \int_0^{\frac{\pi}{4}} \tan^n x (\tan^2 x + 1) \dd{x} \\
+                & = \int_0^{\frac{\pi}{4}} \frac{\tan^n x}{\cos^2 x} \dd{x} \\
+                & = \int_0^{\frac{\pi}{4}} (\tan x)^n \dd{\tan x} \\
+                & = \ab[\frac{\tan^{n + 1} x}{n + 1}]_0^{\frac{\pi}{4}} = \frac{1}{n + 1}
+            \end{aligned}
+            $$
+            因此
+            $$
+            \sum_{n = 1}^{\infty} \frac{I_n + I_{n + 2}}{n} = \sum_{n = 1}^{\infty} \frac{1}{n(n + 1)} = 1
+            $$
+            
+            \item[\textbf{2)}] 显然有 $I_{n + 2} < I_n$，因此：
+            $$
+            \begin{aligned}
+                \sum_{i = 1}^{\infty} \frac{I_n}{n^{\lambda}} & < I_1 + \sum_{i = 2}^{\infty} \frac{I_{n - 2} + I_{n}}{2} \frac{1}{n^{\lambda}} \\
+                & = I_1 + \sum_{i = 2}^{\infty} \frac{1}{2 (n + 1) n^{\lambda}} = I_1 + \sum_{i = 2}^{\infty} O\ab(\frac{1}{n^{1 + \lambda}})
+            \end{aligned}
+            $$
+            因此 $\sum\limits_{i = 1}^{\infty} \frac{I_n}{n^{\lambda}}$ 是收敛的。
+        \end{enumerate}
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.9
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \lim_{n \to \infty} \frac{(n + 1)^{k} / 3^{n + 1}}{n^{k} / 3^{n}} = \lim_{n \to \infty} \frac{1}{3} \ab(\frac{n}{n + 1})^{k} = \frac{1}{3} < 1
+            $$
+            根据比值判别法，该级数是收敛的。
+
+            \item[\textbf{3)}]
+            $$
+            \frac{n^2}{\ab(2 + \frac{1}{n})^{n}} = \frac{n^2}{2^{n} \ab(1 + \frac{1}{2n})^n} = O\ab(\frac{n^2}{2^{n}})
+            $$
+            而 $\sum\limits_{n = 1}^{\infty} \frac{n^2}{2^{n}}$ 是收敛的，因此原级数也是收敛的。
+
+            \item[\textbf{5)}]
+            $$
+            \lim_{n \to \infty} \sqrt[n]{\frac{n^{\ln n}}{(\ln n)^{n}}} = \lim_{n \to \infty} \frac{\E^{\frac{(\ln n)^2}{n}}}{\ln n} = \lim_{n \to \infty} \E^{\frac{(\ln n)^2}{n}} \lim_{n \to \infty} \frac{1}{\ln n} = 0
+            $$
+            因此原级数是收敛的。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.10
+    \begin{proof}
+        由题知，$\frac{n + 1}{n} > \frac{n - 1}{n}$，那么归纳可证 $\forall\,n > 2: x_n > \frac{x_2}{n - 1}$。
+
+        而 $\sum_{i = 2}^{\infty} \frac{1}{n - 1}$ 是发散的，因此原级数也是发散的。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.11
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{3)}]
+            $$
+            \lim_{n \to \infty} \frac{(n + 1)! / (n + 1)^{n + 1}}{n! / n^{n}} = \lim_{n \to \infty} \ab(\frac{n}{n + 1})^{n} = \lim_{n \to \infty} \ab(1 - \frac{1}{n + 1})^{n} = \frac{1}{\E} < 1
+            $$
+            根据比值判别法，原级数收敛。
+
+            \item[\textbf{4)}]
+            $$
+            \lim_{n \to \infty} \frac{2^{n + 1} (n + 1)! / (n + 1)^{n + 1}}{2^{n} n! / n^{n}} = \lim_{n \to \infty} 2 \ab(\frac{n}{n + 1})^{n} = \lim_{n \to \infty} 2 \ab(1 - \frac{1}{n + 1})^{n} = \frac{2}{\E} < 1
+            $$
+            根据比值判别法，原级数收敛。
+
+            \item[\textbf{5)}]
+            $$
+            \lim_{n \to \infty} \frac{(n + 1)^{n + 1} / ((n + 1)!)^2}{n^{n} / (n!)^2} = \lim_{n \to \infty} \frac{1}{n + 1} \ab(\frac{n + 1}{n})^{n + 1} = \lim_{n \to \infty} \frac{1}{n + 1} \lim_{n \to \infty} \ab(1 + \frac{1}{n})^{n + 1} = 0
+            $$
+            根据比值判别法，原级数收敛。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.12
+    \begin{proof}
+        由 $f''(x) < 0$ 可知 $f'(x)$ 单调递减。而 $\lim_{n \to \infty} f(x) = A$ 得到 $\displaystyle f(1) + \int_1^{\infty} f'(x) \dd{x} = A$，因此必有 $\lim_{n \to \infty} f'(x) = 0$。所以 $\sum_{i = 1}^{n} f'(n)$ 是一个正项级数。
+
+        那么根据积分判别法，$\sum_{i = 1}^{n} f'(n)$ 收敛当且仅当 $\int_1^{\infty} f'(x) \dd{x}$ 收敛。因此原级数收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.2.13
+    \begin{proof}
+        \begin{enumerate}
+            \item[\textbf{3)}] 这是一个正项数列。使用积分判别法：
+            $$
+            \int_2^{\infty} \frac{\dd{x}}{x \ln x \ln \ln x} = \int_2^{\infty} \frac{\dd{\ln x}}{\ln x \ln \ln x} = \int_2^{\infty} \frac{\dd{\ln \ln x}}{\ln \ln x} = \ab[\ln \ln \ln x]_2^{\infty} = +\infty
+            $$
+            因此原级数发散。
+        \end{enumerate}
+    \end{proof}
+\end{problem}

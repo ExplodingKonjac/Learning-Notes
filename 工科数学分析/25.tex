@@ -52,10 +52,18 @@
     $$
 \end{theorem}
 
-\subsection{级数散敛性判别法}
+\subsection{正项级数}
+
+\begin{definition}[正项级数]
+    对于级数 $\sum_{n = 0}^{\infty} a_n$，若 $a_n \ge 0$，那么称其为正项级数。
+\end{definition}
+
+显然，正项级数的收敛等价于它有界。
+
+\subsection{正项级数的比较判别法}
 
 \begin{theorem}[比较判别法]
-    设 $\exists\,N: \forall\,n > N: 0 \le a_n \le b_n$，那么
+    对于正项级数 $\{a_n\}, \{b_n\}$。设 $\exists\,N: \forall\,n > N: 0 \le a_n \le b_n$，那么
 
     \begin{itemize}
         \item 若 $\sum\limits_{n = 1}^{\infty} b_n$ 收敛，那么 $\sum\limits_{n = 1}^{\infty} a_n$ 也收敛；
@@ -63,4 +71,11 @@
     \end{itemize}
 \end{theorem}
 
-无穷级数的比较判别法也同样有极限形式。
+\begin{theorem}[比较判别法的极限形式]
+    对于正项级数 $\{a_n\}, \{b_n\}$。设 $l = \lim\limits_{n \to \infty} \frac{a_n}{b_n}$，那么：
+    \begin{itemize}        
+        \item 若 $l = 0$，那么当 $\sum_{n = 0}^{\infty} b_n$ 收敛时 $\sum_{n = 0}^{\infty} a_n$ 收敛；
+        \item 若 $l > 0$，那么当 $\sum_{n = 0}^{\infty} b_n$ 与 $\sum_{n = 0}^{\infty} a_n$ 同敛散；
+        \item 若 $l = +\infty$，那么当 $\sum_{n = 0}^{\infty} b_n$ 发散时 $\sum_{n = 0}^{\infty} a_n$ 发散。
+    \end{itemize}
+\end{theorem}
