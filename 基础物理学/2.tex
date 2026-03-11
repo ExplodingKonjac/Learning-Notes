@@ -1,0 +1,63 @@
+\section{质点运动学 II}
+
+\subsection{速度和加速度}
+
+\begin{definition}
+    对于一个质点，若其位矢为 $\vect{r}(t)$，那么其\textbf{速度}定义为 $\vect{v}(t) =\dv{\vect{r}}{t}$，其\textbf{加速度}定义为 $\vect{a}(t) =\dv{\vect{v}}{t}$。
+\end{definition}
+
+\subsubsection{自然坐标系下}
+
+自然坐标系下速度总是沿着切线方向。
+
+\begin{definition}[曲率半径]
+    定义轨迹上某点 $P_1$ 的曲率半径 $\rho =\dv{s}{\theta}$。其中 $s$ 是质点运动的路程，$\theta$ 是质点速度的方向角。
+\end{definition}
+
+那么自然坐标系下的加速度为
+$$
+\vect{\vect{a}} = \dv{\vect{v}}{t} = \frac{v \dd{\theta} \vect{n}}{\dd{t}} = v \rho \vect{n}
+$$
+
+\subsection{角量描述}
+
+\subsubsection{角位移}
+
+我们固定一个原点和 $x$ 轴，那么定义质点 $A$ 的角位置 $\theta$ 为 $OA$ 与 $x$ 轴的夹角。角位移 $\Delta \theta$ 就是角位置的改变量。
+
+\subsubsection{角速度}
+
+设质点的角位置为 $\theta(t)$，那么角速度定义为 $\omega(t) = \dv{\theta}{t}$。
+
+此外，我们定义角速度矢量 $\vect{\omega} (t) = \omega(t) \vect{k}$。其中 $\vect{k}$ 是一个单位向量，方向由右手法则定义。即，$\vect{k}$ 是 $\vect{r}(t) \times \vect{r}(t + \dd{t})$ 方向上的单位矢量。
+
+\subsection{圆周运动}
+
+\subsubsection{匀速率圆周运动}
+
+在速率 $\abs{\vect{v}}$ 恒定的情况下，圆周运动的加速度为 $\vect{a} = \frac{\abs{v}^2}{r} \vect{n}$。加速度方向始终指向圆心。
+
+\subsubsection{变速率圆周运动}
+
+在速率不恒定时，加速度分解为切向加速度和法向加速度，即
+$$
+\vect{a}(t) = \dd{\abs{\vect{v}}}{t} \vect{\tau} + \frac{\abs{\vect{v}}^2}{r} \vect{n}
+$$
+
+\subsubsection{一般曲线运动}
+
+在一般曲线运动中，我们用曲率半径 $\rho$ 代替圆周运动中的半径 $r$，则有
+$$
+\vect{a}(t) = \dd{\abs{\vect{v}}}{t} \vect{\tau} + \frac{\abs{\vect{v}}^2}{\rho} \vect{n}
+$$
+
+\subsection{伽利略变换}
+
+假设我们有一个静止参考系 $S_1$，有一个以速度 $\vect{u}$ 运动的参考系 $S_2$，那么对于一个质点有变换：
+$$
+\begin{cases}
+    t_1 = t_2 \\
+    \vect{r}_1 = \vect{r}_2 + (\vect{r}_1(0) - \vect{r}_2(0) + \vect{u} t_2) \\ 
+    \vect{v}_1 = \vect{v}_2 + \vect{u} \\
+\end{cases}
+$$

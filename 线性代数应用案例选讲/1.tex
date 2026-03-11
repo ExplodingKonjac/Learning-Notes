@@ -110,3 +110,135 @@ $$
     & = \hat{\vect{x}}_{k - 1} + \matr{K}_k \ab(y_k - \vect{a}_k^\top \hat{\vect{x}}_{k - 1})
 \end{aligned}
 $$
+
+\section{作业}
+
+\begin{problem}
+    \begin{proof}
+        设 $\matr{A} \in P^{n \times m}, \vect{x} \in P^{m}$。
+
+        使用反证法：若 $\matr{A}^\top \matr{A}$ 不可逆，那么方程 $\matr{A}^\top \matr{A} \vect{x} = \vect{0}$ 存在非零解，而：
+        $$
+        \matr{A}^\top \matr{A} \vect{x} = \vect{0} \implies \vect{x}^\top \matr{A}^\top \matr{A} \vect{x} = 0 \implies (\matr{A} \vect{x})^\top (\matr{A} \vect{x}) = 0
+        $$
+        这是向量内积的形式，意味着 $\matr{A} \vect{x} = 0$。根据 $\matr{A}$ 列满秩，方程 $\matr{A} \vect{x} = \vect{0}$ 只有唯一解 $\vect{x} = \vect{0}$，矛盾。因此得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    \begin{solution}
+        最小二乘估计为：
+        $$
+        \begin{aligned}
+            \hat{\vect{x}} & = \ab(\matr{A}^\top \matr{A})^{-1} \matr{A}^\top \vect{b} \\
+            & = \ab(\begin{bmatrix}
+                4 & 0 & 1 \\
+                0 & 2 & 1 
+            \end{bmatrix}
+            \begin{bmatrix}
+                4 & 0 \\
+                0 & 2 \\
+                1 & 1 
+            \end{bmatrix})^{-1} \begin{bmatrix}
+                4 & 0 & 1 \\
+                0 & 2 & 1 
+            \end{bmatrix} \cvec{2, 0, 11} \\
+            & = \begin{bmatrix}
+                17 & 1 \\
+                1 & 5 
+            \end{bmatrix}^{-1} \cvec{19, 11} \\
+            & = \begin{bmatrix}
+                \frac{5}{84} & -\frac{1}{84} \\
+                -\frac{1}{84} & \frac{17}{84} 
+            \end{bmatrix} \cvec{19, 11} \\
+            & = \cvec{1, 2}
+        \end{aligned}
+        $$
+        最小二乘误差为：
+        $$
+        \begin{aligned}
+            \norm{\matr{A} \hat{\vect{x}} - \vect{y}}_2^2 & = \norm{\begin{bmatrix}
+                4 & 0 \\
+                0 & 2 \\
+                1 & 1 
+            \end{bmatrix} \cvec{1, 2} - \cvec{2, 0, 11}}_2^2 \\
+            & = \norm{[4, 4, 3]^\top - [2, 0, 11]^\top}_2^2 \\
+            & = \norm{[2, 4, -8]^\top}_2^2 = 84
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    \begin{solution}
+        根据数据得到下表：
+
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c|c}
+                \hline
+                $\theta$ & 0.88 & 1.10 & 1.42 & 1.77 & 2.14 \\
+                \hline
+                $r$ & 3.00 & 2.30 & 1.65 & 1.25 & 1.0 \\
+                \hline
+                $r \cos \theta$ & 1.91 & 1.04 & 0.25 & -0.25 & -0.54 \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+        设要拟合的向量为 $\vect{x} = [\beta, e]^\top$，那么问题为：
+        $$
+        \matr{A} \vect{x} = \vect{b}
+        $$
+        其中
+        $$
+        \matr{A} = \begin{bmatrix}
+            1 & 1.91 \\
+            1 & 1.04 \\
+            1 & 0.25 \\
+            1 & -0.25 \\
+            1 & -0.54 
+        \end{bmatrix}, \vect{b} = \cvec{3.00, 2.30, 1.65, 1.25, 1.0}
+        $$
+        求解最小二乘估计得到：
+        $$
+        \hat{\vect{x}} = \ab(\matr{A}^\top \matr{A})^{-1} \matr{A}^\top \vect{b} = \cvec{1.45, 0.82}
+        $$
+        即 $\beta = 1.45, e = 0.82$。
+
+        因此该彗星的轨迹为椭圆，当 $\theta = 4.6$ 时，$r = \frac{\beta}{1 - e \cos \theta} = 1.56$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    \begin{solution}
+        设计拟合方程 $s = a t^2 + b t$。那么需要估计的向量 $\vect{x} = [a, b]^\top$，要求：
+        $$
+        \matr{A} \vect{x} = \vect{y}
+        $$
+        其中：
+        $$
+        \matr{A} = \begin{bmatrix}
+            0 & 0 \\
+            1 & 1 \\
+            4 & 2 \\
+            9 & 3 \\
+            16 & 4 \\
+            25 & 5 \\
+            36 & 6 \\
+            49 & 7 \\
+            64 & 8 \\
+            81 & 9 \\
+            100 & 10 \\
+            121 & 11 \\
+            144 & 12 \\
+        \end{bmatrix},\ \vect{y} = \cvec{0, 8.8, 29.9, 62.0, 104.7, 159.1, 222.0, 294.5, 380.4, 471.1, 571.7, 686.8, 809.2}
+        $$
+        进行最小二乘估计：
+        $$
+        \hat{\vect{x}} = \ab(\matr{A}^\top \matr{A})^{-1} \matr{A}^\top \vect{b} = \cvec{5.12, 6.12}
+        $$
+        即 $s = 5.12t^2 + 6.12t$。
+
+        当 $t = 4.5$ 时，飞机水平速度为 $v = s' = 10.24t + 6.12 = 52.2$。
+    \end{solution}
+\end{problem}

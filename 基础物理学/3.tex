@@ -1,0 +1,205 @@
+\section{牛顿力学的基本定律}
+
+\subsection{牛顿运动定律}
+
+\subsubsection{牛顿运动定律的公式表示}
+
+\begin{enumerate}
+    \item 牛顿第一定律（惯性定律）：
+    $$
+    \sum \vect{F} = \vect{0} \implies \vect{v} \text{ is constant}
+    $$
+    \item 牛顿第二定律：
+    $$
+    \vect{F} = \dv{\vect{p}}{t} = \dv{m \vect{v}}{t}
+    $$
+    \item 牛顿第三定律：
+    $$
+    \vect{F} = -\vect{F}'
+    $$
+\end{enumerate}
+
+\subsubsection{有关运动定律的重要概念}
+
+\begin{enumerate}
+    \item \textbf{惯性}：物体保持原有运动状态不变的性质；
+    \item \textbf{惯性参考系}：牛顿第一定律成立的参考系；
+    \item \textbf{力}：物体之间的相互作用；
+    \item \textbf{惯性质量（质量）}：表示物体惯性大小的量度；
+    \item \textbf{作用力、反作用力}：等大、反向、作用于不同物体的力。
+\end{enumerate}
+
+\subsection{几种常见的力}
+
+\subsubsection{万有引力}
+
+\textbf{万有引力} 是任何物体之间具有的吸引力，大小和物体的质量和其间距离有关。
+
+定义\textbf{引力质量}表示物体感受外物引力大小的度量。迄今为止的实验表明引力质量和惯性质量的比值是恒定的。因此取引力质量等于惯性质量。
+
+对于两质点 $i, j$，$i$ 对 $j$ 的万有引力大小为
+$$
+\vect{F}_{j, i} = -G \frac{m_i m_j}{\abs{\vect{r}}^2} \vect{r}_{i, j}^0
+$$
+
+对于两个任意物体 $A, B$，我们使用微元法计算 $A$ 对 $B$ 的万有引力大小：
+$$
+\vect{F}_{B, A} = \int_{i \in A} \int_{j \in B} -G \frac{\dd{m_i} \dd{m_j}}{\abs{\vect{r}_{i, j}}^2} \vect{r}_{i, j}^0
+$$
+
+\subsubsection{弹性力}
+
+\textbf{弹性力}是物体形变时试图恢复原状的相互作用力，是分子、原子间电磁力的宏观结果。
+
+比如：
+\begin{itemize}
+    \item 弹簧的弹力。满足胡克定律 $\vect{f} = -k \vect{x}$；
+    \item 弹性绳中的张力；
+    \item 正压力和支持力。
+\end{itemize}
+
+\subsection{动力学方程在各个坐标系下的表达式}
+
+\begin{enumerate}
+    \item 直角坐标系：
+    $$
+    \begin{dcases}
+        \vect{F}_x = m \dv{\vect{v}_x}{t} \\
+        \vect{F}_y = m \dv{\vect{v}_y}{t} \\
+        \vect{F}_z = m \dv{\vect{v}_z}{t}
+    \end{dcases}
+    $$
+    \item 自然坐标系：
+    $$
+    \begin{dcases}
+        \vect{F}_s = m \dv{|\vect{v}|}{t} \vect{e}_s \\
+        \vect{F}_n = \frac{m \vect{v}^2}{\rho} \vect{e}_{\tau}
+    \end{dcases}
+    $$
+\end{enumerate}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1.6
+    \begin{solution}
+        沿绳方向的速度和垂直于绳方向的速度合速度为 $\vect{v}$，因此可得 $|\vect{v}| = \frac{v_0}{\cos \theta}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.8
+    \begin{solution}
+        设重力加速度大小为 $g$。
+        \begin{enumerate}
+            \item[\textbf{1)}] 那么一个小球从抛出到回到手中的时间为
+            $$
+            \frac{1}{2} g \ab(\frac{t_0}{2})^2 = 3 \implies t_0 = 2 \sqrt{\frac{6}{g}}
+            $$
+            则相邻抛球时间为
+            $$
+            \Delta t = \frac{t_0}{5} = \frac{2}{5} \sqrt{\frac{6}{g}}
+            $$
+            
+            \item[\textbf{2）}] 球抛出的初速度为
+            $$
+            v_0 = g \cdot \frac{t_0}{2} = \sqrt{6 g}
+            $$
+            因此一个球即将落在手上时，另外的球的高度为
+            $$
+            \begin{gathered}
+                h_1 = v_0 \Delta t - \frac{1}{2} g (\Delta t)^2 = \frac{48}{25} \\
+                h_2 = v_0 (2 \Delta t) - \frac{1}{2} g (2 \Delta t)^2 = \frac{72}{25} \\
+                h_3 = v_0 (3 \Delta t) - \frac{1}{2} g (3 \Delta t)^2 = \frac{72}{25} \\
+                h_4 = v_0 (4 \Delta t) - \frac{1}{2} g (4 \Delta t)^2 = \frac{48}{25} \\
+            \end{gathered}
+            $$
+
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.10
+    \begin{solution}
+        取重力加速度 $g = 9.8\,\mathrm{m / s^2}$。
+
+        以第一次落点为原点建立直角坐标系。由题可得：
+        $$
+        v_0^2 - 0 = 2 g h \implies v_0 = 1.98\,\mathrm{m / s}
+        $$
+        反弹后速度与水平面倾角为 $30^\circ$。
+
+        设第一次落在斜面上时 $t = 0$，那么有方程：
+        $$
+        \begin{gathered}
+            x = v_0 t \cos 30^\circ \\
+            y = v_0 t \sin 30^\circ - \frac{1}{2} g t^2 \\
+            \frac{y}{x} = -\tan 30^\circ \\
+        \end{gathered}
+        $$
+        解得 $t = 0.80\,\mathrm{s},\ x = 1.37\,\mathrm{m},\ y = -2.37\,\mathrm{m}$。那么第二次碰到斜面的位置与原来的下落点距离为 $s = 2.74\,\mathrm{m}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.11
+    \begin{solution}
+        $t = 10\,\mathrm{s}$ 时，向心加速度为：
+        $$
+        a_{\tau} = \frac{(a_s t)^2}{r} = 0.4\,\mathrm{m / s^2}
+        $$
+        总加速度为：
+        $$
+        a = \sqrt{a_{\tau}^2 + a_s^2} = \frac{1}{\sqrt{5}} \,\mathrm{m / s^2}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.16
+    \begin{solution}
+        物体 A 的速度 $\vect{v}_1(t) = \vect{v}_A + \vect{g} t$，物体 B 的速度 $\vect{v}_2(t) = \vect{v}_B + \vect{g} t$。显然相对速度 $\vect{v}_2(t) - \vect{v}_1(t) = \vect{v}_B - \vect{v}_A$，是常矢量。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.18
+    \begin{solution}
+        由题得
+        $$
+        \begin{gathered}
+            \dv{v}{t} = -k v \\
+            \implies \frac{\dd{v}}{v} = -k \dd{t} \\
+            \implies \int_{v_0}^{v(t)} \frac{\dd{v}}{v} = \int_0^t -k \dd{t} \\
+            \implies \ln \frac{v(t)}{v_0} = -k t \\
+            \implies v(t) = v_0 \E^{-k t}
+        \end{gathered}
+        $$
+        因此，$\displaystyle x(t) = \int_0^t v(t) \dd{t} = \frac{v_0}{k} \ab(1 - \E^{-k t})$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.19
+    \begin{solution}
+        由题得
+        $$
+        \begin{gathered}
+            \dv{v}{t} = -k v^2 \\
+            \implies \frac{\dd{v}}{v^2} = -k \dd{t} \\
+            \implies \int_{v_0}^{v(t)} \frac{\dd{v}}{v^2} = \int_0^t -k \dd{t} \\
+            \implies -\frac{1}{v(t)} + \frac{1}{v_0} = -k t \\
+            \implies v(t) = \frac{v_0}{1 + k v_0 t}
+        \end{gathered}
+        $$
+        那么由 $v(t) = \frac{1}{10} v_0$ 解得 $\Delta t = \frac{9}{k v_0}$。进行积分得到入水深度：
+        $$
+        \begin{aligned}
+            h & = \int_0^{\Delta t} \frac{v_0}{1 + k v_0 t} \dd{t} \\
+            & = \ab[\frac{\ln (1 + k v t)}{k}]_0^{\Delta t} \\
+            & = \frac{\ln 10}{k}
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
