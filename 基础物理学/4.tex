@@ -1,0 +1,84 @@
+\section{牛顿力学的基本定律 II \& 动量}
+
+\subsection{惯性系与非惯性系}
+
+牛顿运动定律成立的参考系是惯性参考系。牛顿运动定律不成立的参考系是非惯性参考系。
+
+相对于已知惯性系作匀速直线运动的参考系也是惯性系，但是作加速运动的参考系则是非惯性系。
+
+\subsection{非惯性系中的惯性力}
+
+惯性力是为了让牛顿运动定律在非惯性系下成立而引入的力。
+
+\subsubsection{匀加速非惯性系中的惯性力}
+
+设非惯性系 $S'$ 相对于惯性系 $S$ 以加速度 $\vect{a}$ 运动，那么惯性力为：
+$$
+\vect{F} = -m \vect{a}
+$$
+
+\subsubsection{匀速转动非惯性系中的惯性力}
+
+\begin{enumerate}
+    \item 物体在非惯性系中静止时，有惯性离心力：
+    $$
+    \vect{F}_r = m \vect{r} \omega^2 = m (\vect{\omega} \times \vect{r}) \times \vect{\omega} = m \vect{v}_{\theta} \times \vect{\omega}
+    $$
+    \item 物体在非惯性系中运动时，有科里奥利力。设物体 $m$ 在 $S'$ 中沿径向匀速运动，在惯性系中位矢为 $\vect{r}(t)$，径向速度为 $\vect{v}_r(t)$，横向速度为 $\vect{v}_\theta(t) = \vect{\omega} \times \vect{r}$。那么在 $S$ 中：
+    $$
+    \begin{aligned}
+        \vect{v} & = \vect{v}_r + \vect{v}_{\theta} \\
+        \vect{v}_{\theta} & = \vect{\omega} \times \vect{r} \\
+        \vect{a} & = \dv{\vect{v}}{t} = \dv{\vect{v}_r}{t} + \dv{\vect{v}_{\theta}}{t} \\
+        & = \dv{v_r}{t} \vect{e}_r + v_r \dv{\vect{e}_r}{t} + \dv{\vect{\omega}}{t} \times \vect{r} + \vect{\omega} \times \dv{\vect{r}}{t} \\
+        & = \vect{a}' + \vect{\omega} \times \vect{v}_r + \vect{\omega} \times \ab(\vect{v}_{r} + \vect{v}_{\theta}) \\
+        & = \vect{a}' + 2 \vect{\omega} \times \vect{v}_r + \vect{\omega} \times \vect{v}_{\theta}
+    \end{aligned}
+    $$
+    其中第一项是 $S'$ 中的加速度，第三项是惯性离心力，第二项是科里奥利力：
+    $$
+    \vect{F}_C = 2 m \vect{v}_r \times \vect{\omega}
+    $$
+\end{enumerate}
+
+\subsubsection{一般转动非惯性系中的惯性力}
+
+设物体 $m$ 在 $S'$ 中速度为 $\vect{v}'$，加速度为 $\vect{a}'$。那么在 $S$ 中：
+$$
+\vect{a}_S = \vect{a}' + \dv{\vect{\omega}}{t} \times \vect{r} - (\vect{\omega} \times \vect{r}) \times \vect{\omega} - 2 \vect{v}' \times \vect{\omega}
+$$
+得到惯性力包括：
+\begin{itemize}
+    \item 惯性离心力：
+    $$
+    \vect{F}_r = m (\vect{\omega} \times \vect{r}) \times \vect{\omega}
+    $$
+    \item 科里奥利力：
+    $$
+    \vect{F}_C = 2 m \vect{v}' \times \vect{\omega}
+    $$
+    \item 欧拉力：
+    $$
+    \vect{F}_E = -m \dv{\omega}{t} \times \vect{r}
+    $$
+\end{itemize}
+
+\section{动量}
+
+\begin{definition}[动量和冲量]
+    质点的\textbf{动量} $\vect{p}$ 定义为 $m \vect{v}$。动量的变化量称为\textbf{冲量}。
+\end{definition}
+
+根据牛顿运动定律，可以直接得到质点的动量变化定理：
+
+\begin{theorem}[动量变化定理]
+    $$
+    \dd \vect{p} = \vect{F} \dd t
+    $$
+    或者积分形式：
+    $$
+    \vect{I} = \int_{t_1}^{t_2} \vect{F} \dd t = \vect{p}_2 - \vect{p}_1
+    $$
+\end{theorem}
+
+动量变化定理在微观、高速的情况下仍然成立

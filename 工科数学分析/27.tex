@@ -1,4 +1,4 @@
-\section{无穷级数 III}
+\section{数项级数 III}
 
 \begin{theorem}
     设正项无穷数列 $\{a_n\}$ 满足
@@ -31,11 +31,29 @@
 
 \subsection{一般正项级数的敛散性判别法}
 
-\begin{definition}[交错级数]
-    设数列 $\{x_n\}$ 满足 $x_n = u_n (-1)^n\ (u_n > 0)$，那么级数 $\sum_{i = 1}^{\infty} x_n$ 称为\textbf{交错级数}。若满足 $u_n$ 递减且 $\lim\limits_{n \to \infty} u_n = 0$，那么称其为\textbf{Lebniz 级数}。 
+根据 Cauchy 收敛准则，若 $\sum_{n = 1}^{\infty} \abs{x_n}$ 收敛，那么 $\sum_{n = 1}^{\infty} x_n$ 也收敛，反之则不然。于是我们有如下定义：
+
+\begin{definition}[绝对收敛和条件收敛]
+    若 $\sum_{n = 1}^{\infty} \abs{x_n}$ 收敛，那么称 $\sum_{n = 1}^{\infty} x_n$ \textbf{绝对收敛}；若 $\sum_{n = 1}^{\infty} x_n$ 收敛但 $\sum_{n = 1}^{\infty} \abs{x_n}$ 发散，那么称 $\sum_{n = 1}^{\infty} x_n$ \textbf{条件收敛}。
 \end{definition}
 
+\begin{definition}[交错级数]
+    设数列 $\{x_n\}$ 满足 $x_n = u_n (-1)^{n - 1}\ (u_n > 0)$，那么级数 $\sum_{i = 1}^{\infty} x_n$ 称为\textbf{交错级数}。若满足 $u_n$ 递减且 $\lim\limits_{n \to \infty} u_n = 0$，那么称其为\textbf{Lebniz 级数}。 
+\end{definition}
 
+Lebniz 级数具有一个很强的性质。
+
+\begin{theorem}[Lebniz 判别法]
+    Lebniz 级数均收敛。
+
+    \begin{proof}
+        设 $\sum\limits_{n = 1}^{\infty} x_n = \sum\limits_{n = 1}^{\infty} (-1)^{n - 1} u_n$ 是 Lebniz 级数，那么对于任意 $n, p \in \mathbb{N}^{+}$，我们都可以通过加括号推导得
+        $$
+        \abs{u_{n + 1} - u_{n + 2} + u_{n + 3} - \cdots + (-1)^{p - 1} u_{n + 1}} \le u_{n + 1}
+        $$
+        而 $\lim\limits_{n \to \infty} u_{n + 1} = 0$，因此根据 Cauchy 收敛准则得到原级数收敛。
+    \end{proof}
+\end{theorem}
 
 \begin{lemma}[分部求和]
     设 $\{a_n\}, \{b_n\}$ 是两个数列，那么对于任意 $n \in \mathbb{N}^+$ 有：
@@ -49,7 +67,7 @@
     设 $\{a_n\}, \{b_n\}$ 是两个数列，$S_k = \sum\limits_{i = 1}^{k} a_i$，若满足：
     \begin{itemize}
         \item $\{b_n\}$ 单调；
-        \item $|A_k|$ 存在上界 $M$。
+        \item $|S_k|$ 存在上界 $M$。
     \end{itemize}
     那么
     $$
@@ -60,7 +78,7 @@
         $$
         \begin{aligned}
             \abs{\sum_{k = 1}^{p} a_k b_k} & = \abs{S_p b_p + \sum_{k = 1}^{p - 1} S_k (b_k - b_{k + 1})} \\
-            & \le \abs{S_p} \abs{b_p} + \sum_{k = 1}^{p - 1} \abs{A_k} (b_k - b_{k + 1}) \\
+            & \le \abs{S_p} \abs{b_p} + \sum_{k = 1}^{p - 1} \abs{S_k} (b_k - b_{k + 1}) \\
             & \le M \abs{b_p} + M \sum_{k = 1}^{p - 1} (b_k - b_{k + 1}) \\
             & = M\ab(\abs{b_p} + b_1 - b_p) \le M \ab(\abs{b_1} + 2 \abs{b_p})
         \end{aligned}
@@ -96,5 +114,4 @@
         \item $\sum_{i = 1}^{\infty} a_n$ 收敛。
     \end{itemize}
     那么级数 $\sum\limits_{n = 1}^{\infty} a_n b_n$ 收敛。
-
 \end{theorem}

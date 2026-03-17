@@ -1,0 +1,237 @@
+\section{函数列与函数项级数}
+
+\subsection{函数列的一般概念}
+
+\begin{definition}[函数列的收敛]
+    设 $\{S_n(x)\}$ 是 $I$ 上的函数序列，若 $\forall\,x_0 \in I$，都有 $\{S_n(x_0)\}$ 收敛于 $S(x_0)$，那么称 $S_n(x)$ 在区间 $I$ 上\textbf{收敛}或\textbf{逐点收敛}。
+\end{definition}
+
+\begin{definition}[函数列的一致收敛]
+    设 $\{S_n(x)\}$ 是 $I$ 上的函数序列，若
+    $$
+    \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}^{+}: \forall\,n \ge N,\ x \in I: |S_n(x) - S(x)| < \varepsilon
+    $$
+    那么称 $\{S_n(x)\}$ \textbf{一致收敛}于 $S(x)$。
+\end{definition}
+
+下面给出函数列一致收敛的一个充要条件。
+
+\begin{theorem}
+    设 $\{S_n(x)\}$ 是 $I$ 上的函数列，$S(x)$ 是 $I$ 上的函数。定义数列
+    $$
+    \beta_n = \sup_{x \in I} \abs{S_n(x) - S(x)}
+    $$
+    那么，函数列 $\{S_n(x)\}$ 在 $I$ 上一致收敛的充要条件是 $\lim\limits_{n \to \infty} \beta_n = 0$。
+
+    \begin{proof}
+        \begin{itemize}
+            \item 必要性：设 $\{S_n(x)\}$ 一致收敛与 $S(x)$，那么根据定义：
+            $$
+            \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}^{+}: \forall\,n \ge N,\ x \in I: |S_n(x) - S(x)| < \frac{\varepsilon}{2}
+            $$
+            而 $\beta_n = \sup\limits_{x \in I} \abs{S_n(x) - S(x)} \le \frac{\varepsilon}{2} < \varepsilon$，所以 $\lim\limits_{n \to \infty} \beta_n = 0$。
+
+            \item 充分性：设 $\lim\limits_{n \to \infty} \beta_n = 0$，那么根据定义：
+            $$
+            \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}^{+}: \forall\,n \ge N: \beta_n < \varepsilon
+            $$
+            根据定义 $\abs{S_n(x) - S(x)} \le \sup \abs{S_n(x) - S(x)} = \beta_n$，所以 $\{S_n(x)\}$ 在 $I$ 上一致收敛于 $S(x)$。
+        \end{itemize}
+    \end{proof}
+\end{theorem}
+
+同样，函数列也有 Cauchy 收敛原理。
+
+\begin{theorem}[函数列的 Cauchy 收敛原理]
+    函数列 $\{S_n(x)\}$ 在区间 $I$ 上一致收敛的充要条件是
+    $$
+    \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}^{+}: \forall\,n, m \ge N,\ x \in I: \abs{S_n(x) - S_m(x)} < \varepsilon
+    $$
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 11.3.1
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{2)}] 对于 $n, p \in \mathbb{N}^{+}$，有
+            $$
+            \begin{aligned}
+                \sum_{k = n + 1}^{n + p} \abs{\frac{\sin k}{2^{k}}} \le \sum_{k = n + 1}^{n = p} \frac{1}{2^{k}} < \frac{1}{2^{n}}
+            \end{aligned}
+            $$
+            当 $n \to \infty$ 时该值趋近于 $0$，因此原级数绝对收敛。
+
+            \item[\textbf{3)}] 对于 $n, p \in \mathbb{N}^{+}$，有
+            $$
+            \begin{aligned}
+                \sum_{k = n + 1}^{n + p} \abs{\frac{\cos n + \sin n}{n (n + \sin n)}} & = \sum_{k = n + 1}^{n + p} \abs{\frac{\sqrt{2} \sin \ab(n + \frac{\pi}{4})}{n (n + \sin n)}} \\
+                & \le \sum_{k = n + 1}^{n + p} \frac{\sqrt{2}}{n (n - 1)} \\
+                & = \frac{\sqrt{2}}{n} - \frac{\sqrt{2}}{n + p} < \frac{\sqrt{2}}{n}
+            \end{aligned}
+            $$
+            当 $n \to \infty$ 时该值趋近于 $0$，因此原级数绝对收敛。
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.4
+    \begin{solution}
+        根据 Taylor 公式，有
+        $$
+        f(x) = f(0) + f'(0) x + O(x^2)
+        $$
+        根据 $\lim\limits_{n \to 0} \frac{f(x)}{x} = 0$ 得到 $f(0) = f'(0) = 0$。因此 $f(x) = O(x^2)$。
+
+        于是 $\sum\limits_{n = 1}^{\infty} \abs{f(\frac{1}{n})} = \sum\limits_{n = 1}^{\infty} O\ab(\frac{1}{n^2})$。因此该级数绝对收敛。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 设 $f(x) = \frac{\ln^2 x}{x}$，那么 $f'(x) = \frac{2 \ln x - \ln^2 x}{x^2}$。当 $x > \ln 2$ 时 $f'(x) < 0$，因此 $\ab\{\frac{\ln^2 n}{n}\}$ 是一个递减数列。同时显然有 $\lim\limits_{n \to \infty} \frac{\ln^2 n}{n} = 0$，因此根据 Lebniz 判别法，$\sum\limits_{n = 1}^{\infty} (-1)^{n} \frac{\ln^2 n}{n}$ 收敛。而 $\abs{(-1)^{n} \frac{\ln^2 n}{n}} = O\ab(\frac{1}{n})$，因此原级数条件收敛。
+
+            \item[\textbf{4)}] $\lim\limits_{n \to \infty} (-1)^{n - 1} \frac{1}{\sqrt[n]{n}}$ 发散，因此级数发散。
+            
+            \item[\textbf{6)}] $\{\E - \ab(1 + \frac{1}{n})^{n}\}$ 是一个递减数列，并且 $\lim\limits_{n \to \infty} \ab(\E - \ab(1 + \frac{1}{n})^{n}) = 0$，根据 Lebniz 判别法原级数收敛。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.7
+    \begin{proof}
+        设 $S_n$ 为 $y_n$ 的部分和，那么由题知 $\lim\limits_{n \to \infty} S_n$ 收敛。于是：
+        $$
+        \begin{aligned}
+            \sum_{k = 1}^{n} x_n y_n & = \sum_{k = 1}^{n} x_n (S_n - S_{n - 1}) \\
+            & = x_n S_n + \sum_{k = 1}^{n - 1} S_{k} (x_k - x_{k + 1})
+        \end{aligned}
+        $$
+
+        由 $\sum\limits_{n = 1}^{\infty} (x_n - x_{n + 1})$ 绝对收敛可知 $\lim\limits_{n \to \infty} x_n$ 收敛，因此 $\lim\limits_{n \to \infty} x_n S_n$ 收敛。
+
+        此外，因为 $S_n$ 收敛，其必定有界，因此
+        $$
+        \sum_{k = 1}^{n - 1} \abs{S_{k} (x_k - x_{k + 1})} = \sum_{k = 1}^{n - 1} \abs{S_{k}} \abs{x_k - x_{k + 1}} \le M \sum_{k = 1}^{n - 1} \abs{x_k - x_{k + 1}}
+        $$
+        而由题知 $\sum\limits_{n = 1}^{\infty} \abs{x_n - x_{n + 1}}$ 收敛，因此这个和式也收敛。
+
+        于是得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.8
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 当 $n = 4k$ 时，$\sin \frac{n \pi}{4} = 0$，不考虑。当 $n = 4k + s\ (s \in \{1, 2, 3\})$ 时：
+            $$
+            \sum_{k = 2}^{\infty} \frac{\sin \frac{(4k + s) \pi}{4}}{\ln n} = \sum_{k = 2}^{\infty} (-1)^{k} \frac{\sin s \pi}{\ln n}
+            $$
+            这是一个 Lebniz 级数，因此是收敛的。而原级数由 $s = 1, 2, 3$ 这三个收敛级数加括号得到，因此也是收敛的。
+
+            \item[\textbf{2)}]
+            \begin{itemize}
+                \item 当 $p \le 0$ 时，原级数显然发散。
+                \item 当 $0 < p \le 1$ 时，我们有
+                $$
+                \begin{aligned}
+                    \sum_{n = 1}^{N} \cos^2 n & = \sum_{n = 1}^{N} \frac{\cos 2n + 1}{2} \\
+                    & = \frac{1}{2} \sum_{n = 1}^{N} \cos 2n + \frac{1}{2} \sum_{n = 1}^{N} (-1)^{n} \\
+                    & = \frac{1}{4 \sin 1} \sum_{n = 1}^{N} 2 \sin 1 \cos 2n + \frac{1}{2} \sum_{n = 1}^{N} (-1)^{n} \\
+                    & = \frac{1}{4 \sin 1} \sum_{n = 1}^{N} (\sin (2n + 1) - \sin (2n - 1)) + \frac{1}{2} \sum_{n = 1}^{N} \\
+                    & = \frac{1}{4 \sin 1} \ab(\sin (2N + 1) - \sin 1) + \frac{1}{2} \sum_{n = 1}^{N} (-1)^{n}
+                \end{aligned}
+                $$
+                因此 $\sum\limits_{n = 1}^{N} \cos^2 n$ 有界，进而 $\sum\limits_{n = 1}^{N} (-1)^{n} \cos^2 n$ 有界。根据 Diriclet 判别法，$\sum\limits_{n = 1}^{\infty} (-1)^{n} \frac{\cos^2 n}{n^{p}}$ 收敛。
+
+                而
+                $$
+                \begin{aligned}
+                    \sum_{n = 1}^{\infty} \abs{(-1)^{n} \frac{\cos 2n}{n^{p}}} & = \sum_{n = 1}^{\infty} \frac{\abs{\cos 2n}}{n^{p}} \\
+                    & \ge \sum_{n = 1}^{\infty} \frac{\cos^2 2n}{n^{p}} \\
+                    & = \sum_{n = 1}^{\infty} \frac{1 + \cos 4n}{2 n^{p}} \\
+                    & \ge \sum_{n = 1}^{\infty} \frac{1}{2 n^{p}} + \sum_{n = 1}^{\infty} \frac{\cos 4n}{2 n^{p}}
+                \end{aligned}
+                $$
+                发散，因此原级数条件收敛。
+
+                \item 当 $p > 1$ 时，有 $\sum\limits_{n = 1}^{\infty} \abs{(-1)^{n} \frac{\cos 2n}{n^{p}}} \le \sum\limits \frac{1}{n^{p}}$，因此原级数绝对收敛。
+            \end{itemize}
+
+            \item[\textbf{6)}] 将原式化简：
+            $$
+            \begin{aligned}
+                \sum_{n = 1}^{\infty} \frac{\sin (n + 1) x \cos (n - 1) x}{n^{p}} & = \sum_{n = 1}^{\infty} \frac{\sin 2n x - \sin 2x}{2 n^{p}} \\
+                & = \frac{1}{2} \sum_{n = 1}^{\infty} \frac{\sin 2n x}{n^{p}} - \frac{\sin 2x}{2} \sum_{n = 1}^{\infty} \frac{1}{n^{p}}
+            \end{aligned}
+            $$
+            于是我们得到：
+            \begin{itemize}
+                \item 当 $x = 2k \pi$ 时，原级数收敛，值为 $0$；
+                \item 当 $x \neq 2k \pi$ 时：
+                \begin{itemize}
+                    \item 当 $p \le 1$ 时，根据 \textbf{2)} 的分析可知 $\frac{1}{2} \sum\limits_{n = 1}^{\infty} \frac{\sin 2n x}{n^{p}}$ 收敛，而 $\frac{\sin 2x}{2} \sum\limits_{n = 1}^{\infty} \frac{1}{n^{p}}$ 发散，所以级数发散；
+                    \item 当 $p > 1$ 时，有 $\abs{\frac{\sin (n + 1)x \cos (n - 1)x}{n^{p}}} < \frac{1}{n^{p}}$，因此级数绝对收敛。
+                \end{itemize}
+            \end{itemize}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.9
+    \begin{proof}
+        $$
+        \sum_{n = 1}^{\infty} \frac{x_n}{n^{a}} = \sum_{n = 1}^{\infty} \frac{x_n}{n^{b}} \cdot \frac{1}{n^{a - b}}
+        $$
+        因为 $\sum\limits_{n = 1}^{N} \frac{x_n}{n^{b}}$ 有界，$\frac{1}{n^{{a - b}}}$ 单调趋于 $0$，根据 Diriclet 判别法原级数收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.11
+    \begin{proof}
+        设 $b_n = \ab(1 + \frac{1}{n}) x_n$。使用反证法。假设 $\sum\limits_{n = 1}^{\infty} b_n$ 收敛，那么：
+        $$
+        \sum_{n = 1}^{\infty} x_n = \sum_{n = 1}^{\infty} \frac{n}{n + 1} b_n
+        $$
+        因为 $\frac{n}{n + 1}$ 单调有界，$\sum\limits_{n = 1}^{\infty} b_n$ 收敛，根据 Abel 判别法 $\sum\limits_{n = 1}^{\infty} x_n$ 收敛。这与题目矛盾，于是得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 11.3.12
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 考虑
+            $$
+            \begin{aligned}
+                \sum_{n = 1}^{\infty} (-1)^{n} \frac{\cos^2 n}{n} & = \sum_{n = 1}^{\infty} (-1)^{n} \frac{\cos 2n + 1}{2 n} \\
+                & = \frac{1}{2} \sum_{n = 1}^{\infty} (-1)^{n} \frac{\cos 2n}{n} + \frac{1}{2} \sum_{n = 1}^{\infty} \frac{(-1)^{n}}{n}
+            \end{aligned}
+            $$
+            结合前面题目的分析可得 $\sum\limits_{n = 1}^{\infty} (-1)^{n} \frac{\cos^2 n}{n}$ 条件收敛。
+
+            同时 $\arctan (3 + n)$ 单调有界，根据 Abel 判别法知原级数条件收敛。
+
+            \item[\textbf{3)}] 考虑
+            $$
+            \begin{aligned}
+                \sum_{n = 2}^{N} (-1)^{n} \sin^2 n & = \sum_{n = 1}^{N} (-1)^{n} \frac{1 - \cos 2n}{2} \\
+                & = \frac{1}{2} \sum_{n = 1}^{N} (-1)^{n} - \frac{1}{2} \sum_{n = 1}^{N} (-1)^{n} \cos 2n
+            \end{aligned}
+            $$
+            结合前面题目的分析可得 $\sum\limits_{n = 1}^{N} (-1)^{n} \sin^2 n$ 有界。
+
+            而 $\frac{1}{\ln n}$ 单调趋于 $0$，使用 Diriclet 判别法结合前面题目分析，得到 $\sum\limits_{n = 2}^{\infty} (-1)^{n} \frac{\sin^2 n}{\ln n}$ 条件收敛。
+
+            而 $\ab(1 + \frac{1}{n})^{n},\ (3 - \arctan n)$ 均单调有界，应用两次 Abel 判别法即得到原级数条件收敛。
+        \end{enumerate}
+    \end{solution}
+\end{problem}

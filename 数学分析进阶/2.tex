@@ -1,0 +1,333 @@
+\section{常微分方程 II}
+
+\subsection{齐次方程}
+
+\begin{definition}[齐次方程]
+    我们将以下形式的常微分方程称为齐次方程：
+    $$
+    \dv{y}{x} = f(\frac{y}{x})
+    $$
+\end{definition}
+
+对于这类方程，我们作带换 $u = \frac{y}{x}$，那么可知：
+$$
+\dd{y} = \dd(u x) = x \dd{u} + u \dd{x}
+$$
+于是方程转化成如下形式：
+$$
+u + x \dv{u}{x} = f(u)
+$$
+这是一个分离变量方程，可以求解。
+
+此外，对于形式为
+$$
+\dv{y}{x} = f\ab(\frac{ax + by + c}{mx + ny + l})
+$$
+的方程，可以先做线性替换转换成齐次方程或者分离变量方程再求解。
+
+\subsection{一阶线性微分方程}
+
+首先我们需要定义函数的线性相关性：
+
+\begin{definition}
+    设 $y_1, y_2, \dots, y_n$ 为定义在区间 $I$ 上的 $n$ 个函数，若存在 $n$ 个不全为 $0$ 的常数 $k_1, k_2, \dots, k_n$ 使得：
+    $$
+    \sum_{i = 1}^{n} k_i y_i = 0
+    $$
+    那么称这 $n$ 个函数在区间 $I$ 内\textbf{线性相关}，否则称\textbf{线性无关}。
+\end{definition}
+
+\begin{definition}[一阶线性微分方程]
+    \textbf{一阶线性微分方程}指具有下面的标准形式的微分方程：
+    $$
+    \dv{y}{x} + P(x) y = Q(x)
+    $$
+    特别地，当 $Q(x) = 0$ 时，这个方程称为\textbf{齐次的}。
+\end{definition}
+
+要求解一阶线性微分方程，我们先尝试求解它的齐次部分：
+$$
+\dv{y}{x} + P(x) y = 0
+$$
+显然这是一个分离变量方程，可以解得：
+$$
+y = C \E^{-\int P(x) \dd{x}}
+$$
+
+接下来使用常数变易法，令 $y = C(x) \E^{-\int P(x) \dd{x}}$，代入原方程，得到：
+$$
+\begin{gathered}
+    C'(x) \E^{-\int P(x) \dd{x}} - P(x) C(x) \E^{-\int P(x) \dd{x}} + P(x) C(x) \E^{-\int P(x) \dd{x}} = Q(x) \\
+    C'(x) \E^{-\int P(x) \dd{x}} = Q(x)
+\end{gathered}
+$$
+容易解得：
+$$
+C(x) = \int Q(x) \E^{\int P(x) \dd{x}} \dd{x}
+$$
+最后回带到 $y$ 中，得到最终微分方程的解：
+$$
+y = \E^{-\int P(x) \dd{x}} \ab(\int Q(x) \E^{\int P(x) \dd{x}} \dd{x} + C)
+$$
+
+\subsection{Bernoulli 方程}
+
+\begin{definition}
+    形如
+    $$
+    \dv{y}{x} + P(x) y = Q(x) y^{n}
+    $$
+    的微分方程称为\textbf{Bernoulli 方程}。
+\end{definition}
+
+对于这类方程，我们可以使用变量带换来将其转化为一阶线性微分方程。下面我们假设 $n \neq 0, 1$ 进行推导。
+
+方程两侧同时乘 $y^{-n}$，并做变换得到：
+$$
+\begin{gathered}
+    y^{-n} \dv{y}{x} + P(x) y^{1 - n} = Q(x) \\
+    \frac{1}{1 - n} \dv{x}(y^{1 - n}) + P(x) y^{1 - n} = Q(x)
+\end{gathered}
+$$
+于是转化为关于 $y^{1 - n}$ 的一阶线性微分方程。
+
+\subsection{二阶常系数线性微分方程}
+
+和一阶线性微分方程类似，我们给出二阶线性微分方程的定义：
+
+\begin{definition}
+    \textbf{二阶线性微分方程}指具有下面的标准形式的微分方程：
+    $$
+    y'' + P(x) y' + Q(x) y = F(x)
+    $$
+    当 $F(x) = 0$ 时，称该微分方程为\textbf{齐次的}。
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 10.1.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 四阶。
+            \item[\textbf{2)}] 一阶。 
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.1.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \begin{aligned}
+                x y' - y & = x \cdot \ab(x \ab(\int_1^x t^{-1} \E^{t} \dd{t} + C))' - x \ab(\int_1^x t^{-1} \E^{t} \dd{t} + C) \\
+                & = x \cdot \ab(\ab(\int_1^x t^{-1} \E^{t} \dd{t} + C) + x \cdot x^{-1} \E^{x}) - x \ab(\int_1^x t^{-1} \E^{t} \dd{t} + C) \\
+                & = x \E^{x}
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.1.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{dcases}
+                (C_1 + C_2 \cdot 0) \E^{0} = 0 \\
+                (C_1 + C_2 + C_2 \cdot 0) \E^{0} = 1
+            \end{dcases} \implies C_1 = 0, C_2 = 1
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.1.4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            y + y'' = 2y
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.2.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{aligned}
+                & & \dv{y}{x} & = \sqrt{1 - x^2} \sqrt{1 - y^2} \\
+                \implies & & \frac{\dd{y}}{\sqrt{1 - y^2}} & = \sqrt{1 - x^2} \dd{x} \\
+                \implies & & \int \frac{\dd{y}}{\sqrt{1 - y^2}} & = \int \sqrt{1 - x^2} \dd{x} + C \\
+                \implies & & \arcsin y & = \frac{1}{2} \ab(\arcsin x + x \sqrt{1 - x^2}) + C \\
+                \implies & & y & = \sin \ab(\frac{1}{2} \ab(\arcsin x + x \sqrt{1 - x^2}) + C)
+            \end{aligned}
+            $$
+
+            \item[\textbf{3)}]
+            $$
+            \begin{aligned}
+                & & 3x \dv{y}{x} & = y \\
+                \implies & & \frac{\dd{y}}{y} & = \frac{1}{3x} \dd{x} \\
+                \implies & & \int \frac{\dd{y}}{y} & = \int \frac{1}{3x} \dd{x} + C \\
+                \implies & & \ln y & = \frac{1}{3} \ln x + C \\
+                \implies & & y & = C_1 x^{\frac{1}{3}} \quad (C_1 > 0)
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.2.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 令 $u \gets \frac{y}{x}$：
+            $$
+            \begin{aligned}
+                & & u + x \dv{u}{x} & = \frac{2u - 1}{2 - u} \\
+                \implies & & x \dv{u}{x} & = \frac{u^2 - 1}{2 - u} \\
+                \implies & & \int \frac{2 - u}{u^2 - 1} \dd{u} & = \int \frac{\dd{x}}{x} + C_1 \\
+                \implies & & \frac{1}{2} \ln |u - 1| - \frac{3}{2} \ln |u + 1| & = \ln |x| + C_1 \\
+                \implies & & \ln \abs{\frac{u - 1}{(u + 1)^3}} & = \ln \abs{x^2} + C_2 \\
+                \implies & & \frac{u - 1}{(u + 1)^3} & = C x^2 \\
+            \end{aligned}
+            $$
+            将 $u = \frac{y}{x}$ 回带得到：
+            $$
+            \begin{aligned}
+                & & \frac{\frac{y}{x} - 1}{(\frac{y}{x} + 1)^3} & = C x^2 \\
+                \implies & & y - x & = C (y + x)^3
+            \end{aligned}
+            $$
+
+            \item[\textbf{4)}] 令 $u \gets \frac{y}{x}$。
+            $$
+            \begin{aligned}
+                & & \ab(u + x \dv{u}{x}) +  2 \sqrt{u} & = u \\
+                \implies & & \int \frac{\dd{u}}{-2 \sqrt{u}} & = \int \frac{\dd{x}}{x} + C_1 \\
+                \implies & & - \sqrt{u} & = \ln |x| + C_1
+            \end{aligned}
+            $$
+            将 $u = \frac{y}{x}$ 回带得到：
+            $$
+            \begin{aligned}
+                & & - \sqrt{\frac{y}{x}} = \ln |x| + C_2 \\
+                \implies & & - \sqrt{y} = \sqrt{x} \ab(\ln |x| + C_2)
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.2.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 作带换：$X = x - 1, Y = y - 2$，那么原方程化为：
+            $$
+            \dv{Y}{X} = \frac{X - Y}{X + Y}
+            $$
+            再带换 $u = \frac{Y}{X}$，得到：
+            $$
+            \begin{aligned}
+                & & u + X \dv{u}{X} & = \frac{1 - u}{1 + u} \\
+                \implies & & \int \frac{1 + u}{1 - 2u - u^2} \dd{u} & = \int \frac{\dd{X}}{X} + C_1 \\
+                \implies & & -\frac{1}{2} \ln |1 - 2u - u^2| & = \ln |X| + C_1 \\
+                \implies & & -(1 - 2u - u^2) & = C_2 X^2 \\
+                \implies & & -\ab(1 - \frac{2Y}{X} - \frac{Y^2}{X^2}) & = C_2 X^2 \\
+                \implies & & 2 X Y + Y^2 & = C X^2 
+            \end{aligned}
+            $$
+            回带，得到：
+            $$
+            2 (x - 1) (y - 2) + (y - 2)^2 = C (x - 1)^2
+            $$
+
+            \item[\textbf{4)}] 作带换：$t = x + 2y$，那么原方程化为：
+            $$
+            \frac{1}{2} \dv{t}{x} - \frac{1}{2} = \frac{t + 1}{2t - 1}
+            $$
+            因此：
+            $$
+            \begin{aligned}
+                & & \dv{t}{x} & = \frac{4t + 1}{2t - 1} \\
+                \implies & & \int \frac{2t - 1}{4t + 1} \dd{t} & = \int \dd{x} + C_1 \\
+                \implies & & \frac{1}{2} t - \frac{3}{8} \ln |4t + 1| & = x + C_1 \\
+                \implies & & \frac{1}{2} (x + 2y) - \frac{3}{8} \ln |4x + 8y + 1| & = x + C_1
+            \end{aligned}
+            $$
+            稍微化简得到：
+            $$
+            8y - 3 \ln |4x + 8y + 1| = 4x + C
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.2.4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 方程可化为：
+            $$
+            y' + y \tan x = \frac{1}{\cos x}
+            $$
+            那么可得：
+            $$
+            \begin{gathered}
+                e^{-\int \tan x \dd{x}} = e^{-\ln \abs{\cos x} + C_1} = C_2 \cos x \\
+                \int \frac{\dd{x}}{\cos^2 x} \dd{x} = \tan x + C
+            \end{gathered}
+            $$
+            因此方程的通解为
+            $$
+            y = \cos x \ab(\tan x + C) = \sin x + C \cos x
+            $$
+            \item[\textbf{3)}] 方程可化为：
+            $$
+            y' + y \cdot \frac{2}{x} = \frac{\sin x}{x}
+            $$
+            那么可得：
+            $$
+            \begin{gathered}
+                e^{-\int \frac{2 \dd{x}}{x}} = e^{-2 \ln \abs{x} + C_1} = \frac{C_2}{x^2} \\
+                \int \frac{\sin x}{x} \cdot x^2 \dd{x} = \sin x - x \cos x + C
+            \end{gathered}
+            $$
+            因此方程的通解为：
+            $$
+            y = \frac{1}{x^2} \ab(\sin x - x \cos x + C)
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 10.2.5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 式子两侧同时除以 $y^{\frac{4}{3}}$ 并化简得到：
+            $$
+            -\ab(y^{-\frac{1}{3}})' + \frac{2}{x} \cdot y^{-\frac{1}{3}} = 1
+            $$
+            令 $u = y^{-\frac{1}{3}}$ 化成一阶线性方程的形式，解得：
+            $$
+            u = x + C x^2
+            $$
+            因此
+            $$
+            y = \frac{1}{u^3} = \ab(x + C x^2)^{-3}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}

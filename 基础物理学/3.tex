@@ -72,8 +72,15 @@ $$
     \item 自然坐标系：
     $$
     \begin{dcases}
-        \vect{F}_s = m \dv{|\vect{v}|}{t} \vect{e}_s \\
-        \vect{F}_n = \frac{m \vect{v}^2}{\rho} \vect{e}_{\tau}
+        \vect{F}_{\tau} = m \dv{|\vect{v}|}{t} \vect{e}_{\tau} \\
+        \vect{F}_n = \frac{m \vect{v}^2}{\rho} \vect{e}_n
+    \end{dcases}
+    $$
+    \item 平面极坐标系：
+    $$
+    \begin{dcases}
+        \vect{F}_r = m \ab(\ddot{r} - r \dot{\theta}^2) \\
+        \vect{F}_{\theta} = m \ab(r \ddot{\theta} + 2 \dot{r} \dot{\theta})
     \end{dcases}
     $$
 \end{enumerate}
@@ -120,7 +127,7 @@ $$
 \end{problem}
 
 \begin{problem}
-    习题 1.10
+    习题 1.11
     \begin{solution}
         取重力加速度 $g = 9.8\,\mathrm{m / s^2}$。
 
@@ -143,7 +150,7 @@ $$
 \end{problem}
 
 \begin{problem}
-    习题 1.11
+    习题 1.12
     \begin{solution}
         $t = 10\,\mathrm{s}$ 时，向心加速度为：
         $$

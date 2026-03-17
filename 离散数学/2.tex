@@ -1,0 +1,57 @@
+\section{数理逻辑 II}
+
+\subsection{命题逻辑合式公式}
+
+\begin{definition}[命题逻辑合式公式]
+    命题逻辑中的\textbf{合式公式}按以下递归规则定义：
+    \begin{enumerate}
+        \item 命题常元 $0, 1$ 和命题变元是合式公式。
+        \item 若 $A$ 是合式公式，则 $(\lnot A)$ 也是合式公式。
+        \item 若 $A, B$ 是合式公式，则 $(A \land B), (A \lor B), (A \to B), (A \leftrightarrow B)$ 都是合式公式。
+        \item 只有有限次地应用上述规则生成的符号串才是合式公式。
+    \end{enumerate}
+\end{definition}
+
+\subsection{合式公式的变换}
+
+\begin{definition}[对偶]
+    设 $Q$ 是由 $\{0, 1, \lnot, \lor, \land\}$ 生成的公式，将 $Q$ 中的 $\lor$ 与 $\land$ 互换，$0$ 与 $1$ 互换，得到 $Q^*$，则 $Q^*$ 称为 $Q$ 的对偶公式。
+\end{definition}
+
+\subsection{谓词逻辑语言}
+
+谓词逻辑语言又称一阶逻辑语言。其中包括：
+\begin{itemize}
+    \item 逻辑符号：变元、连结词、量词等；
+    \item 非逻辑符号：常元、函词、谓词等；
+    \item 仅有个体变元；
+    \item 按规则构成的合式公式集合。
+\end{itemize}
+
+谓词逻辑，也称为狭义谓词逻辑。
+
+谓词是关于个体的性质和关系，不涉及关系的性质或关系之间的关系。这就是所谓“一阶”的含义。如对于个体 $A, B$，谓词 $f(A, B), g(A, B)$ 是一阶谓词，而 $h(f, g)$ 是二阶谓词。
+
+\begin{definition}[谓词]
+    是表示事物性质和事物关系的词通称为谓词。
+
+    $n$ 元谓词表示为 $Q(x_1, x_2, \dots, x_n)$，其中 $Q$ 是谓词，$x_i$ 是个体。
+\end{definition}
+
+\begin{definition}[量词]
+    表示所有个体都具有某种性质的词称为全称量词，记为 $\forall$。表示至少有一个个体具有某种性质的词称为存在量词，记为 $\exists$。
+\end{definition}
+
+\begin{definition}[字符集]
+    \textbf{逻辑符号}包括变元、连接词、量词、逗号、括号等。
+
+    \textbf{非逻辑符号}包括常元、函词、谓词等。
+\end{definition}
+
+\begin{definition}[子公式]
+    若公式 $R$ 在公式 $Q$ 中出现，称 $R$ 为 $Q$ 的\textbf{子公式}。
+\end{definition}
+
+\begin{definition}
+    若 $(\forall\,x: Q)$ 或 $(\exists\,x: Q)$ 是公式，那么称 $x$ 在该公式中为\textbf{约束出现}，是一个\textbf{约束变元}，并称 $Q$ 为 $x$ 出现的\textbf{辖域}。
+\end{definition}
