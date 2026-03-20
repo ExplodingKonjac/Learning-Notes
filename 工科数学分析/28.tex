@@ -235,3 +235,203 @@
         \end{enumerate}
     \end{solution}
 \end{problem}
+
+\begin{problem}
+    习题 12.1.1
+    \begin{solution}
+        \item[\textbf{1)}] 当 $n \to + \infty$ 时：
+        $$
+        \frac{n - 1}{n + 1} \ab(\frac{x}{3x + 1})^{n} = O\ab(\ab(\frac{x}{3x + 1})^{n})
+        $$
+        因此可知该函数项级数收敛当且仅当 $-1 < \frac{x}{3x + 1} < 1$，即收敛域为 $(0, -\frac{1}{2}) \cap (-\frac{1}{4}, +\infty)$。
+
+        \item[\textbf{2)}] 当 $x = 0$ 时，级数收敛。当 $x \neq 0$ 时，$n \to + \infty$ 时有：
+        $$
+        n (x + \frac{1}{n})^{n} = O(n x^{n})
+        $$
+        因此该函数项级数收敛域为 $(-1, 1)$。
+
+        \item[\textbf{4)}] 当 $|x| = 1$ 时，级数发散；当 $|x| < 1$ 时，$\frac{x^{n}}{1 + x^{2n}} = O(x^{n})$；当 $|x| > 1$ 时，$\frac{x^{n}}{1 + x^{2n}} = O(\frac{1}{x^{n}})$。因此该函数项级数收敛域为 $\mathbb{R} \setminus \{-1, 1\}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.4
+    \begin{solution}
+        \item[\textbf{2)}] 该函数列逐点收敛于 $0$，考虑 $\sup \abs{S_n(x)}$。
+        $$
+        S_n'(x) = -2n^2 x^2 (1 - x^2)^{n - 1} + (1 - x^2)^{n} = -n(1 - x^2)^{n - 1} ((1 + 2n) x^2 - 1)
+        $$
+        因此 $|S_n(x)|$ 在 $[0, 1]$ 上的最大值是 $M_n = S_n\ab(\sqrt{\frac{1}{1 + 2n}}) = n \sqrt{\frac{1}{1 + 2n}} \ab(1 - \frac{1}{1 + 2n})^{n}$。这是收敛的。因此原函数列一致收敛。
+
+        \item[\textbf{4)}] 显然函数列逐点收敛于 $e^{x}$。
+        $$
+        \begin{aligned}
+            \lim_{n \to \infty} \sup_{0 \le x \le a} \abs{e^{x} - S_n(x)} & = \lim_{n \to \infty} \abs{e^{x} - \ab(1 + \frac{x}{n})^{n}} \\
+        \end{aligned}
+        $$
+        而
+        $$
+        \begin{aligned}
+            \ln e^{x} - \ln \ab(1 + \frac{x}{n})^{n} & = x - n \ln \ab(1 + \frac{x}{n}) \\
+            & = n \ab(\frac{x}{n} - \ln \ab(1 + \frac{x}{n})) \\
+            & \le \frac{x^2}{2n}
+        \end{aligned}
+        $$
+        同时有：
+        $$
+        \begin{aligned}
+            e^{x} - \ab(1 + \frac{x}{n})^{n} & \le e^{\xi} \ab(\ln e^{x} - \ln \ab(1 + \frac{x}{n})^{n}) \\
+            & \le e^{a} \cdot \frac{x^2}{2n}
+        \end{aligned}
+        $$
+        因此
+        $$
+        \lim_{n \to \infty} \sup_{0 \le x \le a} \abs{e^{x} - S_n(x)} \le \lim_{n \to \infty} e^{a} \frac{a^2}{2n} = 0
+        $$
+        因此原函数列一致收敛。
+
+        \item[\textbf{6)}]
+        \begin{itemize}
+            \item $x \in (0, +\infty)$：函数列逐点收敛于 $0$，但
+            $$
+            \sup_{x > 0} \abs{S_n(x) - 0} = \sup_{x > 0} \abs{\frac{1}{1 + n x}} = 1
+            $$
+            因此该函数列不一致收敛。
+
+            \item $x \in [a, + \infty)$：函数列逐点收敛于 $0$，且
+            $$
+            \lim_{n \to \infty} \sup_{x > 0} \abs{S_n(x) - 0} = \lim_{n \to \infty} \abs{\frac{1}{1 + a x}} = 0
+            $$
+            因此该函数列一致收敛。
+        \end{itemize}
+
+        \item[\textbf{7)}]
+        \begin{itemize}
+            \item $x \in (0, 1 - a]$：函数列逐点收敛于 $0$，
+            $$
+            \lim_{n \to \infty} \sup_{x \in (0, 1 - a]} \abs{\frac{x^{n}}{1 + x^{n}}} = \lim_{n \to \infty} \abs{\frac{(1 - a)^{n}}{1 + (1 - a)^{n}}} = 0
+            $$
+            因此该函数列一致收敛。
+            \item $x \in [1 - a, 1 + a]$：$x = 1$ 时 $\{S_n(1)\}$ 不收敛，因此该函数列不一致收敛。
+            \item $x \in [1 + a, +\infty)$：函数列逐点收敛于 $1$。
+            $$
+            \lim_{n \to \infty} \sup_{x \in [1 + a, +\infty)} \abs{\frac{x^{n}}{1 + x^{n}}} = \lim_{n \to \infty} 1 = 1
+            $$
+            因此该函数列不一致收敛。
+        \end{itemize}
+
+        \item[\textbf{8)}]
+        \begin{itemize}
+            \item $x \in [-1, 1]$：函数列逐点收敛于 $0$，且
+            $$
+            \lim_{n \to \infty} \sup_{x \in [-1, 1]} \abs{e^{-(x - n)^2} - 0} = \lim_{n \to \infty} e^{-(1 - n)^2} = 0
+            $$
+            因此该函数列一致收敛。
+            \item $x \in \mathbb{R}$：函数列逐点收敛于 $0$，但 
+            $$
+            \lim_{n \to \infty} \sup_{x \in \mathbb{R}} \abs{e^{-(x - n)^2} - 0} = 1
+            $$
+            因此该函数列不一致收敛。
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.5
+    \begin{solution}
+        该函数列逐点收敛于 $0$。
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \lim_{n \to \infty} \sup \abs{S_n(x) - 0} = \lim_{n \to \infty} S_{n}\ab(\frac{1}{n}) = \lim_{n \to \infty} \frac{n^{\alpha - 1}}{\E}
+            $$
+            因此 $\alpha < 1$ 时原函数列一致收敛。
+
+            \item[\textbf{2)}]
+            $$
+            \begin{gathered}
+                \lim_{n \to \infty} \int_0^1 S_n(x) = \lim_{n \to \infty} n^{\alpha} \ab[-\frac{1 + nx}{n^2} \E^{-nx}]_0^1 = \lim_{n \to \infty} n^{\alpha - 2} (1 - (1 + n) e^{-n}) \\
+                \int_0^1 \ab(\lim_{n \to \infty} S_n(x)) \dd{x} = \int_0^1 0 \dd{x} = 0
+            \end{gathered}
+            $$
+            因此 $\alpha < 2$ 时两式相等。
+
+            \item[\textbf{3)}]
+            $$
+            \begin{gathered}
+                \lim_{n \to \infty} S'_n(x) = \lim_{n \to \infty} n^{\alpha} (1 - nx) \E^{-nx} \\
+                \ab(\lim_{n \to \infty} S_n(x))' = 0
+            \end{gathered}
+            $$
+            两式始终相等。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.7
+    \begin{proof}
+        首先因为 $S_0(x)$ 在闭区间连续，其一定有界，记为 $M$。那么可以归纳得到：
+        $$
+        \abs{S_n(x)} \le \int_a^x M \frac{(x - a)^{n - 1}}{(n - 1)!} \dd{x} \le \frac{M (x - a)^{n}}{n!}
+        $$
+        因此
+        $$
+        \lim_{n \to \infty} \sup_{x \in [a, b]} \abs{S_n(x)} = \lim_{n \to \infty} M \frac{(b - a)^{n}}{n!} = 0
+        $$
+        于是得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.9
+    \begin{proof}
+        由题知
+        $$
+        \lim_{n \to \infty} S_n(x) = \int_{x}^{x + 1} f(t) \dd{t}
+        $$
+        而
+        $$
+        \begin{aligned}
+            & \lim_{n \to \infty} \sup_{x \in [a, b]} \abs{S_n(x) - \int_{x}^{x + 1} f(t) \dd{t}} \\
+            \le & \lim_{n \to \infty} \sup_{x \in [a, b]} \sum_{i = 1}^{n} \frac{1}{n} \ab(\max_{x \in [a + \frac{i - 1}{n}, a + \frac{i}{n}]} f(x) - \min_{x \in [a + \frac{i - 1}{n}, a + \frac{i}{n}]} f(x))
+        \end{aligned}
+        $$
+        因为 $f(x)$ 在闭区间 $[a, b + 1]$ 上连续，因此也一致连续。所以 $\sup_{x \in [a, b]} (\max \cdot - \min \cdot )$ 趋于 $0$。得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.11
+    \begin{proof}
+        $$
+        n \ab(x + \frac{1}{n})^{n} = n x^{n} \ab(1 + \frac{1}{n x})^{n} = n x^{n} \ab(\ab(1 + \frac{1}{n x})^{n x})^{\frac{1}{x}}
+        $$
+        当 $x \to \pm 1$ 时，上式是无界的。因此函数项级数的一般项不逐点收敛于 $0$，函数项级数不一致收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.13
+    \begin{proof}
+        该函数项级数逐点收敛于 $0$，但
+        $$
+        \lim_{n \to \infty} \sup_{x \in (1, +\infty)} \abs{\sum_{i = 1}^{n} \frac{1}{i^{x}}} \ge \lim_{n \to \infty} \abs{n \cdot \frac{1}{n^{\log_n 2}}} = \lim_{n \to \infty} \frac{n}{2} = +\infty
+        $$
+        因此原函数列不一致收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.1.14
+    \begin{proof}
+        对于任意 $n \in \mathbb{N}^{+}$，都有：
+        $$
+        \begin{aligned}
+            \sum_{k = n + 1}^{2n} \frac{\sin k \cdot \frac{\pi}{4 n}}{k} & \ge \sum_{k = n + 1}^{2n} \frac{\sin k \cdot \frac{\pi}{4 k}}{2 n} = \frac{\sqrt{2}}{4} \\
+        \end{aligned}
+        $$
+        这违背柯西收敛原理，因此该函数项级数不一致收敛。
+    \end{proof}
+\end{problem}

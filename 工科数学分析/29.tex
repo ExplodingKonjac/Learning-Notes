@@ -1,0 +1,110 @@
+\section{函数列与函数项级数 II}
+
+\subsection{函数列级数的一般判别法}
+
+\begin{theorem}[Weierstrass 判别法]
+    若存在一个收敛的正项级数 $\sum\limits_{n = 1}^{\infty} a_n$，使得对于所有 $n \in \mathbb{N}$ 且 $x \in I$，有 $|u_n(x)| \le a_n$，则级数 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 在 $I$ 上一致收敛。
+
+    \begin{proof}
+        根据 Cauchy 收敛原理：
+        $$
+        \forall\,\varepsilon > 0: \exists\,n \in \mathbb{N}^{+}: \forall\,p \in \mathbb{N}^{+}: \sum_{i = n + 1}^{n + p} a_i < \varepsilon
+        $$
+        那么根据所给条件有：
+        $$
+        \forall\,\varepsilon > 0: \exists\,n \in \mathbb{N}^{+}: \forall\,p \in \mathbb{N}^{+},\ x \in I: \abs{\sum_{i = n + 1}^{n + p} u_i(x)} \le \sum_{i = n + 1}^{n + p} a_i < \varepsilon
+        $$
+        因此，函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 在 $I$ 上一致收敛。
+    \end{proof}
+\end{theorem}
+
+在 Weierstrass 判别法中出现的级数 $\sum\limits_{n = 1}^{\infty} a_n$ 称为函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 的\textbf{优级数}、\textbf{强级数}或\textbf{控制级数}。
+
+\begin{remark}
+    \begin{itemize}
+        \item 若函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 通过 Weierstrass 判别法一致收敛，则 $\sum\limits_{n = 1}^{\infty} \abs{u_n(x)}$ 在 $I$ 上一致收敛。
+        \item 反之，也有可能出现 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 一致收敛而 $\sum\limits_{n = 1}^{\infty} \abs{u_n(x)}$ 在 $I$ 上不一致收敛的情况，此时无法使用 Weierstrass 判别法。
+    \end{itemize}
+\end{remark}
+
+此外函数项级数也有 Diriclet 判别法和 Abel 判别法。
+
+我们首先定义函数列的有界性：
+
+\begin{definition}[函数列的有界性]
+    假设有 $I$ 上的函数列 $\{f_n(x)\}$。
+    \begin{itemize}
+        \item 若 $\forall\,x \in I$ 都有 $a_n = f_n(x)$ 有界，那么称函数列 $\{f_n(x)\}$ \textbf{逐点有界}；
+        \item 若 $\exists\,M > 0$，使得 $\forall\,x \in I$ 都有 $\abs{f_n(x)} \le M$，那么称函数列 $\{f_n(x)\}$ \textbf{一致有界}。
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[函数项级数的 Dirichlet 判别法]
+    假设有 $I$ 上的函数列 $\{u_n(x)\}$ 和 $\{v_n(x)\}$，且满足：
+    \begin{itemize}
+        \item 对任意 $x \in I$，数列 $\{v_n(x)\}$ 单调，且函数列 $\{v_n(x)\}$ 在 $I$ 上一致收敛于 $0$；
+        \item 函数列 $\{u_n(x)\}$ 的部分和序列在 $I$ 上一致有界。
+    \end{itemize}
+    则函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x) v_n(x)$ 在 $I$ 上一致收敛。
+
+    \begin{proof}
+        首先有
+        $$
+        \abs{\sum_{i = n + 1}^{m} u_i(x)} = \abs{\sum_{i = 1}^{m} u_i(x) - \sum_{i = 1}^{n} a_i(x)} \le 2M
+        $$
+        根据 Abel 引理，得到：
+        $$
+        \abs{\sum_{i = n + 1}^{n + p} u_i(x) v_i(x)} \le 2 M \ab(\abs{v_{n + 1}(x)} + 2 \abs{v_{n + p}(x)})
+        $$
+        同时 $\{v_n(x)\}$ 一致收敛于 $0$，所以有
+        $$
+        \forall\varepsilon > 0: \exists N \in \mathbb{N}^{+}: \forall n > N: \abs{v_n(x)} < \frac{\varepsilon}{6 M} \implies \abs{\sum_{i = n + 1}^{n + p} u_i(x) v_i(x)} < 2M \ab(\frac{\varepsilon}{6M} + \frac{2 \varepsilon}{6M}) < \varepsilon
+        $$
+        因此得证。
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[函数项级数的 Abel 判别法]
+    设有 $I$ 上的函数列 $\{u_n(x)\}, \{v_n(x)\}$，若满足：
+    \begin{itemize}
+        \item 对任意 $x \in I$，数列 $\{v_n(x)\}$ 单调，且函数列 $\{v_n(x)\}$ 在 $I$ 上一致有界；
+        \item 函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x)$ 在 $I$ 上一致收敛。
+    \end{itemize}
+    则函数项级数 $\sum\limits_{n = 1}^{\infty} u_n(x) v_n(x)$ 在 $I$ 上一致收敛。
+\end{theorem}
+
+\subsection{一致收敛函数列/函数项级数的性质}
+
+\begin{theorem}
+    设 $S_n(x)$ 在 $I$ 上连续且函数列 $\{S_n(x)\}$ 在 $I$ 上一致收敛于 $S(x)$，那么 $S(x)$ 在 $I$ 上连续。
+    \begin{proof}
+        即证 $\forall\,x_0 \in I: \lim\limits_{x \to x_0} S(x) = S(x_0)$。
+
+        因为函数列 $\{S_n(x)\}$ 一致收敛到 $S(x)$，因此
+        $$
+        \forall\,\varepsilon > 0: \exists N \in \mathbb{N}^{+}: \forall n > N: \abs{S_n(x) - S(x)} < \frac{\varepsilon}{3}
+        $$
+        同时，因为 $S_n(x)$ 在 $I$ 上连续，所以
+        $$
+        \forall\,\varepsilon > 0: \exists \delta > 0: \forall x \in I: \abs{x - x_0} < \delta: \abs{S_n(x) - S_n(x_0)} < \frac{\varepsilon}{3}
+        $$
+        那么当 $\abs{x - x_0} < \delta$ 时，就有
+        $$
+        \abs{S(x) - S(x_0)} \le \abs{S(x) - S_n(x)} + \abs{S_n(x) - S_n(x_0)} + \abs{S_n(x_0) - S(x_0)} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon
+        $$
+        得证。
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Dini 定理]
+    设 $S_n(x)$ 在区间 $[a, b]$ 连续，且函数列 $\{S_n(x)\}$ 逐点收敛于 $S(x)$，且 $\forall\,x \in I$ 都有 $\{S_n(x)\}$ 单调，则 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛。
+\end{theorem}
+
+\subsection{函数列的分析性质}
+
+\begin{theorem}[函数列的极限函数的可积性]
+    设 $S_n(x)$ 在区间 $[a, b]$ 连续，且函数列 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛于 $S(x)$，则 $S(x)$ 在区间 $[a, b]$ 上可积，且：
+    $$
+    \lim_{n \to \infty} \int_a^b S_n(x) \dd{x} = \int_a^b \lim_{n \to \infty} S_n(x) \dd{x}
+    $$
+\end{theorem}

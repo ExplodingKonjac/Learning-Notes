@@ -1,0 +1,142 @@
+\section{系统控制中的应用}
+
+\subsection{前置知识}
+
+\subsubsection{系统的内部描述}
+
+系统有内部变量 $x_1, x_2, \dots, x_n$，输入变量 $u_1, u_2, \dots, u_p$ 和输出变量 $y_1, y_2, \dots, y_m$。
+
+\begin{itemize}
+    \item 状态方程：对于连续时间系统，以微分方程描述；对于离散时间系统，以差分方程描述。
+    \item 输出方程：
+\end{itemize}
+
+\subsubsection{状态和状态空间}
+
+\begin{definition}[状态变量组]
+    一个动力学系统的\textbf{状态变量组}定义为能完全表征其时间域性为的一个最小内部变量组。表示为 $x_1(t), x_2(t), \dots, x_n(t)$。
+\end{definition}
+
+\begin{definition}[状态]
+    一个系统的\textbf{状态}定义为一个列向量 $\vect{x}(t) = [x_1(t), x_2(t), \dots, x_n(t)]^\top$，且状态的维数 $\dim \vect{x}$ 定义为状态变量个数 $n$。
+\end{definition}
+
+\begin{definition}[状态空间]
+    由状态向量构成的向量空间称为\textbf{状态空间}。
+\end{definition}
+
+状态变量组满足完全表征性和最小性，这代表它是最小的能够完全表征系统行为的内部变量组。更少的变量会缺失信息，而更多的变量会带来冗余信息。数学上看，这意味着状态变量组是内部变量组的一个极大线性无关组。
+
+\subsubsection{连续时间线性系统的状态空间描述}
+
+一个连续时间线性时不变系统，一般可以这样描述其形式：
+$$
+\begin{gathered}
+    \dot{\vect{x}}(t) = \matr{A} \vect{x}(t) + \matr{B} \vect{u}(t) \\
+    \vect{y}(t) = \matr{C} \vect{x}(t) + \matr{D} \vect{u}(t)
+\end{gathered}
+$$
+
+\subsubsection{向量的范数}
+
+向量的范数是用于刻画向量大小的一种度量，满足性质：
+
+\begin{itemize}
+    \item 正定性：$\norm{\vect{x}} \ge 0$，且 $\norm{\vect{x}} = 0 \iff \vect{x} = \vect{0}$；
+    \item 齐次性：$\norm{\lambda \vect{x}} = \abs{\lambda} \norm{\vect{x}}$；
+    \item 三角不等式：$\norm{\vect{x} + \vect{y}} \le \norm{\vect{x}} + \norm{\vect{y}}$。
+\end{itemize}
+
+对于向量 $\vect{x} = [x_1, x_2,\dots, x_n]^\top \in \mathbb{C}$，定义：
+$$
+\begin{aligned}
+    \norm{\vect{x}}_1 & = \sum_{i=1}^n \abs{x_i} \\
+    \norm{\vect{x}}_2 & = \sqrt{\sum_{i=1}^n \abs{x_i}^2} \\
+    \norm{\vect{x}}_p & = \ab(\sum_{i=1}^n \abs{x_i}^p)^{1/p} \quad (0 < p < \infty) \\
+    \norm{\vect{x}}_\infty & = \max_{i=1}^n \abs{x_i}
+\end{aligned}
+$$
+这种范数称做 Holder 范数。
+
+范数可用于定义向量的收敛性：
+$$
+\lim_{n \to \infty} \vect{x}^{(k)} = \vect{a} \iff \lim_{n \to \infty} \norm{\vect{x}^{(k)} - \vect{a}} = 0
+$$
+
+\subsection{矩阵的范数}
+
+同样，设 $\matr{A} \in P^{n \times m}$，定义：
+$$
+\begin{aligned}
+    \norm{\matr{A}}_{m_1} & = \sum_{i=1}^n \sum_{j=1}^m \abs{a_{ij}} \\
+    \norm{\matr{A}}_{m_2} & = \sqrt{\sum_{i=1}^n \sum_{j=1}^m \abs{a_{ij}}^2} \\
+    \norm{\matr{A}}_{m_p} & = \left( \sum_{i=1}^n \sum_{j=1}^m \abs{a_{ij}}^p \right)^{1/p} \quad (0 < p < \infty) \\
+    \norm{\matr{A}}_{m_\infty} & = \max_{\stackrel{1 \le i \le n}{1 \le j \le m}} \{\abs{a_{ij}}\}
+\end{aligned}
+$$
+
+对于任何可乘的矩阵 $\matr{A}, \matr{B}$，有不等式：
+$$
+\norm{\matr{A} \matr{B}}_m \le \norm{\matr{A}}_m \norm{\matr{B}}_m
+$$
+
+\begin{definition}[范数的相容]
+    设 $\norm{\cdot}_a$ 是 $P^{n}$ 上的向量范数，$\norm{\cdot}_m$ 是 $P^{m \times n}$ 上的矩阵范数，且
+    $$
+    \norm{\matr{A} \vect{x}}_a \le \norm{\matr{A}}_m \norm{\vect{x}}_a
+    $$
+    则称 $\norm{\cdot}_m$ 是与 $\norm{\cdot}_a$ \textbf{相容}的矩阵范数。
+\end{definition}
+
+\subsection{稳定性分析与综合}
+
+\subsubsection{平衡状态}
+
+\begin{definition}
+    对连续时间线性时不变系统，自洽系统\textbf{平衡状态}定义为满足
+    $$
+    \dot{\vect{x}} = \matr{A} \vect{x} = \vect{0},\quad \forall\,t \in [t_0, +\infty)
+    $$
+\end{definition}
+
+\subsubsection{受扰运动}
+
+\begin{definition}
+    动态系统的\textbf{受扰运动}定义为自洽系统由初始状态扰动 $\vect{x}_0$ 引起的一类状态运动。
+\end{definition}
+
+\subsubsection{渐进稳定}
+
+
+
+\subsubsection{常系数齐次线性微分方程组的解}
+
+对于微分方程
+$$
+\cvec{\dv{y_1}{t}, \dv{y_2}{t}, \vdots, \dv{y_n}{t}} = \matr{A} \cvec{y_1(t), y_2(t), \vdots, y_n(t)}
+$$
+如果将上面的向量分别简记为 $\vect{y}(t)$ 和其导数 $\dot{\vect{y}}(t)$，则上述方程即为齐次向量常微分方程
+$$
+\dot{\vect{y}}(t) = \matr{A} \vect{y}(t)
+$$
+
+借助于标量微分方程 $\dot{x} = ax$ 的解 $x(t) = \mathrm{e}^{at} x(0)$，我们可以得出向量微分方程也具有类似的解结构。在这里我们需要引入\textbf{矩阵指数}：
+$$
+\mathrm{e}^{\matr{A}t} = \sum_{k=0}^{\infty} \frac{(\matr{A}t)^k}{k!} = \matr{I} + \matr{A}t + \frac{1}{2!} \matr{A}^2 t^2 + \dots
+$$
+可以证明该级数对任意方阵 $\matr{A}$ 和实数 $t$ 都是绝对收敛且一致收敛的。
+
+利用矩阵指数，常系数齐次线性微分方程组的通解可表示为：
+$$
+\vect{y}(t) = \mathrm{e}^{\matr{A}t} \vect{c}
+$$
+其中 $\vect{c}$ 为常向量。如果给定初始时刻 $t = t_0$ 的状态为 $\vect{y}(t_0) = \vect{y}_0$，则代入可得特解为：
+$$
+\vect{y}(t) = \mathrm{e}^{\matr{A}(t - t_0)} \vect{y}_0
+$$
+
+对于可对角化的矩阵，可以简单求解 $\mathrm{e}^{\matr{A}t}$。设 $\matr{A} = \matr{P} \matr{D} \matr{P}^{-1}$，其中 $\matr{D} = \mathrm{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$，则
+$$
+\mathrm{e}^{\matr{A}t} = \matr{P} \mathrm{e}^{\matr{D}t} \matr{P}^{-1}
+$$
+其中 $\mathrm{e}^{\matr{D}t} = \mathrm{diag}(\mathrm{e}^{\lambda_1 t}, \mathrm{e}^{\lambda_2 t}, \dots, \mathrm{e}^{\lambda_n t})$。

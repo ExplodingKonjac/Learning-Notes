@@ -1,0 +1,253 @@
+\section{函数列与函数项级数 III}
+
+\subsection{函数列的分析性质 continue}
+
+\begin{theorem}
+    设函数列 $\{S_n(x)\}$在 $[a, b]$ 可导，且
+    \begin{itemize}
+        \item $S'_n(x)$ 在 $[a, b]$ 连续；
+        \item $\{S'_n(x)\}$ 在 $[a, b]$ 一致收敛于 $g(x)$；
+        \item 存在 $x_0 \in [a, b]$ 使得 $\{S_n(x_0)\}$ 收敛。
+    \end{itemize}
+    则 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛于 $S(x)$，且 $S'(x) = g(x)$。
+
+    \begin{proof}
+        根据一致收敛函数列的可积性证明。
+    \end{proof}
+\end{theorem}
+
+\subsection{幂级数}
+
+\begin{definition}[幂级数]
+    称形如
+    $$
+    \sum_{n = 0}^{\infty} a_n (x - x_0)^{n}
+    $$
+    的函数项级数为\textbf{幂级数}。
+\end{definition}
+
+\begin{theorem}[Abel 定理]
+    对于幂级数
+    $$
+    \sum_{n = 1}^{\infty} a_n x^{n}
+    $$
+    \begin{itemize}
+        \item 若对于某个 $x_0 \neq 0$，级数收敛，则对于任意 $|x| < |x_0|$，级数绝对收敛；
+        \item 若对于某个 $x_0 \neq 0$，级数发散，则对于任意 $|x| > |x_0|$，级数发散。
+    \end{itemize}
+
+    \begin{proof}
+        \begin{itemize}
+            \item 若级数 $\sum\limits_{n = 1}^{\infty} a_n x_0^{n}$ 收敛，则 $\lim\limits_{n \to \infty} a_n x_0^{n} = 0$。
+
+            因此数列 $\{a_n x_0^{n}\}$ 有界，即存在 $M > 0$，使得 $\forall n \in \mathbb{N}^{+}$，有 $\abs{a_n x_0^{n}} \le M$。
+            
+            对于任意满足 $\abs{x} < \abs{x_0}$ 的 $x$，设 $q = \abs{\frac{x}{x_0}} < 1$，则
+            $$
+            \abs{a_n x^{n}} = \abs{a_n x_0^{n}} \abs{\frac{x}{x_0}}^{n} \le M q^{n}
+            $$
+            由于 $0 \le q < 1$，几何级数 $\sum\limits_{n = 1}^{\infty} M q^{n}$ 收敛。根据比较判别法，级数 $\sum\limits_{n = 1}^{\infty} a_n x^{n}$ 绝对收敛。
+
+            \item 若级数 $\sum\limits_{n = 1}^{\infty} a_n x_0^{n}$ 发散，不妨反设存在 $x_1$ 满足 $\abs{x_1} > \abs{x_0}$，使得级数 $\sum\limits_{n = 1}^{\infty} a_n x_1^{n}$ 收敛。
+
+            由前一条的结论可知，由于 $\abs{x_0} < \abs{x_1}$，此时级数 $\sum\limits_{n = 1}^{\infty} a_n x_0^{n}$ 将绝对收敛，这与其发散的条件矛盾。
+
+            因此，对于任意 $\abs{x} > \abs{x_0}$，级数发散。
+        \end{itemize}
+    \end{proof}
+\end{theorem}
+
+由 Abel 定理可知，存在一个 $R \ge 0$ 使得，幂级数在 $(-R, R)$ 收敛，在 $(- \infty, -R) \cup (R, + \infty)$ 发散。这个 $R$ 称为幂级数的\textbf{收敛半径}。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 12.2.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 记 $f(x) = (1 - x)^2 x^{n}$，那么 $f'(x) = x^{n - 1} (x - 1) ((2 + n) x - n)$，则
+            $$
+            \sup_{x \in [0, 1]} \abs{f(x)} = \abs{f\ab(\frac{n}{2 + n})} = \ab(1 - \frac{2}{2 + n})^{n} (\frac{2}{2 + n})^2 = O\ab(\frac{1}{n^2})
+            $$
+            根据 Weierstrass 判别法，该函数项级数一致收敛。
+
+            \item[\textbf{3)}] 我们有
+            $$
+            \frac{1 + n^{5} x^2}{n x} = \frac{1}{n x} + n^{3} \cdot n x \ge 2 n^{\frac{3}{2}}
+            $$
+            因此
+            $$
+            \frac{n x}{1 + n^{5} x^2} \le \frac{1}{2 n^{\frac{3}{2}}}
+            $$
+            根据 Weierstrass 判别法，该函数项级数一致收敛。
+
+            \item[\textbf{5)}]
+            $$
+            \abs{\frac{\sin \ab(n + \frac{x}{2})}{\sqrt[3]{n^{4} + x^{4}}}} \le \frac{1}{\sqrt[3]{n^{4}}} = \frac{1}{n^{\frac{4}{3}}}
+            $$
+            根据 Weierstrass 判别法，该函数项级数一致收敛。
+
+            \item[\textbf{7)}] 记 $f_n(x) = x \E^{-n x^2}$，那么：
+            $$
+            \sum_{n = 1}^{\infty} f_n(0) = 0
+            $$
+            但是对于 $x \neq 0$：
+            $$
+            \sum_{k = 1}^{\infty} f_k(x) = \frac{x}{e^{x} - 1}
+            $$
+            当 $x \to 0$ 时该值趋于 $1$，这与一致收敛的函数列的连续性矛盾。故原函数项级数在 $[0, + \infty)$ 不一致收敛。
+
+            但是在 $[\delta, + \infty)$ 上，当 $n \to \infty$ 时函数极大值点 $\to 0$。因此我们有：
+            $$
+            \sup_{x \in [\delta, + \infty)} f(x) = f(\delta) = \delta \E^{-n \delta^2}
+            $$
+            这是一个收敛的级数，因此原函数项级数在 $[\delta, + \infty)$ 上一致收敛。
+
+            \item[\textbf{9)}]
+            \begin{itemize}
+                \item $x \in \mathbb{R}$：此时，$\sup \ln\ab(1 + \frac{\abs{x}}{n (\ln n)^2}) = +\infty$，因此原函数项级数不一致收敛。
+                \item $x \in [-l, l]$：此时有
+                $$
+                \ln \ab(1 + \frac{\abs{x}}{n (\ln n)^2}) \le \frac{\abs{x}}{n (\ln n)^2} \le \frac{l}{n (\ln n)^2}
+                $$
+                右式是一个收敛级数。根据 Weierstrass 判别法，原函数项级数在 $[-l, l]$ 上一致收敛。
+            \end{itemize}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.2.3
+    \begin{proof}
+        $$
+        \begin{aligned}
+            \sum_{n = 1}^{N} \cos n x & = \frac{1}{\sin \frac{x}{2}} \sum_{n = 1}^{N} \sin \frac{x}{2} \cos n x \\
+            & = \frac{1}{\sin \frac{x}{2}} \sum_{n = 1}^{N} \frac{1}{2} \ab(\sin \ab(n + \frac{1}{2}) x - \sin \ab(n - \frac{1}{2}) x\ab) \\
+            & = \frac{1}{\sin \frac{x}{2}} \ab(\sin \ab(N + \frac{1}{2}) x - \sin \frac{1}{2} x)
+        \end{aligned}
+        $$
+        因为 $\frac{1}{2} x \in \ab[\frac{\delta}{2}, \pi - \frac{\delta}{2}]$，因此 $\sum\limits_{n = 1}^{N} \cos n x$ 一致有界。根据 Dirichlet 判别法，函数项级数 $\sum\limits_{n = 1}^{\infty} a_n \cos n x$ 一致收敛。
+
+        同理有
+        $$
+        \begin{aligned}
+            \sum_{n = 1}^{N} \sin n x & = \frac{1}{\sin \frac{x}{2}} \sum_{n = 1}^{N} \sin \frac{x}{2} \sin n x \\
+            & = \frac{1}{\sin \frac{x}{2}} \sum_{n = 1}^{N} \frac{1}{2} \ab(\cos \ab(n - \frac{1}{2}) x - \cos \ab(n + \frac{1}{2}) x\ab) \\
+            & = \frac{1}{\sin \frac{x}{2}} \ab(\cos \frac{1}{2} x - \cos \ab(N + \frac{1}{2}) x\ab)
+        \end{aligned}
+        $$
+        因此 $\sum\limits_{n = 1}^{N} \sin n x$ 一致有界。根据 Dirichlet 判别法，函数项级数 $\sum\limits_{n = 1}^{\infty} a_n \sin n x$ 一致收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.2.4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 因为
+            $$
+            \frac{1}{n + x^2} \le \frac{1}{n}
+            $$
+            因此函数列 $\{\frac{1}{n + x^2}\}$ 在 $\mathbb{R}$ 一致收敛于 $0$。而函数列 $\{(-1)^{n}\}$ 的部分和序列显然一致有界，根据 Dirichlet 判别法，原函数项级数一致收敛。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.2.5
+    \begin{proof}
+        对于 $\forall\,x \in [0, + \infty)$ 都有数列 $\E^{-n x} \le 1$。因此函数列 $\{\E^{-n x}\}$ 一致有界。而数列 $\{a_n\}$ 收敛，根据 Abel 判别法，原函数项级数一致收敛。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.1
+    \begin{proof}
+        \item[\textbf{1)}] 函数定义域为 $(-1, 1)$。对于任意闭区间 $[a, b] \subseteq (-1, 1)$，都有
+        $$
+        \abs{\ab(x + \frac{1}{n})^{n}} = O(x^{n}) \le M \max\{|a|, |b|\}^{n}
+        $$
+        因此在 $[a, b]$ 是一致收敛的。这说明原函数项级数在 $(-1, 1)$ 内闭一致收敛，因此在 $(-1, 1)$ 连续。
+
+        \item[\textbf{3)}] 函数定义域为 $(0, + \infty)$。对于任意闭区间 $[a, b] \subseteq (0, + \infty)$，都有
+        $$
+        \abs{\frac{1}{n} \E^{-n^2 x^2}} \le \frac{1}{n} \E^{- n^2 a^2}
+        $$
+        这是一个收敛的级数。因此原函数项级数在 $[a, b]$ 上一致收敛。这说明原函数项级数在 $(0, + \infty)$ 内闭一致收敛，因此在 $(0, + \infty)$ 连续。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.2
+    \begin{proof}
+        记 $S_n(x) = n x \E^{-n x}$，原函数项级数就是 $\lim\limits_{n \to \infty} S_n(x)$。
+
+        对于 $\forall\,n \in \mathbb{N}^{+}$，都能取 $x = \frac{1}{n}$ 使得 $S_n(x) = 1$。因此原函数项级数在 $[0, + \infty)$ 不一致收敛。
+
+        但是因为极大值点在 $n \to \infty$ 时趋于 $0$，因此当 $n$ 足够大时 $S_n(x)$ 在 $[a, + \infty)$ 单调递减。于是对于任意区间 $[a, b] \subseteq (0, + \infty)$：
+        $$
+        \forall\,x \in [a, b]: S_n(x) \le S_n(a) = a \E^{-n a} \to 0
+        $$
+        因此原函数项级数在 $[a, b]$ 上一致收敛。所以原函数项级数在 $(0, + \infty)$ 内闭一致收敛。
+        
+        特别地，$S_n(0) = 0$，且 $\lim\limits_{x \to 0} \lim\limits_{n \to \infty} S_n(x) = 0$，因此原函数项级数在 $[0, + \infty)$ 连续。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.3
+    \begin{proof}
+        考虑函数项级数 $\sum\limits_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n^{x}}$，根据 Dirichlet 判别法该级数在 $[1, 2]$ 一致收敛。因此 $S(x) = \sum\limits_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n^{x}}$ 在 $[1, 2]$ 连续。于是
+        $$
+        \lim_{x \to 1} \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n^{x}} = \lim_{x \to 1} S(x) = S(1) = \ln 2
+        $$
+        得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.6
+    \begin{proof}
+        \begin{enumerate}
+            \item[\textbf{2)}] 根据 Abel 判别法可知，函数项级数 $\sum\limits_{n = 1}^{\infty} a_n x_n$ 在 $[0, 1]$ 一致收敛。所以：
+            $$
+            \int_0^1 \ab(\sum_{n = 1}^{\infty} a_n x^n) \dd{x} = \sum_{n = 1}^{\infty} \int_0^1 a_n x^n \dd{x} = \sum_{n = 1}^{\infty} \frac{a_n}{n + 1}
+            $$
+            得证。
+        \end{enumerate}
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.8
+    \begin{solution}
+        根据之前题目的分析可知，函数项级数 $\sum\limits_{n = 1}^{\infty} n \E^{-n x}$ 在 $[\ln 2, \ln 3]$ 上一致收敛，因此：
+        $$
+        \int_{\ln 2}^{\ln 3} f(x) \dd{x} = \sum_{n = 1}^{\infty} \int_{\ln 2}^{\ln 3} n \E^{-n x} \dd{x} = \sum_{n = 1}^{\infty} (2^{-n} - 3^{-n}) = \frac{1}{2}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.9
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 定义域为 $[0, + \infty)$。类似于习题 12.3.2，我们能够证明 $S(x)$ 在 $(0, + \infty)$ 上内闭一致收敛，因此 $S(x)$ 在 $(0, + \infty)$ 可微。
+
+            \item[\textbf{3)}] 定义域为 $\mathbb{R}$。使用 Dirichlet 判别法，我们能够证明 $S(x)$ 在 $\mathbb{R}$ 上内闭一致收敛，因此 $S(x)$ 在 $\mathbb{R}$ 可微。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.3.11
+    \begin{proof}
+        记 $f_n(x) = n \E^{-n x}$，那么可得 $f_n^{(k)}(x) = (-1)^k n^{k + 1} \E^{-n x}$。
+
+        那么可得 $\sum\limits_{n = 1}^{\infty} f_n^{(k)}(x)$ 在 $(0, +\infty)$ 上内闭一致收敛，因此在 $(0, +\infty)$ 上可微，并且：
+        $$
+        \ab(\sum_{n = 1}^{\infty} f_n^{(k)}(x))' = \sum_{n = 1}^{\infty} f_n^{(k + 1)}(x)
+        $$
+        即 $\sum\limits_{n = 1}^{\infty} n \E^{-n x}$ 在 $(0, + \infty)$ 上无限阶可导，得证。
+    \end{proof}
+\end{problem}
