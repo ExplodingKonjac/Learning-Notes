@@ -38,6 +38,7 @@
 \RequirePackage{physics}
 \RequirePackage{physics2}
 \RequirePackage{etoolbox}
+\RequirePackage{diagbox}
 
 % Define page layout
 \geometry{a4paper,bottom=20mm,top=25mm,left=20mm,right=20mm}

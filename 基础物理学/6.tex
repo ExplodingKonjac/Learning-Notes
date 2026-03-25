@@ -1,0 +1,49 @@
+\section{动能与势能 II}
+
+\subsection{质点的动能和动能定理}
+
+\begin{definition}[质点的动能]
+    对于一个质量为 $m$，速度为 $\vect{v}$ 的质点，定义其\textbf{动能}为
+    $$
+    E_k = \frac{1}{2} m \vect{v}^2
+    $$
+\end{definition}
+
+\begin{theorem}[质点的动能定理]
+    对于一个质量为 $m$ 的质点，在一个过程中速度从 $\vect{v}_1$ 变为 $\vect{v}_2$，那么该过程中质点所受合外力做功为
+    $$
+    W = \Delta E_k = \frac{1}{2} m \vect{v}_2^2 - \frac{1}{2} m \vect{v}_1^2
+    $$
+\end{theorem}
+
+动能定理仅在惯性系中适用。
+
+\subsection{质点的势能}
+
+对于做功与路径无关的力，称为\textbf{保守力}。如果确定一个零点 $\vect{O}$，那么质点在任意位置就具有势能：
+$$
+E_p(\vect{r}) = \int_{\vect{O} \leadsto \vect{r}} \vect{F}(\vect{x}) \cdot \dd{\vect{x}}
+$$
+
+
+\subsubsection{万有引力的势能}
+
+取无穷远处为势能零点，那么有：
+$$
+E_p(r) = \int_r^{\infty} - \frac{G M m}{r^2} \dd{r} = - \frac{G M m}{r}
+$$
+
+\subsubsection{重力势能}
+
+取地面为势能零点，那么有：
+$$
+E_p(h) = mgh
+$$
+
+\subsubsection{弹性势能}
+
+对于一个弹簧，取形变量为 $0$ 时为势能零点，其弹性势能为：
+$$
+E_p(x) = \int_x^0 (-kx) \dd{x} = \frac{1}{2} k x^2
+$$
+其中 $k$ 为弹簧的劲度系数，$x$ 为弹簧的形变量。

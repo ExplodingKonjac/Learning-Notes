@@ -1,0 +1,81 @@
+\section{谓词逻辑 II}
+
+\subsection{代入与可代入}
+
+\begin{definition}[代入]
+    
+\end{definition}
+
+\begin{definition}[可代入]
+    设 $t$ 是项，$y$ 是 $t$ 中一自由变元，$Q$ 是合式公式，$x$ 是 $Q$ 中的自由变元，若 $Q$ 中 $x$ 的任何自由出现都不在 $\forall\,y$ 或 $\exists\,y$ 的辖域内，那么称 $t$ 是队 $Q$ 中的自由变元 $x$ \textbf{可代入的}。
+\end{definition}
+
+换而言之，用 $t$ 代换 $Q$ 中的 $x$ 的时候，需要保证 $t$ 中的自由变元不能被 $Q$ 中原有的量词所约束。
+
+\subsection{公式复杂度}
+
+\begin{definition}[公式复杂度]
+    公式 $P$ 的\textbf{复杂度} $\tau(P)$ 定义为：
+    \begin{itemize}
+        \item $\tau(0) = \tau(1) = 0$；
+        \item 若 $Q(x_1, x_2, \dots, x_n)$ 是谓词，那么 $\tau(Q) = 0$；
+        \item $\tau(\forall\,x: P) = \tau(\exists\,x: P) = \tau(P) + 1$；
+        \item $\tau(\lnot P) = \tau(P) + 1$；
+        \item $\tau(P \land Q) = \tau(P \lor Q) = \tau(P \to Q) = \tau(P \leftrightarrow Q) = \max\{\tau(P), \tau(Q)\} + 1$。
+    \end{itemize}
+\end{definition}
+
+直观来讲，公式复杂度就是公式代表的表达式树的高度。
+
+\subsection{一阶谓词公理系统中的语言}
+
+一阶谓词公理系统中，一阶谓词逻辑语言仅有联结词 $\lnot, \to$ 和全称量词 $\forall$。量词 $\exists$ 用 $\forall$ 定义。
+
+\begin{definition}
+    一阶谓词语言中，具有自由变量的合式公式称为\textbf{命题形式}，没有自由变量的合式公式称为\textbf{命题公式}或\textbf{逻辑语句}。
+\end{definition}
+
+下面研究如何将自然语言表达为一阶谓词逻辑语言。
+
+\begin{definition}
+    具有确定真或假含义的陈述句称为\textbf{原子命题}，或\textbf{简单命题}。
+\end{definition}
+
+下面给出一些常用的量词组合：
+
+\begin{itemize}
+    \item 对于所有 $x$ 和所有 $y$ 满足关系 $Q(x, y)$：$\forall\,x: \forall\,y: Q(x, y)$。
+    \item 对于所有 $x$ 都存在一个 $y$ 满足关系 $Q(x, y)$：$\forall\,x: \exists\,y: Q(x, y)$。
+    \item 存在至少一个 $x$ 和所有 $y$ 有关系 $Q(x, y)$：$\exists\,x: \forall\,y: Q(x, y)$。
+    \item 存在至少一个 $x$ 和至少一个 $y$ 有关系 $Q(x, y)$：$\exists\,x: \exists\,y: Q(x, y)$。
+\end{itemize}
+
+此外还有以下的特殊逻辑表达，设 $Q, R$ 是命题：
+
+\begin{itemize}
+    \item 即不 $Q$ 也不 $R$：$\lnot Q \land \lnot R$。
+    \item 要么 $Q$ 要么 $R$：$(\lnot Q \land R) \lor (Q \land \lnot R)$。
+    \item 只有 $Q$ 才能 $R$：$\lnot Q \to \lnot R$。
+    \item 除非 $Q$ 否则 $R$：$\lnot Q \to R$。
+    \item 仅有一个 $x$ 满足 $Q(x)$：$\exists\,x: (Q(x) \land \forall\,y: (Q(y) \to y = x))$，简记作 $\exists\,!x: Q(x)$。
+    \item 至多有一个 $x$ 满足 $Q(x)$：$\forall\,x: \forall\,y: (Q(x) \land Q(y) \to x = y)$，简记作 $\exists\,!!x: Q(x)$。
+\end{itemize}
+
+\subsection{论域}
+
+\begin{definition}[论域]
+    \textbf{论域}是一个数学系统，记为 $D$，由三部分组成：
+    \begin{itemize}
+        \item 一个非空对象集合 $D$；
+        \item 一个关于 $D$ 的函数集合，也称运算；
+        \item 一个关于 $D$ 的关系集合。
+    \end{itemize}
+\end{definition}
+
+比如，在自然数论域中，有：
+
+\begin{itemize}
+    \item 自然数集合 $\mathbb{N}$；
+    \item 运算集合 $\{+, \times\}$；
+    \item 关系集合 $\{=, <\}$。
+\end{itemize}

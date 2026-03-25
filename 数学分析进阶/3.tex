@@ -136,3 +136,143 @@ $$
 \end{gathered}
 $$
 结合两个方程组可解得 $C_1(x), C_2(x)$ 的值。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 10.3.1
+    \begin{solution}
+        \item[\textbf{1)}] 先求 $y'' + y' + y = 0$ 的通解：
+        $$
+        r^2 + r + 1 = 0 \implies r_1 = \frac{-1 + \sqrt{3} \I}{2}, r_2 = \frac{-1 - \sqrt{3} \I}{2}
+        $$
+        因此该齐次方程通解为
+        $$
+        y = \E^{-\frac{1}{2} x} \ab(C_1 \cos \frac{\sqrt{3}}{2} x + C_2 \sin \frac{\sqrt{3}}{2} x)
+        $$
+
+        而观察得到原方程有一个特解 $y = \frac{1}{3} \E^{x}$。因此原方程通解为：
+        $$
+        y = \E^{-\frac{1}{2} x} \ab(\cos \frac{\sqrt{3}}{2} x + \sin \frac{\sqrt{3}}{2} x) + \frac{1}{3} \E^{x}
+        $$
+
+        \item[\textbf{2)}] 用特征方程法求 $y'' - 3y' + 2y = 0$ 的通解：
+        $$
+        r^2 - 5r + 6 = 0 \implies r_1 = 2, r_2 = 3
+        $$
+        因此该齐次方程通解为
+        $$
+        y = C_1 \E^{2x} + C_2 \E^{3x}
+        $$
+        假设原方程有一个特解 $y = (a x + b) \E^{4 x}$，那么：
+        $$
+        y'' - 5 y' + 6y = (x + 1) \E^{4x} \implies 
+        \begin{dcases}
+            a = \frac{1}{2} \\
+            b = -\frac{1}{4}
+        \end{dcases}
+        $$
+        因此原方程通解为
+        $$
+        y = C_1 \E^{2x} + C_2 \E^{3x} + \ab(\frac{1}{2} x - \frac{1}{4}) \E^{4x}
+        $$
+
+        \item[\textbf{3)}] 用特征方程法求 $y'' - 3y' + 2y = 0$ 的通解：
+        $$
+        r^2 - 3r + 2 = 0 \implies r_1 = 1, r_2 = 2
+        $$
+        因此该齐次方程通解为
+        $$
+        y = C_1 \E^{x} + C_2 \E^{2x}
+        $$
+        假设原方程有一个特解 $y = x (a x + b) \E^{x}$，那么：
+        $$
+        y'' - 3 y' + 2y = x \E^{x} \implies \begin{dcases}
+            a = -\frac{1}{2} \\
+            b = -1
+        \end{dcases}
+        $$
+        因此原方程通解为
+        $$
+        y = C_1 \E^{x} + C_2 \E^{2x} + \ab(-\frac{1}{2} x^2 - x) \E^{x}
+        $$
+
+        \item[\textbf{4)}] 用特征方程法求 $y'' + 6y' + 9y = 0$ 的通解：
+        $$
+        r^2 + 6r + 9 = 0 \implies r_1 = r_2 = -3
+        $$
+        因此该齐次方程通解为
+        $$
+        y = (C_1 + C_2 x) \E^{-3x}
+        $$
+        假设原方程有一个特解 $y = x^2 (a x + b) \E^{-3x}$，那么：
+        $$
+        y'' + 6y' + 9y = 5x \E^{-3x} \implies \begin{dcases}
+            a = \frac{5}{6} \\
+            b = 0
+        \end{dcases}
+        $$
+        因此原方程通解为
+        $$
+        y = (C_1 + C_2 x) \E^{-3x} + \frac{5}{6} x^3 \E^{-3x}
+        $$
+
+        \item[\textbf{5)}] 用特征方程法求 $y'' - y' = 0$ 的通解：
+        $$
+        r^2 - r = 0 \implies r_1 = 0, r_2 = 1
+        $$
+        因此该齐次方程通解为
+        $$
+        y = C_1 + C_2 \E^{x}
+        $$
+        假设原方程有一个特解 $y = (a \sin x + b \cos x) \E^{-x}$，那么：
+        $$
+        y'' - y' = \E^{-x} \sin x \implies \begin{dcases}
+            a = \frac{1}{10} \\
+            b = \frac{3}{10}
+        \end{dcases}
+        $$
+        因此原方程通解为
+        $$
+        y = C_1 + C_2 \E^{x} + \ab(\frac{1}{10} \sin x + \frac{3}{10} \cos x) \E^{-x}
+        $$
+
+        \item[\textbf{6)}] 用特征方程法求 $y'' + y = 0$ 的通解：
+        $$
+        r^2 + 1 = 0 \implies r_1 = \I, r_2 = -\I
+        $$
+        因此该齐次方程通解为
+        $$
+        y = C_1 \cos x + C_2 \sin x
+        $$
+        化简原方程：
+        $$
+        y'' + y = \cos^2 x = \frac{1 + \cos 2x}{2}
+        $$
+        可观察得到一个特解
+        $$
+        y = -\frac{1}{6} \cos 2x + \frac{1}{2}
+        $$
+        因此原方程通解为
+        $$
+        y = C_1 \cos x + C_2 \sin x - \frac{1}{6} \cos 2x + \frac{1}{2}
+        $$
+
+        \item[\textbf{7)}] 用特征方程法求 $y'' + y = 0$ 的通解：
+        $$
+        r^2 + 1 = 0 \implies r_1 = \I, r_2 = -\I
+        $$
+        因此该齐次方程通解为
+        $$
+        y = C_1 \cos x + C_2 \sin x
+        $$
+        观察得到原方程有一个特解
+        $$
+        y = \frac{1}{5} \E^{2x} - \frac{1}{2} x \cos x
+        $$
+        因此原方程通解为
+        $$
+        y = C_1 \cos x + C_2 \sin x + \frac{1}{5} \E^{2x} - \frac{1}{2} x \cos x
+        $$
+    \end{solution}
+\end{problem}

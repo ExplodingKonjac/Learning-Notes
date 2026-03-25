@@ -1,2 +1,123 @@
-\section{数理逻辑}
+\section{命题逻辑}
 
+\subsection{逻辑变量和联结词}
+
+逻辑变量是表示真/假的变量，取值为 $0$ 或 $1$。
+
+其中，一个变量 $p$ 称为\textbf{逻辑变元}，而 $0, 1$ 称为\textbf{逻辑常元}。
+
+联结词是逻辑变量之间的运算。下面是常用的联结词：
+
+\subsubsection{逻辑非}
+
+对于逻辑变量 $p$，其逻辑非记做 $\lnot p$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        $p$ & $\lnot p$ \\
+        \hline
+        $0$ & $1$ \\
+        \hline
+        $1$ & $0$ \\
+        \hline
+    \end{tabular}
+    \caption{逻辑非的真值表}
+\end{table}
+
+\subsubsection{合取}
+
+对于逻辑变量 $p, q$，合取运算记做 $p \land q$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \diagbox{$p$}{$p \land q$}{$q$} & $0$ & $1$ \\
+        \hline
+        $0$ & $0$ & $0$ \\
+        \hline
+        $1$ & $0$ & $1$ \\
+        \hline
+    \end{tabular}
+    \caption{合取的真值表}
+\end{table}
+
+\subsubsection{析取}
+
+对于逻辑变量 $p, q$，析取运算记做 $p \lor q$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \diagbox{$p$}{$p \lor q$}{$q$} & $0$ & $1$ \\
+        \hline
+        $0$ & $0$ & $1$ \\
+        \hline
+        $1$ & $1$ & $1$ \\
+        \hline
+    \end{tabular}
+    \caption{析取的真值表}
+\end{table}
+
+\subsubsection{异或}
+
+对于逻辑变量 $p, q$，异或运算记做 $p \oplus q$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \diagbox{$p$}{$p \oplus q$}{$q$} & $0$ & $1$ \\
+        \hline
+        $0$ & $0$ & $1$ \\
+        \hline
+        $1$ & $1$ & $0$ \\
+        \hline
+    \end{tabular}
+    \caption{异或的真值表}
+\end{table}
+
+\subsubsection{蕴涵}
+
+对于逻辑变量 $p, q$，蕴涵运算记做 $p \to q$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \diagbox{$p$}{$p \to q$}{$q$} & $0$ & $1$ \\
+        \hline
+        $0$ & $1$ & $1$ \\
+        \hline
+        $1$ & $0$ & $1$ \\
+        \hline
+    \end{tabular}
+    \caption{蕴涵的真值表}
+\end{table}
+
+蕴涵运算可以理解为，$p \to q$ 为真说明，若 $p$ 为真时，那么 $q$ 一定为真。
+
+\subsubsection{互蕴涵/等价}
+
+对于逻辑变量 $p, q$，互蕴涵运算记做 $p \leftrightarrow q$，其真值表如下：
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \diagbox{$p$}{$p \leftrightarrow q$}{$q$} & $0$ & $1$ \\
+        \hline
+        $0$ & $1$ & $0$ \\
+        \hline
+        $1$ & $0$ & $1$ \\
+        \hline
+    \end{tabular}
+    \caption{互蕴涵的真值表}
+\end{table}
+
+互蕴涵即 $(p \to q) \land (q \to p)$。
+
+逻辑联结词的优先级为：非 > 合取 > 析取 > 异或 > 蕴涵 > 互蕴涵。

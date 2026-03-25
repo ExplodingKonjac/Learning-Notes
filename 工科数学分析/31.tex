@@ -1,0 +1,87 @@
+\section{函数列与函数项级数 IV}
+
+\subsection{幂级数 continue}
+
+\subsubsection{收敛半径判定}
+
+求幂级数的收敛半径有类似比值判别法和根值判别法的方法。
+
+\begin{theorem}[Cauchy-Hadamard 定理]
+    设 $A = \limsup_{n \to \infty} \sqrt[n]{|a_n|}$, 则幂级数 $\sum_{n=0}^\infty a_n (x-x_0)^n$ 的收敛半径
+    $$
+    R = \begin{dcases}
+        0 & ,\ A = \infty \\
+        +\infty & ,\ A = 0 \\
+        \frac{1}{A} & ,\ 0 < A < \infty
+    \end{dcases}
+    $$
+\end{theorem}
+
+\begin{theorem}[比值判别法]
+    设 $A = \lim_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}}$, 则幂级数 $\sum_{n=0}^\infty a_n (x-x_0)^n$ 的收敛半径
+    $$
+    R = \begin{dcases}
+        0 & ,\ A = \infty \\
+        +\infty & ,\ A = 0 \\
+        \frac{1}{A} & ,\ 0 < A < \infty
+    \end{dcases}
+    $$
+\end{theorem}
+
+\begin{theorem}[Abel 第二定理]
+    设 $\sum\limits_{n = 0}^{\infty} a_n x^{n}$ 的收敛半径为 $R\ (0 < R < +\infty)$，那么
+    \begin{itemize}
+        \item 若 $\sum\limits_{n = 0}^{\infty} a_n R^{n}$ 收敛，则 $\sum\limits_{n = 0}^{\infty} a_n x^{n}$ 在 $[0, R]$ 上一致收敛；
+        \item 若 $\sum\limits_{n = 0}^{\infty} a_n (-R)^{n}$ 收敛，则 $\sum\limits_{n = 0}^{\infty} a_n x^{n}$ 在 $[-R, 0]$ 上一致收敛。
+    \end{itemize}
+
+    \begin{proof}
+        仅证明第一条。对于 $x \in [0, R]$ 有
+        $$
+        \sum_{n = 0}^{\infty} a_n x^{n} = \sum_{n = 0}^{\infty} \ab(a_n R^{n}) \ab(\frac{x}{R})^{n}
+        $$
+        因为 $\sum\limits_{n = 0}^{\infty} a_n R^{n}$ 收敛，$\ab(\frac{x}{R})^{n}$ 单调且一致有界，根据 Abel 判别法得证。
+    \end{proof}
+\end{theorem}
+
+\subsubsection{幂级数连续性、可积性、可导性}
+
+\begin{theorem}[连续性定理]
+    设幂级数 $\sum\limits_{n = 0}^{\infty} a_n x^{n}$ 的收敛半径为 $R$。那么
+    \begin{itemize}
+        \item 在 $(-R, R)$ 上连续；
+        \item 在 $(-R, R)$ 上可积，且
+        $$ 
+        \int_a^b \sum_{n = 0}^{\infty} a_n x^{n} \dd{x} = \sum_{n = 0}^{\infty} \int_a^b a_n x^{n} \dd{x} = \sum_{n = 0}^{\infty} \frac{a_n}{n + 1} \ab(b^{n + 1} - a^{n + 1})
+        $$ 
+        \item 在 $(-R, R)$ 上可导，且
+        $$ 
+        \ab(\sum_{n = 0}^{\infty} a_n x^{n})' = \sum_{n = 0}^{\infty} \ab(a_n x^{n})' = \sum_{n = 1}^{\infty} n a_n x^{n - 1}
+        $$ 
+    \end{itemize}
+\end{theorem}
+
+\subsubsection{函数的幂级数展开}
+
+对 Taylor 展开进行扩展，可以得到函数的幂级数展开。
+
+\begin{definition}
+    对于函数 $f(x)$ 若在定义域上有
+    $$
+    f(x) = \sum_{n = 0}^{\infty} a_n (x - x_0)^{n}
+    $$
+    那么称 $f(x)$ 是\textbf{可展开}的。
+\end{definition}
+
+若 $f(x)$ 有任意阶导数，那么根据 Taylor 展开可以得到函数的 Taylor 级数：
+$$
+f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(x_0)}{n!} (x - x_0)^{n}
+$$
+
+但是 Taylor 级数不一定收敛，收敛也不一定和函数本身相等。例如
+$$
+f(x) = \begin{dcases}
+    \E^{-\frac{1}{x^2}} & ,\ x > 0 \\
+    0 & ,\ x \le 0
+\end{dcases}
+$$
