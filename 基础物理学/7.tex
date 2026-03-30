@@ -1,0 +1,237 @@
+\section{动能与势能 III \& 功能原理}
+
+\subsection{质点的势能 continue}
+
+\subsubsection{势能曲线}
+
+在一条直线上，势能可以表示为关于位移 $x$ 的单值函数 $E_p(x)$，这个函数的图像称为势能曲线。那么根据定义可以得到：
+$$
+F(x) = -\frac{\mathrm{d} E_p}{\mathrm{d} x}
+$$
+那么可知，在势能曲线的极大值极小值处，质点受力为 $0$。
+
+\begin{itemize}
+    \item 对于势能函数的极大值点，称为不稳定平衡点，又叫作\textbf{势垒}。
+    \item 对于势能函数的极小值点，称为稳定平衡点，又叫作\textbf{势阱}。
+\end{itemize}
+
+\subsection{功能原理}
+
+\subsubsection{质点系的功能原理}
+
+\begin{definition}
+    对于一个系统，定义系统的\textbf{机械能}为动能和势能之和。
+\end{definition}
+
+那么，机械能的变化量为外力做功与非保守内力做功只和。这称为\textbf{质点系的功能原理}。这只在惯性参考系中成立。
+
+\subsubsection{广义功能原理和能量守恒定律}
+
+如果我们将非保守内力导致的能量算入系统总能量（如内能、化学能等等），那么我们得到\textbf{广义功能原理}：系统的总能量变化量等于外力做的功。
+
+那么我们进一步得到\textbf{能量守恒定律}：如果系统不受外力作用，不与外界进行热交换，那么系统的总能量守恒。
+
+\subsection{功能关系应用}
+
+\subsubsection{宇宙速度}
+
+\begin{itemize}
+    \item \textbf{第一宇宙速度}：从地面发射卫星，使其在地球表面附近的圆轨道上做匀速圆周运动所需要的最小发射速度。假设地球是质量为 $M$、半径为 $R$ 的均匀球体，且忽略空气阻力，那么得到：
+    $$
+    \frac{G M m}{R^2} = m \frac{v_1^2}{R} \implies v_1 = \sqrt{\frac{G M}{R}} = 7.9 \times 10^3\,\mathrm{m / s}
+    $$
+
+    \item \textbf{第二宇宙速度}：地球表面发射的物体挣脱地球引力束缚，所需的最小发射速度。此时相当于物体的动能等于地球表面处的引力势能，因此：
+    $$
+    \frac{1}{2} m v_2^2 = \frac{G M m}{R} \implies v_2 = \sqrt{\frac{2 G M}{R}} = 11.2 \times 10^3\,\mathrm{m / s}
+    $$
+
+    \item \textbf{第三宇宙速度}：从地球表面发射物体能飞离太阳系的最小速度。那么物体分为两步：需要先脱离地球的引力，然后脱离太阳的引力。最终计算出来结果为：
+    $$
+    v_3 = 16.7 \times 10^3 \,\mathrm{m / s}
+    $$
+\end{itemize}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 3.6
+    \begin{solution}
+        以地平线为 $x$ 轴建立直角坐标系，可知在最高点处的速度为
+        $$
+        \vect{v} = (v_0 \cos \theta, 0)
+        $$
+        爆炸过程动量守恒，因此有：
+        $$
+        \begin{dcases}
+            \frac{1}{2} m \vect{v}_1 + \frac{1}{2} m \vect{v}_2 = m \vect{v} \\
+            \vect{v}_1 = (0, -v_1)
+        \end{dcases}
+        $$
+        解得 $\vect{v}_2 = (2 v_0 \cos \theta, v_1)$。因此另一块的速率大小为 $\sqrt{4 v_0^2 \cos^2 \theta + v_1^2}$，与 $x$ 轴夹角为 $\arctan \frac{v_1}{2 v_0 \cos \theta}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.7
+    \begin{solution}
+        根据动量定理可以得到：
+        $$
+        \begin{dcases}
+            m v_0 = m_1 v_1 + m_2 v_2 + m v_3 \\
+            m v_1 = f t_1 \\
+            m v_2 = f t_2 \\
+        \end{dcases}
+        $$
+        因此 $v_1 = \frac{f t_1}{m},\ \vect{v}_2 = \frac{f t_2}{m_2}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.12
+    \begin{solution}
+        在一个时间微元 $\dd{t}$ 内分析，系统的总动量变化量为：
+        $$
+        \begin{aligned}
+            \dd{\vect{I}} & = M(t + \dd{t}) \vect{v} - (M(t) \vect{v} + \dd{m} \vect{u}) \\  
+            & = (M(t) + \dd{m}) \vect{v} - M(t) \vect{v} - \vect{u} \dd{m} \\
+            & = (\vect{v} - \vect{u}) \dd{m}
+        \end{aligned}
+        $$
+        因此飞船所需的推力为：
+        $$
+        \vect{F} = \dv{\vect{I}}{t} = (\vect{v} - \vect{u}) \dv{m}{t}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.1
+    \begin{solution}
+        由题可以得到下面的方程：
+        $$
+        \begin{dcases}
+            F = \mu M \\
+            \mu m s = \frac{1}{2} m v_0^2 \\
+            \mu m t = m v_0 \\
+            (M - m) a = F \\
+            \Delta x = v_0 t + \frac{1}{2} a t^2 - s
+        \end{dcases}
+        $$
+        解得 $\Delta x = \frac{2M - m}{M - m} s$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.3
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{1)}] 根据动量定理，可得最终速度：
+            $$
+            m v = (M + m) v' \implies v' = \frac{m}{M + m} v = 16\,\mathrm{m / s}
+            $$
+            那么子弹克服阻力做功为：
+            $$
+            W_f = \frac{1}{2} m v^2 - \frac{1}{2} m v'^2 = 6397.44\,\mathrm{J}
+            $$
+            \item[\textbf{2)}]
+            $$
+            W = \frac{1}{2} M v'^2 = 125.44\,\mathrm{J}
+            $$
+            \item[\textbf{3)}]
+            $$
+            \Delta E = \frac{1}{2} m v^2 - \frac{1}{2}(m + M) v'^2 = 6272\,\mathrm{J}
+            $$
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.4
+    \begin{solution}
+        这个力类似于万有引力，因此可以得到该力的势能函数为：
+        $$
+        E_p(x) = -\frac{k}{|x|}
+        $$
+        于是可以解得：
+        $$
+        \frac{1}{2} m v^2 = \ab(-\frac{k}{l}) - \ab(-\frac{4k}{l}) \implies v = \sqrt{\frac{6k}{m l}}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.6
+    \begin{solution}
+        此时弹簧伸长量为
+        $$
+        x = \frac{(m_1 + m_2)g}{k}
+        $$
+        因此具有的弹性势能
+        $$
+        E_p = \frac{1}{2} k x^2 = \frac{(m_1 + m_2)^2 g^2}{2 k}
+        $$
+        由此计算出 $m_1$ 能达到的最大速度：
+        $$
+        \frac{1}{2} m_1 v^2 = E_p \implies v = \sqrt{\frac{2 E_p}{m_1}} = (m_1 + m_2) g \sqrt{\frac{1}{k m_1}}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.9
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 当弹簧伸长量为 $0$ 时，$A, B$ 恰好分离。此时：
+            $$
+            \frac{1}{2} (m_A + m_B) v_1^2 = \frac{1}{2} k x_0^2 \implies v_1 = x_0 \sqrt{\frac{k}{m_A + m_B}}
+            $$
+            \item[\textbf{2)}] $A, B$ 分离后，$A$ 一直移动直到速度降为 $0$，有：
+            $$
+            \frac{1}{2} m_A v_1^2 = \frac{1}{2} k L^2 \implies L = x_0 \sqrt{\frac{m_A}{m_A + m_B}}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.10
+    \begin{solution}
+        在外力压住板时：
+        $$
+        \begin{dcases}
+            F + m_1 g = k \frac{L - h_1}{2} \\
+            E_1 = m_1 g h_1 + \frac{1}{2} k \ab(\frac{L - h_1}{2})^2 \\
+        \end{dcases}
+        $$
+        在恰好将下面的板提起时：
+        $$
+        \begin{dcases}
+            m_2 g = k \frac{h_2 - L}{2} \\
+            E_2 = m_1 g h_2 + \frac{1}{2} k \ab(\frac{h_2 - L}{2})^2 \\
+        \end{dcases}
+        $$
+        变化过程机械能守恒，因此：
+        $$
+        E_1 = E_2
+        $$
+        联立可解得：$F = (m_1 + m_2) g$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.10
+    \begin{solution}
+        第一次碰撞，根据动量守恒和能量守恒：
+        $$
+        \begin{dcases}
+            \frac{1}{2} m_A v_0^2 = m_a g h \\
+            m_A v_0 = m_A v_1 + m_B v_2 \\
+            \frac{1}{2} m_A v_0^2 = \frac{1}{2} m_A v_1^2 + \frac{1}{2} m_B v_2^2
+        \end{dcases}
+        $$
+        解得 $v_1 = \frac{m_A - m_B}{m_A + m_B} v_0,\ \frac{2 m_A}{m_A + m_B} v_0$。
+
+        要让第二次碰撞存在，那么需要 $v_1 < 0$ 且 $-v_1 > v_2$，即 $m_A < \frac{1}{3} m_B$。
+    \end{solution}
+\end{problem}

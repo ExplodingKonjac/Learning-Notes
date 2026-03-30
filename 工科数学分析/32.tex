@@ -1,0 +1,426 @@
+\section{多元函数的极限与连续}
+
+\subsection{Euclid 空间}
+
+记 $\mathbb{R}$ 为实数集，那么定义：
+$$
+\mathbb{R}^{n} = \{(x_1, x_2, \dots, x_n): x_i \in \mathbb{R}, i = 1, 2, \dots, n\}
+$$
+称 $\mathbb{R}^{n}$ 中的元素为 $n$ 维向量或点，记为 $\vect{x} = (x_1, x_2, \dots, x_n)$。
+
+在 $\mathbb{R}^{n}$ 上定义加法与数乘运算：
+$$
+\begin{gathered}
+    \vect{x} + \vect{y} = (x_1 + y_1, x_2 + y_2, \dots, x_n + y_n)
+    k \vect{x} = (k x_1, k x_2, \dots, k x_n)
+\end{gathered}
+$$
+
+再定义向量之间的内积：
+$$
+\ab\langle \vect{x}, \vect{y} \rangle = \sum_{i = 1}^{n} x_i y_i
+$$
+内积运算满足正定性、交换律、线性性。
+
+\begin{definition}
+    定义向量 $\vect{x} \in \mathbb{R}^{n}$ 的\textbf{范数}为：
+    $$
+    \norm{\vect{x}} = \sqrt{\ab\langle \vect{x}, \vect{x} \rangle} = \sqrt{\sum_{i = 1}^{n} x_i^2}
+    $$
+\end{definition}
+
+由内积的定义，可知内积满足下面的性质：
+\begin{itemize}
+    \item $\norm{\vect{x}} \ge 0$，当且仅当 $\vect{x} = \vect{0}$ 时等号成立。
+    \item $\norm{k \vect{x}} = \abs{k} \norm{\vect{x}}$。
+    \item $\norm{\vect{x} + \vect{y}} \le \norm{\vect{x}} + \norm{\vect{y}}$。
+\end{itemize}
+
+下面讨论点集具有的性质。
+
+\begin{definition}
+    对于 $\vect{a} \in \mathbb{R}^{n}, r > 0$，称集合
+    $$
+    B_r(a) = \ab\{\vect{x} \in \mathbb{R}^{n}: \norm{\vect{x} - \vect{a}} < r\}
+    $$
+    为 $\mathbb{R}^{n}$ 中以 $\vect{a}$ 为球心，以 $r$ 为半径的\textbf{开球}。称集合
+    $$
+    \overline{B}_r(a) = \ab\{\vect{x} \in \mathbb{R}^{n}: \norm{\vect{x} - \vect{a}} \le r\}
+    $$
+    为 $\mathbb{R}^{n}$ 中以 $\vect{a}$ 为球心，以 $r$ 为半径的\textbf{闭球}。
+\end{definition}
+
+\begin{definition}
+    对于 $E \subset \mathbb{R}^{n}$，若 $\exists\,r > 0: E \subset B_r(0)$，那么称 $E$ 为\textbf{有界集}，反之称为\textbf{无界集}。
+\end{definition}
+
+\begin{remark}
+    有界集的定义也等价于 $\sup\limits_{\vect{x} \in E} \norm{\vect{x}} \neq +\infty$。
+\end{remark}
+
+类似于数列，我们可以定义出点列：
+
+\begin{definition}[点列]
+    对于 $\vect{x}_i \in \mathbb{R}^{n} \ (i \in \mathbb{N}^{+})$，那么称 $\{\vect{x}_i\}$为 $\mathbb{R}^{n}$ 中的\textbf{点列}。
+\end{definition}
+
+类似地，定义点列的有界性和极限：
+
+\begin{definition}[点列的有界性]
+    设 $\{\vect{x}_k\}$ 是 $\mathbb{R}^{n}$ 中的点列，若
+    $$
+    \exists\,M > 0: \forall\,k \in \mathbb{N}^{+}: \norm{\vect{x}_k} < M
+    $$
+    那么称 $\{\vect{x}_k\}$ \textbf{有界}，反之称其\textbf{无界}。
+\end{definition}
+
+\begin{definition}[点列的极限]
+    设 $\{\vect{x}_k\}$ 是 $\mathbb{R}^{n}$ 中的点列，若
+    $$
+    \exists\,\vect{a} \in \mathbb{R}^{n}: \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}^{+}: \forall\,k > N, \norm{\vect{x}_k - \vect{a}} < \varepsilon
+    $$
+    那么称点列 $\{\vect{x}_k\}$ \textbf{收敛}于 $\vect{a}$，记做：
+    $$
+    \lim_{k \to \infty} \vect{x}_k = \vect{a}
+    $$
+\end{definition}
+
+点列的极限有类似于数列极限的性质：
+
+\begin{property}
+    \ 
+    \begin{itemize}
+        \item 若点列 $\{\vect{x}_k\}$ 收敛，那么极限唯一；
+        \item 收敛点列必有界；
+        \item 若点列 $\{\vect{x}_k\}, \{\vect{y}_k\}$ 收敛，那么 $\lim\limits_{k \to \infty} (\vect{x}_k \pm \vect{y}_k) = \lim\limits_{k \to \infty} \vect{x}_k \pm \lim\limits_{k \to \infty} \vect{y}_k$。
+    \end{itemize}
+\end{property}
+
+对于 $\vect{x}_k$ 的每个分量，均可以构成一个数列。若这些数列均收敛，那么称 $\{\vect{x}_k\}$ \textbf{按分量收敛}。并且我们有定理：
+
+\begin{theorem}
+    点列 $\{\vect{x}_k\}$ 收敛于 $\vect{a}$ 当且仅当 $\{\vect{x}_k\}$ 按分量收敛于 $\vect{a}$。
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 12.4.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \lim_{n \to \infty} \sqrt[n]{\ab(1 + \frac{1}{n})^{n^2}} = \lim_{n \to \infty} \ab(1 + \frac{1}{n})^{n} = \E
+            $$
+            因此原幂级数的收敛半径为 $\frac{1}{\E}$。经计算，$x = \pm\frac{1}{\E}$ 时级数均发散。因此收敛域为 $(1 - \frac{1}{\E}, 1 + \frac{1}{\E})$。
+
+            \item[\textbf{3)}]
+            $$
+            \lim_{n \to \infty} \abs{\frac{\frac{\ln (n + 2)}{n + 2}}{\frac{\ln (n + 1)}{n + 1}}} = 1
+            $$
+            因此原幂级数的收敛半径为 $1$。经计算，$x = -2$ 时级数发散，$x = 0$ 时级数收敛。因此收敛域为 $(-2, 0]$。
+
+            \item[\textbf{5)}] 原级数化为：
+            $$
+            \sum_{n = 1}^{\infty} (-1)^{n} \frac{(x^2)^{n}}{n \cdot 2^{n}}
+            $$
+            而
+            $$
+            \lim_{n \to \infty} \sqrt[n]{\frac{1}{n \cdot 2^{n}}} = \frac{1}{2}
+            $$
+            可得关于 $x^2$ 的幂级数的收敛半径为 $\frac{1}{2}$，并且 $x^2 = \frac{1}{2}$ 时级数收敛。因此原幂级数的收敛域为 $(-\frac{1}{\sqrt{2}}, +\frac{1}{\sqrt{2}})$。
+
+            \item[\textbf{7)}]
+            $$
+            \lim_{n \to \infty} \sqrt[n^2]{\frac{(\ln n)^2}{n^{n}}} = \lim_{n \to \infty} \frac{(\ln n)^{\frac{2}{n^2}}}{n^{\frac{1}{n}}} = 1
+            $$
+            因此原幂级数的收敛半径为 $1$。经计算，$x = \pm 1$ 时级数均收敛，因此收敛域为 $[-1, 1]$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \begin{aligned}
+                \origin & = x \sum_{n = 1}^{\infty} (-1)^{n - 1} n^2 x^{n - 1} \\
+                & = x \sum_{n = 0}^{\infty} (-1)^{n} (n + 1)^2 x^n \\
+                & = x \sum_{n = 0}^{\infty} (-1)^{n} [(n + 1)(n + 2) - (n + 1)] x^n \\
+                & = x \sum_{n = 0}^{\infty} (-1)^{n} (n + 1)(n + 2) x^n - x \sum_{n = 0}^{\infty} (-1)^{n} (n + 1) x^n \\
+                & = x \left( \sum_{n = 0}^{\infty} (-x)^n \right)'' + x \left( \sum_{n = 0}^{\infty} (-x)^n \right)' \\
+                & = x \left( \frac{1}{1 + x} \right)'' + x \left( \frac{1}{1 + x} \right)' \\
+                & = x \cdot \frac{2}{(1 + x)^3} - x \cdot \frac{1}{(1 + x)^2} \\
+                & = \frac{2x - x(1 + x)}{(1 + x)^3} \\
+                & = \frac{x(1 - x)}{(1 + x)^3}, \quad x \in (-1, 1)
+            \end{aligned}
+            $$
+            
+            \item[\textbf{3)}]
+            $$
+            \origin = \frac{1}{x} \sum_{n = 1}^{\infty} \frac{x^{n + 1}}{n (n + 1)} = \frac{1}{x} g(x)
+            $$
+            那么：
+            $$
+            g''(x) = \sum_{n = 0}^{\infty} x^{n} = \frac{1}{1 - x} \implies g(x) = x + (1 - x) \ln (1 - x)
+            $$
+            因此
+            $$
+            \origin = 1 + \frac{(1 - x) \ln (1 - x)}{x}
+            $$
+
+            \item[\textbf{4)}]
+            $$
+            \begin{aligned}
+                \origin & = x \sum_{n = 1}^{\infty} n (n + 1) x^{n - 1} \\
+                & = x \sum_{n = 0}^{\infty} (n + 1) (n + 2) x^{n} \\
+                & = x \ab(\sum_{n = 0}^{\infty} x^{n})'' \\
+                & = x \ab(\frac{1}{1 - x})'' \\
+                & = \frac{2x}{(1 - x)^3}
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.4
+    \begin{solution}
+        这是一个广义积分，根据定义：
+        $$
+        \begin{aligned}
+            \lhs & = \lim_{\stackrel{l \to 0^+}{r \to 1^-}} \int_l^r \ab(-\frac{\ln (1 - x)}{x}) \\
+            & = \lim_{\stackrel{l \to 0^+}{r \to 1^-}} \int_l^r \sum_{n = 0}^{\infty} \frac{x^n}{n + 1} \dd{x}
+        \end{aligned}
+        $$
+        幂级数在收敛域内闭一致收敛，因此：
+        $$
+        \begin{aligned}
+            \lhs & = \lim_{\stackrel{l \to 0^+}{r \to 1^-}} \sum_{n = 0}^{\infty} \int_l^r \frac{x^n}{n + 1} \dd{x} \\
+            & = \lim_{\stackrel{l \to 0^+}{r \to 1^-}} \sum_{n = 0}^{\infty} \frac{r^{n + 1} - l^{n + 1}}{(n + 1)^2}
+        \end{aligned}
+        $$
+        由于 $\sum\limits_{n = 1}^{\infty} \frac{x^{n}}{n^2}$ 在 $[0, 1]$ 一致收敛，因此极限和求和可交换：
+        $$
+        \begin{aligned}
+            \lhs & = \sum_{n = 1}^{\infty} \lim_{\stackrel{l \to 0^+}{r \to 1^-}} \frac{1}{n^2} = \sum_{n = 1}^{\infty} \frac{1}{n^2}
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.6
+    \begin{proof}
+        使用根值判别法：
+        $$
+        \lim_{n \to \infty} \sqrt[n]{\frac{1}{n^2 \ln (1 + n)}} = 1
+        $$
+        因此 $f(x)$ 收敛半径为 $1$。
+
+        \begin{enumerate}
+            \item[\textbf{1)}] 当 $x \pm 1$ 时，$f(x) = \sum\limits_{n = 1}^{\infty} O\ab(\frac{1}{n^2})$，收敛。根据 Abel 第二定理，$f(x)$ 在 $[-R, R]$ 一致收敛，因此也连续。
+            
+            \item[\textbf{2)}] 根据导数定义尝试求出 $f'(-1)$：
+            $$
+            \begin{aligned}
+                f'(-1) & = \lim_{h \to 0^+} \frac{f(-1 + h) - f(-1)}{h} \\
+                & = \lim_{h \to 0^+} \ab(\sum_{n = 1}^{\infty} \frac{(-1)^{n} - (-1 + h)^{n}}{h} \cdot \frac{1}{n^2 \ln (n + 1)}) \\
+            \end{aligned}
+            $$
+            易知 $\frac{(-1)^{n} - (-1 + h)^{n}}{h}$ 的部分和序列在 $h \in [-1, -1 + \delta]$ 一致有界。根据 Diriclet 判别法可知 $\sum\limits_{n = 1}^{\infty} \frac{(-1)^{n} - (-1 + h)^{n}}{h} \cdot \frac{1}{n^2 \ln (n + 1)}$ 在 $h \in [-1, -1 + \delta]$ 一致收敛，于是极限与求和可交换：
+            $$
+            \begin{aligned}
+                f'(-1) & = \sum_{n = 1}^{\infty} \lim_{h \to 0^+} \frac{(-1)^{n} - (-1 + h)^{n}}{h} \cdot \frac{1}{n^2 \ln (n + 1)} \\
+                & = \sum_{n = 1}^{\infty} \frac{n (-1)^{n - 1}}{n^2 \ln (n + 1)} \\
+                & = \sum_{n = 1}^{\infty} \frac{(-1)^{n + 1}}{n \ln (n + 1)}
+            \end{aligned}
+            $$
+            这是一个 Lebniz 级数，是收敛的，因此 $f(x)$ 在 $x = -1$ 可导。
+
+            \item[\textbf{3)}]
+            $$
+            \lim_{x \to 1^-} f'(x) = \lim_{x \to 1^-} \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n \ln (1 + n)}
+            $$
+            因为 $\sum\limits_{n = 1}^{\infty} \frac{1}{2 n \ln (1 + n)} = +\infty$，因此：
+            $$
+            \forall\,A > 0: \exists\,N \in \mathbb{N}: \sum_{n = 1}^{N} \frac{1}{2 n \ln (1 + n)} > A            
+            $$
+            那么我们令 $x = \sqrt[n]{\frac{1}{2}}$，则：
+            $$
+            \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n \ln (1 + n)} > \sum_{n = 1}^{N} \frac{x^{n - 1}}{n \ln (1 + n)} > \sum_{n = 1}^{N} \frac{1}{2 n \ln (1 + n)} > A
+            $$
+            因此 $\lim\limits_{x \to 1^-} f'(x) = +\infty$。
+
+            假设 $f'(1)$ 存在，那么：
+            $$
+            f'(1) = \lim_{x \to 1^-} \frac{f(1) - f(x)}{1 - x}
+            $$
+            根据 Lagrange 中值定理，$\exists\,\xi \in (x, 1): \frac{f(1) - f(x)}{1 - x} = f'(\xi)$。然而 $\lim\limits_{\xi \to 1^-} f'(\xi) = + \infty$，因此 $f'(1)$ 不存在。
+        \end{enumerate}
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.7
+    \begin{proof}
+        根据 Maclaurin 级数：
+        $$
+        \forall\,x \in (0, 1): \ln (1 - x) = -\sum_{n = 1}^{\infty} \frac{x^{n}}{n},\ \ln x = -\sum_{n = 1}^{\infty} \frac{(1 - x)^{n}}{n}
+        $$
+        记 $f(x) = \lhs$，那么：
+        $$
+        \begin{aligned}
+            f'(x) & = S'(x) - S'(1 - x) + (\ln x \cdot \ln (1 - x))' \\
+            & = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n} - \sum_{n = 1}^{\infty} \frac{(1 - x)^{n - 1}}{n} + \frac{\ln (1 - x)}{x} - \frac{\ln x}{1 - x} \\
+            & = \frac{\ln (1 - x)}{x} - \frac{\ln x}{1 - x} + \frac{\ln (1 - x)}{x} - \frac{\ln x}{1 - x} \\
+            & = 0
+        \end{aligned}
+        $$
+        因此 $f(x)$ 在 $(0, 1)$ 为常数。取极限可得：
+        $$
+        \lim_{x \to 1^+} f(x) = S(1) + S(0) + \lim_{x \to 1^-} \ln x \cdot \ln (1 - x) = S(1)
+        $$
+        即证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.8
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \E^{x^2} = \sum_{n = 0}^{\infty} \frac{x^{2n}}{n!}
+            $$
+            \item[\textbf{3)}]
+            $$
+            \ln \sqrt{\frac{1 + x}{1 - x}} = \frac{1}{2} \ln (1 + x) - \frac{1}{2} \ln (1 - x) = \sum_{n = 1}^{\infty} \frac{1 - (-1)^{n}}{2 n} x^{n}
+            $$
+            \item[\textbf{5)}]
+            $$
+            \begin{aligned}
+                (1 + x) \E^{-x} & = \sum_{n = 0}^{\infty} \frac{(-1)^{n}}{n!} x^{n} (1 + x) \\
+                & = 1 + \sum_{n = 1}^{\infty} (-1)^{n - 1} \ab(\frac{1}{(n - 1)!} - \frac{1}{n!}) x^{n} \\
+                & = 1 + \sum_{n = 1}^{\infty} (-1)^{n - 1} \frac{n - 1}{n!} x^{n} = \sum_{n = 0}^{\infty} (-1)^{n - 1} \frac{n - 1}{n!} x^{n}
+            \end{aligned}
+            $$
+            \item[\textbf{7)}]
+            $$
+            \begin{aligned}
+                x \arctan x - \ln \sqrt{1 + x^2} & = x \arctan x - \frac{1}{2} \ln (1 + x^2) \\
+                & = \sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2n + 1} x^{2n + 2} + \sum_{n = 1}^{\infty} \frac{(-1)^{n}}{2n} x^{2n} \\
+                & = \sum_{n = 1}^{\infty} \ab(\frac{(-1)^{n - 1}}{2n - 1} + \frac{(-1)^{n}}{2n}) x^{2n} \\
+                & = \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2n (2n - 1)} x^{2n}
+            \end{aligned}
+            $$
+            \item[\textbf{9)}]
+            $$
+            \begin{aligned}
+                \ab(\ln \ab(x + \sqrt{1 + x^2}))' & = \frac{1}{\sqrt{1 + x^2}} \\
+                & = \sum_{n = 0}^{\infty} \binom{-\frac{1}{2}}{n} x^{2n} \\
+                & = \sum_{n = 0}^{\infty} \frac{(-1)^{n} \ab(\frac{1}{2})^{\overline{n}}}{n!} x^{2n} \\
+                & = \sum_{n = 0}^{\infty} \frac{(-1)^{n} (2n + 1)!!}{2^{n} n!} x^{2n}
+            \end{aligned}
+            $$
+            因此
+            $$
+            \ln \ab(x + \sqrt{1 + x^2}) = \sum_{n = 0}^{\infty} \frac{(-1)^{n} (2n + 1)!!}{2^{n} n! (2n + 1)} x^{2n + 1}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.9
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 令 $t = x + 1$，那么
+            $$
+            \frac{1}{x^2} = \frac{1}{(1 - t)^2} = \sum_{n = 0}^{\infty} (n + 1) t^{n} = \sum_{n = 0}^{\infty} (n + 1) (x + 1)^{n}
+            $$
+
+            \item[\textbf{4)}] 令 $t = x - 1$，那么
+            $$
+            \frac{x - 1}{x + 1} = 1 - \frac{2}{2 + t} = 1 - \sum_{n = 0}^{\infty} \frac{(-1)^{n}}{2^{n}} t^{n} = \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2^{n}} (x - 1)^{n}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.11
+    \begin{solution}
+        $$
+        \begin{aligned}
+            \origin & = \int_0^1 \ln x \sum_{n = 0}^{\infty} x^{2n} \dd{x} = \sum_{n = 0}^{\infty} \int_0^1 x^{2n} \ln x \dd{x} \\
+            & = \sum_{n = 0}^{\infty} \ab[\frac{1}{2n + 1} \ab(x^{2n + 1} \ln x - \frac{x^{2n + 1}}{2n + 1})]_0^1 \\
+            & = \sum_{n = 0}^{\infty} -\frac{1}{(2n + 1)^2}
+        \end{aligned}
+        $$
+        根据熟知结论 $\sum\limits_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$ 可得：
+        $$
+        \begin{aligned}
+            \origin & = - \ab(\sum_{n = 1}^{\infty} \frac{1}{n^2} - \sum_{n = 1}^{\infty} \frac{1}{(2n)^2}) \\
+            & = -\frac{3}{4} \sum_{n = 1}^{\infty} \frac{1}{n^2} = -\frac{\pi^2}{8}
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.12
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 令 $t = -\frac{2 + x}{2 - x}$。那么
+            $$
+            \begin{aligned}
+                \origin & = -\sum_{n = 1}^{\infty} \frac{1}{n (n + 1)} t^{n} \\
+                & = -\frac{1}{t} \sum_{n = 1}^{\infty} \frac{1}{n (n + 1)} t^{n + 1} \\
+                & = -\frac{1}{t} \ab(\int \int \sum_{n = 1}^{\infty} t^{n - 1} \dd{t} \dd{t}) \\
+                & = -\frac{1}{t} \ab(t + (1 - t) \ln (1 - t)) \\
+                & = -1 + \frac{(t - 1) \ln (1 - t)}{t}
+            \end{aligned}
+            $$
+            将 $t$ 代入：
+            $$
+            \origin = -1 + \frac{4}{2 + x} \ln \ab(\frac{4}{2 - x})
+            $$
+            \item[\textbf{3)}] 所求级数的系数是 $\frac{1}{n}$ 的前缀和，因此：
+            $$
+            \origin = \frac{1}{1 - x} \cdot \sum_{n = 1}^{\infty} \frac{x^{n}}{n} = - \frac{\ln (1 - x)}{1 - x}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 12.4.13
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 构造函数 $f(x)$：
+            $$
+            \begin{aligned}
+                f(x) & = \sum_{n = 2}^{\infty} \frac{x^{n}}{n^2 - 1} = \sum_{n = 2}^{\infty} \frac{x^{n}}{(n - 1)(n + 1)} \\
+                & = \frac{1}{2} \ab(\sum_{n = 2}^{\infty} \frac{x^{n}}{n - 1} - \sum_{n = 2}^{\infty} \frac{x^{n}}{n + 1}) \\
+                & = \frac{1}{2} \ab(-x \ln (1 - x) + \frac{\ln (1 - x)}{x} + \ab(1 + \frac{1}{2} x)) \\
+            \end{aligned}
+            $$
+            代入 $x = \frac{1}{2}$，得到 $\origin = \frac{5}{8} - \frac{3}{4} \ln 2$。
+
+            \item[\textbf{3)}] 构造函数 $f(x)$：
+            $$
+            \begin{aligned}
+                f(x) & = \sum_{n = 1}^{\infty} n (n + 2) x^{n} \\
+                & = \sum_{n = 1}^{\infty} n (n + 1) x^{n} + \sum_{n = 1}^{\infty} n x^{n} \\
+                & = x \ab(\sum_{n = 0}^{\infty} (n + 1)(n + 2) x^{n} + \sum_{n = 0}^{\infty} (n + 1) x^{n}) \\
+                & = x \ab(\ab(\frac{1}{1 - x})'' + \ab(\frac{1}{1 - x})') \\
+                & = \frac{x (x - 3)}{(x - 1)^3}
+            \end{aligned}
+            $$
+            那么 $\origin = \frac{1}{4} f\ab(\frac{1}{4}) = \frac{11}{27}$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}

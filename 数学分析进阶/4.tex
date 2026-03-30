@@ -1,0 +1,218 @@
+\section{常微分方程 IV}
+
+\subsection{一些特殊形式的特解}
+
+对于二阶微分方程
+$$
+y'' + p y' + q y = f(x)
+$$
+当 $f(x)$ 为一些特殊形式的时候，我们可以求得方程的通解。
+
+\subsubsection{$f(x) = P_m(x) \E^{\mu x}$（其中 $P_m(x)$ 是 $m$ 次多项式）}
+
+此时我们设通解 $y = Q(x) \E^{\mu x}$，代入方程，可得
+$$
+Q''(x) + (2\mu + p) Q'(x) + (\mu^2 + p \mu + q) Q(x) = P_m(x)
+$$
+分类讨论：
+\begin{itemize}
+    \item 若 $\mu^2 + p \mu + q \neq 0$：可以直接令 $Q(x)$ 为一个 $m$ 次多项式；
+    \item 若 $\mu^2 + p \mu + q = 0$：
+    \begin{itemize}
+        \item 若 $2\mu + p = 0$：可以直接令 $Q(x) = \int \int P_m(x) \dd{x} \dd{x}$；
+        \item 若 $2\mu + p \neq 0$：可以令 $Q(x) = x R(x)$，其中 $R(x)$ 是一个 $m$ 次多项式。
+    \end{itemize}
+\end{itemize}
+
+\subsection{可降阶的微分方程}
+
+对于一些形式的微分方程，可以降阶计算。
+
+\subsubsection{$y^{(n)} = f(x)$ 型}
+
+此时直接求 $n$ 次不定积分。
+
+\subsubsection{$y^{(n)} = f(x, y^{(n - 1)})$ 型}
+
+此时令 $z = y^{(n - 1)}$，则原方程化为一阶微分方程 $z' = f(x, z)$。最后再求 $(n - 1)$ 次不定积分。
+
+\subsubsection{$y'' = f(y, y')$ 型}
+
+令 $p = y'$，利用代换：
+$$
+y'' = \dv{p}{x} = \dv{p}{y} \dv{y}{x} = p \dv{p}{y}
+$$
+原方程化为一阶微分方程：
+$$
+p \dv{p}{y} = f(y, y')
+$$
+
+\subsection{欧拉方程}
+
+\begin{definition}
+    形如
+    $$
+    x^n y^{(n)} + a_{n - 1} x^{n - 1} y^{(n - 1)} + \dots + a_1 x y' + a_0 y = f(x)
+    $$
+    的微分方程称为欧拉方程。
+\end{definition}
+
+要解欧拉方程，可以作代换 $x = \E^{t}$，那么：
+$$
+\dv{y}{x} = \dv{y}{t} \dv{t}{x} = \frac{1}{x} \dv{y}{t}
+$$
+同理可以继续求出高阶导数，于是这就变成了常规的常系数线性微分方程。
+
+\subsection{作业}
+
+\begin{problem}
+    \begin{solution}
+        
+        \begin{enumerate}
+            \item[\textbf{1)}] 积分三次，得到通解为：
+            $$
+            y = \frac{1}{8} \E^{2x} + \frac{x^3}{6} + C_1 \frac{x^2} + C_2 x + C_3
+            $$
+            
+            \item[\textbf{2)}] 积分四次，得到通解为：
+            $$
+            y = \frac{x^3 - 3x}{6} \arctan x + \frac{1 - 3x^2}{12} \ln (1 + x^2) + C_1 x^3 + C_2 x^2 + C_3 x + C_4
+            $$
+    
+            \item[\textbf{3)}] 换元 $p = y''$，那么方程变为：
+            $$
+            p' - \frac{1}{x} p = 0
+            $$
+            这是一个齐次线性方程，其通解为 $p = C_1 x$。因此原方程通解为：
+            $$
+            y = C_1 \frac{x^3}{6} + C_2 x + C_3
+            $$
+    
+            \item[\textbf{4)}] 求特征多项式：
+            $$
+            r^3 - 3r^2 + 3r - 1 = (r - 1)^3
+            $$
+            那么可得三重根 $r = 1$。因此原微分方程组的解为
+            $$
+            y = (C_1 x^2 + C_2 x + C_3) \E^{x}
+            $$
+    
+            \item[\textbf{5)}] 注意到该方程存在四个线性无关特解：
+            $$
+            \begin{gathered}
+                y_1 = \sin x \\
+                y_2 = \cos x \\
+                y_3 = \E^{x} \\
+                y_4 = \E^{-x}
+            \end{gathered}
+            $$
+            而该方程是一个齐次四阶方程，因此通解为：
+            $$
+            y = C_1 \sin x + C_2 \cos x + C_3 \E^{x} + C_4 \E^{-x}
+            $$
+    
+            \item[\textbf{6)}] 求解特征方程：
+            $$
+            r^4 + 2r^2 + 1 = (r^2 + 1)^2 = 0
+            $$
+            可得二重根 $r_1 = \I$ 和二重根 $r_2 = -\I$。因此通解为：
+            $$
+            y = C_1 \sin x + C_2 \cos x + C_3 x \sin x + C_4 x \cos x
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 换元 $x = \E^{t}$，那么：
+            $$
+            \begin{gathered}
+                \dv{y}{x} = \frac{1}{x} \dv{y}{t} \\
+                \dv[2]{y}{x} = \dv{x}(\frac{1}{x} \dv{y}{t}) = \frac{1}{x^2} \ab(\dv[2]{y}{t} - \dv{y}{t})
+            \end{gathered}
+            $$
+            代入回到原方程得到：
+            $$
+            \dv[2]{y}{t} + y = 0
+            $$
+            解得通解：
+            $$
+            y = C_1 \sin t + C_2 \cos t
+            $$
+            得到原方程通解：
+            $$
+            y = C_1 \sin (\ln |x|) + C_2 \cos (\ln |x|)
+            $$
+
+            \item[\textbf{2)}] 换元 $x = \E^{t}$，代入原方程：
+            $$
+            \dv[2]{y}{t} - 3\dv{y}{t} + 2y = 0
+            $$
+            求解特征方程：
+            $$
+            r^2 - 3r + 2 = 0 \implies r_1 = 1, r_2 = 2
+            $$
+            因此方程通解为：
+            $$
+            y = C_1 \E^{t} + C_2 \E^{2t}
+            $$
+            回带 $x$ 得到原方程通解为：
+            $$
+            y = C_1 |x| + C_2 x^2
+            $$
+
+            \item[\textbf{3）}] 换元 $x = \E^{t}$，代入原方程：
+            $$
+            \dv[2]{y}{t} + 2 \dv{y}{t} + y = 0
+            $$
+            求解特征方程：
+            $$
+            r^2 + 2r + 1 = 0 \implies r_1 = r_2 = -1
+            $$
+            因此方程通解为：
+            $$
+            y = (C_1 + C_2 t) \E^{-t}
+            $$
+            回带 $x$ 得到原方程通解为：
+            $$
+            y = \frac{C_1 + C_2 \ln |x|}{|x|}
+            $$
+
+            \item[\textbf{4)}] 换元 $x = \E^{t}$，代入原方程：
+            $$
+            \dv[2]{y}{t} - 2\dv{y}{t} + y = \E^{t}
+            $$
+            求解特征方程：
+            $$
+            r^2 - 2r + 1 = 0 \implies r_1 = r_2 = 1
+            $$
+            可知该方程有通解：
+            $$
+            y = \ab(\frac{1}{2} t^2 + C_1 t + C_2) \E^{t}
+            $$
+            回带 $x$ 得到：
+            $$
+            y = \ab(\frac{1}{2} \ab(\ln |x|)^2 + C_1 \ln |x| + C_2) |x|
+            $$
+            
+            \item[\textbf{5)}] 换元 $x = \E^{t}$，代入原方程：
+            $$
+            \dv[2]{y}{t} - y = t
+            $$
+            求解特征方程：
+            $$
+            r^2 - 1 = 0 \implies r_1 = 1,\ r_2 = -1
+            $$
+            而该方程还有一个特解 $y_0 = -t$，因此通解为：
+            $$
+            y = -t + C_1 \E^{x} + C_2 \E^{-x}
+            $$
+            回带 $x$ 得到：
+            $$
+            y = -\ln x + C_1 x + \frac{C_2}{x}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
