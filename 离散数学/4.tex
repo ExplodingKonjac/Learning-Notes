@@ -1,0 +1,47 @@
+\section{谓词逻辑 III}
+
+\subsection{公式的可满足性和有效性}
+
+先简单定义一下真值指派。
+
+\begin{definition}
+    真值指派是一个映射 $\sigma: L \to \{0, 1\}$，其中 $L$ 是公式中的命题变元集合。
+\end{definition}
+
+对于一个公式 $Q$，其真值指派 $\sigma$ 如下定义：
+
+\begin{definition}
+    $\sigma(Q)$ 定义为，将 $Q$ 中的命题变元 $X$ 替换为 $\sigma(X)$，然后按照真值表计算得到的值。
+\end{definition}
+
+\begin{definition}
+    \begin{itemize}
+        \item 若真值指派 $\sigma$ 使得 $\sigma(Q) = 1$，那么称\textbf{$\sigma$ 满足 $Q$}。
+        \item 若任意真值指派都满足 $Q$，那么称 $Q$ 为\textbf{永真式}（或\textbf{有效式}、\textbf{重言式}）。
+        \item 若任意真值指派都不满足 $Q$，那么称 $Q$ 为\textbf{永假式}（或\textbf{矛盾式}、\textbf{不可满足式}）。
+        \item 若存在真值指派 $\sigma$ 使得 $\sigma(Q) = 1$，那么称 $Q$ 为\textbf{可满足式}。
+    \end{itemize}
+\end{definition}
+
+\subsection{推论和等价的语义}
+
+接下来可以说明推论式的含义。
+
+\begin{definition}
+    设 $Q, R$ 是合式公式，$Q \models R$ 是推论式，若对于任意真值指派 $\sigma$，都有 $\sigma(Q) \to 1$ 为真，则称\textbf{$Q$ 语义推出 $R$}。
+\end{definition}
+
+同理，对于包含合式公式集合的推论式也可以进行定义：
+
+\begin{definition}
+    设 $Q_1, Q_2, \dots, Q_n$ 是命题公式，$\Gamma = \{Q_1, Q_2, \dots, Q_n\}$。若对于任意真值指派 $\sigma$，都有 $\sigma(Q_1) \land \sigma(Q_2) \land \dots \land \sigma(Q_n) \to 1$ 为真，则称\textbf{$Q_1, Q_2, \dots, Q_n$ 语义推出 $R$}，记为 $\Gamma \models R$ 或 $Q_1, Q_2, \dots, Q_n \models R$。
+
+    特别地，若 $\Gamma = \varnothing$，那么可记为 $\models R$。这说明 $R$ 是永真式。
+\end{definition}
+
+等价关系也可以类似地定义。
+
+\begin{definition}
+    设 $Q, R$ 是合式公式，$Q \iff R$ 是等价式，若对于任意真值指派 $\sigma$，都有 $\sigma(Q) \leftrightarrow \sigma(R)$ 为真，则称\textbf{$Q$ 与 $R$ 语义等价}。
+\end{definition}
+

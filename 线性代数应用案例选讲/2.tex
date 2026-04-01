@@ -88,26 +88,28 @@ $$
     则称 $\norm{\cdot}_m$ 是与 $\norm{\cdot}_a$ \textbf{相容}的矩阵范数。
 \end{definition}
 
-\subsection{稳定性分析与综合}
+\subsection{系统的稳定性}
 
-\subsubsection{平衡状态}
+\subsubsection{平衡状态、受扰运动、渐进稳定}
 
-\begin{definition}
+\begin{definition}[平衡状态]
     对连续时间线性时不变系统，自洽系统\textbf{平衡状态}定义为满足
     $$
     \dot{\vect{x}} = \matr{A} \vect{x} = \vect{0},\quad \forall\,t \in [t_0, +\infty)
     $$
 \end{definition}
 
-\subsubsection{受扰运动}
-
-\begin{definition}
+\begin{definition}[受扰运动]
     动态系统的\textbf{受扰运动}定义为自洽系统由初始状态扰动 $\vect{x}_0$ 引起的一类状态运动。
 \end{definition}
 
-\subsubsection{渐进稳定}
-
-
+\begin{definition}[渐进稳定]
+    称系统的零平衡点 $\vect{x}_e = \vect{0}$ 是\textbf{渐进稳定}的，当且仅当：
+    \begin{itemize}
+        \item $\forall\,\varepsilon > 0: \exists\,\delta(\varepsilon) > 0: \forall\, \norm{\vect{x}_0} < \delta(\varepsilon),\ t \ge t_0: \norm{\vect{x}(t, t_0, \vect{x}_0)} < \varepsilon$
+        \item $\forall\, \norm{\vect{x}_0} \le \delta(\varepsilon, t_0): \lim\limits_{t \to \infty} \vect{x}(t, t_0, \vect{x}_0) = \vect{0}$
+    \end{itemize}
+\end{definition}
 
 \subsubsection{常系数齐次线性微分方程组的解}
 
@@ -140,3 +142,4 @@ $$
 \mathrm{e}^{\matr{A}t} = \matr{P} \mathrm{e}^{\matr{D}t} \matr{P}^{-1}
 $$
 其中 $\mathrm{e}^{\matr{D}t} = \mathrm{diag}(\mathrm{e}^{\lambda_1 t}, \mathrm{e}^{\lambda_2 t}, \dots, \mathrm{e}^{\lambda_n t})$。
+

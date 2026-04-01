@@ -1,0 +1,87 @@
+\section{质心力学}
+
+\subsection{质心动量定理}
+
+\subsubsection{质心}
+
+\begin{definition}
+    对于一组质点，质量分别为 $m_1, m_2,\dots, m_n$，位移分别为 $\vect{r}_1, \vect{r}_2, \dots, \vect{r}_n$，则定义其\textbf{质心}为一个质量为
+    $$
+    M = \sum_{i=1}^n m_i
+    $$
+    位移为
+    $$
+    \vec{r}_c = \frac{1}{M} \sum_{i=1}^n m_i \vect{r}_i
+    $$
+    的虚拟的质点。
+\end{definition}
+
+\begin{definition}
+    质心的\textbf{动量}定义为质点组中质点的动量之和，即
+    $$
+    \vect{p}_c = \sum_{i=1}^n \vect{p}_i = \sum_{i=1}^n m_i \vect{v}_i = M \vect{v}_c
+    $$
+\end{definition}
+
+根据上述定义，可以得到质心的动量定理：
+
+\begin{theorem}
+    质心的动量变化量等于质点组所受合外力的冲量。
+\end{theorem}
+
+\subsubsection{质心参考系}
+
+当我们称原点固定在质心上的平动参考系为\textbf{质心}参考系。
+
+\subsection{质心动能定理}
+
+根据
+$$
+\begin{aligned}
+    E_k & = \sum_{i=1}^n \frac{1}{2} m_i \vect{v}_i^2 \\
+    & = \sum_{i=1}^n \frac{1}{2} m_i \vect{v}_c^2 + \sum_{i=1}^n \frac{1}{2} m_i \vect{v}_i'^2 + \sum_{i=1}^n m_i \vect{v}_c \cdot \vect{v}_i' \\
+    & = \frac{1}{2} M \vect{v}_c^2 + \sum_{i=1}^n \frac{1}{2} m_i \vect{v}_i'^2 + \sum_{i=1}^n m_i \vect{v}_c \cdot \vect{v}_i'
+\end{aligned}
+$$
+其中
+$$
+\begin{aligned}
+    \sum_{i=1}^n m_i \vect{v}_c \cdot \vect{v}_i' = \vect{v}_c \cdot \sum_{i=1}^n m_i \vect{v}_i' = \vect{v}_c \cdot \vect{p}_c' = 0
+\end{aligned}
+$$
+因此：
+$$
+E_k = \frac{1}{2} M \vect{v}_c^2 + \sum_{i=1}^n \frac{1}{2} m_i \vect{v}_i'^2
+$$
+于是我们得到：
+
+\begin{theorem}[质心动能定理]
+    质点组的动能等于质心动能与质点组相对于质心参考系的动能之和。
+\end{theorem}
+
+\subsection{质心角动量定理}
+
+\subsubsection{质心的角动量}
+
+\begin{definition}
+    定义质心的角动量为
+    $$
+    \vect{L}_c = \vect{r}_c \times \vect{p}_c
+    $$
+\end{definition}
+
+进行一些推导：
+$$
+\begin{aligned}
+    \vect{L} & = \sum_{i = 1}^n m_i \vect{r}_i \times \vect{v}_i \\
+    & = \sum_{i = 1}^{n} m_i (\vect{r}_c + \vect{r}_i') \times (\vect{v}_c + \vect{v}_i') \\
+    & = \sum_{i = 1}^{n} m_i \vect{r}_c \times \vect{v}_c + \sum_{i = 1}^{n} m_i \vect{r}_c \times \vect{v}_i' + \sum_{i = 1}^{n} m_i \vect{r}_i' \times \vect{v}_c + \sum_{i = 1}^{n} m_i \vect{r}_i' \times \vect{v}_i'
+\end{aligned}
+$$
+中间两项均为 $\vect{0}$，化简得到：
+$$
+\vect{L} = \vect{L}_c + \sum_{i = 1}^{n} \vect{L}_i'
+$$
+
+\subsection{有心运动方程和约化质量}
+

@@ -1,0 +1,138 @@
+\section{系统控制中的应用 II}
+
+\subsection{系统的稳定性 continue}
+
+\subsubsection{渐进稳定判据}
+
+\begin{theorem}
+    对于连续时间线性时不变系统，若状态矩阵 $\matr{A}$ 所有特征值均有负实部，则系统的零平衡点是渐进稳定的。
+\end{theorem}
+
+\subsection{系统的能控性和能观测性}
+
+考虑一个系统, 输入和输出构成系统的外部变量, 状态属于反映运动行为的系统内部变量。能控性研究系统内部状态“是否可由输入影响”的问题, 能观测性研究系统内部状态“是否可由输出反映”的问题。即：
+
+\begin{itemize}
+    \item 如果系统内部每个状态变量都可由输入完全影响, 则称系统的状态为\textbf{完全能控}。
+    \item 如果系统内部每个状态变量都可由输出完全反映, 则称系统的状态为\textbf{完全能观测}。
+\end{itemize}
+
+\subsubsection{能控性}
+
+\begin{definition}[连续时间系统的能控性]
+    对于一个连续时间系统，非零状态 $\vect{x}_0$ \textbf{能控}当且仅当：存在有限时间 $T > 0$ 以及一个无约束容许控制 $\vect{u}(t)$，使系统状态由 $\vect{x}(0) = \vect{x}_0$ 转移到 $\vect{x}(T) = \vect{0}$。
+
+    如果状态空间中所有非零状态都为能控的，则称该系统是\textbf{完全能控}的。
+\end{definition}
+
+\begin{theorem}[秩判据]
+    对于 $n$ 维连续时间线性时不变系统 $\dot{\vect{x}} = \matr{A} \vect{x} + \matr{B} \vect{u}$，其状态完全能控当且仅当能控性矩阵
+    $$
+    \matr{Q}_c = [\matr{B}, \matr{A}\matr{B}, \dots, \matr{A}^{n-1}\matr{B}]
+    $$
+    的秩为 $n$。
+\end{theorem}
+
+对于一个不是完全能控的系统，我们可以进行按能控性的系统结构分解。对于能控性矩阵
+$$
+\matr{Q}_c = \rvec{\vect{q}_1, \vect{q}_2, \dots, \vect{q}_n}
+$$
+假设 $\rank \matr{Q}_c = k$，那么 $\vect{q}_1, \vect{q}_2, \dots, \vect{q}_n$ 中有 $k$ 个线性无关的列向量 $\vect{p}_1, \vect{p}_2, \dots, \vect{p}_k$。再在 $\mathbb{C}^{n}$ 中选择 $n - k$ 个向量 $\vect{p}_{k + 1}, \vect{p}_{k + 2},\dots, \vect{p}_n$ 使得它们和 $\vect{p}_1, \vect{p}_2, \dots, \vect{p}_k$ 线性无关。那么构造矩阵：
+$$
+\matr{P} = \rvec{\vect{p}_1, \vect{p}_2, \dots, \vect{p}_k \mid \vect{p}_{k + 1}, \vect{p}_{k + 2},\dots, \vect{p}_n}
+$$
+然后做线性替换：
+$$
+\begin{aligned}
+    \vect{x} & = \matr{P} \overline{\vect{x}} \\
+    \overline{\matr{A}} & = \matr{P}^{-1} \matr{A} \matr{P} \\
+    \overline{\matr{B}} & = \matr{P}^{-1} \matr{B} \\
+    \overline{\matr{C}} & = \matr{C} \matr{P}
+\end{aligned}
+$$
+得到一个新系统
+$$
+\begin{aligned}
+    \dot{\overline{\vect{x}}} & = \overline{\matr{A}} \vect{\overline{x}} + \overline{\matr{B}} \vect{u} \\
+    \vect{y} & = \overline{\matr{C}} \vect{\overline{x}} + \matr{D} \vect{u}
+\end{aligned}
+$$
+那么这个新系统的状态变量和变换矩阵必然呈现分块的形式
+$$
+\overline{\vect{x}} = \cvec{\overline{\vect{x}}_c, \overline{\vect{x}}_{uc}},\
+\overline{\matr{A}} = \begin{bmatrix}
+    \overline{\matr{A}}_{c} & \overline{\matr{A}}_{12} \\
+    \matr{O} & \overline{\matr{A}}_{uc}
+\end{bmatrix},\ 
+\overline{\matr{B}} = \begin{bmatrix}
+    \overline{\matr{B}}_{c} \\
+    \matr{O}
+\end{bmatrix},\ 
+\overline{\matr{C}} = \begin{bmatrix}
+    \overline{\matr{C}}_{c} & \overline{\matr{C}}_{uc}
+\end{bmatrix}
+$$
+
+\subsection{作业}
+
+\begin{problem}
+    \begin{solution}
+        系统的状态维度为 $2$。能控性矩阵
+        $$
+        \matr{Q}_c = \rvec{\matr{B}, \matr{A} \matr{B}} = \begin{bmatrix}
+            1 & -1 \\
+            1 & -1 
+        \end{bmatrix}
+        $$
+        显然 $\rank \matr{Q}_c = 1 < 2$，因此系统不完全能控。
+
+        构造线性替换：
+        $$
+        \matr{P} = \begin{bmatrix}
+            1 & 1 \\
+            1 & 0 \\
+        \end{bmatrix},\ \matr{P}^{-1} = \begin{bmatrix}
+            0 & 1 \\
+            1 & -1 
+        \end{bmatrix}
+        $$
+        那么新的系统矩阵为：
+        $$
+        \overline{\matr{A}} = \matr{P}^{-1} \matr{A} \matr{P} = \begin{bmatrix}
+            -1 & 0 \\
+            0 & -1
+        \end{bmatrix}, \overline{\matr{B}} = \matr{P}^{-1} \matr{B} = \begin{bmatrix}
+            1 \\
+            0
+        \end{bmatrix}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    \begin{solution}
+        对于系统的稳定点，满足：
+        $$
+        \begin{dcases}
+            x_2 - x_1 \ab(x_1^2 + x_2^2) = 0 \\
+            -x_1 - x_2 \ab(x_1^2 + x_2^2) = 0
+        \end{dcases}
+        $$
+        显然 $x_1 = 0, x_2 = 0$ 是一个稳定点。同时：
+        \begin{itemize}
+            \item 若 $x_1 = 0$ 或 $x_2 = 0$：可推出另一变量也为 $0$。
+            \item 若 $x_1, x_2 \neq 0$：$x_1^2 + x_2^2 = \frac{x_2}{x_1} = -\frac{x_1}{x_2}$。而 $\frac{x_2}{x_1}$ 和 $-\frac{x_1}{x_2}$ 正负性不同，$x_1^2 + x_2^2$ 又恒为正，矛盾。
+        \end{itemize}
+        因此系统仅有零稳定点 $\vect{x} = (0, 0)$。
+
+        构造李雅普诺夫函数 $V(x_1, x_2) = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2$。该函数显然满足正定性。那么：
+        $$
+        \begin{aligned}
+            \dot{V}(x_1, x_2) & = \pdv{V}{x_1} \dot{x}_1 + \pdv{V}{x_2} \dot{x}_2 \\
+            & = x_1 \ab(x_2 - x_1 \ab(x_1^2 + x_2^2)) + x_2 \ab(-x_1 - x_2 \ab(x_1^2 + x_2^2)) \\
+            & = -\ab(x_1^2 + x_2^2)^2 < 0
+        \end{aligned}
+        $$
+        因此该系统渐进稳定。
+    \end{solution}
+\end{problem}

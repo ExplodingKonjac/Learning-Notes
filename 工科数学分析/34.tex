@@ -1,0 +1,56 @@
+\section{多元函数的极限与连续 III}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 14.1.1
+    \begin{proof}
+        根据内部的定义，有
+        $$
+        \forall\,\vect{x} \in E^o: \exists\,\varepsilon > 0: B_{\varepsilon}(\vect{x}) \subset E
+        $$
+        那么可知，对于这个 $\vect{x}$：
+        $$
+        \forall\,\vect{y} \in B_{\frac{\varepsilon}{2}}(\vect{x}): B_{\frac{\varepsilon}{2}}(\vect{y}) \subset B_{\varepsilon}(\vect{x}) \subset E
+        $$
+        因此 $\vect{y} \in E^o$，也就是说 $B_{\frac{\varepsilon}{2}}(\vect{x}) \subset E^o$。于是得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 14.1.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 该集合即 $S = \{(x, y): x = 0 \lor y = 0\}$，其补集 $S^c = \{(x, y): x \neq 0 \land y \neq 0\}$。那么：
+            $$
+            \forall\,(x, y) \in S^c: \exists\,\varepsilon = \frac{\min\{|x|, |y|\}}{2}: B_{\varepsilon}(x, y) \subset S^c
+            $$
+            因此 $S^c$ 是开集，从而 $S$ 是闭集。同时，$\forall\,R > 0: \exists\, (R, 0) \in S: \norm{(R, 0)} \ge R$，因此 $S$ 是无界集。
+            
+            \item[\textbf{2)}] 记该集合为 $S$。对于任意 $(x, y) \in S$，记 $\delta = y - x^2$，取 $\varepsilon = \min\{\frac{\delta}{5}, 1\}$，那么：
+            $$
+            (x \pm \varepsilon)^2 \le x^2 + 3 \varepsilon < y - \varepsilon \iff B_{\varepsilon}(x, y) \subset S
+            $$
+            因此 $S$ 是开集。同时 $S$ 显然是无界集。
+
+            \item[\textbf{3)}] 记该集合为 $S$。那么 $S^c = \{\vect{x}: \norm{x} \neq 1\}$，于是：
+            $$
+            \forall\,\vect{x} \in S^c: \exists\,\varepsilon = \frac{\abs{1 - \norm{x}}}{2}: B_{\varepsilon}(\vect{x}) \subset S^c
+            $$
+            因此 $S^c$ 是开集，从而 $S$ 是闭集。同时 $\forall\,\vect{x} \in S: \norm{x} = 1 \le 1$，因此 $S$ 是有界集。
+
+            \item[\textbf{4)}] 记该集合为 $S$。那么 $S^c = \{\vect{x}: \norm{x} > 1\}$，于是：
+            $$
+            \forall\,\vect{x} \in S^c: \exists\,\varepsilon = \frac{\norm{x} - 1}{2}: B_{\varepsilon}(\vect{x}) \subset S^c
+            $$
+            此 $S^c$ 是开集，从而 $S$ 是闭集。同时 $\forall\,\vect{x} \in S: \norm{x} \le 1$，因此 $S$ 是有界集。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 14.1.5
+    \begin{proof}
+        
+    \end{proof}
+\end{problem}
