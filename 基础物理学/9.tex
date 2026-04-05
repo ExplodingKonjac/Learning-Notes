@@ -85,3 +85,219 @@ $$
 
 \subsection{有心运动方程和约化质量}
 
+假设有两个质点所构成的系统，两质点质量分别为 $m, M$，位矢分别为 $\vect{r}, \vect{R}$，两质点之间的作用力是有心力 $\vect{f}$。那么就有：
+$$
+\begin{dcases}
+    \dv[2]{\vect{r}}{t} = \frac{\vect{f}}{m} \\
+    \dv[2]{\vect{R}}{t} = -\frac{\vect{f}}{M} \\
+\end{dcases}
+$$
+两式相减得到：
+$$
+\dv[2]{(\vect{r} - \vect{R})}{t} = \ab(\frac{1}{m} + \frac{1}{M}) \vect{f}
+$$
+那么我们定义\textbf{约化质量} $\mu$：
+$$
+\frac{1}{\mu} = \frac{1}{m} + \frac{1}{M}
+$$
+于是方程就变为
+$$
+\dv[2]{(\vect{r} - \vect{R})}{t} = \frac{1}{\mu} \vect{f}
+$$
+也就是说，如果我们将参考系原点固定在 $M$，那么对于 $m$ 就只需要将其质量视为约化质量 $\mu$。
+
+特别地，当 $M \gg m$ 时，有
+$$
+\mu = \frac{mM}{m + M} = \frac{m}{1 + m/M} \approx m
+$$
+这也是研究天体问题时，将行星视为质点，而恒星视为固定不动的近似的理论基础。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 4.14
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 由题可知：
+            $$
+            \frac{m v_0^2}{R_0} = \frac{G M m}{R_0^2} \implies GM = v_0^2 R_0
+            $$
+            那么该行星的逃逸速度 $v_1$ 满足：
+            $$
+            \frac{1}{2} m v_1^2 = \frac{G M m}{R_0} \implies v_1 = \sqrt{\frac{2 G M}{R_0}} = \sqrt{2} v_0
+            $$
+            \item[\textbf{2)}] 设上抛速度为 $v_2$，那么：
+            $$
+            \frac{1}{2} m v_2^2 = \ab(-\frac{G M m}{2 R_0}) - \ab(-\frac{G M m}{R_0})
+            $$
+            解得 $v_2 = v_0$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.16
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{dcases}
+                m v_A \sin 30^\circ - m v_B \sin 45^\circ = 0 \\
+                m v_A \cos 30^\circ + m v_B \cos 45^\circ = m v_{A0}
+            \end{dcases}
+            $$
+            解得 $v_A = 80\ab(\sqrt{3} - 1)\,\mathrm{m / s},\ v_B = 80\ab(\sqrt{6} - \sqrt{2})\,\mathrm{m / s}$。
+
+            \item[\textbf{2)}]
+            $$
+            \eta = 1 - \frac{\frac{1}{2} m_A v_A^2 + \frac{1}{2} m_B v_B^2}{\frac{1}{2} m_A v_{A0}^2} = 3 \sqrt{3} - 5 \approx 19.6\%
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.1
+    \begin{solution}
+        角动量：
+        $$
+        \begin{aligned}
+            \vect{L} & = m \vect{r} \times \vect{v} \\
+            & = m \ab(x \vect{e}_i + y \vect{e}_j) \times \ab(v_x \vect{e}_i + v_y \vect{e}_j) \\
+            & = m (x v_y - y v_x) \vect{e}_i \times \vect{e}_j
+        \end{aligned}
+        $$
+        力矩：
+        $$
+        \begin{aligned}
+            \vect{M} & = \vect{r} \times \vect{F} \\
+            & = \ab(x \vect{e}_i + y \vect{e}_j) \times \ab(-f \vect{e}_i) \\
+            & = f y \vect{e}_i \times \vect{e}_j
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.4
+    \begin{solution}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[>=stealth, scale=1.2]
+                \coordinate (O) at (0,0);
+                \coordinate (H) at (0,2);
+                \coordinate (M1) at (1.2,2);
+                \coordinate (M2) at ({4*cos(30)}, 2);
+                
+                \fill (O) circle (1.5pt) node[below] {$O$};
+                
+                \draw[dashed] (-1,2) -- (4.5,2);
+                \draw[dashed] (O) -- (H) node[midway, left] {$b$};
+                \draw (0.2,2) -- (0.2,1.8) -- (0,1.8);
+                
+                \draw[thick, gray] (O) to[out=60, in=220] (M1);
+                \fill (M1) circle (1.5pt) node[above] {$m$};
+                \draw[->, thick] (M1) -- ++(1,0) node[above] {$v_0$};
+                
+                \draw[thick] (O) -- (M2) node[midway, below right] {$l$};
+                \fill (M2) circle (1.5pt) node[above right] {$m$};
+                
+                \draw[thick, ->] (M2) arc (30:-20:4);
+                \draw[->, thick] (M2) -- ++({1.2*cos(-60)}, {1.2*sin(-60)}) node[right] {$v$};
+                
+                \draw (0,0.5) arc (90:30:0.5);
+                \node at (60:0.75) {$\theta$};
+                
+                \draw (M2) ++(0.5,0) arc (0:-60:0.5);
+                \path (M2) ++(-30:0.75) node {$\theta$};
+            \end{tikzpicture}
+            \caption{$m$ 的运动示意}
+        \end{figure}
+
+        \begin{enumerate}
+            \item[\textbf{1)}] 根据图示可知：
+            $$
+            v = v_0 \sin \ab(\frac{\pi}{2} - \theta) = v_0 \cos \theta = v_0 \frac{b}{l}
+            $$
+            因此：
+            $$
+            \frac{E_k'}{E_k} = \frac{\frac{1}{2} m v^2}{\frac{1}{2} m v_0^2} = \frac{b^2}{l^2}
+            $$
+            损失的能量转化为了绳子的内能。
+
+            \item[\textbf{2)}] 绳断后质点不受力，做匀速直线运动，角动量保持不变。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.6
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 根据动量守恒，线断后：
+            $$
+            M v_1 = m v_2 \implies \frac{v_1}{v_2} = \frac{m}{M}
+            $$
+            因此：
+            $$
+            \frac{\theta}{2\pi - \theta} = \frac{m}{M} \implies \theta = \frac{2\pi m}{m + M}
+            $$
+
+            \item[\textbf{2)}]
+            $$
+            \frac{1}{2} m v_1^2 + \frac{1}{2} M v_2^2 = U_0
+            $$
+            解得 $v_1 = m \sqrt{\frac{2 U_0}{m^3 + M^3}}, v_2 = M \sqrt{\frac{2 U_0}{m^3 + M^3}}$。因此：
+            $$
+            t = \frac{2 \pi R}{v_1 + v_2} = \frac{\pi R}{m + M} \sqrt{\frac{2 (m^3 + M^3)}{U_0}}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.9
+    \begin{solution}
+        由题知
+        $$
+        \begin{gathered}
+            R_1 = R_E + h_1 = 6598 \,\mathrm{km} \\
+            R_2 = R_E + h_2 = 7775 \,\mathrm{km}
+        \end{gathered}
+        $$
+        根据角动量守恒：
+        $$
+        v_1 R_1 = v_2 R_2
+        $$
+        解得 $v_2 = 6.79 \,\mathrm{km / s}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.1
+    \begin{solution}
+        由题知：
+        $$
+        m_1 (-1, 1) + m_2 (-2, 0) + m_3 (x, y) + m_4 (3, -2) = (m_1 + m_2 + m_3 + m_4) (-1, 1)
+        $$
+        解得 $(x, y) = (1, -1)$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.3
+    \begin{solution}
+        质心加速度：
+        $$
+        (M + m) a_c = F \implies a_c = \frac{F}{M + m}
+        $$
+        设气球加速度为 $a_1$，人加速度为 $a_2$，那么：
+        $$
+        \begin{dcases}
+            a_2 - a_1 = a_m \\
+            m a_1 + M a_2 = (m + M) a_c
+        \end{dcases}
+        $$
+        解得 $a_1 = \frac{F - M m a}{m + M}$。
+    \end{solution}
+\end{problem}

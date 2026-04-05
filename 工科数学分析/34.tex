@@ -1,5 +1,34 @@
 \section{多元函数的极限与连续 III}
 
+\subsection{多元函数的极限与连续 continue}
+
+类似于单元函数，可以定义多元函数的一致连续。
+
+\begin{definition}[一致连续]
+    对于 $D \subset \mathbb{R}^{n},\ f: D \to \mathbb{R}$，定义 $f$ 在 $D$ 上一致连续当且仅当：
+    $$
+    \forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,\vect{x}, \vect{y} \in D: \norm{\vect{x} - \vect{y}} < \delta \implies \abs{f(\vect{x}) - f(\vect{y})} < \varepsilon
+    $$
+\end{definition}
+
+同理也有类似 Heine 定理的结论：
+
+\begin{theorem}
+    $f$ 在 $D$ 上一致连续当且仅当对于任意点列 $\vect{x}_k, \vect{y}_k \in D$，当 $\norm{\vect{x}_k - \vect{y}_k} \to 0$ 时，也有 $f(\vect{x}_k) - f(\vect{y}_k) \to 0$。
+\end{theorem}
+
+既然函数的定义域可以是 $\mathbb{R}^{n}$，函数的值域也可以是 $\mathbb{R}^{m}$。这样的函数称为向量值函数。
+
+\begin{definition}[向量值函数]
+    对于 $D \subset \mathbb{R}^{n}, f: D \to \mathbb{R}^{m}$，称 $f$ 为向量值函数。
+\end{definition}
+
+向量值函数的收敛性、连续性可以类似定义，只需将 $\abs{f(\vect{x}) - f(\vect{y})}$ 改为 $\norm{f(\vect{x}) - f(\vect{y})}$ 即可。
+
+\begin{theorem}
+    对于 $D \subset \mathbb{R}^{n}, f: D \to \mathbb{R}^{m}$，$f$ 是 $D$ 上连续映射的充要条件是 $f(\vect{x})$ 的每一个分量都是 $D$ 上的连续函数。
+\end{theorem}
+
 \subsection{作业}
 
 \begin{problem}

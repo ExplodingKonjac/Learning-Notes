@@ -1,0 +1,130 @@
+\section{傅里叶级数}
+
+\subsection{三角函数空间}
+
+某个区间上的函数可以构成一个 Euclid 空间。其中加法和数乘就是函数的运算，而内积定义为：
+
+\begin{definition}[函数的内积]
+    对于 $[l, r]$ 上的两个函数 $f(x), g(x)$，我们定义它们的内积为
+    $$
+    \ab\langle f, g \rangle = \int_l^r f(x) g(x) \dd{x}
+    $$
+\end{definition}
+
+有了内积之后，就可以定义正交：
+
+\begin{definition}[正交]
+    若 $\ab\langle f, g \rangle = 0$，则称 $f$ 与 $g$ 正交。
+\end{definition}
+
+三角函数系是指下面的函数线性组合得到的函数族：
+$$
+1,\ \sin n x,\ \cos n x,\ (n \in \mathbb{N}^+)
+$$
+
+在三角函数系中，我们定义函数的正交取区间 $[-\pi, \pi]$。那么我们可以发现：
+
+\begin{itemize}
+    \item
+    $$
+    \int_{-\pi}^{\pi} \sin n x \dd{x} = \int_{-\pi}^{\pi} \cos n x \dd{x} = 0
+    $$
+    \item
+    $$
+    \int_{-\pi}^{\pi} \sin m x \sin n x \dd{x} = \pi [m = n]
+    $$
+    \item
+    $$
+    \int_{-\pi}^{\pi} \cos m x \cos n x \dd{x} = \pi [m = n]
+    $$
+    \item
+    $$
+    \int_{-\pi}^{\pi} \sin m x \cos n x \dd{x} = 0
+    $$
+\end{itemize}
+
+\subsection{Fourier 级数}
+
+\begin{definition}
+    一般地，\textbf{三角级数}定义为如下形式的级数：
+    $$
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos n x + b_n \sin n x)
+    $$
+\end{definition}
+
+根据函数项级数的 Weierstrass 定理，我们可以知道，若级数
+$$
+\sum_{n = 1}^{\infty} (\abs{a_n} + \abs{b_n})
+$$
+收敛，那么对应的三角级数在 $[-\pi, \pi]$ 上一致收敛且绝对收敛。
+
+Fourier 级数要解决的问题是，对于给定的 $2\pi$ 周期函数 $f(x)$，三角级数
+$$
+f(x) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} (a_n \cos n x + b_n \sin n x)
+$$
+是否存在？系数取值是什么？
+
+我们假设存在这么一个级数一致收敛于 $f(x)$，那么：
+
+\begin{enumerate}
+    \item 求 $a_0$：
+    $$
+    \begin{aligned}
+        \int_{-\pi}^{\pi} f(x) \dd{x} & = \int_{-\pi}^{\pi} \left( \frac{a_0}{2} + \sum_{n = 1}^{\infty} (a_n \cos n x + b_n \sin n x) \right) \dd{x} \\
+        & = \int_{-\pi}^{\pi} \frac{a_0}{2} \dd{x} + \sum_{n = 1}^{\infty} \int_{-\pi}^{\pi} (a_n \cos n x + b_n \sin n x) \dd{x} \\
+        & = \pi a_0
+    \end{aligned}
+    $$
+    所以
+    $$
+    a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \dd{x}
+    $$
+    \item 求 $a_n$：
+    $$
+    \begin{aligned}
+        \int_{-\pi}^{\pi} f(x) \cos n x \dd{x} & = \int_{-\pi}^{\pi} \ab(\frac{a_0}{2} \cos n x + \sum_{k = 1}^{\infty} (a_k \cos k x \cos n x + b_k \sin k x \cos n x)) \dd{x} \\
+        & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos n x \dd{x} + \sum_{k = 1}^{\infty} \int_{-\pi}^{\pi} (a_k \cos k x \cos n x + b_k \sin k x \cos n x) \dd{x} \\
+        & = \pi a_n
+    \end{aligned}
+    $$
+    所以
+    $$
+    a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos n x \dd{x}
+    $$
+    \item 求 $b_n$：
+    $$
+    \begin{aligned}
+        \int_{-\pi}^{\pi} f(x) \sin n x \dd{x} & = \int_{-\pi}^{\pi} \ab(\frac{a_0}{2} \sin n x + \sum_{k = 1}^{\infty} (a_k \cos k x \sin n x + b_k \sin k x \sin n x)\ab) \dd{x} \\
+        & = \frac{a_0}{2} \int_{-\pi}^{\pi} \sin n x \dd{x} + \sum_{k = 1}^{\infty} \int_{-\pi}^{\pi} (a_k \cos k x \sin n x + b_k \sin k x \sin n x) \dd{x} \\
+        & = \pi b_n
+    \end{aligned}
+    $$
+    所以
+    $$
+    b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin n x \dd{x}
+    $$
+\end{enumerate}
+
+\begin{definition}[Fourier 级数]
+    对于周期为 $2\pi$ 的周期函数 $f(x)$，定义其 \textbf{Fourier 级数}为：
+    $$
+    f(x) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} (a_n \cos n x + b_n \sin n x)
+    $$
+    其中：
+    $$
+    \begin{gathered}
+        a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos n x\ (n \in \mathbb{N}) \\
+        b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin n x\ (n \in \mathbb{N}^+)
+    \end{gathered}
+    $$
+\end{definition}
+
+Fourier 级数的定义仅要求 $f(x)$ 可积，但是级数的取值和函数的光滑性有关。
+
+\begin{definition}[光滑]
+    称 $f(x)$ 在 $[l, r]$ \textbf{光滑}当且仅当 $f'(x)$ 在 $[l, r]$ 上连续。称 $f(x)$ 在 $[l, r]$ \textbf{分段光滑}当且仅当 $f'(x)$ 在 $[l, r]$ 仅在有限个第一类间断点处不连续。
+\end{definition}
+
+\begin{theorem}[Dirichlet 定理]
+    若 $f(x)$ 是以 $2\pi$ 为周期的周期函数，且在 $[-\pi, \pi]$ 分段光滑，那么对于 $x \in [-\pi, \pi]$，$f(x)$ 的 Fourier 级数收敛于 $f(x)$ 左右极限的平均值。
+\end{theorem}

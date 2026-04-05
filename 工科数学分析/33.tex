@@ -112,6 +112,19 @@
     对于一个 $\mathbb{R}^{n}$ 中的道路连通的开集，称为\textbf{（开）区域}。区域的闭包称为\textbf{闭区域}。
 \end{definition}
 
+我们有如下定理和推论：
+
+\begin{theorem}
+    连续映射将道路连通集合映射为道路连通集合
+\end{theorem}
+
+\begin{corollary}
+    \begin{itemize}
+        \item 存在连续函数将道路连通的紧致集映射为区间；
+        \item 存在连续函数将闭区域映射为闭区间。
+    \end{itemize}
+\end{corollary}
+
 \subsection{Euclid 空间的基本定理}
 
 在实数集中的很多理论可以扩展导 Euclid 空间。
@@ -187,3 +200,21 @@
     $$
     则称函数 $f$ 在 $\vect{a}$ 处连续。
 \end{definition}
+
+\begin{definition}
+    对于二元函数 $f(x, y)$ 和定义域内点 $(x_0, y_0)$，定义：
+    $$
+    \lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \ab(\lim_{y \to y_0} f(x, y))
+    $$
+    为 $f(x, y)$ 在 $(x_0, y_0)$ 处先对 $y$ 再对 $x$ 的累次极限。
+
+    同理可定义先对 $x$ 再对 $y$ 的累次极限。
+\end{definition}
+
+\begin{theorem}
+    对于二元函数 $f(x, y)$ 和定义域内点 $(x_0, y_0)$，若
+    $$
+    \lim_{(x, y) \to (x_0, y_0)} f(x, y),\ \lim_{x \to x_0} \lim_{y \to y_0} f(x, y),\ \lim_{y \to y_0} \lim_{x \to x_0} f(x, y)
+    $$
+    均存在，那么它们相等。
+\end{theorem}
