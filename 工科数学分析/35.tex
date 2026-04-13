@@ -1,0 +1,121 @@
+\section{多元函数的微分}
+
+\subsection{偏导数}
+
+\begin{definition}[偏导数]
+    设 $D \subseteq \mathbb{R}^{n},\ f: D \to \mathbb{R}$。若 $f$ 在点 $\vect{x}_0$ 的某一个邻域内有定义，且分量
+    $$
+    \vect{x}^{(1)}, \dots, \vect{x}^{(k - 1)}, \vect{x}^{(k + 1)},\dots, \vect{x}^{(n)}
+    $$
+    取定值
+    $$
+    \vect{x}^{(1)}_0, \dots, \vect{x}^{(k - 1)}_0, \vect{x}^{(k + 1)}_0,\dots, \vect{x}^{(n)}_0
+    $$
+    那么若一元函数 $g(x) = f\ab(\vect{x}^{(1)}_0, \dots, \vect{x}^{(k - 1)}_0, x, \vect{x}^{(k + 1)}_0,\dots, \vect{x}^{(n)}_0)$ 在 $\vect{x}_0^{(k)}$ 处可导，则称 $f$ 在 $\vect{x}_0$ 处对 $\vect{x}^{(k)}$ 的\textbf{偏导数}存在，记为
+    $$
+    \left. \pdv{f}{\vect{x}^{(k)}} \right|_{\vect{x} = \vect{x}_0} = \lim_{\Delta x \to 0} \frac{f\ab(\vect{x}^{(1)}_0, \dots, \vect{x}^{(k - 1)}_0, \vect{x}^{(k)}_0 + \Delta x, \vect{x}^{(k + 1)}_0, \dots, \vect{x}^{(n)}_0) - f(\vect{x}_0)}{\Delta x}
+    $$
+\end{definition}
+
+\begin{remark}
+    值得一提的是，偏导数是一个整体记号，不像 $\dd$ 那样可以拆分。
+\end{remark}
+
+偏导数的几何意义是高维曲面上沿着某个坐标轴方向上的切线斜率。
+
+\begin{definition}[梯度]
+    设 $D \subseteq \mathbb{R}^n, f: D \to \mathbb{R}$。若 $f$ 在点 $\vect{x}_0$ 的某一个邻域内有定义，且偏导数在 $\vect{x}_0$ 处均存在，则称
+    $$
+    \grad{f}(\vect{x}_0) = \rvec{\left. \pdv{f}{\vect{x}^{(1)}} \right|_{\vect{x} = \vect{x}_0}, \dots, \left. \pdv{f}{\vect{x}^{(n)}} \right|_{\vect{x} = \vect{x}_0}}^\top
+    $$
+    为 $f$ 在 $\vect{x}_0$ 处的\textbf{梯度}。
+\end{definition}
+
+\subsection{全微分}
+
+偏导数体现的是函数在一个方向上的变化，为了更好地研究函数在各个方向上的变化，我们引入全微分的概念。
+
+对于函数 $f(\vect{x})$，其在点 $\vect{x}_0$ 的某一个邻域内有定义，那么函数在 $f(\vect{x}_0)$ 处的全增量满足以下形式：
+$$
+f(\vect{x}_0 + \Delta \vect{x}) - f(\vect{x}_0) = \vect{\lambda}^\top \Delta \vect{x} + o(\norm{\Delta \vect{x}})
+$$
+
+\begin{definition}[全微分]
+    设 $D \subseteq \mathbb{R}^n, f: D \to \mathbb{R}$。若 $f$ 在点 $\vect{x}_0$ 的某一个邻域内有定义，且全增量满足以下形式：
+    $$
+    f(\vect{x}_0 + \Delta \vect{x}) - f(\vect{x}_0) = \vect{\lambda}^\top \Delta \vect{x} + o(\norm{\Delta \vect{x}})
+    $$
+    则称 $f$ 在 $\vect{x}_0$ 处\textbf{可微}，记
+    $$
+    \dd{f}(\vect{x}_0) = \vect{\lambda}^\top \Delta \vect{x} = \sum_{k = 1}^n \vect{\lambda}^{(k)} \dd{\vect{x}^{(k)}}
+    $$
+    为 $f(\vect{x})$ 在 $\vect{x}_0$ 处的\textbf{全微分}。
+\end{definition}
+
+根据全微分的定义，我们可以发现，若函数在某个位置可微，则其在该位置的各个偏导数一定存在。但是反之则未必成立。但如果加强条件，就有如下的定理：
+
+\begin{theorem}
+    设 $D \subseteq \mathbb{R}^n, f: D \to \mathbb{R}$。若 $f$ 在点 $\vect{x}_0$ 的某一个邻域内存在偏导数且偏导数在 $\vect{x}_0$ 均连续。那么 $f(\vect{x})$ 在 $\vect{x}_0$ 可微。
+
+    \begin{proof}
+        $$
+        \begin{aligned}
+            \Delta f & = f(\vect{x}_0 + \Delta \vect{x}) -f(\vect{x}_0) \\
+            & = \sum_{k = 1}^n \Big(f\ab(\vect{x}_0^{(1)} + \Delta \vect{x}^{(1)}, \dots, \vect{x}_0^{(k)} + \Delta \vect{x}^{(k)}, \vect{x}_0^{(k + 1)}, \dots, \vect{x}_0^{(n)}) \\
+            & \qquad -f\ab(\vect{x}_0^{(1)} + \Delta \vect{x}^{(1)}, \dots, \vect{x}_0^{(k - 1)} + \Delta \vect{x}^{(k - 1)}, \vect{x}_0^{(k)}, \dots, \vect{x}_0^{(n)})\Big)
+        \end{aligned}
+        $$
+        对于和式每一项，应用 Lagrange 中值定理即证。
+    \end{proof}
+\end{theorem}
+
+多元函数的连续性、可微性、偏导数之间的关系如图：
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        box/.style={draw=black, rectangle, minimum height=0.9cm, minimum width=2.8cm, align=center, thick, font=\sffamily},
+        arrow/.style={->, >=stealth, thick, orange!90!black},
+        cross/.style={inner sep=0pt, sloped}
+    ]
+
+        \node[box] (A) at (-3.5, 1.8) {函数连续};
+        \node[box] (B) at (3.5, 1.8) {函数可导};
+        \node[box] (C) at (0, 0) {函数可微};
+        \node[box] (D) at (0, -1.8) {偏导数连续};
+
+        % A and B
+        \draw[arrow] (A.10)  -- node[cross] {\Large $\color{red}\times$} (B.170);
+        \draw[arrow] (B.190) -- node[cross] {\Large $\color{red}\times$} (A.350);
+
+        % A and C
+        \draw[arrow] (C.156) -- (A.316);
+        \draw[arrow] (A.336) -- node[cross] {\Large $\color{red}\times$} (C.136);
+
+        % B and C
+        \draw[arrow] (C.24)  -- (B.224);
+        \draw[arrow] (B.204) -- node[cross] {\Large $\color{red}\times$} (C.44);
+
+        % C and D
+        \draw[arrow] (D.80)  -- (C.280);
+        \draw[arrow] (C.260) -- node[cross] {\Large $\color{red}\times$} (D.100);
+    \end{tikzpicture}
+    \caption{多元函数可偏导、可微、连续之间的关系}
+\end{figure}
+
+\subsection{方向导数}
+
+\begin{definition}[方向导数]
+    设 $D \subseteq \mathbb{R}^{n},\ f: D \to \mathbb{R}$，对于给定的单位向量 $\vect{u}$，定义
+    $$
+    \lim_{t \to 0^+} \frac{f(\vect{x}_0 + t \vect{u}) - f(\vect{x}_0)}{t}
+    $$
+    为 $f$ 在 $\vect{x}_0$ 处沿 $\vect{u}$ 方向的方向导数，记为 $\left.\pdv{f}{\vect{u}} \right|_{\vect{x} = \vect{x}_0}$。
+\end{definition}
+
+\begin{theorem}
+    设函数 $f(\vect{x})$ 在 $\vect{x}_0$ 可微，那么 $f(\vect{x})$ 在 $\vect{x}_0$ 处任意单位向量 $\vect{u}$ 的方向导数均存在，且：
+    $$
+    \pdv{f}{\vect{u}} = \ab(\grad{f}(\vect{x}_0))^\top \vect{u}
+    $$
+\end{theorem}

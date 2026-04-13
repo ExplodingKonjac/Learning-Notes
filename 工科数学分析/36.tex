@@ -1,0 +1,205 @@
+\section{多元函数的微分 II}
+
+\subsection{向量值函数的微分}
+
+\subsubsection{Jaccobi 矩阵}
+
+\begin{definition}[Jaccobi 矩阵]
+    对于 $D \subseteq \mathbb{R}^{n},\ f: D \to \mathbb{R}^{m}$，即：
+    $$
+    f: \vect{x} \mapsto \cvec{f_1(\vect{x}), f_2(\vect{x}), \vdots, f_m(\vect{x})}
+    $$
+    那么定义 $f$ 的 \textbf{Jaccobi 矩阵}为
+    $$
+    \vect{J} f(\vect{x}_0) = \begin{bmatrix}
+        \left. \pdv{f_1}{\vect{x}^{(1)}} \right|_{\vect{x} = \vect{x}_0} & \left. \pdv{f_1}{\vect{x}^{(2)}} \right|_{\vect{x} = \vect{x}_0} & \cdots & \left. \pdv{f_1}{\vect{x}^{(n)}} \right|_{\vect{x} = \vect{x}_0} \\
+        \left. \pdv{f_2}{\vect{x}^{(1)}} \right|_{\vect{x} = \vect{x}_0} & \left. \pdv{f_2}{\vect{x}^{(2)}} \right|_{\vect{x} = \vect{x}_0} & \cdots & \left. \pdv{f_2}{\vect{x}^{(n)}} \right|_{\vect{x} = \vect{x}_0} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \left. \pdv{f_m}{\vect{x}^{(1)}} \right|_{\vect{x} = \vect{x}_0} & \left. \pdv{f_m}{\vect{x}^{(2)}} \right|_{\vect{x} = \vect{x}_0} & \cdots & \left. \pdv{f_m}{\vect{x}^{(n)}} \right|_{\vect{x} = \vect{x}_0} \\
+    \end{bmatrix}
+    $$
+\end{definition}
+
+我们可以称 Jaccobi 矩阵是向量值函数的微分。根据偏导数连续性与可微性的关系，有定理：
+
+\begin{theorem}
+    若向量值函数 $f$ 的 Jaccobi 矩阵在 $\vect{x}_0$ 处连续，则 $f$ 在 $\vect{x}_0$ 处可微。
+\end{theorem}
+
+\subsubsection{复合函数求导法则}
+
+\begin{theorem}
+    设 $E \subseteq \mathbb{R}^{l},\ D \subseteq \mathbb{R}^{m}$，映射 $g: E \to D,\ f: D \to \mathbb{R}^{n}$，复合映射 $h = f \circ g$。若 $g$ 在 $\vect{u}_0 \in E$ 可微，$f$ 在 $\vect{x}_0 = g(\vect{u}_0) \in D$ 可微，则 $h$ 在 $\vect{u}_0$ 可微，且
+    $$
+    \vect{J} h(\vect{u}_0) = \vect{J} f(\vect{x}_0) \times \vect{J} g(\vect{u}_0)
+    $$
+\end{theorem}
+
+上述定理的特殊情况就是梯度的运算法则。
+
+多元函数的一阶微分也具有形式不变性。
+
+\section{作业}
+
+\begin{problem}
+    习题 15.1.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] $\pdv{z}{x} = 2x \cos y,\ \pdv{z}{y} = -x^2 \sin y$；
+            \item[\textbf{3)}]
+            $$
+            \begin{aligned}
+                \pdv{u}{x} & = -\frac{x}{\ab(x^2 + y^2 + z^2)^{\frac{1}{3}}} \\
+                \pdv{u}{x} & = -\frac{y}{\ab(x^2 + y^2 + z^2)^{\frac{1}{3}}} \\
+                \pdv{u}{x} & = -\frac{z}{\ab(x^2 + y^2 + z^2)^{\frac{1}{3}}}
+            \end{aligned}
+            $$
+            \item[\textbf{5)}]
+            $$
+            \begin{aligned}
+                \pdv{u}{x} & = \frac{y^2}{\ab(x^2 + y^2)^{\frac{3}{2}}} \\
+                \pdv{u}{y} & = -\frac{xy}{\ab(x^2 + y^2)^{\frac{3}{2}}}
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \dd{z} = \frac{2}{2 + x^2 + y^2} \ab(x \dd{x} + y \dd{y})
+            $$
+            \item[\textbf{4)}]
+            $$
+            \dd{z} = \E^{x} \ab((\cos (x + y) + \sin (x + y)) \dd{x} + \cos (x + y) \dd{y})
+            $$
+            \item[\textbf{6)}]
+            $$
+            \dd{u} = \dd{x} + \ab(\frac{1}{2} \cos \frac{y}{2} + z \E^{y z}) \dd{y} + y \E^{y z} \dd{z}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] $\dd{z} = 2 y^2 x \dd{x} + 2 x^2 y \dd{y}$，因此当 $(x, y) = (2, -1)$ 时：
+            $$
+            \dd{z} = 4 \dd{x} - 8 \dd{y},\ \Delta z = 4 \Delta x - 8 \Delta y = 0.16
+            $$
+            \item[\textbf{2)}]
+            $$
+            \dd{z} = \frac{\dd{x}}{x} + \frac{\dd{y}}{y} = \frac{1}{2} \dd{x} + \dd{y}
+            $$
+            \item[\textbf{3)}]
+            $$
+            \dd{u} = -\sum_{i = 1}^{n} 2 x_i \sin \ab(\sum_{j = 1}^{n} x_i^2) \dd{x_i}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.6
+    \begin{solution}
+        $$
+        \begin{aligned}
+            \left. \pdv{f}{\vect{l}} \right|_{\vect{x} = (1, 1, 1)} & = \left. \dv{t}(f\ab((1, 1, 1) + \frac{t}{3} \vect{l})) \right|_{t = 0} \\
+            & = \left. \dv{t}(\ab(1 + \frac{t}{3})^2 + \ab(1 + \frac{2t}{3})^2 + \ab(1 + \frac{2t}{3})^2) \right|_{t = 0} \\
+            & = \frac{10}{3}
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.7
+    \begin{solution}
+        取 $f(x, y) = \sqrt{x^3 + y^3},\ x_0 = 1,\ y_0 = 2,\ \Delta x = 0.02,\ \Delta y = -0.03$。那么：
+        $$
+        \Delta f \approx \dd{f} = \frac{3}{2 \sqrt{x_0^3 + y_0^3}} (x_0^2 \dd{x} + y_0^2 \dd{y}) = -0.05
+        $$
+        因此 $\sqrt{1.02^3 + 1.97^3} \approx 2.95$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.8
+    \begin{solution}
+        由题知
+        $$
+        u = - \frac{1}{2} \ln \ab((x - a)^2 + (y - b)^2 + (z - c)^2)
+        $$
+        那么：
+        $$
+        \begin{aligned}
+            \pdv{u}{x} & = -\frac{(x - a)}{(x - a)^2 + (y - b)^2 + (z - c)^2} \\
+            \pdv{u}{y} & = -\frac{(y - b)}{(x - a)^2 + (y - b)^2 + (z - c)^2} \\
+            \pdv{u}{z} & = -\frac{(z - c)}{(x - a)^2 + (y - b)^2 + (z - c)^2} \\
+        \end{aligned}
+        $$
+        因此
+        $$
+        \grad u(x, y, z) = -\frac{1}{(x - a)^2 + (y - b)^2 + (z - c)^2} \cvec{x - a, y - b, z - c}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.9
+    \begin{proof}
+        根据基本不等式，$\abs{x y} \le \frac{x^2 + y^2}{2}$，因此
+        $$
+        \abs{\frac{xy}{\sqrt{x^2 + y^2}}} \le \frac{1}{2} \sqrt{x^2 + y^2} = O(\norm{(x, y)})
+        $$
+        因此 $f(x)$ 在 $(0, 0)$ 连续。
+
+        求偏导有：
+        $$
+        \begin{aligned}
+            \left. \pdv{f}{x} \right|_{(x, y) = (0, 0)} & = \left. \ab(\frac{y^3}{\ab(x^2 + y^2)^{\frac{3}{2}}}) \right|_{x = 0} = 0 \\
+            \left. \pdv{f}{y} \right|_{(x, y) = (0, 0)} & = \left. \ab(\frac{x^3}{\ab(x^2 + y^2)^{\frac{3}{2}}}) \right|_{y = 0} = 0
+        \end{aligned}
+        $$
+        因此 $f(x)$ 可偏导。
+
+        假设 $f(x)$ 可微，那么其全微分应当满足：
+        $$
+        \dd{f} = \pdv{f}{x} \dd{x} + \pdv{f}{y} \dd{y} + o(\norm{\dd{x}})
+        $$
+        但是
+        $$
+        \dd{f} - \pdv{f}{x} \dd{x} - \pdv{f}{y} \dd{y} = \frac{xy}{\sqrt{x^2 + y^2}} - 0 - 0 = O(\norm{\dd{x}}) > o(\norm{\dd{x}})
+        $$
+        矛盾，因此 $f(x)$ 不可微。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 15.1.10
+    \begin{solution}
+        求 $\vect{l} = (1, k)$ 的方向导数：
+        $$
+        \begin{aligned}
+            \left. \pdv{f}{\vect{l}} \right|_{\vect{x} = \vect{0}} & = \lim_{x \to 0} \frac{\sqrt{1 + k^2}}{x} \cdot \frac{2 k x^3}{x^2 + k^4 x^4} \\
+            & = 2k \sqrt{1 + k^2}
+        \end{aligned}
+        $$
+        是存在的。特别地，当 $k = +\infty$，即 $\vect{l} = (1, \infty)$ 时，有
+        $$
+        \left. \pdv{f}{\vect{l}} \right|_{\vect{x} = \vect{0}} = 0
+        $$
+
+        但是，沿 $(x, k \sqrt{x})$ 逼近 $\vect{0}$ 时
+        $$
+        \lim_{x \to 0} \frac{2 k x^2}{x^2 + k^2 x^2} = \frac{2k}{1 + k^2}
+        $$
+        这依赖于 $k^2$。因此，函数在 $\vect{0}$ 处不连续、不可微。
+    \end{solution}
+\end{problem}

@@ -29,6 +29,20 @@
     对于 $D \subset \mathbb{R}^{n}, f: D \to \mathbb{R}^{m}$，$f$ 是 $D$ 上连续映射的充要条件是 $f(\vect{x})$ 的每一个分量都是 $D$ 上的连续函数。
 \end{theorem}
 
+我们有如下定理和推论：
+
+\begin{theorem}
+    连续映射将道路连通集合映射为道路连通集合
+\end{theorem}
+
+\begin{corollary}
+    \ 
+    \begin{itemize}
+        \item 存在连续函数将道路连通的紧致集映射为区间；
+        \item 存在连续函数将闭区域映射为闭区间。
+    \end{itemize}
+\end{corollary}
+
 \subsection{作业}
 
 \begin{problem}
@@ -80,6 +94,222 @@
 \begin{problem}
     习题 14.1.5
     \begin{proof}
-        
+        \begin{enumerate}
+            \item[\textbf{1)}] 充分性根据聚点的定义即证，下面证明必要性。使用反证法。若存在 $\varepsilon > 0$ 使得 $B_{\varepsilon}(\vect{a}) \cap E$ 中只有有限个点，那么取：
+            $$
+            r = \min\ab\{\norm{\vect{x}}: \vect{x} \in B_{\varepsilon}(\vect{a}) \cap E \setminus \{\vect{a}\}\}
+            $$
+            则 $\ab(B_{r}(\vect{a}) \setminus \{\vect{a}\}) \cap E = \varnothing$，与 $\vect{a}$ 是聚点矛盾，故得证。
+
+            \item[\textbf{2)}] 充分性：根据点列极限的定义
+            $$
+            \forall\,\varepsilon > 0: \exists\,N \in \mathbb{N}: \norm{\vect{x}_N - \vect{a}} < \varepsilon \implies \vect{x}_N \in B_{\varepsilon}(\vect{a})
+            $$
+            因为 $\vect{x}_k$ 互异，不妨假设 $\vect{x}_k \neq \vect{a}$，即证。
+
+            必要性：按如下规则构造点列，记 $\operatorname{Select}(S)$ 表示从集合 $S$ 中任选一个元素：
+            $$
+            \begin{aligned}
+                \vect{x}_1 & = \operatorname{Select}\ab(\ab(B_{1}(\vect{a}) \setminus \{\vect{a}\}) \cap E) \\
+                \vect{x}_{k + 1} & = \operatorname{Select}\ab(\ab(B_{\norm{\vect{x}_k - \vect{a}} / 2} \setminus \{\vect{a}\}) \cap E)
+            \end{aligned}
+            $$
+            显然有 $\norm{\vect{x}_k - \vect{a}} \le \frac{1}{2^{k - 1}}$，因此 $\lim\limits_{k \to \infty} \vect{x}_k = \vect{a}$，即证。
+        \end{enumerate}
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 14.1.6
+    \begin{proof}
+        $$
+        E \text{是闭集} \iff E' \subseteq E \iff E = (E \cup E') = \overline{E}
+        $$
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 14.3.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] $\{(x, y): x \ge y\}$；
+            \item[\textbf{4)}] $\{(x, y, z): x + y + z > 0\}$；
+            \item[\textbf{6)}] $[-1, 1] \times ((-\infty, -1] \cup [1, +\infty))$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 14.3.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}] 因为
+            $$
+            \abs{\frac{xy}{x^2 + y^2}} \le \frac{1}{\abs{\frac{x}{y} + \frac{y}{x}}} \le \frac{1}{2}
+            $$
+            所以
+            $$
+            (\frac{xy}{x^2 + y^2})^{x^2} \le (\frac{1}{2})^{x^2}
+            $$
+            根据夹逼定理可得
+            $$
+            \lim_{(x, y) \to (\infty, \infty)} (\frac{xy}{x^2 + y^2})^{x^2} = 0
+            $$
+
+            \item[\textbf{4)}]
+            $$
+            \frac{x^2 + y^2}{\abs{x} + \abs{y}} = \frac{(\abs{x} + \abs{y})^2 - 2 \abs{x} \abs{y}}{\abs{x} + \abs{y}} = (\abs{x} + \abs{y}) - 2 \frac{\abs{x} \abs{y}}{\abs{x} + \abs{y}}
+            $$
+            而
+            $$
+            \begin{gathered}
+                \lim_{(x, y) \to (0, 0)} (\abs{x} + \abs{y}) = 0 \\
+                \lim_{(x, y) \to (0, 0)} 2 \frac{\abs{x} \abs{y}}{\abs{x} + \abs{y}} = \frac{2}{\lim\limits_{(x, y) \to (0, 0)} \frac{\abs{x} + \abs{y}}{\abs{x} \abs{y}}} = \frac{2}{+\infty} = 0
+            \end{gathered}
+            $$
+            因此
+            $$
+            \lim_{(x, y) \to (0, 0)} \frac{x^2 + y^2}{\abs{x} + \abs{y}} = 0
+            $$
+
+            \item[\textbf{6)}]
+            $$
+            \lim_{(x, y) \to (0, 1)} \frac{1 - xy}{x^2 + y^2} = \frac{\lim\limits_{(x, y) \to (0, 1)} (1 - xy)}{\lim\limits_{(x, y) \to (0, 1)} (x^2 + y^2)} = \frac{1}{1} = 1
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 14.3.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 重极限：
+            $$
+            \lim_{(x, y) \to (0, 0)} \abs{y \sin \frac{1}{x}} \le \lim_{(x, y) \to (0, 0)} \abs{y} = 0 \implies \lim_{(x, y) \to (0, 0)} y \sin \frac{1}{x} = 0
+            $$
+            累次极限：
+            $$
+            \begin{gathered}
+                \lim_{x \to 0} \lim_{y \to 0} y \sin \frac{1}{x} = \lim_{x \to 0} 0 = 0 \\
+                \lim_{y \to 0} \lim_{x \to 0} y \sin \frac{1}{x} = \lim_{y \to 0} y \cdot \text{不存在} = \text{不存在}
+            \end{gathered}
+            $$
+
+            \item[\textbf{3)}] 重极限：
+            $$
+            \lim_{(x, y) \to (0, 0)} \frac{\sin (xy)}{y} = \lim_{(x, y) \to (0, 0)} \frac{x y}{y} = \lim_{(x, y) \to (0, 0)} x = 0
+            $$
+            
+            累次极限：
+            $$
+            \begin{gathered}
+                \lim_{x \to 0} \lim_{y \to 0} \frac{\sin (x y)}{y} = \lim_{x \to 0} x = 0 \\
+                \lim_{y \to 0} \lim_{x \to 0} \frac{\sin (x y)}{y} = \lim_{y \to 0} \frac{0}{y} = 0
+            \end{gathered}
+            $$
+
+            \item[\textbf{5)}] 重极限：
+            $$
+            \lim_{(x, y) \to (0, 0)} f(x, y) = \lim_{r \to 0} \frac{r^2}{\sqrt{1 + r^2} - 1} = \frac{r^2}{\frac{1}{2} r^2} = 2
+            $$
+            
+            累次极限：
+            $$
+            \begin{gathered}
+                \lim_{x \to 0} \lim_{y \to 0} f(x, y) = \lim_{x \to 0} \frac{x^2}{\sqrt{1 + x^2} - 1} = 2 \\
+                \lim_{y \to 0} \lim_{x \to 0} f(x, y) = \lim_{y \to 0} \frac{y^2}{\sqrt{1 + y^2} - 1} = 2
+            \end{gathered}
+            $$
+
+            \item[\textbf{7)}] 沿 $y = kx$ 逼近：
+            $$
+            \begin{gathered}
+                \lim_{\stackrel{x \to 0}{y = kx}} f(x, y) = \lim_{\stackrel{x \to 0}{y = kx}} \frac{x^2 + k^2 x^2}{k^2 x^4 + (1 - k)^2 x^2} = \frac{1 + k^2}{(1 - k)^2}
+            \end{gathered}
+            $$
+            因此重极限不存在。
+
+            累次极限：
+            $$
+            \begin{gathered}
+                \lim_{x \to 0} \lim_{y \to 0} f(x, y) = \lim_{x \to 0} \frac{x^2}{x^2} = 1 \\
+                \lim_{y \to 0} \lim_{x \to 0} f(x, y) = \lim_{y \to 0} \frac{y^2}{y^2} = 1
+            \end{gathered}
+            $$
+
+            \item[\textbf{9)}] 沿 $\abs{y} = \E^{-\frac{k}{\abs{x}}}$ 逼近：
+            $$
+            \lim_{\stackrel{\abs{x} \to 0}{\abs{y} = \E^{-\frac{k}{\abs{x}}}}} \abs{y}^{\abs{x}} = \lim_{\stackrel{\abs{x} \to 0}{\abs{y} = \E^{-\frac{k}{\abs{x}}}}} \E^{\abs{x} \cdot \ab(-\frac{k}{\abs{x}})} = \E^{-k}
+            $$
+            因此重极限不存在。
+
+            累次极限：
+            $$
+            \begin{gathered}
+                \lim_{x \to 0} \lim_{y \to 0} \abs{y}^{\abs{x}} = \lim_{x \to 0} 0 = 0 \\
+                \lim_{y \to 0} \lim_{x \to 0} \abs{y}^{\abs{x}} = \lim_{y \to 0} \abs{y}^{0} = 1
+            \end{gathered}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 14.4.1
+    \begin{proof}
+        $f(x, y)$ 是一个初等函数，且 $D$ 在 $f(x, y)$ 定义域内，因此 $f(x, y)$ 在 $D$ 连续。
+
+        取两个点列：
+        $$
+        \begin{gathered}
+            \vect{x}_n = \ab(\sqrt{1 - \frac{1}{n}}, \sqrt{1 - \frac{1}{n}}) \\
+            \vect{y}_n = \ab(\sqrt{\frac{n}{n + 1}}, \sqrt{\frac{n}{n + 1}})
+        \end{gathered}
+        $$
+        那么：
+        $$
+        \begin{gathered}
+            \lim_{n \to \infty} \ab(\sqrt{1 - \frac{1}{n}} - \sqrt{\frac{n}{n + 1}}) = \lim_{n \to \infty} \frac{\frac{n - 1}{n} - \frac{n}{n + 1}}{\sqrt{\frac{n - 1}{n}} + \sqrt{{\frac{n}{n + 1}}}} = \frac{\lim\limits_{n \to \infty} \ab(\frac{1}{n} + \frac{1}{n + 1})}{\lim\limits_{n \to \infty} \ab(\sqrt{\frac{n - 1}{n}} + \sqrt{\frac{n}{n + 1}})} = \frac{0}{2} = 0 \\
+            \implies \lim_{n \to \infty} \norm{\vect{x}_n - \vect{y}_n} = \vect{0}
+        \end{gathered}
+        $$
+        但是
+        $$
+        \begin{gathered}
+            \lim_{n \to \infty} \ab(f(\vect{x}_n) - f(\vect{y}_n)) = \lim_{n \to \infty} \ab(n - (n + 1)) = -1 \neq 0
+        \end{gathered}
+        $$
+        根据 Heine 定理，$f(x, y)$ 在 $D$ 上不一致连续。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 14.4.2
+    \begin{proof}
+        由题知 $r(\vect{x}) = \norm{x}$。那么：
+        $$
+        \forall\,\varepsilon > 0: \exists\,\delta = \varepsilon: \forall\,\vect{x}, \vect{y} \in \mathbb{R}^2: \norm{\vect{x} - \vect{y}} < \delta \implies r(\vect{x}) - r(\vect{y}) = \norm{\vect{x}} - \norm{\vect{y}} \le \norm{\vect{x} - \vect{y}} = \delta = \varepsilon
+        $$
+        即证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 14.4.3
+    \begin{proof}
+        设有两个连续映射 $g: A \to B,\ f: B \to C$。那么对于 $f$：
+        $$
+        \forall\, \vect{u} \in B,\ \varepsilon > 0: \exists\,\delta(\varepsilon) > 0: \forall\,\vect{v} \in B: \norm{\vect{u} - \vect{v}} < \delta(\varepsilon) \implies f(\vect{u}) - f(\vect{v}) < \varepsilon
+        $$
+        同理对于 $g$：
+        $$
+        \forall\, \vect{x} \in A,\ \delta > 0: \exists\,\eta(\delta) > 0: \forall\,\vect{y} \in A: \norm{\vect{x} - \vect{y}} < \eta(\delta) \implies g(\vect{x}) - g(\vect{y}) < \delta
+        $$
+        因此，对于任意 $\vect{x} \in A$ 和 $\varepsilon > 0$，都有
+        $$
+        \forall\, \vect{y} \in A: \norm{\vect{x} - \vect{y}} < \eta(\delta(\varepsilon)) \implies \norm{f(g(\vect{x})) - f(g(\vect{y}))} < \varepsilon
+        $$
+        也就是说 $(f \circ g)$ 也是连续映射。
     \end{proof}
 \end{problem}

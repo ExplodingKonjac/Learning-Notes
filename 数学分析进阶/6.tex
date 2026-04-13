@@ -1,0 +1,36 @@
+\section{傅里叶级数}
+
+\subsection{Fourier 级数 continue}
+
+\subsubsection{以 $2l$ 为周期的展开}
+
+对于以 $2l$ 为周期的函数 $f(x)$，我们进行变量替换：
+$$
+t \gets \frac{\pi x}{l}
+$$
+得到新的函数 $g(t) = f(\frac{lt}{\pi})$，其周期为 $2\pi$。展开 $g(t)$ 得到：
+$$
+g(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos(nt) + b_n \sin(nt))
+$$
+其中：
+$$
+\begin{aligned}
+    a_n & = \frac{1}{\pi} \int_{-\pi}^{\pi} g(t) \cos(nt) \dd{t} \\
+    b_n & = \frac{1}{\pi} \int_{-\pi}^{\pi} g(t) \sin(nt) \dd{t}
+\end{aligned}
+$$
+
+代入 $t = \frac{\pi x}{l}$，得到：
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \ab(a_n \cos \frac{n\pi x}{l} + b_n \sin \frac{n\pi x}{l})
+$$
+其中：
+$$
+\begin{aligned}
+    a_n & = \frac{1}{l} \int_{-l}^{l} f(x) \cos \frac{n\pi x}{l} \dd{x} \\
+    b_n & = \frac{1}{l} \int_{-l}^{l} f(x) \sin \frac{n\pi x}{l} \dd{x}
+\end{aligned}
+$$
+
+\section{作业}
+

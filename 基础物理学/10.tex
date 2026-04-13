@@ -1,0 +1,146 @@
+\section{刚体力学}
+
+\subsection{刚体运动学}
+
+\subsubsection{刚体运动的分类}
+
+刚体的运动分为以下几类。
+
+\begin{itemize}
+    \item 平动：刚体运动时，若刚体内任意两点的连线在运动过程中保持平行；
+    \item 绕固定轴转动：刚体内所有点都沿同一直线作圆周运动；
+    \item 平面平行运动：刚体中的任意点都始终在同一平面内运动；
+    \item 绕固定点转动：刚体运动时，只有一点固定不动，整个刚体围绕着过该点的某个瞬时轴转动；
+    \item 一般运动。
+\end{itemize}
+
+\subsubsection{刚体定轴运动的描述}
+
+绕定轴转动通常关注下面几个物理量：角位移 $\theta$，角速度 $\omega$，角加速度 $\beta$。它们之间的关系如下：
+$$
+\omega = \dv{\theta}{t},\ \beta = \dv{\theta}{t}
+$$
+对于刚体上一个距离轴位移为 $\vect{r}$ 的质点，其速度和加速度为：
+$$
+\vect{v} = \vect{\omega} \times \vect{r},\ \vect{a} = \vect{\beta} \times \vect{r} + \vect{\omega} \times \vect{v}
+$$
+
+对于任意一个质点，无论选择哪一个点作为基点，质点的角速度都是相同的。
+
+\subsubsection{转动惯量}
+
+转动惯量类似于研究物体转动的惯性质量。
+
+\begin{definition}[转动惯量]
+    对于一个刚体和一个固定轴，定义其转动惯量为：
+    $$
+    I = \int_m r^2 \dd{m}
+    $$
+    其中 $r$ 是质元到转动轴的垂直距离。
+\end{definition}
+
+对于以下几种物体，有转动惯量的结论：
+
+\begin{itemize}
+    \item 匀质圆环，过圆心垂直轴：$I = m R^2$；
+    \item 匀质圆盘，过圆心垂直轴：$I = \frac{1}{2} m R^2$；
+    \item 匀质球壳，过球心轴：$I = \frac{2}{3} m R^2$；
+    \item 匀质球体，过球心轴：$I = \frac{2}{5} m R^2$；
+    \item 匀质圆柱体，过中点轴：$I = \frac{1}{4} m R^2 + \frac{1}{12} m l^2$。
+\end{itemize}
+
+要计算相对其它轴的转动惯量，可以应用下面的定理：
+
+\begin{theorem}[平行轴定理]
+    设相对于轴 $\ell$ 的转动惯量为 $I$，相对于 $\ell'$ 的转动惯量为 $I'$，若 $\ell \parallel \ell'$ 且其距离为 $d$，那么：
+    $$
+    I' = I + m d^2
+    $$
+\end{theorem}
+
+\begin{theorem}[薄板正交轴定理]
+    对于质量呈平面分布的薄板，设板平面为 $(x y)$，那么设绕 $x$ 轴的转动惯量为 $I_x$，绕 $y$ 轴的转动惯量为 $I_y$，那么绕垂直于 $x, y$ 轴的 $z$ 轴的转动惯量为
+    $$
+    I_z = I_x + I_y
+    $$
+\end{theorem}
+
+\section{作业}
+
+\begin{problem}
+    习题 6.4
+    \begin{solution}
+        质心所受外力来自于墙壁支持力，而对 $m_1$ 分析，支持力等于弹簧的弹力。当外力刚刚撤区的瞬间，弹簧弹力最大，有：
+        $$
+        (m_1 + m_2) a_m = k x_0 \implies a_m = \frac{k x_0}{m_1 + m_2}
+        $$
+        系统总动能来自于弹簧弹性势能。质心速度最大时，$m_1, m_2$ 相对质心动能为 $0$，弹簧势能全部转换为动能：
+        $$
+        \frac{1}{2} (m_1 + m_2) v_m^2 = \frac{1}{2} k x_0^2 \implies v_m = x_0 \sqrt{\frac{k}{m_1 + m_2}}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.7
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] $v_c = \frac{m_1 v_0}{m_1 + m_2}$。
+            \item[\textbf{2)}] $L = m_1 v_0 l \frac{m_2}{m_1 + m_2}$。
+            \item[\textbf{3)}] 质心做匀速直线运动，两球在质心系下，绕质心做匀速圆周运动。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.6
+    \begin{solution}
+        以 $O$ 为原点，$OB$ 为 $x$ 轴，$OA$ 为 $y$ 轴建立平面直角坐标系，那么瞬心位置位于 $(l \cos \varphi, l \sin \varphi)$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.9
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 使用平行轴定理，那么杆部分的贡献为
+            $$
+            I_1 = \frac{1}{12} m l^2 + m \ab(\frac{1}{2} l)^2 = \frac{1}{3} m l^2
+            $$
+            圆盘部分的贡献为
+            $$
+            I_2 = \frac{1}{2} m R^2 + m R^2 = \frac{3}{2} m R^2
+            $$
+            因此整体的绕 $O$ 轴转动惯量为
+            $$
+            I_O = I_1 + I_2 = \frac{1}{3} m l^2 + \frac{3}{2} m R^2
+            $$
+            \item[\textbf{2)}] 质心距 $O$ 的距离为：
+            $$
+            d = \frac{1}{M + m} \ab(m \cdot \frac{1}{2} l + M \cdot (l + R))
+            $$
+            运用平行轴定理，绕 $C$ 的转动惯量为
+            $$
+            I_C = I_O + (m + M) d^2 = \frac{1}{3} m l^2 + \frac{3}{2} m R^2 + \frac{1}{M + m} \ab(\frac{1}{2} m l + M (l + R))^2
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.10
+    \begin{solution}
+        完整的大圆盘的转动惯量为
+        $$
+        I_1 = \frac{1}{2} M R^2
+        $$
+        单个小圆盘的转动惯量为
+        $$
+        I_2 = \frac{1}{2} m r^2 + m \ab(\frac{1}{2} R)^2 = \frac{1}{2} m r^2 + \frac{1}{4} m R^2
+        $$
+        代入 $\frac{M}{m} = \frac{R^3}{r^3}$，得到所求的物体的转动惯量为
+        $$
+        I = I_1 - 2 I_2 = M \frac{R^5 - 2r^5 - r^3 R^2}{2 R^3}
+        $$
+    \end{solution}
+\end{problem}
