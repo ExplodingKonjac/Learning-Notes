@@ -1,0 +1,100 @@
+\section{刚体力学 III}
+
+\subsection{快速重陀螺的旋进}
+
+\subsubsection{旋进现象}
+
+当陀螺旋转时受到另一个力矩，其旋转轴也会绕某个轴开始旋转，这称为\textbf{旋进现象}。
+
+现象出现的原因是外力矩使得角动量做类似圆周运动的变化。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 7.14
+    \begin{proof}
+        计算刚体的转动惯量：
+        $$
+        I = \frac{1}{2} \cdot \frac{M l_1 R_1^2}{l_1 R_1^2 + l_2 R_2^2} R_1^2 + \frac{1}{2} \cdot \frac{M l_2 R_2^2}{l_1 R_1^2 + l_2 R_2^2} R_2^2 = \frac{M \ab(l_1 R_1^4 + l_2 R_2^4)}{2 \ab(l_1 R_1^2 + l_2 R_2^2)}
+        $$
+        设角加速度为 $\beta$，假设以 $m_1$ 下落为正方向，那么有方程：
+        $$
+        \begin{dcases}
+            I \beta = F_1 R_1 - F_2 R_2 \\
+            m_1 g - F_1 = m_1 \beta R_1 \\
+            F_2 - m_2 g = m_2 \beta R_2\\
+        \end{dcases}
+        $$
+        解得 $\beta = \frac{(m_1 R_1 - m_2 R_2) g}{m_1 R_1^2 + m_2 R_2^2 + \frac{M \ab(l_1 R_1^4 + l_2 R_2^4)}{2 \ab(l_1 R_1^2 + l_2 R_2^2)}}$。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 7.17
+    \begin{solution}
+        计算棒绕 $O$ 点的转动惯量：
+        $$
+        I = \frac{1}{12} m l^2 + \frac{1}{4} m l^2 = \frac{1}{3} m l^2
+        $$
+        子弹动量的变化量等于棒受到的力矩，因此：
+        $$
+        I \omega = \frac{1}{2} m v \cdot l \implies \omega = \frac{3 v}{2 l}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.18
+    \begin{solution}
+        圆盘的转动惯量：
+        $$
+        I = \frac{1}{2} M R^2
+        $$
+        设人绕轴的角速度为 $\omega_1$，圆盘绕轴的角速度为 $\omega_2$，那么根据角动量守恒：
+        $$
+        \begin{dcases}
+            m \omega_1 R^2 + I \omega_2 = 0 \\
+            (\omega_1 - \omega_2) R = v
+        \end{dcases}
+        $$
+        解得 $\omega_1 = \frac{M v}{(2m + M) R},\ \omega_2 = - \frac{2 m v}{(2m + M) R}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.23
+    \begin{solution}
+        定性分析，碰撞后小球沿同直线做匀速直线运动，棒质心也沿这一直线做匀速直线运动，同时棒相对于质心匀速转动。
+
+        棒绕质心的转动惯量为
+        $$
+        I = \frac{1}{12} M l^2
+        $$
+        设碰撞后小球速度为 $v_1$，棒质心速度为 $v_2$，棒绕质心角速度为 $\omega$，那么：
+        $$
+        \begin{dcases}
+            m v_0 = m v_1 + M v_2 \\
+            \frac{1}{2} m v_0 l = \frac{1}{2} m v_1 l + I \omega \\
+            \frac{1}{2} m v_0^2 = \frac{1}{2} m v_1^2 + \ab(\frac{1}{2} M v_2^2 + \frac{1}{2} I \omega^2)
+        \end{dcases}
+        $$
+        解得 $v_1 = \frac{4m - M}{4m + M} v_0,\ v_2 = \frac{2m}{4m + M} v_0,\ \omega = \frac{12m v_0}{(4m + M) l}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7.26
+    \begin{proof}
+        设线轴所受摩擦力为 $f$（向左为正方向），质心加速度为 $a$（向右为正方向），线轴绕质心角加速度为 $\beta$（顺时针为正方向），线轴转动惯量为 $I$，那么有方程：
+        $$
+        \begin{dcases}
+            a = R \beta \\
+            f R - F r = I \beta \\
+            F \cos \theta - f = m a \\
+        \end{dcases}
+        $$
+        解得 $\beta = \frac{(R \cos \theta - r) F}{I + m R^2}$。
+        
+        那么显然，$\theta < \arccos \frac{r}{R}$ 时，线轴顺时针转动，向前滚动；$\theta > \arccos \frac{r}{R}$ 时，线轴逆时针转动，向后滚动。
+    \end{proof}
+\end{problem}

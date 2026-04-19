@@ -1,0 +1,214 @@
+\section{傅里叶级数 III}
+
+\subsection{Fourier 级数收敛定理}
+
+之前给出了 Fourier 级数的收敛定理，接下来讨论其证明。
+
+假设 $f(x)$ 是 $[-\pi, \pi]$ 上的分段可积函数，我们写出其 Fourier 级数的部分和：
+$$
+S_N(x) = \frac{a_0}{2} + \sum_{i = 1}^{N} (a_n \cos (n x) + b_n \sin (n x))
+$$
+将积分式代入：
+$$
+\begin{aligned}
+    S_N(x) & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \ab(\frac{1}{2} + \sum_{i = 1}^{N} (\cos (n t) \cos (n x) + \sin (n t) \sin (n x))) \dd{t} \\
+    & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \ab(\frac{1}{2} + \sum_{n = 1}^{N} \cos (n (t - x))) \dd{t}
+\end{aligned}
+$$
+
+我们将括号内的部分提取出来化简，然后利用周期性，代换 $u \gets t - x$：
+$$
+\begin{gathered}
+    D_N(u) = \frac{1}{2} + \sum_{n = 1}^{N} \cos (n u) = \frac{\sin (N + \frac{1}{2}) u}{2 \sin \frac{u}{2}} \\
+    S_N(x) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) D_N(t - x) \dd{t} = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x + u) D_N(u) \dd{u}
+\end{gathered}
+$$
+不难发现 $D_N(u)$ 在 $[-\pi, \pi]$ 上积分是个常数，且是一个偶函数，因此
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} D_N(u) \dd{u} = 1,\ \frac{1}{\pi} \int_{0}^{\pi} D_N(u) \dd{u} = \frac{1}{2}
+$$
+利用该性质得到：
+$$
+\begin{aligned}
+    & S_N(x) - \frac{f(x_0 - 0) + f(x_0 + 1)}{2} \\
+    = & S_N(x) - \frac{1}{\pi} \int_{0}^{\pi} f(x_0 + 0) D_N(u) \dd{u} - \frac{1}{\pi} \int_{-\pi}^{0} f(x_0 - 0) D_N(u) \dd{u} \\
+    = & \frac{1}{\pi} \int_{0}^{\pi} \ab(f(x + u) - f(x + 0)) D_N(u) \dd{u} + \frac{1}{\pi} \int_{0}^{\pi} \ab(f(x - u) - f(x - 0)) D_N(u) \dd{u} \\
+    = & I_1 + I_2
+\end{aligned}
+$$
+
+如果我们能够证明 $I_1 = I_2 = 0$ 那就做完了。为此我们引入一个引理：
+
+\begin{lemma}[Riemann-Lebesgue 引理]
+    若 $f(x)$ 在 $[a, b]$ 上可积或绝对可积，那么：
+    $$
+    \begin{gathered}
+        \lim_{\lambda \to \infty} \int_a^b f(x) \sin(\lambda x) \dd{x} = 0 \\
+        \lim_{\lambda \to \infty} \int_a^b f(x) \cos(\lambda x) \dd{x} = 0
+    \end{gathered}
+    $$
+
+    \begin{proof}
+        若 $f(x)$ 可积，因此 $\abs{f(x)} \le M$。令 $n = \ceil{\sqrt{\lambda}}$，那么 $\lambda \to \infty$ 时 $n \to \infty$。将 $[a, b]$ 分成 $n$ 个小区间，每个小区间长度为 $\frac{b - a}{n}$，根据 $f(x)$ 可积：
+        $$
+        \lim_{n \to \infty} \sum_{i = 1}^{n} \omega_i \abs{\Delta x_i} = 0
+        $$
+
+        我们又知道，
+        $$
+        \abs{\int_{x_{i - 1}}^{x_i} \cos(\lambda x) \dd{x}} \le \frac{2}{\lambda}
+        $$
+        因此
+        $$
+        \begin{aligned}
+            \int_a^b f(x) \cos(\lambda x) \dd{x} & = \sum_{i = 1}^{n} \int_{x_{i - 1}}^{x_i} f(x) \cos(\lambda x) \dd{x} \\
+            & = \sum_{i = 1}^{n} \int_{x_{i - 1}}^{x_i} (f(x) - f(x_{i - 1})) \cos (\lambda x) \dd{x} + \sum_{i = 1}^{n} \int_{x_{i - 1}}^{x_i} f(x_{i - 1}) \cos (\lambda x) \dd{x} \\
+            & \le \sum_{i = 1}^{n} \omega_i \abs{\Delta x_i} + \frac{2n}{\lambda} M \to 0
+        \end{aligned}
+        $$
+        于是得证。
+    \end{proof}
+\end{lemma}
+
+以 $I_1$ 为例，将 $D_N(u)$ 的表达式代入：
+$$
+I_1 = \frac{1}{\pi} \int_{0}^{\pi} \frac{f(x + u) - f(x + 0)}{2 \sin \frac{u}{2}} \cdot \sin \ab(\ab(N + \frac{1}{2}) u) \dd{u}
+$$
+考虑 $u \to 0^+$ 的情形，因为 $f(x)$ 是分段光滑的，因此：
+$$
+\lim_{u \to 0^+} \frac{f(x + u) - f(x + 0)}{2 \sin \frac{u}{2}} = \lim_{u \to 0^+} \frac{f(x + u) - f(x + 0)}{u} = f'_+(x)
+$$
+于是我们去除了奇异点，前面这一项可积，根据 Riemann-Lebesgue 引理，得证。
+
+\subsection{Fourier 级数的收敛判别法}
+
+\begin{theorem}[Fourier 级数的局部化定理]
+    若 $f$ 是以 $2\pi$ 为周期的绝对可积函数，那么 $f$ 的 Fourier 级数在 $x_0$ 是否收敛、收敛到的值仅与 $f$ 在 $x_0$ 点附近的取值有关。
+\end{theorem}
+
+\begin{theorem}[Dini 判别法]
+    若 $f$ 是以 $2\pi$ 为周期的可积或绝对可积函数，对于给定的实数 $s$，令
+    $$
+    \varphi(t) = f(x_0 + t) + f(x_0 - t) - 2s
+    $$
+    若存在 $\delta > 0$ 使得 $\frac{\varphi(t)}{t}$ 在 $[0, \delta]$ 上可积或绝对可积，那么 $f$ 的 Fourier 级数在 $x_0$ 收敛于 $s$。
+\end{theorem}
+
+\begin{definition}[Lipschitz 条件]
+    设 $f$ 在 $\mathring{U}(x_0, \delta)$ 上有定义，且存在 $M > 0$ 使得
+    $$
+    f(x_0 + t) - f(x_0 - t) = O(t^{\alpha}), 0 \le t < \delta
+    $$
+    则称 $f$ 在 $x_0$ 处满足 $\alpha$ 阶 Lipschitz 条件。
+\end{definition}
+
+\begin{theorem}[Dini-Lipschitz 判别法]
+    若 $f$ 是以 $2\pi$ 为周期，且在 $[-\pi, \pi]$ 上可积或绝对可积的函数，若 $f$ 在 $\mathring{U}(x_0, \delta)$ 内满足 $\alpha$ 阶 Lipschitz 条件，则 $f$ 的 Fourier 级数在 $x_0$ 收敛于 $\frac{f(x_0 - 0) + f(x_0 + 0)}{2}$。
+
+    \begin{proof}
+        令
+        $$
+        s = \frac{1}{2} (f(x_0 + 0) + f(x_0 - 0))
+        $$
+        那么
+        $$
+        \frac{\varphi(t)}{t} = \frac{f(x_0 + t) - f(x_0 + 0)}{t} + \frac{f(x_0 - t) - f(x_0 - 0)}{t} = O(t^{\alpha - 1}),\quad 0 \le t < \delta
+        $$
+        当 $\alpha \ge 1$ 时，$\frac{\varphi(t)}{t}$ 有界；当 $0 < \alpha < 1$ 时，$\frac{\varphi(t)}{t}$ 在 $[0, \delta]$ 上绝对可积。根据 Dini 判别法得证。
+    \end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{proof}
+        根据 Diriclet 判别法，该广义积分是收敛的。那么根据积分第二中值定理：
+        $$
+        \exists\,\xi > 0: \int_0^{+\infty} \psi(x) \sin (p x) \dd{x} = \psi(0) \int_0^{\xi} \sin (p x) \dd{x}
+        $$
+        而 $\int_0^{\xi} \sin (p x) \dd{x} = \frac{1 - \cos (p \xi)}{p}$ ，因此
+        $$
+        \abs{\int_0^{+ \infty} \psi(x) \sin (p x) \dd{x}} \le \frac{2 \psi(0)}{p}
+        $$
+        因此
+        $$
+        \lim_{p \to +\infty} \int_0^{+ \infty} \psi(x) \sin (p x) \dd{x} = 0
+        $$
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{proof}
+        先考虑积分式 $\int_{-\pi}^{\pi} \psi(u) \frac{\cos \frac{u}{2} - \cos (pu)}{2 \sin \frac{u}{2}} \dd{x}$。这是一个反常积分，在 $u = 0$ 有奇异点：
+        $$
+        \lim_{u \to 0} \frac{\cos \frac{u}{2} - \cos (p u)}{2 \sin \frac{u}{2}} = \lim_{u \to 0} \frac{O(u^{2})}{u} = 0
+        $$
+        因此该反常积分收敛。进行化简：
+        $$
+        \int_{-\pi}^{\pi} \psi(u) \frac{\cos \frac{u}{2} - \cos (pu)}{2 \sin \frac{u}{2}} \dd{x} = \int_0^{\pi} (\psi(u) - \psi(-u)) \ab(\cot \frac{u}{2} - \frac{\cos (pu)}{2 \sin \frac{u}{2}}) \dd{x}
+        $$
+        因此要证明本题，只需证
+        $$
+        \lim_{p \to + \infty} \int_{0}^{\pi} (\psi(u) - \psi(-u)) \frac{\cos (p u)}{2 \sin \frac{u}{2}} \dd{x} = 0
+        $$
+
+        设函数 $f(u) = \frac{\psi(u) - \psi(-u)}{2 \sin \frac{u}{2}}$，其在 $[0, \pi]$ 上有奇异点 $u = 0$，但因为 $\psi(u)$ 在 $0$ 处有单侧导数，所以：
+        $$
+        \lim_{u \to 0} f(u) = \lim_{u \to 0} \frac{O(u)}{2 \sin \frac{u}{2}} = O(1)
+        $$
+        因此 $f(u)$ 在 $[0, \pi]$ 上可积。根据 Riemann-Lebesgue 引理：
+        $$
+        \lim_{p \to + \infty} \int_{0}^{\pi} f(u) \cos (p u) \dd{x} = 0
+        $$
+        得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{proof}
+        转换该积分：
+        $$
+        \begin{aligned}
+            & \int_{-\delta}^{\delta} \ab(\psi(u) - \frac{1}{2}(\psi(0^+) + \psi(0^-))) \frac{\sin (p u)}{u} \dd{u} \\
+            = & \int_0^{\delta} \ab(\psi(u) + \psi(-u) - \psi(0^+) - \psi(0^-)) \frac{\sin (p u)}{u} \dd{u} \\
+            = & \int_0^{\delta} \ab(\psi(u) - \psi(0^+)) \frac{\sin (p u)}{u} \dd{u} + \int_0^{\delta} \ab(\psi(-u) - \psi(0^-)) \frac{\sin (p u)}{u} \dd{u}
+        \end{aligned}
+        $$
+
+        要证明原题，我们只需要证明：对于 $g(x)$，若其在 $[0, \delta]$ 上单调，且 $g(0^+) = 0$，那么 $\lim\limits_{p \to +\infty} \int_0^{\delta} g(x) \frac{\sin (p x)}{x} \dd{x} = 0$。显然 $g_1(x) = \psi(x) - \psi(0^+)$ 和 $g_2(x) = \psi(-x) - \psi(0^-)$ 均满足该条件。
+
+        下面对于任意的 $\varepsilon > 0$ 讨论：根据 Diriclet 判别法，$\int_a^{+\infty} \frac{\sin x}{x} \dd{x}$ 收敛，因此 $\exists\,M > 0: \forall\,0 < a < b: \abs{\int_a^b \frac{\sin x}{x} \dd{x}} \le M$。又因为 $g(0^+) = 0$，取一个 $\eta > 0$ 使得 $\abs{g(\eta)} \le \frac{M}{2\varepsilon}$，那么：
+        $$
+        \abs{\int_0^{\delta} g(x) \frac{\sin (p x)}{x} \dd{x}} \le \abs{\int_0^\eta g(x) \frac{\sin (p x)}{x} \dd{x}} + \abs{\int_\eta^\delta g(x) \frac{\sin (p x)}{x} \dd{x}}
+        $$
+        \begin{itemize}
+            \item 对于左侧积分：使用积分第二中值定理得到：
+            $$
+            \abs{\int_0^\eta g(x) \frac{\sin (p x)}{x} \dd{x}} = \abs{g(\eta) \int_{\xi}^{\eta} \frac{\sin (p x)}{x} \dd{x}} = \abs{g(\eta) \int_{p \xi}^{p \eta} \frac{\sin t}{t} \dd{t}} \le \frac{\varepsilon}{2}
+            $$
+            \item 对于右侧积分：此时 $\frac{1}{x}$ 在 $[\eta, \delta]$ 中没有奇异点，因此根据 Riemann-Lebesgue 引理：
+            $$
+            \lim_{p \to +\infty} \int_{\eta}^{\delta} \frac{\sin (p x)}{x} \dd{x} = 0
+            $$
+            于是总是可以找到 $p$ 使得 $\abs{\int_{\eta}^{\delta} \frac{\sin (p x)}{x} \dd{x}} \le \frac{\varepsilon}{2}$。
+        \end{itemize}
+        综上，就有：
+        $$
+        \abs{\int_0^{\delta} g(x) \frac{\sin (p x)}{x} \dd{x}} \le \varepsilon
+        $$
+        得证。
+    \end{proof}
+\end{problem}
+
+\begin{problem}
+    习题 8
+    \begin{solution}
+        $\sin x$ 的非零零点为 $k \pi\ (k \in \mathbb{Z} \setminus \{0\})$，因此答案就是
+        $$
+        \sum_{k = 1}^{+\infty} \frac{2}{(k \pi)^2} = \frac{2}{\pi^2} \sum_{k = 1}^{+ \infty} \frac{1}{k^2} = \frac{2}{\pi^2} \cdot \frac{\pi^2}{6} = \frac{1}{3}
+        $$
+    \end{solution}
+\end{problem}

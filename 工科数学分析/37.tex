@@ -1,0 +1,44 @@
+\section{多元函数的微分 III}
+
+\subsection{混合偏导数}
+
+对于一个二元函数 $f(x, y)$，如果我们在 $(x_0, y_0)$ 分别先对 $x$ 求偏导，再对 $y$ 求偏导（或者相反），那么得到的就是混合偏导数。记做：
+$$
+\pdv{^2 f}{x \partial y} = \pdv{y}(\pdv{f}{x}),\quad \pdv{^2 f}{y \partial x} = \pdv{x}(\pdv{f}{y})
+$$
+
+\begin{theorem}
+    若函数 $z = f(x, y)$ 在点 $(x_0, y_0)$ 的两个二阶混合偏导数连续，那么：
+    $$
+    \pdv{^2 f}{x \partial y} = \pdv{^2 f}{y \partial x}
+    $$
+    \begin{proof}
+        设 $\varphi(x) = f(x, y_0 + \Delta y) - f(x, y_0),\ \psi(y) = f(x_0 + \Delta x, y) - f(x_0, y)$，那么：
+        $$
+        \begin{aligned}
+            \varphi(x_0 + \Delta x) - \varphi(x_0) &= [f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0 + \Delta x, y_0)] - [f(x_0, y_0 + \Delta y) - f(x_0, y_0)] \\
+            &= \psi(y_0 + \Delta y) - \psi(y_0)
+        \end{aligned}
+        $$
+        由拉格朗日中值定理，存在 $\xi_1 \in (x_0, x_0 + \Delta x)$，使得：
+        $$
+        \varphi(x_0 + \Delta x) - \varphi(x_0) = \varphi'(\xi_1) \Delta x = [f_x(\xi_1, y_0 + \Delta y) - f_x(\xi_1, y_0)] \Delta x
+        $$
+        再次使用拉格朗日中值定理，存在 $\eta_1 \in (y_0, y_0 + \Delta y)$，使得上式变为：
+        $$
+        \varphi(x_0 + \Delta x) - \varphi(x_0) = f_{xy}(\xi_1, \eta_1) \Delta x \Delta y
+        $$
+        同理，对 $\psi(y)$ 两次应用拉格朗日中值定理，存在 $\eta_2 \in (y_0, y_0 + \Delta y)$ 与 $\xi_2 \in (x_0, x_0 + \Delta x)$，使得：
+        $$
+        \psi(y_0 + \Delta y) - \psi(y_0) = \psi'(\eta_2) \Delta y = [f_y(x_0 + \Delta x, \eta_2) - f_y(x_0, \eta_2)] \Delta y = f_{yx}(\xi_2, \eta_2) \Delta x \Delta y
+        $$
+        由于 $\varphi(x_0 + \Delta x) - \varphi(x_0) = \psi(y_0 + \Delta y) - \psi(y_0)$，且假设 $\Delta x, \Delta y \neq 0$ 取值，因此有：
+        $$
+        f_{xy}(\xi_1, \eta_1) = f_{yx}(\xi_2, \eta_2)
+        $$
+        令 $\Delta x \to 0, \Delta y \to 0$，此时 $\xi_1, \xi_2 \to x_0$ 且 $\eta_1, \eta_2 \to y_0$。因为二阶混合偏导数在 $(x_0, y_0)$ 处连续，两边取极限即可得到：
+        $$
+        \pdv{^2 f}{x \partial y} = \pdv{^2 f}{y \partial x}
+        $$
+    \end{proof}
+\end{theorem}

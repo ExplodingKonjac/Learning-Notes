@@ -1,0 +1,189 @@
+\section{多元函数的微分 IV}
+
+\subsection{Taylor 公式}
+
+\begin{definition}[凸区域]
+    设 $D \subset \mathbb{R}^{n}$ 是区域，若连接任意 $D$ 中两点的直线段都完全是 $D$ 的子集，即：
+    $$
+    \forall\,\vect{x}, \vect{y} \in D,\ t \in [0, 1]: t \vect{x} + (1 - t)\vect{y} \in D
+    $$
+    则称 $D$ 为\textbf{凸区域}。
+\end{definition}
+
+首先，类似于一元函数的情形，我们引入中值定理：
+
+\begin{theorem}[中值定理]
+    设 $D \subset \mathbb{R}^{n}$ 为凸区域，$f: D \to \mathbb{R}$ 可微，那么：
+    $$
+    \forall\,\vect{a}, \vect{b} \in D: \exists\,\theta \in [0, 1],\ \vect{\xi} = \vect{a} + \theta (\vect{b} - \vect{a}): f(\vect{b}) - f(\vect{a}) = \ab\langle\grad f(\vect{\xi}) , \vect{b} - \vect{a}\rangle
+    $$
+    \begin{proof}
+        设 $\sigma: [0, 1] \to D$ 为连接 $\vect{a}, \vect{b}$ 的直线段，即 $\sigma(t) = \vect{a} + (\vect{b} - \vect{a}) t$。设 $\varphi(t) = f(\sigma(t))$，那么根据 Lagrange 中值定理：
+        $$
+        \exists\,\theta \in [0, 1]: \varphi(1) - \varphi(0) = \varphi'(\theta)
+        $$
+        使用复合函数求导链式法则：
+        $$
+        f(\vect{b}) - f(\vect{a}) = \vect{J} f(\theta) \times (\vect{b} - \vect{a}) = \ab(\grad f(\theta))^\top \times (\vect{b} - \vect{a}) = \ab\langle\grad f(\theta), \vect{b} - \vect{a}\rangle
+        $$
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    若可微函数 $f$ 在区域 $D$ 上偏导数恒为 $0$，那么 $f$ 在 $D$ 上是常数函数。
+\end{corollary}
+
+然后给出多元函数的 Taylor 公式：
+
+\begin{theorem}[Taylor 公式]
+    设 $f(\vect{x})$ 在 $\vect{x}_0$ 的某个邻域 $U = O(\vect{x}, r)$ 内具有 $k + 1$ 阶连续偏导数，那么对于任意 $\vect{x}_0 + \Delta \vect{x} \in U$，都有：
+    $$
+    f(\vect{x}_0 + \Delta \vect{x}) = f(\vect{x}_0) + \sum_{i = 1}^{k} \frac{1}{i!} \ab(\Delta \vect{x}^\top \times \grad)^{i} f(\vect{x}_0) + R_k
+    $$
+    其中，$k$ 次方指的是算子的幂次，且余项：
+    $$
+    R_k = \frac{1}{(k + 1)!} \ab(\Delta \vect{x}^\top \times \grad)^{k + 1} f(\vect{x}_0 + \theta \Delta \vect{x}),\ (\theta \in [0, 1])
+    $$
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 15.3.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{2)}]
+            $$
+            \begin{gathered}
+                \pdv[2]{u}{x} = \pdv{x}(y z \E^{x y z}) = y^2 z^2 \E^{x y z} \\
+                \pdv[2]{u}{x}{y} = \pdv{x}(x z \E^{x y z}) = \ab(z + x y z^2) \E^{x y z}
+            \end{gathered}
+            $$
+            其它二阶导数是对称的。
+
+            \item[\textbf{3)}] 记 $u = x, v = \frac{x}{y}$，那么 $z = f(x, y)$。先求一阶偏导：
+            $$
+            \begin{gathered}
+                \pdv{z}{x} = \pdv{z}{u} \pdv{u}{x} + \pdv{z}{v} \pdv{v}{x} = f_u + \frac{1}{y} f_v \\
+                \pdv{z}{y} = \pdv{z}{u} \pdv{u}{y} + \pdv{z}{v} \pdv{v}{y} = -\frac{x}{y^2} f_v
+            \end{gathered}
+            $$
+            求二阶偏导：
+            $$
+            \begin{gathered}
+                \pdv[2]{z}{x} = \pdv{x}(\pdv{z}{x}) = \ab(f_{uu} \cdot 1 + f_{uv} \cdot \frac{1}{y}) + \frac{1}{y} \ab(f_{vu} \cdot 1 + f_{vv} \cdot \frac{1}{y}) = f_{uu} + \frac{1}{y} f_{uv} + \frac{1}{y} f_{vu} + \frac{1}{y^2} f_{vv} \\
+                \pdv[2]{z}{y} = \pdv{y}(\pdv{z}{y}) = -x \ab(-\frac{2}{y^3} f_v + \frac{1}{y^2} \cdot \ab(-f_{vv} \cdot \frac{x}{y^2})) = \frac{2x}{y^3} f_{vu} + \frac{x^2}{y^4} f_{vv} \\
+                \pdv[2]{z}{y}{x} = \pdv{y}(\pdv{z}{x}) = \ab(-f_{uv} \cdot \frac{x}{y^2}) + \ab(\frac{1}{y} \cdot f_{vv} \cdot \ab(-\frac{x}{y^2}) - \frac{1}{y^2} f_v) = -\frac{x}{y^2} f_{uv} - \frac{1}{y^2} f_v - \frac{x}{y^3} f_{vv} \\
+                \pdv[2]{z}{x}{y} = \pdv{x}(\pdv{z}{y}) = -\frac{1}{y^2} \ab(f_v + x \cdot \ab(f_{vu} \cdot 1 + f_{vv} \cdot \frac{1}{y})) = -\frac{x}{y^2} f_{vu} - \frac{1}{y^2} f_v - \frac{x}{y^3} f_{vv}
+            \end{gathered}
+            $$
+
+            \item[\textbf{5)}] 先求一阶导：
+            $$
+            \pdv{u}{x_i} = \frac{x_i}{\sqrt{\sum_{j = 1}^{n} x_j^2}}
+            $$
+            那么对于纯偏导数：
+            $$
+            \pdv[2]{u}{x_i} = 1 \cdot \frac{1}{\sqrt{\sum_{j = 1}^{n} x_j^2}} + x_i \cdot \ab(-\frac{2 x_i}{2 \ab(\sum_{j = 1}^{n} x_j^2)^{\frac{3}{2}}}) = \ab(\sum_{j = 1}^{n} x_j^2)^{-\frac{1}{2}} - x_i^2 \ab(\sum_{j = 1}^{n} x_j^2)^{-\frac{3}{2}}
+            $$
+            对于混合偏导数：
+            $$
+            \pdv[2]{u}{x_j}{x_i} = x_i \cdot \ab(-\frac{2 x_j}{2 \ab(\sum_{k = 1}^{n} x_k^2)^{\frac{3}{2}}}) = -x_i x_j \ab(\sum_{k = 1}^{n} x_k^2)^{-\frac{3}{2}}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.3.2
+    \begin{solution}
+        先求一阶导：
+        $$
+        \begin{aligned}
+            \pdv{z}{x} = \frac{1}{2} \cdot \frac{2x}{x^2 + y^2} = \frac{x}{x^2 + y^2} \\
+            \pdv{z}{y} = \frac{1}{2} \cdot \frac{2y}{x^2 + y^2} = \frac{y}{x^2 + y^2}
+        \end{aligned}
+        $$
+        再求二阶纯偏导：
+        $$
+        \begin{aligned}
+            \pdv[2]{z}{x} = \frac{1 \cdot (x^2 + y^2) - x \cdot 2x}{(x^2 + y^2)^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2} \\
+            \pdv[2]{z}{y} = \frac{1 \cdot (x^2 + y^2) - y \cdot 2y}{(x^2 + y^2)^2} = \frac{x^2 - y^2}{(x^2 + y^2)^2}
+        \end{aligned}
+        $$
+        因此 $\pdv[2]{z}{x} + \pdv[2]{z}{y} = 0$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.3.3
+    \begin{solution}
+        先求一阶导：
+        $$
+        \begin{aligned}
+            \pdv{y}{t} & = a \varphi'(x + a t) - a \psi'(x - a t) \\
+            \pdv{y}{x} & = \varphi'(x + a t) + \psi'(x - a t)
+        \end{aligned}
+        $$
+        求二阶：
+        $$
+        \begin{aligned}
+            \pdv[2]{y}{t} & =\pdv{t}(a \varphi'(x + a t) - a \psi'(x - a t)) = a^2 \varphi''(x + a t) - a^2 \psi''(x - a t) \\
+            \pdv[2]{y}{x} & =\pdv{x}(\varphi'(x + a t) + \psi'(x - a t)) = \varphi''(x + a t) + \psi''(x - a t)
+        \end{aligned}
+        $$
+        因此 $\pdv[2]{y}{t} = a^2 \pdv[2]{y}{x}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 这是一个多项式，我们对其进行变型：
+            $$
+            f(x, y) = 2(x - 1)^2 - (x - 1)(y + 2) - (y + 2)^2 + 5
+            $$
+            记 $\rho = \norm{(x, y) - (2, -1)}$，那么有：
+            $$
+            T_n(f, (1, -2); (x, y)) = \begin{dcases}
+                5 + o\ab(1) &,\ n = 0 \\
+                5 + o\ab(\rho) &,\ n = 1 \\
+                2(x - 1)^2 - (x - 1)(y + 2) - (y + 2)^2 + 5 + o\ab(\rho^{n}) &,\ n \ge 2
+            \end{dcases}
+            $$
+
+            \item[\textbf{2)}] 注意到
+            $$
+            \begin{gathered}
+                \pdv{f}{x} = \E^{x + y} = f(x, y) \\
+                \pdv{f}{y} = \E^{x + y} = f(x, y)
+            \end{gathered}
+            $$
+            因此 $f(x, y)$ 的任意阶混合偏导数都是 $f(x, y)$。所以：
+            $$
+            \begin{aligned}
+                T_n(f, (0, 0); (x, y)) & = \sum_{k = 0}^{n} \sum_{i = 0}^{k} \frac{1}{i! (k - i)!} x^i y^{k - i} \E^{0 + 0} + O\ab(x^{n + 1} + y^{n + 1})\\
+                & = \sum_{k = 0}^{n} \frac{1}{k!} \sum_{i = 0}^{k} \binom{k}{i} x^i y^{k - i} + O\ab(x^{n + 1} + y^{n + 1})\\
+                & = \sum_{k = 0}^{n} \frac{(x + y)^{k}}{k!} + o\ab(\norm{(x, y)}^{n})
+            \end{aligned}
+            $$
+
+            \item[\textbf{3)}]
+            $$
+            \begin{aligned}
+                T_3(f, (0, 0); (x, y)) & = \ab(x + \frac{x^3}{6} + O\ab(x^{4})) \cdot \ab(y - \frac{y^2}{2} + \frac{y^3}{3} + O(y^{4})) \\
+                & = x y - \frac{x y^2}{2} + o\ab(\norm{(x, y)}^{3})
+            \end{aligned}
+            $$
+
+            \item[\textbf{4)}]
+            $$
+            \begin{aligned}
+                T_4(f, (0, 0); (x, y)) & = \ab(x^2 + y^2) + O\ab(\ab(x^2 + y^2)^3) \\
+                & = x^2 + y^2 + o\ab(\norm{(x, y)}^{4})
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
