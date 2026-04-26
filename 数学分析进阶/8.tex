@@ -1,0 +1,134 @@
+\section{Fourier 变换 \& 空间解析几何}
+
+\subsection{Fourier 级数的复数形式}
+
+定义复数 Fourier 系数：
+$$
+C_n = \frac{1}{2l} \int_{-l}^{l} f(x) \E^{-\frac{\I n \pi x}{l}} \dd{x}, \quad n = 0, \pm 1, \pm 2, \dots
+$$
+那么 Fourier 级数可以写为：
+$$
+f(x) = \sum_{n = -\infty}^{\infty} C_n \E^{\frac{\I n \pi x}{l}}
+$$
+
+\subsection{非周期函数的 Fourier 变换}
+
+对于在 $\mathbb{R}$ 上可积的非周期函数 $f(x)$，我们做如下操作：
+
+\begin{enumerate}
+    \item 提取出其在 $[-l, l]$ 的部分，以 $2l$ 为周期延拓出周期函数 $\tilde{f}_l(x)$
+    \item 对 $\tilde{f}_l(x)$ 作复数形式的 Fourier 级数展开：
+    $$
+    \tilde{f}_l(x) = \sum_{n = -\infty}^{+\infty} C_n(l) \E^{\I \omega_n x}
+    $$
+    其中：
+    $$
+    \omega_n = \frac{n \pi}{l}, \quad C_n(l) = \frac{1}{2l} \int_{-l}^{l} f(x) \E^{-\I \omega_n x} \dd{x}
+    $$
+    \item 令 $l \to +\infty$，那么得到：
+    $$
+    f(x) = \lim_{l \to +\infty} \tilde{f}_l(x) = \lim_{\Delta \omega \to 0} \frac{1}{2\pi} \sum_{-\infty}^{+\infty} \ab(\int_{-l}^{l} \tilde{f}_l(x) \E^{-\I \omega_n x} \dd{x}) \E^{\I \omega_n x} \Delta \omega
+    $$
+    记
+    $$
+    \varphi_l(\omega) = \int_{-l}^{l} \tilde{f}_l(x) \E^{-\I \omega x} \dd{x}
+    $$
+    那么
+    $$
+    f(x) = \lim_{\Delta \omega \to 0} \frac{1}{2\pi} \sum_{n = -\infty}^{+\infty} \varphi_l(\omega_n) \E^{\I \omega x} \Delta \omega = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \varphi(\omega) \E^{\I \omega x} \dd{\omega}
+    $$
+    其中
+    $$
+    \varphi(\omega) = \lim_{l \to \infty} \int_{-l}^{l} \tilde{f}_l(x) \E^{-\I \omega x} \dd{x} = \int_{-\infty}^{+\infty} f(x) \E^{-\I \omega x} \dd{x}
+    $$
+\end{enumerate}
+
+于是，我们定义：
+
+\begin{definition}[Fourier 变换]
+    \textbf{Fourier 正变换}为：
+    $$
+    \hat{f}(\omega) = \mathcal{F}\ab[f](\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(x) \E^{-\I \omega x} \dd{x}
+    $$
+    \textbf{Fourier 逆变换}为：
+    $$
+    f(x) = \mathcal{F}^{-1}\ab[\hat{f}](x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} \hat{f}(\omega) \E^{\I \omega x} \dd{\omega}
+    $$
+\end{definition}
+
+\subsection{多元函数的 Fourier 变换}
+
+\begin{definition}[多元 Fourier 变换]
+    记 $\vect{\omega} = (\omega_1, \dots, \omega_n), \vect{x} = (x_1, \dots, x_n)$，若 $n$ 元函数 $f \in \mathbb{L}^{1}$，那么称 Fourier 正变换为：
+    $$
+    \hat{f}(\vect{\omega}) = \mathcal{F}\ab[f](\vect{\omega}) = \frac{1}{(2\pi)^{n/2}} \int_{\mathbb{R}^n} f(\vect{x}) \E^{-\I \vect{\omega} \cdot \vect{x}} \dd{\vect{x}}
+    $$
+    Fourier 逆变换为：
+    $$
+    f(\vect{x}) = \mathcal{F}^{-1}\ab[\hat{f}](\vect{x}) = \frac{1}{(2\pi)^{n/2}} \int_{\mathbb{R}^n} \hat{f}(\vect{\omega}) \E^{\I \vect{\omega} \cdot \vect{x}} \dd{\vect{\omega}}
+    $$
+\end{definition}
+
+\subsection{Fourier 变换的性质}
+
+\subsubsection{线性性}
+
+对于任意的复数 $\alpha, \beta \in \mathbb{C}$，都有：
+$$
+\begin{gathered}
+    \mathcal{F}\ab[\alpha f(x) + \beta g(x)](\omega) = \alpha \mathcal{F}\ab[f](\omega) + \beta \mathcal{F}\ab[g](\omega), \\
+    \mathcal{F}^{-1}\ab[\alpha \hat{f}(\omega) + \beta \hat{g}(\omega)](x) = \alpha \mathcal{F}^{-1}\ab[\hat{f}](x) + \beta \mathcal{F}^{-1}\ab[\hat{g}](x)
+\end{gathered}
+$$
+
+\subsubsection{互逆性}
+
+显然，Fourier 正变换和逆变换满足如下的\textbf{互逆性}：
+$$
+\begin{gathered}
+    F^{-1}\ab[\mathcal{F}\ab[f]](x) = f(x), \\
+    \mathcal{F}\ab[F^{-1}\ab[\hat{f}]](\omega) = \hat{f}(\omega)
+\end{gathered}
+$$
+
+\subsubsection{微分性质}
+
+如果 $\abs{x} \to \infty$ 时有 $f(x) \to 0,\ f^{(n - 1)}(x) \to 0$，那么
+$$
+\mathcal{F}\ab[f^{(k)}](\omega) = (\I \omega)^k \mathcal{F}\ab[f](\omega), \quad k = 1, 2, \dots, n
+$$
+
+\subsection{Fourier 变换的应用}
+
+\subsubsection{求解常微分方程组}
+
+使用 Fourier 变换，微分运算可以转换为代数运算，从而简化方程的求解。
+
+\subsection{空间平面及其方程}
+
+\begin{definition}[法向量]
+    若一个非零向量 $\vect{n}$ 垂直于平面 $\alpha$，那么称 $\vect{n}$ 为平面 $\alpha$ 的一个\textbf{法向量}。
+\end{definition}
+
+\subsubsection{点法式方程}
+
+对于平面 $\alpha$，点 $M(x, y, z) \in \alpha$，若有点 $M_0(x_0, y_0, z_0) \in \alpha$ 与法向量 $\vect{n} = (n_x, n_y, n_z)$，那么就有：
+$$
+\overrightarrow{M_0 M} \perp \vect{n} \iff \overrightarrow{M_0 M} \cdot \vect{n} = 0
+$$
+于是得到方程：
+$$
+n_x (x - x_0) + n_y (y - y_0) + n_z (z - z_0) = 0
+$$
+这就是空间平面的\textbf{点法式方程}。
+
+\subsubsection{一般方程}
+
+对于方程
+$$
+A x + B y + C z + D = 0 \quad \ab(A^2 + B^2 + C^2 \ne 0)
+$$
+其称为空间平面的\textbf{一般方程}。不难发现，其法向量为
+$$
+\vect{n} = (A, B, C)
+$$

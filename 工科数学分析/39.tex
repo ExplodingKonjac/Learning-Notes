@@ -1,0 +1,250 @@
+\section{多元函数的微分 V}
+
+\subsection{隐函数定理}
+
+隐函数是指由方程 $F(\vect{x}, y)$ 所确定的函数 $y = f(\vect{x})$。隐函数定理给出了隐函数存在的条件。
+
+\begin{theorem}[隐函数定理]
+    设开集 $D \subset \mathbb{R}^{n + 1}$，若 $F: D \to \mathbb{R}$ 满足：
+    \begin{enumerate}
+        \item $F$ 连续且具有连续偏导数；
+        \item $F(\vect{x}_0, y_0) = 0$；
+        \item $\pdv{F}{x_n}\,(\vect{x}_0, y_0) \neq 0$；
+    \end{enumerate}
+    那么在 $D$ 中存在一个包含 $\vect{x}_0$ 的开矩形 $R = (a_1, b_1) \times \dots \times (a_n, b_n) \times (c, d)$，使得：
+    \begin{enumerate}
+        \item 对于任意 $\vect{x} = (x_1, \dots, x_n) \in (a_1, b_1) \times \dots \times (a_n, b_n)$，存在唯一的 $f(\vect{x}) \in (c, d)$，使得 $F(\vect{x}, f(\vect{x})) = 0$；
+        \item $f$ 在 $(a_1, b_1) \times \dots \times (a_n, b_n)$ 上连续；
+        \item $f$ 在 $(a_1, b_1) \times \dots \times (a_n, b_n)$ 上具有连续偏导数，且：
+        $$
+        \pdv{f}{x_i}(\vect{x}) = -\frac{\pdv{F}{x_i}\,(\vect{x}, f(\vect{x}))}{\pdv{F}{x_n}\,(\vect{x}, f(\vect{x}))}, \quad i = 1, \dots, n - 1
+        $$
+    \end{enumerate}
+
+    \begin{proof}
+        \ 
+        \begin{enumerate}
+            \item 不妨设 $\pdv{F}{y}\,(\vect{x}_0) > 0$。那么根据 $F$ 的连续性和极限的保号性，可知存在一个区间 $I = (c, d)$，使得 $\forall\,y \in I: \pdv{F}{y}\,(\vect{x}_0, y) > 0$。也就是说函数 $F(\vect{x}_0, y)$ 在 $(c, d)$ 上关于 $y$ 单调。因此
+            $$
+            F(\vect{x}_0, c) < 0 \land F(\vect{x}_0, d) > 0
+            $$
+            再次使用保号性，存在一个开矩形 $R = (a_1, b_1) \times \dots \times (a_n, b_n)$，使得
+            $$
+            \forall\,\vect{x} \in R: F(\vect{x}, c) < 0 \land F(\vect{x}, d) > 0
+            $$
+            使用介值定理得到
+            $$
+            \forall\,\vect{x} \in R: \exists\,f(\vect{x}) \in (c, d): F(\vect{x}, f(\vect{x})) = 0
+            $$
+
+            \item 下面证明连续性。对于任意 $\vect{\overline{x}} \in R$ 和 $\varepsilon > 0$，记 $\overline{y} = f(\vect{\overline{x}})$，那么
+            $$
+            F(\vect{\overline{x}}, \overline{y} - \varepsilon) < 0 \land F(\vect{\overline{x}}, \overline{y} + \varepsilon) > 0
+            $$
+            根据连续性和保号性，
+            $$
+            \exists\,\delta > 0: \forall\,\vect{x} \in B_{\delta}(\vect{\overline{x}}): 
+            F(\vect{x}, \overline{y} - \varepsilon) < 0 \land F(\vect{x}, \overline{y} + \varepsilon) > 0
+            $$
+            根据介值定理，$\overline{y} - \varepsilon < f(\vect{x}) < \overline{y} + \varepsilon$，得证。
+            
+            \item 下面证明可导性。设 $\vect{\overline{x}} \in R,\ \overline{y} = f(\vect{\overline{x}})$。记 $\Delta \vect{x} = (0, \dots, \Delta x_i, \dots, 0),\ \Delta y = f(\vect{\overline{x}} + \Delta \vect{x}) - f(\vect{\overline{x}})$，那么根据微分中值定理：
+            $$
+            \Delta y = \pdv{F}{x_i}(\vect{\overline{x}} + \theta \Delta \vect{x}, \overline{y} + \theta \Delta y) + \pdv{F}{y}(\vect{\overline{x}} + \theta \Delta \vect{x}, \overline{y} + \theta \Delta y)
+            $$
+            令 $\Delta x_i \to 0$ 就得到
+            $$
+            \dv{y}{x_i} = - \frac{\pdv{F}{x_i}\,(\vect{\overline{x}}, \overline{y})}{\pdv{F}{y_i}\,(\vect{\overline{x}}, \overline{y})}
+            $$
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 15.4.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 方程两侧同时求微分：
+            $$
+            \begin{aligned}
+                \dd{x} + \dd{y} + \dd{z} & = -\E^{-(x + y + z)} (\dd{x} + \dd{y} + \dd{z}) \\
+                \ab(1 + \E^{-(x + y + z)}) (\dd{x} + \dd{y} + \dd{z}) & = 0 \\
+                \dd{z} & = - \dd{x} - \dd{y}
+            \end{aligned}
+            $$
+            因此
+            $$
+            \pdv{z}{x} = -1,\quad \pdv{z}{y} = -1
+            $$
+
+            \item[\textbf{2)}] 方程两侧同时求微分：
+            $$
+            \begin{aligned}
+                3x^2 \dd{x} + 3y^2 \dd{y} + 3z^2 \dd{z} & = 3a(y z \dd{x} + x z \dd{y} + x y \dd{z}) \\
+                (z^2 - a x y) \dd{z} & = \ab(a y z - x^2) \dd{x} + \ab(a x z - y^2) \dd{y}
+            \end{aligned}
+            $$
+            因此
+            $$
+            \pdv{z}{x} = \frac{a y z - x^2}{z^2 - a x y},\quad \pdv{z}{y} = \frac{a x z - y^2}{z^2 - a x y}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.4.3
+    \begin{solution}
+        设 $F$ 的一阶偏导数为 $F_1, F_2, F_3$，二阶偏导数为 $F_{ij}$。对方程两侧同时微分：
+        $$
+        \begin{aligned}
+            \dd{F} & = F_1 \dd(x y) + F_2 \dd(y + z) + F_3 \dd(x z) \\
+            & = F_1 (y \dd x + x \dd y) + F_2 (\dd y + \dd z) + F_3 (z \dd x + x \dd z) \\
+            & = (F_1 y + F_3 z) \dd x + (F_1 x + F_2) \dd y + (F_2 + F_3 x) \dd z \\
+            & = 0
+        \end{aligned}
+        $$
+        因此
+        $$
+        \pdv{z}{x} = -\frac{F_1 y + F_3 z}{F_2 + F_3 x}, \quad \pdv{z}{y} = -\frac{F_1 x + F_2}{F_2 + F_3 x}
+        $$
+        于是可以求二阶导
+        $$
+        \begin{aligned}
+            \pdv[2]{z}{x}{y} & = \pdv{x}(\pdv{z}{y}) = \pdv{x}(-\frac{F_1 x + F_2}{F_2 + F_3 x}) \\
+            & = - \frac{\pdv{x}(F_1 x + F_2) (F_2 + F_3 x) - (F_1 x + F_2) \pdv{x}(F_2 + F_3 x)}{(F_2 + F_3 x)^2} \\
+            & = -\frac{1}{(F_2 + F_3 x)^2} \ab((F_2 + F_3 x) \ab(F_1 + x \pdv{F_1}{x} + \pdv{F_2}{x}) - (F_1 x + F_2) \ab(\pdv{F_2}{x} + F_3 + x \pdv{F_3}{x})) \\
+        \end{aligned}
+        $$
+        而
+        $$
+        \begin{aligned}
+            \pdv{F_i}{x} & = F_{i1} \pdv{x}(x y) + F_{i2} \pdv{x}(y + z) + F_{i3} \pdv{x}(x z) = y F_{11} + z F_{13} \\
+            & = y F_{i1} + F_{i2} \pdv{z}{x} + F_{i3} \ab(z + x \pdv{z}{x}) \\
+            & = y F_{i1} + z F_{i3} - \frac{F_1 y + F_3 z}{F_2 + F_3 x} (F_{i2} - x F_{i3}) \\
+            & = \frac{(y F_{i1} + z F_{i3})(F_2 + x F_3) - (y F_1 + z F_3)(F_{i2} + x F_{i3})}{F_2 + x F_3}
+        \end{aligned}
+        $$
+        然后将其代入到 $\pdv[2]{z}{x}{y}$ 中：
+        $$
+        \begin{aligned}
+            \pdv[2]{z}{x}{y} & = - \frac{F_2 (F_1 - F_3) (F_2 + x F_3) + x \ab((F_2 + x F_3)A_1 + (F_3 - F_1) A_2 - (x F_1 + F_2) A_3)}{(F_2 + x F_3)^3}
+        \end{aligned}
+        $$
+        其中
+        $$
+        A_i = (y F_{i1} + z F_{i3})(F_2 + x F_3) - (y F_1 + z F_3)(F_{i2} + x F_{i3}),\quad i = 1, 2, 3
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.4.4
+    \begin{solution}
+        对方程组求微分：
+        $$
+        \begin{dcases}
+            \dd{u} + \dd{v} + \dd{w} = - \dd{x} - \dd{y} \\
+            2u \dd{u} + 2v \dd{v} + 2w \dd{w} = -2x \dd{x} - 2y \dd{y} \\
+            3u^2 \dd{u} + 3v^2 \dd{v} + 3w^2 \dd{w} = -3x^2 \dd{x} - 3y^2 \dd{y} \\
+        \end{dcases}
+        $$
+        因此
+        $$
+        \frac{\partial(u, v, w)}{\partial(x, y)} = -\begin{bmatrix}
+            1 & 1 & 1 \\
+            2u & 2v & 2w \\
+            3u^2 & 3v^2 & 3w^2
+        \end{bmatrix}^{-1} \begin{bmatrix}
+            1 & 1 \\
+            2x & 2y \\
+            3x^2 & 3y^2
+        \end{bmatrix}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.4.5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 方程组求微分：
+            $$
+            \begin{dcases}
+                \dd{u} = f_1 (x \dd{u} + u \dd{x}) + f_2 (\dd{v} + \dd{y}) \\
+                \dd{v} = g_1 (\dd{u} - \dd{x}) + g_2 (2v y \dd{v} + v^2 \dd{y}) \\
+            \end{dcases}
+            $$
+            解得
+            $$
+            \begin{dcases}
+                \dd{u} = \frac{f_1 u(1 - 2g_2 vy) - f_2 g_1}{D} \dd{x} + \frac{f_2(1 - 2g_2 vy + g_2 v^2)}{D} \dd{y} \\
+                \dd{v} = \frac{g_1(f_1 u - 1 + f_1 x)}{D} \dd{x} + \frac{g_2 v^2(1 - f_1 x) + g_1 f_2}{D} \dd{y}
+            \end{dcases}
+            $$
+            其中
+            $$
+            D = (1 - f_1 x)(1 - 2g_2 vy) - g_1 f_2
+            $$
+            因此
+            $$
+            \begin{aligned}
+                \pdv{u}{y} & = \frac{f_2 (1 - 2g_2 vy + g_2 v^2)}{(1 - f_1 x)(1 - 2g_2 vy) - g_1 f_2} \\
+                \pdv{v}{y} & = \frac{g_2 v^2(1 - f_1 x) + g_1 f_2}{(1 - f_1 x)(1 - 2g_2 vy) - g_1 f_2}
+            \end{aligned}
+            $$
+
+            \item[\textbf{2)}] 方程组求微分：
+            $$
+            \begin{dcases}
+                x \dd{u} - y \dd{v} & = -u \dd{x} + v \dd{y} \\
+                y \dd{u} + x \dd{v} & = -v \dd{x} - u \dd{y} \\
+            \end{dcases}
+            $$
+            因此
+            $$
+            \frac{\partial(u, v)}{\partial(x, y)} = \begin{bmatrix}
+                x & -y \\
+                y & x 
+            \end{bmatrix}^{-1} \begin{bmatrix}
+                -u & v \\
+                -v & u 
+            \end{bmatrix}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.4.6
+    \begin{proof}
+        $$
+        \begin{aligned}
+            \pdv{u}{r} & = u_x \cos \theta + u_y \sin \theta \\
+            \pdv{u}{\theta} & = -u_x r \sin \theta + u_y r \cos \theta \\
+        \end{aligned}
+        $$
+        继续求二阶导：
+        $$
+        \begin{aligned}
+            \pdv[2]{u}{r} & = (u_{xx} \cos \theta + u_{xy} \sin \theta) \cos \theta + (u_{xy} \cos \theta + u_{yy} \sin \theta) \sin \theta \\
+            & = u_{xx} \cos^2 \theta + u_{yy} \sin^2 \theta + u_{xy} \sin 2\theta \\
+            \pdv[2]{u}{\theta} & = -(-u_{xx} r \sin \theta + u_{xy} r \cos \theta) r \sin \theta - u_x r \cos \theta \\
+            & \quad + (-u_{xy} r \sin \theta + u_{yy} r \cos \theta) r \cos \theta - u_y r \sin \theta \\
+            & = u_{xx} r^2 \sin^2 \theta + u_{yy} r^2 \cos^2 \theta - u_{xy} r^2 \sin 2\theta - u_x r \cos \theta - u_y r \sin \theta
+        \end{aligned}
+        $$
+        因此
+        $$
+        \begin{aligned}
+            \pdv[2]{u}{r} + \frac{1}{r} \pdv{u}{r} + \frac{1}{r^2} \pdv[2]{u}{\theta} & = \ab(u_{xx} \cos^2 \theta + u_{yy} \sin^2 \theta + u_{xy} \sin 2\theta) \\
+            & \quad + \frac{1}{r} (u_x \cos \theta + u_y \sin \theta) \\
+            & \quad + \ab(u_{xx} \sin^2 \theta + u_{yy} \cos^2 \theta - u_{xy} \sin 2\theta) - \frac{1}{r} (u_x \cos \theta - u_y \sin \theta) \\
+            & = (u_{xx} + u_{yy}) (\sin^2 \theta + \cos^2 \theta) \\
+            & = \pdv[2]{u}{x} + \pdv[2]{u}{y}
+        \end{aligned}
+        $$
+    \end{proof}
+\end{problem}

@@ -1,0 +1,153 @@
+\section{相对论 II}
+
+\subsection{相对论时空观 continue}
+
+\subsubsection{钟慢效应}
+
+在 $S$ 系中同地发生的两个事件，固有事件间隔为 $\tau_0$，在 $S'$ 系中观测，就会有 $\tau' = \gamma \tau_0 > \tau_0$。
+
+也就是说，在某个惯性系中同地发生的两个事件，其时间间隔称为\textbf{原时}，在任何其它惯性系中测量地时间间隔都会大于原时。
+
+\subsubsection{双生子佯谬}
+
+假设有一对双生子，其中一人留在地球上，另一人乘坐宇宙飞船以的速度飞往另一个星球，然后立即返回。那么根据相对性原理，双方观察对方都认为对方时间更慢，那么相遇之后谁的年龄更小？
+
+解：狭义相对论适用于惯性系，而出发-返回涉及加速、减速，已经不是惯性系了。因此不能直接应用相对性原理。
+
+\subsection{相对论速度变换式}
+
+分别将 $x', y', z', t'$ 求微分，得到：
+$$
+\begin{aligned}
+    u_x' & = \dv{x'}{t'} = \frac{\dd(\gamma (x - v t))}{\dd(\gamma \ab(t - \frac{v x}{c^2}))} = \frac{\dd{x} - v \dd{t}}{\dd{t} - \frac{v}{c^2} \dd{x}} = \frac{u_x - v}{1 - \frac{v u_x}{c^2}} \\
+    u_y' & = \dv{y'}{t'} = \frac{\dd{y}}{\dd(\gamma \ab(t - \frac{v x}{c^2}))} = \frac{\dd{y}}{\gamma \ab(\dd{t} - \frac{v}{c^2} \dd{x})} = \frac{u_y}{\gamma \ab(1 - \frac{v u_x}{c^2})} \\
+    u_z' & = \dv{z'}{t'} = \frac{\dd{z}}{\dd(\gamma \ab(t - \frac{v x}{c^2}))} = \frac{\dd{z}}{\gamma \ab(\dd{t} - \frac{v}{c^2} \dd{x})} = \frac{u_z}{\gamma \ab(1 - \frac{v u_x}{c^2})} \\
+\end{aligned}
+$$
+
+\subsection{狭义相对论中的质量、能量、动量}
+
+相对性原理要求：物理定律要具有洛伦兹变换不变性，而传统的牛顿力学并不满足。
+
+\subsubsection{质速关系}
+
+设物体在静止参考系 $S$ 中的质量为 $m_0$，那么为了能在相对论下动量守恒成立，其在 $S'$ 系中的质量为：
+$$
+m = \frac{1}{\sqrt{1 - v^2 / c^2}} m_0 = \gamma m_0
+$$
+动量为：
+$$
+\vect{p} = m \vect{u}' = \gamma m_0 \vect{u}'
+$$
+
+\subsubsection{质能关系}
+
+使用功能关系推导：
+$$
+\begin{aligned}
+    E_k & = \int \vect{F} \cdot \dd{\vect{s}} = \int \dv{t}(\gamma m_0 \vect{v}) \cdot \vect{v} \dd{t} \\
+    & = \int \vect{v} \cdot \dd(\gamma m_0 \vect{v}) \\
+    & = \vect{v} \cdot (\gamma m_0 \vect{v}) - \int (\gamma m_0 \vect{v}) \cdot \dd{\vect{v}} \\
+    & = \gamma m_0 v^2 + \frac{m_0 c^2}{\gamma} - m_0 c^2 \\
+    & = m c^2 - m_0 c^2
+\end{aligned}
+$$
+
+当 $v \ll c$ 时有 $E_k \approx \frac{1}{2} m_0 v^2$。
+
+\subsubsection{能量动量关系}
+
+狭义相对论中定义能量 $E = m c^2$，那么：
+$$
+E^2 = c^2 p^2 + m_0^2 c^4
+$$
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 设该参考系以速度 $v$ 相对于 $S$ 沿 $x$ 轴运动，那么：
+            $$
+            \gamma \ab(\frac{x_0}{c} - \frac{v x_0}{c^2}) = \gamma \ab(\frac{x_0}{2c} - \frac{v \cdot 2x_0}{c^2}) \implies v = -\frac{1}{2}c
+            $$
+            \item[\textbf{2)}] 由 $v = -\frac{1}{2} c$ 得到 $\gamma = \frac{1}{\sqrt{1 - v^2 / c^2}} = \frac{2}{\sqrt{3}}$，那么：
+            $$
+            \begin{gathered}
+                t_1' = \gamma \ab(t_1 - \frac{v x_1}{c^2}) = \frac{2}{\sqrt{3}} \ab(\frac{x_0}{c} - \frac{-\frac{1}{2} c x_0}{c^2}) = \frac{\sqrt{3} x_0}{c} \\
+                t_2' = \gamma \ab(t_2 - \frac{v x_2}{c^2}) = \frac{2}{\sqrt{3}} \ab(\frac{x_0}{2c} - \frac{-\frac{1}{2} c \cdot 2x_0}{c^2}) = \frac{4 \sqrt{3} x_0}{3 c}
+            \end{gathered}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.3
+    \begin{solution}
+        $$
+        \begin{dcases}
+            \Delta x' = \gamma \ab(\Delta x - v \Delta t) \\
+            \Delta t' = \gamma \ab(\Delta t - \frac{v}{c^2} \Delta x)
+        \end{dcases}
+        $$
+        代入 $\Delta t = 4\,\mathrm{s},\ \Delta t' = 6\,\mathrm{s},\ \Delta x = 0$ 解得，$\Delta x' = \frac{\sqrt{5}}{2} c \cdot \mathrm{s}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.4
+    \begin{solution}
+        $$
+        \begin{dcases}
+            \Delta x' = \gamma \ab(\Delta x - v \Delta t) \\
+            \Delta t' = \gamma \ab(\Delta t - \frac{v}{c^2} \Delta x)
+        \end{dcases}
+        $$
+        代入 $\Delta t = 0,\ \Delta x = 1\,\mathrm{km},\ \Delta x' = 2\,\mathrm{km}$ 解得，$\Delta t' = \pm \frac{\sqrt{3}}{c} \cdot \mathrm{m}$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 两事件在 $S$ 系中时间间隔 $\Delta t = \frac{l}{c}$。那么根据洛伦兹变换：
+            $$
+            l' = \frac{1}{\sqrt{1 - \beta^2}} \ab(l - \beta c \cdot \frac{l}{c}) = l \sqrt{\frac{1 - \beta}{1 + \beta}} \\
+            $$
+            \item[\textbf{2)}] 根据光速不变原理，$\Delta t' = \frac{l'}{c} = \frac{l}{c} \sqrt{\frac{1 - \beta}{1 + \beta}}$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.6
+    \begin{solution}
+        取 $c = 3 \times 10^{8} \,\mathrm{m / s}$。
+
+        \begin{enumerate}
+            \item[\textbf{1)}] $v = \frac{100 \,\mathrm{m}}{5 \times 10^{-6} \,\mathrm{s}} = 2 \times 10^7 \,\mathrm{m / s} = \frac{2}{15} c$。
+            \item[\textbf{2)}] 由 \textbf{1）} 可知 $\gamma = \frac{1}{\sqrt{1 - v^2 / c^2}} = \frac{15}{\sqrt{221}}$。设 $A$ 静止的参考系为 $S$，$B$ 静止的参考系为 $S'$。那么：
+            $$
+            \Delta t' = \gamma \ab(\Delta t - \frac{v}{c^2} \Delta x) = \frac{15}{\sqrt{221}} \ab(5 \times 10^{-6} \,\mathrm{s} - \frac{2}{15 c} \cdot 100\,\mathrm{m}) = \frac{223}{3 \sqrt{221}} \times 10^{-6} \,\mathrm{s}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1.10
+    \begin{solution}
+        设使物体静止的参考系为 $S'$，观察者参考系为 $S$。由题知：
+        $$
+        m = \gamma m_0 = 1.1m \implies \gamma = 1.1
+        $$
+        物体在 $S'$ 中的长度为固有长度，在 $S$ 中长度为观测到的长度，那么根据洛伦兹变换：
+        $$
+        l' = \gamma l \implies l = \frac{l'}{\gamma} \approx 0.91 l'
+        $$
+        即物体在运动方向上长度缩短了 $9 \%$。
+    \end{solution}
+\end{problem}

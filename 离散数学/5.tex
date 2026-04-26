@@ -1,0 +1,32 @@
+\section{命题逻辑语义 \& 谓词合式公式语义}
+
+\subsection{完全集}
+
+\begin{definition}
+    设 $F$ 是一个关于 $p_1, p_2, \dots, p_n$ 的 $n$ 元联结词，若一个联结词集合 $S$ 满足，能够仅使用 $S$ 中的联结词和 $p_1, p_2, \dots, p_n$ 构造出一个公式 $Q$，使得 $F \equiv Q$，则称 $S$ 能定义 $F$。
+\end{definition}
+
+\begin{definition}[完全集]
+    若一个联结词集合 $S$ 能定义所有可能的联结词，则称 $S$ 是一个\textbf{完全集}。
+\end{definition}
+
+\begin{theorem}
+    $\{\lor, \land, \lnot\}$ 是一个完全集。
+    \begin{proof}
+        对于任意一个 $n$ 元联结词 $F$，构造公式：
+        $$
+        Q = \bigvee_{F(x_1, x_2, \dots, x_n) = 1} \ab(\bigwedge_{x_i = 1} p_i \land \bigwedge_{x_i = 0} \lnot p_i)
+        $$
+        容易验证 $F \equiv Q$。
+    \end{proof}
+\end{theorem}
+
+\begin{definition}[极小完全集]
+    对于一个联结词集合 $S$，若 $S$ 是完全集但是 $S$ 的任意真子集都不是完全集，那么称 $S$ 是一个\textbf{极小完全集}。
+\end{definition}
+
+要证明一个集合是极小完全集，需要：
+\begin{enumerate}
+    \item 证明它本身是完全集；
+    \item 对于任意个真子集，构造一个不能够被该子集定义的联结词作为反例。
+\end{enumerate}
