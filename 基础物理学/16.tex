@@ -1,0 +1,178 @@
+\section{静电场}
+
+\subsection{库仑定律}
+
+\subsubsection{电荷量子化}
+
+密利根油滴实验证明，微小粒子带电量的变化是不连续的。所有电荷量都是单位电荷 $e = 1.60217733 \times 10^{-19}$ 的倍数。
+
+密利根油滴实验过程中选择性地删除筛选了实验数据，因此受到了质疑。
+
+\subsubsection{库仑定律表达式}
+
+两个静止点和之间相互作用力的大小，与它们的电量的乘积成正比，与它们之间距离的平方成反比，同性电荷相吸，异性电荷相斥，即：
+$$
+\vect{F} = k \frac{q_1 q_2}{r^2}
+$$
+其中 $k = \frac{1}{4 \pi \varepsilon_0}$，$\varepsilon_0$ 是真空介电常数。
+
+\subsubsection{电力叠加原理}
+
+当体系中存在多个点电荷时，它们之间的相互作用力时各个点电荷单独存在时的作用力的叠加。
+
+\subsection{电场强度}
+
+现代观点认为，电荷与电荷之间通过\textbf{场}来进行，并不是不需要时间的超距作用。
+
+在系统中引进一电荷量足够小的试探电荷，那么电荷在某点受力与其电荷量的比值就是该处的电场强度。
+
+\begin{definition}[电场强度]
+	假设有一个电荷量为 $q$ 的试探电荷，那么空间某点出电场强度为
+	$$
+	\vect{E} = \frac{\vect{F}}{q}
+	$$
+	其中 $\vect{F}$ 是试探电荷受力。
+\end{definition}
+
+根据电力叠加原理，可以得到电场强度叠加原理：多个电荷在某点处产生的场强等于其分别产生的场强的矢量和。
+
+\subsection{作业}
+
+\begin{problem}
+	（近代物理）习题 1.12
+	\begin{solution}
+		由题知，电子静止能量 $m_0 c^2 = 0.51\,\mathrm{MeV}$。那么加速产生的动能为：
+		$$
+		E_k = \frac{m_0 c^2}{\sqrt{1 - v^2 / c^2}} - m_0 c^2 = 0.13\,\mathrm{MeV}
+		$$
+		解得 $v = 0.6c = 1.8 \times 10^{8} \,\mathrm{m / s}$。
+
+		\begin{enumerate}
+			\item[\textbf{1)}] $t = \frac{l}{v} = \frac{8.4\,\mathrm{m}}{1.8 \times 10^{8}\,\mathrm{m / s}} = 4.67 \times 10^{-8}\,\mathrm{s}$。
+			\item[\textbf{2)}] $l' = \gamma l = 10.54\,\mathrm{m}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（近代物理）习题 1.14
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 刚好增加 $0.4\%$ 时，有
+			$$
+			E_k = (1 + 0.4\%) m_0 c^2 - m_0 c^2 = e U
+			$$
+			解得 $U = 2044.72 \,\mathrm{V}$。
+
+			\item[\textbf{2)}] 此时有
+			$$
+			\frac{1}{\sqrt{1 - v^2 / c^2}} = 1 + 0.4\%
+			$$
+			解得 $v = 0.090 c$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（近代物理）习题 1.15
+	\begin{solution}
+		$$
+		\begin{dcases}
+			\frac{m_0 c}{\sqrt{1 - v^2 / c^2}} = (1 + n) m_0 c \\
+			p = \frac{m_0 v}{\sqrt{1 - v^2 / c^2}}
+		\end{dcases}
+		$$
+		解得 $v = \frac{\sqrt{n (n + 2)}}{n + 1} c,\ p = \sqrt{n (n + 2)} m_0 c$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（近代物理）习题 1.16
+	\begin{solution}
+		$$
+		E(\gamma) = m\ab(\prescript{1}{1}{\mathrm{H}}) c^2 + m\ab(\prescript{2}{1}{\mathrm{H}}) c^2 - m\ab(\prescript{3}{2}{\mathrm{H}}) c^2 \approx 8.81 \times 10^{-13}\,\mathrm{J}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（近代物理）习题 1.18
+	\begin{proof}
+		$$
+		\begin{dcases}
+			F \dd{t} = m \dd{u} + u \dd{m} \\
+			\dd{E} = F \dd{x} \\
+			\dd{x} = u \dd{t} \\
+			E = m c^2
+		\end{dcases}
+		$$
+		进行一些代入，最后得到：
+		$$
+		\frac{c^2}{u} \dd{m} = m \dd{u} + u \dd{m} \\
+		$$
+		因此
+		$$
+		\frac{1}{m} \dd{m} = \frac{u}{c^2 - u^2} \dd{m}
+		$$
+		两边积分解得 $m = \frac{m_0}{\sqrt{1 - v^2 / c^2}}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	（电磁学）习题 1.8
+	\begin{solution}
+		当 $\lambda = \Lambda x$ 时：
+		$$
+		\begin{aligned}
+			E & = \int_{0}^{L} \frac{\Lambda x \dd{x}}{(L + b - x)^2} \\
+			& = \Lambda \ab[\frac{L + b}{L + b - x} + \ln (L + b - x)]_0^L \\
+			& = \Lambda \ab(\frac{L}{b} + \ln \frac{b}{L + b})
+		\end{aligned}
+		$$
+		当 $\lambda = \Lambda (L + b - x)^2$ 时：
+		$$
+		\begin{aligned}
+			E & = \int_{0}^{L} \frac{\Lambda (L + b - x)^2 \dd{x}}{(L + b - x)^2} \\
+			& = \Lambda L
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（电磁学）习题 1.9
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 在轴线上距离圆盘 $d$ 处的场强，垂直于轴线方向为 $0$，沿轴线方向：
+			$$
+			\begin{aligned}
+				E_z(d) & = \int_0^{2\pi} \int_0^R \frac{\sigma r \dd{r} \dd{\theta}}{r^2 + d^2} \cdot \frac{d}{\sqrt{r^2 + d^2}} \\
+				& = 2 \pi \sigma \ab(1 - \frac{d}{\sqrt{R^2 + d^2}})
+			\end{aligned}
+			$$
+			\item[\textbf{2)}] 当 $R \to 0$ 时，$E_z(d) \to 0$；当 $R \to \infty$ 时，$E_z(d) \to 2 \pi \sigma$。
+			\item[\textbf{3)}] 当 $R \to 0$ 时，
+			$$
+			E_z(d) = \frac{2Q}{R^2} \ab(1 - \ab(\frac{R^2}{d^2} + 1)^{-\frac{1}{2}}) \to \frac{2Q}{R^2}\ab(1 - 1 + \frac{1}{2} \cdot \frac{R^2}{d^2}) = \frac{Q}{d^2}
+			$$
+			当 $R \to \infty$ 时，
+			$$
+			E_z(d) = \frac{2Q}{R^2} \ab(1 - \frac{d}{\sqrt{R^2 + d^2}}) \to 0
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	（电磁学）习题 1.11
+	\begin{solution}
+		因为上下对称，所以沿轴线方向场强为 $0$。用复数 $(x + \I y)$ 代表向量 $(x, y)$。
+		$$
+		\begin{aligned}
+			E & = \int_{-\infty}^{+\infty} \int_{0}^{2\pi} \frac{\sigma_0 r \cos \varphi \dd{\varphi} \dd{h}}{r^2 + h^2} \cdot \E^{\I \varphi} \\
+			& = \int_{0}^{2\pi} \E^{\I \varphi} \cos \varphi \dd{\varphi} \int_{-\infty}^{\infty} \frac{r \dd{h}}{r^2 + h^2} \\
+			& = 0 \cdot 2\pi = 0
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}

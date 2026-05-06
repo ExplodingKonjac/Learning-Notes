@@ -1,0 +1,19 @@
+\section{谓词合式公式语义}
+
+\subsection{合式公式的语义}
+
+合式公式的\textbf{语义}就是论域 $D$ 中的一个值，它依赖于一个\textbf{解释} $\mathcal{I}$。其中解释 $\mathcal{I}$ 包含：
+\begin{theorem}
+    \item 论域 $D$；
+    \item 从常量符号到 $D$ 的映射：$I(c) \in D$；
+    \item 从函数符号到运算的映射：$I(f): D^n \rightarrow D$；
+    \item 从谓词符号到逻辑关系的映射：$I(P): D^n \rightarrow D$。
+\end{theorem}
+
+\begin{theorem}
+    设 $Q$ 是合式公式，$t$ 是项，$\sigma$ 是指派函数，若 $t$ 是可代入的，那么 $\sigma(Q[x / t']) = \sigma(t[x / \sigma(t')])$。
+\end{theorem}
+
+\begin{theorem}[替换定理]
+    设 $Q$ 是谓词合式公式，$R_1$ 是 $Q$ 的子公式，若 $R_1 \leftrightarrow R_2$，那么 $Q \leftrightarrow Q[R_1 / R_2]$。
+\end{theorem}

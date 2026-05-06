@@ -1,0 +1,399 @@
+\section{多元函数的微分 VI}
+
+\subsection{向量的叉积和混合积}
+
+\begin{definition}[叉积]
+    对于两个空间向量 $\vect{a}, \vect{b}$，设 $\vect{i}, \vect{j}, \vect{k}$ 为单位正交基，则定义向量的叉积：
+    $$
+    \vect{a} \cp \vect{b} = \begin{vmatrix}
+        \vu*{i} & \vu*{j} & \vu*{k} \\
+        a_1 & a_2 & a_3 \\
+        b_1 & b_2 & b_3
+    \end{vmatrix} = (a_2 b_3 - a_3 b_2) \vu*{i} + (a_3 b_1 - a_1 b_3) \vu*{j} + (a_1 b_2 - a_2 b_1) \vu*{k}
+    $$
+\end{definition}
+
+向量叉积的模长 $\norm{\vect{a} \cp \vect{b}} = \norm{\vect{a}} \norm{\vect{b}} \cos \theta$，其中 $\theta$ 为 $\vect{a}, \vect{b}$ 的夹角。
+
+两向量的叉积垂直于这两个向量，方向由右手定则确定。
+
+\begin{definition}[向量的混合积]
+    对于三个空间向量 $\vect{a}, \vect{b}, \vect{c}$，定义它们的混合积为：
+    $$
+    (\vect{a}, \vect{b}, \vect{c}) = \vect{a} \vdot (\vect{b} \cp \vect{c}) = \begin{vmatrix}
+        a_1 & a_2 & a_3 \\
+        b_1 & b_2 & b_3 \\
+        c_1 & c_2 & c_3
+    \end{vmatrix}
+    $$
+\end{definition}
+
+向量混合积的几何意义是三个向量夹出的平行六面体的体积。
+
+\subsection{隐函数定理的应用}
+
+\subsubsection{空间曲线的切线}
+
+对于空间曲线
+$$
+\begin{dcases}
+    x = x(t) \\
+    y = y(t) \\
+    z = z(t)
+\end{dcases}
+$$
+其在点 $M(x_0, y_0, z_0))$（其中 $x_0 = x(t_0), y_0 = y(t_0), z_0 = z(t_0)$）处的切线方程为：
+$$
+(x, y, z) = (x_0, y_0, z_0) + \lambda (x'(t_0), y'(t_0), z'(t_0))
+$$
+或者写成
+$$
+\frac{x - x_0}{x'(t_0)} = \frac{y - y_0}{y'(t_0)} = \frac{z - z_0}{z'(t_0)}
+$$
+
+对于方程组确定的曲线，可以使用隐函数方程组求导，求出 $\pdv{z}{x},\ \pdv{z}{y}$。
+
+\subsubsection{空间曲线的法平面}
+
+对于空间曲线
+$$
+\begin{dcases}
+    x = x(t) \\
+    y = y(t) \\
+    z = z(t)
+\end{dcases}
+$$
+其在点 $M(x_0, y_0, z_0))$（其中 $x_0 = x(t_0), y_0 = y(t_0), z_0 = z(t_0)$）处的法平面方程为：
+$$
+(x - x_0) x'(t_0) + (y - y_0) y'(t_0) + (z - z_0) z'(t_0) = 0
+$$
+
+\subsubsection{空间曲面的法线}
+
+对于空间曲面
+$$
+F(x, y, z) = 0
+$$
+其在 $(x_0, y_0, z_0)$ 的法线的方向向量为 $\grad F(x_0, y_0, z_0)$，因此其法线方程为
+$$
+\frac{x - x_0}{F_x(x_0, y_0, z_0)} = \frac{y - y_0}{F_y(x_0, y_0, z_0)} = \frac{z - z_0}{F_z(x_0, y_0, z_0)}
+$$
+
+\subsubsection{空间曲面的切平面}
+
+过空间曲面的某点，且垂直于该点的法线的平面称为该点的切平面。因此，空间曲面的某点处的切平面方程为
+$$
+F_x(x_0, y_0, z_0) (x - x_0) + F_y(x_0, y_0, z_0) (y - y_0) + F_z(x_0, y_0, z_0) (z - z_0) = 0
+$$
+
+\subsection{多元函数的极值}
+
+类似于一元函数，定义多元函数的极值：
+
+\begin{definition}
+    设开集 $D \subset \mathbb{R}^{n},\ f: D \to \mathbb{R}$。对于 $\vect{a} \in D$，若
+    $$
+    \exists\,\delta > 0: B_{\delta}(\vect{a}) \subset D \land \forall\,\vect{x} \in B_{\delta}(\vect{a}): f(\vect{x}) \ge f(\vect{a})
+    $$
+    那么称 $\vect{a}$ 为 $f$ 的\textbf{极小值点}，$f(\vect{a})$ 称为 $f$ 的\textbf{极小值}。
+
+    极大值点、极大值类似定义。
+\end{definition}
+
+\begin{theorem}
+    若 $\vect{a}$ 为 $f$ 的极值点，且 $f$ 在 $\vect{a}$ 处存在一阶偏导数，则
+    $$
+    \eval{\pdv{f}{x_i}}_{\vect{x} = \vect{a}} = 0, \quad i = 1, 2, \dots, n
+    $$
+    \begin{proof}
+        对于 $x_1$，固定 $x_2, \dots, x_n$ 的值得到一个一元函数 $f(x, a_2, \dots, a_n)$，然后使用一元函数极值点性质即可证明。对于其它 $x_i$ 一样。
+    \end{proof}
+\end{theorem}
+
+\begin{remark}
+    事实上，不需要所有偏导数存在，只要某个方向（两侧）导数存在，那么它必定为 $0$。
+\end{remark}
+
+因此，驻点是极值点的必要条件。但是如何判断驻点是否为极值点，是什么极值点呢？
+
+假设 $D \subset \mathbb{R}^{n},\ f: D \to \mathbb{R}$。假设 $\vect{a}$ 是 $f$ 的一个驻点，且$f$ 在 $\vect{a}$ 存在二阶连续导数，那么在此处进行二阶泰勒展开：
+$$
+\begin{aligned}
+    f(\vect{x}) & = f(\vect{a}) + \frac{1}{2} \sum_{i = 1}^{n} \sum_{j = 1}^{n} \eval{\pdv[2]{f}{x_i}{x_j}}_{\vect{x} = \vect{a}} (x_i - a_i) (x_j - a_j) + o(\rho^{2})
+\end{aligned}
+$$
+那么我们记矩阵
+$$
+\matr{H} = \begin{bmatrix}
+    \eval{\pdv[2]{f}{x_1}{x_1}}_{\vect{x} = \vect{a}} & \eval{\pdv[2]{f}{x_1}{x_2}}_{\vect{x} = \vect{a}} & \cdots & \eval{\pdv[2]{f}{x_1}{x_n}}_{\vect{x} = \vect{a}} \\
+    \eval{\pdv[2]{f}{x_2}{x_1}}_{\vect{x} = \vect{a}} & \eval{\pdv[2]{f}{x_2}{x_2}}_{\vect{x} = \vect{a}} & \cdots & \eval{\pdv[2]{f}{x_2}{x_n}}_{\vect{x} = \vect{a}} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \eval{\pdv[2]{f}{x_n}{x_1}}_{\vect{x} = \vect{a}} & \eval{\pdv[2]{f}{x_n}{x_2}}_{\vect{x} = \vect{a}} & \cdots & \eval{\pdv[2]{f}{x_n}{x_n}}_{\vect{x} = \vect{a}} 
+\end{bmatrix} = \eval{\matr{J}(\grad f)}_{\vect{x} = \vect{a}}
+$$
+那么：
+$$
+f(\vect{x}) - f(\vect{a}) = \frac{1}{2} (\vect{x} - \vect{a})^\top \matr{H} (\vect{x} - \vect{a}) + o(\rho^{2})
+$$
+
+于是我们得到定理：
+
+\begin{theorem}
+    假设 $D \subset \mathbb{R}^{n},\ f: D \to \mathbb{R}$。若 $\vect{a}$ 是 $f$ 的一个驻点，且 $f$ 在 $\vect{a}$ 存在二阶连续导数，那么记 $f$ 的 \textbf{Hessian 矩阵}为
+    $$
+    \matr{H} = \eval{\matr{J}(\grad f)}_{\vect{x} = \vect{a}}
+    $$
+    那么
+    \begin{itemize}
+        \item 若 $\matr{H}$ 为正定矩阵，则 $\vect{a}$ 为 $f$ 的极小值点；
+        \item 若 $\matr{H}$ 为负定矩阵，则 $\vect{a}$ 为 $f$ 的极大值点；
+        \item 若 $\matr{H}$ 既不是正定矩阵也不是负定矩阵，不能确定。
+    \end{itemize}
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 15.5.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 求导：
+            $$
+            \dv{x}{t} = a \sin 2t,\ \dv{y}{t} = b \cos 2t,\ \dv{z}{t} = -c \sin 2t
+            $$
+            当 $t = \frac{\pi}{4}$ 时，可得切向量为 $(a, 0, -c)$。因此切线方程为
+            $$
+            (x, y, z) = (\frac{a}{2}, \frac{b}{2}, \frac{c}{2}) + \lambda (a, 0, -c)
+            $$
+            法平面方程为
+            $$
+            a \ab(x - \frac{a}{2}) - c \ab(z - \frac{c}{2}) = 0
+            $$
+
+            \item[\textbf{2)}] 对方程组求微分：
+            $$
+            \begin{dcases}
+                4x \dd{x} + 6y \dd{y} + 2z \dd{z} = 0 \\
+                6x \dd{x} + 2y \dd{y} - 2z \dd{z} = 0 \\
+            \end{dcases}
+            $$
+            解得 $\dv{x}{z} = \frac{4z}{7x},\ \dv{y}{z} = -\frac{5z}{7y}$。
+
+            因此 $(1, -1, 2)$ 处的切线方程为
+            $$
+            (x, y, z) = (1, -1, 2) + \lambda (8, -10, 7)
+            $$
+            法平面方程为
+            $$
+            5 (x - 1) - 10 (y + 1) + 7 (z - 2) = 0
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.5.2
+    \begin{solution}
+        设平面方程为 $F(x, y, z) = 0$，那么有：
+        $$
+        F(x, y, z) = \lambda (x - y + z) + \mu (x + 2y + z - 1) = (\lambda + \mu) x + (-\lambda + 2\mu) y + (\lambda + \mu) z - \mu
+        $$
+        对曲面 $\Sigma$ 的方程求微分：
+        $$
+        2x \dd{x} + 2y \dd{y} - 2z \dd{z} = 1
+        $$
+        可知 $\Sigma$ 上某点 $(x_0, y_0, z_0)$ 处的法向量为 $(x_0, y_0, -z_0)$。
+
+        那么得到方程：
+        $$
+        \begin{dcases}
+            (\lambda + \mu) x_0 + (-\lambda + 2\mu) y_0 + (\lambda + \mu) z_0 - \mu = 0 \\
+            x_0^2 + y_0^2 - z_0^2 = 1 \\
+            \frac{\lambda + \mu}{x_0} = \frac{-\lambda + 2\mu}{y_0} = \frac{\lambda + \mu}{-z_0} \\
+        \end{dcases}
+        $$
+        解得
+        $$
+        \begin{dcases}
+            x_0 = 2 \\
+            y_0 = 1 \\
+            z_0 = -2 \\
+        \end{dcases}\ \text{或}\ \begin{dcases}
+            x_0 = 4 \\
+            y_0 = -1 \\
+            z_0 = -4 \\
+        \end{dcases}
+        $$
+        得到平面方程为
+        $$
+        2 x + y + 2z - 1 = 0\ \text{或}\ 4x - y + 4z - 1 = 0
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.5.3
+    \begin{solution}
+        对参数方程求导：
+        $$
+        \dv{x}{t} = 1,\ \dv{y}{t} = 2t,\ \dv{z}{t} = 3t^2
+        $$
+        平面 $x + 2y + z = 4$ 的法向量为 $(1, 2, 1)$。因此要满足条件，就有：
+        $$
+        1 \cdot 1 + 2t \cdot 2 + 3t^2 \cdot 1 = 0
+        $$
+        解得 $t = -1\ \text{或}\ -\frac{1}{3}$。所求点为 $(-1, 1, -1)$ 或 $\ab(-\frac{1}{3}, \frac{1}{9}, -\frac{1}{27})$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.5.6
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 求微分：
+            $$
+            \dd{y} - 2 \E^{2x - z} \dd{x} + \E^{2x - z} \dd{z} = 0
+            $$
+            得到 $(1, 1, 2)$ 处的法向量为 $(1, -2, 1)$。因此切平面方程为
+            $$
+            (x - 1) - 2(y - 1) + (z - 2) = 0
+            $$
+            法线方程为
+            $$
+            (x, y, z) = (1, 1, 2) + \lambda (1, -2, 1)
+            $$
+
+            \item[\textbf{2)}] 求微分：
+            $$
+            \frac{2x}{a^2} \dd{x} + \frac{2y}{b^2} \dd{y} + \frac{2z}{c^2} \dd{z} = 0
+            $$
+            得到 $\ab(\frac{a}{\sqrt{3}}, \frac{b}{\sqrt{3}}, \frac{c}{\sqrt{3}})$ 处的法向量为 $\ab(\frac{1}{a}, \frac{1}{b}, \frac{1}{c})$。因此切平面方程为
+            $$
+            \frac{1}{a} \ab(x - \frac{a}{\sqrt{3}}) + \frac{1}{b} \ab(y - \frac{b}{\sqrt{3}}) + \frac{1}{c} \ab(z - \frac{c}{\sqrt{3}}) = 0
+            $$
+            法线方程为
+            $$
+            (x, y, z) = \ab(\frac{a}{\sqrt{3}}, \frac{b}{\sqrt{3}}, \frac{c}{\sqrt{3}}) + \lambda \ab(\frac{1}{a}, \frac{1}{b}, \frac{1}{c})
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.5.7
+    \begin{solution}
+        对曲面方程求微分：
+        $$
+        2x \dd{x} + 4y \dd{y} + 6z \dd{z} = 0
+        $$
+        因此 $(x_0, y_0, z_0)$ 处的法向量为 $(x_0, 2y_0, 3z_0)$。平面 $x + 4y + 6z$ 的法向量为 $(1, 4, 6)$。于是得到方程：
+        $$
+        \begin{dcases}
+            x_0^2 + 2 y_0^2 + 3z_0^2 = 21 \\
+            \frac{x_0}{1} = \frac{2y_0}{4} = \frac{3z_0}{6} \\
+        \end{dcases}
+        $$
+        解得
+        $$
+        \begin{dcases}
+            x_0 = 1 \\
+            y_0 = 2 \\
+            z_0 = 2 \\
+        \end{dcases}\ \text{或}\ \begin{dcases}
+            x_0 = -1 \\
+            y_0 = -2 \\
+            z_0 = -2 \\
+        \end{dcases}
+        $$
+        于是所求的切平面方程为
+        $$
+        (x - 1) + 4(y - 2) + 6(z - 2) = 0\ \text{或}\ -(x + 1) - 4(y + 2) - 6(z + 2) = 0
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.6.1
+    \begin{solution}
+        求偏导：
+        $$
+        \pdv{f}{x} = 3x^2 + 3y^2 - 15,\ \pdv{f}{y} = 6xy - 12
+        $$
+        由偏导为 $0$ 得到
+        $$
+        (x, y) = (1, 2)\ \text{或}\ (-1, -2)\ \text{或}\ (2, 1)\ \text{或}\ (-2, -1)
+        $$
+
+        求二阶偏导：
+        $$
+        A = \pdv[2]{f}{x} = 6x,\ B = \pdv[2]{f}{x}{y} = 6y,\ C = \pdv[2]{f}{y} = 6x
+        $$
+        \begin{itemize}
+            \item 当 $(x, y) = \pm (1, 2)$ 时：$AC - B^2 = 24 > 0$。
+            \item 当 $(x, y) = \pm (2, 1)$ 时：$AC - B^2 = 138 > 0$。
+        \end{itemize}
+        最后可得，$f$ 有极小值点 $(1, 2), (2, 1)$，有极大值点 $(-1, -2), (-2, -1)$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.6.3
+    \begin{solution}
+        求偏导：
+        $$
+        \pdv{z}{x} = 2x - 6,\ \pdv{z}{y} = 10y + 10
+        $$
+        由偏导为 $0$ 解得 $(x, y) = (3, -1)$。
+
+        求二阶偏导：
+        $$
+        A = \pdv[2]{f}{x} = 2,\ B = \pdv[2]{f}{x}{y} = 0,\ C = \pdv[2]{f}{y} = 10
+        $$
+        因此 $AC - B^2 = 20 > 0,\ A > 0$。所以 $z$ 有极小值点 $(3, -1)$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.6.5
+    \begin{solution}
+        对曲面方程微分：
+        $$
+        \frac{2x}{a^2} \dd{x} + \frac{2y}{b^2} \dd{y} + \frac{2z}{c^2} \dd{z} = 0
+        $$
+        因此在 $(x_0, y_0, z_0)$ 处的法向量为 $\ab(\frac{x_0}{a^2}, \frac{y_0}{b^2}, \frac{z_0}{c^2})$，切平面方程为
+        $$
+        \frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} + \frac{z_0 z}{c^2} = 1
+        $$
+        因此截出的体积为
+        $$
+        V = \frac{1}{6} \cdot \frac{a^2}{x_0} \cdot \frac{b^2}{y_0} \cdot \frac{c^2}{z_0} = \frac{a^2 b^2 c^2}{6 x_0 y_0 z_0}
+        $$
+        对椭球方程使用均值不等式：
+        $$
+        1 = \frac{x_0^2}{a^2} + \frac{y_0^2}{b^2} + \frac{z_0^2}{c^2} \ge 3 \sqrt[3]{\frac{x_0^2 y_0^2 z_0^2}{6 a^2 b^2 c^2}}
+        $$
+        得到 $x_0 y_0 z_0 \le \frac{1}{3 \sqrt{3}} a b c$，当且仅当 $\frac{x_0}{a} = \frac{y_0}{b} = \frac{z_0}{c}$ 时取等。所以
+        $$
+        V_{\min} = \frac{a^2 b^2 c^2}{6 \cdot \frac{1}{3 \sqrt{3}} a b c} = \frac{\sqrt{3}}{2} a b c
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 15.6.6
+    \begin{solution}
+        化简圆方程：
+        $$
+        \begin{gathered}
+            \ab(x - \sqrt{2})^2 + \ab(y - \sqrt{2})^2 \le 9 \\
+            x^2 + y^2 - 2 \sqrt{2} (x + y) + 4 \le 9 \\
+            \ab(x^2 + y^2) - 2 \sqrt{2} (x + y) \le 5
+        \end{gathered}
+        $$
+        根据均值不等式有 $\frac{x + y}{2} \le \sqrt{\frac{x^2 + y^2}{2}}$，令 $t = \sqrt{x^2 + y^2}$ 得到：
+        $$
+        t^2 - 4t \le 5
+        $$
+        解得 $-1 \le t \le 5$。当 $x = y = \frac{5}{\sqrt{2}}$ 时取到 $t = 5$。因此 $z_{\max} = 25$。
+    \end{solution}
+\end{problem}
