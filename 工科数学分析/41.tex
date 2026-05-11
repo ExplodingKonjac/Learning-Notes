@@ -1,0 +1,190 @@
+\section{多元函数的极值}
+
+\subsection{条件极值}
+
+条件极值就是存在约束条件的情况下求极值。求条件极值的标准方法是\textbf{Lagrange 乘子法}：
+
+要找函数 $z = f(\vect{x})$ 在条件 $\varphi_i(\vect{x}) = 0\ (i = 1, 2, \dots, m)$ 下的可能极值点，构造函数：
+$$
+L(\vect{x}, \vect{\lambda}) = f(\vect{x}) + \sum_{i = 1}^{m} \lambda_i \varphi(\vect{x})
+$$
+
+将 $\lambda_i$ 视为新变量，求解方程组：
+$$
+\grad L(\vect{x}, \vect{\lambda}) = \vect{0}
+$$
+该方程组的每一组解 $\vect{x}, \vect{\lambda}$，其中的 $\vect{x}$ 就是可能的极值点的坐标。
+
+从几何意义上看，Lagrange 函数的驻点是目标函数的梯度和约束函数的梯度共线的位置。也就是说，在此处，目标函数的“等高线”和约束曲线恰好相切。
+
+判定条件极值是极大还是极小同样有定理：
+
+\begin{theorem}
+	设 $f(\vect{x})$ 和 $\varphi_i(\vect{x})$ 为目标函数和约束条件，设 $(\vect{x}_0, \vect{\lambda}_0)$ 为 Lagrange 函数 $L(\vect{x}, \vect{\lambda})$ 的驻点，求矩阵
+	$$
+	\matr{H} = \ab[\eval{\pdv[2]{L}{x_i}{x_j}}_{\vect{x}_0}]_{n \times n}
+	$$
+	那么：
+	\begin{itemize}
+		\item 若 $\matr{H}$ 正定，那么 $\vect{x}_0$ 是极小值点；
+		\item 若 $\matr{H}$ 负定，那么 $\vect{x}_0$ 是极大值点。
+	\end{itemize}
+\end{theorem}
+
+当 $\matr{H}$ 不定的时候，上述定理失效，无法判断。
+
+\subsection{作业}
+
+\begin{problem}
+	习题 15.7.3
+	\begin{solution}
+		构造 Lagrange 函数：
+		$$
+		L(x, y, z, \lambda) = x^2 + y^2 + z^2 + \lambda(a x + b y + c z - 1)
+		$$
+		那么
+		$$
+		\grad{L}(x, y, z, \lambda) = \cvec{2x + \lambda a, 2 y + \lambda b, 2z + \lambda c, a x + b y + c z - 1} = \vect{0}
+		$$
+		解得
+		$$
+		x_0 = \frac{a}{a^2 + b^2 + c^2},\ y_0 = \frac{b}{a^2 + b^2 + c^2},\ z_0 = \frac{c}{a^2 + b^2 + c^2},\ \lambda_0 = -\frac{2}{a^2 + b^2 + c^2}
+		$$
+		代入原函数得到，最小值为
+		$$
+		f_{\text{min}} = f(x_0, y_0, z_0) = \frac{1}{a^2 + b^2 + c^2}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 15.7.4
+	\begin{solution}
+		设求解的目标函数为距离的平方：
+		$$
+		f(x, y, z) = (x - 3)^2 + (y - 1)^2 + (z + 1)^2
+		$$
+		约束为 $x^2 + y^2 + z^2 - 4 = 0$。故 Lagrange 函数为
+		$$
+		L(x, y, z, \lambda) = (x - 3)^2 + (y - 1)^2 + (z + 1)^2 + \lambda(x^2 + y^2 + z^2 - 4)
+		$$
+		求解方程
+		$$
+		\grad{f}(x, y, z, \lambda) = \cvec{2(x - 3) + 2\lambda x, 2(y - 1) + 2\lambda y, 2(z + 1) + 2\lambda z, x^2 + y^2 + z^2 - 4} = \vect{0}
+		$$
+		解得
+		$$
+		\begin{dcases}
+			x_1 = \frac{6}{\sqrt{11}} \\
+			y_1 = \frac{2}{\sqrt{11}} \\
+			z_1 = -\frac{2}{\sqrt{11}} \\
+			\lambda_1 = \frac{\sqrt{11} - 2}{2}
+		\end{dcases}\ \text{或}\ \begin{dcases}
+			x_2 = -\frac{6}{\sqrt{11}} \\
+			y_2 = -\frac{2}{\sqrt{11}} \\
+			z_2 = \frac{2}{\sqrt{11}} \\
+			\lambda_2 = - \frac{\sqrt{11} + 2}{2}
+		\end{dcases}
+		$$
+		计算得到
+		$$
+		f(x_1, y_1, z_1) = 15 - 4 \sqrt{11},\ f(x_2, y_2, z_2) = 15 + 4 \sqrt{11}
+		$$
+		因此最小距离为 $\sqrt{15 - 4 \sqrt{11}}$，最大距离为 $\sqrt{15 + 4 \sqrt{11}}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 15.7.5
+	\begin{solution}
+		Lagrange 函数为
+		$$
+		L(x, y, z, \lambda, \mu) = x y z + \lambda(x^2 + y^2 + z^2 - 1) + \mu(x + y + z)
+		$$
+		求解方程
+		$$
+		\grad{L}(x, y, z, \lambda, \mu) = \cvec{y z + 2 \lambda x + \mu, x z + 2 \lambda y + \mu, x y + 2 \lambda z + \mu, x^2 + y^2 + z^2 - 1, x + y + z} = \vect{0}
+		$$
+		解得
+		$$
+		\begin{dcases}
+			x_1 = \frac{1}{\sqrt{6}} \\
+			y_1 = \frac{1}{\sqrt{6}} \\
+			z_1 = -\frac{2}{\sqrt{6}} \\
+			\lambda_1 = \frac{1}{2 \sqrt{6}} \\
+			\mu_1 = \frac{1}{6}
+		\end{dcases}\ \text{或}\ \begin{dcases}
+			x_2 = -\frac{1}{\sqrt{6}} \\
+			y_2 = -\frac{1}{\sqrt{6}} \\
+			z_2 = \frac{2}{\sqrt{6}} \\
+			\lambda_2 = -\frac{1}{\sqrt{6}} \\
+			\mu_2 = \frac{1}{6}
+		\end{dcases}
+		$$
+		以及另外若干组轮换解。
+
+		求值得到
+		$$
+		f(x_1, y_1, z_1) = - \frac{\sqrt{6}}{18},\ f(x_2, y_2, z_2) = \frac{\sqrt{6}}{18}
+		$$
+		因此，在约束下，$f(x, y, z)$ 的极大值为 $\frac{\sqrt{6}}{18}$，极小值为 $-\frac{\sqrt{6}}{18}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 15.7.6
+	\begin{solution}
+		设长方体的三边长为 $a, b, c$，那么约束为：
+		$$
+		a b c = V
+		$$
+		目标函数为
+		$$
+		S(a, b, c) = a b + 2 b c + 2 a c
+		$$
+		构造 Lagrange 函数：
+		$$
+		L(a, b, c, \lambda) = a b + 2 b c + 2 a c + \lambda (a b c - V)
+		$$
+		解方程
+		$$
+		\grad{L}(a, b, c, \lambda) = \cvec{b + 2 c + \lambda b c, a + 2 c + \lambda a c, 2 b + 2 a + \lambda a b, a b c - V} = \vect{0}
+		$$
+		解得
+		$$
+		a = 2 \sqrt[3]{\frac{V}{4}},\ b = 2 \sqrt[3]{\frac{V}{4}},\ c = \sqrt[3]{\frac{V}{4}}
+		$$
+		此时，最小表面积为
+		$$
+		S(a, b, c) = 12 \ab(\frac{V}{4})^{\frac{2}{3}}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 15.7.7
+	\begin{proof}
+		构造 Lagrange 函数：
+		$$
+		L(x, y, z, \lambda) = x y z + \lambda \ab(\frac{1}{x} + \frac{1}{y} + \frac{1}{z} - \frac{1}{r})
+		$$
+		解方程
+		$$
+		\grad{L}(x, y, z, \lambda) = \cvec{y z - \frac{\lambda}{x^2}, x z - \frac{\lambda}{y^2}, x y - \frac{\lambda}{z^2}, \frac{1}{x} + \frac{1}{y} + \frac{1}{z} - \frac{1}{r}} = \vect{0}
+		$$
+		解得
+		$$
+		x_0 = y_0 = z_0 = 3 r,\ \lambda_0 = 27 r^4
+		$$
+		因此极小值为
+		$$
+		f(x_0, y_0, z_0) = 27 r^3
+		$$
+
+		由此可得，在条件 $\ab(\frac{1}{a} + \frac{1}{b} + \frac{1}{c})^{-1} = r$ 的条件下有：
+		$$
+		f(a, b, c) = a b c \ge 27 r^3
+		$$
+		因此 $3 r \le \sqrt[3]{a b c}$，即 $3 \ab(\frac{1}{a} + \frac{1}{b} + \frac{1}{c})^{-1} \le \sqrt[3]{a b c}$，得证。
+	\end{proof}
+\end{problem}

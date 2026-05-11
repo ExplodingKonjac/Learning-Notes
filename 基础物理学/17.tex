@@ -1,0 +1,109 @@
+\section{静电场}
+
+\subsection{静电场的高斯定理}
+
+\subsubsection{电场线}
+
+在空间中的一族曲线，每一处的切线为该点处的电场强度方向，那么这族曲线称为电场线。
+
+静电场的电场线不闭合、不相交、无电荷处不中断。
+
+\subsubsection{电通量}
+
+\begin{definition}[电通量]
+	对于一个曲面 $\Sigma$，其电通量定义为
+	$$
+	\Phi_e = \oint_{\Sigma} \vect{E} \vdot \dd{S}
+	$$
+	其中 $\dd{S}$ 表示一个面积微元的单位法向量，方向从内到外。
+\end{definition}
+
+\subsubsection{静电场的 Gauss 定理}
+
+\begin{theorem}
+	对于静电场中的一个闭合曲面 $\Sigma$，假设其包围的电荷量为 $Q$，那么：
+	$$
+	\Phi_e = \oint_{\Sigma} \vect{E} \vdot \dd{S} = \frac{Q}{\varepsilon_0}
+	$$
+\end{theorem}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 1.13
+	\begin{solution}
+		取半径 $b$ 的球面为高斯面，那么因为球壳各处电场强度大小相等，均为 $\frac{Q}{4 \pi \varepsilon_0 a^2}$，因此通量为
+		$$
+		\Phi = \frac{Q}{4\pi \varepsilon_0 a^2} \cdot 4 \pi b^2 = \frac{Q}{ \varepsilon_0 a^2}{b^2}
+		$$
+		根据高斯定理，有：
+		$$
+		\Phi = \frac{Q'}{\varepsilon_0}
+		$$
+		其中
+		$$
+		Q' = Q + \int_{0}^{b} \frac{A}{r} \cdot 4\pi r^2 \dd{r} = Q + 2 A b^2 \pi
+		$$
+		解得
+		$$
+		A = \frac{Q}{2 \pi a^2}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.15
+	\begin{solution}
+		\begin{itemize}
+			\item 当 $r < R_1$ 时：两个圆筒对内部场强均为 $0$，所以 $P$ 点场强为 $0$。
+			\item 当 $R_1 < r < R_2$ 时：此时外侧圆筒对场强贡献为 $0$。建立一个高斯面：半径为 $r$ 的无限长圆筒，那么根据高斯定理：
+			$$
+			\Phi = \frac{Q}{\varepsilon_0} \implies \frac{\Phi}{Q} = \lim_{L \to \infty} \frac{E \cdot 2\pi r L}{\sigma \cdot 2\pi R_1 L} = \frac{E r}{\sigma R_1} = \varepsilon_0
+			$$
+			因此 $E = \frac{\varepsilon_0 \sigma R_1}{r}$。
+
+			\item 当 $r > R_2$ 时：内侧圆筒的贡献仍然为 $E_i = \frac{\varepsilon_0 \sigma R_1}{r}$。建立高斯面计算外侧圆筒的贡献：
+			$$
+			\Phi = \frac{Q}{\varepsilon_0} \implies \frac{\Phi}{Q} = \lim_{L \to \infty} \frac{E_o \cdot 2\pi r L}{-\sigma \cdot 2\pi R_2 L} = -\frac{E_o r}{\sigma R_2} = \varepsilon_0
+			$$
+			因此 $E_o = - \frac{\varepsilon_0 \sigma R_2}{r}$，得到 $E = E_i + E_o = \frac{\varepsilon_0 \sigma (R_1 - R_2)}{r}$。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.16
+	\begin{solution}
+		假设阴影区域内某点 $P$，有 $\vect{r}_1 = \overrightarrow{OP},\ \vect{r}_2 = \overrightarrow{O'P}$。那么用高斯定理分别计算两个圆柱体的贡献。
+
+		对于第一个圆柱体：
+		$$
+		\Phi = \vect{E} \cdot 2 \pi r l = \frac{\rho \cdot 2\pi r^2 l}{\varepsilon_0} \implies \vect{E}_1 = \frac{\rho}{2\varepsilon_0} \vect{r}_1
+		$$
+		同理，第二个圆柱体：
+		$$
+		\vect{E}_2 = - \frac{\rho}{2\varepsilon_0} \vect{r}_2
+		$$
+		因此：
+		$$
+		\vect{E} = \vect{E}_1 + \vect{E}_2 = \frac{\rho}{2\varepsilon_0} (\vect{r}_1 - \vect{r}_2) = \frac{\rho}{2\varepsilon_0} \vect{a}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.18
+	\begin{solution}
+		\begin{itemize}
+			\item 板外：用一无限大平行面作为高斯面，得到：
+			$$
+			\Phi = E \cdot S = \frac{\rho S d}{\varepsilon_0} \implies E = \frac{\rho d}{\varepsilon_0}
+			$$
+			\item 板内：对板上方下方分别计算，可得：
+			$$
+			E = \frac{\rho |x|}{\varepsilon_0}
+			$$
+			其中 $x$ 是点相对板中心平面的坐标。
+		\end{itemize}
+	\end{solution}
+\end{problem}

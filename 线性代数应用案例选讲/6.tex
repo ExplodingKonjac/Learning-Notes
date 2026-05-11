@@ -1,0 +1,166 @@
+\section{近世代数}
+
+\subsection{群}
+
+\begin{definition}[群]
+	对于一个集合 $D$ 和 $D$ 上的运算 $*: D \times D \to D$，满足：
+	\begin{itemize}
+		\item 封闭性：$\forall\,a, b \in D: a * b \in D$；
+		\item 结合律：$\forall\,a, b, c \in D: a * (b * c) = (a * b) * c$；
+		\item 单位元：$\exists\,e \in D: \forall\,a \in D: e * a = a * e = a$；
+		\item 逆元：$\forall\,a \in D: \exists\,a^{-1} \in D: a * a^{-1} = a^{-1} * a = e$。
+	\end{itemize}
+	那么称 $(D, *)$ 构成一个\textbf{群}。
+\end{definition}
+
+典型的群的实例包括：
+\begin{itemize}
+	\item 整数集和整数加法构成群；
+	\item 模 $n$ 的剩余类和模 $n$ 加法构成群；
+	\item $n$ 阶方阵和矩阵乘法构成群。
+\end{itemize}
+
+在群的基础上，若不要求存在逆元和单位元，则称为\textbf{半群}；若在半群的基础上，存在单位元，称为\textbf{幺半群}；若在群的基础上满足交换律，则称为\textbf{阿贝尔群}，或\textbf{交换群}。
+
+\subsection{环}
+
+\begin{definition}[环]
+	若对于集合 $D$，运算 $+: D \times D \to D$ 和 $*: D \times D \to D$ 满足：
+	\begin{itemize}
+		\item $(D, +)$ 构成交换群；
+		\item $(D, *)$ 构成群；
+		\item 分配律：$\forall\,a, b, c \in D: (a + b) * c = a * c + b * c,\ a * (b + c) = a * b + b * c$。
+	\end{itemize}
+	那么称 $(D, +, *)$ 构成一个\textbf{环}。
+\end{definition}
+
+比如，$n$ 阶方阵和矩阵加法、矩阵乘法构成一个环。
+
+\subsection{域}
+
+\begin{definition}[域]
+	若对于集合 $D$，运算 $+: D \times D \to D$ 和 $*: D \times D \to D$ 满足：
+	\begin{itemize}
+		\item $(D, +, *)$ 构成环；
+		\item $(D, *)$ 构成交换群。
+	\end{itemize}
+	那么称 $(D, +, *)$ 构成一个\textbf{域}。
+\end{definition}
+
+比如，有理数集合、实数集合、复数集合和通常意义的加法乘法构成了域，称为\textbf{数域}；当 $p$ 为素数时，模 $p$ 剩余类集合和模意义加法、乘法构成一个域，称为\textbf{有限域} $\mathbb{F}_p$。
+
+\subsection{作业}
+
+\begin{problem}
+	习题 1
+	\begin{solution}
+		对于某个元素 $a \in G$，从 $G$ 中构建一个有向图 $T = (V, E)$：
+		$$
+		V = G,\ E = \{(x, a \cdot x): x \in G\}
+		$$
+		因为 $a$ 可逆，所以每个点 $x$ 都有唯一的前驱 $a^{-1} \cdot x$ 和唯一的后继 $a \cdot x$。因此 $T$ 是一个有向的环森林。
+
+		假设存在某个环
+		$$
+		x, a \cdot x, a^2 \cdot x, \dots, a^{k - 1} \cdot x
+		$$
+		那么可知
+		$$
+		a^{k} = e,\ a^{i} \neq e\ (i = 1, 2, \dots, k - 1)
+		$$
+		那么可知，所有环的长度都恰好为 $k$，因此 $k \mid n$。所以
+		$$
+		a^{n} = (a^{k})^{\frac{k}{n}} = e^{\frac{k}{n}} = e
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对于 $a \in \mathbb{Z}_p,\ a \neq 0$，考虑线性不定方程：
+			$$
+			a x + p y = 1
+			$$
+			因为 $p$ 是素数，所以 $\gcd(a, p) = 1$。根据 Bezout 定理，这个不定方程存在解。
+			
+			任意取一组解 $(x_0, y_0)$，就有
+			$$
+			a x_0 \equiv 1 \pmod{p}
+			$$
+			根据定义，$x_0$ 就是 $a$ 的乘法逆元。
+
+			\item[\textbf{2)}] \textbf{欧拉定理}：记欧拉函数 $\varphi(n) = \#\{k: k \in [1, n] \cap \mathbb{Z} \land \gcd(k, n) = 1\}$，那么对于任意正整数 $a, m$ 满足 $\gcd(a, m) = 1$，都有
+			$$
+			a^{\varphi(m)} \equiv 1 \pmod{m}
+			$$
+			
+			\textbf{证明}：取集合
+			$$
+			R = \{r: r \in (0, m) \cap \mathbb{N} \land \gcd(r, m) = 1\}
+			$$
+			那么 $R$ 是模 $m$ 的既约剩余系。考虑一个新的集合
+			$$
+			R' = \{a r \bmod m: r \in R\}
+			$$
+			那么，因为 $\gcd(a, m) = \gcd(r, m) = 1$，所以 $\gcd(a r, m) = 1$。并且 $a$ 模 $m$ 可逆，所以 $a r$ 也两两不同。因此 $R'$ 也是模 $m$ 的既约剩余系，$R' = R$。所以
+			$$
+			\prod_{r \in R} r \equiv \prod_{r \in R'} r \equiv \prod_{r \in R} a r \equiv a^{\varphi(m)} \prod_{r \in R} r \pmod{m}
+			$$
+			$r$ 可逆，等式两侧同时消去 $\prod_{r \in R} r$ 就得到
+			$$
+			a^{\varphi(m)} \equiv 1 \pmod{m}
+			$$
+
+			\textbf{应用}：
+			\begin{itemize}
+				\item 当 $\gcd(a, m) = 1$ 时，根据欧拉定理可以得到降幂公式：
+				$$
+				a^{n} \equiv a^{n \bmod \varphi(m)} \pmod{m}
+				$$
+				\item 当 $\gcd(a, m) = 1$ 时，根据 $a$ 的可逆性可以求乘法逆元：
+				$$
+				a^{\varphi(m) - 1} \equiv a^{-1} a^{\varphi(m)} \equiv a^{-1} \pmod{m}
+				$$
+				\item 当 $m$ 为素数时，欧拉定理变为费马小定理：
+				$$
+				a^{\varphi(m)} = a^{m - 1} \equiv 1 \pmod{m}
+				$$
+			\end{itemize}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 3
+	\begin{solution}
+		\textbf{多项式唯一因式分解定理}：设 $F$ 是一个域，$F[x]$ 是 $F$ 上的一元多项式环，那么可知，对于 $F[x]$ 中任意一个次数 $\ge 1$ 的多项式 $f(x)$，都存在唯一的分解：
+		$$
+		f(x) = c \cdot p_1(x)^{\alpha_1}  p_2(x)^{\alpha_2} \cdots p_n(x)^{\alpha_k}
+		$$
+		其中 $p_i(x)$ 是最高次项为 $1$ 的不可约多项式，即，$p_i(x)$ 无法进一步分解为两个次数 $\ge 1$ 的多项式的乘积。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4
+	\begin{solution}
+		\ 
+		\begin{center}
+			\large\textbf{观《模仿游戏》有感}
+		\end{center}
+	
+		这部电影不应当只被看作一部关于二战密码破译的传记片。它更像一曲献给孤独天才的悲歌，在冰冷的机器逻辑深处，涌动着极为灼热的人性。
+
+		影片将图灵的三段人生交织并置，展示出一个极度纯粹、又几乎碎裂的灵魂。真正让我沉默的，并不是他们最终破解英格玛机的那一刻，而是在那之后，当他们意识到，为了不让德军察觉密码已被破解，他们必须反过来用数学去计算，决定让哪一部分己方的船队被“允许”牺牲。那种如同替上帝裁决生死一般的沉重，就此压在图纸上冷冰冰的概率里。在这里，战争的残酷不再体现为炮火与硝烟，而是一串经过精密权衡的数字。
+
+		图灵始终游离在社会边缘，是旁人眼中的异类。片中反复出现的那句台词“有时候，正是那些无人看好之人，成就了无人能及之事”，既是对他一生的注脚，也像是对一切平庸偏见的不动声色的回击。可现实中最深的讽刺恰恰在于，这位拯救了至少一千四百万条生命、使战争可能提前两年结束的人，最终却因自己的性取向，被他所保护的国家审判，并被迫接受化学阉割。
+
+		这种不公让影片的尾声弥漫着难以言说的压抑。晚年的图灵双手止不住地颤抖，连最简单的拼图都无法对准，却仍苦苦坚持着他的研究。药物的副作用在侵蚀他的身体，也在缓慢磨损他的心智。那个时代对天才的傲慢与残忍，就那样落在了一双颤抖不止的手上。
+
+		看完之后，我反复思索片名“模仿游戏”的真正含义。它指的究竟是机器在模仿人类的思维，还是像图灵这样的人，为了在一个充满偏见的世界里活下去，终其一生都在努力模仿一个所谓的“正常人”？
+
+		《模仿游戏》或许在提醒我们，文明进程中许多关键的跨越，往往由那些不合群的、独特的个体完成。而一个社会真正的文明程度，并不取决于它拥有多强大的技术，而在于它能为那些“与众不同”的人，保留多大的生存空间。图灵被时代的狭隘杀死了，但他留下的那台名为“克里斯托弗”的机器，至今仍在该变着我们每个人的世界。
+	\end{solution}
+\end{problem}

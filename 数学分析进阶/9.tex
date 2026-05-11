@@ -1,0 +1,102 @@
+\section{空间解析几何 II}
+
+\subsection{空间平面与直线的夹角}
+
+\subsubsection{直线与直线的夹角}
+
+直线之间的夹角即为方向向量之间的夹角。设两直线 $\ell_1, \ell_2$ 的方向向量为 $\vect{u}_1, \vect{u}_2$，那么：
+$$
+\cos \theta = \cos \langle \vect{u}_1, \vect{u}_2 \rangle = \frac{\vect{u}_1 \vdot \vect{u}_2}{\norm{\vect{u}_1} \cdot \norm{\vect{u}_2}}
+$$
+因此：
+$$
+\theta = \arccos \frac{\abs{\vect{u}_1 \vdot \vect{u}_2}}{\norm{\vect{u}_1} \cdot \norm{\vect{u}_2}}
+$$
+
+\subsubsection{直线与平面的夹角}
+
+直线与平面的夹角为方向向量与法向量之间夹角的余角。设直线 $\ell$ 方向向量为 $\vect{u}$，平面 $\alpha$ 法向量为 $\vect{n}$，那么：
+$$
+\sin \theta = \cos \langle \vect{u}, \vect{n} \rangle = \frac{\vect{u} \vdot \vect{n}}{\norm{\vect{u}} \cdot \norm{\vect{n}}}
+$$
+因此
+$$
+\theta = \arcsin \frac{\abs{\vect{u} \vdot \vect{n}}}{\norm{\vect{u}} \cdot \norm{\vect{n}}}
+$$
+
+\subsubsection{平面与平面的夹角}
+
+平面之间的夹角就是法向量之间的夹角。设平面 $\alpha_1, \alpha_2$ 的法向量为 $\vect{n}_1, \vect{n}_2$，那么：
+$$
+\cos \theta = \cos \langle \vect{n}_1, \vect{n}_2 \rangle = \frac{\vect{n}_1 \vdot \vect{n}_2}{\norm{\vect{n}_1} \cdot \norm{\vect{n}_2}}
+$$
+因此
+$$
+\cos = \arccos \frac{\abs{\vect{n}_1 \vdot \vect{n}_2}}{\norm{\vect{n}_1} \cdot \norm{\vect{n}_2}}
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	习题 8.4.9
+	\begin{solution}
+		直线的方向向量为
+		$$
+		\vect{u} = (1, 1, 3) \cp (1, -1, -1) = (2, 4, -2)
+		$$
+		平面的法向量为
+		$$
+		\vect{n} = (1, -1, -1)
+		$$
+		那么可得
+		$$
+		\sin \theta = \frac{\vect{u} \vdot \vect{n}}{\norm{\vect{u}} \cdot \norm{\vect{n}}} = 0
+		$$
+		因此夹角 $\theta = 0$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 8.4.11
+	\begin{solution}
+		两直线的方向向量为
+		$$
+		\begin{gathered}
+			\vect{u}_1 = (1, 2, -1) \cp (1, -1, 1) = (1, -2, -3) \\
+			\vect{u}_2 = (2, -1, 1) \cp (1, -1, 1) = (0, -1, -1)
+		\end{gathered}
+		$$
+		因此，平面的法向量为
+		$$
+		\vect{n} = \vect{u}_1 \cp \vect{u}_2 = (-1, 1, -1)
+		$$
+		可得平面方程为
+		$$
+		-x + y - z = 0
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 8.4.14
+	\begin{solution}
+		设 $M M_0$ 与 $\vect{s}$ 的夹角为 $\theta$。那么可知：
+		$$
+		d = \abs{M M_0} \sin \theta = \abs{M M_0} \cdot \frac{\norm{\overrightarrow{M M_0} \cp \vect{s}}}{\abs{M M_0} \cdot \norm{\vect{s}}} = \frac{\norm{\overrightarrow{M M_0} \cp \vect{s}}}{\norm{\vect{s}}}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 8.4.15
+    \begin{solution}
+        取直线上两点 $P_1(0, -1, -4), P_2(\frac{9}{7}, 0, -\frac{18}{7})$，其分别投影到平面 $4x - y + z = 1$ 上的结果为：
+		$$
+		P_1'\ab(\frac{8}{9}, -\frac{11}{9}, -\frac{34}{9}), P_2'\ab(\frac{59}{63}, \frac{11}{126}, -\frac{335}{126})
+		$$
+		于是直线方程为：
+		$$
+		(x, y, z) = \ab(\frac{8}{9}, -\frac{11}{9}, -\frac{34}{9}) + \lambda (2, 110, 94)
+		$$
+    \end{solution}
+\end{problem}
