@@ -1,0 +1,59 @@
+\section{静电场 III}
+
+\subsection{电势}
+
+\subsubsection{静电场的环路定理}
+
+\begin{theorem}
+	在静电场中，沿环路电场力所做的功为 $0$。
+\end{theorem}
+
+\subsubsection{电势}
+
+在静电场中的两点 $A, B$，电势差 $\varphi_A - \varphi_B$ 为单位正电荷 $e$ 从 $A \to B$ 所受电场力做的功。
+
+取定一个势能零点 $O$，那么可以定义静电场的电势：
+
+\begin{definition}[电势]
+	点 $P$ 的电势定义为
+	$$
+	\int_P^{O} \vect{E} \vdot \dd{\vect{l}}
+	$$
+\end{definition}
+
+电势同样满足叠加原理。
+
+\subsection{静电场的基本微分方程}
+
+\subsubsection{矢量分析}
+
+\begin{definition}[散度和旋度]
+	对于一个矢量场函数 $\vect{F}(x, y, z) = P \vect{i} + Q \vect{j} + R \vect{k}$，定义
+	\begin{itemize}
+		\item \textbf{散度}为 $\displaystyle \div \vect{F} = \pdv{P}{x} + \pdv{Q}{y} + \pdv{R}{z}$；
+		\item \textbf{旋度}为 $\displaystyle \curl \vect{F} = \begin{vmatrix}
+			\vect{i} & \vect{j} & \vect{k} \\
+			\pdv{x} & \pdv{y} & \pdv{z} \\
+			P & Q & R 
+		\end{vmatrix} = \ab(\pdv{R}{y} - \pdv{Q}{z}) \vect{i} + \ab(\pdv{P}{z} - \pdv{R}{x}) \vect{j} + \ab(\pdv{Q}{x} - \pdv{P}{y}) \vect{k}
+		$；
+	\end{itemize}
+\end{definition}
+
+
+\subsubsection{静电场高斯定理和环路定理的微分形式}
+
+% $$
+% \begin{dcases}
+	
+% \end{dcases}
+% $$
+
+$$
+\begin{dcases}
+	\div \vect{E} = \frac{\rho}{\varepsilon_0} \\
+	\curl \vect{E} = \vect{0}
+\end{dcases}
+$$
+
+这个方程称为\textbf{静电场基本方程的微分形式}。

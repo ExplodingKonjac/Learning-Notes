@@ -1,0 +1,110 @@
+\section{重积分}
+
+\subsection{面积}
+
+首先需要定义欧氏空间中平面图形的面积。
+
+假设有平面图形 $P$。在平面中分割出一系列直线网格 $T$，对于每个小矩形 $\Delta_i$，将其分为三类：
+
+\begin{enumerate}
+	\item $\Delta_i \subset P^o$；
+	\item $\Delta_i \cap \overline{P} = \varnothing$；
+	\item $\Delta_i \cap \partial P \neq \varnothing$。
+\end{enumerate}
+
+记 $s_P(T)$ 为 1 类矩形的面积和，$S_p(T)$ 为 1 或 3 类矩形的面积和。因为
+$$
+0 \le s_P(T) \le S_P(T) \le M
+$$
+因此 $\{s_P(T)\}$ 有上确界，$\{S_P(T)\}$ 有下确界。那么定义：
+
+\begin{definition}[外面积和内面积]
+	对于平面图形 $P$ 记
+	\begin{itemize}
+		\item $\overline{I}_P = \sup S_P(T)$ 为图形的\textbf{外面积}；
+		\item $\underline{I}_P = \inf s_P(T)$ 为图形的\textbf{内面积}。
+	\end{itemize}
+\end{definition}
+
+进一步定义：
+
+\begin{definition}[可求面积]
+	对于平面图形 $P$，若 $I_P = \overline{I}_P = \underline{I}_P$，那么称 $P$ \textbf{可求面积}，称 $I_P$ 为 $P$ 的\textbf{面积}。
+\end{definition}
+
+\subsection{二重积分}
+
+类似于定积分的定义，可以定义出二重积分：
+
+\begin{definition}
+	设 $f(x, y)$ 是在平面闭区域 $D$ 上的有界函数，将 $D$ 任意划分为 $n$ 个小闭区域 $\Delta \sigma_1,\ \Delta \sigma_2, \dots, \Delta \sigma_n$，在每个 $\Delta \sigma_i$ 上取一点 $(\xi_i, \eta_i)$。若当所有 $\Delta \sigma_i$ 的直径最大值 $\lambda$ 趋于 $0$ 时，和式
+	$$
+	\sum_{i = 1}^{n} f(\xi_i, \eta_i) \abs{\Delta \sigma_i}
+	$$
+	的极限存在存在，那么称该极限为 $f(x, y)$ 在 $D$ 上的\textbf{二重积分}，即：
+	$$
+	\iint_D f(x, y) \dd{\sigma} = \lim_{\lambda \to 0} \sum_{i = 1}^{n} f(\xi_i, \eta_i) \abs{\Delta \sigma_i}
+	$$
+\end{definition}
+
+\begin{remark}
+	二重积分定义中，小区域的划分是任意的。如果使用网格划分，那么积分也能记做：
+	$$
+	\iint_D f(x, y) \dd{\sigma} = \iint_D f(x, y) \dd{x} \dd{y}
+	$$
+\end{remark}
+
+对于一种小区域的划分 $T$，记 $\norm{T}$ 表示所有小区域直径的最大值，记上和与下和
+$$
+\begin{aligned}
+	S(T) & = \sum_{\Delta \sigma_i \in T} \abs{\Delta \sigma_i} \inf_{(x, y) \in \Delta \sigma_i} f(x, y) \\
+	s(T) & = \sum_{\Delta \sigma_i \in T} \abs{\Delta \sigma_i} \sup_{(x, y) \in \Delta \sigma_i} f(x, y) \\
+\end{aligned}
+$$
+然后我们可以得到一系列类似于定积分的定理：
+
+\begin{theorem}[二重积分存在定理]
+	若 $f(x, y)$ 在可求面积闭区域 $D$ 上有定义，那么：
+	\begin{itemize}
+		\item 若 $f(x, y)$ 在 $D$ 上可积，那么 $f(x, y)$ 在 $D$ 上有界；
+		\item $f(x, y)$ 在 $D$ 上可积当且仅当 $\lim\limits_{\norm{T} \to 0} S(T) = \lim_{\norm{T} \to 0} s(T)$；
+		\item $f(x, y)$ 在 $D$ 上可积当且仅当 $\forall\,\varepsilon > 0: \exists\,T: S(T) - s(T) < \varepsilon$；
+		\item 若 $f(x, y)$ 在 $D$ 上连续，那么 $f(x, y)$ 在 $D$ 上可积；
+		\item 若 $f(x, y)$ 在 $D$ 上有界，且不连续点落在有限条光滑曲线上，那么 $f(x, y)$ 在 $D$ 上可积。
+	\end{itemize}
+\end{theorem}
+
+同样我们有估值不等式和中值定理：
+
+\begin{theorem}[二重积分估值不等式]
+	设 $f(x, y)$ 在 $D$ 可积，$\sigma$ 为 $D$ 的面积，记
+	$$
+	m = \sup_{(x, y) \in D} f(x, y),\ M = \inf_{(x, y) \in D} f(x, y)
+	$$
+	那么
+	$$
+	m \sigma \le \iint_D f(x, y) \dd{\sigma} \le M \sigma
+	$$
+\end{theorem}
+
+\begin{theorem}[二重积分中值定理]
+	设 $f(x, y)$ 在 $D$ 可积，$\sigma$ 为 $D$ 的面积，那么
+	$$
+	\exists\,(\xi, \eta) \in D: \iint_D f(x, y) \dd{\sigma} = f(\xi, \eta) \sigma
+	$$
+\end{theorem}
+
+\subsection{二重积分的计算}
+
+\begin{theorem}
+	若 $f(x, y)$ 在 $D = [a, b] \times [c, d]$ 连续，那么
+	$$
+	\iint_D f(x, y) \dd{\sigma} = \int_{a}^{b} \dd{x} \int_{c}^{d} f(x, y) \dd{y} = \int_{c}^{d} \dd{y} \int_{a}^{b} f(x, y) \dd{x}
+	$$
+\end{theorem}
+
+对这个定理进行扩展，对于区域 $D = \{(x, y): x \in [a, b] \land y \in [y_1(x), y_2(x)]\}$，我们有：
+$$
+\iint_D f(x, y) \dd{\sigma} = \int_{a}^{b} \dd{x} \int_{y_1(x)}^{y_2(x)} f(x, y) \dd{y}
+$$
+交换 $x, y$ 同理。
