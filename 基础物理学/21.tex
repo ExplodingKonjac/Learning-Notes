@@ -1,0 +1,253 @@
+\section{带电体系的静电能 \& 恒定磁场}
+
+\subsection{电容器储存的电能}
+
+当一个电容器 $C$ 的带电量为 $Q$ 时，电源做功：
+$$
+A = \int_0^Q \frac{q}{C} \dd{q} = \frac{Q^2}{2 C}
+$$
+就是电容器储存的电能，因此：
+$$
+E = \frac{1}{2} Q U
+$$
+
+\subsection{电场能}
+
+电场的\textbf{电能密度} $w_e$ 定义如下：
+$$
+w_e = \frac{1}{2} \vect{D} \vdot \vect{E}
+$$
+在各向同性介质中，$\vect{D} = \varepsilon_0 \varepsilon_r \vect{E}$，因此也可以写作
+$$
+w_e = \frac{1}{2} \varepsilon_0 \varepsilon_r \vect{E}^2
+$$
+当空间电场不均匀时，\textbf{电场能}就是电能密度的体积积分：
+$$
+W_e = \iiint w_e \dd{V} = \iiint \frac{1}{2} \vect{D} \vdot \vect{E} \dd{V}
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	系题 2.2
+	\begin{solution}
+		\begin{enumerate}
+			
+			\item[\textbf{1)}] $AC$、$AB$ 之间构成平行板电容器，因此
+			$$
+			\begin{dcases}
+				C_{AC} = \frac{\varepsilon_0 S}{d_{AC}} \\
+				C_{AB} = \frac{\varepsilon_0 S}{d_{AB}} \\
+			\end{dcases}
+			$$
+			得到 $\frac{C_{AC}}{C_{AB}} = 2$。设 $B, C$ 板上感应电荷为 $q_B, q_C$，那么
+			$$
+			\begin{dcases}
+				q_B + q_C = -q_A \\
+				C_{AC} = q_C U \\
+				C_{AB} = q_B U \\
+			\end{dcases}
+			$$
+			最后解得 $q_B = -\frac{1}{3} q_A = -1.0 \times 10^{-7}\,\mathrm{C},\ q_C = -\frac{2}{3} q_A = -2.0 \times 10^{-7}\,\mathrm{C}$。
+	
+			\item[\textbf{2)}] 根据高斯定理得到
+			$$
+			E_{AC} = \frac{\abs{q_C}}{\varepsilon_0 S}
+			$$
+			因此
+			$$
+			U_A = E_{AC} \cdot d_{AC} = \frac{\abs{Q_C} d_{AC}}{\varepsilon_0 S} \approx 2260\,\mathrm{V}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.4
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据经典平衡，球壳内部场强为零，取包含球壳内表面的高斯面，那么内部净电荷量为 $0$。因此球壳内表面带电量为 $q_i = -q$。外表面带电量为 $q_o = -q_i = q$。球体内部任意一点的电势为 $V = \frac{q}{4\pi \varepsilon_0 R_3}$。
+			
+			\item[\textbf{2)}] 此时，球壳内表面均匀分布 $-q$ 的电荷，其余部分不带电。因为球壳接地，其电势为 $V = 0$。
+			
+			\item[\textbf{3)}] 设此时导体球带电为 $q'$，那么球壳内表面带电为 $-q'$，外表面带电为 $-q + q'$。导体球中心电势为 $0$，即
+			$$
+			V_{ball} = \frac{1}{4\pi \varepsilon_0} \ab(\frac{q'}{R_1} + \frac{-q'}{R_2} + \frac{-q + q'}{R_3}) = 0
+			$$
+			解得 $q' = \frac{R_1 R_2}{R_1 R_2 + R_2 R_3 - R_1 R_3} q$。球壳的电势为
+			$$
+			V_{shell} = \frac{-q + q'}{4\pi \varepsilon_0 R_3} = \frac{q(R_1 - R_2)}{4 \pi \varepsilon_0 (R_1 R_2 + R_2 R_3 - R_1 R_3)}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.5
+	\begin{solution}
+		设内筒单位长度带电量为 $\lambda$，那么根据高斯定理，对于 $R_1 < r < R_2$：
+		$$
+		E(r) = \frac{\lambda l}{2 \pi \varepsilon_0 l r} = \frac{\lambda}{2 \pi \varepsilon_0 r}
+		$$
+		积分得到：
+		$$
+		U_1 - U_2 = \int_{R_1}^{R_2} E(r) \dd{r} = \frac{\lambda}{2\pi \varepsilon_0} \ln \frac{R_2}{R_1}
+		$$
+		解得 $\lambda = \frac{2 \pi \varepsilon_0 (U_1 - U_2)}{\ln (R_2 / R_1)}$。因此 $r$ 处的电势为：
+		$$
+		U(r) = U_1 - \int_{R_1}^{r} E(t) \dd{t} = \frac{U_1 - U_2}{\ln (R_2 / R_1)} \ln \frac{r}{R_1}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.6
+	\begin{solution}
+		相当于两个电容 $C_1, C_2$ 串联，然后再并联一个电容 $C_3$。根据公式计算得到：
+		$$
+		\begin{gathered}
+			C_1 = C_2 = \frac{\varepsilon_0 \cdot \frac{1}{2} S}{\frac{1}{2} (d - t)} = \frac{\varepsilon_0 S}{d - t} \\
+			C_3 = \frac{\varepsilon_0 \cdot \frac{1}{2}S}{d} = \frac{\varepsilon S}{2d}
+		\end{gathered}
+		$$
+		$C_1, C_2$ 串连的电容为
+		$$
+		C_{12} = \frac{C_1 C_2}{C_1 + C_2} = \frac{\varepsilon_0 S}{2(d - t)}
+		$$
+		最后得到总电容为
+		$$
+		C = C_{12} + C_3 = \frac{\varepsilon_0 S}{2} \ab(\frac{1}{d - t} + \frac{1}{d})
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.12
+	\begin{solution}
+		设空气中的电场强度为 $E_0$。
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据电位移矢量的连续性，我们得到
+			$$
+			D = \varepsilon_0 E_0 = \varepsilon_0 \varepsilon_r E \implies E_0 = \varepsilon_r E
+			$$
+			再根据电势差得到方程
+			$$
+			U = E_0 (d - t) + E t = (\varepsilon_r (d - t) + t) E
+			$$
+			解得 $E = \frac{U}{\varepsilon_r(d - t) + t}$。进一步得到
+			$$
+			\begin{gathered}
+				D = \varepsilon_0 \varepsilon_r E = \frac{\varepsilon_0 \varepsilon_r U}{\varepsilon_r (d - t) + t} \\
+				P = \varepsilon_0 (\varepsilon_r - 1) E = \frac{\varepsilon_0 (\varepsilon_r - 1) U}{\varepsilon_r (d - t) + t} \\
+			\end{gathered}
+			$$
+
+			\item[\textbf{2)}]
+			$$
+			Q = \sigma S = D \cdot S = \frac{\varepsilon_0 \varepsilon_r S U}{\varepsilon_r (d - t) + t}
+			$$
+
+			\item[\textbf{3)}]
+			$$
+			E_0 = \varepsilon_r E = \frac{\varepsilon_r U}{\varepsilon_r(d - t) + t}
+			$$
+
+			\item[\textbf{4)}]
+			$$
+			C = \frac{Q}{U} = \frac{\varepsilon_0 \varepsilon_r S}{\varepsilon_r (d - t) + t}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.15
+	\begin{solution}
+		\item[\textbf{1)}] 设内层圆柱单位长度带电量为 $\lambda$，那么根据高斯定理有
+		$$
+		D(r) = \frac{\lambda l}{2 \pi r l} = \frac{\lambda}{2 \pi r}
+		$$
+		因此，油纸和玻璃中分别有
+		$$
+		\begin{gathered}
+			E_1(r) = \frac{\lambda}{2 \pi \varepsilon_0 \varepsilon_{r1} r} \quad (R_1 \le r < R_2) \\
+			E_2(r) = \frac{\lambda}{2 \pi \varepsilon_0 \varepsilon_{r2} r} \quad (R_2 \le r < R_3)
+		\end{gathered}
+		$$
+		因此最大场强分别为
+		$$
+		E_{1\,\mathrm{max}} = \frac{\lambda}{2 \pi \varepsilon_0 \varepsilon_{r1} R_1},\ E_{2\,\mathrm{max}} = \frac{\lambda}{2 \pi \varepsilon_0 \varepsilon_{r1} R_2}
+		$$
+		当电压逐渐升高时，$\lambda$ 逐渐增大，考察两种介质的阈值：
+		\begin{itemize}
+			\item 油纸：$\frac{\lambda_1}{2\pi \varepsilon_0} = E_{b1} \varepsilon_{r1} R_1 \approx 960\,\mathrm{kV}$；
+			\item 玻璃：$\frac{\lambda_2}{2\pi \varepsilon_0} = E_{b2} \varepsilon_{r2} R_2 \approx 1610\,\mathrm{kV}$。
+		\end{itemize}
+		因此油纸先被击穿。
+
+		\item[\textbf{2)}] 将 $\frac{\lambda}{2\pi \varepsilon_0} = 960 \,\mathrm{kV}$ 回带，得到电压：
+		$$
+		\begin{aligned}
+			U & = \int_{R_1}^{R_2} E_1(r) \dd{r} + \int_{R_2}^{R_3} E_2(r) \dd{r} \\
+			& = \int_{2.0}^{2.3} \frac{240}{r} \dd{r} + \int_{2.3}^{2.5} \frac{960}{7r} \dd{r} \\
+			& = 240 \ln \frac{2.3}{2.0} + \frac{960}{7} \ln \frac{2.5}{2.3} \approx 44.97\,\mathrm{kV}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.19
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据高斯定理得到，极板中电场强度为
+			$$
+			E = \frac{Q}{\varepsilon_0 S}
+			$$
+			\begin{itemize}
+				\item 电能密度 $w_{e 1} = \frac{1}{2} \varepsilon_0 E^2$，电场能 $W_{e 1} = w_{e 1} \cdot Sd = \frac{Q^2 d}{2 \varepsilon_0 S}$；
+				\item 电能密度 $w_{e 2} = \frac{1}{2} \varepsilon_0 E^2$，电场能 $W_{e 2} = w_{e 2} \cdot S \cdot 2d = \frac{Q^2 d}{\varepsilon_0 S}$。
+			\end{itemize}
+			改变了 $\Delta W = \frac{Q^2 d}{2 \varepsilon_0 S}$。
+
+			\item[\textbf{2)}] 根据能量守恒，外力做功就是电场能改变量 $\frac{Q^2 d}{2 \varepsilon_0 S}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 2.21
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			E_1 = \frac{U_0}{d},\ E_2 = \frac{U_0}{d},\ D_1 = \sigma_1 = \frac{\varepsilon_0 \varepsilon_r U_0}{d},\ D_2 = \sigma_2 = \frac{\varepsilon_0 U_0}{d}
+			$$
+			\item[\textbf{2)}] 未插入介质时：
+			$$
+			W_1 = w_e \cdot S d = \frac{1}{2} \varepsilon_0 \ab(\frac{U_0}{d})^2 \cdot S d = \frac{\varepsilon_0 U_0^2 S}{2 d}
+			$$
+			插入介质后：
+			$$
+			W_2 = (w_l + w_r) \cdot \frac{S d}{2} = \ab(\frac{1}{2} \varepsilon_0 \varepsilon_r \ab(\frac{U_0}{d})^2 + \frac{1}{2} \varepsilon_0 \ab(\frac{U_0}{d})^2) = \frac{\varepsilon_0 (\varepsilon_r + 1) U_0^2 S}{4 d}
+			$$
+			变化量：
+			$$
+			\Delta W = W_2 - W_1 = \frac{\varepsilon_0 (\varepsilon_r - 1) U_0^2 S}{4 d}
+			$$
+			
+			\item[\textbf{3)}] 未插入介质时，电容器带电量为：
+			$$
+			Q_1 = \frac{\varepsilon_0 U_0}{d} \cdot S = \frac{\varepsilon_0 U_0 S}{d}
+			$$
+			插入后，电容器带电量为：
+			$$
+			Q_2 = \ab(\frac{\varepsilon_0 U_0}{d} + \frac{\varepsilon_0 \varepsilon_r U_0}{d}) \cdot \frac{1}{2} S = \frac{\varepsilon_0 (\varepsilon_r + 1) U_0 S}{2 d}
+			$$
+			因此，电源做功为
+			$$
+			A = (Q_2 - Q_1) U_0 = \frac{\varepsilon_0 (\varepsilon_r - 1) U_0^2 S}{2 d}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}

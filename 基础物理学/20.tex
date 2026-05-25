@@ -1,0 +1,48 @@
+\section{静电场中的导体 II}
+
+\subsection{孤立导体的电容}
+
+对于一个孤立导体，其具有电势 $U$ 正比于带电量 $Q$，那么我们定义孤立导体的电容：
+
+\begin{definition}[孤立导体电容]
+	对于带电量为 $Q$，电势为 $U$ 的导体，其\textbf{电容}为
+	$$
+	C = \frac{Q}{U}
+	$$
+\end{definition}
+
+\subsection{电容和电容器}
+
+对于两个不连接的导体构成的封闭或近似封闭导体空腔称为\textbf{电容器}，两个导体称为电容器的\textbf{极板}。
+
+\begin{definition}[电容器的电容]
+	电容器电容定义为带电量和极板电势差的比值：
+	$$
+	C = \frac{Q}{U_a - U_b}
+	$$
+\end{definition}
+
+对于不同形状的电容器，其电容分别有公式：
+
+\begin{itemize}
+	\item \textbf{平行板电容器}：设板正对面积为 $S$，两板距离为 $d$，那么：
+	$$
+	C = \frac{\varepsilon_0 S}{d}
+	$$
+	\item \textbf{球形电容器}：设内外球壳的半径分别为 $R_A, R_B$，那么：
+	$$
+	C = 4 \pi \varepsilon_0 \frac{R_A R_B}{R_B - R_A}
+	$$
+	\item \textbf{同轴柱形电容器}：设内外圆柱半径分别为 $R_A, R_B$，圆柱高为 $L$，那么：
+	$$
+	C = \frac{2\pi \varepsilon_0 L}{\ln R_B - \ln R_A}
+	$$
+\end{itemize}
+
+\subsubsection{串联}
+
+多个电容串联时，等效电容是所有电容倒数之和的倒数，耐压值是所有电容之和。
+
+\subsubsection{并联}
+
+多个电容并联时，等效电容是所有电容之和，耐压值是所有电容最小值。

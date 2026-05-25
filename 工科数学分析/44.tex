@@ -1,0 +1,258 @@
+\section{重积分 III}
+
+\subsection{三重积分}
+
+和二重积分类似，将平面小区域替换为空间中的小区域，即可得到三维区域的体积和三重积分的定义。
+
+\subsection{三重积分的计算}
+
+和二重积分类似，三重积分可以转化为三次累次定积分，或者一次二重积分一次定积分，或者一次定积分一次二重积分。
+
+\subsection{三重积分的换元法}
+
+设有变换
+$$
+T: \begin{dcases}
+	x = x(u, v, w) \\
+	y = y(u, v, w) \\
+	z = z(u, v, w) \\
+\end{dcases}
+$$
+且 $T$ 将 $uvw$ 空间上的有界闭区域 $\Delta$ 映射到 $xyz$ 空间的有界闭区域 $D$。那么定义 Jacobi 行列式为
+$$
+J(u, v, w) = \abs{\frac{\partial(x, y, z)}{\partial(u, v, w)}} = \begin{vmatrix}
+	\pdv{x}{u} & \pdv{x}{v} & \pdv{x}{w} \\
+	\pdv{y}{u} & \pdv{y}{v} & \pdv{y}{w} \\
+	\pdv{z}{u} & \pdv{z}{v} & \pdv{z}{w} \\
+\end{vmatrix}
+$$
+就有
+$$
+\iiint_D f(x, y, z) \dd{x} \dd{y} \dd{z} = \iiint_{\Delta} f(x(u, v, w), y(u, v, w), z(u, v, w)) \abs{J(u, v, w)} \dd{u} \dd{v} \dd{w}
+$$
+
+\subsubsection{柱面坐标变换}
+
+对于一个柱面，可以使用三个变元 $r, \theta, z$ 来表示，坐标变换为：
+$$
+T: (x, y, z) = (r \cos \theta, r \sin \theta, z)
+$$
+其 Jacobi 行列式为
+$$
+J(r, \theta, r) = \begin{vmatrix}
+	\cos \theta & \sin \theta & 0 \\
+	-r \sin \theta & r \cos \theta & 0 \\
+	0 & 0 & 1
+\end{vmatrix} = r
+$$
+
+\subsubsection{球坐标变换}
+
+对于球面可以使用 $r, \theta, \varphi$ 来表示，坐标变换为：
+$$
+T: (x, y, z) = (r \sin \theta \cos \varphi, r \sin \theta \sin \varphi, r \cos \theta)
+$$
+其 Jacobi 行列式为
+$$
+J(r, \theta, \varphi) = \begin{vmatrix}
+	\sin \theta \cos \varphi & \sin \theta \sin \varphi & \cos \theta \\
+	r \cos \theta \cos \varphi & r \cos \theta \sin \varphi & -r \sin \theta \\
+	-r \sin \theta \sin \varphi & r \sin \theta \cos \varphi & 0 
+\end{vmatrix} = r^2 \sin \theta
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	习题 16.3.1
+	\begin{solution}
+		根据积分中值定理，存在一个 $\vect{\eta} \in B(\vect{0}, r)$ 使得
+		$$
+		\iiint\limits_{x^2 + y^2 + z^2 \le r^2} f(x, y, z) \dd{x} \dd{y} \dd{z} = \frac{4 \pi r^3}{3} \cdot f(\vect{\eta}_x, \vect{\eta}_y, \vect{\eta}_z)
+		$$
+		而 $\lim\limits_{r \to 0^{+}} \eta = \vect{0}$，因此：
+		$$
+		\lim_{r \to 0^{+}} \frac{3}{4 \pi r^3} \iiint\limits_{x^2 + y^2 + z^2 \le r^2} f(x, y, z) \dd{x} \dd{y} \dd{z} = \frac{3}{4 \pi r^3} \cdot \frac{4 \pi r^3}{3} f(0, 0, 0) = f(0, 0, 0)
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.3.3
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 这是一个连续函数，转化为累次积分：
+			$$
+			\begin{aligned}
+				\origin & = \int_{2}^{3} \dd{x} \int_{-1}^{1} \dd{y} \int_{0}^{2} (x y + 2 z) \dd{z} \\
+				& = \int_{2}^{3} \dd{x} \int_{-1}^{1} (2 x y + 4) \dd{y} \\
+				& = \int_{2}^{3} 8 \dd{x} \\
+				& = 8
+			\end{aligned}
+			$$
+			\item[\textbf{2)}] 做代换 $u = x + y + z,\ v = x + y,\ w = x$，也就是有变换
+			$$
+			T: (x, y, z) = (w, v - w, u - v)
+			$$
+			其 Jacobi 行列式为
+			$$
+			J(u, v, w) = \begin{bmatrix}
+				0 & 0 & 1 \\
+				0 & 1 & -1 \\
+				1 & -1 & 0 
+			\end{bmatrix} = -1			
+			$$
+			因此
+			$$
+			\begin{aligned}
+				\origin & = \iiint\limits_{0 \le w \le v \le u \le 1} \frac{\dd{u} \dd{v} \dd{w}}{(1 + u)^3} \\
+				& = \int_{0}^{1} \dd{u} \int_{0}^{u} \dd{v} \int_{0}^{v} \frac{\dd{w}}{(1 + u)^3} \\
+				& = \int_{0}^{1} \dd{u} \int_{0}^{u} \frac{v}{(1 + u)^3} \dd{v} \\
+				& = \int_{0}^{1} \frac{u^2}{2 (1 + u)^3} \dd{u} \\
+				& = \ab[\frac{1}{2} \ln (1 + u) + \frac{1}{1 + u} - \frac{1}{4 (1 + u)^2}]_{0}^{1} = \frac{1}{2} \ln 2 - \frac{5}{16}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.3.4
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 取一个变换
+			$$
+			T: (x, y, z) = (r \sin \theta, r \cos \theta, h)
+			$$
+			其 Jacobi 行列式为
+			$$
+			J(r, \theta, h) = \begin{vmatrix}
+				\sin \theta & \cos \theta & 0 \\
+				r \cos \theta & -r \sin \theta & 0 \\
+				0 & 0 & 1 
+			\end{vmatrix} = r			
+			$$
+			因此有
+			$$
+			\begin{aligned}
+				\origin & = \iiint\limits_{\stackrel{1 \le h \le 2}{0 \le r \le h}} r^4 \cdot r \dd{r} \dd{\theta} \dd{h} \\
+				& = \int_{1}^{2} \dd{h} \int_{0}^{2 \pi} \dd{\theta} \int_{0}^{\sqrt{h}} r^5 \dd{r} \\
+				& = \int_{1}^{2} \dd{h} \int_{0}^{2 \pi} \frac{1}{6} h^3 \dd{\theta} \\
+				& = \int_{1}^{2} \frac{\pi}{3} h^3 \dd{h} = \frac{5\pi}{4}
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}] 取柱面变换 $T: (x, y, z) = (r \cos \theta, r \sin \theta, z)$，因此
+			$$
+			\begin{aligned}
+				\origin & = \iiint\limits_{\stackrel{0 \le z \le 1}{0 \le r^2 \le z - z^2}} r \sqrt{r^2 + z^2} \dd{x} \dd{y} \dd{z} \\
+				& = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{1} \dd{z} \int_{0}^{\sqrt{z^2 - z}} r \sqrt{r^2 + z^2} \dd{r} \\
+				& = 2 \pi \int_{0}^{1} \frac{1}{3} \ab(z^{\frac{3}{2}} - z^3) \dd{z} \\
+				& = 2 \pi \cdot \frac{1}{3} \ab[\frac{2}{5} z^{\frac{5}{2}} - \frac{1}{4} z^{4}]_{0}^{1} = \frac{\pi}{10}
+			\end{aligned}
+			$$
+
+			\item[\textbf{7)}] 取椭球面变换 $T: (x, y, z) = (a r \sin \theta \cos \varphi, b r \sin \theta \cos \varphi, c r \cos \theta)$，得到
+			$$
+			\begin{aligned}
+				\origin & = \iiint\limits_{\stackrel{0 \le r \le 1}{0 \le \theta \le \pi,\ 0 \le \varphi \le 2\pi}} \E^{r} r^2 \sin \theta \dd{r} \\
+				& = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\pi} \dd{\theta} \int_{0}^{1} \E^{r} r^2 \sin \theta \dd{r} \\
+				& = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\pi} (2\E - 2) \sin \theta \dd{\theta} \\
+				& = \int_{0}^{2\pi} 4 (\E - 1) \dd{\varphi} = 8 \pi (\E - 1)
+			\end{aligned}
+			$$
+
+			\item[\textbf{8)}] 使用球面变换 $T: (x, y, z) = (r \sin \theta \cos \varphi, r \sin \theta \sin \varphi, r \cos \theta)$。那么根据 $x > 0,\ y > 0,\ x^2 + y^2 \le 1,\ \sqrt{x^2 + y^2} \le z \le \sqrt{2 - x^2 - y^2}$ 得到：
+			$$
+			\begin{dcases}
+				\sin \theta \cos \varphi > 0 \\
+				\sin \theta \sin \varphi > 0 \\
+				r^2 \sin^2 \theta \le r^2 \cos^2 \theta \\
+				r^2 \le 2
+			\end{dcases} \implies \begin{dcases}
+				0 \le \varphi < \frac{\pi}{2} \\
+				0 \le \theta < \frac{\pi}{4} \\
+				0 \le r \le \sqrt{2}
+			\end{dcases}
+			$$
+			因此有
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{\frac{\pi}{2}} \dd{\varphi} \int_{0}^{\frac{\pi}{4}} \dd{\theta} \int_{0}^{\sqrt{2}} \ab(r^2 \cos^2 \theta) r^2 \sin \theta \dd{r} \\
+				& = \int_{0}^{\frac{\pi}{2}} \dd{\varphi} \int_{0}^{\frac{\pi}{4}} \frac{5 \sqrt{2}}{4} \cos^2 \theta \sin \theta \dd{\theta} \\
+				& = \int_{0}^{\frac{\pi}{2}} \frac{4 \sqrt{2}}{15} \ab(1 - \frac{\sqrt{2}}{4}) \dd{\varphi} \\
+				& = \frac{(2 \sqrt{2} - 1) \pi}{15}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.3.5
+	\begin{solution}
+		令 $u = \frac{z}{x},\ v = \frac{z}{y^2},\ w = z$，那么变换：
+		$$
+		T: (x, y, z) = \ab(\frac{w}{u}, \sqrt{\frac{w}{v}}, w)
+		$$
+		其 Jacobi 行列式为
+		$$
+		J(u, v, w) = \begin{vmatrix}
+			-\frac{w}{u^2} & 0 & 0 \\
+			0 & -\frac{\sqrt{w}}{2 v^{\frac{3}{2}}} & 0 \\
+			\frac{1}{u} & \frac{1}{2 \sqrt{w v}} & 1
+		\end{vmatrix} = \frac{1}{2 u^2} \ab(\frac{w}{v})^{\frac{3}{2}}
+		$$
+		因此
+		$$
+		\begin{aligned}
+			\origin & = \int_{\alpha}^{\beta} \dd{u} \int_{a}^{b} \dd{v} \int_{0}^{h} \frac{w^2}{u^2} \cdot \frac{1}{2 u^2} \ab(\frac{w}{v})^{\frac{3}{2}}\dd{w} \\
+			& = \int_{\alpha}^{\beta} \frac{\dd{u}}{2u^4} \int_{a}^{b} \frac{\dd{v}}{v^{\frac{3}{2}}} \int_{0}^{h} w^{\frac{7}{2}} \dd{w} \\
+			& = \frac{2}{27} h^{\frac{9}{2}} \ab(\frac{1}{\sqrt{a}} - \frac{1}{\sqrt{b}}) \ab(\frac{1}{\alpha^3} - \frac{1}{\beta^3})
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 15.3.6
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 使用球面变换
+			$$
+			T: (x, y, z) = (a r \sin \theta \cos \varphi, b r \sin \theta \sin \varphi, c r \cos \theta)
+			$$
+			代入曲面方程得到：
+			$$
+			r^4 = \frac{a r \sin \theta \cos \varphi}{h} \implies r = \sqrt[3]{\frac{a \sin \theta \cos \varphi}{h}}
+			$$
+			因此体积为
+			$$
+			\begin{aligned}
+				V & = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \dd{\varphi} \int_{0}^{\pi} \dd{\theta} \int_{0}^{\sqrt[3]{\frac{a \sin \theta \cos \varphi}{h}}} a b c r^2 \sin \theta \dd{r} \\
+				& = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \dd{\varphi} \int_{0}^{\pi} a b c r^2 \sin \theta \cdot \frac{a \sin \theta \cos \varphi}{3 h}  \dd{\theta} \\
+				& = \frac{a^2 b c}{3 h} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos \varphi \dd{\varphi} \int_{0}^{\pi} \sin^2 \theta \dd{\theta} \\
+				& = \frac{\pi a^2 b c}{3 h}
+			\end{aligned}
+			$$
+			\item[\textbf{2)}] 也使用球面变换
+			$$
+			T: (x, y, z) = (a r \sin \theta \cos \varphi, b r \sin \theta \sin \varphi, c r \cos \theta)
+			$$
+			代入曲面得到
+			$$
+			r^4 = r^2 \sin^2 \theta (\cos^2 \varphi + \sin^2 \varphi) \implies r = \sin \theta
+			$$
+			因此体积为
+			$$
+			\begin{aligned}
+				V & = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\pi} \dd{\theta} \int_{0}^{\sin \theta} a b c r^2 \sin \theta \dd{r} \\
+				& = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\pi} \frac{1}{3} a b c \sin^4 \theta \dd{\theta} \\
+				& = \frac{2 \pi a b c}{3} \int_{0}^{\pi} \sin^4 \theta \dd{\theta} \\
+				& = \frac{\pi^2 a b c}{4}
+			\end{aligned}
+			$$
+
+		\end{enumerate}
+	\end{solution}
+\end{problem}

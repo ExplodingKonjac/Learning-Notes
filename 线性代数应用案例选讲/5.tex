@@ -1,101 +1,72 @@
-\section{空间解析几何}
+\section{线性代数在线性系统中的应用}
 
 \subsection{作业}
 
 \begin{problem}
-	习题一
-	\begin{solution}
-		原曲线方程即为
-		$$
-		x = \frac{y^2}{2} + \frac{9}{2},\ z = 3
-		$$
-		点 $(x, y, z)$ 在 $xOy$ 上的投影是 $(x, y, 0)$。因此投影曲线方程为
-		$$
-		x = \frac{y^2}{2} + \frac{9}{2},\ z = 0
-		$$
-		原曲线和投影后的曲线都是一个抛物线。
-	\end{solution}
-\end{problem}
-
-\begin{problem}
-	习题二
+	习题 1
 	\begin{solution}
 		\begin{enumerate}
-			\item[\textbf{1)}] 这个曲面是一个椭圆抛物面。
-			\item[\textbf{2)}] 这个曲面是一个椭圆双曲面。
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=0.15]{线性代数应用案例选讲/graphics/answer1.png}
-			\end{figure}
+			\item[\textbf{1)}] 设 $\matr{K} = \rvec{k_1, k_2}$，那么系统矩阵为：
+			$$
+			\matr{A}' = \begin{bmatrix}
+				0 & 1 \\
+				-1 & 0 
+			\end{bmatrix} - \begin{bmatrix}
+				0 \\
+				1 
+			\end{bmatrix} \begin{bmatrix}
+				k_1 & k_2 
+			\end{bmatrix} = \begin{bmatrix}
+				0 & 1 \\
+				-1 - k_1 & -k_2 
+			\end{bmatrix}
+			$$
+			那么该矩阵的特征多项式为
+			$$
+			f(\lambda) = \begin{vmatrix}
+				\lambda & -1 \\
+				1 + k_1 & \lambda + k_2
+			\end{vmatrix} = \lambda^2 + k_2 \lambda + (1 + k_1)
+			$$
+			我们希望极点是 $\lambda_1 = 1 + \I,\ \lambda_2 = -1 + \I$，因此：
+			$$
+			f(\lambda) = (\lambda - (1 + \I)) (\lambda - (-1 + \I)) = \lambda^2 + 2\lambda + 2
+			$$
+			对比系数得到 $k_1 = 1,\ k_2 = 2$，因此 $\matr{K} = \rvec{1, 2}$，控制器为 $\vect{u} = -\rvec{1, 2} \vect{x}$。
+
+			\item[\textbf{2)}] 将 $\matr{K}$ 代入得到：
+			$$
+			\matr{A}' = \begin{bmatrix}
+				0 & 1 \\
+				-2 & -2 
+			\end{bmatrix}
+			$$
+			其特征多项式为：
+			$$
+			f(\lambda) = \begin{vmatrix}
+				\lambda & -1 \\
+				2 & \lambda + 2 
+			\end{vmatrix} = \lambda^2 + 2 \lambda + 2
+			$$
+			求解一元二次方程，得到特征值 $\lambda = \frac{-2 \pm \sqrt{4 - 8}}{2} = -1 \pm \I$。验证完成。
+
+			\item[\textbf{3)}] 如果一个系统不是完全能控的，它的状态空间可以通过非奇异的线性变换分解为两个独立的部分：“能控子空间”和“不能控子空间”。
+			
+			在引入状态反馈 $\vect{u} = -\matr{K} \vect{x}$ 时，控制输入 $\vect{u}$ 只能改变“能控子空间”对应的系统矩阵特征值。而对于“不能控子空间”，由于它在结构上不受输入 $\vect{u}$ 的影响，无论矩阵 $\matr{K}$ 取什么值，这部分系统的特征值都将保持不变。
+			
+			因此只有当系统中不存在“不能控子空间”，即系统状态完全能控时，控制输入才能通过反馈矩阵 $\matr{K}$ 任意配置全部极点。
 		\end{enumerate}
 	\end{solution}
 \end{problem}
 
 \begin{problem}
-	习题三
+	习题 2
 	\begin{solution}
 		\ 
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=0.22]{线性代数应用案例选讲/graphics/answer2.png}
-		\end{figure}
-	\end{solution}
-\end{problem}
-
-\begin{problem}
-	习题四
-	\begin{solution}
 		\begin{itemize}
-			\item 用平面 $z = h$ 截得到
-			$$
-			-\frac{x^2}{2p} + \frac{y^2}{2q} = h
-			$$
-			$h \neq 0$ 时这是一条双曲线，$h = 0$ 时这是两条相交直线。
-
-			\item 用平面 $x = k$ 截得到
-			$$
-			z = \frac{y^2}{2q} - \frac{k^2}{2p}
-			$$
-			这是一条开口向上的抛物线，且顶点随 $k$ 增大而下降。
-
-			\item 用平面 $y = m$ 截得到
-			$$
-			z = -\frac{x^2}{2p} + \frac{m^2}{2q}
-			$$
-			这是一个开口向下的抛物线，且顶点随 $m$ 增大而上升。
+			\item \textbf{核心作用}：线性代数中的向量和矩阵提供了描述多维动态系统的语言，帮助现代控制理论解决复杂的多输入多输系统。同时能够将系统的动态特性完全转化为矩阵的代数性质，极大地简化了系统分析和调节器设计。
+			
+			\item \textbf{本质思想}：线性代数赋予了控制理论高维空间的视角。线性代数语言中，系统的状态被视为 $n$ 维向量空间中的一个点，系统的动态演化就是该点在空间中随时间描绘的轨迹。而系统的运行转化为输入空间向状态空间，以及状态空间向输出空间的映射。
 		\end{itemize}
-
-		可知这个曲面被称为双曲抛物面，即马鞍面。
-
-		\begin{figure}[H]
-			\centering
-			\begin{tikzpicture}
-				\begin{axis}[
-					view={120}{30},
-					axis lines=center,
-					xmin=-2.5, xmax=3.5,
-					ymin=-2.5, ymax=3.5,
-					zmin=-3.5, zmax=3.5,
-					xlabel={}, ylabel={}, zlabel={},
-					ticks=none,
-					axis equal image,
-					clip=false,
-					scale=2,
-				]
-					\addplot3[
-						mesh,
-						shading=none,
-						color=black!40,
-						samples=15,
-						domain=-2:2,
-						y domain=-2:2,
-					] { (y^2)/2 - (x^2)/2 };
-					\node[anchor=north west] at (axis cs: 3.5, 0, 0) {$x$};
-					\node[anchor=south west] at (axis cs: 0, 3.5, 0) {$y$};
-					\node[anchor=south]      at (axis cs: 0, 0, 3.5) {$z$};
-				\end{axis}
-			\end{tikzpicture}
-			\caption{双曲抛物面}
-		\end{figure}
 	\end{solution}
 \end{problem}
