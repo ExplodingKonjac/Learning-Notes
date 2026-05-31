@@ -1,0 +1,251 @@
+\section{恒定磁场 II}
+
+\subsection{安培定律}
+
+\subsubsection{磁场对电流的作用力}
+
+\begin{definition}[安培力]
+	对于一个在磁场 $\vect{B}$ 中的电流元 $I \dd{\vect{l}}$，其受到磁场的作用力，作用力大小为
+	$$
+	\dd{F} = I \dd{\vect{l}} \cp \vect{B}
+	$$
+	这个力称为\textbf{安培力}。
+\end{definition}
+
+电流可以产生磁场，因此电流之间也可以产生作用力。结合毕奥--萨伐尔定律，可以得到电流元之间作用力的安培定律：
+
+\begin{theorem}[安培定律]
+	设电流元 $I_1 \dd{\vect{l}_1}$ 对电流元 $I_2 \dd{\vect{l}_2}$ 的作用力为 $\dd[2]{\vect{F}_{12}}$，从电流元 1 到电流元 2 的矢量为 $\vect{r}_{12}$，那么
+	$$
+	\dd[2]{\vect{F}_{12}} = \frac{\mu_0}{4\pi} \frac{I_2 \dd{\vect{l}_2} \cp \ab(I_1 \dd{\vect{l}}_1 \cp \vect{r}_{12}^0)}{\abs{\vect{r}_{12}}^2}
+	$$
+\end{theorem}
+
+\subsubsection{磁场对载流线圈的作用}
+
+\begin{definition}[磁矩]
+	对于一个物体，设其在位移 $\vect{r}$ 处的电流密度为 $\vect{J}(\vect{r})$，那么其\textbf{磁矩}为：
+	$$
+	\vect{p}_m = \frac{1}{2} \iiint \vect{r} \cp \vect{J}(\vect{r}) \dd{V}
+	$$
+\end{definition}
+
+特别地，对于一个 $N$ 匝的载流线圈，设其面积矢量为 $\vect{S}$，那么其磁矩就是
+$$
+\vect{p}_m = N I \vect{S}
+$$
+
+载流物体在磁场中会受到一个力矩。使用毕奥--萨伐尔定律推导即可得到，这个力矩就是磁矩和磁感应强度的外积：
+$$
+\vect{M} = \vect{p}_m \cp \vect{B}
+$$
+
+\subsection{洛伦兹力}
+
+\begin{definition}[洛伦兹力]
+	运动的电荷在磁场中会受到力的作用，这个力称为\textbf{洛伦兹力}。对于一个磁场 $\vect{B}$ 中带电量为 $q$，运动速度为 $\vect{v}$ 的电荷，其受到的力为
+	$$
+	\vect{F} = q \vect{v} \cp \vect{B}
+	$$
+\end{definition}
+
+安培力是洛伦兹力的宏观体现。安培力来源于载流子的洛伦兹力。
+
+\subsection{作业}
+
+\begin{problem}
+	习题 4.2
+	\begin{solution}
+		在 $A$ 点处：两导线产生的磁感应强度大小相等、方向相反，因此 $\vect{B}_A = \vect{0}$。
+
+		在 $B$ 点处：根据安培环路定理，一根导线形成的磁场强度为
+		$$
+		\abs{\vect{B}'} = \frac{\mu_0 I}{2 \pi \cdot \sqrt{2} r} = \frac{\mu_0 I}{2 \sqrt{2} \pi r}
+		$$
+		方向斜向上 $45^{\circ}$。因此两根导线的合磁感应强度为
+		$$
+		\abs{\vect{B}_B} = \sqrt{2} \abs{\vect{B}'} = \frac{\mu_0 I}{2 \pi r}
+		$$
+		方向竖直向上。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.3
+	\begin{solution}
+		设 $\wideparen{AB}$ 圆心角为 $\theta$，金属圆环半径为 $r$，单位长度的电阻为 $\rho$，电源电动势为 $E$。
+
+		那么劣弧侧的电阻为 $R_1 = \theta r \rho$，优弧侧的电阻为 $R_2 = (2\pi - \theta) r \rho$。因此劣弧侧的电流 $I_1 = \frac{E}{R_1} = \frac{E}{\theta r \rho}$，优弧侧的电流 $I_2 = \frac{E}{R_2} = \frac{E}{(2\pi - \theta) r \rho}$。
+
+		根据毕奥--萨伐尔定律，劣弧侧形成的磁感应强度（垂直纸面向外为正）：
+		$$
+		B_1 = \int_{L_1} \frac{\mu_0}{4\pi} \cdot \frac{I_1 \dd{l}}{r^2} = \frac{\mu_0 E}{4 \pi r^2 \rho}
+		$$
+		优弧侧：
+		$$
+		B_2 = \int_{L_2} \frac{\mu_0}{4\pi} \cdot \frac{I_2 \dd{l}}{r^2} = \frac{\mu_0 E}{4 \pi r^2 \rho}
+		$$
+		因此总的磁感应强度为
+		$$
+		B = B_1 + B_2 = \frac{\mu_0 E}{2 \pi r^2 \rho}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.6
+	\begin{solution}
+		对于一根无限长直导线，在 $\vect{r}$ 处产生的磁场为
+		$$
+		\vect{B}_0 = \frac{\mu_0 I}{2 \pi r^2} \vect{l}^0 \cp \vect{r}
+		$$
+		那么对于整个半圆柱面导线，产生磁场为
+		$$
+		\vect{B} = \int_{0}^{\pi} \frac{\mu_0}{2 \pi r^2} \cdot \frac{I \dd{\theta}}{\pi} \vect{l}^{0} \cp \ab(-r \cos \theta \vect{i} - r \sin \theta \vect{j}) = -\frac{2 \mu_0 I}{\pi^2 r^2} \vect{l}_0 \cp \vect{j}
+		$$
+		因此磁场大小为 $\frac{2 \mu_0 I}{\pi^2 r^2}$，方向水平向右。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.9
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 对于圆盘上半径为 $r$，宽度为 $\dd{r}$ 的小圆环，其等效电流为：
+			$$
+			I(r) = \frac{\dd{Q}}{\dd{t}} = \frac{(\dd{r} \cdot \omega r \dd{t}) \sigma}{\dd{t}} = \sigma \omega r \dd{r}
+			$$
+			进行积分：
+			$$
+			B = \int_{0}^{R} \frac{\mu_0 r^2}{2 (r^2 + x^2)^{\frac{3}{2}}} \cdot \sigma \omega r \dd{r} = \frac{\mu_0 \sigma \omega}{2} \ab(\frac{R^2 + 2x^2}{\sqrt{R^2 + x^2}} - 2x)
+			$$
+
+			\item[\textbf{2)}] 仍然分为若干环型电流进行考虑：
+			$$
+			\vect{\mu} = \int_{0}^{R} \pi r^2 \cdot \sigma \omega r \dd{r} = \frac{\pi \sigma \omega R^4}{4}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.12
+	\begin{solution}
+		利用安培环路定理：
+		\begin{itemize}
+			\item $0 < r < r_1$ 时：$I_{enc} = I \cdot \frac{r^2}{r_1^2}$，因此：
+			$$
+			2\pi r B = \mu_0 I_{enc} \implies B = \frac{\mu_0 I r}{2 \pi r_1^2}
+			$$
+			\item $r_1 \le r < r_2$ 时：$I_{enc} = I$，因此：
+			$$
+			2\pi r B = \mu_0 I_{enc} \implies B = \frac{\mu_0 I}{2 \pi r}
+			$$
+			\item $r_2 \le r < r_3$ 时：$I_{enc = I \cdot \frac{r^2 - r_2^2}{r_3^2 - r_2^2}}$，因此：
+			$$
+			2\pi r B = \mu_0 I_{enc} \implies B = \frac{\mu_0 I (r^2 - r_2^2)}{2 \pi r (r_3^2 - r_2^2)}
+			$$
+			\item $r \ge r_3$ 时：$I_{enc} = 0$，因此 $B = 0$。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.13
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 首先根据对称性分析可知，环内的磁感应强度永远垂直于于圆心连线，且平行于圆环面。而根据安培环路定理，任何一个环内部的闭合回路，穿过其的电流相等。因此环内是一个环型磁场，且磁感应强度与 $r$ 成正比。
+			
+			\item[\textbf{2)}] 对于半径为 $r$ 的回路，使用安培环路定理：
+			$$
+			B \cdot 2 \pi r = \mu_0 N I \implies B = \frac{\mu_0 N I}{2 \pi r}
+			$$
+			积分：
+			$$
+			\Phi_n = \iint\limits_{\stackrel{D_2 / 2 \le r \le D_1 / 2}{0 \le y \le h}} \frac{\mu_0 N I}{2 \pi r} \dd{r} \dd{y}
+			= h \int_{\frac{D_2}{2}}^{\frac{D_1}{2}} \frac{\mu_0 N I}{2 \pi r} \dd{r} \\
+			= \frac{\mu_0 N I h}{2 \pi} \ln \frac{D_1}{D_2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.14
+	\begin{solution}
+		不妨建立空间直角坐标系，设平面 $\alpha$ 为 $z = 0$，空间中某点 $P(0, 0, z)$。
+
+		积分：
+		$$
+		\begin{aligned}
+			\vect{B}(z) & = \iint_{\alpha} \frac{\mu_0}{4 \pi} \cdot \frac{\vect{i} \cp \vect{r}^0}{r^2} \dd{\sigma} \\
+			& = \frac{\mu_0}{4 \pi} \int_{0}^{2\pi} \dd{\theta} \int_{0}^{+\infty} \frac{\vect{i} \cp (-r \cos \theta \vect{e}_x - r \sin \theta \vect{e}_y + z \vect{e}_z)}{(r^2 + z^2)^{\frac{3}{2}}} r \dd{r}
+		\end{aligned}
+		$$
+		先对 $\theta$ 积分，因为 $\displaystyle \int_{0}^{2\pi} \sin \theta \dd{\theta} = \int_{0}^{2\pi} \cos \theta \dd{\theta} = 0$，因此：
+		$$
+		\begin{aligned}
+			\vect{B}(z) & = \frac{\mu_0}{4 \pi} \int_{0}^{2\pi} \dd{\theta} \int_{0}^{+\infty} \frac{\vect{i} \cp z \vect{e}_z}{(r^2 + z^2)^{\frac{3}{2}}} r \dd{r} \\
+			& = \frac{\mu_0 z}{2} \vect{i} \cp \vect{e}_z \int_{0}^{+\infty} \frac{r}{(r^2 + z^2)^{\frac{3}{2}}} \dd{r} \\
+			& = \frac{\mu_0 z}{2} \vect{i} \cp \vect{e}_z \ab[-\frac{1}{\sqrt{r^2 + z^2}}]_{0}^{+\infty} \\
+			& = \frac{\mu_0 \sgn(z)}{2} \vect{i} \cp \vect{e}_z
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.16
+	\begin{solution}
+		设导线边长为 $L$，因此导线质量为
+		$$
+		m = \rho \cdot 3 L S
+		$$
+		导线所受安培力为
+		$$
+		F = B I L
+		$$
+		在导线平衡时，沿着到转动轴连线的分力为零，因此：
+		$$
+		F \cos 15^{\circ} = m g \sin 15^{\circ}
+		$$
+		解得 $B = \frac{3 \rho S}{I} \tan 15^{\circ} \approx 1.43 \times 10^{-3} \,\mathrm{T}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.16
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 无限长直导线在左侧导线、右侧导线产生的磁场强度分别为：
+			$$
+			B_1 = \frac{\mu_0 I_1}{2 \pi a},\ B_2 = \frac{\mu_0 I}{2 \pi (a + b)}
+			$$
+			使用安培定律，得到矩形左侧线圈受力为（方向向左）：
+			$$
+			F_1 = B_1 I_2 l = \frac{\mu_0 I I_2 l}{2 \pi a}
+			$$
+			矩形右侧线圈受力为（方向向右）：
+			$$
+			F_2 = B_2 I_2 l = \frac{\mu_0 I I_2 l}{2 \pi (a + b)}
+			$$
+			这两个力方向相反，因此线圈所受合力为：
+			$$
+			F = F_1 - F_2 = \frac{\mu_0 I I_2 l b}{2 \pi a (a + b)} \approx 1.28 \times 10^{-3} \,\mathrm{N}
+			$$
+
+			\item[\textbf{2)}] 设矩形左侧离导线距离为 $x$。那么：
+			$$
+			F(x) = B(x) I_2 l - B(x + b) I_2 l
+			$$
+			于是：
+			$$
+			\begin{aligned}
+				\lim_{b, l \to 0} F(x) & = \lim_{b, l \to 0} \frac{B(x) - B(x + b)}{b} \cdot I_2 l b \\
+				& = \lim_{b, l \to \infty} p_m \cdot \frac{B(x) - B(x + b)}{b} \\
+				& = -p_m \pdv{B}{x}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}

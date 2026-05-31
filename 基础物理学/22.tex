@@ -1,0 +1,51 @@
+\section{恒定磁场}
+
+\subsection{磁场}
+
+运动电荷的周围既有电场又有磁场。磁场再宏观上表现出
+\begin{enumerate}
+	\item 对运动电荷有力的作用；
+	\item 载流导线再磁场中移动时，磁场会对载流导线做功。
+\end{enumerate}
+
+\subsubsection{磁感应强度}
+
+\begin{theorem}[毕奥--萨伐尔定律]
+	对于一个电流元，其到某点的位矢为 $\vect{r}$，那么它对该点的磁感应强度贡献为
+	$$
+	\dd{\vect{B}} = \frac{\mu_0}{4\pi} \frac{I \dd{\vect{l}} \cp \vect{r}}{r^3}
+	$$
+\end{theorem}
+
+而对于一个闭合载流回路 $L$，其产生的磁感应强度为一个路径积分：
+$$
+\vect{B} = \frac{\mu_0}{4\pi} \oint_{L} \frac{I \dd{\vect{l}} \cp \vect{r}}{r^3}
+$$
+
+\subsubsection{磁偶极子}
+
+\begin{definition}[面载流线圈的磁矩]
+	定义平面载流线圈的\textbf{磁矩}为
+	$$
+	\vect{p}_m = I \vect{S}
+	$$
+	其中 $\vect{S}$ 是右旋的方向向量。
+\end{definition}
+
+\subsection{磁场的高斯定理}
+
+利用矢量场的高斯定理：
+$$
+\Phi_B = \oiint_{S} \vect{B} \vdot \dd{\vect{S}} = \vect{0},\quad \iiint_V \div \vect{B} \dd{V} = \vect{0}
+$$
+得到 $\div \vect{B} = \vect{0}$。
+
+说明，恒定磁场的散度为 $0$，它是一个无源场。
+
+\subsection{安培环路定理}
+
+安培环路定理表述为，对于任意闭合环路 $L$，都有
+$$
+\oint_L \vect{B} \vdot \dd{\vect{l}} = \mu_0 I_{enc}
+$$
+其中 $I_{enc}$ 是穿过环路的净电流。其中净点流的正方向由右手法则决定。

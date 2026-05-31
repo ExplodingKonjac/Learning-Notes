@@ -40,6 +40,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{diagbox}
 \RequirePackage{subcaption}
+\RequirePackage{esint}
 
 % Define page layout
 \geometry{a4paper,bottom=20mm,top=25mm,left=20mm,right=20mm}

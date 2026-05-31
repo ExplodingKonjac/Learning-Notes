@@ -1,0 +1,66 @@
+\section{曲线积分}
+
+\subsection{第一型曲线积分}
+
+\begin{definition}[第一型曲线积分]
+	设 $L$ 为平面上可求长度的曲线弧，$f(x, y)$ 在 $L$ 上有界，$L$ 上有点 $M_1, M_2, \dots, M_n$ 将曲线分为 $n$ 个可求长度的小曲线段 $\Delta s_i$。任取 $(\xi_i, \eta_i) \in \Delta s_i$，若极限：
+	$$
+	I = \lim_{\max \Delta s_i \to 0} \sum_{i = 1}^{n} f(\xi_i, \eta_i) \Delta s_i
+	$$
+	那么称 $f(x, y)$ 在 $L$ 上可积，称极限 $I$ 为 $f(x, y)$ 在曲线弧 $L$ 上\textbf{对弧长的曲线积分}，或\textbf{第一型曲线积分}。记做：
+	$$
+	\int_L f(x, y) \dd{s}
+	$$
+	当曲线闭合时，记做
+	$$
+	\oint_L f(x, y) \dd{s}
+	$$
+\end{definition}
+
+比如，曲线的弧长就是 $\displaystyle s(L) = \int_L \dd{s}$。
+
+\begin{theorem}
+	当 $f(x, y)$ 在光滑曲线 $L$ 上连续时，第一型曲线积分存在。
+\end{theorem}
+
+\subsubsection{第一型曲线积分的计算}
+
+\begin{theorem}
+	设有光滑参数曲线
+	$$
+	L: \begin{dcases}
+		x = \varphi(t) \\
+		y = \psi(t)
+	\end{dcases} \quad t \in [\alpha, \beta]
+	$$
+	并且 $f(x, y)$ 在 $L$ 上有定义且连续。那么
+	$$
+	\int_L f(x, y) \dd{s} = \int_{\alpha}^{\beta} f(\varphi(t), \psi(t)) \sqrt{\varphi'(t)^2 + \psi'(t)^2} \dd{t}
+	$$
+	\begin{proof}
+		因为 $\displaystyle \Delta s_i = \int_{t_{i - 1}}^{t_i} \sqrt{\varphi'(t)^2 + \psi'(t)} \dd{t}$。根据积分中值定理，有
+		$$
+		\Delta s_i = \sqrt{\varphi'(\tau_i)^2 + \psi'(\tau_i)^2} \Delta t_i \quad (t_{i - 1} \le \tau_i \le t_i)
+		$$
+		因此
+		$$
+		\sum_{i = 1}^{n} f(\xi_i, \eta_i) \Delta s_i = \sum_{i = 1}^{n} f(\varphi(\tau_i'), \psi(\tau_i')) \sqrt{\varphi'(\tau_i)^2 + \psi'(\tau_i)^2} \Delta t_i \quad (t_{i - 1} \le  \tau_i, \tau_i' \le t_i)
+		$$
+		设
+		$$
+		\sigma = \sum_{i = 1}^{n} f(\varphi(\tau_i'), \psi(\tau_i')) \ab(\sqrt{\varphi'(\tau_i')^2 + \psi'(\tau_i')^2} - \sqrt{\varphi'(\tau_i)^2 + \psi'(\tau_i)^2}) \Delta t_i
+		$$
+		因为 $f(\varphi(t), \psi(t))$ 在 $[\alpha, \beta]$ 连续，因此有界。而 $\sqrt{\varphi'(t)^2 + \psi'(t)^2}$ 在 $[\alpha, \beta]$ 连续，因此也一致连续，所以
+		$$
+		\forall\,\varepsilon > 0: \exists\,\delta > 0: \Delta t < \delta \implies \abs{\sqrt{\varphi'(\tau_i')^2 + \psi'(\tau_i')^2} - \sqrt{\varphi'(\tau_i)^2 + \psi'(\tau_i)^2}} < \varepsilon
+		$$
+		因此 $\sigma \to 0$。所以：
+		$$
+		\begin{aligned}
+			\lim_{\max \abs{\Delta s_i} \to 0} \sum_{i = 1}^{n} f(\xi_i, \eta_i) \Delta s_i & = \lim_{\max \Delta s_i \to 0} \sum_{i = 1}^{n} f(\varphi(\tau_i'), \psi(\tau_i')) \sqrt{\varphi'(\tau'_i)^2 + \psi'(\tau_i)^2} + \sigma \\
+			& = \lim_{\max \Delta s_i \to 0} \sum_{i = 1}^{n} f(\varphi(\tau_i'), \psi(\tau_i')) \sqrt{\varphi'(\tau'_i)^2 + \psi'(\tau_i)^2} \\
+			& = \int_{\alpha}^{\beta} f(\varphi(t), \psi(t)) \sqrt{\varphi'(t)^2 + \psi'(t)^2} \dd{t}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{theorem}

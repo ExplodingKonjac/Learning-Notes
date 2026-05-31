@@ -1,0 +1,263 @@
+\section{曲线积分 II}
+
+\subsection{第二型曲线积分}
+
+\begin{definition}[第二型曲线积分]
+	设 $L$ 为平面上从 $A$ 到 $B$ 的可求长的曲线弧，$P(x, y), Q(x, y)$ 定义在 $L$ 上，$L$ 上有点 $A = M_0, M_1, M_2, \dots, M_n = B$ 将曲线分为 $n$ 个可求长度的小曲线段 $\Delta s_i$。任取 $(\xi_i, \eta_i) \in \Delta s_i$，若极限：
+	$$
+	I = \lim_{\max \Delta s_i \to 0} \sum_{i = 1}^{n} (P(\xi_i, \eta_i), Q(\xi_i, \eta_i)) \vdot \Delta \vect{s}_i
+	$$
+	存在，那么称极限 $I$ 为 $L$ 上的\textbf{第二型曲线积分}，记做：
+	$$
+	\int_L \ab(P(x, y) \dd{x} + Q(x, y) \dd{y}) \ \text{或}\ \int_{AB} \ab(P(x, y) \dd{x} + Q(x, y) \dd{y})
+	$$
+	若 $L$ 是封闭曲线，那么记为
+	$$
+	\oint_L \ab(P(x, y) \dd{x} + Q(x, y) \dd{y})
+	$$
+	如果记 $\vect{F} = P \vect{i} + Q \vect{j}, \dd{\vect{s}} = \dd{x} \vect{i} + \dd{y} \vect{j}$，那么也可以记为
+	$$
+	\int_L \vect{F} \vdot \dd{\vect{s}}
+	$$
+\end{definition}
+
+\subsubsection{第二型曲线积分的计算}
+
+\begin{theorem}
+	设平面曲线 $L$ 的参数方程为
+	$$
+	L: \begin{dcases}
+		x = \varphi(t) \\
+		y = \psi(t)
+	\end{dcases}
+	$$
+	那么
+	$$
+	\int_L (P \dd{x} + Q \dd{y}) = \int_L (P(\varphi(t), \psi(t)) \varphi'(t) + Q(\varphi(t), \psi(t)) \psi'(t)) \dd{t}
+	$$
+\end{theorem}
+
+\subsection{Green 公式}
+
+\begin{definition}
+	对于一个平面道路连通区域 $D$，若 $D$ 内部任意闭合曲线所围成的部分都属于 $D$，那么称 $D$ 为平面单连通区域，否则称为复连通区域。
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 16.4.2
+	\begin{solution}
+		圆锥面方程可化为
+		$$
+		z = \sqrt{3} \sqrt{x^2 + y^2}
+		$$
+		因此使用极坐标变换，代入 $x = \rho \cos \theta, y = \rho \sin \theta$。那么 $z = \sqrt{3} \rho$。我们要求的曲面在 $x + y + z = 2$ 下方，因此：
+		$$
+		\rho \cos \theta + \rho \sin \theta + \sqrt{3} \rho \le 2 \iff \rho \le \frac{2}{\sqrt{3} + \cos \theta + \sin \theta}
+		$$
+		将曲面参数化 $\vect{r} = (\rho \cos \theta, \rho \sin \theta, \sqrt{3} \rho)$于是，进行积分：
+		$$
+		\begin{aligned}
+			S & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{\frac{2}{\sqrt{3} + \cos \theta + \sin \theta}} \abs{\pdv{\vect{r}}{\rho} \cp \pdv{\vect{r}}{\theta}} \dd{\rho} \\
+			& = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{\frac{2}{\sqrt{3} + \cos \theta + \sin \theta}} 2 \rho \dd{\rho} \\
+			& = \int_{0}^{2\pi} \frac{4}{\ab(\sqrt{3} + \cos \theta + \sin \theta)^2} \dd{\theta}
+		\end{aligned}
+		$$
+		利用公式
+		$$
+		\int_{0}^{2\pi} \frac{\dd{\theta}}{(a + b \cos \theta + c \sin \theta)^2} = \frac{2 \pi a}{(a^2 - b^2 - c^2)^{\frac{3}{2}}}
+		$$
+		最终得到：
+		$$
+		S = 4 \cdot \frac{2 \pi \sqrt{3}}{(3 - 1 - 1)^{\frac{3}{2}}} = 8 \pi \sqrt{3}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.4.3
+	\begin{solution}
+		球面方程为
+		$$
+		x^2 + y^2 + (z - R)^2 = R^2
+		$$
+		使用球面坐标代换将曲面参数化：
+		$$
+		\vect{r} = (x, y, z) = (R \sin \theta \cos \varphi, R \sin \theta \sin \varphi, R + R \cos \theta)
+		$$
+		需要满足 $3 (x^2 + y^2) \ge z^2$，即：
+		$$
+		3 R^2 \sin^2 \theta \ge R^2 (1 + \cos \theta)^2 \iff 4 \cos^2 \theta + 2 \cos \theta - 2 \ge 0
+		$$
+		解得 $\cos \theta \le -1 \lor \cos \theta \ge \frac{1}{2}$，因此 $0 \le \theta \le \frac{\pi}{3}$。
+
+		面积元为：
+		$$
+		\dd{S} = \abs{\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\varphi}} \dd{\theta} \dd{\varphi} = R^2 \sin \theta \dd{\theta} \dd{\varphi}
+		$$
+		积分：
+		$$
+		\begin{aligned}
+			S & = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\frac{\pi}{3}} R^2 \sin \theta \dd{\theta} \\
+			& = 2 \pi R^2 \int_{0}^{\frac{\pi}{3}} \sin \theta \dd{\theta} \\
+			& = 2 \pi R^2 \ab[- \cos \theta]_{0}^{\frac{\pi}{3}} = \pi R^2
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.4.4
+	\begin{solution}
+		使用球面坐标代换进行参数化：
+		$$
+		\vect{r} = (x, y, z) = (R \sin \theta \cos \varphi, R \sin \theta \sin \varphi, R + R \cos \theta)
+		$$
+		那么某点的密度为：
+		$$
+		\rho(\vect{r}) = x^2 + y^2 + z^2 = R^2 \sin^2 \theta + R^2 (1 + \cos \theta)^2 = 2 R^2 (1 + \cos \theta)
+		$$
+		积分：
+		$$
+		\begin{aligned}
+			m & = \int_{0}^{2\pi} \dd{\varphi} \int_{0}^{\pi} 2 R^2 (1 + \cos \theta) \cdot R^2 \sin \theta \dd{\theta} \\
+			& = 4 \pi R^4 \int_{0}^{\pi} (\sin \theta + \sin \theta \cos \theta) \dd{\theta} \\
+			& = 4 \pi R^4 \ab[-\cos \theta - \frac{1}{4} \cos 2 \theta]_{0}^{\pi} = 8 \pi R^4
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.4.6
+	\begin{solution}
+		进行极坐标代换：
+		$$
+		\vect{r} = (x, y) = (\rho \cos \theta, \rho \sin \theta)
+		$$
+		积分：
+		$$
+		\begin{aligned}
+			J & = \int_{0}^{2\pi} \dd{\theta} \int_{r}^{R} \rho^2 \cdot \frac{m}{\pi (R^2 - r^2)} \rho \dd{\rho} \\
+			& = \frac{2 m}{R^2 - r^2} \int_{r}^{R} \rho^3 \dd{\rho} \\
+			& = \frac{2 m}{R^2 - r^2} \ab[\frac{1}{4} \rho^4]_{r}^{R} \\
+			& = \frac{m \ab(R^2 + r^2)}{2}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 16.4.7
+	\begin{solution}
+		直接对矢量进行积分，设三个方向单位矢量为 $\vect{e}_x, \vect{e}_y, \vect{e}_z$：
+		$$
+		\begin{aligned}
+			\vect{F} & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{a} \frac{G \frac{M}{\pi a^2} \cdot \rho \dd{\rho} \ab(\rho \cos \theta \vect{e}_x + \rho \sin \theta \vect{e}_y - c \vect{e}_z)}{(\rho^2 + c^2)^{\frac{3}{2}}} \\
+			& = \frac{G M}{\pi a^2} \int_{0}^{2\pi} \dd{\theta} \int_{0}^{a} \frac{\ab(\rho \cos \theta \vect{e}_x + \rho \sin \theta \vect{e}_y - c \vect{e}_z) \rho \dd{\rho}}{(\rho^2 + c^2)^{\frac{3}{2}}} \\
+		\end{aligned}
+		$$
+		先对 $\theta$ 积分，于是含有 $\sin \theta, \cos \theta$ 的项变为 $0$。因此：
+		$$
+		\begin{aligned}
+			\vect{F} & = \frac{2 G M}{a^2} \int_{0}^{a} \frac{-c \vect{e}_z \rho \dd{\rho}}{(\rho^2 + c^2)^{\frac{3}{2}}} \\
+			& = -\frac{2 G M c}{a^2} \vect{e}_z \int_{0}^{a} \frac{\dd(\rho^2)}{2 (\rho^2 + c^2)^{\frac{3}{2}}} \\
+			& = -\frac{2 G M c}{a^2} \vect{e}_z \ab[\frac{1}{\sqrt{\rho^2 + c^2}}]_{0}^{a} \\
+			& = -\frac{2 G M c}{a^2} \ab(\frac{1}{\sqrt{a^2 + c^2}} - \frac{1}{\abs{c}}) \vect{e}_z
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.1.1
+	\begin{solution}
+		$$
+		\begin{aligned}
+			\origin & = \int_{0}^{2\pi} a (1 - \cos t) \sqrt{1 + a^2 \cos^2 t + a^2 \sin 2 t} \dd{t} \\
+			& = \sqrt{1 + a^2} \int_{0}^{2\pi} a (1 - \cos t) \dd{t} \\
+			& = \sqrt{1 + a^2} \ab[a t - a \sin t]_{0}^{2\pi} = 2 \pi a \sqrt{1 + a^2}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.1.4
+	\begin{solution}
+		对曲线进行参数化：
+		$$
+		\begin{aligned}
+			L_1: (t, t^2), \quad (0 \le t \le 1) \\
+			L_2: (1, t), \quad (1 \le t \le 2)
+		\end{aligned}
+		$$
+		因此
+		$$
+		\begin{aligned}
+			\origin & = \int_{L_1} 2 x \dd{s} + \int_{L_2} 2 x \dd{s} \\
+			& = \int_{0}^{1} 2 t \sqrt{1 + 4t^2} \dd{t} + \int_{1}^{2} 2 \dd{t} \\
+			& = \ab[\frac{1}{6} \ab(1 + 4t^2)^{\frac{3}{2}}]_{0}^{1} + \ab[2 t]_{1}^{2} \\
+			& = \frac{11 + 5 \sqrt{5}}{6}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.1.5
+	\begin{solution}
+		曲线方程可化为：
+		$$
+		x^2 + (y - 1)^2 = 1
+		$$
+		这是一个圆，进行参数化：
+		$$
+		(x, y) = (\cos \theta, 1 + \sin \theta), \quad (0 \le \theta \le 2\pi)
+		$$
+		\begin{itemize}
+			\item 对 $x$ 轴：
+			$$
+			J_x = \int_{0}^{2\pi} (1 + \sin \theta)^2 \dd{\theta} = 3 \pi
+			$$
+			\item 对 $y$ 轴：
+			$$
+			J_y = \int_{0}^{2\pi} \cos^2 \theta \dd{\theta} = \pi
+			$$
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.1.7
+	\begin{solution}
+		对曲线参数化：
+		$$
+		L: (x, y, z) = (a \cos \theta, a \sin \theta, 0), \quad \ab(0 \le \theta \le \frac{\pi}{4})
+		$$
+		设三个方向单位矢量为 $\vect{e}_x, \vect{e}_y, \vect{e}_z$，那么：
+		$$
+		\begin{aligned}
+			\vect{F} & = \int_{0}^{\frac{\pi}{4}} \frac{G (a \cos \theta \cdot a \dd{\theta}) (a \cos \theta \vect{e}_x + a \sin \theta \vect{e}_y - a \vect{e}_z)}{2 \sqrt{2} a^3} \\
+			& = \frac{G}{2 \sqrt{2}} \ab(\vect{e}_x \int_{0}^{\frac{\pi}{4}} \cos^2 \theta \dd{\theta} + \vect{e}_y \int_{0}^{\frac{\pi}{4}} \sin \theta \cos \theta \dd{\theta} - \vect{e}_z \int_{0}^{\frac{\pi}{4}} \dd{\theta}) \\
+			& = \frac{G}{2 \sqrt{2}} \ab(\frac{2 + \pi}{8} \vect{e}_x + \frac{1}{4} \vect{e}_y - \frac{\pi}{4} \vect{e}_z)
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.1.9
+	\begin{solution}
+		先求解在 $x^2 + y^2 = 1$ 上的部分。用极坐标代换进行参数化：$(x, y) = (\cos \theta, \sin \theta)$，那么对 $z$ 的限制是：
+		$$
+		x^2 + z^2 \le 1 \implies z^2 \le \sin^2 \theta
+		$$
+		因此面积为：
+		$$
+		S_0 = \int_{0}^{2\pi} 2 \abs{\sin \theta} \dd{\theta} = 8
+		$$
+		而根据对称性，总表面积为 $S_0$ 的两倍，即 $S = 2 S_0 = 16$。
+	\end{solution}
+\end{problem}

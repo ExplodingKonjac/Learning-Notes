@@ -1,0 +1,212 @@
+\section{含参积分 II}
+
+\subsection{无穷积分敛散性判别}
+
+\begin{theorem}[Cauchy 收敛原理]
+	无穷积分 $\displaystyle \int_{a}^{+\infty} f(x) \dd{x}$ 收敛当且仅当：
+	$$
+	\forall\,\varepsilon > 0: \exists\,A_0 > a: \forall\,p, q > A_0: \abs{\int_{p}^{q} f(x) \dd{x}} < \varepsilon
+	$$
+\end{theorem}
+
+由 Cauchy 收敛原理可以得到一个推论：
+
+\begin{corollary}
+	若对于任意的 $A > a$，$\displaystyle \int_{a}^{A} f(x) \dd{x}$ 存在，那么若 $\displaystyle \int_{a}^{+ \infty} \abs{f(x)} \dd{x}$ 收敛，那么 $\displaystyle \int_{a}^{+ \infty} f(x) \dd{x}$ 收敛。
+\end{corollary}
+
+类似于级数，我们可以定义无穷积分的条件收敛和绝对收敛。
+
+\begin{definition}[条件收敛和绝对收敛]
+	对于积分式 $\displaystyle I = \int_{a}^{+ \infty} f(x) \dd{x}$：
+	\begin{itemize}
+		\item 若 $\displaystyle \int_{a}^{+ \infty} \abs{f(x)} \dd{x}$ 收敛，那么称 $I$ \textbf{绝对收敛}；
+		\item 否则，若 $I$ 自身收敛，那么称 $I$ \textbf{条件收敛}。
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	设函数 $g(x)$ 在 $[a, +\infty)$ 满足 $\abs{g(x)} \le M$，并且 $\displaystyle_{a}^{+\infty} f(x) \dd{x}$ 绝对收敛，那么 $\displaystyle \int_{a}^{+\infty} f(x) g(x) \dd{x}$ 绝对收敛，并且
+	$$
+	\int_{a}^{+ \infty} \abs{f(x) g(x)} \dd{x} \le M \int_{a}^{+\infty} \abs{f(x)} \dd{x}
+	$$
+\end{definition}
+
+类似于无穷级数，无穷积分也有 Dirichlet 判别法和 Abel 判别法：
+
+\begin{theorem}[Dirichlet 判别法]
+	设 $f(x), g(x)$ 满足：
+	\begin{itemize}
+		\item $\displaystyle F(A) = \int_{a}^{A} f(x) \dd{x}$ 在 $[a, + \infty)$ 有界；
+		\item $g(x)$ 在 $[a, + \infty)$ 上单调趋于 $0$。
+	\end{itemize}
+	那么 $\displaystyle \int_{a}^{+\infty} f(x) g(x) \dd{x}$ 收敛。
+\end{theorem}
+
+\begin{theorem}[Abel 判别法]
+	设 $f(x), g(x)$ 满足：
+	\begin{itemize}
+		\item $\displaystyle \int_{a}^{+ \infty} f(x) \dd{x}$ 收敛；
+		\item $g(x)$ 在 $[a, + \infty)$ 单调有界。
+	\end{itemize}
+	那么 $\displaystyle \int_{a}^{+\infty} f(x) g(x) \dd{x}$ 收敛。
+\end{theorem}
+
+\subsection{瑕积分敛散性判别}
+
+瑕积分的散敛性判别和无穷积分一样，使用 Cauchy 收敛准则、Dirichlet 判别法、Abel 判别法。但是极限语言相应地更改为邻域系列。
+
+\subsection{含参反义积分}
+
+当含参积分式 $I(y)$ 为反常积分时，这个积分式称为\textbf{含参反义积分}。
+
+\begin{definition}[含参反义积分的逐点收敛]
+	设函数 $f(x, y)$ 定义在 $[a, b) \times [c, d]$ 上（这里 $a, b$ 可以是 $\infty$），若对于某个 $y_0 \in [c, d]$ 都有反常积分 $\displaystyle \int_{a}^{b} f(x, y) \dd{x}$ 收敛，那么称含参反义积分 $\displaystyle \int_{a}^{b} f(x, y_0)$ 在 $y_0$ 处\textbf{收敛}，并称 $y_0$ 为它的\textbf{收敛点}。
+
+	设 $E$ 是 $I(y)$ 的所有收敛点组成的集合，那么称 $E$ 为 $I(y)$ 的\textbf{收敛域}。
+\end{definition}
+
+同样，还可以定义一致收敛。
+
+\begin{definition}[含参反义积分的一致收敛]
+	\begin{itemize}
+		\item 对于无穷积分：设函数 $f(x, y)$ 定义在 $[a, + \infty) \times [c, d]$ 上，若 $\forall\,y \in [c, d]$，反常积分 $\displaystyle I(y) = \int_{a}^{+ \infty} f(x, y) \dd{x}$ 存在，并且
+		$$
+		\forall\,\varepsilon > 0: \exists\,A_0 > 0: \forall\,y \in [c, d], A > A_0: \abs{I(y) - \int_{a}^{A} f(x, y) \dd{x}} < \varepsilon
+		$$
+		那么称 $\displaystyle\int_{a}^{+\infty} f(x, y) \dd{x}$ 关于 $y$ 在 $[c, d]$ 上\textbf{一致收敛}。
+
+		\item 对于瑕积分：设函数 $f(x, y)$ 定义在 $[a, b) \times [c, d]$ 上，若 $\forall\,y \in [c, d]$，反常积分 $\displaystyle I(y) = \int_{a}^{b} f(x, y) \dd{x}$ 存在，并且
+		$$
+		\forall\,\varepsilon > 0: \exists\,\delta > 0: \forall\,y \in [c, d], \eta \in (b - \delta, b): \abs{I(y) - \int_{a}^{\eta} f(x, y) \dd{x}} < \varepsilon
+		$$
+		那么称 $\displaystyle\int_{a}^{b} f(x, y) \dd{x}$ 关于 $y$ 在 $[c, d]$ 上\textbf{一致收敛}。
+	\end{itemize}
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+	习题 9.3.4
+	\begin{proof}
+		因为 $\lim\limits_{x \to \infty} g(x) = A$，可知 $g(x)$ 有界。设 $\abs{g(x)} \le M$，那么：
+		$$
+		\int_{a}^{+ \infty} \abs{f(x) g(x)} \dd{x} \le \int_{a}^{+ \infty } M \abs{f(x)} \dd{x} = M \int_{a}^{+ \infty} \abs{f(x)} \dd{x}
+		$$
+		由题知 $\int_{a}^{+ \infty} f(x) \dd{x}$ 绝对收敛，于是得到 $\int_{a}^{+ \infty} f(x) g(x) \dd{x}$ 绝对收敛。
+
+		若前提换成条件收敛，那么 $\int_{a}^{+ \infty} f(x) g(x) \dd{x}$ 的收敛性不受保证。例如：$f(x) = g(x) = \frac{(-1)^{\floor{x}}}{\sqrt{x}}$。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 9.3.5
+	\begin{solution}
+		不一定。反例：
+		$$
+		f(x) = g(x) = \frac{(-1)^{\floor{x}}}{\sqrt{x}}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 9.3.7
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 因为 $\displaystyle \int_{1}^{a} \sin x \dd{x} = \cos 1 - \cos a$ 有界，且 $\frac{1}{x}$ 在 $x \to + \infty$ 时单调趋于 $0$。因此根据 Dirichlet 判别法，$\displaystyle \int_{1}^{+\infty} \frac{\sin x}{x} \dd{x}$ 收敛。
+
+			而 $\ln x$ 在 $[1, + \infty)$ 单调，根据 Abel 判别法，$\displaystyle \int_{1}^{+\infty} \frac{\ln x \sin x}{x} \dd{x}$ 收敛。
+
+			\item[\textbf{3)}] \begin{itemize}
+				\item 当 $0 < \alpha \le 1$ 时：此时 $x \to +\infty$ 时 $\frac{x}{1 + x^{\alpha}} \sin (x + a)$ 不趋于 $0$，因此积分肯定发散。
+				\item 当 $\alpha > 1$ 时：因为 $\int_{0}^{A} \sin (a + x)$ 有界，$\frac{x}{1 + x^{\alpha}}$ 单调趋于 $0$，根据 Dirichlet 判别法原积分收敛。
+			\end{itemize}
+
+			\item[\textbf{5)}] 先化简：
+			$$
+			\origin = \int_{1}^{+ \infty} \ab(\frac{\sin x}{\sqrt{x}} - \frac{\cos 2x}{2 x} + \frac{1}{2 x}) \dd{x}
+			$$
+			对于左边两部分：
+			$$
+			\int_{1}^{+\infty} \frac{\sin x}{x} \dd{x}, \ \int_{1}^{+\infty} \frac{\cos 2x}{2x} \dd{x}
+			$$
+			根据 Dirichlet 判别法可以得到这是收敛的。对于右侧部分则是发散的。因此整个积分是发散的。
+
+			\item[\textbf{7)}] 当 $x$ 足够大时，$\frac{\cos \frac{1}{x}}{x}$ 单调递减且趋于 $0$。而 $\int_{1}^{a} \sin x \dd{x}$ 有界，因此根据 Dirichlet 判别法原积分收敛。
+			
+			\item[\textbf{9)}] 使用和角公式拆开：
+			$$
+			\origin = \int_{1}^{+\infty} \ab(\frac{\sin^2 \cos \frac{1}{x}}{x} + \frac{\sin 2x \sin \frac{1}{x}}{2x}) \dd{x}
+			$$
+			对于右侧：
+			$$
+			\int_{1}^{+\infty} \sin 2x \cdot \frac{\sin \frac{1}{x}}{2x} \dd{x}
+			$$
+			使用 Dirichlet 判别法可知收敛。对于左侧：
+			$$
+			\int_{1}^{+\infty} \frac{\sin^2 \cos \frac{1}{x}}{x} \dd{x}
+			$$
+			这是一个正项积分，因为 $x \to \infty$ 时 $\cos \frac{1}{x} \to 1$，所以该积分散敛性与 $\displaystyle\int_{1}^{+\infty} \frac{\sin^2 x}{x} \dd{x}$ 相同。根据前面题目可知这是一个发散的积分。
+
+			因此原积分发散。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 9.3.8
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 原积分根据 Dirichlet 判别法可知是收敛的。下面判定绝对收敛：
+			$$
+			\int_{0}^{+ \infty} \abs{\frac{\sqrt{x} \cos x}{1 + x}} \dd{x} \ge \int_{0}^{+\infty} \frac{\sqrt{x} \cos^2 x}{1 + x} \dd{x} \sim \int_{1}^{+\infty} \frac{\cos^2 x}{\sqrt{x}} \dd{x}
+			$$
+			因为 $\cos^2 x = \frac{1 + \cos 2x}{2}$，所以上式最右侧的积分可以拆成一个发散的积分和一个收敛的积分，因此上式是发散的。
+
+			所以原积分条件收敛。
+
+			\item[\textbf{3)}] 原积分根据 Dirichlet 判别法可知是收敛的。下面判定绝对收敛，使用经典方式：
+			$$
+			\int_{2}^{+ \infty} \abs{\frac{\cos x}{x \ln x}} \dd{x} \ge \int_{2}^{+\infty} \frac{\cos^2 x}{x \ln x} \dd{x} = \int_{2}^{+\infty} \frac{\cos 2x + 1}{2 x \ln x} \dd{x}
+			$$
+			其中，$\displaystyle \int_{2}^{+\infty} \frac{\cos 2x}{2x \ln x} \dd{x}$ 根据 Dirichlet 判别法是收敛的；而 $\displaystyle \int_{2}^{+\infty} \frac{\dd{x}}{2 x \ln x}$ 则是经典发散积分。因此这个积分是发散的。
+
+			所以原积分条件收敛。
+
+			\item[\textbf{4)}] 原积分对 $\cos 2x, x^{m}$ 应用一次 Dirichlet 判别法，再对 $(3 - \arctan x), \frac{\cos 2x}{x^{m}}$ 应用一次 Abel 判别法，可知是收敛的。
+
+			下面判定绝对收敛性。因为绝对值积分都是正项的，而 $3 - \arctan x = O(1)$，因此可以直接去掉这一项进行判定。分类讨论：
+			\begin{itemize}
+				\item $0 \le m \le 1$：使用经典方法：
+				$$
+				\int_{1}^{+\infty} \abs{\frac{\cos 2x}{x^{m}}} \dd{x} \ge \int_{1}^{+\infty} \frac{\cos^2 2x}{x^{m}} \dd{x} = \int_{1}^{+\infty} \frac{\cos 4x + 1}{2 x^{m}} \dd{x}
+				$$
+				所以这是发散的。因此原积分条件收敛。
+
+				\item $m > 1$：此时直接放缩：
+				$$
+				\int_{1}^{+\infty} \frac{\abs{\cos 2x}}{x^{m}} \dd{x} \le \int_{1}^{+ \infty} \frac{\dd{x}}{x^{m}}
+				$$
+				这是收敛的。因此原积分绝对收敛。
+			\end{itemize}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 9.3.9
+	\begin{proof}
+		因为
+		$$
+		\begin{gathered}
+			\int_{a}^{+\infty} f(x) \sin^2 x \dd{x} = \int_{a}^{+\infty} \frac{1 - \cos 2x}{2} f(x) \dd{x} \\
+			\int_{a}^{+\infty} f(x) \cos^2 x \dd{x} = \int_{a}^{+\infty} \frac{1 + \cos 2x}{2} f(x) \dd{x} \\
+		\end{gathered}
+		$$
+		根据 Dirichlet 判别法可知，$\displaystyle \int_{a}^{+\infty} f(x) \cos x \dd{x}$ 总是收敛的。所以
+		$$
+		\int_{a}^{+\infty} f(x) \sin^2 x \dd{x},\ \int_{a}^{+\infty} f(x) \cos^2 x \dd{x}
+		$$
+		收敛性和 $\displaystyle \int_{a}^{+\infty} f(x) \dd{x}$ 一致。
+	\end{proof}
+\end{problem}
