@@ -1,0 +1,304 @@
+\section{电磁感应}
+
+\subsection{电磁感应的基本规律}
+
+\subsubsection{电源和电动势}
+
+电源通过非静电力对电荷产生作用力。定义非经典力场强为电源对单位正电荷产生的作用力，即：
+$$
+\vect{K} = \frac{\vect{F}_{\text{非}}}{q}
+$$
+
+定义电动势为电源对单位正电荷所作的功，即：
+$$
+\varepsilon = \frac{A_{\text{非}}}{q} = \int_{-}^{+} \vect{K} \vdot \dd{\vect{l}}
+$$
+
+\subsubsection{电磁感应现象}
+
+变化的磁场可以在回路中产生感应电动势。
+
+\subsubsection{法拉弟定律}
+
+\textbf{法拉第定律}指出，闭合回路中的电磁感应电动势正比于回路磁通量的变化，即：
+$$
+E = \dv{\Phi}{t} = \dv{t} \iint_C \vect{B} \vdot \dd{\vect{S}}
+$$
+
+\subsubsection{楞次定律}
+
+\textbf{楞次定律}表述为：闭合回路中感应电流的方向，总是使它所激发的磁场来阻止引起感应电流的磁场变化。
+
+\subsection{作业}
+
+\begin{problem}
+	习题 4.18
+	\begin{solution}
+		线圈的磁矩为：
+		$$
+		\abs{\vect{p}_m} = I S = \frac{\pi}{20} \,\mathrm{A \cdot m^2}
+		$$
+		因此所受磁力矩为：
+		$$
+		\abs{\vect{M}} = \abs{\vect{p}_m} \cdot \abs{\vect{B}} = \frac{\pi}{40} \,\mathrm{N \cdot m}
+		$$
+		根据叉积判断，磁力矩方向为竖直向上。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.20
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 使用微元分析，对于一个圆心角为 $\dd{\theta}$，弧长为 $\dd{l} = d \dd{\theta}$ 的微元，其收到两侧的张力，张力和安培力平衡，有
+			$$
+			2 F \sin \frac{\dd{\theta}}{2} = B I \dd{l}
+			$$
+			解得 $F = B I d$。因此每单位截面积上张力为 $p = \frac{F}{S} = 1 \times 10^{6} \,\mathrm{Pa}$。
+
+			\item[\textbf{2)}] $p_0 = 1.96 \times 10^{6} \,\mathrm{Pa} > p$，因此不会断裂。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.22
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\begin{dcases}
+				\frac{1}{2} m v^2 = q U \\
+				q v B = \frac{m v^2}{R} \\
+				R = \frac{x}{2}
+			\end{dcases}
+			$$
+			解得 $m = \frac{8 q B^2 x^2}{U}$。
+
+			\item[\textbf{2)}] 从 \textbf{1)} 得到 $\frac{q}{m} = \frac{U}{8 B^2 x^2}$。代入数据得到 $\frac{q}{m} \approx 6.88 \times 10^{4} \,\mathrm{C / kg}$。
+
+			\item[\textbf{3)}] 从 \textbf{1)} 得到 $x = \sqrt{\frac{m U}{8 q B^2}}$。代入数据得到 $x \approx 0.03 \,\mathrm{m}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 4.23
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 平衡时，对于一个电子，其收到的洛伦兹力和电场力平衡：
+			$$
+			e v B = \frac{e U_{AA'}}{b}
+			$$
+			而根据电流的定义，有
+			$$
+			I = n e S v \implies v = \frac{I}{n e b d}
+			$$
+			代入得到 $U_{AA'} = \frac{I B}{n e d} \approx 2.2 \times 10^{-5} \,\mathrm{V}$
+
+			\item[\textbf{2)}] 根据式子，是无关的。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 5.3
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 根据环路定理，磁场强度分布：
+			$$
+			H(r) = \begin{dcases}
+				\frac{I r}{2 \pi R_1^2} &,\ 0 \le r < R_1 \\
+				\frac{I}{2 \pi r} &,\ r \ge R_1 \\
+			\end{dcases}
+			$$
+			根据 $H$ 和 $B$ 的关系，得到：
+			$$
+			B(r) = \begin{dcases}
+				\frac{\mu_0 I r}{2 \pi R_1^2} &,\ 0 \le r < R_1 \\
+				\frac{\mu_0 \mu_r I}{2 \pi r} &,\ R_1 \le r < R_2 \\
+				\frac{\mu_0 I}{2 \pi r} &,\ r \ge R_2
+			\end{dcases}
+			$$
+			其图像如下：
+
+			\begin{figure}[H]
+				\centering
+				\begin{minipage}{0.48\textwidth}
+					\centering
+					\begin{tikzpicture}[>=latex,x=1cm,y=1cm,every node/.style={font=\scriptsize}]
+						\def\Rone{2.0}
+						\def\xmax{5.4}
+						\def\ymax{3.2}
+						\def\Hone{2.4}
+
+						\draw[->] (0,0) -- (\xmax,0) node[below right] {$r$};
+						\draw[->] (0,0) -- (0,\ymax) node[above left] {$H(r)$};
+
+						\draw (\Rone,0) -- ++(0,-0.08) node[below] {$R_1$};
+						\draw (0,\Hone) -- ++(-0.08,0) node[left] {$\dfrac{I}{2\pi R_1}$};
+
+						\draw[dashed] (\Rone,0) -- (\Rone,\Hone);
+						\draw[dashed] (0,\Hone) -- (\Rone,\Hone);
+
+						\draw[thick] (0,0) -- (\Rone,\Hone);
+						\draw[thick,domain=\Rone:\xmax-0.2,samples=100,smooth]
+							plot (\x, {\Hone*(\Rone/\x)});
+
+						\fill (\Rone,\Hone) circle (2pt);
+						\node at (3.1,2.85) {$H(r)$};
+					\end{tikzpicture}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.48\textwidth}
+					\centering
+					\begin{tikzpicture}[>=latex,x=1cm,y=1cm,every node/.style={font=\scriptsize}]
+						\def\Rone{1.6}
+						\def\Rtwo{4.0}
+						\def\xmax{5.8}
+						\def\ymax{5.4}
+						\def\Bone{1.2}
+						\def\Bmuone{4.8}
+						\def\Bmutwo{1.92}
+						\def\Btwo{0.48}
+
+						\draw[->] (0,0) -- (\xmax,0) node[below right] {$r$};
+						\draw[->] (0,0) -- (0,\ymax) node[above left] {$B(r)$};
+
+						\draw (\Rone,0) -- ++(0,-0.08) node[below] {$R_1$};
+						\draw (\Rtwo,0) -- ++(0,-0.08) node[below] {$R_2$};
+
+						\draw (0,\Bone) -- ++(-0.08,0) node[left] {$\dfrac{\mu_0 I}{2\pi R_1}$};
+						\draw (0,\Bmuone) -- ++(-0.08,0) node[left] {$\dfrac{\mu_0\mu_r I}{2\pi R_1}$};
+						\draw (0,\Bmutwo) -- ++(-0.08,0) node[left] {$\dfrac{\mu_0\mu_r I}{2\pi R_2}$};
+						\draw (0,\Btwo) -- ++(-0.08,0) node[left] {$\dfrac{\mu_0 I}{2\pi R_2}$};
+
+						\draw[dashed] (\Rone,0) -- (\Rone,\Bmuone);
+						\draw[dashed] (\Rtwo,0) -- (\Rtwo,\Bmutwo);
+
+						\draw[thick] (0,0) -- (\Rone,\Bone);
+						\draw[thick,domain=\Rone:\Rtwo,samples=100,smooth]
+							plot (\x, {\Bmuone*(\Rone/\x)});
+						\draw[thick,domain=\Rtwo:\xmax-0.2,samples=100,smooth]
+							plot (\x, {\Btwo*(\Rtwo/\x)});
+
+						\draw[fill=white,thick] (\Rone,\Bone) circle (2pt);
+						\fill (\Rone,\Bmuone) circle (2pt);
+						\draw[fill=white,thick] (\Rtwo,\Bmutwo) circle (2pt);
+						\fill (\Rtwo,\Btwo) circle (2pt);
+
+						\node at (3.0,5.05) {$B(r)$};
+					\end{tikzpicture}
+				\end{minipage}
+				\caption{$H(r)$ 和 $B(r)$ 的图像}
+			\end{figure}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 5.5
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $\abs{\vect{B}} = \frac{\Phi}{S} = 2.0 \times 10^{-2} \,\mathrm{T}$；
+			\item[\textbf{2)}] 选择铁环中心线应用环路定理：
+			$$
+			\abs{\vect{H}} \cdot l = N I \implies \abs{\vect{H}} = \frac{N I}{l} = 32 \,\mathrm{A / m}
+			$$
+			\item[\textbf{3)}] 根据磁感应强度和磁场强度的关系：
+			$$
+			\vect{B} = \mu_0 (\vect{H} + \vect{M}) \implies \abs{\vect{M}} = \frac{\abs{\vect{B}}}{\mu_0} - \abs{\vect{H}} \approx 1.59 \times 10^{-4} \,\mathrm{A / m}
+			$$
+			\item[\textbf{4)}]
+			$$
+			\chi_m = \frac{\abs{\vect{M}}}{\abs{\vect{H}}} \approx 4.96 \times 10^{2},\quad \mu_r = 1 + \chi_m \approx 4.97 \times 10^{2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 5.6
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 取铁环中线应用环路定理：
+			$$
+			\abs{\vect{H}} \cdot l = N I l \implies \abs{\vect{H}} = N I = 2.0 \times 10^{3} \,\mathrm{A / m}
+			$$
+			\item[\textbf{2)}]
+			$$
+			\abs{\vect{M}} = \abs{\frac{\vect{B}}{\mu_0} - \vect{H}} \approx 7.94 \times 10^{5} \,\mathrm{A / m}
+			$$
+			\item[\textbf{3)}]
+			$$
+			\mu_r = \frac{\abs{\vect{B}}}{\mu_0 \abs{H}} \approx 4.0 \times 10^{2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 6.1
+	\begin{solution}
+		$$
+		E = \dv{\Phi}{t} = \dv{\ab(B (d_0 + v t) l \cos \alpha)}{t} = B v l \cos \alpha \approx 1.5 \,\mathrm{V}
+		$$
+		电流方向为逆时针。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 6.3
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}]
+			$$
+			\Phi = \int_{a}^{b} \frac{\mu_0 i}{2 \pi x} l \dd{x} = \frac{I_0 l \sin \omega t}{2 \pi} \ln \frac{b}{a}
+			$$
+			\item[\textbf{2)}]
+			$$
+			E = \dv{\Phi}{t} = \frac{\omega I_0 l \cos \omega t}{2 \pi} \ln \frac{b}{a}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 6.4
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 在中轴线上的磁感应强度为：
+			$$
+			\begin{aligned}
+				\vect{B} & = \oint_L \frac{\mu_0}{4 \pi} \frac{I \dd{\vect{l}} \cp \vect{r}}{r^3} \\
+				& = \vect{e}_z \oint_L \frac{\mu_0}{4\pi} \frac{I \dd{l}}{R^2 + x^2} \cdot \frac{1}{\sqrt{R^2 + x^2}} \\
+				& = \frac{\mu_0 I R^2}{2 \ab(R^2 + x^2)^{\frac{3}{2}}} \vect{e}_z
+			\end{aligned}
+			$$
+			因此磁通量为 $\Phi = \pi r^2 B = \frac{\pi \mu_0 I R^2 r^2}{2 \ab(R^2 + x^2)^{\frac{3}{2}}}$。
+
+			\item[\textbf{2)}]
+			$$
+			\dv{x}{t} = v \implies E = \dv{\Phi}{t} = -\frac{3 \pi \mu_0 I R^2 r^2 v x}{2 \ab(R^2 + x^2)^{\frac{5}{2}}}
+			$$
+			方向顺时针。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 6.5
+	\begin{solution}
+		\begin{itemize}
+			\item 当 $0 \le r < R$ 时：
+			$$
+			E = \frac{U}{2 \pi r} = \dv{B}{t} \frac{\pi r^2}{2 \pi r} = \frac{r}{2} \dv{B}{t}
+			$$
+			\item 当 $r \ge R$ 时：
+			$$
+			E = \frac{U}{2 \pi r} = \dv{B}{t} \frac{\pi R^2}{2 \pi r} = \frac{R^2}{2 r} \dv{B}{t}
+			$$
+		\end{itemize}
+		代入数据得到答案为 $5 \times 10^{-4} \,\mathrm{V / m},\ 1.25 \times 10^{-3}\,\mathrm{V / m},\ 2.5 \times 10^{-3} \,\mathrm{V / m},\ 1.25 \times 10^{-3}\,\mathrm{V / m}$。
+	\end{solution}
+\end{problem}

@@ -1,0 +1,39 @@
+\section{曲线积分 III}
+
+\subsection{Green 公式}
+
+\begin{definition}
+	对于一个平面道路连通区域 $D$，若 $D$ 内部任意闭合曲线所围成的部分都属于 $D$，那么称 $D$ 为平面单连通区域，否则称为复连通区域。
+\end{definition}
+
+\begin{theorem}
+	设闭区域 $D$ 由分段光滑曲线 $L$ 围成，函数 $P(x, y), Q(x, y)$ 再 $D$ 上有一阶连续偏倒数，那么
+	$$
+	\iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} = \oint_L \ab(P \dd{x} + Q \dd{y})
+	$$
+	其中 $L$ 是 $D$ 的取正方向的边界曲线，根据右手螺旋定则判断。
+
+	\begin{proof}
+		先假设 $D$ 是一个 $y$-区域，那么：
+		$$
+		\iint_D \pdv{Q}{x} \dd{x} \dd{y} = \int_{c}^{d} \dd{y} \int_{\psi_1(y)}^{\psi_2(y)} \pdv{Q}{x} \dd{x} = \int_{c}^{d} Q(\psi_2(y), y) \dd{y} - \int_{c}^{d} Q(\psi_1(y), y) \dd{y}
+		$$
+		而 $(\psi_1(y), y)$ 和 $(\psi_2(y), y)$ 可以看作一个分段参数曲线，曲线积分的方向刚好表达了符号，因此：
+		$$
+		\iint_D \pdv{Q}{x} \dd{x} \dd{y} = \oint_L Q \dd{y}
+		$$
+		若 $D$ 不是 $y$-区域，那么积分从 $[\psi_1(y), \psi_2(y)]$ 变为若干个区间上积分的并，但是最终体现仍然是曲线积分。
+	\end{proof}
+\end{theorem}
+
+\subsection{曲线积分的路径无关性}
+
+\begin{theorem}
+	设 $D$ 是单连通闭区域，$P(x, y), Q(x, y)$ 在 $D$ 内有连续偏导数，那么下面条件等价：
+	\begin{enumerate}
+		\item $D$ 内任意一个按段光滑的闭合曲线 $L$ 都有 $\displaystyle \oint_L (P \dd{x} + Q \dd{y}) = 0$；
+		\item $D$ 内 $\displaystyle \int_L (P \dd{x} + Q \dd{y})$ 与路径无关；
+		\item $D$ 内存在 $u(x, y)$ 使得 $\dd{u} = P \dd{x} + Q \dd{y}$；
+		\item 在 $D$ 内 $\pdv{P}{y} = \pdv{Q}{x}$。
+	\end{enumerate}
+\end{theorem}

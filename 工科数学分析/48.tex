@@ -1,0 +1,554 @@
+\section{曲面积分}
+
+\subsection{全微分方程}
+
+已知 $P(x, y), Q(x, y)$，我们称
+$$
+\dd{u} = P(x, y) \dd{x} + Q(x, y) \dd{y}
+$$
+是一个全微分方程，其中 $u(x, y)$ 就是全微分方程的解。
+
+\subsubsection{曲线积分法}
+
+若满足曲线积分与路径无关，可构造第二类曲线积分：
+$$
+u(x, y) = u(x_0, y_0) + \int_{(x_0, y_0)}^{(x, y)} \ab(P(x, y) \dd{x} + Q(x, y) \dd{y})
+$$
+然后取两个与坐标轴的折线进行路径积分。
+
+\subsubsection{不定积分法}
+
+因为 $u(x, y)$ 可微，所以有：
+$$
+\begin{dcases}
+	\pdv{u}{x} = P(x, y) & \quad (1) \\
+	\pdv{u}{y} = Q(x, y) & \quad (2)
+\end{dcases}
+$$
+根据 $(1)$ 得到
+$$
+u(x, y) = \int P(x, y) \dd{x} + c(y)
+$$
+再代入 $(2)$ 得到
+$$
+c'(y) = Q(x, y) - \pdv{y} \int P(x, y) \dd{x}
+$$
+解出 $c(y)$ 回带即可。
+
+\subsubsection{凑全微分}
+
+！？注意力？！
+
+\subsection{第一型曲面积分}
+
+\begin{definition}
+	设 $\Sigma$ 是可求面积的曲面，且 $f(x, y, z)$ 在 $\Sigma$ 上有界。那么用分割 $T$ 将 $\Sigma$ 分为 $n$ 块小曲面 $\Delta S_i$（同时也用 $\Delta S_i$ 表示曲面面积）。任取 $(\xi_i, \eta_i, \zeta_i) \in \Delta S_i$。记分割的细度 $\norm{T}$ 为 $\Delta S_i$ 直径最大值。若极限：
+	$$
+	A = \lim_{\norm{T} \to 0} f(\xi_i, \eta_i, \zeta_i) \Delta S_i
+	$$
+	存在，那么称 $A$ 为 $f(x, y, z)$ 在 $\Sigma$ 上的曲面积分，记做：
+	$$
+	\iint_{\Sigma} f(x, y, z) \dd{S}
+	$$
+	特别地，若曲面是闭合曲面，记做：
+	$$
+	\oiint_{\Sigma} f(x, y, z) \dd{S}
+	$$
+\end{definition}
+
+\subsection{第一型曲面积分的计算}
+
+\subsubsection{函数表达式情形}
+
+对于曲面 $\Sigma: z = z(x, y)$，其在 $xOy$ 平面投影为 $D_{xy}$，面积元可以表示为
+$$
+\dd{S} = \sqrt{1 + z_x^2 + z_y^2} \dd{x} \dd{y}
+$$
+因此
+$$
+\iint_{\Sigma} f(x, y, z) \dd{S} = \iint_{D_{xy}} f(x, y, z(x, y)) \sqrt{1 + z_x^2 + z_y^2} \dd{x} \dd{y}
+$$
+
+\subsubsection{参数方程情形}
+
+对于参数曲面：
+$$
+\Sigma: \begin{dcases}
+	x = x(u, v) \\
+	y = y(u, v) \\
+	z = z(u, v)
+\end{dcases}
+$$
+我们记 $\vect{r}(u, v) = (x(u, v), y(u, v), z(u, v))$，那么面积元可以表示为：
+$$
+\abs{\pdv{\vect{r}}{u} \cp \pdv{\vect{r}}{v}} \dd{u} \dd{v}
+$$
+因此曲面积分转化成重积分：
+$$
+\iint_{\Sigma} f(x, y, z) \dd{S} = \iint_{\Sigma} f(x, y, z) \abs{\pdv{\vect{r}}{u} \cp \pdv{\vect{r}}{v}} \dd{u} \dd{v}
+$$
+
+\subsection{作业}
+
+\begin{problem}
+	习题 17.2.1
+	\begin{solution}
+		将曲线参数化：
+		$$
+		L: (x, y) = (a \cos \theta, b \sin \theta) \quad (0 \le \theta \le \pi)
+		$$
+		那么：
+		$$
+		\begin{aligned}
+			I & = \int_{0}^{\pi} \ab((a \cos \theta)^2 + (b \sin \theta)^2) \dd(a \cos \theta) \\
+			& = a \int_{0}^{\pi} \ab(a^2 \cos^2 \theta + b^2 - b^2 \cos^2 \theta) \dd(\cos \theta) \\
+			& = a \ab[\frac{1}{3} (a^2 - b^2) \cos^3 \theta + b^2 \cos \theta]_{0}^{\pi} \\
+			& = -\frac{2}{3} a \ab(a^2 - 2 b^2)
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.3
+	\begin{solution}
+		将曲线分为三段：
+		$$
+		\begin{aligned}
+			L_1: (x, y) & = (a \sin \theta, a \cos \theta) & \quad (0 \le \theta \le \frac{\pi}{2}) \\
+			L_2: (x, y) & = (1 - t, 0) & \quad (0 \le t \le 1) \\
+			L_3: (x, y) & = (0, t) & \quad (0 \le t \le 1)
+		\end{aligned}
+		$$
+		因此，原积分化为：
+		$$
+		\begin{aligned}
+			I & = \int_{L_1} x \dd{y} + \int_{L_2} x \dd{y} + \int_{L_3} x \dd{y} \\
+			& = \int_{0}^{\frac{\pi}{2}} (a \sin \theta) \dd{a \cos \theta} + \int_{0}^{1} (1 - t) \dd{0} + \int_{0}^{1} 0 \dd{t} \\
+			& = -a^2 \int_{0}^{\frac{\pi}{2}} \sin^2 \dd{\theta} \\
+			& = -a^2 \ab[\frac{1}{2} \theta - \frac{1}{4} \sin 2\theta]_{0}^{\frac{\pi}{2}} = \frac{\pi - 1}{4} a^2
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.5
+	\begin{solution}
+		由题可知，曲线是一个半径为 $\sqrt{2}$ 的圆。对曲线进行参数化：
+		$$
+		L: \vect{r}(\theta) = (1, 1, 0) + \sqrt{2}\ab(\ab(\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, 0) \cos \theta - (0, 0, 1) \sin \theta) = \ab(1 + \cos \theta, 1 - \cos \theta, - \sqrt{2} \sin \theta)
+		$$
+		因此，积分化为：
+		$$
+		\begin{aligned}
+			\origin & = \int_{0}^{2\pi} \ab((1 - \cos \theta) \dd(1 + \cos \theta) - \sqrt{2} \sin \theta \dd(1 - \cos \theta) + (1 + \cos \theta) \dd(- \sqrt{2} \sin \theta)) \\
+			& = \int_{0}^{2\pi} \ab(-(1 - \cos \theta) \sin \theta - \sqrt{2} \sin \theta \sin \theta - \sqrt{2} (1 + \cos \theta) \cos \theta) \dd{\theta} \\
+			& = \int_{0}^{2\pi} \ab(- \sin \theta + \sin \theta \cos \theta - \sqrt{2} \cos \theta - \sqrt{2}) \dd{\theta} \\
+			& = -2 \sqrt{2} \pi
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.7
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 参数化：
+			$$
+			L: (x, y) = (a \cos \theta, a \sin \theta) \quad (0 \le \theta \le 2 \pi)
+			$$ 
+			那么
+			$$
+			\begin{aligned}
+				I & = \int_{0}^{2\pi} \frac{a \cos \theta \dd(a \sin \theta) - a \sin \theta \dd(a \cos \theta)}{a^2} \\
+				& = \int_{0}^{2\pi} (\cos^2 \theta + \sin^2 \theta) \dd{\theta} = 2\pi
+			\end{aligned}
+			$$
+			\item[\textbf{2)}] 拆成四段：
+			$$
+			\begin{aligned}
+				L_1: (x, y) & = (1, -1 + t) & \quad (0 \le t \le 2) \\
+				L_2: (x, y) & = (1 - t, 1) & \quad (0 \le t \le 2) \\
+				L_3: (x, y) & = (-1, 1 - t) & \quad (0 \le t \le 2) \\
+				L_4: (x, y) & = (-1 + t, -1) & \quad (0 \le t \le 2) \\
+			\end{aligned}
+			$$
+			那么
+			$$
+			\begin{aligned}
+				I & = \int_{0}^{2} \frac{\dd{t}}{1 + (t - 1)^2} + \int_{0}^{2} \frac{\dd{t}}{1 + (t - 1)^2} + \int_{0}^{2} \frac{\dd{t}}{1 + (t - 1)^2} + \int_{0}^{2} \frac{\dd{t}}{1 + (t - 1)^2} \\
+				& = 4 \int_{0}^{2} \frac{\dd{t}}{1 + (t - 1)^2} = 4 \int_{-1}^{1} \frac{\dd{t}}{1 + t^2} \\
+				& = 4 \ab[\arctan t]_{-1}^{1} = 2 \pi
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.8
+	\begin{proof}
+		\begin{enumerate}
+			\item[\textbf{1)}] 假设将曲线 $L$ 参数化为
+			$$
+			L: (x, y) = (\varphi(t), \psi(t)) \quad (0 \le t \le 1)
+			$$
+			那么积分可以写作
+			$$
+			I = \int_{0}^{1} (P \varphi'(t) + Q \psi'(t)) \dd{t}
+			$$
+			根据柯西不等式，我们有
+			$$
+			(P \varphi'(t) + Q \psi'(t))^2 \le (P^2 + Q^2) (\varphi'(t)^2 + \psi'(t)^2)
+			$$
+			因此
+			$$
+			\abs{I} \le \int_{0}^{1} \abs{P \varphi'(t) + Q \psi'(t)} \dd{t} \le \sqrt{P^2 + Q^2} \sqrt{\varphi'(t)^2 + \psi'(t)^2} \dd{t}
+			$$
+			而曲线的长度为
+			$$
+			l = \int_{0}^{1} \sqrt{\varphi'(t)^2 + \psi'(t)^2} \dd{t}
+			$$
+			结合 $M$ 的定义，显然 $\abs{I} \le M \cdot l$。
+
+			\item[\textbf{2)}] 在此处，有
+			$$
+			P(x, y) = \frac{y}{(x^2 + xy + y^2)^2},\ Q(x, y) = -\frac{x}{(x^2 + xy + y^2)^2}
+			$$
+			用 $R \cos \theta, R \sin \theta$ 代换 $x, y$，得到
+			$$
+			\begin{aligned}
+				\sqrt{P^2 + Q^2} & = \frac{\sqrt{x^2 + y^2}}{(x^2 + xy + y^2)^2} \\
+				& = \frac{R}{R^4 (1 + \sin \theta \cos \theta)^2} \\
+				& = \frac{1}{R^3 (1 + \frac{1}{2} \sin 2\theta)^2} \le \frac{4}{R^3}
+			\end{aligned}
+			$$
+			因此可估算 $I_R \approx \frac{8 \pi}{R^2}$。
+
+			而根据上面推导，显然有 $\lim\limits_{R \to \infty} \sqrt{P^2 + Q^2} = 0$，因此根据夹逼定理 $\lim\limits_{R \to \infty} I_R = 0$。
+		\end{enumerate}
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 17.3.1
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $P(x, y) = x + y,\ Q(x, y) = x - y$，使用 Green 公式：
+			$$
+			\origin = \iint_{L} \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} = \iint_{L} 0 \dd{x} \dd{y} = 0
+			$$
+			\item[\textbf{3)}] 将曲线 $L$ 额外拼接一段 $(0, 2) \to (0, 0)$ 的线段，得到封闭曲线 $L'$。
+			
+			记 $P(x, y) = e^{x} \cos y,\ Q(x, y) = 5 x y - \E^{x} \sin y$，使用 Green 公式：
+			$$
+			\begin{aligned}
+				\origin + \int_{2}^{0} (-\sin y) \dd{y} & = \iint_{L'} \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} \\
+				& = \iint_{L'} \ab(5 y - e^{x} \cos y + \E^{x} \cos y) \dd{x} \dd{y} \\
+				& = \iint_{L'} 5 y \dd{x} \dd{y}
+			\end{aligned}
+			$$
+			$L'$ 围成的曲线关于 $y = 1$ 对称，可以得到：
+			$$
+			\begin{aligned}
+				\int_{2}^{0} (-\sin y) \dd{y} & = 1 - \cos 2 \\
+				\iint_{L'} 5 y \dd{x} \dd{y} & = 5 \cdot \frac{\pi}{2} = \frac{5\pi}{2}
+			\end{aligned}
+			$$
+			因此 $\origin = \frac{5\pi}{2} - 1 + \cos 2$。
+
+			\item[\textbf{5)}] $P(x, y) = x^2 - 2y,\ Q(x, y) = 3x + y \E^{y}$，使用 Green 公式：
+			$$
+			\origin = \iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} = \iint_D \ab(3 - 2) \dd{x} \dd{y} = \iint_D \dd{x} \dd{y}
+			$$
+			也就是，原式就是 $D$ 的面积。由几何关系容易得到：
+			$$
+			\origin = S_D = \frac{\pi}{4} + 1
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.3.2
+	\begin{solution}
+		记 $L$ 围出的封闭区域为 $D$，$P(x, y) = -\frac{y}{a^2 x^2 + b^2 y^2},\ Q(x, y) = \frac{x}{a^2 x^2 + b^2 y^2}$，那么：
+		$$
+		\pdv{Q}{x} = \frac{b^2 y^2 - a^2 x^2}{\ab(a^2 x^2 + b^2 y^2)^2},\ \pdv{P}{y} = \frac{b^2 y^2 - a^2 x^2}{\ab(a^2 x^2 + b^2 y^2)^2}
+		$$
+		因此，若 $D$ 不包含原点，那么
+		$$
+		\origin = \iint_D 0 \dd{x} \dd{y} = 0
+		$$
+		若 $D$ 包含原点，那么 $\iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y}$ 可以拆成两部分：包含 $O$ 的极小椭圆 $C_{\varepsilon}: \frac{x^2}{a^2} + \frac{y^2}{b^2} = \varepsilon^2$；其余的部分。其中后者仍然计算为 $0$，前者可以再次转化为曲线积分，因此：
+		$$
+		\begin{aligned}
+			\origin & = \oint_{C_{\varepsilon}} \frac{x \dd{y} - y \dd{x}}{a^2 x^2 + b^2 y^2} \\
+			& = \int_{0}^{2\pi} \frac{\frac{\varepsilon}{a} \cos \theta \dd(\frac{\varepsilon}{b} \sin \theta) - \frac{\varepsilon}{b} \sin \theta \dd(\frac{\varepsilon}{a} \cos \theta)}{\varepsilon^2} \\
+			& = \int_{0}^{2\pi} \frac{\frac{\varepsilon^2}{a b} \dd{\theta}}{\varepsilon^2} = \frac{2\pi}{a b}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.3.3
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 令 $P(x, y) = 0,\ Q(x, y) = x$，那么根据 Green 公式，有：
+			$$
+			S = \iint_D \dd{x} \dd{y} = \oint_L x \dd{y}
+			$$
+			其中 $L$ 是笛卡尔叶形线在 $x > 0,\ y > 0$ 的部分，逆时针方向。
+
+			令 $y = t x$，那么笛卡尔叶形线方程可以化为：
+			$$
+			x^3 + t^3 x^3 = 2 a t x^2 \implies x = \frac{2 a t}{1 + t^3},\ y = \frac{2 a t^2}{1 + t^3}
+			$$
+			逆时针方向对应 $t: 0 \sim +\infty$，因此
+			$$
+			\oint_L x \dd{y} = \int_{0}^{+\infty} \frac{2 a t}{1 + t^3} \dd(\frac{2 a t^2}{1 + t^3}) = \int_{0}^{+\infty} \frac{4 a^2 t^2 (2 - t^3)}{\ab(1 + t^3)^3} \dd{t}
+			$$
+			令 $u = t^3$，那么 $\dd{u} = 3 t^2 \dd{t}$，得到：
+			$$
+			\begin{aligned}
+				\oint_L x \dd{y} & = \frac{4 a^2}{3} \int_{0}^{+\infty} \frac{2 - u}{(1 + u)^3} \dd{u} \\
+				& = \frac{4 a^2}{3} \int_{0}^{+\infty} \ab(\frac{3}{(1 + u)^3} - \int_{0}^{+\infty} \frac{1}{(1 + u)^2}) \dd{u} \\
+				& = \frac{4 a^2}{3} \ab[-\frac{3}{2 (1 + u)^2} + \frac{1}{1 + u}]_{0}^{+\infty} = \frac{2 a^2}{3}
+			\end{aligned}
+			$$
+			因此所求面积为 $\frac{2 a^2}{3}$。
+
+			\item[\textbf{3)}] 令 $P(x, y) = 0,\ Q(x, y) = x$，那么使用 Green 公式，将面积化为：
+			$$
+			S = \iint_{D} \dd{x} \dd{y} = \oint_{L'} x \dd{y}
+			$$
+			其中 $L'$ 是将抛物线在 $0 \le x \le a$ 部分和线段 $(a, 0) \to (0, 0)$ 拼接形成的闭合曲线。注意到线段部分 $\dd{y} = 0$，因此对曲线积分没有贡献，只用考虑抛物线部分。
+			
+			抛物线参数化为 $(x, y) = (t, \sqrt{a t} - t)$，因此：
+			$$
+			\begin{aligned}
+				S & = -\int_{0}^{a} t \dd(\sqrt{a t} - t) \\
+				& = -\int_{0}^{a} \ab(\frac{\sqrt{a t}}{2} - t) \dd{t} \\
+				& = -\ab[\frac{\sqrt{a}}{3} t^{\frac{3}{2}} - \frac{1}{2} t^2]_{0}^{a} = \frac{a^2}{6}
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.4
+	\begin{proof}
+		记 $L$ 围成的封闭区域为 $D$。取 $P(x, y) = -\frac{1}{2} y,\ Q(x, y) = \frac{1}{2} x$，那么：
+		$$
+		\pdv{Q}{x} - \pdv{P}{y} = 1
+		$$
+		因此 $D$ 的面积可以表示为 $\iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y}$。根据 Green 公式：
+		$$
+		\begin{aligned}
+			A & = \oint_L (P \dd{x} + Q \dd{y}) = \frac{1}{2} \oint_L (x \dd{y} - y \dd{x}) \\
+			& = \frac{1}{2} \int_{\alpha}^{\beta} \ab(\varphi(t) \dd(\psi(t)) - \psi(t) \dd(\varphi(t))) \\
+			& = \frac{1}{2} \int_{\alpha}^{\beta} \ab(\varphi(t) \psi'(t) - \psi(t) \varphi'(t)) \dd{t} \\
+			& = \frac{1}{2} \int_{\alpha}^{\beta} \begin{vmatrix}
+				\varphi(t) & \psi(t) \\
+				\varphi'(t) & \psi'(t) 
+			\end{vmatrix} \dd{t}
+		\end{aligned}
+		$$
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.5
+	\begin{solution}
+		记 $P(x, y) = \frac{\E^{x}}{x^2 + y^2} (x \sin y - y \cos y),\ Q(x, y) = \frac{\E^{x}}{x^2 + y^2} (x \cos y + y \sin y)$。使用 Green 公式：
+		$$
+		I = \iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y}
+		$$
+		而当 $x \neq 0,\ y \neq 0$ 时，$\pdv{Q}{x} - \pdv{P}{y} = 0$。因此考虑包围原点的充分小的圆 $C_\varepsilon: x^2 + y^2 = \varepsilon^2$，那么：
+		$$
+		\begin{aligned}
+			\iint_D \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} & = \iint_{C_{\varepsilon}} \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y} \\
+			& = \oint_{C_{\varepsilon}} \frac{\E^{x}}{x^2 + y^2} \ab((x \sin y - y \cos y) \dd{x} + (x \cos y + y \sin y) \dd{y}) \\
+			& = \int_{0}^{2\pi} \frac{\E^{\varepsilon \cos t}}{\varepsilon^2} \ab((x \sin y - y \cos y) \dd(\varepsilon \cos t) + (x \cos y + y \sin y) \dd(\varepsilon \sin t)) \\
+			& = \int_{0}^{2\pi} \E^{\varepsilon \cos t} \cos (\varepsilon \sin t) \dd{t}
+		\end{aligned}
+		$$
+		被积函数关于 $\varepsilon$ 一致收敛，因此有：
+		$$
+		\lim_{\varepsilon \to 0} \int_{0}^{2\pi} \E^{\varepsilon \cos t} \cos (\varepsilon \sin t) \dd{t} = \int_{0}^{2\pi} \lim_{\varepsilon \to 0}  \E^{\varepsilon \cos t} \cos (\varepsilon \sin t) \dd{t} = \int_{0}^{2\pi} \dd{t} = 2\pi
+		$$
+		所以所求原积分值为 $2\pi$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.6
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 观察得到原函数为
+			$$
+			f(x, y) = \frac{1}{3} x^3 - x^2 y + x y^2 + \frac{1}{3} y^3 + C
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 17.2.7
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 在 $x > 0,\ y > 0$ 时：
+			$$
+			\pdv{y} \ab(\frac{y}{x^2}) = \frac{1}{x^2},\ \pdv{x} \ab(-\frac{1}{x}) = \frac{1}{x^2}
+			$$
+			因此该曲线积分路径无关。取线段 $(1 + t, 2 - t)\ (0 \le t \le 1)$ 作为积分路径：
+			$$
+			\origin = \int_{0}^{1} \frac{(2 - t) + (1 + t)}{(1 + t)^2} \dd{t} = \ab[-\frac{3}{1 + t}]_{0}^{1} = \frac{3}{2}
+			$$
+
+			\item[\textbf{2)}]
+			$$
+			\pdv{\varphi}{y} = 0,\ \pdv{\psi}{x} = 0
+			$$
+			因此该曲线积分路径无关。取两段线段 $L_1: (1, 2) \to (2, 2),\ L_2: (2, 2) \to (2, 1)$，就有：
+			$$
+			\origin = \int_{1}^{2} \varphi(x) \dd{x} + \int_{2}^{1} \psi(y) \dd{y}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.1.1
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 将球面参数化：
+			$$
+			\Sigma: \vect{r} = (x, y, z) = (2 \sin \theta \cos \varphi, 2 \sin \theta \sin \varphi, 2 \cos \theta) \quad \ab(0 \le \theta \le \pi,\ 0 \le t \varphi \le 2\pi)
+			$$
+			面积元为
+			$$
+			\dd{S} = \abs{\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\varphi}} = 4 \sin \theta \dd{\theta} \dd{\varphi}
+			$$
+			积分：
+			$$
+			\begin{aligned}
+				\iint_{\Sigma} x^2 \dd{S} & = \int_{0}^{\pi} \dd{\theta} \int_{0}^{2\pi} 4 \sin^2 \theta \cos^2 \varphi \dd{\varphi} \\
+				& = 4 \int_{0}^{\pi} \sin^2 \theta \dd{\theta} \int_{0}^{2\pi} \cos^2 \varphi \dd{\varphi} \\
+				& = 2 \pi^2
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 将球面参数化：
+			$$
+			\Sigma: \vect{r} = (x, y, z) = (a \sin \theta \cos \varphi, a \sin \theta \sin \varphi, a \cos \theta) \quad \ab(0 \le \theta \le \frac{\pi}{2},\ 0 \le t \varphi \le 2\pi)
+			$$
+			面积元为
+			$$
+			\dd{S} = \abs{\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\varphi}} = a^2 \sin \theta \dd{\theta} \dd{\varphi}
+			$$
+			积分：
+			$$
+			\begin{aligned}
+				\iint_{\Sigma} (x + y + z) \dd{S} & = \int_{0}^{\frac{\pi}{2}} \dd{\theta} \int_{0}^{2\pi} a (\sin \theta \cos \varphi + \sin \theta \sin \varphi + \cos \theta) \dd{\varphi} \\
+				& = \int_{0}^{\frac{\pi}{2}} 2 \pi a \cos \theta \dd{\theta} \\
+				& = 2 \pi a
+			\end{aligned}
+			$$
+
+			\item[\textbf{5)}] 将曲面参数化：
+			$$
+			\Sigma: \vect{r} = (x, y, z) = (\rho \cos \theta, \rho \sin \theta, \rho) \quad (0 \le \theta \le 2\pi,\ 1 \le \rho \le 2)
+			$$
+			面积元为
+			$$
+			\dd{S} = \abs{\pdv{r}{\rho} \cp \pdv{r}{\theta}} = \sqrt{2} \rho
+			$$
+			积分：
+			$$
+			\begin{aligned}
+				\iint_{\Sigma} z \dd{S} & = \int_{1}^{2} \dd{\rho} \int_{0}^{2\pi} \rho \cdot \sqrt{2} \rho \dd{\theta} \\
+				& = 2 \sqrt{2} \pi \int_{1}^{2} \rho^2 \dd{\rho} \\
+				& = 2 \sqrt{2} \pi \ab[\frac{1}{3} \rho^3]_{1}^{2} = \frac{14\pi \sqrt{2}}{3}
+			\end{aligned}
+			$$
+
+			\item[\textbf{6)}] 将曲面参数化：
+			$$
+			\Sigma \vect{r} = (x, y, z) = (R \cos \theta, R \sin \theta, t) \quad (0 \le \theta \le 2\pi,\ 0 \le t \le h)
+			$$
+			面积元为
+			$$
+			\dd{S} = \abs{\pdv{r}{t} \cp \pdv{r}{\theta}} = R \dd{\theta} \dd{t}
+			$$
+			积分：
+			$$
+			\iint_{\Sigma} \frac{\dd{S}}{x^2 + y^2} = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{h} \frac{1}{R^2} \dd{h} = \frac{2\pi h}{R^2}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.1.2
+	\begin{solution}
+		因为对称性，只需要计算 $x > 0,\ y > 0,\ z > 0$ 的部分并乘以 $8$ 即可。将曲面参数化：
+		$$
+		\Sigma_0: \vect{r} = (x, y, z) = (u, v, 1 - u - v) \quad (0 \le u \le a,\ 0 \le v \le a - u)
+		$$
+		面积元
+		$$
+		\dd{S} = \abs{\pdv{r}{t} \cp \pdv{r}{\theta}} = \sqrt{3}
+		$$
+		积分：
+		$$
+		\begin{aligned}
+			\origin & = 8 \iint_{\Sigma_0} \dd{S} \\
+			& = 8 \int_{0}^{a} \dd{u} \int_{0}^{a - u} \ab(u^2 + v^2 + (a - u - v)^2) \sqrt{3} \dd{v} \\
+			& = 8 \sqrt{3} \int_{0}^{a} \dd{u} \ab[u^2 v + \frac{1}{3} v^3 - \frac{1}{3} (a - u - v)^3]_{0}^{a - u} \\
+			& = 8 \sqrt{3} \int_{0}^{a} \ab(u^2 (a - u) + \frac{2}{3} (a - u)^3) \dd{u} \\
+			& = 8 \sqrt{3} \ab[\frac{1}{3} a u^3 - \frac{1}{4} u^{4} + \frac{1}{6} (a - u)^4]_{0}^{a} \\
+			& = 2 \sqrt{3} a^{4}
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.1.4
+	\begin{solution}
+		将曲面参数化：
+		$$
+		\Sigma: \vect{r} = (x, y, z) = \ab(\sqrt{2} h \cos \theta, \sqrt{2} h \sin \theta, h^2) \quad (0 \le h \le 1,\ 0 \le \theta \le 2\pi)
+		$$
+		面积元为：
+		$$
+		\dd{S} = \abs{\pdv{\vect{r}}{h} \cp \pdv{\vect{r}}{\theta}} = 2h \sqrt{2h^2 + 1}
+		$$
+		质量：
+		$$
+		\begin{aligned}
+			m & = \iint_{\Sigma} \rho(x, y) \dd{S} \\
+			& = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{1} h^2 \cdot 2h \sqrt{2h^2 + 1} \dd{h} \\
+			& = 2\pi \int_{0}^{1} h^2 \sqrt{2h^2 + 1} \dd(h^2) \\
+			& = \frac{2\pi}{15} \ab(6 \sqrt{3} + 1)
+		\end{aligned}
+		$$
+		质心：
+		$$
+		\begin{aligned}
+			\vect{C}_m & = \frac{1}{m} \iint_{\Sigma} \rho(x, y) \vect{r} \dd{S} \\
+			& = \frac{1}{m} \int_{0}^{2\pi} \dd{\theta} \int_{0}^{1} h^2 \ab(\sqrt{2} h \cos \theta, \sqrt{2} h \sin \theta, h^2) \cdot 2h \sqrt{2h^2 + 1} \dd{h} \\
+			& = \frac{1}{m} \ab(0, 0, 2 \pi \int_{0}^{1} 2h^{5} \sqrt{2h^2 + 1} \dd{h}) \\
+			& = \ab(0, 0, \frac{2\pi}{m} \int_{0}^{1} h^{4} \sqrt{2h^2 + 1} \dd(h^2)) \\
+			& = \ab(0, 0, \frac{2\pi}{m} \ab[\frac{1}{105} (1 + 2h^2)^{\frac{3}{2}} (15 h^{4} - 6h^2 + 2)]_{0}^{1}) \\
+			& = \ab(0, 0, \frac{\frac{2\pi}{105} \ab(33 \sqrt{3} - 2)}{\frac{2\pi}{15} \ab(6 \sqrt{3} + 1)}) \\
+			& = \ab(0, 0, \frac{33 \sqrt{3} - 2}{7 \ab(6 \sqrt{3} + 1)})
+		\end{aligned}
+		$$
+	\end{solution}
+\end{problem}

@@ -1,0 +1,79 @@
+\section{磁介质}
+
+\subsection{磁介质与磁化}
+
+对于磁场有响应并且能反过来影响磁场的物体，称为\textbf{磁介质}。
+
+\subsubsection{介质的磁化}
+
+物质由分子组成，对于每个分子的磁效应，可以用一个等效环形电流表示，这个电流称为\textbf{分子电流}。
+
+环形电流具有磁矩。物体的所有分子电流的磁矩矢量之和就是物体的磁矩。
+
+在磁场作用下，分子磁矩趋向于与磁场平行，于是物体在宏观上表现出磁场，这就是\textbf{磁化}。这个磁场也可以等效为一个环形电流，称为\textbf{磁化电流}。
+
+\subsubsection{抗磁效应}
+
+分子中的电子由于受到外磁场作用，轨道运动发生变化，电子运动半径改变，产生附加磁矩，这个附加磁矩与外磁场方向相反。
+
+\subsubsection{磁化强度}
+
+\begin{definition}[磁化强度]
+	单位体积内，分子电流产生的磁矩的矢量和称为\textbf{磁化强度}，记做 $\vect{M}$。
+\end{definition}
+
+磁化强度矢量与磁化电流有类似环路定理的性质：
+$$
+\oint_L \vect{M} \vdot \dd{l} = I_{enc}'
+$$
+其中 $I_{enc}'$ 为穿过环路的磁化电流总和。
+
+实验表明，对于一类磁介质，$\vect{M}$ 与总磁场 $\vect{B}$ 成正比，这类介质称为\textbf{线性磁介质}。
+
+\subsection{存在介质的恒定磁场}
+
+对于外磁场 $\vect{B}_0$ 和附加磁场 $\vect{B}'$，都满足方程：
+$$
+\begin{dcases}
+	\oiint_S \vect{B}_0 \vdot \dd{\vect{S}} = 0 \\
+	\oint_L \vect{B}_0 \vdot \dd{\vect{l}} = \mu_0 I_{enc0}
+\end{dcases},\quad \begin{dcases}
+	\oiint_S \vect{B}' \vdot \dd{\vect{S}} = 0 \\
+	\oint_L \vect{B}' \vdot \dd{\vect{l}} = \mu_0 I_{enc}'
+\end{dcases}
+$$
+根据叠加原理，总磁场 $\vect{B}$ 的高斯定理和安培环路定理为：
+$$
+\begin{dcases}
+	\oiint_S \vect{B} \vdot \dd{\vect{S}} = 0 \\
+	\oint_L \vect{B} \vdot \dd{\vect{l}} = \mu_0 (I_{enc0} + I_{enc}')
+\end{dcases}
+$$
+
+代入 $I'$ 和 $\vect{M}$ 的关系，得到：
+$$
+\begin{gathered}
+	\oint_L \vect{B} \vdot \dd{\vect{l}} = \mu_0 I_{enc0} + \mu_0 \oint_L \vect{M} \vdot \dd{\vect{l}} \\
+	\oint_L \ab(\frac{\vect{B}}{\mu_0} - \vect{M}) \vdot \dd{\vect{l}} = I_{enc0}
+\end{gathered}
+$$
+定义\textbf{磁场强度} $\vect{H} = \frac{\vect{B}}{\mu_0} - \vect{M}$，那么就得到\textbf{$\vect{H}$ 的安培环路定理}：
+$$
+\oint_L \vect{H} \vdot \dd{\vect{l}} = I_{enc0}
+$$
+
+对于线性磁介质，有关系 $\vect{M} = \chi_m \vect{H}$，这里 $\chi_m$ 称为\textbf{磁化率}。代入 $\vect{H}$ 的定义得到：
+$$
+\vect{B} = \mu_0 (\vect{H} + \vect{M}) = \mu_0 (1 + \chi_m) \vect{H} = \mu_0 \mu_r \vect{H} = \mu \vect{H}
+$$
+这里，$\mu_r$ 称为\textbf{相对磁导率}，$\mu$ 称为\textbf{磁导率}。这两个物理量只与介质本身有关。
+
+\subsection{铁磁质}
+
+铁磁质的宏观性质表现为：
+
+\begin{itemize}
+	\item $\mu_r >> 1$，产生很强的附加磁场；
+	\item $\mu_r$ 与磁化历史有关，不是常数；
+	\item 磁滞现象；
+\end{itemize}

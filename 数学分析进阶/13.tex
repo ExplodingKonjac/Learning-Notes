@@ -1,0 +1,96 @@
+\section{含参积分 III}
+
+\subsection{含参反义积分 continue}
+
+\begin{theorem}[Weierstrass 判别法]
+	若存在 $F(x)$ 使得：
+	\begin{enumerate}
+		\item $\abs{f(x, y)} \le F(x) \quad (x, y) \in [a, +\infty) \times [c, d]$；
+		\item $\displaystyle \int_{a}^{+\infty} F(x) \dd{x}$ 收敛。
+	\end{enumerate}
+	那么 $\displaystyle I(y) = \int_{a}^{+\infty} f(x, y) \dd{x}$ 在 $[c, d]$ 一致收敛。
+\end{theorem}
+
+同样也有 Dirichlet 判别法和 Abel 判别法：
+
+\begin{theorem}[Dirichlet 判别法]
+	若 $f(x, y), g(x, y)$ 满足下面的条件：
+	\begin{enumerate}
+		\item $\displaystyle \int_{a}^{A} f(x, y) \dd{x}$ 在 $[c, d]$ 上一致有界；
+		\item $g(x, y)$ 关于 $x$ 单调。
+		\item $g(x, y)$ 在 $x \to +\infty$ 时在 $[c, d]$ 上一致收敛于 $0$。
+	\end{enumerate}
+	那么 $\displaystyle \int_{a}^{+\infty} f(x, y) g(x, y) \dd{x}$ 在 $[c, d]$ 一致收敛。
+\end{theorem}
+
+\begin{theorem}[Abel 判别法]
+	若 $f(x, y), g(x, y)$ 满足下面的条件：
+	\begin{enumerate}
+		\item $\displaystyle \int_{a}^{A} f(x, y) \dd{x}$ 在 $[c, d]$ 上一致收敛；
+		\item $g(x, y)$ 关于 $x$ 单调。
+		\item $g(x, y)$ 在 $[c, d]$ 上一致有界。
+	\end{enumerate}
+	那么 $\displaystyle \int_{a}^{+\infty} f(x, y) g(x, y) \dd{x}$ 在 $[c, d]$ 一致收敛。
+\end{theorem}
+
+\subsection{$\Gamma$ 函数和 $B$ 函数}
+
+\subsubsection{$\Gamma$ 函数}
+
+\begin{definition}[$\Gamma$ 函数]
+	\textbf{$\Gamma$ 函数}的定义为：
+	$$
+	\Gamma(s) = \int_{0}^{+\infty} x^{s - 1} \E^{-x} \dd{x} \quad (s > 0)
+	$$
+\end{definition}
+
+分析一下该函数的收敛性。
+\begin{itemize}
+	\item $s \ge 1$ 时：$\lim\limits_{x \to \infty} \frac{x^{s - 1}}{\E^{\frac{x}{2}}} = 0$，因此 $\Gamma(s)$ 的收敛性和 $\displaystyle \int_{0}^{+\infty} \E^{-\frac{x}{2}} \dd{x}$ 相同，是收敛的。
+	
+	\item $0 < s < 1$ 时：
+	$$
+	\Gamma(s) = \int_{0}^{1} x^{s - 1} \E^{-x} \dd{x} + \int_{1}^{+\infty} x^{s - 1} \E^{-x} \dd{x}
+	$$
+\end{itemize}
+
+$\Gamma$ 函数有递推式：
+$$
+\begin{aligned}
+	\Gamma(s + 1) & = \int_{0}^{+ \infty} x^{s} \E^{-x} \dd{x} \\
+	& = \ab[-\E^{-x} x^{s}]_{0}^{+\infty} + s \int_{0}^{+\infty} x^{s - 1} \E^{-x} \dd{x} \\
+	& = s \Gamma(s)
+\end{aligned}
+$$
+特别地，$\Gamma(1) = 1$，因此 $\Gamma(n + 1) = n! \ (n \in \mathbb{N})$。
+
+\subsubsection{$B$ 函数}
+
+\begin{definition}[$B$ 函数]
+	\textbf{$B$ 函数}的定义为：
+	$$
+	B(p, q) = \int_{0}^{1} x^{p - 1} (1 - x)^{q - 1} \dd{x}
+	$$
+	它又被称为\textbf{第一类 Euler 积分}。
+\end{definition}
+
+任取 $a \in (0, 1)$，将积分化为两部分：
+$$
+B(p, q) = \int_{0}^{a} x^{p - 1} (1 - x)^{q - 1} \dd{x} + \int_{a}^{1} x^{p - 1} (1 - x)^{q - 1} \dd{x}
+$$
+那么：
+\begin{itemize}
+	\item $x \to 0$ 时，$x^{p - 1} (1 - x)^{q - 1} \sim x^{p - 1}$，当 $p > 0$ 时左侧积分收敛。
+	\item $x \to 1$ 时，$x^{p - 1} (1 - x)^{q - 1} \sim (1 - x)^{q - 1}$，当 $q > 0$ 时右侧积分收敛。
+\end{itemize}
+
+因此 $p > 0, q > 0$ 时 $B$ 函数收敛。
+
+$B$ 函数具有下面的性质：
+\begin{itemize}
+	\item 对称性：$B(p, q) = B(q, p)$。
+	\item 递推关系：$\displaystyle B(p, q) = \frac{(p - 1)(q - 1)}{(p + q - 1)(p + q - 2)} B(p - 1, q - 1)$。
+	\item 与 $\Gamma$ 函数的关系：$\displaystyle B(p, q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p + q)}$。
+\end{itemize}
+
+\subsection{数值积分}
