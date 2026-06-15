@@ -1,0 +1,65 @@
+\section{曲面积分 II}
+
+\subsection{第二型曲面积分}
+
+\begin{definition}[第二型曲面积分]
+	对于函数 $P(x, y, z),\ Q(x, y, z),\ R(x, y, z)$ 和闭曲面 $S$，称
+	$$
+	\iint_S (P(x, y, z) \dd{y} \dd{z} + Q(x, y, z) \dd{x} \dd{z} + R(x, y, z) \dd{x} \dd{y})
+	$$
+	为 $P, Q, R$ 在 $S$ 上的\textbf{第二型曲面积分}。若用 $\dd{\vect{S}}$ 表示面积元的法向量，长度为面积元的面积，$\vect{F}(x, y, z) = (P(x, y, z), Q(x, y, z), R(x, y, z))$，那么积分也可以写作：
+	$$
+	\iint_S \vect{F}(x, y, z) \vdot \dd{\vect{S}}
+	$$
+\end{definition}
+
+第二型曲面积分依然可以使用参数化方法计算。注意参数化时需要保证方向正确。对于参数曲面 $\vect{F} = \vect{F}(u, v)$，面积元法向量为：
+$$
+\pdv{\vect{F}}{u} \cp \pdv{\vect{F}}{v}
+$$
+需要注意这个法向量方向是否和题意要求一致。
+
+\subsection{Gauss 公式}
+
+\begin{definition}[散度]
+	对于一个向量场 $\vect{F}(x, y, z)$，定义其\textbf{散度}为：
+	$$
+	\div \vect{F} = \pdv{\vect{F}_x}{x} + \pdv{\vect{F}_y}{y} + \pdv{\vect{F}_z}{z}
+	$$
+\end{definition}
+
+散度可以理解为梯度算子和向量场的点积。
+
+\begin{theorem}[Gauss 公式]
+	设空间中闭区域 $V$ 用分片光滑的双侧封闭曲面 $S$ 围成，函数 $P(x, y, z),\ Q(x, y, z),\ R(x, y, z)$ 在 $V$ 上连续，切存在一阶连续偏导数，那么
+	$$
+	\iiint_V \ab(\pdv{P}{x} + \pdv{Q}{y} + \pdv{R}{z}) \dd{x} \dd{y} \dd{z} = \oiint_S (P \dd{y} \dd{z} + Q \dd{z} \dd{x} + R \dd{x} \dd{y})
+	$$
+	其中 $S$ 取外侧。
+	
+	记 $\vect{F}(x, y, z) = (P(x, y, z), Q(x, y, z), R(x, y, z))$，那么定理可以表述为：
+	$$
+	\iiint_V \div \vect{F} \dd{x} \dd{y} \dd{z} = \oiint_S \vect{F} \vdot \dd{\vect{S}}
+	$$
+
+	这个公式又称为\textbf{散度定理}。
+
+	\begin{proof}
+		假设 $V$ 是一个 $xy$ 型区域，我们先尝试证明
+		$$
+		\iiint_V \pdv{R}{z} \dd{V} = \oiint_S R \dd{x} \dd{y}
+		$$
+		那么 $V$ 可以写作 $\varphi(x, y) \le z \le \psi(x, y) \quad ((x, y) \in D)$，将积分式重写：
+		$$
+		\begin{aligned}
+			\lhs & = \iint_D \dd{x} \dd{y} \int_{\varphi(x, y)}^{\psi(x, y)} \pdv{R}{z} \dd{z} \\
+			& = \iint_D (R(\psi(x, y)) - R(\varphi(x, y))) \dd{x} \dd{y} \\
+		\end{aligned}
+		$$
+		而对于右式，因为 $S$ 超外，上表面贡献的符号正，下表面贡献为负，因此贡献恰好是 $(R(\psi(x, y)) - R(\varphi(x, y))) \dd{x} \dd{y}$。所以 $\lhs = \rhs$。
+
+		对于 $V$ 不是 $xy$ 型区域的情形，可以将 $V$ 划分为有限个 $xy$ 型区域，利用线性性得到同样的结论。
+
+		最后，对于 $xy$ 的证明同样可以应用到 $yz, zx$，因此最终得证。
+	\end{proof}
+\end{theorem}

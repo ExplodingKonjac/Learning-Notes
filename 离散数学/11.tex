@@ -1,0 +1,28 @@
+\section{逻辑公理系统 IV}
+
+\subsection{谓词逻辑公理系统}
+
+\textbf{谓词逻辑公理系统}的符号集合包括：
+
+\begin{itemize}
+	\item 个体变元：$p_1, p_2, \dots$；
+	\item 个体常元：$c_1, c_2, \dots$；
+	\item 函词符号：对于每个正整数 $n$，有 $n$ 元函词符号 $f_1^n, f_2^n, \dots$；
+	\item 函词符号：对于每个正整数 $n$，有 $n$ 元谓词符号 $P_1^n, P_2^n, \dots$；
+	\item 联结词符号：$\to, \lnot$；
+	\item 谓词符号：$\forall$。
+\end{itemize}
+
+存在量词可以用任意量词表示：$\exists\,x\,P \equiv \lnot \forall\,x\,\lnot P$。
+
+谓词逻辑公理系统的公理模式除了命题逻辑公理系统的 $\mathscr{A}_1, \mathscr{A}_2, \mathscr{A}_3$ 之外，加入：
+\begin{itemize}
+	\item 公理模式 $\mathscr{A}_4$：$\forall\,x\,Q \to Q[x / t]$，其中 $t$ 对于 $Q$ 中的 $x$ 可代入；
+	\item 公理模式 $\mathscr{A}_5$：$\forall\,x\,(Q \to R) \to (Q \to \forall\,x\,R)$，其中 $x$ 不是 $Q$ 中自由变元。
+\end{itemize}
+
+推理规则除了 MP，加入：
+
+\begin{itemize}
+	\item 综合规则（UG 规则）：如果已推出 $Q$，那么可以推出 $\forall\,x\,Q$。
+\end{itemize}

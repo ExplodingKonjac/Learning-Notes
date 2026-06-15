@@ -1,0 +1,366 @@
+\section{曲面积分 III}
+
+\subsection{Stokes 公式}
+
+\begin{theorem}
+	对于一个向量场 $\vect{F}(x, y, z)$，定义其\textbf{旋度}为：
+	$$
+	\curl \vect{F} = \begin{vmatrix}
+		\vect{i} & \vect{j} & \vect{k} \\
+		\pdv{x} & \pdv{y} & \pdv{z} \\
+		\vect{F}_x & \vect{F}_y & \vect{F}_z
+	\end{vmatrix}
+	$$
+\end{theorem}
+
+然后给出 Stokes 定理的形式。
+
+\begin{theorem}[Stokes 公式]
+	设 $S$ 为光滑的双侧曲面，其边界曲线 $\Gamma$ 是按段光滑的连续曲线，若函数 $P, Q, R$ 在 $S$ 上连续，且有连续一阶偏导数，那么：
+	$$
+	\iint_S \ab(\ab(\pdv{R}{y} - \pdv{Q}{z}) \dd{y} \dd{z} + \ab(\pdv{P}{z} - \pdv{R}{x}) \dd{z} \dd{x} + \ab(\pdv{Q}{x} - \pdv{P}{y}) \dd{x} \dd{y}) = \oint_{\Gamma} (P \dd{x} + Q \dd{y} + R \dd{z})
+	$$
+	若记 $\vect{F}(x, y, z) = (P(x, y, z), Q(x, y, z), R(x, y, z))$，那么可以表示为：
+	$$
+	\iint_S (\curl \vect{F}) \vdot \dd{\vect{S}} = \oint_{\Gamma} \vect{F} \vdot \dd{\vect{s}}
+	$$
+	\begin{proof}
+		设曲面满足参数方程 $(x, y) = \vect{r}(u, v),\ (u, v) \in D$。那么
+		$$
+		\begin{aligned}
+			\oint_{\Gamma} P \dd{x} & = \oint_{\partial D} \ab(\vect{F}(\vect{r}(u, v)) \vdot \pdv{\vect{r}}{u} \dd{u} + \vect{F}(\vect{r}(u, v)) \vdot \pdv{\vect{r}}{v} \dd{v}) \\
+			& = \oint_{\partial D} \ab(M \dd{u} + N \dd{v}) \\
+			& = \iint_{D} \ab(\pdv{N}{u} - \pdv{M}{x}) \dd{u} \dd{v}
+		\end{aligned}
+		$$
+		其中 $M = \vect{F}(\vect{r}(u, v)) \vdot \pdv{\vect{r}}{u},\ N = \vect{F}(\vect{r}(u, v)) \vdot \pdv{\vect{r}}{v}$。最后一行使用了 Green 公式。所以我们只需要证明：
+		$$
+		(\curl \vect{F})(\vect{r}(u, v)) \vdot \ab(\pdv{\vect{r}}{u} \cp \pdv{\vect{r}}{v}) = \pdv{N}{u} - \pdv{M}{v} 
+		$$
+		将右式展开：
+		$$
+		\begin{aligned}
+			\pdv{N}{u} & = \pdv{u} \ab(\vect{F}(\vect{r}) \vdot \pdv{\vect{r}}{v})  = \ab(\vect{J} \vect{F} \cdot \pdv{\vect{r}}{u}) \vdot \pdv{\vect{r}}{v} + \vect{F} \vdot \pdv[2]{\vect{r}}{u}{v} \\
+			\pdv{M}{u} & = \pdv{v} \ab(\vect{F}(\vect{r}) \vdot \pdv{\vect{r}}{u})  = \ab(\vect{J} \vect{F} \cdot \pdv{\vect{r}}{v}) \vdot \pdv{\vect{r}}{u} + \vect{F} \vdot \pdv[2]{\vect{r}}{v}{u} \\
+		\end{aligned}
+		$$
+		二阶混合偏导相等，因此有：
+		$$
+		\pdv{N}{u} - \pdv{M}{v} = \ab(\vect{J} \vect{F} \cdot \pdv{\vect{r}}{u}) \vdot \pdv{\vect{r}}{v} - \ab(\vect{J} \vect{F} \cdot \pdv{\vect{r}}{v}) \vdot \pdv{\vect{r}}{u}
+		$$
+		将坐标展开后，这个式子就是 $\ab(\curl \vect{F}) \vdot \ab(\pdv{\vect{r}}{u} \cp \pdv{\vect{r}}{v})$。
+	\end{proof}
+\end{theorem}
+
+与 Green 公式类似，根据 Stolz 公式可以得到空间中曲线积分路径无关性条件：
+
+\begin{theorem}
+	设 $\Omega \subset \mathbb{R}^3$ 是空间单连通区域，$\vect{F}(x, y, z)$ 在 $\Omega$ 中连续，那么下面的条件等价：
+	\begin{itemize}
+		\item $\Omega$ 中任意分段光滑的封闭曲线 $L$，都有 $\displaystyle \oint_L \vect{F} \vdot \dd{\vect{s}} = 0$。
+		\item $\Omega$ 中任意分段光滑的曲线 $L$，都有 $\displaystyle \int_L \vect{F} \vdot \dd{\vect{s}}$ 路径无关。
+		\item $\vect{F} \vdot (\dd{x}, \dd{y}, \dd{z})$ 是 $\Omega$ 内某个函数 $u$ 的全微分。
+		\item $\vect{J} \vect{F}$ 是对称矩阵。
+	\end{itemize}
+\end{theorem}
+
+\section{作业}
+
+\begin{problem}
+	习题 16.2.1
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 换元：
+			$$
+			\vect{r} = (x, y, z) = (\rho \cos \theta, \rho \sin \theta, \rho^2) \quad (0 \le \rho \le 1,\ 0 \le \theta \le 2\pi)
+			$$
+			那么面积元的法向量为
+			$$
+			\dd{\vect{S}} = \ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\rho}) \dd{\theta} \dd{\rho} = \ab(2 \rho^2 \cos \theta, 2 \rho^2 \sin \theta, -\rho) \dd{\rho} \dd{\theta}
+			$$
+			因此原积分化为
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{1} \dd{\rho} \int_{0}^{2\pi} \ab(\ab(\rho^2 \cos^2 \theta - \rho \sin \theta) \cdot 2 \rho^2 \cos \theta - \rho \sin \theta \cdot 2 \rho^2 \sin \theta + \rho^2 \cdot (-\rho)) \dd{\theta} \\
+				& = \int_{0}^{1} \dd{\rho} \int_{0}^{2\pi} \ab(2 \rho^{4} \cos^3 \theta - \rho^3 \sin 2 \theta - 2 \rho^3 \sin^2 \theta - \rho^3) \dd{\theta} \\
+				& = -\int_{0}^{1} \rho^3 \dd{\rho} \int_{0}^{2\pi} \ab(1 + 2 \sin^2 \theta) \dd{\theta} \\
+				& = -\frac{1}{4} \cdot 4\pi = -\pi
+			\end{aligned}
+			$$
+
+			\item[\textbf{2)}] 换元：
+			$$
+			\vect{r} = (x, y, z) = (\cos \theta, \sin \theta, h) \quad (0 \le \theta \le 2\pi,\ 0 \le t \le h)
+			$$
+			那么面积元法向量为：
+			$$
+			\dd{\vect{S}} = \ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{t}) \dd{\theta} \dd{t} = (\cos \theta, \sin \theta, 0) \dd{\theta} \dd{t}
+			$$
+			原积分化为：
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{h} \ab(t \cdot \cos \theta + \cos \theta \cdot \sin \theta + \sin \theta \cdot 0) \dd{t} = 0
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 换元：
+			$$
+			\vect{r} = (x, y, z) = \ab(\rho \cos \theta, \rho \sin \theta, \frac{1}{2} \rho^2) \quad (0 \le \rho \le 4,\ 0 \le \theta \le 2\pi)
+			$$
+			那么面积元法向量为：
+			$$
+			\dd{\vect{S}} = \ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\rho}) \dd{\theta} \dd{\rho} = \ab(\rho^2 \cos \theta, \rho^2 \sin \theta, -\rho)
+			$$
+			原积分化为：
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{2} \ab(\ab(\frac{1}{4} \rho^{4} + \rho \cos \theta) \cdot \rho^2 \cos \theta - \frac{\rho^2}{2} \cdot (-\rho)) \dd{\rho} \\
+				& = \int_{0}^{2\pi} \ab(\frac{1}{2} + \cos^2) \theta \dd{\theta} \int_{0}^{2} \rho^3 \dd{\rho} \\
+				& = 8\pi
+			\end{aligned}
+			$$
+
+			\item[\textbf{4)}] 换元：
+			$$
+			\vect{r} = (x, y, z) = (a \sin \theta \cos \varphi, a \sin \theta \sin \varphi, a \cos \theta) \quad \ab(0 \le \theta, \varphi \le \frac{\pi}{2})
+			$$
+			那么面积元法向量为：
+			$$
+			\dd{\vect{S}} = \ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\varphi}) \dd{\theta} \dd{\varphi} = a^2 \sin \theta \ab(\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta) \dd{\theta} \dd{\varphi}
+			$$
+			原积分化为
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{\frac{\pi}{2}} \dd{\theta} \int_{0}^{\frac{\pi}{2}} a \cos \theta \cdot a^2 \sin \theta \cos \theta \dd{\varphi} \\
+				& = \frac{\pi a^3}{2} \int_{0}^{\frac{\pi}{2}} \sin \theta \cos^2 \theta \dd{\theta} \\
+				& = \frac{\pi a^3}{2} \int_{0}^{\frac{\pi}{2}} -\cos^2 \theta \dd(\cos \theta) \\
+				& = \frac{\pi a^3}{2} \ab[-\frac{1}{3} \cos^3 \theta]_{0}^{\frac{\pi}{2}} = \frac{\pi a^3}{6}
+			\end{aligned}
+			$$
+
+			\item[\textbf{6)}] 换元：
+			$$
+			\vect{r} = (x, y, z) = (\rho \cos \theta, \rho \sin \theta, \rho) \quad (0 \le \theta \le 2\pi,\ 0 \le \rho \le b)
+			$$
+			那么面积元法向量为
+			$$
+			\dd{\vect{S}} = \ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\rho}) \dd{\theta} \dd{\rho} = (\rho \cos \theta, \rho \sin \theta, -\rho)
+			$$
+			原积分化为：
+			$$
+			\begin{aligned}
+				\origin & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{b} \rho^2 \ab((\sin \theta - 1) \cos \theta + (1 - \cos \theta) \sin \theta - (\cos \theta - \sin \theta)) \dd{\rho} \\
+				& = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{b} 2 \rho^2 \ab(\sin \theta - \cos \theta) \dd{\rho} \\
+				& = 0
+			\end{aligned}
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.3.1
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{2)}] 记 $D$ 表示球 $x^2 + y^2 + z^2 \le R^2$。根据 Gauss 公式：
+			$$
+			\begin{aligned}
+				\origin & = \iiint_{D} (3 x^2 + 3 y^2 + 3 z^2) \dd{x} \dd{y} \dd{z} \\
+				& = 9 \iiint_{D} x^2 \dd{x} \dd{y} \dd{z} \\
+				& = 9 \int_{-R}^{R} \pi (R^2 - x^2) x^2 \dd{x} \\
+				& = \frac{12}{5} R^{5}
+			\end{aligned}
+			$$
+
+			\item[\textbf{3)}] 记 $\Sigma'$ 表示单侧曲面 $x^2 + y^2 = 1,\ z = 1$，方向向下；$D$ 表示 $\Sigma, \Sigma'$ 围成的闭区域。那么根据 Gauss 公式：
+			$$
+			\begin{aligned}
+				\origin + \iint_{\Sigma'} \ab(y^2 - x, z^2 - y, x^2 - z) \cdot \dd{\vect{S}} & = \iiint_D \ab(-1 - 1 - 1) \dd{x} \dd{y} \dd{z} \\
+				& = -3 \iiint_D \dd{x} \dd{y} \dd{z} \\
+				& = -3 \int_{0}^{2\pi} \dd{\theta} \int_{0}^{1} (1 - r^2) r \dd{r} \\
+				& = -6\pi \ab[\frac{1}{2} r^2 - \frac{1}{4} r^{4}]_{0}^{1} = -\frac{3 \pi}{2}
+			\end{aligned}
+			$$
+			而
+			$$
+			\begin{aligned}
+				\iint_{\Sigma'} \ab(y^2 - x, z^2 - y, x^2 - z) \cdot \dd{\vect{S}} & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{1} (r^2 \cos^2 \theta - 1) \cdot (-1) r \dd{r} = \frac{3\pi}{4}
+			\end{aligned}
+			$$
+			因此 $\origin = -\frac{3\pi}{2} - \frac{3\pi}{4} = -\frac{9\pi}{4}$。
+
+			\item[\textbf{4)}] 记 $\vect{F}(x, y, z) = \frac{1}{\ab(x^2 + y^2 + z^2)^{\frac{3}{2}}} \ab(x, y, z)$，那么原积分为
+			$$
+			\origin = \iint_{\Sigma} \vect{F} \vdot \dd{\vect{S}}
+			$$
+			而 $\vect{F}$ 的散度为
+			$$
+			\begin{aligned}
+				\div \vect{F} & = \sum_{cyc} \pdv{x} \ab(\frac{x}{\ab(x^2 + y^2 + z^2)^{\frac{3}{2}}}) \\
+				& = \sum_{cyc} \frac{\ab(x^2 + y^2 + z^2)^{\frac{3}{2}} - 3 x^2 \ab(x^2 + y^2 + z^2)^{\frac{1}{2}}}{\ab(x^2 + y^2 + z^2)^{3}} \\
+				& = 0
+			\end{aligned}
+			$$
+			\begin{enumerate}
+				\item[\textbf{a)}] 这是一个封闭曲面，根据 Gauss 公式，$\displaystyle \origin = \iiint_{D} \div \vect{F} \dd{x} \dd{y} \dd{z} = 0$；
+
+				\item[\textbf{b)}] 将 $\Sigma$ 拼上一个底面，成为封闭曲面。底面部分：
+				$$
+				\begin{aligned}
+					\iint_{\Sigma'} \frac{1}{\ab(x^2 + y^2 + z^2)^{\frac{3}{2}}} (x, y, z) \vdot \dd{\vect{S}} = \iint_{\Sigma'} \frac{1}{\ab(x^2 + y^2 + z^2)^{\frac{3}{2}}} (x, y, z) \vdot \abs{\dd{\vect{S}}} (0, 0, -1) = 0
+				\end{aligned}
+				$$
+				根据 Gauss 公式，成为封闭曲面后总积分值也是 $0$。因此 $\origin = 0$。
+			\end{enumerate}
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.3.2
+	\begin{solution}
+		记 $\vect{F}(x, y, z) = \frac{1}{\ab((x - 1)^2 + (y - 2)^2 + (z - 3)^2)^{\frac{3}{2}}} \ab(x - 1, y - 2, z - 3)$，那么求 $\vect{F}$ 的散度：
+		$$
+		\div \vect{F} = 0 \quad ((x, y, z) \neq  (1, 2, 3))
+		$$
+		取一个包围 $(1, 2, 3)$ 的半径为 $\varepsilon$ 的充分小球 $B$，记 $\partial (V \setminus B)$ 为 $V \setminus B$ 的表面，$\partial B$ 为 $B$ 的表面，那么：
+		$$
+		\origin = \oiint_{S} \vect{F} \vdot \dd{\vect{S}} = \oiint_{\partial (V \setminus B)} \vect{F} \vdot \dd{\vect{S}} + \oiint_{\partial B} \vect{F} \vdot \dd{\vect{S}}
+		$$
+		对于 $\partial (V \setminus B)$ 有
+		$$
+		\oiint_{\partial (V \setminus B)} \vect{F} \vdot \dd{\vect{S}} = \iiint_{V \setminus B} \div \vect{F} \dd{x} \dd{y} \dd{z} = 0
+		$$
+		对于 $\partial B$ 有
+		$$
+		\begin{aligned}
+			\oiint_{\partial B} \vect{F} \vdot \dd{\vect{S}} & = \oiint_{\partial B} \frac{1}{\varepsilon^3} (x - 1, y - 2, z - 3) \vdot \dd{\vect{S}} \\
+			& = \oiint_{\partial B} \frac{1}{\varepsilon^3} \cdot \varepsilon^2 \sin \theta \cdot \varepsilon \ab((\sin \theta \cos \varphi)^2 + (\sin \theta \sin \varphi)^2 + \cos^2 \theta) \dd{\theta} \dd{\varphi} \\
+			& = \oiint_{\partial B} \dd{\theta} \dd{\varphi} = 4 \pi
+		\end{aligned}
+		$$
+		因此 $\origin = 4 \pi$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.3.3
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 记 $\vect{F} = \ab(y^2 + z^2, x^2 + z^2, y^2 + x^2)$，计算其散度
+			$$
+			\curl \vect{F} = (2y - 2z, 2z - 2x, 2x - 2y)
+			$$
+			\begin{enumerate}
+				\item[\textbf{a)}] 取 $\Sigma$ 为球面 $x^2 + y^2 + z^2 = 1$ 在第一卦限的部分，方向朝原点。那么可知 $L = \partial \Sigma$，根据 Stolz 公式
+				$$
+				\origin = \iint_{\Sigma} (\curl \vect{F}) \vdot \dd{\vect{S}}
+				$$
+				对 $\Sigma$ 换元：
+				$$
+				\begin{gathered}
+					\vect{r} = (x, y, z) = (\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta) \quad (0 \le \theta, \varphi \le \frac{\pi}{2}) \\
+					\dd{\vect{S}} = -\ab(\pdv{\vect{r}}{\theta} \cp \pdv{\vect{r}}{\varphi}) \dd{\theta} \dd{\varphi} = -\sin \theta (\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta) \dd{\theta} \dd{\varphi}
+				\end{gathered}
+				$$
+				那么
+				$$
+				\begin{aligned}
+					\origin & = \int_{0}^{\frac{\pi}{2}} \dd{\theta} \int_{0}^{\frac{\pi}{2}} -2 \sin \theta \ab((y - z)x + (z - x)y + (x - y)z) \dd{\varphi} \\
+					& = \int_{0}^{\frac{\pi}{2}} -2 \sin \theta \dd{\theta} \int_{0}^{\frac{\pi}{2}} 0 \dd{\varphi} = 0
+				\end{aligned}
+				$$
+				\item[\textbf{b)}] 取球面的上侧面 $\Sigma$，那么 $\partial S = L$。那么根据 Stokes 公式有
+				$$
+				\origin = \iint_{\Sigma} (\curl \vect{F}) \vdot \dd{\vect{S}}
+				$$
+				球面可以表示为 $z = \sqrt{2 b x - x^2 - y^2}$，投影区域为 $D: (x - a)^2 + y^2 = a^2$。那么
+				$$
+				\dd{\vect{S}} = \ab(- \pdv{z}{x}, - \pdv{z}{y}, 1) \dd{x} \dd{y} = \ab(\frac{x - b}{z}, \frac{y}{z}, 1) \dd{x} \dd{y}
+				$$
+				因此
+				$$
+				\begin{aligned}
+					\origin & = \iint_{D} 2 (y - z, z - x, x - y) \vdot \ab(\frac{x - b}{z}, \frac{y}{z}, 1) \dd{x} \dd{y} \\
+					& = \iint_{D} 2 b \ab(1 - \frac{y}{z}) \dd{x} \dd{y} \\
+				\end{aligned}
+				$$
+				$z$ 关于 $y$ 是偶函数，因此 $\frac{y}{z}$ 部分贡献为 $0$。所以
+				$$
+				\origin = 2 b \iint_{\Sigma} \dd{x} \dd{y} = 2b \cdot \pi a^2 = 2 \pi a^2 b
+				$$
+			\end{enumerate}
+
+			\item[\textbf{3)}] 设 $\vect{F}(x, y, z) = (z^2, x^2, y^2)$，计算其散度：
+			$$
+			\curl \vect{F} = (2y, 2z, 2x)
+			$$
+			求解交线可知，其是一个水平圆 $x^2 + y^2 = \frac{\sqrt{5} - 1}{2},\ z = \frac{\sqrt{5} - 1}{2}$，取曲面 $\Sigma$ 为圆的内部，方向朝下。所以
+			$$
+			\dd{\vect{S}} = (0, 0, -1) \dd{x} \dd{y}
+			$$
+			根据 Stolz 公式：
+			$$
+			\origin = \iint_{\Sigma} (2y, 2z, 2x) \vdot \dd{\vect{S}} = \iint_{\Sigma} -2 x \dd{x} \dd{y}
+			$$
+			区域是对称的，所以这个积分为 $0$，因此 $\origin = 0$。
+
+			\item[\textbf{4)}] 设 $\vect{F}(x, y, z) = (z + y, x + z, y + x)$，计算其散度：
+			$$
+			\curl \vect{F} = (1 - 1, 1 - 1, 1 - 1) = \vect{0}
+			$$
+			任取一个 $L$ 围成的曲面 $\Sigma$，根据 Stolz 公式
+			$$
+			\origin = \iint_{\Sigma} (\curl \vect{F}) \vdot \dd{\vect{S}} = 0
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.3.4
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 注意到
+			$$
+			u = 3 x^3 + 3 y^3 + 3 z^3 - 2 x y z + C
+			$$
+			满足条件。
+
+			\item[\textbf{2)}] 注意到
+			$$
+			u = x y z
+			$$
+			满足条件。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 18.3.5
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 设 $\vect{F}(x, y, z) = (x, y^2, -z^2)$，计算其 Jacobi 矩阵：
+			$$
+			\vect{J} \vect{F} = \begin{bmatrix}
+				1 & 0 & 0 \\
+				0 & 2y & 0 \\
+				0 & 0 & -2z 
+			\end{bmatrix}
+			$$
+			是对称矩阵，因此 $\vect{F}(x, y, z)$ 的曲线积分路径无关。所以：
+			$$
+			\origin = \int_{1}^{2} x \dd{x} + \int_{1}^{3} y^2 \dd{y} + \int_{1}^{-4} -z^2 \dd{z} = \frac{3}{2} + \frac{26}{3} + \frac{65}{3} = \frac{191}{6}
+			$$
+
+			\item[\textbf{2)}] 设 $\vect{F}(x, y, z) = \frac{1}{\sqrt{x^2 + y^2 + z^2}} (x, y, z)$，那么存在函数 $u$ 满足：
+			$$
+			u = \sqrt{x^2 + y^2 + z^2},\ \dd{u} = \vect{F}(x, y, z) \vdot (\dd{x}, \dd{y}, \dd{z})
+			$$
+			因此 $\vect{F}(x, y, z)$ 的曲线积分路径无关。所以：
+			$$
+			\origin = u(x_2, y_2, z_2) - u(x_1, y_1, z_1) = 0
+			$$
+		\end{enumerate}
+	\end{solution}
+\end{problem}

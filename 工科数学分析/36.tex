@@ -2,14 +2,14 @@
 
 \subsection{向量值函数的微分}
 
-\subsubsection{Jaccobi 矩阵}
+\subsubsection{Jacobi 矩阵}
 
-\begin{definition}[Jaccobi 矩阵]
+\begin{definition}[Jacobi 矩阵]
     对于 $D \subseteq \mathbb{R}^{n},\ f: D \to \mathbb{R}^{m}$，即：
     $$
     f: \vect{x} \mapsto \cvec{f_1(\vect{x}), f_2(\vect{x}), \vdots, f_m(\vect{x})}
     $$
-    那么定义 $f$ 的 \textbf{Jaccobi 矩阵}为
+    那么定义 $f$ 的 \textbf{Jacobi 矩阵}为
     $$
     \vect{J} f(\vect{x}_0) = \begin{bmatrix}
         \left. \pdv{f_1}{\vect{x}^{(1)}} \right|_{\vect{x} = \vect{x}_0} & \left. \pdv{f_1}{\vect{x}^{(2)}} \right|_{\vect{x} = \vect{x}_0} & \cdots & \left. \pdv{f_1}{\vect{x}^{(n)}} \right|_{\vect{x} = \vect{x}_0} \\
@@ -20,10 +20,10 @@
     $$
 \end{definition}
 
-我们可以称 Jaccobi 矩阵是向量值函数的微分。根据偏导数连续性与可微性的关系，有定理：
+我们可以称 Jacobi 矩阵是向量值函数的微分。根据偏导数连续性与可微性的关系，有定理：
 
 \begin{theorem}
-    若向量值函数 $f$ 的 Jaccobi 矩阵在 $\vect{x}_0$ 处连续，则 $f$ 在 $\vect{x}_0$ 处可微。
+    若向量值函数 $f$ 的 Jacobi 矩阵在 $\vect{x}_0$ 处连续，则 $f$ 在 $\vect{x}_0$ 处可微。
 \end{theorem}
 
 \subsubsection{复合函数求导法则}

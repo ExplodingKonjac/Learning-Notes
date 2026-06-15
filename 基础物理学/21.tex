@@ -1,4 +1,87 @@
-\section{带电体系的静电能}
+\section{电介质 \& 静电能}
+
+\subsection{电介质对电容的影响}
+
+电介质插入电容器后，会在外电场作用下发生\textbf{极化}，极化电荷产生的退极化场会削弱板间总电场，因此极板间电压减小，电容增大。
+
+若电容器被\textbf{完全充满}均匀电介质，则
+$$
+C = \varepsilon_r C_0
+$$
+其中 $\varepsilon_r > 1$ 为\textbf{相对介电常数}。对于平行板电容器，有
+$$
+C = \frac{\varepsilon_0 \varepsilon_r S}{d}
+$$
+
+若电容器带电量 $Q$ 保持不变，则介质插入后
+$$
+\begin{gathered}
+	E = \frac{E_0}{\varepsilon_r} \\
+	U = \frac{U_0}{\varepsilon_r} \\
+	W = \frac{W_0}{\varepsilon_r}
+\end{gathered}
+$$
+若电容器两端电压 $U$ 保持不变，则
+$$
+Q = \varepsilon_r Q_0
+$$
+
+\subsection{电介质的极化}
+
+电介质按分子结构可分为两类：
+\begin{itemize}
+	\item \textbf{有极分子}：无外场时分子本身就具有固有电矩，外电场会使分子电矩转向外场方向，称为\textbf{取向极化}；
+	\item \textbf{无极分子}：无外场时正负电荷中心重合，外电场使正负电荷中心发生相对位移，形成感生电矩，称为\textbf{位移极化}。
+\end{itemize}
+
+在外电场作用下，介质表面会出现不能自由移动的\textbf{束缚电荷}，这就是电介质的极化。对均匀介质，内部仍近似电中性，极化电荷主要分布在两端表面。
+
+\begin{definition}[极化强度矢量]
+	单位体积内分子电偶极矩的矢量和定义为\textbf{极化强度矢量} $\vect{P}$：
+	$$
+	\vect{P} = \lim_{\Delta V \to 0} \frac{\sum \vect{p}_i}{\Delta V}
+	$$
+\end{definition}
+
+对各向同性线性介质，有
+$$
+\vect{P} = \varepsilon_0 \chi_e \vect{E}
+$$
+其中 $\chi_e$ 为\textbf{电极化率}，并且
+$$
+\varepsilon_r = 1 + \chi_e
+$$
+
+极化强度与束缚电荷的关系为
+$$
+\sigma_b = \vect{P} \vdot \hat{n}, \qquad \rho_b = - \nabla \vdot \vect{P}
+$$
+其中 $\hat{n}$ 为介质表面外法线方向。
+
+\subsection{有电介质时的静电场}
+
+有电介质时，库仑定律和叠加原理仍成立，静电场仍满足无旋条件；但计算场时要区分\textbf{自由电荷}和\textbf{极化电荷}。为此引入\textbf{电位移矢量} $\vect{D}$：
+$$
+\vect{D} = \varepsilon_0 \vect{E} + \vect{P}
+$$
+对于各向同性线性介质，
+$$
+\vect{D} = \varepsilon_0 \varepsilon_r \vect{E}
+$$
+
+有介质时的高斯定律写作
+$$
+\oiint_S \vect{D} \vdot \dd{\vect{S}} = Q_{\text{free}}
+$$
+即电位移通量只与闭合曲面所包围的\textbf{自由电荷}有关。
+
+在具有对称性的介质问题中，通常先由高斯定律求出 $\vect{D}$，再由 $\vect{D} = \varepsilon_0 \varepsilon_r \vect{E}$ 求电场强度。
+
+\subsection{电介质的击穿}
+
+当介质中的场强过大时，分子中的正负电荷会被拉开，束缚电荷可能转化为自由电荷，材料的绝缘性能被破坏，这就是\textbf{电介质击穿}。
+
+\textbf{击穿场强} $E_m$ 是介质能承受的最大场强，\textbf{击穿电压} $U_m$ 是对应的临界电压。设计电容器时要注意，最大场强往往出现在几何边缘或半径最小处。
 
 \subsection{电容器储存的电能}
 
