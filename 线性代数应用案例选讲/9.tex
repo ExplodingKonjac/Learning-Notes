@@ -1,0 +1,119 @@
+\section{控制论}
+
+\subsection{作业一}
+
+\begin{problem}
+	证明：矩阵 $\matr{Y}$ 是负定矩阵当且仅当对于正定矩阵 $\matr{X}$ 有 $\matr{X} \matr{Y} \matr{X}$ 是负定矩阵。
+
+	\begin{proof}
+		设矩阵 $\matr{X}, \matr{Y} \in \mathbb{R}^{n \times n}$。对于正定矩阵 $\matr{X}$，有 $\rank \matr{X} = n$。因此线性映射
+		$$
+		f: \vect{v} \mapsto \matr{X} \vect{v}
+		$$
+		也是满秩的，所以 $f(\mathbb{R}^{n}) = \mathbb{R}^{n}$。
+
+		根据题目条件，结合 $\matr{X}$ 的对称性，$\matr{X} \matr{Y} \matr{X}$ 正定等价于：
+		$$
+		\forall\,\vect{v} \in \mathbb{R}^{n}: \vect{v}^\top \matr{X}^\top \matr{Y} \matr{X} \vect{v} < 0 \iff (\matr{X} \vect{v})^\top \matr{Y} (\matr{X} \vect{v}) < 0
+		$$
+		而 $f(\mathbb{R}^{n}) = \mathbb{R}^{n}$，所以 $\matr{X} \vect{v}$ 可以取遍 $\mathbb{R}^{n}$，因此：
+		$$
+		\forall\,\vect{u} \in \mathbb{R}^{n}: \vect{u}^\top \matr{Y} \vect{u} < 0
+		$$
+		这条件等价于 $\matr{Y}$ 负定。
+	\end{proof}
+\end{problem}
+
+\begin{problem}
+	已知矩阵微分方程
+	$$
+	\dot{\matr{\Xi}}(t) = \matr{A}^\top \matr{\Xi}(t) + \matr{\Xi}(t) \matr{A}, \quad \matr{\Xi}(0) = \matr{G}
+	$$
+	求证 $\matr{\Xi}(t) = \E^{\matr{A}^\top t} \matr{G} \E^{\matr{A} t}$ 是该微分方程的解。
+
+	\begin{proof}
+		根据求导法则进行验证：
+		$$
+		\begin{aligned}
+			\dot{\matr{\Xi}}(t) & = \ab(\E^{\matr{A}^\top t})' \matr{G} \E^{\matr{A} t} + \E^{\matr{A}^\top t} \matr{G}' \E^{\matr{A} t} + \E^{\matr{A}^\top t} \matr{G} \ab(\E^{\matr{A} t})' \\
+			& = \matr{A}^\top \E^{\matr{A}^\top t} \matr{G} \E^{\matr{A} t} + \E^{\matr{A}^\top t} \matr{G} \matr{A} \E^{\matr{A} t} \\
+			& = \matr{A}^\top \matr{\Xi}(t) + \matr{\Xi}(t) \matr{A}
+		\end{aligned}
+		$$
+		并且显然有 $\matr{\Xi}(0) = \matr{G}$。
+	\end{proof}
+\end{problem}
+
+\section{作业二}
+
+\begin{problem}
+	已知
+	$$
+	\begin{dcases}
+		\dot{\vect{x}}(t) = \matr{A} \vect{x}(t) + \matr{B} \vect{u}(t) + \matr{H} \vect{w}(t) \\
+		\vect{y}(t) = \matr{C} \vect{x}(t) \\
+		\vect{u}(t) = \matr{K} \vect{x}(t) \\
+	\end{dcases}
+	$$
+	最小化 $H^{\infty}$，求 $\matr{K}$。
+
+	\begin{solution}
+		取 Lyapunov	函数
+		$$
+		V(\vect{x}) = \vect{x}^\top \matr{P} \vect{x} \quad (\matr{P} = \matr{P}^\top > 0)
+		$$
+		那么 $V(0) = 0,\ V(T) > 0$。我们要求不等式
+		$$
+		\dot{V}(t) + \vect{y}^\top \vect{y} - \gamma^2 \vect{w}^\top \vect{w} < 0
+		$$
+		成立。进行积分：
+		$$
+		\int_{0}^{T} \ab(\dot{V}(t) + \vect{y}^\top \vect{y} - \gamma^2 \vect{w}^\top \vect{w}) \dd{t} = V(T) + \int_{0}^{T} \ab(\vect{y}^\top \vect{y} - \gamma^2 \vect{w}^\top \vect{w}) \dd{t} < 0
+		$$
+		因此
+		$$
+		\int_{0}^{T} \vect{y}^\top \vect{y} \dd{t} < \gamma^2 \int_{0}^{T} \vect{w}^\top \vect{w} \dd{t} - V(T) \le \int_{0}^{T} \vect{w}^\top \vect{w} \dd{t}
+		$$
+		令 $T \to + \infty$ 得到 $\norm{\vect{y}}_2^2 < \gamma^2 \norm{\vect{w}}_2^2$，与 $H_{+ \infty}$ 稳定条件等价。
+		
+		因此我们记 $F(t) = V(t) + \vect{y}^\top \vect{y} - \gamma^2 \vect{w}^\top \vect{w}$。那么已经有 $F(0) \le 0$。而 $\dot{F}(t) < 0$ 时，就有 $F(t) < 0$。
+
+		接下来计算 $\dot{V}$。记 $\matr{A}_K = \matr{A} + \matr{B} \matr{K}$，那么：
+		$$
+		\begin{aligned}
+			\dot{F}(t) & = \dot{\vect{x}}^\top \matr{P} \vect{x} + \vect{x}^\top \matr{P} \dot{\vect{x}} + \vect{x}^\top \matr{C}^\top \matr{C} \vect{x} - \gamma^2 \vect{w}^\top \vect{w} \\
+			& = \ab(\vect{x}^\top \matr{A}_K^\top + \vect{w}^\top \matr{H}^\top) \matr{P} \vect{x} + \vect{x}^\top \matr{P} \ab(\matr{A}_K \matr{x} \matr{H} \vect{w}) + \vect{x}^\top \matr{C}^\top \matr{C} \vect{x} - \gamma^2 \vect{w}^\top \vect{w} \\
+			& = \vect{x}^\top \ab(\matr{A}_K^\top \matr{P} + \matr{P} \matr{A}_K^\top + \matr{C}^\top \matr{C}) \vect{x} + \vect{w}^\top \matr{H}^\top \matr{P} \vect{x} + \vect{x}^\top \matr{P} \matr{H} \vect{w} - \gamma^2 \vect{w}^\top \vect{w} \\
+			& = \rvec{\vect{x}^\top, \vect{w}^\top} \begin{bmatrix}
+				\vect{A}_K^\top \vect{P} + \vect{P} \matr{A}_K^\top + \matr{C}^\top \matr{C} & \matr{P} \matr{H} \\
+				\matr{H}^\top \matr{P} & -\gamma^2 \matr{I} 
+			\end{bmatrix} \cvec{\vect{x}, \vect{w}}
+		\end{aligned}
+		$$
+		因此我们需要
+		$$
+		\begin{bmatrix}
+			(\vect{A} + \matr{B} \matr{K})^\top \vect{P} + \vect{P} (\matr{A} + \matr{B} \matr{K})^\top + \matr{C}^\top \matr{C} & \matr{P} \matr{H} \\
+			\matr{H}^\top \matr{P} & -\gamma^2 \matr{I} 
+		\end{bmatrix}
+		$$
+		负定。
+
+		求解 $\matr{K}$。令 $\matr{X} = \matr{P}^{-1},\ \matr{Y} = \matr{K} \matr{X}$，那么 $\matr{K} = \matr{Y} \matr{X}^{-1}$。代入到上述矩阵不等式中：
+		$$
+		\begin{bmatrix}
+			\matr{A} \matr{X} + \matr{B} \matr{Y} + (\matr{A} \matr{X} + \matr{B} \matr{Y})^\top & \matr{H} & \matr{X} \matr{C}^\top \\
+			\matr{H}^\top & -\gamma^2 \matr{I} & 0 \\
+			\matr{C} \matr{X} & 0 & -\matr{I} 
+		\end{bmatrix} < 0		
+		$$
+		我们需要求解
+		$$
+		\begin{aligned}
+			\text{min.} & & & \eta = \gamma^2 \\
+			\text{s.t.} & & & \matr{X} > 0 
+		\end{aligned}
+		$$
+		这是一个 LMI 问题，设求解后得到的解为 $\matr{X}^{*},\ \matr{Y}^{*}$，那么即可得到 $\matr{K} = \matr{Y}^{*} \ab(\matr{X}^{*})^{-1}$。
+	\end{solution}
+\end{problem}

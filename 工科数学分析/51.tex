@@ -1,0 +1,102 @@
+\section{场论初步}
+
+\subsection{场的概念}
+
+\begin{definition}[数量场]
+	在区域 $V \subset \mathbb{R}^{3}$ 中，都有一个函数 $f: V \to \mathbb{R}$ 与其对应，那么称 $V$ 上定义了一个\textbf{数量场}。
+\end{definition}
+
+\begin{definition}[向量场]
+	在区域 $V \subset \mathbb{R}^{3}$ 中，都有一个函数 $f: V \to \mathbb{R}^{3}$ 与其对应，那么称 $V$ 上定义了一个\textbf{向量场}。
+\end{definition}
+
+\subsection{梯度场}
+
+\begin{definition}[梯度场]
+	设 $V \subset \mathbb{R}^{3}$ 为一个开集，$f: V \to \mathbb{R}$ 连续可微，$\vect{u} \in V$，那么
+	$$
+	\grad f(\vect{u}) = \eval{\pdv{f}{x}}_{\vect{u}} \vect{i} + \eval{\pdv{f}{y}}_{\vect{u}} \vect{j} + \eval{\pdv{f}{z}}_{\vect{u}} \vect{k}
+	$$
+	称为 $f$ 的梯度，其组成的场称为\textbf{梯度场}。其中 $\grad = \ab(\pdv{x}, \pdv{y}, \pdv{z})$ 称为\textbf{梯度算子}。
+\end{definition}
+
+若 $\vect{l} = (\cos \alpha, \cos \beta, \cos \gamma) \in \mathbb{R}^{3}$ 是一个方向，那么 $f$ 的方向导数满足
+$$
+\pdv{f}{\vect{l}} = \vect{l} \vdot \grad f
+$$
+
+\begin{definition}[等值面]
+	称 $\{\vect{p} \in V: f(\vect{p}) = c\}$ 为数量场 $f$ 的 $c$--等值面。
+\end{definition}
+
+梯度场永远垂直于等值面。
+
+梯度场满足下面的运算性质：
+\begin{itemize}
+	\item $\grad (f \pm g) = \grad f \pm \grad g$；
+	\item $\grad (f \cdot g) = f \grad g + g \grad f$；
+	\item $\grad \ab(\frac{f}{g}) = \frac{1}{g^2} \ab(g \grad f - f \grad g)$。
+\end{itemize}
+
+\begin{definition}[Laplace 算子]
+	设 $V \subset \mathbb{R}^{3}$ 是一个开集，$f: V \to \mathbb{R}$。那么 Laplace 算子定义为：
+	$$
+	\Delta f = (\grad \vdot \grad) f = \ab(\pdv[2]{f}{x}, \pdv[2]{f}{y}, \pdv[2]{f}{z})
+	$$
+\end{definition}
+
+\subsection{散度场}
+
+\begin{definition}[散度]
+	对于一个向量场 $\vect{F}(x, y, z) = (P(x, y, z), Q(x, y, z), R(x, y, z))$，定义其\textbf{散度}为：
+	$$
+	\div \vect{F} = \pdv{P}{x} + \pdv{Q}{y} + \pdv{R}{z}
+	$$
+	散度可以看做梯度算子 $\grad$ 和 $f$ 的点积。
+\end{definition}
+
+散度的物理意义是在某一点出流入/流出的流量密度。某点 $\vect{M}_0$，若
+\begin{itemize}
+	\item $\div \vect{F}(\vect{M}_0) > 0$，那么该点有流量流出，称为\textbf{源}；
+	\item $\div \vect{F}(\vect{M}_0) < 0$，那么该点有流量流入，称为\textbf{汇}。
+\end{itemize}
+
+\subsection{旋度场}
+
+\begin{theorem}[旋度]
+	对于一个向量场 $\vect{F}(x, y, z) = (P(x, y, z), Q(x, y, z), R(x, y, z))$，定义其\textbf{旋度}为：
+	$$
+	\curl \vect{F} = \ab(\pdv{Q}{x} - \pdv{P}{y}, \pdv{P}{z} - \pdv{R}{x}, \pdv{Q}{x} - \pdv{P}{y}) = \begin{vmatrix}
+		\vect{i} & \vect{j} & \vect{k} \\
+		\pdv{x} & \pdv{y} & \pdv{z} \\
+		P & Q & R
+	\end{vmatrix}
+	$$
+	也可以看做梯度算子 $\grad$ 和 $f$ 的叉积。
+\end{theorem}
+
+考虑 Stokes 公式在 $\norm{\Gamma}$ 趋向于 $0$ 的时候，可以得到旋度的物理意义就是向量场某点处的环流量密度。向量的方向由环路右手定则决定。
+
+\subsection{有势场和势函数}
+
+\begin{definition}
+	设 $V \subset \mathbb{R}^{3}$ 为一个区域，且 $V$ 上有一向量场 $\vect{F} = (P, Q, R)$。若存在 $V$ 上的数量场 $\varphi$ 满足 $\grad \varphi = \vect{F}$，那么称 $\vect{F}$ 是一个\textbf{有势场}，而 $\varphi$ 为它的势函数。
+\end{definition}
+
+\begin{definition}
+	设 $\vect{F}$ 是区域 $V \subset \mathbb{R}^3$ 上的向量场，若任意闭合回路 $L$ 都有：
+	$$
+	\oint_L \vect{F} \vdot \dd{s} = 0
+	$$
+	那么称 $\vect{F}$ 是一个\textbf{保守场}。
+\end{definition}
+
+\begin{definition}
+	设 $\vect{F}$ 是区域 $V \subset \mathbb{R}^3$ 上的向量场，若 $V$ 中任意点处都有：
+	$$
+	\curl \vect{F} = \vect{0}
+	$$
+	那么称 $\vect{F}$ 是一个\textbf{无旋场}。
+\end{definition}
+
+根据曲线积分路径无关定理，我们可以证明上述三个性质实际上是等价的。
