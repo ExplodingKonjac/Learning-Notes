@@ -6,11 +6,11 @@
 $$
 y'' + p y' + q y = f(x)
 $$
-当 $f(x)$ 为一些特殊形式的时候，我们可以求得方程的通解。
+当 $f(x)$ 为一些特殊形式的时候，我们可以求得方程的特解。
 
-\subsubsection{$f(x) = P_m(x) \E^{\mu x}$（其中 $P_m(x)$ 是 $m$ 次多项式）}
+\subsubsection{$f(x) = P_m(x) \E^{\mu x}$（其中 $P_m(x)$ 是 $m$ 次多项式）型}
 
-此时我们设通解 $y = Q(x) \E^{\mu x}$，代入方程，可得
+此时我们设特解 $y^* = Q(x) \E^{\mu x}$，代入方程，可得
 $$
 Q''(x) + (2\mu + p) Q'(x) + (\mu^2 + p \mu + q) Q(x) = P_m(x)
 $$
@@ -23,6 +23,23 @@ $$
         \item 若 $2\mu + p \neq 0$：可以令 $Q(x) = x R(x)$，其中 $R(x)$ 是一个 $m$ 次多项式。
     \end{itemize}
 \end{itemize}
+
+\subsubsection{$f(x) = \E^{\mu x} \ab(P_l(x) \cos \omega x + P_n(x) \sin \omega x)$ 型}
+
+利用欧拉公式，得到
+$$
+\begin{aligned}
+    f(x) & = \E^{\mu x} \ab(P_l(x) \frac{\E^{\I \omega x} + \E^{-\I \omega x}}{2} + P_n(x) \frac{\E^{\I \omega x} - \E^{-\I \omega x}}{2 \I}) \\
+    & = \ab(\frac{P_l(x)}{2} + \frac{P_n(x)}{2 \I}) \E^{(\mu + \I \omega) x} + \ab(\frac{P_l(x)}{2} - \frac{P_n(x)}{2 \I}) \E^{(\mu - \I \omega) x} \\
+    & = P(x) \E^{(\mu + \I \omega) x} + \overline{P}(x) \E^{(\mu - \I \omega) x}
+\end{aligned}
+$$
+
+我们可以令特解为
+$$
+y^* = x^{k} \E^{\mu x} \ab(Q_m(x) \E^{\I \omega x} + \overline{Q}_m(x) \E^{-\I \omega x}) = x^{k} \E^{\mu x} \ab(R_m^{(1)}(x) \cos \omega x + R_m^{(2)} \sin \omega x)
+$$
+其中 $R_m(x)$ 是 $m$ 次多项式，$m = \max\{l, n\}$。当 $\mu \pm \I \omega$ 是特征方程的根时 $k = 1$，否则 $k = 0$。 
 
 \subsection{可降阶的微分方程}
 
