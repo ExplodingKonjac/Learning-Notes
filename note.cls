@@ -41,6 +41,7 @@
 \RequirePackage{diagbox}
 \RequirePackage{subcaption}
 \RequirePackage{esint}
+\RequirePackage{minted}
 
 % Define page layout
 \geometry{a4paper,bottom=20mm,top=25mm,left=20mm,right=20mm}
@@ -155,6 +156,124 @@
 }
 
 \undef\AddTCB
+
+% code block settings
+\usemintedstyle{vs}
+\setminted{
+    linenos,
+    breaklines,
+    autogobble,
+    frame=lines,
+    labelposition=topline,
+    framerule=0.4pt,
+    framesep=2mm,
+    numbersep=0.8em,
+}
+
+\newlength{\mintednumspace}
+\newlength{\mintednumleftpad}
+\setlength{\mintednumleftpad}{0.3em}
+
+\makeatletter
+
+% 根据最大行号计算 gutter
+\newcommand*\MintedLayoutSetNumSpace[1]{%
+    \@tempcnta=\c@FancyVerbLine
+    \c@FancyVerbLine=#1\relax
+    \settowidth{\mintednumspace}{\theFancyVerbLine}%
+    \c@FancyVerbLine=\@tempcnta
+    \addtolength{\mintednumspace}{\FV@NumberSep}%
+    \addtolength{\mintednumspace}{\mintednumleftpad}%
+}
+
+\makeatother
+
+
+% 统计最终的 .highlight.minted 文件中的代码行数。
+% Pygments 输出结构为：
+%
+% \begin{MintedVerbatim}[...]
+% <code line 1>
+% ...
+% <code line n>
+% \end{MintedVerbatim}
+%
+% 所以总行数减 2 即代码行数。
+\ExplSyntaxOn
+
+\ior_new:N \l__minted_layout_ior
+\int_new:N \l__minted_layout_lines_int
+
+\cs_new_protected:Npn \MintedLayoutCountHighlightedFile #1
+  {
+    \int_zero:N \l__minted_layout_lines_int
+
+    \file_if_exist:nTF {#1}
+      {
+        \ior_open:Nn \l__minted_layout_ior {#1}
+
+        \ior_str_map_inline:Nn \l__minted_layout_ior
+          {
+            \int_incr:N \l__minted_layout_lines_int
+          }
+
+        \ior_close:N \l__minted_layout_ior
+
+        % 去掉 begin/end MintedVerbatim 两行
+        \int_add:Nn \l__minted_layout_lines_int {-2}
+
+        \int_compare:nNnT
+          { \l__minted_layout_lines_int } < {1}
+          {
+            \int_set:Nn \l__minted_layout_lines_int {1}
+          }
+
+        \exp_args:Ne \MintedLayoutSetNumSpace
+          { \int_use:N \l__minted_layout_lines_int }
+      }
+      {
+        \MintedLayoutSetNumSpace{1}
+      }
+  }
+
+\ExplSyntaxOff
+
+
+\makeatletter
+
+% 到最终 highlighted code 真正准备排版时才计算 gutter。
+% minted 和 \inputminted 都会经过这里。
+\pretocmd{\minted@codewrapper}{%
+    \expandafter\MintedLayoutCountHighlightedFile
+    \expandafter{\minted@highlightfilepath}%
+}{}{%
+    \PackageError{minted-layout}
+      {Cannot patch \string\minted@codewrapper}{}
+}
+
+% breaklines=false
+\patchcmd{\FV@ListProcessLine@NoBreak}
+    {\FV@LeftListNumber}
+    {\kern\mintednumspace\FV@LeftListNumber}
+    {}{%
+        \PackageError{minted-layout}
+          {Cannot patch no-break layout}{}
+    }
+
+% breaklines=true
+\patchcmd{\FV@ListProcessLine@Break}
+    {\FV@LineWidth\linewidth}
+    {%
+        \kern\mintednumspace
+        \FV@LineWidth\linewidth
+        \advance\FV@LineWidth-\mintednumspace\relax
+    }
+    {}{%
+        \PackageError{minted-layout}
+          {Cannot patch break layout}{}
+    }
+
+\makeatother
 
 % math definitions
 

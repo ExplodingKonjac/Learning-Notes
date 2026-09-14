@@ -1,0 +1,218 @@
+\section{随机事件}
+
+\subsection{随机试验和随机事件}
+
+一个\textbf{随机试验} $E$ 使用一个样本空间 $S$ 表示，代表随机试验的所有可能结果。
+
+样本空间 $S$ 的一个子集 $A$ 称为一个\textbf{随机事件}，当子集中的任意一个样本点发生时，称这一事件发生。
+
+\begin{itemize}
+	\item 若 $|A| = 1$，那么称 $A$ 为一个\textbf{基本事件}；
+	\item 若 $A = S$，称该事件为\textbf{必然事件}；
+	\item 若 $A = \varnothing$，称该事件为\textbf{不可能事件}。
+\end{itemize}
+
+若两个事件 $A, B$ 满足 $A \cap B = \varnothing$，称这两个事件\textbf{互斥}。
+
+\subsection{频率和概率}
+
+在相同条件下，进行了 $n$ 次试验，设事件 $A$ 发生了 $m$ 次，那么称其发生的频率为
+$$
+f_n(A) = \frac{m}{n}
+$$
+
+频率满足下面的性质：
+
+\begin{itemize}
+	\item 非负性：$0 \le f_n(A) \le 1$；
+	\item 规范性：$f_n(S) = 1$；
+	\item 互斥性：对于互斥事件 $A, B$，有 $f_n(A \cup B) = f_n(A) + f_n(B)$。
+\end{itemize}
+
+当 $n \to \infty$ 时，某个事件的频率收敛，这称为频率的稳定性。由此启发定义概率：
+
+\begin{definition}[概率]
+	设 $E$ 是随机试验，$S$ 是样本空间，若定义在所有事件上的集合函数 $\prob{\cdot}$ 满足下面的性质：
+	\begin{itemize}
+		\item 非负性：$0 \le \prob{A} \le 1$；
+		\item 规范性：$\prob{S} = 1$；
+		\item 有限可加性：对于互斥事件 $A_1, A_2, \dots, A_n$，满足 $\displaystyle \prob{\bigcup_{i = 1}^{n} A_i} = \sum_{i = 1}^{n} \prob{A_i}$；
+		\item 可列可加性：对于互斥事件 $A_1, A_2, \dots$，满足 $\displaystyle \prob{\bigcup_{i = 1}^{\infty} A_i} = \sum_{i = 1}^{\infty} \prob{A_i}$；
+	\end{itemize}
+	那么称 $\prob{\cdot}$ 为\textbf{概率}。
+\end{definition}
+
+\subsection{古典概型}
+
+\begin{definition}[几何概型]
+	设 $E$ 是一个随机试验，若它具有下面的特点：
+	\begin{itemize}
+		\item 基本事件数量有限；
+		\item 所有基本事件发生的概率相等。
+	\end{itemize}
+	那么称 $E$ 满足\textbf{古典概型}。
+\end{definition}
+
+\subsection{几何概型}
+
+\begin{definition}[几何概型]
+	设 $E$ 是一个随机试验，若它的样本空间构成可度量的几何区域 $\Omega$，并且试验结果均匀随机落在 $\Omega$ 内，那么称 $E$ 满足\textbf{几何概型}。
+\end{definition}
+
+对于事件 $A \subseteq \Omega$，若 $A$ 可度量，那么
+$$
+\prob{A} = \frac{m(A)}{m(\Omega)}
+$$
+其中 $m(A)$ 表示区域 $A$ 的几何测度。
+
+\subsection{作业}
+
+\begin{problem}
+	习题 1.2
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] $A \cap \overline{B \cup C}$；
+			\item[\textbf{2)}] $A \cap B \cap \overline{C}$；
+			\item[\textbf{3)}] $A \cup B \cup C$；
+			\item[\textbf{4)}] $A \cap B \cap C$；
+			\item[\textbf{5)}] $\overline{A} \cap \overline{B} \cap \overline{C}$；
+			\item[\textbf{6)}] $\ab(A \cap \overline{B} \cap \overline{C}) \cup \ab(\overline{A} \cap B \cap \overline{C}) \cup \ab(\overline{A} \cap \overline{B} \cap C) \cup \ab(\overline{A} \cap \overline{B} \cap \overline{C})$；
+			\item[\textbf{7)}] $\overline{A} \cup \overline{B} \cup \overline{C}$；
+			\item[\textbf{8)}] $\ab(\overline{A} \cap B \cap C) \cup \ab(A \cap \overline{B} \cap C) \cup \ab(A \cap B \cap \overline{C}) \cup \ab(A \cap B \cap C)$
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.5
+	\begin{solution}
+		\begin{enumerate}
+			\item[\textbf{1)}] 样本空间大小为：
+			$$
+			\# S = \binom{10}{5} = 252
+			$$
+			事件『至少有 2 片是安慰剂』的事件大小为：
+			$$
+			\# A = \binom{5}{2} \binom{5}{3} + \binom{5}{3} \binom{5}{2} + \binom{5}{4} \binom{5}{1} + \binom{5}{5} \binom{5}{0} = 226
+			$$
+			因此 $\prob{A} = \frac{226}{252} = \frac{113}{126}$。
+
+			\item[\textbf{2)}] 样本空间大小为：
+			$$
+			\# S = \binom{10}{3} \cdot 3! = 720
+			$$
+			事件『前 3 次都抽到安慰剂』的事件大小为：
+			$$
+			\# B = \binom{5}{3} \cdot 3! = 60
+			$$
+			因此 $\prob{B} = \frac{60}{720} = \frac{1}{12}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.8
+	\begin{solution}
+		样本空间大小：
+		$$
+		\# S = \binom{1500}{200}
+		$$
+		\begin{enumerate}
+			\item[\textbf{1)}] 事件大小为：
+			$$
+			\# A = \binom{400}{90} \binom{1100}{110}
+			$$
+			因此 $\prob{A} = \frac{\binom{400}{90} \binom{1100}{110}}{\binom{1500}{200}} = \frac{3531614430353292878584753817142965820156648592051039534150400539489924365626853405889277963374502816090460745316501699693631989206023962044192829304238262401964816831070761357312000}{4289023917224191591481022205213917975513585665513711902439322023369299063511501956697736331431346212734836498731155768279747800713779989577889411415087185231058329673127417408709543130977057}$
+
+			\item[\textbf{2)}] 事件大小为：
+			$$
+			\begin{aligned}
+				\# B & = \sum_{i = 2}^{400} \binom{400}{i} \binom{1100}{200 - i} \\
+				& = \sum_{i = 0}^{400} \binom{400}{i} \binom{1100}{200 - i} - \binom{400}{0} \binom{1100}{200} - \binom{400}{1} \binom{1100}{199} \\
+				& = \binom{1500}{200} - \binom{1100}{200} - 400 \binom{1100}{199}
+			\end{aligned}
+			$$
+			因此 $\prob{B} = \frac{\binom{1500}{200} - \binom{1100}{200} - 400 \binom{1100}{199}}{\binom{1500}{200}} = \frac{3335457779385664217749533105349979049357180912853980329248149744602655280412633753715051898558030215031360344973167920241839236717128059439781614542906910351574037043}{3335457779385664217749533106906111916752828115861816308763244564591085788779730052378706251678873316017932053283696309819228325370396765101424918016398257224241227595}$。
+		\end{enumerate}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.9
+	\begin{solution}
+		样本空间大小为：
+		$$
+		\# S = \binom{10}{4} = 210
+		$$
+		使用容斥原理，计算钦定一双被选的方案数减去钦定两双被选的方案数，得到事件大小：
+		$$
+		\# A = \binom{5}{1} \cdot \binom{8}{2} - \binom{5}{2} = 130
+		$$
+		因此 $\prob{A} = \frac{130}{210} = \frac{13}{21}$。
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	习题 1.11
+	\begin{solution}
+		样本空间大小为：
+		$$
+		\# S = 4^3 = 64
+		$$
+		\begin{itemize}
+			\item 最大为 1：
+			$$
+			\# A = \binom{4}{3} \cdot 3! = 24
+			$$
+			因此 $\prob{A} = \frac{24}{64} = \frac{3}{8}$。
+
+			\item 最大为 2：
+			$$
+			\# B = \binom{4}{2} \cdot 2! \cdot \binom{3}{1} = 36
+			$$
+			因此 $\prob{B} = \frac{36}{64} = \frac{9}{16}$。
+
+			\item 最大为 3：
+			$$
+			\# C = 4
+			$$
+			因此 $\prob{C} = \frac{4}{64} = \frac{1}{16}$。
+		\end{itemize}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	实践题 1
+	\begin{solution}
+		使用 Python 中的 \texttt{random.choice} 模拟抛硬币的过程：
+
+		\inputminted[label=coin\_simulate.py]{python}{概率与数理模型/src/hw1/coin_simulate.py}
+
+		运行程序可得到结果：
+		\begin{minted}{text}
+$ python3 coin_simulate.py
+n = 2000 , n_H = 986  , frequency = 0.4930
+n = 4000 , n_H = 1978 , frequency = 0.4945
+n = 12000, n_H = 6050 , frequency = 0.5042
+n = 24000, n_H = 12004, frequency = 0.5002
+		\end{minted}
+	\end{solution}
+\end{problem}
+
+\begin{problem}
+	实践题 2
+	\begin{solution}
+		将图片截取出后，计算蓝色和黄色的像素点数量比例。边界上像素点颜色可能不标准，可以通过计算 RGB 向量和标准蓝色参考和黄色参考的夹角，归类于夹角更小的那一类解决：
+
+		\inputminted[label=area\_evaluate.py]{python}{概率与数理模型/src/hw1/area_evaluate.py}
+
+		运行程序可得到结果：
+		\begin{minted}{text}
+$ python3 area_evaluate.py -p pattern.png
+blue_cnt   = 527174
+yellow_cnt = 87006
+ratio      = 0.1650422820548813
+		\end{minted}
+	\end{solution}
+\end{problem}
+
