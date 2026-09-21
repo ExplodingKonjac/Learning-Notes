@@ -1,0 +1,120 @@
+\section{集合的基本概念及其运算}
+
+\subsection{集合与元素}
+
+集合是由一些能够明确区分的对象组成的整体，其中的对象称为集合的\textbf{元素}。若 $a$ 是 $A$ 的元素，记作 $a \in A$；否则记作 $a \notin A$。
+
+集合具有以下两个基本特征：
+
+\begin{itemize}
+	\item \textbf{无序性}：元素的排列顺序不影响集合；
+	\item \textbf{互异性}：相同元素重复出现不影响集合。
+\end{itemize}
+
+含有有限个元素的集合称为\textbf{有穷集}，否则称为\textbf{无穷集}。恰含一个元素的集合称为\textbf{单元集}；恰含 $n$ 个元素的集合称为 $n$ 元集。
+
+\subsubsection{集合的表示}
+
+集合常用以下方法表示：
+
+\begin{itemize}
+	\item \textbf{列举法}：不重复地列出集合的全部元素，例如 $\{1, 2, 3, 4\}$；
+	\item \textbf{部分列举法}：列出足以体现构造规律的部分元素，例如 $\mathbb{N} = \{0, 1, 2, \dots\}$；
+	\item \textbf{抽象法}：用谓词描述元素应满足的性质，写作
+	$$
+	A = \{x: P(x)\}, \qquad x \in A \iff P(x)；
+	$$
+	\item \textbf{归纳定义法}：给出初始元素以及从已有元素构造新元素的规则，并规定集合只包含有限次应用这些规则得到的元素。
+\end{itemize}
+
+使用抽象法时，谓词必须明确，并且通常要先限定论域。朴素的“任意性质都确定一个集合”会导致罗素悖论：若令
+$$
+T = \{x: x \notin x\}，
+$$
+则 $T \in T \iff T \notin T$。因此，集合的构造不能毫无限制地自我指涉。
+
+\subsection{集合之间的关系}
+
+\begin{definition}[集合相等]
+	集合 $A$ 与 $B$ 相等，是指它们具有完全相同的元素，即
+	$$
+	A = B \iff \forall: x\ab(x \in A \leftrightarrow x \in B)。
+	$$
+\end{definition}
+
+由此可知，集合相等具有自反性、对称性和传递性。
+
+\begin{definition}[子集与真子集]
+	若 $A$ 的每个元素都是 $B$ 的元素，则称 $A$ 是 $B$ 的\textbf{子集}，记作 $A \subseteq B$：
+	$$
+	A \subseteq B \iff \forall: x\ab(x \in A \to x \in B)。
+	$$
+	若进一步有 $A \neq B$，则称 $A$ 是 $B$ 的\textbf{真子集}，记作 $A \subsetneq B$。
+\end{definition}
+
+否定子集关系时，有
+$$
+A \nsubseteq B \iff \exists: x\ab(x \in A \land x \notin B)。
+$$
+
+\begin{theorem}[集合相等的判定]
+	对于任意集合 $A, B$，
+	$$
+	A = B \iff A \subseteq B \land B \subseteq A。
+	$$
+\end{theorem}
+
+因此，证明两个集合相等常用两种方法：逐个分析元素，证明 $x \in A \iff x \in B$；或者分别证明 $A \subseteq B$ 和 $B \subseteq A$。
+
+包含关系具有自反性和传递性：
+$$
+A \subseteq A, \qquad A \subseteq B \land B \subseteq C \implies A \subseteq C。
+$$
+属于关系一般不具有传递性，即 $A \in B$ 且 $B \in C$ 未必推出 $A \in C$。
+
+\subsubsection{全集与空集}
+
+\begin{definition}[全集]
+	在一个给定问题中，若所讨论的所有集合都是某个固定集合 $U$ 的子集，则称 $U$ 为该问题的\textbf{全集}。全集依赖于当前论域，并不唯一。
+\end{definition}
+
+\begin{definition}[空集]
+	不含任何元素的集合称为\textbf{空集}，记作 $\varnothing$。
+\end{definition}
+
+对于任意集合 $A$，都有 $\varnothing \subseteq A$。空集是唯一的，并且应注意
+$$
+\varnothing \notin \varnothing, \qquad
+\varnothing \subseteq \varnothing, \qquad
+\varnothing \in \{\varnothing\}, \qquad
+\varnothing \subseteq \{\varnothing\}。
+$$
+
+\subsection{幂集与基数}
+
+\begin{definition}[幂集]
+	集合 $A$ 的所有子集组成的集合称为 $A$ 的\textbf{幂集}，记作
+	$$
+	\mathcal{P}(A) = \{X \mid X \subseteq A\}。
+	$$
+\end{definition}
+
+于是
+$$
+B \subseteq A \iff B \in \mathcal{P}(A), \qquad
+\varnothing \in \mathcal{P}(A), \qquad
+A \in \mathcal{P}(A)。
+$$
+若 $A \subseteq B$，则 $\mathcal{P}(A) \subseteq \mathcal{P}(B)$；若 $A \subsetneq B$，则 $\mathcal{P}(A) \subsetneq \mathcal{P}(B)$。特别地，
+$$
+\mathcal{P}(A) = \mathcal{P}(B) \iff A = B。
+$$
+
+\begin{definition}[有穷集的基数]
+	有穷集合 $A$ 中元素的个数称为 $A$ 的\textbf{基数}，记作 $\# A$（或 $|A|$）。
+\end{definition}
+
+若 $A$ 是有穷集，则每个元素在一个子集中都有“选入”或“不选入”两种选择，故
+$$
+\# \mathcal{P}(A) = 2^{\# A}。
+$$

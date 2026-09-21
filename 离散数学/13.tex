@@ -1,0 +1,183 @@
+\section{集合的基本概念及其运算 II}
+
+\subsection{集合的基本运算}
+
+\begin{definition}[交、并与差]
+	设 $A, B$ 是任意集合，定义
+	\begin{align*}
+		A \cap B & = \{x: x \in A \land x \in B\}, \\
+		A \cup B & = \{x: x \in A \lor x \in B\}, \\
+		A \setminus B & = \{x: x \in A \land x \notin B\}
+	\end{align*}
+	若 $A \cap B = \varnothing$，则称 $A$ 与 $B$ \textbf{不相交}。
+\end{definition}
+
+\begin{definition}[补集]
+	设 $A \subseteq U$，$A$ 相对于全集 $U$ 的\textbf{补集}定义为
+	$$
+	\overline{A} = U \setminus A = \{x \in U \mid x \notin A\}
+	$$
+\end{definition}
+
+补集依赖于全集的选取。对 $A, B \subseteq U$，相对差可写为
+$$
+A \setminus B = A \cap \overline{B}
+$$
+
+\begin{definition}[对称差]
+	集合 $A$ 与 $B$ 的\textbf{对称差}定义为
+	$$
+	A \oplus B = (A \setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A \cap B)
+	$$
+\end{definition}
+
+换言之，$A \oplus B$ 恰由只属于 $A, B$ 中一个集合的元素组成。
+
+\subsubsection{基本包含性质}
+
+对于任意集合 $A, B, C$，有
+$$
+A \subseteq A \cup B, \quad B \subseteq A \cup B, \quad A \cap B \subseteq A, \quad A \cap B \subseteq B, \quad A \setminus B \subseteq A
+$$
+此外：
+\begin{itemize}
+	\item 若 $A \subseteq B$，则 $\overline{B} \subseteq \overline{A}$；
+	\item 若 $A \subseteq C$ 且 $B \subseteq C$，则 $A \cup B \subseteq C$；
+	\item 若 $A \subseteq B$ 且 $A \subseteq C$，则 $A \subseteq B \cap C$。
+\end{itemize}
+
+常用的等价关系有
+\begin{align*}
+	A \setminus B = \varnothing & \iff A \subseteq B, \\
+	A \cup B = \varnothing & \iff A = B = \varnothing, \\
+	A \oplus B = \varnothing & \iff A = B, \\
+	A \subseteq B & \iff A \cap B = A \iff A \cup B = B。
+\end{align*}
+
+\subsubsection{集合运算律}
+
+设 $A, B, C \subseteq U$，则有：
+
+\begin{itemize}
+	\item 幂等律：$A \cup A = A$，$A \cap A = A$；
+	\item 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$；
+	\item 结合律：$(A \cup B) \cup C = A \cup (B \cup C)\ (A \cap B) \cap C = A \cap (B \cap C)$；
+	\item 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C),\ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$；
+	\item 同一律：$A \cup \varnothing = A$，$A \cap U = A$；
+	\item 零律：$A \cup U = U$，$A \cap \varnothing = \varnothing$；
+	\item 吸收律：$A \cup (A \cap B) = A$，$A \cap (A \cup B) = A$；
+	\item 否定律：$A \cup \overline{A} = U$，$A \cap \overline{A} = \varnothing$；
+	\item 德·摩尔根律：$\overline{A \cup B} = \overline{A} \cap \overline{B},\ \overline{A \cap B} = \overline{A} \cup \overline{B}$；
+	\item 对合律：$\overline{\overline{A}} = A$，$\overline{\varnothing} = U$，$\overline{U} = \varnothing$。
+\end{itemize}
+
+在不含集合差的恒等式中，同时交换 $\cup$ 与 $\cap$、$\varnothing$ 与 $U$，所得恒等式仍然成立，这称为\textbf{对偶原理}。集合恒等式还可由对应的命题逻辑等值式得到：将 $\lor, \land, \lnot, 0, 1$ 分别替换为 $\cup, \cap, \overline{\phantom{A}}, \varnothing, U$。
+
+\subsection{广义交与广义并}
+
+\begin{definition}[集合族]
+	若一个集合的每个元素都是集合，则称它为\textbf{集合族}。
+\end{definition}
+
+\begin{definition}[广义并与广义交]
+	设 $\mathscr{B}$ 是集合族，定义
+	\begin{align*}
+		\bigcup \mathscr{B}
+		& = \{x \mid \exists\,B: \ab(B \in \mathscr{B} \land x \in B)\}, \\
+		\bigcap \mathscr{B}
+		& = \{x \mid \forall\,B: \ab(B \in \mathscr{B} \to x \in B)\},
+		\qquad \mathscr{B} \neq \varnothing。
+	\end{align*}
+\end{definition}
+
+在未预先指定全集时，$\bigcap \varnothing$ 没有意义，因为任意对象都会空泛地满足“属于空族中的每一个集合”；而 $\bigcup \varnothing = \varnothing$。若 $\mathscr{B} = \{B_i \mid i \in I\}$，则也写作
+$$
+\bigcup \mathscr{B} = \bigcup_{i \in I} B_i, \qquad
+\bigcap \mathscr{B} = \bigcap_{i \in I} B_i。
+$$
+
+若 $B \in \mathscr{B}$，则
+$$
+\bigcap \mathscr{B} \subseteq B \subseteq \bigcup \mathscr{B}。
+$$
+并且，若对所有 $B \in \mathscr{B}$ 都有 $A \subseteq B$，则 $A \subseteq \bigcap \mathscr{B}$；若对所有 $B \in \mathscr{B}$ 都有 $B \subseteq A$，则 $\bigcup \mathscr{B} \subseteq A$。
+
+广义分配律与广义德·摩尔根律为
+\begin{align*}
+	A \cap \ab(\bigcup_{i \in I} B_i)
+	& = \bigcup_{i \in I} (A \cap B_i), \\
+	A \cup \ab(\bigcap_{i \in I} B_i)
+	& = \bigcap_{i \in I} (A \cup B_i), \\
+	\overline{\bigcup_{i \in I} B_i}
+	& = \bigcap_{i \in I} \overline{B_i}, \\
+	\overline{\bigcap_{i \in I} B_i}
+	& = \bigcup_{i \in I} \overline{B_i}。
+\end{align*}
+其中涉及广义交的式子要求指标集 $I$ 非空。
+
+\subsection{有穷集的计数}
+
+若 $A, B$ 是有穷集且 $A \cap B = \varnothing$，则
+$$
+\abs{A \cup B} = \abs{A} + \abs{B}。
+$$
+一般地，容斥原理给出
+$$
+\abs{A \cup B} = \abs{A} + \abs{B} - \abs{A \cap B}。
+$$
+对于三个有穷集，
+\begin{align*}
+	\abs{A \cup B \cup C}
+	={}& \abs{A} + \abs{B} + \abs{C}
+	- \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C} \\
+	& + \abs{A \cap B \cap C}。
+\end{align*}
+
+\subsection{有序偶与笛卡儿乘积}
+
+\begin{definition}[有序偶]
+	将对象 $x, y$ 按指定顺序组成的序列称为\textbf{有序偶}，记作 $\langle x, y \rangle$。可以用集合将其定义为
+	$$
+	\langle x, y \rangle = \big\{\{x\}, \{x, y\}\big\}。
+	$$
+\end{definition}
+
+有序偶满足唯一性：
+$$
+\langle u, v \rangle = \langle x, y \rangle
+\iff u = x \land v = y。
+$$
+因此有序偶不同于二元集；一般而言，$\langle x, y \rangle \neq \langle y, x \rangle$，而 $\{x, y\} = \{y, x\}$。
+
+\begin{definition}[笛卡儿乘积]
+	集合 $A$ 与 $B$ 的\textbf{笛卡儿乘积}定义为
+	$$
+	A \times B = \{\langle x, y \rangle \mid x \in A \land y \in B\}。
+	$$
+\end{definition}
+
+笛卡儿乘积一般不满足交换律。它具有以下基本性质：
+\begin{align*}
+	A \times B = \varnothing
+	& \iff A = \varnothing \lor B = \varnothing, \\
+	\abs{A \times B}
+	& = \abs{A}\abs{B} && \text{$A, B$ 为有穷集}, \\
+	A \times B \subseteq C \times D
+	& \iff A \subseteq C \land B \subseteq D
+	&& \text{$A, B, C, D$ 非空}。
+\end{align*}
+
+笛卡儿乘积对交、并、差满足分配律，例如
+\begin{align*}
+	A \times (B \cup C) & = (A \times B) \cup (A \times C), \\
+	A \times (B \cap C) & = (A \times B) \cap (A \times C), \\
+	A \times (B \setminus C) & = (A \times B) \setminus (A \times C)。
+\end{align*}
+对第一分量也有相应的等式。
+
+更一般地，
+$$
+A_1 \times A_2 \times \dots \times A_n
+= \{\langle x_1, x_2, \dots, x_n \rangle \mid x_i \in A_i,\ 1 \le i \le n\}，
+$$
+并将 $A \times A \times \dots \times A$ 简记为 $A^n$。
