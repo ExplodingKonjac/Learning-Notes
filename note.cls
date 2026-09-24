@@ -42,6 +42,7 @@
 \RequirePackage{subcaption}
 \RequirePackage{esint}
 \RequirePackage{minted}
+\RequirePackage{tabularray}
 
 % Define page layout
 \geometry{a4paper,bottom=20mm,top=25mm,left=20mm,right=20mm}
@@ -157,6 +158,15 @@
 
 \undef\AddTCB
 
+% table environment
+\NewTblrEnviron{mytable}
+\SetTblrInner[mytable]{
+  hlines = {wd=\arrayrulewidth},
+  hline{1,Z} = {wd=5\arrayrulewidth},
+  hline{2} = {wd=3\arrayrulewidth},
+  vline{2-Y} = {wd=\arrayrulewidth},
+}
+
 % code block settings
 \usemintedstyle{vs}
 \setminted{
@@ -187,7 +197,6 @@
 }
 
 \makeatother
-
 
 % 统计最终的 .highlight.minted 文件中的代码行数。
 % Pygments 输出结构为：
@@ -237,7 +246,6 @@
   }
 
 \ExplSyntaxOff
-
 
 \makeatletter
 

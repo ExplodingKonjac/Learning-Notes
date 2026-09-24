@@ -1,0 +1,282 @@
+\section{组合逻辑电路}
+
+\subsection{作业}
+
+\begin{problem}
+    填空题
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 开态；低电平；关态；高电平；
+            \item[\textbf{2)}] CMOS、TTL、ECL；ECL、TTL、CMOS；CMOS、TTL、ECL；
+            \item[\textbf{3)}] $0, 1$；
+            \item[\textbf{4)}] $F^* = (\overline{A} + C) (\overline{B} + D),\ \overline{F} = (A + \overline{C}) (B + \overline{D})$；
+            \item[\textbf{5)}] $F = A B + A C + \overline{C} D$；
+            \item[\textbf{6)}] 存储元件；反馈回路；输入信号；
+            \item[\textbf{7)}] 编码；
+            \item[\textbf{8)}] 译码；$n$；$2^{n}$；
+            \item[\textbf{9)}] 接入滤波电容、引入选通脉冲、增加冗余项；
+            \item[\textbf{10)}] 逻辑表达式、真值表、卡诺图、逻辑电路图。 
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    选择题
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] \textcircled{\scriptsize 4}；
+            \item[\textbf{2)}] \textcircled{\scriptsize 2}；
+            \item[\textbf{3)}] \textcircled{\scriptsize 3}；
+            \item[\textbf{4)}] \textcircled{\scriptsize 4}；
+            \item[\textbf{5)}] \textcircled{\scriptsize 3}；
+            \item[\textbf{6)}] \textcircled{\scriptsize 4}；
+            \item[\textbf{7)}] \textcircled{\scriptsize 4}；
+            \item[\textbf{8)}] \textcircled{\scriptsize 4}；
+            \item[\textbf{9)}] \textcircled{\scriptsize 2}；
+            \item[\textbf{10)}] \textcircled{\scriptsize 3}；
+            \item[\textbf{11)}] \textcircled{\scriptsize 3}。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        $$
+        \begin{aligned}
+            F & = A B C + \overline{A} B D + A B C \overline{D} \\
+            & = A B C (D + \overline{D}) + \overline{A} B (C + \overline{C}) D + A B C \overline{D} \\
+            & = \overline{A} B \overline{C} D + \overline{A} B C D + A B C \overline{D} + A B C D
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        $$
+        \begin{aligned}
+            F & = \overline{A B + B C} + A \overline{C} + A \overline{B} \\
+            & = \overline{B (A + C)} + A \overline{C} + A \overline{B} \\
+            & = \overline{B} + \overline{A} \overline{C} + A \overline{C} + A \overline{B} \\
+            & = \overline{B} + \overline{C}
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{solution}
+        按照最小项推导，可得
+        $$
+        F = \overline{A} B C + A \overline{B} C + A B \overline{C} + A B C = A B + A C + B C
+        $$
+        真值表为
+
+        \begin{center}
+            \begin{mytable}{cccc}
+                $A$ & $B$ & $C$ & $F$ \\
+                $0$ & $0$ & $0$ & $0$ \\
+                $0$ & $0$ & $1$ & $0$ \\
+                $0$ & $1$ & $0$ & $0$ \\
+                $0$ & $1$ & $1$ & $1$ \\
+                $1$ & $0$ & $0$ & $0$ \\
+                $1$ & $0$ & $1$ & $1$ \\
+                $1$ & $1$ & $0$ & $1$ \\
+                $1$ & $1$ & $1$ & $1$ \\
+            \end{mytable}
+        \end{center}
+
+        对应 Verilog 程序为
+
+        \begin{minted}{verilog}
+            module voter3 (
+                input  wire A,
+                input  wire B,
+                input  wire C,
+                output wire F
+            );
+                assign F = (A & B) | (A & C) | (B & C);
+            endmodule
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4
+    \begin{solution}
+        因为 $D + \overline{D} X = (D + \overline{D}) (D + X) = D + X$，得到
+        $$
+        \begin{aligned}
+            \lhs & = B C + D + (\overline{B} + \overline{C}) (A D + B) \\
+            & = B C + D + A \overline{B} D + A \overline{C} D + B \overline{B} + B \overline{C} \\
+            & = B (C + \overline{C}) + D (1 + A \overline{B} + A \overline{C}) \\
+            & = B + D
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5
+    \begin{solution}
+        $A$ 是最低位，$C$ 是最高位，因此可得 $D_0 \sim D_7 = 0, 0, 1, 0, 1, 1, 0, 1$。所以 $D_2, D_4, D_5, D_7$ 接高电平，$D_0, D_1, D_3, D_6$ 接低电平。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6
+    \begin{solution}
+        左侧与非门输出 $N = \overline{A B C}$，之后分别产生 $A N, B N, C N$，最后输出 $F = \overline{A N + B N + C N}$。化简得到
+        $$
+        F = \overline{N (A + B + C)} = A B C + \overline{A} \overline{B} \overline{C}
+        $$
+        因此该电路作用是判断 $A, B, C$ 是否三项完全相等。真值表为
+
+        \begin{center}
+            \begin{mytable}{cccc}
+                $A$ & $B$ & $C$ & $F$ \\
+                $0$ & $0$ & $0$ & $1$ \\
+                $0$ & $0$ & $1$ & $0$ \\
+                $0$ & $1$ & $0$ & $0$ \\
+                $0$ & $1$ & $1$ & $0$ \\
+                $1$ & $0$ & $0$ & $0$ \\
+                $1$ & $0$ & $1$ & $0$ \\
+                $1$ & $1$ & $0$ & $0$ \\
+                $1$ & $1$ & $1$ & $1$ \\
+            \end{mytable}
+        \end{center}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 真值表如下：
+            \begin{center}
+                \begin{mytable}{cccc}
+                    HEX & $x_3 x_2 x_1 x_0$ & $abcdefg$ \\
+                    $0$ & $0000$ & $1111110$ \\
+                    $1$ & $0001$ & $0000110$ \\
+                    $2$ & $0010$ & $1011011$ \\
+                    $3$ & $0011$ & $1001111$ \\
+                    $4$ & $0100$ & $0100111$ \\
+                    $5$ & $0101$ & $1101101$ \\
+                    $6$ & $0110$ & $1111101$ \\
+                    $7$ & $0111$ & $1000110$ \\
+                    $8$ & $1000$ & $1111111$ \\
+                    $9$ & $1001$ & $1101111$ \\
+                    $A$ & $1010$ & $1110111$ \\
+                    $B$ & $1011$ & $0111101$ \\
+                    $C$ & $1100$ & $1111000$ \\
+                    $D$ & $1101$ & $0011111$ \\
+                    $E$ & $1110$ & $1111001$ \\
+                    $F$ & $1111$ & $1110001$ \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}]
+            $$
+            \begin{aligned}
+                a & = x_1x_2+x_1\bar x_3+x_3\bar x_0+\bar x_0\bar x_2+x_0x_2\bar x_3+x_3\bar x_1\bar x_2,\\
+                b & = x_1x_3+x_2\bar x_0+x_3\bar x_2+\bar x_0\bar x_1+x_2\bar x_1\bar x_3,\\
+                c & = x_1x_3+x_2x_3+x_1\bar x_0+\bar x_0\bar x_2,\\
+                d & = x_3\bar x_1+x_0x_1\bar x_2+x_0x_2\bar x_1+x_1x_2\bar x_0+\bar x_0\bar x_2\bar x_3,\\
+                e & = x_0\bar x_1+x_0\bar x_2+x_2\bar x_3+x_3\bar x_2+\bar x_1\bar x_2,\\
+                f & = \bar x_0\bar x_2+\bar x_1\bar x_2+x_0x_1\bar x_3+x_0x_3\bar x_1+\bar x_0\bar x_1\bar x_3,\\
+                g & = x_0x_3+x_1\bar x_0+x_1\bar x_2+x_3\bar x_2+x_2\bar x_1\bar x_3.
+            \end{aligned}
+            $$
+
+            \item[\textbf{3)}]
+            
+            \begin{minted}{verilog}
+                module hex7seg (
+                    input  wire [3:0] x,
+                    output wire a,
+                    output wire b,
+                    output wire c,
+                    output wire d,
+                    output wire e,
+                    output wire f,
+                    output wire g
+                );
+                    wire nx3, nx2, nx1, nx0;
+
+                    wire [5:0] ta;
+                    wire [4:0] tb;
+                    wire [3:0] tc;
+                    wire [4:0] td;
+                    wire [4:0] te;
+                    wire [4:0] tf;
+                    wire [4:0] tg;
+
+                    not n3(nx3, x[3]);
+                    not n2(nx2, x[2]);
+                    not n1(nx1, x[1]);
+                    not n0(nx0, x[0]);
+
+                    // a
+                    and a0(ta[0], x[1], x[2]);
+                    and a1(ta[1], x[1], nx3);
+                    and a2(ta[2], x[3], nx0);
+                    and a3(ta[3], nx0, nx2);
+                    and a4(ta[4], x[0], x[2], nx3);
+                    and a5(ta[5], x[3], nx1, nx2);
+                    or  ao(a, ta[0], ta[1], ta[2], ta[3], ta[4], ta[5]);
+
+                    // b
+                    and b0(tb[0], x[1], x[3]);
+                    and b1(tb[1], x[2], nx0);
+                    and b2(tb[2], x[3], nx2);
+                    and b3(tb[3], nx0, nx1);
+                    and b4(tb[4], x[2], nx1, nx3);
+                    or  bo(b, tb[0], tb[1], tb[2], tb[3], tb[4]);
+
+                    // c
+                    and c0(tc[0], x[1], x[3]);
+                    and c1(tc[1], x[2], x[3]);
+                    and c2(tc[2], x[1], nx0);
+                    and c3(tc[3], nx0, nx2);
+                    or  co(c, tc[0], tc[1], tc[2], tc[3]);
+
+                    // d
+                    and d0(td[0], x[3], nx1);
+                    and d1(td[1], x[0], x[1], nx2);
+                    and d2(td[2], x[0], x[2], nx1);
+                    and d3(td[3], x[1], x[2], nx0);
+                    and d4(td[4], nx0, nx2, nx3);
+                    or  dout(d, td[0], td[1], td[2], td[3], td[4]);
+
+                    // e
+                    and e0(te[0], x[0], nx1);
+                    and e1(te[1], x[0], nx2);
+                    and e2(te[2], x[2], nx3);
+                    and e3(te[3], x[3], nx2);
+                    and e4(te[4], nx1, nx2);
+                    or  eo(e, te[0], te[1], te[2], te[3], te[4]);
+
+                    // f
+                    and f0(tf[0], nx0, nx2);
+                    and f1(tf[1], nx1, nx2);
+                    and f2(tf[2], x[0], x[1], nx3);
+                    and f3(tf[3], x[0], x[3], nx1);
+                    and f4(tf[4], nx0, nx1, nx3);
+                    or  fo(f, tf[0], tf[1], tf[2], tf[3], tf[4]);
+
+                    // g
+                    and g0(tg[0], x[0], x[3]);
+                    and g1(tg[1], x[1], nx0);
+                    and g2(tg[2], x[1], nx2);
+                    and g3(tg[3], x[3], nx2);
+                    and g4(tg[4], x[2], nx1, nx3);
+                    or  go(g, tg[0], tg[1], tg[2], tg[3], tg[4]);
+
+                endmodule
+            \end{minted}
+        \end{enumerate}
+    \end{solution}
+\end{problem}

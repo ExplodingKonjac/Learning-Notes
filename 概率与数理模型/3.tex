@@ -1,0 +1,195 @@
+\section{随机变量及分布}
+
+\subsection{随机变量和分布函数}
+
+\begin{definition}[随机变量]
+    设随机试验样本空间为 $S$，定义 $X = X(e)$ 是在样本空间 $S$ 上的实值单值函数，那么称 $X = X(e)$ 为\textbf{随机变量}，简记为 $X$。
+\end{definition}
+
+随机变量可以分为离散型随机变量和连续型随机变量。
+
+\begin{definition}[分布函数]
+    设 $X$ 为随机变量，定义 $\mathbb{R}$ 上的函数
+    $$
+    F(x) = \prob{X \le x}
+    $$
+    为 $X$ 的\textbf{分布函数}。
+\end{definition}
+
+分布函数具有下面的性质：
+
+\begin{itemize}
+    \item $0 \le F(x) \le 1,\ \lim\limits_{X \to +\infty} F(x) = 1,\ \lim\limits_{n \to 0\infty} F(x) = 0$；
+    \item $F(x)$ 单调不减；
+    \item $F(x)$ 右连续；
+    \item $\prob{a \le X \le b} = F(b) - F(a)$。
+\end{itemize}
+
+\subsection{离散型随机变量}
+
+\begin{definition}[离散型随机变量]
+    若随机变量 $X$ 的可能取值为有限个或可列无穷个，称 $X$ 为\textbf{离散型随机变量}。
+\end{definition}
+
+我们可以用 $p_k = \prob{X = x_k}$ 的方式来表达离散型随机变量的分布，这也称为\textbf{分布律}。
+
+分布律和分布函数可以互相转化：
+
+\begin{itemize}
+    \item $F(x) = \sum\limits_{x_k \le x} p_k$；
+    \item $p_k = F(x_k) - F(x_k - 0)$。
+\end{itemize}
+
+\subsection{常见离散型随机分布}
+
+\subsubsection{Bernoulli 分布}
+
+当 $X$ 取值为 $\{0, 1\}$ 时，称 $X$ 服从\textbf{Bernoulli 分布}。
+
+\begin{table}[htbp]
+    \centering
+    \begin{mytable}{ccc}
+        $x_k$ & $0$ & $1$ \\
+        $P_k$ & $1 - p$ & $p$ \\
+    \end{mytable}
+\end{table}
+
+服从 Bernoulli 分布的试验称为 Bernoulli 试验。
+
+\subsubsection{二项分布}
+
+进行 $n$ 次 Bernoulli 试验，$X$ 为试验成功次数，则称 $X$ 服从\textbf{参数为 $n, p$ 的二项分布}，记做
+$$
+X \sim B(n, p)
+$$
+其分布律满足：
+$$
+\prob{X = k} = \binom{n}{k} p^{k} (1 - p)^{n - k}, \quad 0 \le k \le n
+$$
+
+当 $n$ 较大，$p$ 较小，而 $n p = \lambda$ 适中时，我们有近似公式：
+$$
+\begin{aligned}
+    \binom{n}{k} p^{k} (1 - p)^{n - k} & = \frac{n^{\underline{k}}}{k!} \ab(\frac{\lambda}{n})^{k} \ab(1 - \frac{\lambda}{n})^{n - k} \\
+    & = \frac{\lambda^{k}}{k!} \cdot \ab(\prod_{i = 1}^{k - 1} \ab(1 - \frac{i}{n}) \cdot \ab(1 - \frac{\lambda}{n})^{-k}) \cdot \ab(1 - \frac{\lambda}{n})^{n} \\
+    & \approx \E^{-\lambda} \frac{\lambda^{k}}{k!}
+\end{aligned}
+$$
+这被称为\textbf{Poisson 定理}。
+
+\subsubsection{Poisson 分布}
+
+若 $\prob{X = k} = \E^{-\lambda} \frac{\lambda^{k}}{k!},\ k \in \mathbb{N}$，其中 $\lambda > 0$ 为常数，则称 $X$ 服从\textbf{以 $\lambda$ 为参数的 Poisson 分布}，记做
+$$
+X \sim \pi(\lambda)
+$$
+
+\subsection{作业}
+
+\begin{problem}
+    习题 2.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] \ 
+
+            \begin{center}
+                \begin{mytable}{cccccc}
+                    $x_k$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
+                    $\prob{X = x_k}$ & $0$ & $0$ & $\frac{1}{10}$ & $\frac{3}{10}$ & $\frac{3}{5}$ \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}] \ 
+
+            \begin{center}
+                \begin{mytable}{ccccccc}
+                    $x_k$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\
+                    $\prob{X = x_k}$ & $\frac{11}{36}$ & $\frac{1}{4}$ & $\frac{7}{36}$ & $\frac{5}{36}$ & $\frac{1}{12}$ & $\frac{1}{36}$ \\
+                \end{mytable}    
+            \end{center}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2.6
+    \begin{solution}
+        记随机变量 $X$ 为某时刻正在被使用的设备数量，则 $X \sim B(5, 0.1)$，那么：
+        \begin{enumerate}
+            \item[\textbf{1)}] $P_1 = \prob{X = 2} = 0.0729$；
+            \item[\textbf{2)}] $P_2 = \prob{X = 3} + \prob{X = 4} + \prob{X = 5} = 0.00856$；
+            \item[\textbf{3)}] $P_3 = \prob{X = 0} + \prob{X = 1} + \prob{X = 2} + \prob{X = 3} = 0.99954$；
+            \item[\textbf{4)}] $P_4 = 1 - \prob{X = 0} = 0.40951$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2.7
+    \begin{solution}
+        由题知随机变量“$A$ 发生的次数”服从二项分布 $B(\cdot, 0.3)$。
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            P_1 = \sum_{i = 3}^{5} \binom{5}{i} \cdot 0.3^{i} \cdot 0.7^{5 - i} = 0.16308
+            $$
+            \item[\textbf{2)}]
+            $$
+            P_2 = \sum_{i = 3}^{7} \binom{7}{i} \cdot 0.3^{i} \cdot 0.7^{7 - i} = 0.35293
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2.8
+    \begin{solution}
+        记 $X$ 表示甲投中次数，$Y$ 表示乙投中次数，那么
+        $$
+        X \sim B(3, 0.6), \quad Y \sim B(3, 0.7)
+        $$
+        可得
+        $$
+        \prob{X = k} = \binom{3}{k} \cdot 0.6^{k} \cdot 0.4^{3 - k}, \quad \prob{Y = k} = \binom{3}{k} \cdot 0.7^{k} \cdot 0.3^{3 - k}
+        $$
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            P_1 = \sum_{i = 0}^{3} \prob{X = i} \prob{Y = i} = 0.32706
+            $$
+            \item[\textbf{2)}]
+            $$
+            P_2 = \sum_{i = 1}^{3} \prob{X = i} \sum_{j = 0}^{i - 1} \prob{Y = j} = 0.243
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2.10
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            P_1 = \frac{\binom{4}{4} \cdot \binom{4}{0}}{\binom{8}{4}} = \frac{1}{70}
+            $$
+            \item[\textbf{2)}] 成功次数 $X$ 服从 $B(10, \frac{1}{70})$，那么可知 $\prob{X = 3} \approx 0.0003$。这是一个极小概率时间，可以认为他的确有区分的能力。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2.13
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] $t = 3$，那么 $X \sim \pi(\frac{3}{2})$。因此：
+            $$
+            \prob{X = 0} = \E^{-\frac{3}{2}} \frac{\ab(\frac{3}{2})^{0}}{0!} = \E^{-\frac{3}{2}}
+            $$
+            \item[\textbf{2)}] $t = 5$，那么 $X \sim \pi(\frac{5}{2})$。因此：
+            $$
+            \prob{X \ge 1} = 1 - \prob{X = 0} = 1 - \E^{-\frac{5}{2}}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
