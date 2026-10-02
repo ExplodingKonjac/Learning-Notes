@@ -1,0 +1,75 @@
+\section{关系}
+
+\subsection{$n$ 元关系}
+
+\begin{definition}[关系]
+    设 $A_1, A_2, \dots, A_n$ 为 $n$ 个任意的集合，$R \subseteq A_1 \times A_2 \times \dots \times A_n$，那么
+    \begin{itemize}
+        \item 称 $R$ 为 $A_1, A_2, \dots, A_n$ 间的 $n$ 元\textbf{关系}；
+        \item 若 $n = 2$，称 $R$ 为 \textbf{$A_1$ 到 $A_2$ 的二元关系}；
+        \item 若 $R = \varnothing$，称 $R$ 为空关系；
+        \item 若 $R = A_1 \times A_2 \times \dots \times A_n$，称 $R$ 为\textbf{全关系}；
+        \item 若 $A_1 = A_2 = \dots = A_n = A$，称 $R$ 为 \textbf{$A$ 上的 $n$ 元关系}。
+    \end{itemize}
+\end{definition}
+
+对于二元关系 $R$，可以记做：
+\begin{itemize}
+    \item $\langle x, y \rangle \in R \iff x \, R \, y$；
+    \item $\langle x, y \rangle \notin R \iff x \, \overline{R} \, y$。
+\end{itemize}
+
+\begin{definition}[关系的相等]
+    设 $R_1$ 是 $A_1, A_2, \dots, A_n$ 上的 $n$ 元关系，$R_2$ 是 $B_1, B_2, \dots, B_m$ 上的 $m$ 元关系，那么 $R_1$ 和 $R_2$ 相等当且仅当：
+    \begin{itemize}
+        \item $n = m$；
+        \item $A_i = B_i\ (1 \le i \le n)$；
+        \item 从集合来看，$R_1 = R_2$。
+    \end{itemize}
+\end{definition}
+
+\subsection{二元关系的表示}
+
+\subsubsection{图表示}
+
+对于一个 $X$ 到 $Y$ 的二元关系 $R$，建立一张图 $G = (V, E)$：
+
+\begin{itemize}
+    \item $V = X \cup Y$；
+    \item $E = \{(x, y): x \, R \, y\}$。
+\end{itemize}
+
+这个图称为关系 $R$ 的\textbf{图表示}。
+
+\subsubsection{矩阵表示}
+
+二元关系 $R$ 的图表示的邻接矩阵称为 $R$ 的\textbf{矩阵表示}。
+
+\subsection{二元关系的性质}
+
+\begin{definition}[自反性]
+    设 $R$ 是集合 $X$ 上的二元关系，那么称 $R$ 是\textbf{自反的}当且仅当
+    $$
+    \forall\,x \in X: \langle x, x \rangle \notin R
+    $$
+\end{definition}
+
+在图表示中，自反的关系没有自环。
+
+\begin{definition}[对称性]
+    设 $R$ 是集合 $X$ 上的二元关系，那么称 $R$ 是\textbf{对称的}当且仅当
+    $$
+    \forall\,x, y \in X: \langle x, y \rangle \in R \iff \langle y, x \rangle \in R
+    $$
+\end{definition}
+
+满足对称性的关系，在图表示中边都是双向的；在矩阵表示中矩阵是对称矩阵。
+
+\begin{definition}[传递性]
+    设 $R$ 是集合 $X$ 上的二元关系，那么称 $R$ 是\textbf{传递的}当且仅当
+    $$
+    \forall\,x, y, z \in X: \langle x, y \rangle, \langle y, z \rangle \in R \implies \langle x, z \rangle \in R
+    $$
+\end{definition}
+
+满足传递性的关系，其图表示是一个传递闭包。

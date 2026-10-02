@@ -1,0 +1,90 @@
+\section{随机变量及分布 II}
+
+\subsection{连续型随机变量}
+
+\begin{definition}
+    设 $X$ 是一个随机变量，若存在非负可积函数 $f(x)$ 使得
+    $$
+    F(x) = \int_{- \infty}^{x} f(t) \dd{t}
+    $$
+    其中 $F(x)$ 是它的分布函数，那么称 $X$ 是\textbf{连续型随机变量}，$f(x)$ 是它的\textbf{概率密度函数}。
+\end{definition}
+
+概率密度函数满足下面的性质：
+\begin{itemize}
+    \item $f(x) \ge 0$；
+    \item $\displaystyle\int_{- \infty}^{+ \infty} f(x) \dd{x} = 1$；
+    \item $\displaystyle \prob{a < X < b} = \int_{a}^{b} f(x) \dd{x}$。
+\end{itemize}
+
+\subsection{连续型随机变量的分布}
+
+\subsubsection{均匀分布}
+
+\begin{definition}
+    若 $X$ 的概率密度函数为
+    $$
+    f(x) = \begin{cases}
+        \frac{1}{b - a} &, a \le x \le b \\
+        0 &, \text{otherwise}
+    \end{cases}
+    $$
+    那么称 $X$ 满足\textbf{均匀分布}。
+\end{definition}
+
+当 $X$ 满足均匀分布的时候，对于任意 $(c, d) \subseteq (a, b)$，都有 $\prob{c < X < d} = d - c$。概率只和区间长度有关，和区间位置无关。
+
+\subsection{指数分布}
+
+\begin{definition}
+    若 $X$ 的概率密度函数为
+    $$
+    f(x) = \begin{cases}
+        \lambda \E^{-\lambda x} &, x > 0 \\
+        0 &, \text{otherwise}
+    \end{cases}
+    $$
+    那么称 $X$ 满足\textbf{指数分布}。
+\end{definition}
+
+对 $f(x)$ 进行积分，可以得到指数分布的分布函数为
+$$
+F(x) = \begin{cases}
+    1 - \E^{-\lambda x} &, x > 0 \\
+    0 &, \text{otherwise}
+\end{cases}
+$$
+
+\subsubsection{正态分布}
+
+先引入 Euler-Poission 积分
+$$
+\int_{- \infty}^{+ \infty} \E^{-x^2} \dd{x} = \sqrt{\pi}
+$$
+证明如下，记原积分为 $I$：
+$$
+\begin{aligned}
+    I^2 & = \ab(\int_{-\infty}^{+ \infty} \E^{-x^2} \dd{x}) \\
+    & = \iint_{\mathbb{R}^2} \E^{-x^2 - y^2} \dd{x} \dd{y} \\
+    & = \int_{0}^{2\pi} \dd{\theta} \int_{0}^{+\infty} \E^{-r^2} r \dd{r} \\
+    & = 2\pi \cdot \ab[-\frac{1}{2} \E^{-r^2}]_{0}^{+\infty} \\
+    & = \pi
+\end{aligned}
+$$
+因此 $I = \sqrt{\pi}$。
+
+\begin{definition}[正态分布]
+    若随机变量 $X$ 的概率密度函数为
+    $$
+    f(x) = \frac{1}{\sqrt{2\pi} \sigma} \E^{-\frac{(x - \mu)^2}{2 \sigma^2}}
+    $$
+    那么称 $X$ 满足\textbf{正态分布}，记做 $X \sim N(\mu, \sigma^2)$。
+\end{definition}
+
+正态分布满足下面的性质：
+
+\begin{itemize}
+    \item $f(x)$ 在 $x = \mu$ 取得最大值；
+    \item $f(x)$ 在 $x = \mu \pm \sigma$ 时取到拐点；
+    \item $X$ 的平均数为 $\mu$，方差为 $\sigma$。
+\end{itemize}
