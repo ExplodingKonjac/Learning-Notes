@@ -1,0 +1,58 @@
+\section{关系 II}
+
+\subsection{关系之间的运算}
+
+\begin{definition}[关系的逆]
+    设 $R$ 是 $X \to Y$ 的关系，那么定义
+    $$
+    R^{-1} = \{\langle y, x \rangle: x \mathop{R} y\}
+    $$
+    为 $Y \to X$ 的关系，称为 $R$ 的\textbf{逆关系}。
+\end{definition}
+
+\begin{definition}[关系的复合]
+    设 $R$ 是 $X \to Y$ 的关系，$S$ 是 $Y \to Z$ 的关系，那么定义
+    $$
+    R \circ S = \{\langle x, z \rangle: \exists\,y \in Y: x \mathop{R} y \land y \mathop{S} z\}
+    $$
+    为 $X \to Z$ 的关系，称为 $R$ 和 $S$ 的\textbf{复合关系}。
+\end{definition}
+
+二元关系的复合满足下面的运算性质：
+
+\begin{itemize}
+    \item 结合律：$R \circ (S \circ T) = (R \circ S) \circ T$；
+    \item 并集分配律：$R \circ (S \cup T) = (R \circ S) \cup (R \circ T),\ (R \cup S) \circ T = (R \circ T) \cup (S \circ T)$；
+    \item 交集分配律：$R \circ (S \cap T) \mathop{\color{red} \subseteq} (R \circ S) \cap (R \circ T),\ (R \cap S) \circ T \mathop{\color{red}\subseteq} (R \circ T) \cap (S \circ T)$；
+    \item $(R \circ S)^{-1} = S^{-1} \circ R^{-1}$。
+\end{itemize}
+
+\begin{definition}[关系的幂次]
+    设 $R$ 是集合 $A$ 上的二元关系，$n$ 是自然数，那么定义关系 $R$ 的\textbf{幂次}为：
+    $$
+    R^{n} = \begin{cases}
+        I_A &,\ n = 0 \\
+        R^{n - 1} \circ R &,\ n > 0
+    \end{cases}
+    $$
+    其中 $I_A$ 是 $A$ 上的恒等关系。
+\end{definition}
+
+\begin{definition}[关系的闭包]
+    设 $R$ 是集合 $A$ 上的关系，那么称 $R'$ 为 $R$ 的\textbf{自反（对称、传递）闭包}，当且仅当 $R'$ 满足：
+    \begin{itemize}
+        \item $R'$ 是自反（对称、传递）的；
+        \item $R \subseteq R'$；
+        \item 对于 $A$ 上的任何自反（对称、传递）关系 $R''$，都有 $R \subseteq R'' \implies R' \subseteq R''$。
+    \end{itemize}
+
+    $R$ 的自反闭包记做 $r(R)$，对称闭包记做 $s(R)$，传递闭包记做 $t(R)$。
+\end{definition}
+
+根据定义，容易得到下面的结论：
+
+\begin{itemize}
+    \item $r(R) = R \cup I_A$；
+    \item $s(R) = R \cup R^{-1}$；
+    \item $\displaystyle t(R) = \bigcup_{n = 1}^{\infty} R^{n}$。
+\end{itemize}

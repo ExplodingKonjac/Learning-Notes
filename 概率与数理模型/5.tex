@@ -1,0 +1,331 @@
+\subsection{多维随机变量及其分布}
+
+\subsection{二维随机变量}
+
+\begin{definition}[联合分布函数]
+    设 $(X, Y)$ 为二维随机变量，对于任意一对实数 $(x, y)$，记
+    $$
+    F(x, y) = \prob{X \le x \land Y \le y}
+    $$
+    为 $(x, y)$ 的\textbf{联合分布函数}。
+\end{definition}
+
+联合分布函数具有下面的性质：
+
+\begin{itemize}
+    \item 函数值非负。
+    \item 关于每个变量右连续。
+    \item 对于任意 $a < b, c < d$，有 $F(b, d) - F(a, d) - F(b, c) + F(a, c) = \prob{a < X \le b \land c < Y \le d}$。
+\end{itemize}
+
+同理也可以定义概率密度：
+
+\begin{definition}[联合概率密度]
+    对于二维连续型随机变量 $(X, Y)$，若存在非负可积函数 $f(x, y)$ 使得：
+    $$
+    \int_{-\infty}^{y} \int_{-\infty}^{x} f(u, v) \dd{u} \dd{v} = F(x, y)
+    $$
+    那么称 $f(x, y)$ 为 $(X, Y)$ 的\textbf{联合概率密度}。
+\end{definition}
+
+概率密度函数有下面的性质：
+
+\begin{itemize}
+    \item $f(x, y) \ge 0$；
+    \item $\iint_{\RR^2} f(x, y) \dd{x} \dd{y} = 1$；
+    \item 设 $G \subset \RR^2$ 是一个区域，那么
+    $$
+    \prob{(X, Y) \in G} = \iint_G f(x, y) \dd{x} \dd{y}
+    $$
+\end{itemize}
+
+对于一个二维随机变量 $(X, Y)$，如果只看其中一个维度，就得到了边缘分布。
+
+\begin{definition}[边缘分布函数]
+    设 $(X, Y)$ 是二维随机变量，记
+    $$
+    F_X(x) = \prob{X \le x}, \quad F_Y(y) = \prob{Y \le y}
+    $$
+    为 $X, Y$ 的\textbf{边缘分布函数}。
+\end{definition}
+
+同理，可以得到边缘概率密度的定义。
+
+\begin{definition}[边缘概率密度]
+    设 $(X, Y)$ 是连续型二维随机变量，那么称
+    $$
+    f_X(x) = \int_{-\infty}^{+\infty} f(x, y) \dd{y}, \quad f_Y(y) = \int_{-\infty}^{+\infty} f(x, y) \dd{x}
+    $$
+    为 $X, Y$ 的\textbf{边缘概率密度}。
+\end{definition}
+
+\begin{definition}[二维正态分布]
+    设二维随机变量 $(X, Y)$ 的联合概率密度为
+    $$
+    f(x, y) = \frac{1}{2 \pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \exp \ab(-\frac{1}{2 (1 - \rho^2)} \ab(\frac{(x - \mu_1)^2}{\sigma_1^2} - 2 \rho \frac{(x - \mu_1)(x - \mu_2)}{\sigma_1 \sigma_2} + \frac{(x - \mu_2)^2}{\sigma_2^2}))
+    $$
+    那么称 $(X, Y)$ 满足参数为 $\mu_1, \mu_2, \sigma_1, \sigma_2, \rho$ 的二维正态分布，记做 $(X, Y) \sim N(\mu_1, \mu_2, \sigma_1, \sigma_2, \rho)$。
+\end{definition}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 3.1
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{1)}] 放回抽样：
+            \begin{center}
+                \begin{mytable}{ccc}
+                    \diagboxthree{$X=$}{$P$}{$Y=$} & $0$ & $1$ \\
+                    $0$ & $\frac{25}{36}$ & $\frac{5}{36}$ \\
+                    $1$ & $\frac{5}{36}$ & $\frac{1}{36}$
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}] 不放回抽样：
+            \begin{center}
+                \begin{mytable}{ccc}
+                    \diagboxthree{$X=$}{$P$}{$Y=$} & $0$ & $1$ \\
+                    $0$ & $\frac{1}{66}$ & $\frac{10}{66}$ \\
+                    $1$ & $\frac{10}{66}$ & $\frac{45}{66}$
+                \end{mytable}
+            \end{center}
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]\ 
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    \diagboxthree{$X=$}{$P$}{$Y=$} & $0$ & $1$ & $2$ \\
+                    $0$ & $0$ & $0$ & $\frac{1}{35}$ \\
+                    $1$ & $0$ & $\frac{6}{35}$ & $\frac{6}{35}$ \\
+                    $2$ & $\frac{3}{35}$ & $\frac{12}{35}$ & $\frac{3}{35}$ \\
+                    $3$ & $\frac{2}{35}$ & $\frac{2}{35}$ & $0$ \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}]
+            $$
+            \begin{aligned}
+                & \prob{X > Y} = \frac{3}{35} + \frac{12}{35} + \frac{2}{35} + \frac{2}{35} = \frac{19}{35} \\
+                & \prob{Y = 2X} = \prob{X = 1 \land Y = 1} = \frac{6}{35} \\
+                & \prob{X + Y = 3} = \frac{6}{35} + \frac{12}{35} + \frac{2}{35} = \frac{4}{7} \\
+                & \prob{X < 3 - Y} = \frac{1}{35} + \frac{6}{35} + \frac{3}{35} = \frac{2}{7}
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.3
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{1)}] 根据概率密度的定义，有
+            $$
+            \begin{gathered}
+                \iint_{[0, 2] \times [2, 4]} k (6 - x - y) \dd{x} \dd{y} = 1 \\
+                \implies \frac{1}{k} = \int_{0}^{2} \dd{x} \int_{2}^{4} (6 - x - y) \dd{y} \\
+                \implies k = \frac{1}{8}
+            \end{gathered}
+            $$
+            \item[\textbf{2)}]
+            $$
+            \prob{X < 1 \land Y < 3} = \int_{0}^{1} \dd{x} \int_{2}^{3} \frac{1}{8} (6 - x - y) \dd{y} = \frac{3}{8}
+            $$
+            \item[\textbf{3)}]
+            $$
+            \prob{X < 1.5} = \int_{0}^{1.5} \dd{x} \int_{2}^{4} \frac{1}{8} (6 - x - y) = \frac{27}{32}
+            $$
+            \item[\textbf{4)}]
+            $$
+            \prob{X + Y \le 4} = \int_{0}^{2} \dd{x} \int_{2}^{4 - X} \frac{1}{8} (6 - x - y) \dd{y} = \frac{2}{3}
+            $$
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.4
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{1)}]
+            $$
+            \begin{aligned}
+                \prob{X < Y} & = \int_{0}^{+ \infty} \dd{y} \int_{0}^{x} f(x, y) \dd{x} \\
+                & = \int_{0}^{+ \infty} \dd{y} \int_{0}^{y} f_X(x) f_Y(y) \dd{x} \\
+                & = \int_{0}^{+ \infty} f_Y(y) \dd{x} \int_{0}^{y} f_X(x) \dd{x} \\
+                & = \int_{0}^{+ \infty} f_Y(y) F_X(y) \dd{y}
+            \end{aligned}
+            $$
+            于是得证。
+    
+            \item[\textbf{2)}] 由题可得
+            $$
+            F_X(x) = \int_{0}^{x} \lambda_1 \E^{-\lambda_1 t} \dd{t} = 1 - \E^{-\lambda_1 x}
+            $$
+            因此
+            $$
+            \begin{aligned}
+                \prob{X < Y} & = \int_{0}^{+ \infty} \ab(1 - \E^{-\lambda_1 x}) \cdot \ab(\lambda_2 \E^{-\lambda_2 x}) \dd{x} \\
+                & = \ab[\frac{\lambda_2}{\lambda_1 + \lambda_2} \E^{-(\lambda_1 + \lambda_2) x} - \E^{\lambda_2 x}]_{0}^{+ \infty} \\
+                & = \frac{\lambda_1}{\lambda_1 + \lambda_2}
+            \end{aligned}
+            $$
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.5
+    \begin{solution}
+        由题可得，$(X, Y)$ 的联合概率密度为
+        $$
+        f(x, y) = \pdv[2]{F}{x}{y} = \E^{-x - y}
+        $$
+        因此边缘分布函数为：
+        $$
+        \begin{gathered}
+            F_X(x) = \int_{0}^{+ \infty} \dd{y} \int_{0}^{x} \E^{-t - y} \dd{t} = 1 - \E^{-x} \\
+            F_Y(y) = \int_{0}^{+ \infty} \dd{x} \int_{0}^{y} \E^{-x - t} \dd{t} = 1 - \E^{-y} \\
+        \end{gathered}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.6
+    \begin{solution}
+        联合分布律：
+
+        \begin{center}
+            \begin{mytable}{ccccc}
+                \diagboxthree{$X=$}{$P$}{$Y=$} & $0$ & $1$ & $2$ & $3$ \\
+                $0$ & $\frac18$ & $\frac18$ & $0$ & $0$ \\
+                $1$ & $0$ & $\frac14$ & $\frac14$ & $0$ \\
+                $2$ & $0$ & $0$ & $\frac18$ & $\frac18$ \\
+            \end{mytable}
+        \end{center}
+
+        $X$ 的边缘分布律：
+    
+        \begin{center}
+            \begin{mytable}{cccc}
+                $X$ & $0$ & $1$ & $2$ \\
+                $P(X=i)$ & $\frac14$ & $\frac12$ & $\frac14$ \\
+            \end{mytable}
+        \end{center}
+
+        $Y$ 的边缘分布律：
+
+        \begin{center}
+            \begin{mytable}{ccccc}
+                $Y$  & $0$ & $1$ & $2$ & $3$ \\
+                $P(Y=j)$ & $\frac18$ & $\frac38$ & $\frac38$ & $\frac18$ \\
+            \end{mytable}
+        \end{center}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.7
+    \begin{solution}
+        $$
+        \begin{gathered}
+            f_X(x) = \int_0^x f(x, y) \dd{y} = \int_0^x 4.8 y (2 - x) \dd{y} = 4.8(2 - x) \ab[\frac{y^2}{2}]_0^x = 2.4 x^2 (2 - x) \\
+            f_Y(y) = \int_y^1 f(x, y) \dd{x} = \int_y^1 4.8 y (2 - x) \dd{x} = 4.8y \ab[2x - \frac{x^2}{2}]_y^1 = 2.4y (3 - 4y + y^2)
+        \end{gathered}
+        $$
+        因此 $X$ 的边缘概率密度为：
+        $$
+        f_X(x) = \begin{cases}
+            4.8y (2 - x) &,\ 0 \le x \le 1 \\
+            0 &,\ \text{otherwise}
+        \end{cases}
+        $$
+        $Y$ 的边缘概率密度为：
+        $$
+        f_Y(y) = \begin{cases}
+            2.4y (3 - 4y + y^2) &,\ 0 \le x \le 1 \\
+            0 &,\ \text{otherwise}
+        \end{cases}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.8
+    \begin{solution}
+        $$
+        \begin{gathered}
+            f_X(x) = \int_x^{+\infty} f(x, y) \dd{y} = \int_x^{+\infty} \E^{-y} \dd{y} = \ab[-\E^{-y}]_x^{+\infty} = \E^{-x} \\
+            f_Y(y) = \int_0^y f(x, y) \dd{x} = \int_0^y \E^{-y} \dd{x} = \E^{-y} \ab[x]_0^y = ye^{-y}
+        \end{gathered}
+        $$
+
+        因此 $X$ 的边缘概率密度为：
+        $$
+        f_X(x) = \begin{cases}
+            \E^{-x} &,\ x > 0 \\
+            0 &,\ \text{otherwise}
+        \end{cases}
+        $$
+
+        $Y$ 的边缘概率密度为：
+        $$
+        f_Y(y) = \begin{cases}
+            y \E^{-y} &,\ y > 0 \\
+            0 &,\ \text{otherwise}
+        \end{cases}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.9
+    \begin{solution}
+        \begin{itemize}
+            \item[\textbf{1)}] 由联合概率密度的归一性，有：
+            $$
+            \begin{aligned}
+                \int_{-1}^1 \int_{x^2}^1 cx^2y \dd{y} \dd{x} & = 1 \\
+                \int_{-1}^1 cx^2 \ab[\frac{y^2}{2}]_{x^2}^1 \dd{x} & = 1 \\
+                \frac{c}{2} \int_{-1}^1 (x^2 - x^6) \dd{x} & = 1 \\
+                \frac{c}{2} \ab[\frac{x^3}{3} - \frac{x^7}{7}]_{-1}^1 & = 1 \\
+                \frac{c}{2} \ab(\frac{2}{3} - \frac{2}{7}) & = 1 \\
+                \frac{4c}{21} & = 1
+            \end{aligned}
+            $$
+            因此 $c = \frac{21}{4}$。
+
+            \item[\textbf{2)}] 将 $c = \frac{21}{4}$ 代入，得：
+            $$
+            \begin{gathered}
+                f_X(x) = \int_{x^2}^1 f(x, y) \dd{y} = \int_{x^2}^1 \frac{21}{4}x^2y \dd{y} = \frac{21}{4}x^2 \ab[\frac{y^2}{2}]_{x^2}^1 = \frac{21}{8}x^2(1 - x^4) \\
+                f_Y(y) = \int_{-\sqrt{y}}^{\sqrt{y}} f(x, y) \dd{x} = \int_{-\sqrt{y}}^{\sqrt{y}} \frac{21}{4}x^2y \dd{x} = \frac{21}{4}y \ab[\frac{x^3}{3}]_{-\sqrt{y}}^{\sqrt{y}} = \frac{7}{2}y^{5/2}
+            \end{gathered}
+            $$
+
+            因此 $X$ 的边缘概率密度为：
+            $$
+            f_X(x) = \begin{cases}
+                \frac{21}{8}x^2(1 - x^4) &,\ -1 \le x \le 1 \\
+                0 &,\ \text{otherwise}
+            \end{cases}
+            $$
+
+            $Y$ 的边缘概率密度为：
+            $$
+            f_Y(y) = \begin{cases}
+                \frac{7}{2}y^{5/2} &,\ 0 \le y \le 1 \\
+                0 &,\ \text{otherwise}
+            \end{cases}
+            $$
+        \end{itemize}
+    \end{solution}
+\end{problem}

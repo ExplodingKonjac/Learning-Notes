@@ -1,0 +1,351 @@
+\section{时序逻辑电路}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        \begin{enumerate}
+            \item 组合逻辑电路、储存电路；
+            \item $\overline{S} + \overline{R} = 0$；
+            \item $Q^{n+1} = J \overline{Q^{n}} + \overline{K} Q^{n}$；
+            \item $Q^{n+1} = D$；
+            \item 同步时序逻辑电路、异步时序逻辑电路；
+            \item $2^{N} - N$；
+            \item T 触发器；
+            \item $10$；
+            \item $4096$；
+            \item RS 触发器、JK 触发器、D 触发器。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        \begin{enumerate}
+            \item C
+            \item C
+            \item B
+            \item A
+            \item B
+            \item A
+            \item B
+            \item B
+            \item D
+            \item B
+            \item B
+            \item A
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.1
+    \begin{solution}
+        \begin{itemize}
+            \item $C = 0$ 时，状态方程为
+            $$
+            Q^{n + 1} = X \overline{Q^{n}} + \overline{X} Q^{n} = X \oplus Q^{n}
+            $$
+            因此电路实现了 T 触发器的功能。
+            
+            \item $C = 1$ 时，状态方程为
+            $$
+            Q^{n + 1} = X \overline{Q^{n}} + \overline{\overline{X}} Q^{n} = X \overline{Q^{n}} + X Q^{n} = X
+            $$
+            因此电路实现了 D 触发器的功能。
+        \end{itemize}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 由题电路图分析可得
+            $$
+            \begin{dcases}
+                D_1 = \overline{Q_1} \overline{Q_3} \overline{Q_2 Q_4} \\
+                D_2 = Q_1 \\
+                D_3 = Q_2 \\
+                D_4 = Q_3
+            \end{dcases}
+            $$
+            根据 D 触发器的功能，得到状态方程
+            $$
+            \begin{dcases}
+                Q_1^{n + 1} = \overline{Q_1^n} \overline{Q_3^n} \overline{Q_2^n Q_4^n} \\
+                Q_2^{n + 1} = Q_1^n \\
+                Q_3^{n + 1} = Q_2^n \\
+                Q_4^{n + 1} = Q_3^n
+            \end{dcases}
+            $$
+
+            \item[\textbf{2)}] 状态转换表：
+            
+            \begin{center}
+                \begin{mytable}{cc}
+                    现态 $Q_4 Q_3 Q_2 Q_1$ & 次态 $Q_4^{+} Q_3^{+} Q_2^{+} Q_1^{+}$ \\
+                    $0000$ & $0001$ \\
+                    $0001$ & $0010$ \\
+                    $0010$ & $0101$ \\
+                    $0011$ & $0110$ \\
+                    $0100$ & $1000$ \\
+                    $0101$ & $1010$ \\
+                    $0110$ & $1100$ \\
+                    $0111$ & $1110$ \\
+                \end{mytable}
+            \end{center}
+
+            \begin{center}
+                \begin{mytable}{cc}
+                    现态 $Q_4 Q_3 Q_2 Q_1$ & 次态 $Q_4^{+} Q_3^{+} Q_2^{+} Q_1^{+}$ \\
+                    $1000$ & $0001$ \\
+                    $1001$ & $0010$ \\
+                    $1010$ & $0100$ \\
+                    $1011$ & $0110$ \\
+                    $1100$ & $1000$ \\
+                    $1101$ & $1010$ \\
+                    $1110$ & $1100$ \\
+                    $1111$ & $1110$ \\
+                \end{mytable}
+            \end{center}
+
+            状态转换图：
+
+            \begin{center}
+                \begin{tikzpicture}[
+                    every node/.style={font=\small},
+                    state/.style={circle, draw=black, line width=0.6pt,
+                        minimum size=12mm, inner sep=1pt},
+                    every path/.style={line width=0.6pt},
+                    >=stealth
+                ]
+                    % 状态编码顺序为 Q_4 Q_3 Q_2 Q_1。
+                    \node[state] (s1) at (0,0) {$0001$};
+                    \node[state] (s2) at (2.4,1.5) {$0010$};
+                    \node[state] (s5) at (4.8,1.5) {$0101$};
+                    \node[state] (s10) at (7.2,0) {$1010$};
+                    \node[state] (s4) at (4.8,-1.5) {$0100$};
+                    \node[state] (s8) at (2.4,-1.5) {$1000$};
+                    \draw[->] (s1) -- (s2);
+                    \draw[->] (s2) -- (s5);
+                    \draw[->] (s5) -- (s10);
+                    \draw[->] (s10) -- (s4);
+                    \draw[->] (s4) -- (s8);
+                    \draw[->] (s8) -- (s1);
+
+                    % 非循环状态沿树状路径汇入有效循环。
+                    \node[state] (s0) at (-2,0) {$0000$};
+                    \node[state] (s9) at (2.4,3.3) {$1001$};
+                    \node[state] (s13) at (7.2,2.1) {$1101$};
+                    \node[state] (s12) at (2.4,-3.5) {$1100$};
+                    \node[state] (s6) at (0.3,-5.1) {$0110$};
+                    \node[state] (s14) at (4.5,-5.1) {$1110$};
+                    \node[state] (s3) at (-0.6,-7) {$0011$};
+                    \node[state] (s11) at (1.2,-7) {$1011$};
+                    \node[state] (s7) at (3.6,-7) {$0111$};
+                    \node[state] (s15) at (5.4,-7) {$1111$};
+                    \draw[->] (s0) -- (s1);
+                    \draw[->] (s9) -- (s2);
+                    \draw[->] (s13) -- (s10);
+                    \draw[->] (s12) -- (s8);
+                    \draw[->] (s6) -- (s12);
+                    \draw[->] (s14) -- (s12);
+                    \draw[->] (s3) -- (s6);
+                    \draw[->] (s11) -- (s6);
+                    \draw[->] (s7) -- (s14);
+                    \draw[->] (s15) -- (s14);
+                    \node at (2.6,-8.1) {状态顺序：$Q_4 Q_3 Q_2 Q_1$};
+                \end{tikzpicture}
+            \end{center}
+
+            时序图：
+
+            \begin{center}
+                \begin{tikzpicture}[x=1.45cm, y=0.85cm,
+                    every node/.style={font=\small},
+                    line cap=rect, line join=miter]
+                    % k 表示第 k 个上升沿；区间 [k,k+1) 显示沿后状态。
+                    \node[anchor=east] at (-0.25,1.2) {$\mathrm{CP}\uparrow$ 编号};
+                    \foreach \k in {0,...,7} {
+                        \draw[black!35, densely dashed, line width=0.3pt]
+                            (\k,0.85) -- (\k,-6.6);
+                        \node at (\k,1.2) {$\k$};
+                    }
+                    \foreach \label/\base in {\mathrm{CP}/0,Q_4/-1.5,Q_3/-3,Q_2/-4.5,Q_1/-6} {
+                        \node[anchor=east] at (-0.25,{\base+0.3}) {$\label$};
+                        \draw[black!35, line width=0.3pt] (0,\base) -- (7,\base);
+                    }
+                    \foreach \k in {0,...,6} {
+                        \draw[line width=0.65pt]
+                            (\k,0) -- (\k,0.6) -- ({\k+0.23},0.6)
+                            -- ({\k+0.23},0) -- ({\k+1},0);
+                    }
+                    \draw[line width=0.75pt] % Q_4: 0 0 0 1 0 1 0
+                        (0,-1.5) -- (3,-1.5) -- (3,-0.9) -- (4,-0.9)
+                        -- (4,-1.5) -- (5,-1.5) -- (5,-0.9) -- (6,-0.9)
+                        -- (6,-1.5) -- (7,-1.5);
+                    \draw[line width=0.75pt] % Q_3: 0 0 1 0 1 0 0
+                        (0,-3) -- (2,-3) -- (2,-2.4) -- (3,-2.4)
+                        -- (3,-3) -- (4,-3) -- (4,-2.4) -- (5,-2.4)
+                        -- (5,-3) -- (7,-3);
+                    \draw[line width=0.75pt] % Q_2: 0 1 0 1 0 0 0
+                        (0,-4.5) -- (1,-4.5) -- (1,-3.9) -- (2,-3.9)
+                        -- (2,-4.5) -- (3,-4.5) -- (3,-3.9) -- (4,-3.9)
+                        -- (4,-4.5) -- (7,-4.5);
+                    \draw[line width=0.75pt] % Q_1: 1 0 1 0 0 0 1
+                        (0,-5.4) -- (1,-5.4) -- (1,-6) -- (2,-6)
+                        -- (2,-5.4) -- (3,-5.4) -- (3,-6) -- (6,-6)
+                        -- (6,-5.4) -- (7,-5.4);
+                    \node[anchor=east] at (-0.25,-6.95) {沿后状态};
+                    \foreach \k/\state in {0/0001,1/0010,2/0101,3/1010,4/0100,5/1000,6/0001} {
+                        \node at ({\k+0.5},-6.95) {$\state$};
+                    }
+                \end{tikzpicture}
+            \end{center}
+
+            \item[\textbf{3)}] 该电路使用四个共用时钟的 D 触发器，因此属于同步时序逻辑电路。它通过反馈逻辑构成一个长度为 6 的循环状态序列，所有循环状态以外的状态都能在有限个周期后回到正常循环。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.3
+    \begin{solution}
+        \leavevmode
+        \begin{center}
+            \begin{tikzpicture}[
+                every node/.style={font=\small},
+                line width=0.6pt, line cap=rect, line join=miter
+            ]
+                % 沿用题图的引脚布局：上方输出，下方并行置数。
+                \draw[line width=0.9pt] (0,0) rectangle (7.4,3);
+                \node[font=\large\bfseries] at (3.7,1.55) {CT74161};
+                \foreach \i/\x/\level in {0/1.4/0,1/2.8/0,2/4.2/1,3/5.6/0} {
+                    \node[anchor=north] at (\x,2.9) {$Q_{\i}$};
+                    \draw (\x,3) -- (\x,4.05);
+                    \node[anchor=south] at (\x,4.05) {$Q_{\i}$};
+                    \node[anchor=south] at (\x,0.1) {$D_{\i}$};
+                    \draw (\x,0) -- (\x,-1.05);
+                    \node[anchor=north] at (\x,-1.05) {$\level$};
+                }
+
+                % 两个计数使能端接高电平，CP 接时钟。
+                \foreach \pin/\y/\signal in {EP/2.3/1,ET/1.4/1,CP/0.5/\text{时钟}} {
+                    \node[anchor=west] at (0.15,\y) {$\mathrm{\pin}$};
+                    \draw (-1.05,\y) -- (0,\y);
+                    \node[anchor=east] at (-1.15,\y) {$\signal$};
+                }
+
+                \node[anchor=east] at (7.25,2.3) {$C$};
+                \node[anchor=east] at (7.25,1.4) {$\overline{LD}$};
+                \node[anchor=east] at (7.25,0.5) {$\overline{R_D}$};
+                % 芯片低有效端的小圆圈与外接非门的输出圆圈分别绘制。
+                \draw (7.48,1.4) circle[radius=0.08];
+                \draw (7.48,0.5) circle[radius=0.08];
+                \draw (7.56,0.5) -- (8.1,0.5)
+                    node[right] {$1$};
+
+                % C 经一个向左的非门反馈到低有效装载端。
+                \draw (7.4,2.3) -- (9.6,2.3) -- (9.6,1.4) -- (9.2,1.4);
+                \draw (9.2,1.05) -- (8.5,1.4) -- (9.2,1.75) -- cycle;
+                \draw (8.4,1.4) circle[radius=0.1];
+                \draw (7.56,1.4) -- (8.3,1.4);
+            \end{tikzpicture}
+        \end{center}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] Mealy 型。
+            \item[\textbf{2)}] 输出序列为 $110101$，最终状态为 $S_1$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3.5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 定义状态 $S_0, S_1, S_2, S_3$ 表示累计投入金额为 $0, 1, 2, 3$ 分。那么状态转换图如下：
+            
+            \begin{center}
+                \begin{tikzpicture}[
+                    every node/.style={font=\small},
+                    state/.style={circle, draw=black, line width=0.6pt,
+                        minimum size=11mm, inner sep=1pt},
+                    transition/.style={->, line width=0.6pt},
+                    label/.style={fill=white, inner sep=2pt},
+                    >=stealth
+                ]
+                    \foreach \i/\x in {0/0,1/3.5,2/7,3/10.5} {
+                        \node[state] (s\i) at (\x,0) {$S_{\i}$};
+                        \node at (\x,-0.85) {$\i$ 分};
+                    }
+
+                    % 标注格式为“投入币值 / 输出”。
+                    \draw[transition] (s0) -- node[label, above] {$1$ / 无输出} (s1);
+                    \draw[transition] (s1) -- node[label, above] {$1$ / 无输出} (s2);
+                    \draw[transition] (s2) -- node[label, above] {$1$ / 无输出} (s3);
+                    \draw[transition] (s0.north east)
+                        .. controls (1.5,2.1) and (5.5,2.1) ..
+                        node[label, pos=0.35, above] {$2$ / 无输出} (s2.north west);
+                    \draw[transition] (s1.north east)
+                        .. controls (5,3.2) and (9,3.2) ..
+                        node[label, pos=0.65, above] {$2$ / 无输出} (s3.north west);
+
+                    % 累计投入达到 4 分时出货，并回到 S_0。
+                    \draw[transition] (s2.south west)
+                        .. controls (5.6,-1.8) and (1.4,-1.8) ..
+                        node[label, midway, below] {$2$ / 出货} (s0.south east);
+                    \draw[transition] (s3.south west)
+                        .. controls (9,-4) and (1.5,-4) ..
+                        node[label, midway, below, align=center]
+                            {$1$ / 出货\\$2$ / 出货并找 $1$ 分} (s0.south east);
+                \end{tikzpicture}
+            \end{center}
+
+            \item[\textbf{2)}] 令
+            $$
+            S_0 = 00,\quad S_1 = 01,\quad S_2 = 10,\quad S_3 = 11,
+            $$
+            现态记为 $Q_1 Q_0$，次态记为 $Q_1^{+} Q_0^{+}$。输入 $X=0$ 表示投入 $1$ 分，$X=1$ 表示投入 $2$ 分。令 $Y$ 为是否出货，$Z$ 为是否找回 $1$ 分。
+
+            状态转换表和输出逻辑真值表如下：
+
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    现态 $Q_1 Q_0$ & 输入 $X$ & 次态 $Q_1^{+} Q_0^{+}$ & 出货 $Y$ & 找零 $Z$ \\
+                    $00$ & $0$ & $01$ & $0$ & $0$ \\
+                    $00$ & $1$ & $10$ & $0$ & $0$ \\
+                    $01$ & $0$ & $10$ & $0$ & $0$ \\
+                    $01$ & $1$ & $11$ & $0$ & $0$ \\
+                    $10$ & $0$ & $11$ & $0$ & $0$ \\
+                    $10$ & $1$ & $00$ & $1$ & $0$ \\
+                    $11$ & $0$ & $00$ & $1$ & $0$ \\
+                    $11$ & $1$ & $00$ & $1$ & $1$ \\
+                \end{mytable}
+            \end{center}
+
+            按变量顺序 $(Q_1,Q_0,X)$ 编号最小项，由表可得次态函数，并化简为
+            $$
+            \begin{aligned}
+                Q_1^{+} &= \sum m(1,2,3,4) = \overline{Q_1}X + \overline{Q_1}Q_0 + Q_1\overline{Q_0}\,\overline{X} \\
+                Q_0^{+} &= \sum m(0,3,4) = \overline{Q_0}\,\overline{X} + \overline{Q_1}Q_0X
+            \end{aligned}
+            $$
+            输出逻辑函数及其化简结果为
+            $$
+            \begin{aligned}
+                Y &= \sum m(5,6,7) = Q_1 X + Q_1 Q_0 = Q_1(Q_0+X) \\
+                Z &= m(7) = Q_1 Q_0 X
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}

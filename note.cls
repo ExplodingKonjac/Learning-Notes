@@ -159,6 +159,7 @@
 \undef\AddTCB
 
 % table environment
+\UseTblrLibrary{diagbox}
 \NewTblrEnviron{mytable}
 \SetTblrInner[mytable]{
   hlines = {wd=\arrayrulewidth},
@@ -288,6 +289,13 @@
 % constants
 \newcommand{\E}{\mathrm{e}}
 \newcommand{\I}{\mathrm{i}}
+
+% set notations
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
 
 % linear algebra
 \newcommand{\vect}[1]{\boldsymbol{#1}}
