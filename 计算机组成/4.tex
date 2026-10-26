@@ -1,0 +1,144 @@
+\section{指令系统与 MIPS 汇编}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{a)}] $35 = (00101011)_2$；
+            \item[\textbf{b)}] $(10010111)_2 = (\mathrm{97})_{16}$；
+            \item[\textbf{c)}] $-35 = (11011101)_2$；
+            \item[\textbf{d)}] $(156)_8 = 110$；
+            \item[\textbf{e)}] $(01101110)_2 + (00011010)_2 = (10001000)_2$，发生溢出。
+            \item[\textbf{f)}] $\operatorname{SignExt}(\mathrm{0x88}) = \mathrm{0xFF88}$。
+            \item[\textbf{g)}] $\mathrm{0x00012344},\ \mathrm{0x00012354}$；
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        假设 \texttt{.data} 段从 \texttt{0x00003000} 开始，那么：
+        \begin{minted}{mips}
+            loop: addu $a0, $0, $t0       # 0x00082021
+                  ori $v0, $0, 4          # 0x34020004
+                  syscall                 # 0x0000000c
+                  addi $t0, $t0, -1       # 0x2108ffff
+                  bnez $t0, loop          # 0x1500fffb
+                  andi $s0, $s7, 0xffc0   # 0x320fffc0
+                  or $a0, $t7, $s0        # 0x01f02025
+                  sb $a0, 4($s6)          # 0xa2c40004
+                  srl $s7, $s7, 4         # 0x0017b902
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{solution}
+        \ 
+        \begin{minted}{mips}
+            ori $t0, $0, 0
+            ori $s0, $0, 0
+            loop:
+                lw $t1, example100($t0)
+                add $s0, $s0, $t1
+                addi $t0, $t0, 4
+                ori $t1, $0, 100
+                bne $t0, $t1, loop
+            sw $s0, example100($t0)
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4
+    \begin{solution}
+        \ 
+        \begin{minted}{mips}
+            ori $t0, $0, 0
+            loop:
+                lw $t1, SRC($t0)
+                sw $t1, DEST($t0)
+                addi $t0, $t0, 4
+                ori $t1, $0, 100
+                bne $t0, $t1, loop
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5
+    \begin{solution}
+        \ 
+        \begin{minted}{mips}
+            .macro print_space()
+                li $v0, 11
+                li $a0, 10
+                syscall
+            .end_macro
+
+            .macro exit()
+                li $v0, 10
+                syscall
+            .end_macro
+
+            main:
+                li $v0, 1
+                li $a0, 123
+                jal ABS
+                syscall
+                print_space()
+                li $v0, 1
+                li $a0, -123
+                jal ABS
+                syscall
+                print_space()
+                exit()
+
+            ABS:
+                bgez $a0, L1
+                subu $a0, $0, $a0
+            L1:
+                jr $ra
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6
+    \begin{solution}
+        \ 
+        \begin{minted}{mips}
+            FIB:
+                li $t0, 1
+                li $t1, 1
+            loop:
+                beqz $a0, end
+                sw $t0, 0($a1)
+                addu $t2, $t0, $t1
+                move $t0, $t1
+                move $t1, $t2
+                addiu $a1, $a1, 4
+                addiu $a0, $a0, -1
+                j loop
+            end:
+                jr $ra
+        \end{minted}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{a)}] \mintinline{mips}|add $s1, $s2, $0|
+            \item[\textbf{b)}] \mintinline{mips}|addi $s1, $s1, 1|
+            \item[\textbf{c)}] \mintinline{mips}|add $s1, $0, $0|
+            \item[\textbf{d)}] \mintinline{mips}|addi $s1, $s1, -1|
+            \item[\textbf{e)}] \mintinline{mips}|sub $s1, $0, $s1|
+        \end{enumerate}
+    \end{solution}
+\end{problem}

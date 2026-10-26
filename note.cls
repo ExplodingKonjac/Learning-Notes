@@ -23,7 +23,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 \RequirePackage{tikz}
-\usetikzlibrary{intersections}
+\usetikzlibrary{intersections,arrows.meta,calc}
 \RequirePackage{xcolor}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{fancyhdr}
