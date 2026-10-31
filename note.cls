@@ -167,6 +167,8 @@
   hline{2} = {wd=3\arrayrulewidth},
   vline{2-Y} = {wd=\arrayrulewidth},
 }
+\AddToHook{env/mytable/before}{\par\begingroup\centering}
+\AddToHook{env/mytable/after}{\par\endgroup}
 
 % code block settings
 \usemintedstyle{vs}
@@ -331,8 +333,9 @@
 \newcommand{\bitnxor}{\operatorname{NXOR}}
 
 % probability theory
-\newcommand{\expect}[1]{\operatorname{\mathbb{E}}\left[#1\right]}
+\newcommand{\expect}[1]{\operatorname{\mathbb{E}}\left(#1\right)}
 \newcommand{\cov}[2]{\operatorname{Cov}\left(#1, #2\right)}
+\newcommand{\variance}[1]{\operatorname{Var}\left(#1\right)}
 \newcommand{\prob}[1]{\operatorname{\mathbb{P}}\left(#1\right)}
 
 \let\bbordermatrix\bordermatrix

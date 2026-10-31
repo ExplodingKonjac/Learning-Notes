@@ -1,0 +1,515 @@
+\section{MIPS 处理器设计}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]\ 
+            \begin{center}
+                \begin{mytable}{ccc}
+                    控制信号 & \texttt{add} & \texttt{lw} \\
+                    RegDst & 1 & 0 \\
+                    ALUSrc & 0 & 1 \\
+                    MemtoReg & 0 & 1 \\
+                    RegWrite & 1 & 1 \\
+                    MemRead & 0 & 1 \\
+                    MemWrite & 0 & 0 \\
+                    Branch & 0 & 0 \\
+                    ALUOp & 10 & 00 \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}] \texttt{add} 指令用到了 PC、指令储存器、寄存器堆、ALU；\texttt{lw} 指令用到了 PC、指令储存器、寄存器堆、数据储存器、ALU。
+            
+            \item[\textbf{3)}] 对于 \texttt{add}，分支目标地址输出结果、数据储存器读出结果未使用；对于 \texttt{lw}，分支目标地址输出结果、寄存器 Rt 读出结果、ALU 的 zero 标志未使用。
+            
+            \item[\textbf{4)}] \texttt{and} 指令关键路径为：
+            $$
+            \text{指令储存器} \to (\text{寄存器堆},\ \text{控制器}) \to \text{ALUSrc Mux} \to \text{ALU} \to \text{MemtoReg Mux}
+            $$
+            因此情况 a 延迟为 $400 + \max\{200, 100\} + 30 + 120 + 30 = 780\,\mathrm{ps}$，情况 b 延迟为 $500 + \max\{220, 65\} + 100 + 180 + 100 = 1100\,\mathrm{ps}$。
+
+            \item[\textbf{5)}] \texttt{lw} 指令关键路径为：
+            $$
+            \begin{gathered}
+                \text{指令储存器} \to (\text{寄存器堆},\ \text{控制器}) \to \text{ALUSrc Mux} \\
+                \to \text{ALU} \to \text{数据储存器} \to \text{MemtoReg Mux}
+            \end{gathered}
+            $$
+            因此情况 a 延迟为 $400 + \max\{200, 100\} + 30 + 120 + 350 + 30 = 1130\,\mathrm{ps}$，情况 b 延迟为 $500 + \max\{220, 65\} + 100 + 180 + 1000 + 100 = 2100\,\mathrm{ps}$。
+
+            \item[\textbf{6)}] \texttt{beq} 指令关键路径为：
+            $$
+            \text{指令储存器} \to (\text{寄存器堆},\ \text{控制器}) \to \text{ALUSrc Mux} \to \text{ALU} \to \text{PC Mux}
+            $$
+            （分支目标地址由两个加法器并行计算。）因此情况 a 延迟为 $400 + \max\{200, 100\} + 30 + 120 + 30 = 780\,\mathrm{ps}$，情况 b 延迟为 $500 + \max\{220, 65\} + 100 + 180 + 100 = 1100\,\mathrm{ps}$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 已有的指令存储器、控制单元、寄存器堆、ALU、写回多选器和 PC 更新逻辑都可以继续使用。
+            
+            \item[\textbf{2)}] 对于 \texttt{add}，给寄存器堆增加第三个寄存器读取端口，再添加一个新的加法运算单元；对于 \texttt{sll}，只需要让 ALU 支持移位运算；两条指令都需要扩展指令解码逻辑。
+            
+            \item[\textbf{3)}] 需要增加 Rx 的输出信号。
+            
+            \item[\textbf{4)}] 原处理器的最长路径是 \texttt{lw}。改进 a 只降低加法器延迟，但加法器不存在关键路径中。改进 b 将寄存器堆的延迟从 200 ps 增加至 300 ps，这会直接延长关键路径。因此：
+            \begin{center}
+                \begin{mytable}{ccc}
+                    方案 & 改进前周期 & 改进后周期 \\
+                    a. & $1130\,\mathrm{ps}$ & $1130\,\mathrm{ps}$ \\
+                    b. & $1130\,\mathrm{ps}$ & $1230\,\mathrm{ps}$ \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{5)}] 改进 a 不改变指令数和周期时间，因此 $S_a = 1$；改进 b 的加速比为 $S_b = \frac{1130}{0.95 \cdot 1230} \approx 0.9671$。
+            
+            \item[\textbf{6)}] 根据原图，原处理器成本为
+            $$
+            C_0 = 1000 + 2 \cdot 30 + 3 \cdot 10 + 100 + 200 + 2000 + 500 = 3890
+            $$
+            改进 a 的新成本为 $C_a = C_0 + 2 \cdot 20 = 3930$，改进 b 的新成本为 $C_b = C_0 + 200 = 4090$。于是得到两个改进的新旧性价比之比：
+
+            \begin{center}
+                \begin{mytable}{cc}
+                    方案 & 新旧性价比之比 \\
+                    a. & $3890 / 3930 \approx 0.9898$ \\
+                    b. & $(0.9671 \times 3890) / 4090 \approx 0.9198$ \\
+                \end{mytable}
+            \end{center}
+
+            因此两项改进都会使得性价比下降，改进没有意义。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 连续取指时，时钟周期只需覆盖取指和 PC 更新这两条并行路径：
+            $$
+            T = \max\{t_{\text{指令储存器}},\ t_{\text{加法器}}\}
+            $$
+            因此情况 a 为 $\max\{400,100\}=400\,\mathrm{ps}$，情况 b 为 $\max\{500,150\}=500\,\mathrm{ps}$。
+
+            \item[\textbf{2)}] 无条件相对跳转的关键路径为
+            $$
+            \text{指令储存器} \to \text{符号扩展} \to \text{左移两位} \to \text{分支加法器} \to \text{PCSrc Mux}
+            $$
+            其中图 3 右侧的分支加法器按 ALU 的延迟计算。因此情况 a 为
+            $$
+            400 + 20 + 2 + 120 + 30 = 572\,\mathrm{ps}
+            $$
+            情况 b 为
+            $$
+            500 + 90 + 20 + 180 + 100 = 890\,\mathrm{ps}
+            $$
+            若采用 26 位直接跳转字段而不经过符号扩展，则两种情况分别为 $552\,\mathrm{ps}$ 和 $800\,\mathrm{ps}$。
+
+            \item[\textbf{3)}] 有条件相对跳转有两条候选路径：一条与第 2) 问相同，用于计算分支目标地址；另一条经过寄存器堆、ALUSrc Mux 和 ALU 得到 zero 标志，再由与门控制 PCSrc Mux。后者更长：
+            $$
+            \text{指令储存器} \to \text{寄存器堆} \to \text{ALUSrc Mux} \to \text{ALU} \to \text{与门} \to \text{PCSrc Mux}
+            $$
+            情况 a 为
+            $$
+            400 + 200 + 30 + 120 + 30 = 780\,\mathrm{ps}
+            $$
+            情况 b 为
+            $$
+            500 + 220 + 100 + 180 + 100 = 1100\,\mathrm{ps}
+            $$
+
+            \item[\textbf{4)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] PC 加 4 的加法器：所有指令都需要。每条指令都要计算顺序下一条指令的地址，分支和跳转也要以 PC+4 为基础。
+                \item[\textbf{b)}] 数据存储器：只有 \texttt{lw} 和 \texttt{sw} 需要。
+            \end{enumerate}
+
+            \item[\textbf{5)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] 在题给延迟下，PC 加 4 的加法器不在任何指令的关键路径上。它所在的路径只经过加法器和多选器，远短于取指后经过寄存器堆和 ALU 的路径。
+                \item[\textbf{b)}] 数据存储器位于 \texttt{lw} 的关键路径上。\texttt{sw} 也要经过数据存储器，但其路径比 \texttt{lw} 短，整个处理器的时钟周期由 \texttt{lw} 决定。
+            \end{enumerate}
+
+            \item[\textbf{6)}] 仅需支持 \texttt{beq} 和 \texttt{add} 时，两条指令的关键路径均为
+            $$
+            \text{指令储存器} \to \text{寄存器堆} \to \text{ALUSrc Mux} \to \text{ALU} \to \text{PCSrc Mux}
+            $$
+            情况 a 为 $780\,\mathrm{ps}$，情况 b 为 $1100\,\mathrm{ps}$。
+            \begin{enumerate}
+                \item[\textbf{a)}] PC 加 4 的加法器只通过分支目标加法器影响 PCSrc Mux。设其延迟为 $t$，则分支目标路径（含 PCSrc Mux）为 $t + t_{\text{ALU}} + t_{\text{mux}}$。只要它不超过原关键路径，时钟周期就不变；超过后时钟周期随 $t$ 线性增加。阈值分别为
+                $$
+                t + 120 + 30 \le 780 \implies t \le 630\,\mathrm{ps}\quad\text{(a)}
+                $$
+                $$
+                t + 180 + 100 \le 1100 \implies t \le 820\,\mathrm{ps}\quad\text{(b)}
+                $$
+                \item[\textbf{b)}] \texttt{beq} 和 \texttt{add} 都不访问数据存储器，因此数据存储器的延迟在任意范围内变化都不会影响时钟周期。
+            \end{enumerate}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 仅支持 ALU 类指令（\texttt{add}、\texttt{and} 等）时，关键路径为
+            $$
+            \text{指令储存器} \to \text{寄存器堆} \to \text{ALUSrc Mux} \to \text{ALU} \to \text{MemtoReg Mux}
+            $$
+            情况 a 为 $400+200+30+120+30=780\,\mathrm{ps}$，情况 b 为 $500+220+100+180+100=1100\,\mathrm{ps}$。
+
+            \item[\textbf{2)}] 仅支持 \texttt{lw} 时，关键路径为
+            $$
+            \text{指令储存器} \to \text{寄存器堆} \to \text{ALUSrc Mux} \to \text{ALU} \to \text{数据储存器} \to \text{MemtoReg Mux}
+            $$
+            情况 a 为 $400+200+30+120+350+30=1130\,\mathrm{ps}$，情况 b 为 $500+220+100+180+1000+100=2100\,\mathrm{ps}$。
+
+            \item[\textbf{3)}] 必须支持 \texttt{add}、\texttt{beq}、\texttt{lw} 和 \texttt{sw} 时，时钟周期取各指令延迟的最大值。\texttt{lw} 的延迟最大，因此情况 a 为 $1130\,\mathrm{ps}$，情况 b 为 $2100\,\mathrm{ps}$。
+
+            \item[\textbf{4)}] 数据存储器只在 \texttt{lw} 和 \texttt{sw} 中使用，因此平均使用时钟周期数为
+            \begin{center}
+                \begin{mytable}{cccc}
+                    情况 & \texttt{lw} & \texttt{sw} & 平均值 \\
+                    a & $20\%$ & $10\%$ & $0.30$ \\
+                    b & $35\%$ & $15\%$ & $0.50$ \\
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{5)}] 符号扩展电路在 \texttt{addi}、\texttt{beq}、\texttt{lw} 和 \texttt{sw} 中使用，因此平均使用时钟周期数为
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    情况 & \texttt{addi} & \texttt{beq} & \texttt{lw}、\texttt{sw} & 平均值 \\
+                    a & $15\%$ & $20\%$ & $20\%+10\%$ & $0.65$ \\
+                    b & $5\%$ & $15\%$ & $35\%+15\%$ & $0.70$ \\
+                \end{mytable}
+            \end{center}
+            在未被使用的其余时间里，符号扩展电路仍然在对指令的低 16 位做符号扩展，只是其输出不会被数据通路采用，相当于空转，仍会产生动态功耗。
+
+            \item[\textbf{6)}] 关键路径是 \texttt{lw}。将路径上某个单元的延迟减少 $10\%$ 时，减少量等于该单元延迟的 $10\%$，因此应选择关键路径上延迟最大的单元。
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    情况 & 应减少的单元 & 原周期 & 新周期 & 加速比 \\
+                    a & 指令储存器（$400\to360$） & $1130\,\mathrm{ps}$ & $1090\,\mathrm{ps}$ & $1130/1090\approx1.0367$ \\
+                    b & 数据存储器（$1000\to900$） & $2100\,\mathrm{ps}$ & $2000\,\mathrm{ps}$ & $2100/2000=1.05$ \\
+                \end{mytable}
+            \end{center}
+            情况 a 中数据存储器的延迟为 $350\,\mathrm{ps}$，减少 $10\%$ 只能缩短 $35\,\mathrm{ps}$，新周期为 $1095\,\mathrm{ps}$，加速比约为 $1.032$，略逊于减少指令储存器的方案。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] 指令储存器输出第 7 位就是指令字的第 7 位；对 I 型指令，它是立即数的第 7 位。取指令 \texttt{lw \$1,128(\$0)}，其机器码为 \texttt{0x8C010080}，第 7 位为 1。令 \texttt{\$1}=0，\texttt{Mem[0]}=0，\texttt{Mem[128]=0x12345678}。正常时 \texttt{\$1=0x12345678}；若第 7 位固定为 0，该指令变成 \texttt{lw \$1,0(\$0)}，读出 \texttt{Mem[0]=0}。检查 \texttt{\$1} 即可判定。
+                
+                \item[\textbf{b)}] MemtoReg 控制写回多选器。取 \texttt{lw \$1,0(\$2)}，令 \texttt{\$2=0x100}，\texttt{Mem[0x100]=0xABCD}，\texttt{\$1}=0。正常时 \texttt{\$1=0xABCD}；若 MemtoReg 固定为 0，写回的是 ALU 结果（即地址 \texttt{0x100}），故 \texttt{\$1=0x100}。检查 \texttt{\$1} 即可判定。
+            \end{enumerate}
+
+            \item[\textbf{2)}] 不能。一条指令执行时，该信号或该位只能取一个确定值。若正常值为 1，则固定为 1 的缺陷与正常情况完全一致，无法观察；若正常值为 0，则固定为 0 的缺陷无法观察。因此必须用两条正常值分别为 0 和 1 的测试指令，才能分别覆盖固定为 0 和固定为 1 的缺陷。
+
+            \item[\textbf{3)}] 情况 a 仍可使用，但需要改造程序；情况 b 则只能运行一部分程序。
+            \begin{enumerate}
+                \item[\textbf{a)}] 第 7 位固定为 1 时，所有指令字的第 7 位都必须按 1 来编码。
+                \begin{itemize}
+                    \item R 型指令的第 7 位是 shamt 的第 1 位。对 \texttt{add}、\texttt{sub}、\texttt{and}、\texttt{or}、\texttt{slt} 等不使用 shamt 的指令，把 shamt 编成 2（即 \texttt{00010}）即可，语义不变；对移位指令，可把移位量拆成若干个第 7 位为 1 的移位量之和，例如左移 1 位可写成先左移 3 位再右移 2 位。
+                    \item I 型指令的第 7 位是立即数的第 7 位。若所需立即数 $D$ 的第 7 位为 0，则先用 \texttt{addi \$at,\$rs,-128} 把基址减 128，再把偏移改成 $D+128$。由于 $-128=\texttt{0xFF80}$，且 $D$ 的第 7 位为 0 时 $D+128$ 的第 7 位为 1，这两条指令都不受该缺陷影响。
+                    \item \texttt{beq} 的分支位移若第 7 位为 0，可以插入空操作调整代码布局，或改写成 \texttt{bne} 加 \texttt{j} 的组合；\texttt{j} 的目标字段也可以通过调整代码位置使其第 7 位为 1。指令储存器足够大，因此总能完成这种布局调整。
+                \end{itemize}
+
+                \item[\textbf{b)}] MemtoReg 固定为 1 时，所有需要把 ALU 结果写回寄存器的指令都会写回数据存储器的读出值。\texttt{lw} 仍然正常，\texttt{sw}、\texttt{beq}、\texttt{j} 等不写寄存器的指令也不受影响；但 \texttt{add}、\texttt{addi} 等算术逻辑指令无法在题目给出的基本数据通路中，仅用这些正常指令一般性地替代，因为把 ALU 结果送入寄存器这一步本身已经被破坏。
+            \end{enumerate}
+
+            \item[\textbf{4)}] 检测 MemRead：
+            \begin{enumerate}
+                \item[\textbf{a)}] MemRead 只在 \texttt{lw} 时为 1。对其他指令，正常值为 0，固定为 1 只会让数据存储器多进行一次读操作；但此时 MemtoReg=0，读出的数据不会被写回，PC、寄存器堆和存储器都不改变。因此无法用题述方法检测。
+                \item[\textbf{b)}] 受影响的只有 \texttt{Instruction[31:26]} 全为 0 的 R 型指令，而 R 型指令本来就不读数据存储器，MemRead 的正常值就是 0，因此该缺陷同样不可检测。
+            \end{enumerate}
+
+            \item[\textbf{5)}] 检测 Jump：
+            \begin{enumerate}
+                \item[\textbf{a)}] 取一条非跳转指令，例如 \texttt{add \$1,\$2,\$3}。正常时新 PC 为 PC+4；若 Jump 固定为 1，新 PC 变为跳转目标 \texttt{(PC+4)[31:28] || (Instruction[25:0]<<2)}。只要指令低 26 位不全为 0，该目标就不等于 PC+4，检查 PC 即可判定。
+                \item[\textbf{b)}] 受影响的 R 型指令本来就有 Jump=0；而 \texttt{j} 的 opcode 为 \texttt{000010}，不满足“全为 0”的条件，因此不受该缺陷影响。该缺陷不可检测。
+            \end{enumerate}
+
+            \item[\textbf{6)}] 五个多选器控制信号为 RegDst、ALUSrc、MemtoReg、Branch 和 Jump。它们在各指令中的正常值如下：
+            \begin{center}
+                \begin{mytable}{cccccc}
+                    指令 & RegDst & ALUSrc & MemtoReg & Branch & Jump \\
+                    \texttt{add} & 1 & 0 & 0 & 0 & 0 \\
+                    \texttt{lw} & 0 & 1 & 1 & 0 & 0 \\
+                    \texttt{sw} & 0 & 1 & X & 0 & 0 \\
+                    \texttt{beq} & X & 0 & X & 1 & 0 \\
+                    \texttt{j} & X & X & X & 0 & 1 \\
+                \end{mytable}
+            \end{center}
+            \begin{center}
+                \begin{mytable}{cccc}
+                    信号 & 缺陷 a 是否可检测 & 缺陷 b 是否可检测 & 原因 \\
+                    RegDst & 可 & 可 & R 型为 1，非 R 型为 0 \\
+                    ALUSrc & 可 & 不可 & R 型本来为 0 \\
+                    MemtoReg & 不可 & 不可 & 读出值可能不确定 \\
+                    Branch & 可 & 不可 & R 型本来为 0 \\
+                    Jump & 可 & 不可 & R 型本来为 0 \\
+                \end{mytable}
+            \end{center}
+            缺陷 b 只影响 R 型指令，而除 RegDst 外，其余四个信号在 R 型指令中的正常值都是 0，因此固定为 0 不产生任何影响。对于可检测的缺陷，只需下面两组测试（假设同一时刻至多存在一个缺陷）：
+
+            \textbf{测试 1}：初值 \texttt{\$1=0}、\texttt{\$2=2}、\texttt{\$3=3}，\texttt{Mem[5]=0}，执行
+            \begin{center}
+                \texttt{add \$1,\$2,\$3} \quad（机器码 \texttt{0x00630820}）
+            \end{center}
+            正常结果：\texttt{\$1=5}，\texttt{\$3=3}，PC=PC+4。
+            \begin{itemize}
+                \item RegDst 固定为 0：结果写入 \texttt{\$3}，\texttt{\$1} 仍为 0，可检测。
+                \item ALUSrc 固定为 1：ALU 的 B 输入变为立即数 \texttt{0x0820=2080}，\texttt{\$1=2082}，可检测。
+                \item MemtoReg 固定为 1：若假定 MemRead=0 时数据存储器仍稳定输出对应单元的内容，则写回值为 \texttt{Mem[5]=0}，\texttt{\$1=0}，可以检测；但真实存储器在未使能时输出可能不确定，因此这一项不能保证可靠检测。
+                \item Jump 固定为 1：PC 变为跳转目标 \texttt{0x018C2080}，不等于 PC+4，可检测。
+                \item Branch 固定为 1：此时 ALU 结果非零，Zero=0，PCSrc 仍为 0，不影响结果。
+            \end{itemize}
+
+            \textbf{测试 2}：初值 \texttt{\$1=0}、\texttt{\$2=-4}，\texttt{Mem[0]=0x12345678}，执行
+            \begin{center}
+                \texttt{lw \$1,4(\$2)} \quad（机器码 \texttt{0x8C410004}）
+            \end{center}
+            正常结果：\texttt{\$1=0x12345678}，PC=PC+4。
+            \begin{itemize}
+                \item RegDst 固定为 1：写寄存器变为指令第 15\textasciitilde 11 位，即 \texttt{\$0}，\texttt{\$1} 保持 0，可检测。
+                \item Branch 固定为 1：ALU 结果为 0，Zero=1，PCSrc 选分支目标，PC 变为 PC+4+$4\times4$=PC+20，可检测。
+                \item Jump 固定为 1：PC 变为跳转目标 \texttt{0x01040010}，也可检测。
+            \end{itemize}
+
+            测试 1 中的 RegDst 正常值为 1，测试 2 中的 RegDst 正常值为 0，因此要同时检测 RegDst 的两种固定值缺陷至少需要两条指令，两组测试已经达到最少。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] \texttt{lw \$1,40(\$6)}：opcode 为 \texttt{100011}，rs 为 \texttt{00110}，rt 为 \texttt{00001}，立即数为 \texttt{0x0028}。因此
+                $$
+                \texttt{0x8CC10028} = \texttt{1000 1100 1100 0001 0000 0000 0010 1000}
+                $$
+                \item[\textbf{b)}] \texttt{bne \$1,\$2,Label} 且 Label 就是该指令自身，故分支位移为 $-1$，即 \texttt{0xFFFF}。opcode 为 \texttt{000101}，rs 为 \texttt{00001}，rt 为 \texttt{00010}，因此
+                $$
+                \texttt{0x1422FFFF} = \texttt{0001 0100 0010 0010 1111 1111 1111 1111}
+                $$
+            \end{enumerate}
+
+            \item[\textbf{2)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] Read register 1 得到的是 rs，即 \texttt{\$6}。该寄存器确实被读出，用于计算地址。Read register 2 得到的是 rt，即 \texttt{\$1}；寄存器堆仍然会把它的值读出，但读出的数据并不使用。
+                \item[\textbf{b)}] Read register 1 得到 \texttt{\$1}，Read register 2 得到 \texttt{\$2}，两者都确实被读出。
+            \end{enumerate}
+
+            \item[\textbf{3)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] Write register 得到 rt，即 \texttt{\$1}（RegDst=0）。RegWrite=1，因此 \texttt{\$1} 确实被写入。
+                \item[\textbf{b)}] Write register 得到 rt，即 \texttt{\$2}；若 RegDst=1，则为指令第 15\textasciitilde 11 位。由于 \texttt{bne} 的立即数为 \texttt{0xFFFF}，这五位是 \texttt{11111}，即 \texttt{\$31}。由于 RegWrite=0，该寄存器并没有被写入。
+            \end{enumerate}
+
+            \item[\textbf{4)}] 各控制信号的取值如下：
+            \begin{center}
+                \begin{mytable}{cccc}
+                    指令 & RegDst & RegWrite & MemRead \\
+                    \texttt{lw \$1,40(\$6)} & 0 & 1 & 1 \\
+                    \texttt{bne \$1,\$2,Label} & X & 0 & 0 \\
+                \end{mytable}
+            \end{center}
+            因此情况 a（RegDst 与 MemRead）为：\texttt{lw} 取 $(0,1)$，\texttt{bne} 取 $(X,0)$；情况 b（RegWrite 与 MemRead）为：\texttt{lw} 取 $(1,1)$，\texttt{bne} 取 $(0,0)$。
+
+            \item[\textbf{5)}] 设指令第 31\textasciitilde 26 位为 $I_{31},I_{30},\ldots,I_{26}$。在仅需支持 \texttt{lw}、\texttt{sw}、\texttt{beq}、\texttt{add} 和 \texttt{j} 时，化简可得
+            $$
+            \begin{gathered}
+                \text{RegDst} = \overline{I_{31}} \\
+                \text{MemRead} = I_{31} \land \overline{I_{29}} \\
+                \text{RegWrite} = \left(\overline{I_{28}} \land \overline{I_{27}}\right) \lor \text{MemRead}
+            \end{gathered}
+            $$
+            这里 \texttt{add} 的 opcode 为 \texttt{000000}，\texttt{lw} 为 \texttt{100011}，\texttt{sw} 为 \texttt{101011}，\texttt{beq} 为 \texttt{000100}，\texttt{j} 为 \texttt{000010}。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 7
+    \begin{solution}
+        以下把控制单元延迟理解为从取指后开始计时；再把 PC 选择多选器计入，理想周期为
+        $$
+        T_a^{(0)}=1130+30=1160\,\mathrm{ps},\qquad
+        T_b^{(0)}=2100+100=2200\,\mathrm{ps}.
+        $$
+
+        \begin{enumerate}
+            \item[\textbf{1)}] MemWrite 只需在时钟边沿前稳定，故
+            $$
+            t_{\text{IM}}+t_{\text{MemWrite}}\le T^{(0)}.
+            $$
+            情况 a 为 $t\le1160-400=760\,\mathrm{ps}$，情况 b 为 $t\le2200-500=1700\,\mathrm{ps}$。
+
+            \item[\textbf{2)}] MemWrite 与 RegWrite 并列最不关键。二者都只需在周期末稳定，允许时间同第 1) 问，即 $760\,\mathrm{ps}$（a）和 $1700\,\mathrm{ps}$（b）。
+
+            \item[\textbf{3)}] ALUOp 后接 ALU 控制单元，ALUSrc 后接 ALUSrc Mux。二者允许时间为
+            \begin{center}
+                \begin{mytable}{ccc}
+                    信号 & 情况 a & 情况 b \\
+                    ALUOp & 210 & 365 \\
+                    ALUSrc & 230 & 320 \\
+                \end{mytable}
+            \end{center}
+            其中 ALUOp 按 $T^{(0)}-t_{\text{IM}}-t_{\text{ALUControl}}-t_{\text{ALU}}-t_{\text{DM}}-t_{\text{Mux}}$ 计算，ALUSrc 按 $T^{(0)}-t_{\text{IM}}-t_{\text{Mux}}-t_{\text{ALU}}-t_{\text{DM}}-t_{\text{Mux}}$ 计算。因此情况 a 最关键的是 ALUOp（$210\,\mathrm{ps}$），情况 b 最关键的是 ALUSrc（$320\,\mathrm{ps}$）。
+
+            \item[\textbf{4)}] 令余量 = 允许时间 $-$ 实际时间，得
+            \begin{center}
+                \small
+                \begin{mytable}{ccccccc}
+                    信号 & a 允许 & a 实际 & a 余量 & b 允许 & b 实际 & b 余量 \\
+                    RegDst & 730 & 720 & $+10$ & 1600 & 1600 & $0$ \\
+                    Jump & 730 & 730 & $0$ & 1600 & 1600 & $0$ \\
+                    Branch & 700 & 600 & $+100$ & 1500 & 1400 & $+100$ \\
+                    MemRead & 380 & 400 & $-20$ & 600 & 500 & $+100$ \\
+                    MemtoReg & 730 & 700 & $+30$ & 1600 & 1400 & $+200$ \\
+                    ALUOp & 210 & 200 & $+10$ & 365 & 400 & $-35$ \\
+                    MemWrite & 760 & 710 & $+50$ & 1700 & 1500 & $+200$ \\
+                    ALUSrc & 230 & 200 & $+30$ & 320 & 400 & $-80$ \\
+                    RegWrite & 760 & 800 & $-40$ & 1700 & 1700 & $0$ \\
+                \end{mytable}
+            \end{center}
+            情况 a 的最小余量为 RegWrite 的 $-40\,\mathrm{ps}$，故 $T_a=1160+40=1200\,\mathrm{ps}$；情况 b 的最小余量为 ALUSrc 的 $-80\,\mathrm{ps}$，故 $T_b=2200+80=2280\,\mathrm{ps}$。
+
+            \item[\textbf{5)}] 只需消除负余量，使周期回到 $1160\,\mathrm{ps}$（a）和 $2200\,\mathrm{ps}$（b）；对正余量信号继续加速不会缩短关键路径。
+            \begin{center}
+                \begin{mytable}{cccc}
+                    情况 & 需要加速的信号 & 总加速量 & 代价 \\
+                    a & MemRead 20，RegWrite 40 & $60\,\mathrm{ps}$ & $12$ 元 \\
+                    b & ALUOp 35，ALUSrc 80 & $115\,\mathrm{ps}$ & $23$ 元 \\
+                \end{mytable}
+            \end{center}
+            加速比分别为 $1200/1160\approx1.0345$ 和 $2280/2200\approx1.0364$。
+
+            \item[\textbf{6)}] 保持实际周期 $1200\,\mathrm{ps}$（a）和 $2280\,\mathrm{ps}$（b）不变，可减慢量为“原余量 $+40\,\mathrm{ps}$ 或 $+80\,\mathrm{ps}$”：
+            \begin{center}
+                \small
+                \begin{mytable}{ccccc}
+                    信号 & a 可减慢 & a 节省 & b 可减慢 & b 节省 \\
+                    RegDst & 50 & 10 & 80 & 16 \\
+                    Jump & 40 & 8 & 80 & 16 \\
+                    Branch & 140 & 28 & 180 & 36 \\
+                    MemRead & 20 & 4 & 180 & 36 \\
+                    MemtoReg & 70 & 14 & 280 & 56 \\
+                    ALUOp & 50 & 10 & 45 & 9 \\
+                    MemWrite & 90 & 18 & 280 & 56 \\
+                    ALUSrc & 70 & 14 & 0 & 0 \\
+                    RegWrite & 0 & 0 & 80 & 16 \\
+                \end{mytable}
+            \end{center}
+            情况 a 共减慢 $530\,\mathrm{ps}$，节省 $106$ 元；情况 b 共减慢 $1205\,\mathrm{ps}$，节省 $241$ 元。RegWrite（a）和 ALUSrc（b）已无余量，不能再减慢。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 8
+    \begin{solution}
+        两条指令译码如下：
+        \begin{center}
+            \small
+            \begin{mytable}{cccc}
+                情况 & 指令字 & 二进制 & 汇编 \\
+                a & \texttt{0x8C430010} & \texttt{10001100 01000011 00000000 00010000} & \texttt{lw \$3,16(\$2)} \\
+                b & \texttt{0x1023000C} & \texttt{00010000 00100011 00000000 00001100} & \texttt{beq \$1,\$3,+12} \\
+            \end{mytable}
+        \end{center}
+        a 为 \texttt{lw}：rs=2，rt=3，imm=16；b 为 \texttt{beq}：rs=1，rt=3，imm=12。以下把指令字 a 与寄存器初值 a、指令字 b 与寄存器初值 b 对应。
+
+        \begin{enumerate}
+            \item[\textbf{1)}] 
+            \begin{center}
+                \begin{mytable}{cccc}
+                    情况 & 符号扩展 & 跳转左移两位 & 分支左移两位 \\
+                    a & \texttt{0x00000010} & \texttt{0x010C0040} & \texttt{0x00000040} \\
+                    b & \texttt{0x0000000C} & \texttt{0x008C0030} & \texttt{0x00000030} \\
+                \end{mytable}
+            \end{center}
+            跳转左移两位处理 \texttt{Instruction[25:0]}：a 为 \texttt{0x00430010}$\ll2$，b 为 \texttt{0x0023000C}$\ll2$；分支左移两位处理符号扩展后的立即数。
+
+            \item[\textbf{2)}] ALU 控制单元的输入为
+            \begin{center}
+                \begin{mytable}{cccc}
+                    情况 & ALUOp & \texttt{Instruction[5:0]} & ALU 操作 \\
+                    a & \texttt{00} & \texttt{010000} & 加（\texttt{0010}） \\
+                    b & \texttt{01} & \texttt{001100} & 减（\texttt{0110}） \\
+                \end{mytable}
+            \end{center}
+            对 \texttt{lw} 和 \texttt{beq}，\texttt{Instruction[5:0]} 只是立即数的一部分，ALU 操作由 ALUOp 决定。
+
+            \item[\textbf{3)}] 
+            \begin{enumerate}
+                \item[\textbf{a)}] \texttt{lw} 不改变控制流，新 PC 为 PC+4，路径为
+                $$
+                \text{PC}\to\text{PC+4 加法器}\to\text{Branch Mux}\to\text{Jump Mux}\to\text{PC}.
+                $$
+                \item[\textbf{b)}] \texttt{beq} 在 \texttt{\$1=\$3} 时新 PC 为
+                $$
+                \text{PC}+4+(\operatorname{SignExt}(12)\ll2)=\text{PC}+52,
+                $$
+                否则为 PC+4。分支目标由 PC+4、符号扩展和左移两位产生；ALU 的 zero 与 Branch 相与后控制 Branch Mux，最后经 Jump Mux 送回 PC。初值 \texttt{\$1=-16}、\texttt{\$3=-3} 不等，故实际新 PC 为 PC+4。
+            \end{enumerate}
+
+            \item[\textbf{4)}] 各多选器输出如下（数据存储器全为 0；X 表示无关项）：
+            \begin{center}
+                \begin{mytable}{ccc}
+                    多选器 & 情况 a：\texttt{lw} & 情况 b：\texttt{beq} \\
+                    RegDst Mux & 3 & X（3 或 0） \\
+                    ALUSrc Mux & 16 & $-3$ \\
+                    MemtoReg Mux & 0 & X \\
+                    Branch Mux & PC+4 & PC+4 \\
+                    Jump Mux & PC+4 & PC+4 \\
+                \end{mytable}
+            \end{center}
+            \texttt{lw} 的地址为 \texttt{\$2}+16=18，因存储器全零，写回值为 0。\texttt{beq} 的 ALU 结果为 $-16-(-3)=-13$，Zero=0，故两个 PC 多选器都选 PC+4；RegDst 与 MemtoReg 因 RegWrite=0 而无关。题目不考虑 \texttt{lw} 地址的 4 字节对齐限制。
+
+            \item[\textbf{5)}] ALU 与两个加法器的输入为
+            \begin{center}
+                \begin{mytable}{ccc}
+                    运算单元 & 情况 a & 情况 b \\
+                    ALU 输入 A & 2 & $-16$ \\
+                    ALU 输入 B & 16 & $-3$ \\
+                    PC+4 加法器 & PC，4 & PC，4 \\
+                    分支加法器 & PC+4，$16\ll2=64$ & PC+4，$12\ll2=48$ \\
+                \end{mytable}
+            \end{center}
+            ALU A 为 \texttt{Reg[rs]}；a 的 ALU 结果为 18，b 为 $-13$。a 的分支目标 PC+68 和 b 的分支目标 PC+52 都不会被采用。
+
+            \item[\textbf{6)}] 寄存器堆的输入为
+            \begin{center}
+                \begin{mytable}{ccc}
+                    输入 & 情况 a：\texttt{lw} & 情况 b：\texttt{beq} \\
+                    Read register 1 & 2 & 1 \\
+                    Read register 2 & 3 & 3 \\
+                    Write register & 3 & X（3 或 0） \\
+                    Write data & 0 & X \\
+                    RegWrite & 1 & 0 \\
+                \end{mytable}
+            \end{center}
+            \texttt{lw} 的写数据为 \texttt{Mem[\$2+16]}=0；\texttt{beq} 不写寄存器，故写地址和写数据均无关。两情况的读出值分别为 \texttt{\$2=2}、\texttt{\$3=3} 和 \texttt{\$1=-16}、\texttt{\$3=-3}。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+

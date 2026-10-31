@@ -1,0 +1,203 @@
+\section{随机变量的数字特征}
+
+\subsection{数学期望}
+
+\begin{definition}[数学期望]
+    设随机变量 $X$ 满足
+    $$
+    \prob{X = x_k} = p_k, \quad k = 1, 2, \dots
+    $$
+    其中 $\sum_{k = 1}^{+ \infty} p_k = 1$，若级数
+    $$
+    \sum_{k = 1}^{+ \infty} x_k p_k
+    $$
+    绝对收敛，那么称该级数的和是 $X$ 的\textbf{数学期望}，记做 $\expect{X}$。
+
+    设连续型随机变量 $X$ 的概率密度为 $f(x)$，若积分
+    $$
+    \int_{- \infty}^{+ \infty} x f(x) \dd{x}
+    $$
+    绝对收敛，那么称该积分的值是 $X$ 的\textbf{数学期望}，或者\textbf{均值}，同样记做 $\expect{X}$。
+\end{definition}
+
+随机变量的数学期望具有下面的性质：
+
+\begin{enumerate}
+    \item 若 $C$ 是常数，那么 $\expect{C} = C$；
+    \item 若 $X$ 是随机变量，$C$ 是常数，那么 $\expect{C X} = C \expect{X}$；
+    \item 设 $X, Y$ 是两个随机变量，那么 $\expect{X + Y} = \expect{X} + \expect{Y}$；
+    \item 设 $X, Y$ 是两个相互独立的随机变量，那么 $\expect{X Y} = \expect{X} \expect{Y}$。
+\end{enumerate}
+
+\subsection{方差}
+
+\begin{definition}[方差]
+    设 $X$ 是随机变量，定义 $X$ 的\textbf{方差}为
+    $$
+    \variance{X} = \expect{\ab(X - \expect{X})^2}
+    $$
+\end{definition}
+
+根据期望的性质，我们可以得到
+$$
+\begin{aligned}
+    \variance{X} & = \expect{X^2 - 2 X \expect{X} + \expect{X}^2} \\
+    & = \expect{X^2} - 2 \expect{X} \expect{X} + \expect{\expect{X}^2} \\
+    & = \expect{X^2} - \expect{X}^2
+\end{aligned}
+$$
+
+\subsection{作业}
+
+\begin{problem}
+    习题 4.1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] $X$ 的分布律为：
+
+            \begin{mytable}{ccccc}
+                $X$ & $2$ & $3$ & $4$ & $9$ \\
+                $P$ & $\frac{1}{8}$ & $\frac{5}{8}$ & $\frac{1}{8}$ & $\frac{1}{8}$ 
+            \end{mytable}
+
+            期望为 $E(X) = 2 \cdot \frac{1}{8} + 3 \cdot \frac{5}{8} + 4 \cdot \frac{1}{8} + 9 \cdot \frac{1}{8} = \frac{15}{4}$。
+
+            \item[\textbf{2)}] $Y$ 的分布律为：
+            
+            \begin{mytable}{ccccc}
+                $Y$ & $2$ & $3$ & $4$ & $9$ \\
+                $P$ & $\frac{1}{15}$ & $\frac{1}{2}$ & $\frac{2}{15}$ & $\frac{3}{10}$
+            \end{mytable}
+
+            期望为 $E(Y) = 2 \cdot \frac{1}{15} + 3 \cdot \frac{1}{2} + 4 \cdot \frac{2}{15} + 9 \cdot \frac{3}{10} = \frac{73}{15}$。
+
+            \item[\textbf{3)}] $X$ 的分布律为：
+            
+            \begin{mytable}{cccccccccccc}
+                $X$ & $1$ & $2$ & $3$ & $4$ & $5$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ \\
+                $P$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$
+            \end{mytable}
+
+            期望为 $E(X) = \frac{1}{6} (1 + 2 + 3 + 4 + 5) + \frac{1}{36} (7 + 8 + 9 + 10 + 11 + 12) = \frac{49}{12}$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.3
+    \begin{solution}
+        由题可知
+        $$
+        \prob{X \ge k} = \ab(\frac{4 - k + 1}{4})^3 = \ab(\frac{5 - k}{4})^3 \quad (k \in \{1, 2, 3, 4\})
+        $$
+        因此：
+        $$
+        \expect{X} = \expect{\sum_{k = 1}^{4} [X \ge k]} = \sum_{k = 1}^{4} \prob{X \ge k} = \frac{25}{16}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.5
+    \begin{solution}
+        $$
+        \begin{aligned}
+            \expect{X} & = \int_{- \infty}^{+ \infty} x f(x) \dd{x} \\
+            & = \int_{0}^{1500} \frac{x^2}{1500^2} \dd{x} + \int_{1500}^{3000} - \frac{x (x - 3000)}{1500^2} \dd{x} \\
+            & = 1500
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.14
+    \begin{solution}
+        由题可知
+        $$
+        \begin{aligned}
+            \expect{X_1} & = \int_{0}^{+ \infty} x \cdot 2 \E^{-2x} \dd{x} = \ab[-\ab(\frac{1}{2} + x) \E^{-2x}]_{0}^{+ \infty} = \frac{1}{2} \\
+            \expect{X_2} & = \int_{0}^{+ \infty} x \cdot 4 \E^{-4x} \dd{x} = \ab[-\ab(\frac{1}{4} + x) \E^{-4x}]_{0}^{+ \infty} = \frac{1}{4} \\
+            \expect{X_2^2} & = \int_{0}^{+ \infty} x^2 \cdot 4 \E^{-4x} \dd{x} = \ab[-\ab(\frac{1}{8} + \frac{1}{2} x + x^2) \E^{-4x}]_{0}^{+ \infty} = \frac{1}{8}
+        \end{aligned}
+        $$
+        \begin{enumerate}
+            \item[\textbf{1)}] 根据期望的线性性：
+            $$
+            \begin{gathered}
+                \expect{X_1 + X_2} = \expect{X_1} + \expect{X_2} = \frac{3}{4} \\
+                \expect{2 X_1 - 3 X_2^2} = 2 \expect{X_1} - 3 \expect{X_2^2} = \frac{5}{8}
+            \end{gathered}
+            $$
+
+            \item[\textbf{2)}] 当 $X_1, X_2$ 相互独立时：
+            $$
+            \expect{X_1 X_2} = \expect{X_1} \expect{X_2} = \frac{1}{8}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.18
+    \begin{solution}
+        首先有熟知结论：$\displaystyle I = \int_{0}^{+ \infty} \E^{-\frac{x^2}{a}} \dd{x}\ (a > 0)$，那么
+        $$
+        \begin{aligned}
+            I^2 & = \iint_{[0, + \infty)^2} \E^{\frac{-{x^2 + y^2}}{a}} \dd{x} \dd{y} \\
+            & = \int_{0}^{\frac{\pi}{2}} \dd{\theta} \int_{0}^{+\infty} \E^{-\frac{r^2}{a}} r \dd{r} \\
+            & = \frac{\pi}{2} \cdot \frac{a}{2} = \frac{a \pi}{4}
+        \end{aligned}
+        $$
+        因此 $I = \frac{1}{2} \sqrt{a \pi}$。
+
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{aligned}
+                \expect{X} & = \int_{0}^{+ \infty} x \cdot \frac{x}{\sigma^2} \E^{-\frac{x^2}{2 \sigma^2}} \dd{x} = \sigma \int_{0}^{+ \infty} x^2 \E^{-\frac{x^2}{2}} \dd{x} \\
+                & = \sigma \int_{0}^{+ \infty} x \dd(-\E^{-\frac{x^2}{2}}) \\
+                & = \sigma \ab(\ab[- x \E^{-\frac{x^2}{2}}]_{0}^{+ \infty} + \int_{0}^{+ \infty} \E^{-\frac{x^2}{2}} \dd{x}) = \sqrt{\frac{\pi}{2}} \sigma
+            \end{aligned}
+            $$
+            \item[\textbf{2)}] 先计算 $\expect{X^2}$：
+            $$
+            \begin{aligned}
+                \expect{X^2} & = \int_{0}^{+ \infty} \frac{x^3}{\sigma^2} \E^{-\frac{x^2}{2 \sigma^2}} \dd{x} = \sigma^2 \int_{0}^{+ \infty} x^3 \E^{-\frac{x^2}{2}} \dd{x} \\
+                & = \sigma^2 \ab(\int_{0}^{+ \infty} x^2 \dd(-\E^{-\frac{x^2}{2}})) \\
+                & = \sigma^2 \ab(\ab[-x^2 \E^{-\frac{x^2}{2}}]_{0}^{+ \infty} + \int_{0}^{+ \infty} 2 x \E^{-\frac{x^2}{2}} \dd{x}) \\
+                & = \sigma^2 \ab[-2 \E^{-\frac{x^2}{2}}]_{0}^{+ \infty} = 2 \sigma^2
+            \end{aligned}
+            $$
+            因此，根据方差的定义，有
+            $$
+            \variance{X} = \expect{X^2} - \expect{X}^2 = 2 \sigma^2 - \frac{\pi}{2} \sigma^2 = \frac{4 - \pi}{2} \sigma^2
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.20
+    \begin{solution}
+        $$
+        \begin{aligned}
+            \expect{X} & = \sum_{k = 1}^{+ \infty} p (1 - p)^{k - 1} \cdot k = p \sum_{k = 1}^{+\infty} k (1 - p)^{k - 1} \\
+            & = p \sum_{k = 1}^{+ \infty} \eval{\dv{(x^{k})}{x}}_{x = 1 - p} \\
+            & = p \eval{\dv{x}(\sum_{k = 1}^{+\infty} x^{k})}_{x = 1 - p} \\
+            & = p \eval{\dv{x}(\frac{x}{1 - x})}_{x = 1 - p} = \frac{1}{p}
+        \end{aligned}
+        $$
+        再求 $X^2$ 的期望，有：
+        $$
+        \begin{aligned}
+            \expect{X^2} & = \sum_{k = 1}^{+ \infty} p (1 - p)^{k - 1} \cdot k^2 = p \sum_{k = 1}^{+ \infty} (k (k - 1) + k) (1 - p)^{k - 1} \\
+            & = p (1 - p) \sum_{k = 1}^{+ \infty} k (k - 1) (1 - p)^{k - 1} + p \sum_{k = 1}^{+ \infty} k (1 - p)^{k - 1} \\
+            & = p (1 - p) \eval{\dv{x}(\sum_{k = 1}^{+ \infty} k x^{k - 1})}_{x = 1 - P} + \frac{1}{p} \\
+            & = p (1 - p) \eval{\dv{x}(\frac{1}{(1 - x)^2})}_{x = 1 - p} + \frac{1}{p} \\
+            & = \frac{2 (1 - p)}{p^2} + \frac{1}{p} = \frac{2 - p}{p^2}
+        \end{aligned}
+        $$
+        最后得到 $\variance{X} = \expect{X^2} - \expect{X}^2 = \frac{1 - p}{p^2}$。
+    \end{solution}
+\end{problem}
