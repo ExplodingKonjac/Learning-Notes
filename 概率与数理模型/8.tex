@@ -1,0 +1,237 @@
+\section{随机变量的数字特征 II}
+
+\subsection{协方差与相关系数}
+
+对于两个随机变量 $X, Y$，我们可以使用协方差来刻画它们之间的独立性。
+
+\begin{definition}[协方差与相关系数]
+    设 $X, Y$ 是随机变量，那么称
+    $$
+    \expect{\ab(X - \expect{X}) \ab(Y - \expect{Y})}
+    $$
+    为 $X, Y$ 的\textbf{协方差}，记做 $\cov{X}{Y}$。而
+    $$
+    \rho_{x, y} = \frac{\cov{X}{Y}}{\sqrt{\variance{X}} \sqrt{\variance{Y}}}
+    $$
+    为 $X, Y$ 的\textbf{相关系数}。
+\end{definition}
+
+利用期望的线性性，协方差可以这样计算：
+$$
+\begin{aligned}
+    \cov{X}{Y} & = \expect{\ab(X - \expect{X}) \ab(Y - \expect{Y})} \\
+    & = \expect{X Y} - \expect{X} \expect{Y} \\
+    & = \frac{1}{2} \ab(\variance{X + Y} - \variance{X} - \variance{Y})
+\end{aligned}
+$$
+
+协方差满足 Cauchy-Schwarz 不等式
+$$
+\cov{X}{Y}^2 \le \variance{X} \variance{Y}
+$$
+当且仅当 $X, Y$ 完全线性相关的时候等号成立。
+
+因此相关系数 $\rho$ 取值范围为 $[-1, 1]$。当 $\rho = 0$ 时称两个变量不相关，当 $\rho = \pm 1$ 时两个变量线性相关。
+
+\begin{definition}[协方差矩阵]
+    设有 $n$ 个随机变量 $X_1, X_2, \dots, X_n$，它们的\textbf{协方差矩阵为}：
+    $$
+    \matr{C} = [\cov{X_i}{X_j}]_{1 \le i, j \le n}
+    $$
+\end{definition}
+
+\begin{definition}[多元正态分布]
+    设随机变量 $x_1, x_2, \dots, x_n$ 的协方差矩阵为 $\matr{C}$，期望为 $\mu_1, \mu_2, \dots, \mu_n$，再记
+    $$
+    \vect{x} = \cvec{x_1, x_2, \vdots, x_n}, \quad \vect{\mu} = \cvec{\mu_1, \mu_2, \vdots, \mu_n}
+    $$
+    若概率密度满足
+    $$
+    f(x_1, x_2, \dots, x_n) = \frac{1}{2\pi \sqrt{\det \matr{C}}} \exp\ab(-\frac{1}{2} (\vect{x} - \vect{\mu})^\top \vect{C}^{-1} (\vect{x} - \vect{\mu}))
+    $$
+    那么称 $x_1, x_2, \dots, x_n$ 服从 \textbf{$n$ 元正态分布}。
+\end{definition}
+
+\subsection{标准化随机变量}
+
+\begin{definition}[标准化随机变量]
+    设 $X$ 是随机变量，那么称
+    $$
+    Y = \frac{X - \expect{X}}{\sqrt{\variance{X}}}
+    $$
+    为 $X$ 的\textbf{标准化随机变量}。
+\end{definition}
+
+容易发现，标准化随机变量的期望为 $0$，方差为 $1$。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 4.22
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 由 $X_i$ 相互独立可得：
+            $$
+            \begin{gathered}
+                \expect{Y} = 2 \expect{X_1} - \expect{X_2} + 3 \expect{X_3} - \frac{1}{2} \expect{X_4} = 7 \\
+                \variance{Y} = \variance{2 X_1} + \variance{X_2} + \variance{3 X_3} + \variance{\frac{1}{2} X_4} = 37.25
+            \end{gathered}
+            $$
+            \item[\textbf{2)}] 根据 $X, Y$ 相互独立，可以得到：
+            $$
+            \begin{gathered}
+                \expect{Z_1} = 2 \expect{X} + \expect{Y} = 2080,\quad \variance{Z_1} = 2^2 \variance{X} + \variance{Y} = 4225 \\
+                \expect{Z_2} = \expect{X} - \expect{Y} = 80,\quad \variance{Z_2} = \variance{X} + \variance{Y} = 1525
+            \end{gathered}
+            $$
+            因此 $Z_1 \sim N(2080, 4225),\ Z_2 \sim N(80, 1525)$。
+
+            再设 $Z_3 = X + Y$，那么同理可得 $Z_3 \sim N(1360, 1525)$。因此：
+            $$
+            \begin{gathered}
+                \prob{X > Y} = \prob{Z_2 > 0} = \Phi\ab(\frac{16}{\sqrt{61}}) \\
+                \prob{X + Y > 1400} = \prob{Z_3 > 1400} = 1 - \Phi\ab(\frac{8}{\sqrt{61}})
+            \end{gathered}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.24
+    \begin{solution}
+        假设装了 $n$ 袋水泥，那么总质量 $S$ 满足分布
+        $$
+        S \sim N(50 n, 2.5^2 n)
+        $$
+        那么
+        $$
+        \prob{X > 2000} = 1 - \Phi\ab(\frac{2000 - 50n}{2.5 \sqrt{n}}) \le 0.05
+        $$
+        根据 $\Phi(1.645) = 0.95$，得 $\frac{2000 - 50n}{2.5 \sqrt{n}} \ge 1.645$，因此 $n \le (6.2826)^2 \approx 39.48$。所以最多装 $39$ 袋水泥。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.28
+    \begin{solution}
+        $X, Y$ 对称，因此 $X, Y$ 的期望和方差相同。
+        $$
+        \begin{gathered}
+            \expect{X} = \int_{x^2 + y^2 \le 1} x \dd{x} \dd{y} = 0 \\
+            \expect{X Y} = \int_{x^2 + y^2 \le 1} x y \dd{x} \dd{y} = 0
+        \end{gathered}
+        $$
+        于是 $X, Y$ 的协方差
+        $$
+        \cov{X}{Y} = \expect{X Y} - \expect{X} \expect{Y} = 0
+        $$
+        因此 $X, Y$ 不相关。但明显条件概率密度
+        $$
+        f_{Y \mid X}(y \mid x) = \frac{f(x, y)}{f_X(x)}
+        $$
+        与 $x$ 取值有关，因此 $X, Y$ 不独立。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.30
+    \begin{solution}
+        由题可得
+        $$
+        \expect{X} = \expect{X^2} = \prob{A}, \quad \expect{Y} = \expect{Y^2} = \prob{B}, \quad \expect{X Y} = \prob{A B}
+        $$
+        因此
+        $$
+        \cov{X}{Y} = \prob{A B} - \prob{A} \prob{B}
+        $$
+        若 $\rho_{XY} = 0$，有
+        $$
+        \rho_{X Y} = \frac{\cov{X}{Y}}{\sqrt{\variance{X}} \sqrt{\variance{Y}}} = 0 \implies \cov{X}{Y} = 0 \implies \prob{A B} = \prob{A} \prob{B}
+        $$
+        这恰好是随机事件独立的定义，因此 $A, B$ 独立。于是 $X, Y$ 也独立。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.31
+    \begin{solution}
+        $$
+        \begin{gathered}
+            \expect{X} = \int_{0}^{1} x \dd{x} \int_{-x}^{x} \dd{y} = \frac{2}{3} \\
+            \expect{Y} = \int_{0}^{1} x \dd{x} \int_{-x}^{x} y \dd{y} = 0 \\
+            \expect{X Y} = \int_{0}^{1} \dd{x} \int_{-x}^{x} x y \dd{y} = 0
+        \end{gathered}
+        $$
+        因此，$\expect{X} = \frac{2}{3},\ \expect{Y} = 0,\ \cov{X}{Y} = \expect{X Y} - \expect{X} \expect{Y} = 0$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.33
+    \begin{solution}
+        由题可知，$Z_1, Z_2$ 均服从正态分布，有
+        $$
+        Z_1 \sim N((\alpha + \beta) \mu, (\alpha^2 + \beta^2) \sigma^2),\quad Z_2 \sim N((\alpha + \beta) \mu, (\alpha^2 + \beta^2) \sigma^2)
+        $$
+        $Z_1 + Z_2$ 也服从正态分布
+        $$
+        Z_1 + Z_2 = 2 \alpha X = N(2 \alpha \mu, 4 \alpha^2 \sigma^2)
+        $$
+        所以得到
+        $$
+        \begin{gathered}
+            \variance{Z_1} = \variance{Z_2} = (\alpha^2 + \beta^2) \sigma^2 \\
+            \variance{Z_1 + Z_2} = 4 \alpha^2 \sigma^2 \\
+            \cov{Z_1}{Z_2} = \frac{1}{2} \ab(\variance{Z_1 + Z_2} - \variance{Z_1} - \variance{Z_2}) = 2 (\alpha^2 - \beta^2) \sigma^2
+        \end{gathered}
+        $$
+        因此相关系数
+        $$
+        \rho_{X Y} = \frac{\cov{Z_1}{Z_2}}{\sqrt{\variance{Z_1}} \sqrt{\variance{Z_2}}} = \frac{2 (\alpha^2 - \beta^2)}{\alpha^2 + \beta^2}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    4.34
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{gathered}
+                \rho_{X Y} = 0.5 \implies \cov{X}{Y} = -4 \implies \expect{X Y} = \cov{X}{Y} + \expect{X} \expect{Y} = -4 \\
+                \expect{X^2} = \variance{X} + \expect{X}^2 = 4 \\
+                \expect{Y^2} = \variance{Y} + \expect{Y}^2 = 16
+            \end{gathered}
+            $$
+            因此
+            $$
+            \begin{aligned}
+                \expect{W} & = a^2 \expect{X^2} + 6 a \expect{X Y} + 9 \expect{Y^2} \\
+                & = 4 a^2 - 24 a + 54 \ge 9
+            \end{aligned}
+            $$
+            当 $a = 3$ 时取等。
+
+            \item[\textbf{2)}] 不妨设 $\expect{X} = \expect{Y} = 0$。那么
+            $$
+            \begin{aligned}
+                \cov{W}{V} & = \frac{1}{2} (\variance{W + V} - \variance{W} - \variance{V}) \\
+                & = \frac{1}{2} \ab(4 \sigma_X^2 - 2 \sigma_X^2 - 2 a^2 \sigma_Y^2) \\
+                & = \frac{1}{2} \ab(4 \sigma_X^2 - 2 \sigma_X^2 - 2 \sigma_X^2) = 0
+            \end{aligned}
+            $$
+            因此 $W, V$ 独立。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4.35
+    \begin{solution}
+        $$
+        f(x, y) = \frac{1}{3 \sqrt{5} \pi} \exp\ab(- \frac{8 x^2 + 2 \sqrt{3} x y + 6 y^2}{45})
+        $$
+    \end{solution}
+\end{problem}
