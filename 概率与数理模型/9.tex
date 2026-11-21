@@ -1,0 +1,271 @@
+\section{大数定律与中心极限定理}
+
+\subsection{不等式}
+
+\begin{theorem}[Markov 不等式]
+    设非负随机变量 $X$ 的期望 $\expect{X}$ 存在，那么对于任意实数 $\varepsilon > 0$，有
+    $$
+    \prob{X \ge \varepsilon} \le \frac{\expect{X}}{\varepsilon}
+    $$
+    \begin{proof}
+        只对连续型随机变量的情况证明。设 $X$ 的概率密度为 $f(x)$，由于 $X$ 非负，积分可以从 $0$ 开始，于是
+        $$
+        \begin{aligned}
+            \expect{X} & = \int_{0}^{+ \infty} x f(x) \dd{x} \\
+            & = \int_{0}^{\varepsilon} x f(x) \dd{x} + \int_{\varepsilon}^{+ \infty} x f(x) \dd{x} \\
+            & \ge \int_{\varepsilon}^{+ \infty} x f(x) \dd{x} \\
+            & \ge \varepsilon \int_{\varepsilon}^{+ \infty} f(x) \dd{x} = \varepsilon \prob{X \ge \varepsilon}
+        \end{aligned}
+        $$
+        两边同时除以 $\varepsilon$ 即得。
+    \end{proof}
+\end{theorem}
+
+Markov 不等式给出了 $\prob{X \ge \varepsilon}$ 的一个上界。它通常并不紧，意义在于给出了分布尾部的一个估计：随机变量超过 $\varepsilon$ 的概率至少以 $\frac{1}{\varepsilon}$ 的形式衰减。
+
+\begin{theorem}[Chebyshev 不等式]
+    设随机变量 $X$ 的方差 $\variance{X}$ 存在，那么对于任意实数 $\varepsilon > 0$，有
+    $$
+    \prob{\abs{X - \expect{X}} \ge \varepsilon} \le \frac{\variance{X}}{\varepsilon^2}
+    $$
+    或等价地
+    $$
+    \prob{\abs{X - \expect{X}} < \varepsilon} \ge 1 - \frac{\variance{X}}{\varepsilon^2}
+    $$
+    \begin{proof}
+        由 Markov 不等式，有
+        $$
+        \begin{aligned}
+            \prob{\abs{X - \expect{X}} \ge \varepsilon} & = \prob{\ab(X - \expect{X})^2 \ge \varepsilon^2} \\
+            & \le \frac{\expect{\ab(X - \expect{X})^2}}{\varepsilon^2} = \frac{\variance{X}}{\varepsilon^2}
+        \end{aligned}
+        $$
+    \end{proof}
+\end{theorem}
+
+Chebyshev 不等式说明，随机变量偏离期望超过 $\varepsilon$ 的概率不超过 $\frac{\variance{X}}{\varepsilon^2}$。$\varepsilon$ 越大，这个上界越小，即大偏差是小概率事件。
+
+\subsection{大数定律}
+
+首先给出随机变量序列依概率收敛的定义。
+
+\begin{definition}[依概率收敛]
+    设 $X_1, X_2, \dots, X_n, \dots$ 是随机变量序列，$a$ 是常数，若对任意 $\varepsilon > 0$，有
+    $$
+    \lim_{n \to \infty} \prob{\abs{X_n - a} < \varepsilon} = 1
+    $$
+    或等价地
+    $$
+    \lim_{n \to \infty} \prob{\abs{X_n - a} \ge \varepsilon} = 0
+    $$
+    那么称 $X_n$ \textbf{依概率收敛}于 $a$，记做
+    $$
+    X_n \xrightarrow{P} a
+    $$
+\end{definition}
+
+\begin{theorem}[Chebyshev 大数定律]
+    设 $X_1, X_2, \dots, X_n, \dots$ 是相互独立的随机变量序列，每个 $X_k$ 都有有限的方差，且有公共上界，即存在常数 $c$ 使得
+    $$
+    \variance{X_k} = \sigma_k^2 \le c, \quad k = 1, 2, \dots
+    $$
+    那么对于任意 $\varepsilon > 0$，有
+    $$
+    \lim_{n \to \infty} \prob{\abs{\frac{1}{n} \sum_{k = 1}^{n} X_k - \frac{1}{n} \sum_{k = 1}^{n} \expect{X_k}} \ge \varepsilon} = 0
+    $$
+    即
+    $$
+    \frac{1}{n} \sum_{k = 1}^{n} X_k - \frac{1}{n} \sum_{k = 1}^{n} \expect{X_k} \xrightarrow{P} 0
+    $$
+    \begin{proof}
+        记 $\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$。由期望和方差的性质，有
+        $$
+        \begin{gathered}
+            \expect{\overline{X}} = \frac{1}{n} \sum_{i = 1}^{n} \expect{X_i} \\
+            \variance{\overline{X}} = \frac{1}{n^2} \sum_{i = 1}^{n} \variance{X_i} \le \frac{n c}{n^2} = \frac{c}{n}
+        \end{gathered}
+        $$
+        其中方差的计算用到了 $X_i$ 的相互独立性。由 Chebyshev 不等式，
+        $$
+        \prob{\abs{\overline{X} - \expect{\overline{X}}} \ge \varepsilon} \le \frac{\variance{\overline{X}}}{\varepsilon^2} \le \frac{c}{n \varepsilon^2}
+        $$
+        令 $n \to \infty$，右端趋于 $0$，即得结论。
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Khinchin 大数定律]
+    设 $X_1, X_2, \dots, X_n, \dots$ 相互独立，服从同一分布，且具有数学期望 $\expect{X_k} = \mu$，$k = 1, 2, \dots$，那么对于任意 $\varepsilon > 0$，有
+    $$
+    \lim_{n \to \infty} \prob{\abs{\frac{1}{n} \sum_{k = 1}^{n} X_k - \mu} \ge \varepsilon} = 0
+    $$
+    即
+    $$
+    \frac{1}{n} \sum_{k = 1}^{n} X_k \xrightarrow{P} \mu
+    $$
+\end{theorem}
+
+若方差还存在公共上界，那么这是 Chebyshev 大数定律的直接推论；一般情形只需要期望存在，其证明需要用到特征函数等工具，这里从略。Khinchin 大数定律说明，独立同分布随机变量序列的算术平均值依概率收敛于数学期望，因此当 $n$ 足够大时可以用算术平均值近似代替数学期望。
+
+\begin{theorem}[Bernoulli 大数定律]
+    设 $n_A$ 是 $n$ 次独立重复试验中事件 $A$ 发生的次数，$p$ 是每次试验中 $A$ 发生的概率，那么对于任意 $\varepsilon > 0$，有
+    $$
+    \lim_{n \to \infty} \prob{\abs{\frac{n_A}{n} - p} \ge \varepsilon} = 0
+    $$
+    即
+    $$
+    \frac{n_A}{n} \xrightarrow{P} p
+    $$
+    \begin{proof}
+        引入随机变量
+        $$
+        X_k = \begin{cases}
+            1 &, \text{第 $k$ 次试验中 } A \text{ 发生} \\
+            0 &, \text{否则}
+        \end{cases}
+        $$
+        那么 $X_1, X_2, \dots, X_n$ 相互独立且同分布，$\prob{X_k = 1} = p$，因此
+        $$
+        \expect{X_k} = p, \quad \variance{X_k} = p (1 - p)
+        $$
+        并且 $n_A = \sum_{k = 1}^{n} X_k$。由 Khinchin 大数定律即得。
+    \end{proof}
+\end{theorem}
+
+Bernoulli 大数定律说明，当 $n$ 足够大时，事件 $A$ 发生的频率 $\frac{n_A}{n}$ 依概率收敛于它的概率 $p$，这就是可以用频率近似代替概率的理论依据，这种稳定性称为\textbf{依概率稳定}。
+
+三种弱大数定律的适用范围不同：
+
+\begin{center}
+    \begin{mytable}{ccccc}
+        大数定律 & 独立性 & 同分布 & 期望 & 方差 \\
+        Bernoulli & 独立 & 是 & 存在 & 存在 \\
+        Khinchin & 独立 & 是 & 存在 & 不需要 \\
+        Chebyshev & 独立 & 否 & 存在 & 存在且有公共上界
+    \end{mytable}
+\end{center}
+
+由此可见，Bernoulli 大数定律是 Khinchin 大数定律在 0-1 分布下的特例；Chebyshev 大数定律则不要求同分布，但需要方差存在且有公共上界。
+
+\subsection{中心极限定理}
+
+大数定律只回答了样本足够多时均值的收敛值，并没有回答样本均值的分布形状。中心极限定理说明，大量相互独立的随机因素叠加后，其总和近似服从正态分布。
+
+记标准正态分布的分布函数为
+$$
+\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{x} \E^{-\frac{t^2}{2}} \dd{t}
+$$
+
+\begin{theorem}[独立同分布的中心极限定理]
+    设随机变量序列 $X_1, X_2, \dots, X_n, \dots$ 相互独立，服从同一分布，且有期望和方差
+    $$
+    \expect{X_k} = \mu, \quad \variance{X_k} = \sigma^2 > 0, \quad k = 1, 2, \dots
+    $$
+    那么对于任意实数 $x$，有
+    $$
+    \lim_{n \to \infty} \prob{\frac{\sum_{k = 1}^{n} X_k - n \mu}{\sqrt{n} \sigma} \le x} = \Phi(x)
+    $$
+\end{theorem}
+
+也就是说，当 $n$ 足够大时，$\frac{\sum_{k = 1}^{n} X_k - n \mu}{\sqrt{n} \sigma}$ 近似服从 $N(0, 1)$，从而 $\sum_{k = 1}^{n} X_k$ 近似服从 $N(n \mu, n \sigma^2)$，样本均值 $\overline{X} = \frac{1}{n} \sum_{k = 1}^{n} X_k$ 近似服从 $N\ab(\mu, \frac{\sigma^2}{n})$。
+
+\begin{theorem}[De Moivre-Laplace 中心极限定理]
+    设 $Y_n \sim B(n, p)$，$0 < p < 1$，$n = 1, 2, \dots$，那么对于任意实数 $x$，有
+    $$
+    \lim_{n \to \infty} \prob{\frac{Y_n - n p}{\sqrt{n p (1 - p)}} \le x} = \Phi(x)
+    $$
+\end{theorem}
+
+这是独立同分布中心极限定理在 0-1 分布下的特例。当 $n$ 足够大时，$Y_n$ 近似服从 $N(np, np(1 - p))$。
+
+大数定律刻画的是频率与样本均值的收敛性，而中心极限定理进一步刻画了样本均值围绕期望的波动，这也是正态分布在概率论中占有重要地位的原因。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 5.1
+    \begin{solution}
+        由 $X_i$ 服从指数分布知，$\expect{X_i} = 100,\ \variance{X_i} = 100^2$。根据中心极限定理，$\sum_{i = 1}^{16} X_i$ 近似服从 $N(1600, 400^2)$。因此
+        $$
+        \prob{\sum_{i = 1}^{16} X_i > 1920} = 1 - \Phi(0.8) = 0.2119
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 单个误差满足 $\expect{\epsilon_i} = 0,\ \variance{\epsilon_i} = \frac{1}{12}$。根据中心极限定理，1500 个舍入误差总和近似服从 $N(0, 125)$。因此
+            $$
+            \prob{\abs{\sum_{i = 1}^{1500} \epsilon_i} > 15} = 2 \ab(1 - \Phi\ab(\frac{15}{\sqrt{125}})) \approx 0.1802
+            $$
+            \item[\textbf{2)}] 有设 $n$ 个数相加，那么误差近似服从 $N(0, \frac{n}{12})$。因此：
+            $$
+            \prob{\abs{\sum_{i = 1}^{n} \epsilon_i} < 10} = 2 \ab(\Phi\ab(\frac{10}{\sqrt{n / 12}}) - 0.5) \ge 0.9 \implies \Phi\ab(\frac{10}{\sqrt{n / 12}}) \ge 0.95
+            $$
+            查表得到 $\frac{10}{\sqrt{n / 12}} \ge 1.645 \implies n \le 443.4$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.4
+    \begin{solution}
+        设总和是 $S$，那么根据中心极限定理，$S \sim N(2500, 500)$。因此
+        $$
+        \prob{S > 2510} = 1 - \Phi\ab(\frac{2510 - 2500}{\sqrt{500}}) \approx 0.328
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.5
+    \begin{solution}
+        记随机变量 $X_i = [\text{一根木柱长度小于 3m}]$，那么 $X_i$ 服从 Bernoulli 分布，且 $\expect{X_i} = 0.2,\ \variance{X_i} = 0.16$，因此根据中心极限定理
+        $$
+        \sum_{i = 1}^{100} X_i \sim N(20, 16)
+        $$
+        因此
+        $$
+        \prob{\sum_{i = 1}^{100} X_i \ge 30} = 1 - \Phi\ab(\frac{30 - 20}{\sqrt{16}}) \approx 0.0062
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.6
+    \begin{solution}
+        第一阶段满足 $\expect{X_1} = 0.2, \variance{X_1} = 0.04$，第二阶段满足 $\expect{X_2} = 0.3, \variance{X_2} = 0.09$。根据独立性，记 $Y = X_1 + X_2$，那么 $\expect{Y} = 0.5, \variance{Y} = 0.13$。
+
+        根据中心极限定理，总时间近似服从 $N(10, 2.6)$。因此所求概率为 $\Phi(\frac{8 - 10}{\sqrt{2.6}}) \approx 0.1075$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.8
+    \begin{solution}
+        设正常部件数为 $X$，那么 $X \sim B(100, 0.9)$。根据中心极限定理，$X$ 近似服从 $N(90, 9)$。因此
+        $$
+        \prob{X \ge 85} = 1 - \Phi\ab(\frac{85 - 90}{\sqrt{9}}) \approx 0.9666
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.13
+    \begin{solution}
+        即要让 $\prob{\abs{\overline{X} - \mu} \ge 1} \le 0.05$。根据 Chebyshev 大数定律，$\prob{\abs{\overline{X} - \mu} \ge 1} \le \frac{400}{1^2 n}$。由此得到 $n \ge 8000$。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5.14
+    \begin{solution}
+        设治愈人数为 $X$。
+
+        \begin{enumerate}
+            \item[\textbf{1)}] $X \sim B(100, 0.8)$，根据中心极限定理 $X$ 近似服从 $N(80, 16)$，因此 $\prob{X > 75} \approx 1 - \Phi\ab(\frac{75 - 80}{\sqrt{16}}) \approx 0.8944$。
+            \item[\textbf{2)}] $X \sim B(100, 0.7)$，根据中心极限定理 $X$ 近似服从 $N(70, 21)$，因此 $\prob{X > 75} \approx 1 - \Phi\ab(\frac{75 - 70}{\sqrt{21}}) \approx 0.1379$。
+        \end{enumerate}
+    \end{solution}
+\end{problem}

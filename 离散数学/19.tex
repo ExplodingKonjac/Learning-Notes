@@ -1,0 +1,115 @@
+\section{函数 III \& 自然数}
+
+\subsection{逆函数}
+
+\begin{definition}
+    设 $f: X \to Y$ 是函数。
+    \begin{itemize}
+        \item 若存在 $g: Y \to X$ 使得 $g \circ f = I_X$，那么称 $f$ \textbf{左可逆}，称 $g$ 为 $f$ 的一个\textbf{左逆函数}。
+        \item 若存在 $g: Y \to X$ 使得 $f \circ g = I_Y$，那么称 $f$ \textbf{右可逆}，称 $g$ 为 $f$ 的一个\textbf{右逆函数}。
+        \item 若存在 $g: Y \to X$ 使得 $g \circ f = I_X \land f \circ g = I_Y$，那么称 $f$ \textbf{可逆}，称 $g$ 为 $f$ 的一个\textbf{逆函数}。
+    \end{itemize}
+\end{definition}
+
+函数可逆性可以用下面的定理判定：
+
+\begin{theorem}
+    设 $X, Y$ 为集合且 $X \neq \varnothing$，函数 $f: X \to Y$，那么下面条件等价：
+    \begin{enumerate}
+        \item $f$ 为单射；
+        \item $f$ 左可逆；
+        \item $f$ 可左消去，即对任意 $Z$ 以及 $g: Z \to X, h: Z \to X$，有 $f \circ g = f \circ h \implies g = h$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    设 $X, Y$ 为集合且，函数 $f: X \to Y$，那么下面条件等价：
+    \begin{enumerate}
+        \item $f$ 为满射；
+        \item $f$ 右可逆；
+        \item $f$ 可右消去，即对任意 $Z$ 以及 $g: Y \to Z, h: Y \to Z$，有 $g \circ f = h \circ f \implies g = h$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    设 $X, Y$ 为集合且，函数 $f: X \to Y$，那么下面条件等价：
+    \begin{enumerate}
+        \item $f$ 为双射；
+        \item $f$ 左可逆、右可逆、可逆；
+        \item $f$ 的逆关系 $f^{-1}$ 也是 $f$ 的逆函数。
+    \end{enumerate}
+\end{theorem}
+
+\subsection{集合的特征函数}
+
+\begin{definition}[特征函数]
+    设全集 $U$，集合 $A \subseteq U$ 是集合，那么 $A$ 的\textbf{特征函数}定义为：
+    $$
+    \chi_{A}(x) = \begin{cases}
+        1,\ x \in A \\
+        0,\ x \notin A \\
+    \end{cases}
+    $$
+\end{definition}
+
+特征函数满足下面的性质：
+
+\begin{itemize}
+    \item $0 \le \chi_A \le 1$；
+    \item $\chi_A = \mathbf{0} \iff A = \varnothing$；
+    \item $\chi_A = \mathbf{1} \iff A = U$；
+    \item $\chi_A \le \chi_B \iff A \subseteq B$。
+\end{itemize}
+
+\subsection{自然数与数学归纳法}
+
+首先定义集合的后继：
+
+\begin{definition}[后继]
+    若 $A$ 为集合，定义 $A \cup \{A\}$ 为 $A$ 的\textbf{后继}。记做 $A^{+}$。
+\end{definition}
+
+那么，空集 $\varnothing$ 的后继是 $\{\varnothing\}$，它的后继是 $\{\varnothing, \{\varnothing\}\}$，它的后继是 $\{\varnothing, \{\varnothing\}, \{\varnothing, \{\varnothing\}\}\}$ ……
+
+显然，每个集合都有唯一的后继，且满足 $A \in A^{+},\ A \subseteq A^{+}$。
+
+给出了集合的后继定义，我们可以开始构造自然数。这里给出 Von Neumann 自然数构造方案：
+$$
+\begin{gathered}
+    0 = \varnothing,\ 1 = 0^{+},\ 2 = 1^{+},\ 3 = 2^{+}, \dots, n + 1 = n^{+}, \dots \\
+    \NN = \{0, 1, 2, \dots, n, \dots\}
+\end{gathered}
+$$
+
+然后，我们可以定义自然数的比较：
+
+\begin{definition}[自然数的小于]
+    若 $m, n \in \NN$ 使得 $m \in n$，则称 $m$ 小于 $n$，记作 $m < n$。
+\end{definition}
+
+那么小于关系是 $\NN$ 上的反自反、对称、传递关系。
+
+接着我们定义自然数的加法运算和乘法运算：
+
+\begin{definition}[自然数的加法和乘法]
+    对任意 $n, m \in \NN$，令：
+    \begin{itemize}
+        \item $m + 0 = m,\ m \cdot 0 = 0$。
+        \item $m + n^{+} = (m + n)^{+},\ m \cdot n^{+} = m \cdot n + m$。
+    \end{itemize}
+\end{definition}
+
+由此，我们得到\textbf{自然数系统} $\langle \NN, +, \cdot \rangle$。
+
+\begin{theorem}[Peano 公理]
+    Von Neumann 自然数系统满足 Peano 公理：
+    $$
+    \begin{aligned}
+        & P_1: 0 \in \NN \\
+        & P_2: n \in \NN \implies n^{+} \in \NN \\
+        & P_3: n \in \NN \implies n^{+} \neq 0 \\
+        & P_4: n, m \in \NN \land n^{+} = m^{+} \in \NN \implies n = m \\
+        & P_5: 0 \in S \land (n \in S \to n^{+} \in S) \implies S = \NN
+    \end{aligned}
+    $$
+\end{theorem}

@@ -1,0 +1,263 @@
+\section{MIPS 流水线处理器设计}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}]\ 
+            \begin{center}
+                \begin{mytable}{ccc}
+                    情况 & 流水线时钟周期 & 非流水线时钟周期 \\
+                    a & $600 \mathrm{ps}$ & $1750 \mathrm{ps}$ \\
+                    b & $250 \mathrm{ps}$ & $900 \mathrm{ps}$
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}]\ 
+            \begin{center}
+                \begin{mytable}{ccc}
+                    情况 & 流水线总延迟 & 非流水线总延迟 \\
+                    a & $3000 \mathrm{ps}$ & $1750 \mathrm{ps}$ \\
+                    b & $1250 \mathrm{ps}$ & $900 \mathrm{ps}$
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{3)}] 拆分延迟最大的流水级。
+            \begin{enumerate}
+                \item 情况 a：拆分 MEM，拆分后时钟周期 $400 \mathrm{ps}$；
+                \item 情况 b：拆分 ID，拆分后时钟周期 $200 \mathrm{ps}$；
+            \end{enumerate}
+
+            \item[\textbf{4)}] LW 指令和 SW 需要访问数据储存器。
+            \begin{enumerate}
+                \item 情况 a：$15\% + 10\% = 25\%$；
+                \item 情况 b：$30\% + 15\% = 45\%$。
+            \end{enumerate}
+
+            \item[\textbf{5)}] ALU 指令和 LW 指令需要访问寄存器堆写端口。
+            \begin{enumerate}
+                \item 情况 a：$50\% + 15\% = 65\%$；
+                \item 情况 b：$30\% + 30\% = 60\%$。
+            \end{enumerate}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 
+            \begin{enumerate}
+                \item 情况 a：I1 和 I3 存在 RAW 相关、I2 和 I3 存在 RAW 相关、I1 和 I2 存在 WAR 相关。
+                \item 情况 b：I1 和 I2 存在 RAW 相关、I1 和 I3 存在 RAW 和 WAW 相关、I2 和 I3 存在 WAR 相关。
+            \end{enumerate}
+
+            \item[\textbf{2)}] 情况 a：
+            \begin{minted}{mips}
+                lw  $1, 40($6)
+                add $6, $2, $2
+                nop
+                nop
+                sw  $6, 50($1)
+            \end{minted}
+            情况 b：
+            \begin{minted}{mips}
+                lw  $5, -16($5)
+                nop
+                nop
+                sw  $5, -16($5)
+                add $5, $5, $5
+            \end{minted}
+
+            \item[\textbf{3)}] 充分转发时，只有 LW 后紧邻的 RAW 相关指令会出现冒险。情况 a：
+            \begin{minted}{mips}
+                lw  $1, 40($6)
+                add $6, $2, $2
+                sw  $6, 50($1)
+            \end{minted}
+            情况 b：
+            \begin{minted}{mips}
+                lw  $5, -16($5)
+                nop
+                sw  $5, -16($5)
+                add $5, $5, $5
+            \end{minted}
+
+            \item[\textbf{4)}]\ 
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    情况 & 转发方式 & 指令数 & 总周期数 & 总时间\\
+                    a & 无转发 & 5 & 9 & $9 \cdot 300 = 2700 \mathrm{ps}$ \\
+                    a & 充分转发 & 3 & 7 & $7 \cdot 400 = 2800 \mathrm{ps}$ \\
+                    b & 无转发 & 5 & 9 & $9 \cdot 200 = 1800 \mathrm{ps}$ \\
+                    b & 充分转发 & 4 & 8 & $8 \cdot 250 = 2000 \mathrm{ps}$ \\
+                \end{mytable}
+            \end{center}
+
+            因此情况加速比为 $S_a = \frac{2700}{2800} \approx 0.9643,\ S_b = \frac{1800}{2000} = 0.9$。
+
+            \item[\textbf{5)}] 当仅存在 ALU 到 ALU 的转发时，MEM 阶段结果无法直接转发到 EX 阶段。因此情况 a：
+            \begin{minted}{mips}
+                lw  $1, 40($6)
+                add $6, $2, $2
+                nop
+                nop
+                sw  $6, 50($1)
+            \end{minted}
+            情况 b：
+            \begin{minted}{mips}
+                lw  $5, -16($5)
+                nop
+                nop
+                sw  $5, -16($5)
+                add $5, $5, $5
+            \end{minted}
+            
+            \item[\textbf{6)}]\ 
+            \begin{center}
+                \begin{mytable}{ccccc}
+                    情况 & 指令数 & 总周期数 & 总时间 & 加速比 \\
+                    a & 5 & 9 & $9 \cdot 350 = 3150 \mathrm{ps}$ & $\frac{2700}{3150} \approx 0.8571$ \\
+                    b & 5 & 9 & $9 \cdot 210 = 1890 \mathrm{ps}$ & $\frac{1800}{1890} \approx 0.9524$ \\
+                \end{mytable}
+            \end{center}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 对于 bezi：
+            \begin{itemize}
+                \item 增加从寄存器 Rs 到数据存储器地址输入端的数据通路。
+                \item 增加对数据存储器读出数据的零检测电路。
+                \item 给 MEM 增加 PC 写使能以及目标地址计算的通路。
+                \item 增加 PC 选择多路器，使 MEM 阶段产生的分支判断结果能够控制 PC 更新。
+            \end{itemize}
+
+            对于 swi：
+            \begin{itemize}
+                \item 寄存器堆增加第三个读端口，用于读取 Rd。
+                \item 增加 Rt 到 ALU 第二输入端的数据通路，增加 ALU 输入多选器；
+                \item 增加 Rd 到 DM 写数据端的数据通路。
+                \item 流水线寄存器增加 Rd 的数据传递。
+            \end{itemize}
+
+            \item[\textbf{2)}] 可增加下面的控制信号：
+            \begin{itemize}
+                \item BranchMem：指示根据存储器读取数据判断是否分支
+                \item MemZero：表示数据存储器读出数据是否为零
+                \item PCSrc：控制 PC 分支目标地址
+                \item ALUSrc：选择 ALU 第二操作数来源
+            \end{itemize}
+
+            \item[\textbf{3)}] 会引入新的数据冒险和控制冒险，已有冒险的处理开销也会增加。
+
+            对于 bezi，分支条件需要等待 MEM 阶段读取数据后才能确定，因此分支判断时间延后，会使控制冒险的阻塞和错误路径指令冲刷流水线的开销增加。
+
+            对于 swi，指令需要同时读取 Rs、Rt、Rd 三个源寄存器，因此 RAW 数据相关的可能性增加。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 无转发时，RAW 相关的指令需要等待前一条指令完成 WB 阶段。情况 a：
+            \begin{minted}{mips}
+                lw  $1, 40($6)
+                nop
+                nop
+                add $2, $3, $1
+                add $1, $6, $4
+                nop
+                sw  $2, 20($4)
+                and $1, $1, $4
+            \end{minted}
+            共插入 3 个 nop。情况 b：
+            \begin{minted}{mips}
+                add $1, $5, $3
+                nop
+                nop
+                sw  $1, 0($2)
+                lw  $1, 4($2)
+                nop
+                nop
+                add $5, $5, $1
+                sw  $1, 0($2)
+            \end{minted}
+            共插入 4 个 nop。
+
+            \item[\textbf{2)}] 利用 R7 保存中间结果，通过指令重排序减少 nop。情况 a：
+            \begin{minted}{mips}
+                lw  $1, 40($6)
+                add $7, $6, $4
+                nop
+                add $2, $3, $1
+                nop
+                and $1, $7, $4
+                sw  $2, 20($4)
+            \end{minted}
+            将原第三条指令的结果保存至 R7，并提前执行独立指令，共插入 2 个 nop。
+
+            情况 b：
+            \begin{minted}{mips}
+                add $7, $5, $3
+                lw  $1, 4($2)
+                nop
+                sw  $7, 0($2)
+                add $5, $5, $1
+                sw  $1, 0($2)
+            \end{minted}
+            将第一条指令的结果保存至 R7，并提前执行 lw，共插入 1 个 nop。
+
+            \item[\textbf{3)}] 即使存在转发，紧邻 lw 的指令仍可能产生 load-use 冒险，需要冒险检测单元插入阻塞。
+            \begin{enumerate}
+                \item 情况 a：I1 和 I2 存在 load-use 冒险，I2 会读取旧的 \texttt{\$1}，导致计算结果错误。
+                \item 情况 b：I3 和 I4 存在 load-use 冒险，I4 会读取旧的 \texttt{\$1}，导致计算结果错误。
+            \end{enumerate}
+            此外，若没有专门的 SW 写数据转发通路，SW 指令读取尚未写回的数据也可能导致存储结果错误。
+
+            \item[\textbf{4)}] 没有转发时，冒险检测单元需要检测所有 RAW 相关。
+            \begin{itemize}
+                \item 增加 ID/EX.RegWrite 和 EX/MEM.RegWrite 输入，判断前面的指令是否写寄存器。
+                \item 增加 ID/EX.WriteReg 和 EX/MEM.WriteReg 输入，获取前面指令的目的寄存器编号。
+                \item 比较目的寄存器与 IF/ID 阶段实际使用的源寄存器 Rs、Rt，判断是否存在 RAW 相关。
+                \item 检测到冒险时，利用 PCWrite、IF/IDWrite 和控制信号清零机制暂停流水线并插入 nop。
+            \end{itemize}
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5
+    \begin{solution}
+        根据图中数据通路，无法正确执行的指令为 I3、I4 和 I5，原因如下：
+        \begin{enumerate}
+            \item[\textbf{I3：}] \texttt{jal LF}
+            \begin{enumerate}
+                \item 没有跳转目标地址计算及 PC 选择通路；
+                \item 没有将 PC+4 写入寄存器 \$31 的数据通路。
+            \end{enumerate}
+
+            \item[\textbf{I4：}] \texttt{beq \$6, \$0, I1}
+            \begin{enumerate}
+                \item 没有分支偏移量扩展及目标地址计算通路；
+                \item 没有根据 ALU 的 Zero 信号选择分支目标地址的 PC 控制通路。
+            \end{enumerate}
+
+            \item[\textbf{I5：}] \texttt{lw \$5, 8(\$2)}
+            \begin{enumerate}
+                \item 没有立即数扩展功能；
+                \item ALU 输入源中不包含立即数，无法计算访存地址；
+                \item 写回寄存器地址固定取指令的 Rd 字段，无法选择 lw 所需的 Rt 字段。
+            \end{enumerate}
+        \end{enumerate}
+    \end{solution}
+\end{problem}

@@ -1,0 +1,50 @@
+\section{数理统计}
+
+\subsection{统计量的分布}
+
+\subsubsection{卡方分布}
+
+设 $X_1, X_2,\dots, X_n$ 相互独立，且都满足标准正态分布 $N(0, 1)$，那么称
+$$
+\sum_{i = 1}^{n} X_i^n \sim \chi^2(n)
+$$
+服从\textbf{卡方分布}，其中 $n$ 称为自由度。
+
+一般地，自由度为 $n$ 的卡方分布的概率密度为
+$$
+f_n(x) = \begin{dcases}
+    \frac{1}{2^{n / 2} \Gamma(n / 2)} x^{n / 2 - 1} \E^{-x / 2} &,\ x > 0 \\
+    0 &,\ x \le 0
+\end{dcases}
+$$
+
+卡方分布满足
+$$
+\expect{\chi^2(n)} = n,\ \variance{\chi^2(n)} = 2n
+$$
+
+根据卡方分布的定义，也可以得到，若 $X_1 = \chi^2(n_1),\ X_2 = \chi^2(n_2)$ 且 $X_1, X_2$ 独立，那么
+$$
+X_1 + X_2 \sim \chi^2(n_1 + n_2)
+$$
+
+\subsubsection{t 分布}
+
+设 $Z \sim N(0, 1),\ V \in \chi^2(n)$ 且 $Z, V$ 相互独立，那么称
+$$
+T = \frac{Z}{\sqrt{V / n}} \sim t(n)
+$$
+服从\textbf{t 分布}。
+
+自由度为 $n$ 的 t 分布的概率密度为
+$$
+f(x)=\frac{\Gamma\ab(\frac{n + 1}{2})}{\sqrt{n \pi} \Gamma\ab(\frac{n}{2})} \ab(1 + \frac{t^2}{n})^{-\frac{n + 1}{2}},\quad x\in\RR
+$$
+
+当 $n \to \infty$ 时，t 分布趋近于标准正态分布。t 分布的均值和方差满足
+$$
+\expect{t(n)} = 0\ (n > 1), \quad \variance{t(n)} = \frac{n}{n - 2}\ (n > 2)
+$$
+
+\subsubsection{F 分布}
+
