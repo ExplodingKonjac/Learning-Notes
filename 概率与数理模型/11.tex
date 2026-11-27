@@ -1,0 +1,33 @@
+\section{参数估计}
+
+\subsection{参数的点估计}
+
+对于总体 $X$ 的分布，其形式已知，但是存在位置参数 $\theta_1, \theta_2, \dots, \theta_k$。我们构造 $k$ 个统计量：
+$$
+\theta_i(x_1, x_2, \dots, x_n) \quad 1 \le i \le k
+$$
+测得一组样本值 $(x_1, x_2, \dots, x_n)$，带入得到
+$$
+\hat{\theta}_i(x_1, x_2, \dots, x_n) \quad 1 \le i \le k
+$$
+那么就称 $\hat{\theta}_i$ 为 $\theta_i$ 的估计值。这就是点估计的思想。
+
+\subsection{矩估计}
+
+\textbf{矩估计}方法就是使用
+$$
+\overline{x^l} = \frac{1}{n} \sum_{i = 1}^{n} x_i^l
+$$
+来估计样本的 $l$ 阶矩 $\expect{X^{l}}$。然后，将解出参数 $\theta$ 关于矩的表达式，得到参数的估计值。
+
+\subsection{最大似然估计}
+
+若总体 $X$ 为离散型，记 $p(x; \theta) = \prob{X = x}$。那么称样本 $X_1, X_2, \dots, X_n$ 取到 $x_1, x_2, \dots, x_n$ 的概率为样本的\textbf{似然函数}：
+$$
+L(\theta) = L(x_1, x_2, \dots, x_n; \theta) = \prod_{i = 1}^{n} p(x_i; \theta)
+$$
+我们希望取能让 $L(\hat{\theta})$ 最大的 $\hat{\theta}$ 作为参数 $\theta$ 的估计值。
+
+若总体 $X$ 为连续型，将 $p(x; \theta)$ 替换为概率密度函数 $f(x; \theta)$，同样可以得到似然函数的定义。
+
+大部分时候，$L(\theta)$ 关于 $\theta$ 可微，此时可以解出 $L(\theta)$ 的极大值。

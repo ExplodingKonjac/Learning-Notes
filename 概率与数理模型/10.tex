@@ -34,9 +34,7 @@ $$
 $$
 T = \frac{Z}{\sqrt{V / n}} \sim t(n)
 $$
-服从\textbf{t 分布}。
-
-自由度为 $n$ 的 t 分布的概率密度为
+服从自由度为 $n$ 的 \textbf{t 分布}。其概率密度为
 $$
 f(x)=\frac{\Gamma\ab(\frac{n + 1}{2})}{\sqrt{n \pi} \Gamma\ab(\frac{n}{2})} \ab(1 + \frac{t^2}{n})^{-\frac{n + 1}{2}},\quad x\in\RR
 $$
@@ -47,4 +45,181 @@ $$
 $$
 
 \subsubsection{F 分布}
+
+设 $U \sim \chi^2(d_1),\ V \sim \chi^2(d_2)$ 且 $U, V$ 独立，那么称
+$$
+F = \frac{U / d_1}{V / d_2}
+$$
+服从自由度为 $(d_1, d_2)$ 的 \textbf{F 分布}。其概率密度为
+$$
+f(x) = \begin{dcases}
+    \frac{\Gamma\ab(\frac{d_1 + d_2}{2})}{\Gamma\ab(\frac{d_1}{2}) \Gamma\ab(\frac{d_2}{2})} \ab(\frac{d_1}{d_2})^{\frac{d_1}{2}} x^{\frac{d_1}{2} - 1} \ab(1 + \frac{d_1}{d_2} x)^{- \frac{d_1 + d_2}{2}} &,\ x > 0 \\
+    0 &,\ x \le 0
+\end{dcases}
+$$
+当 $d_2 > 2$ 时，有 $\expect{F(d_1, d_2)} = \frac{d_2}{d_2 - 2}$。
+
+\subsection{作业}
+
+\begin{problem}
+    习题 6.1
+    \begin{solution}
+        由 $X \sim N(52, 6.3^2)$ 且样本容量 $n = 36$，得
+        $$
+        \overline{X} \sim N\ab(52, \frac{6.3^2}{36}) = N(52, 1.05^2)
+        $$
+        因此
+        $$
+        \begin{aligned}
+            \prob{50.8 < \overline{X} < 53.8} & = \Phi\ab(\frac{53.8 - 52}{1.05}) - \Phi\ab(\frac{50.8 - 52}{1.05}) \\
+            & = \Phi\ab(\frac{12}{7}) - \Phi\ab(-\frac{8}{7}) \\
+            & = \Phi\ab(\frac{12}{7}) + \Phi\ab(\frac{8}{7}) - 1 \approx 0.8302
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.2
+    \begin{solution}
+        由 $X \sim N(12, 4)$ 且样本容量 $n = 5$，得
+        $$
+        \overline{X} \sim N\ab(12, \frac{4}{5})
+        $$
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \begin{aligned}
+                \prob{\abs{\overline{X} - 12} > 1} & = 2 \ab(1 - \Phi\ab(\frac{1}{\sqrt{4 / 5}})) \\
+                & = 2 \ab(1 - \Phi\ab(\frac{\sqrt{5}}{2})) \approx 0.2636
+            \end{aligned}
+            $$
+            \item[\textbf{2)}] 记 $M = \max\{X_1, X_2, X_3, X_4, X_5\}$，$m = \min\{X_1, X_2, X_3, X_4, X_5\}$。由 $X_i$ 相互独立且都服从 $N(12, 4)$，有
+            $$
+            \begin{aligned}
+                \prob{M > 15} & = 1 - \prob{X_1 \le 15}^5 = 1 - \Phi\ab(\frac{15 - 12}{2})^5 \\
+                & = 1 - \Phi\ab(\frac{3}{2})^5 \approx 0.2923 \\
+                \prob{m < 10} & = 1 - \prob{X_1 \ge 10}^5 = 1 - \ab(1 - \Phi\ab(\frac{10 - 12}{2}))^5 \\
+                & = 1 - \Phi(1)^5 \approx 0.5784
+            \end{aligned}
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.3
+    \begin{solution}
+        设两个样本的样本均值分别为 $\overline{X}_1, \overline{X}_2$，那么
+        $$
+        \overline{X}_1 \sim N\ab(20, \frac{3}{10}), \quad \overline{X}_2 \sim N\ab(20, \frac{3}{15})
+        $$
+        由于两个样本相互独立，因此
+        $$
+        \overline{X}_1 - \overline{X}_2 \sim N\ab(0, \frac{3}{10} + \frac{3}{15}) = N\ab(0, \frac{1}{2})
+        $$
+        所求概率为
+        $$
+        \begin{aligned}
+            \prob{\abs{\overline{X}_1 - \overline{X}_2} > 0.3} & = 2 \ab(1 - \Phi\ab(\frac{0.3}{\sqrt{1 / 2}})) \\
+            & = 2 \ab(1 - \Phi\ab(\frac{3 \sqrt{2}}{10})) \approx 0.6714
+        \end{aligned}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.6
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 由于 $X_1, X_2, \dots, X_n$ 相互独立且都服从 $b(1, p)$，因此其联合分布律为
+            $$
+            \prob{X_1 = x_1, X_2 = x_2, \dots, X_n = x_n} = \prod_{i = 1}^{n} p^{x_i} (1 - p)^{1 - x_i} = p^{\sum_{i = 1}^{n} x_i} (1 - p)^{n - \sum_{i = 1}^{n} x_i}
+            $$
+            其中 $x_i \in \{0, 1\}$，$i = 1, 2, \dots, n$。
+            \item[\textbf{2)}] 令 $Y = \sum_{i = 1}^{n} X_i$。由 $X_i$ 独立同分布，$Y$ 表示 $n$ 重 Bernoulli 试验中成功的次数，因此
+            $$
+            Y \sim b(n, p)
+            $$
+            即
+            $$
+            \prob{Y = k} = \binom{n}{k} p^k (1 - p)^{n - k}, \quad k = 0, 1, \dots, n
+            $$
+            \item[\textbf{3)}] 由 $X \sim b(1, p)$ 得
+            $$
+            \expect{X} = p, \quad \variance{X} = p (1 - p)
+            $$
+            因此
+            $$
+            \expect{\overline{X}} = \expect{X} = p, \quad \variance{\overline{X}} = \frac{\variance{X}}{n} = \frac{p (1 - p)}{n}
+            $$
+            而样本方差 $S^2 = \frac{1}{n - 1} \sum_{i = 1}^{n} (X_i - \overline{X})^2$ 是总体方差的无偏估计，故
+            $$
+            \expect{S^2} = \variance{X} = p (1 - p)
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.7
+    \begin{solution}
+        由 $X \sim \chi^2(n)$ 得
+        $$
+        \expect{X} = n, \quad \variance{X} = 2n
+        $$
+        因此
+        $$
+        \expect{\overline{X}} = \expect{X} = n, \quad \variance{\overline{X}} = \frac{\variance{X}}{10} = \frac{n}{5}
+        $$
+        而样本方差 $S^2$ 是总体方差的无偏估计，故
+        $$
+        \expect{S^2} = \variance{X} = 2n
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.8
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 由于 $X_1, X_2, \dots, X_{10}$ 相互独立且都服从 $N(\mu, \sigma^2)$，其联合概率密度为
+            $$
+            \begin{aligned}
+                f(x_1, x_2, \dots, x_{10}) & = \prod_{i = 1}^{10} \frac{1}{\sqrt{2 \pi} \sigma} \E^{-\frac{(x_i - \mu)^2}{2 \sigma^2}} \\
+                & = \frac{1}{(2 \pi \sigma^2)^5} \exp\ab(- \frac{1}{2 \sigma^2} \sum_{i = 1}^{10} (x_i - \mu)^2)
+            \end{aligned}
+            $$
+            \item[\textbf{2)}] 由正态分布的可加性，样本均值满足
+            $$
+            \overline{X} \sim N\ab(\mu, \frac{\sigma^2}{10})
+            $$
+            因此其概率密度为
+            $$
+            f_{\overline{X}}(x) = \frac{\sqrt{10}}{\sqrt{2 \pi} \sigma} \exp\ab(- \frac{10 (x - \mu)^2}{2 \sigma^2})
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6.9
+    \begin{solution}
+        由 Fisher 定理，当总体服从正态分布时
+        $$
+        \frac{(n - 1) S^2}{\sigma^2} \sim \chi^2(n - 1)
+        $$
+        这里 $n = 16$，因此 $\frac{15 S^2}{\sigma^2} \sim \chi^2(15)$。
+        \begin{enumerate}
+            \item[\textbf{1)}]
+            $$
+            \prob{\frac{S^2}{\sigma^2} \le 2.041} = \prob{\chi^2(15) \le 15 \times 2.041} = \prob{\chi^2(15) \le 30.615} \approx 0.99
+            $$
+            \item[\textbf{2)}] 由 $\frac{15 S^2}{\sigma^2} \sim \chi^2(15)$ 且 $\variance{\chi^2(15)} = 30$，得
+            $$
+            \variance{S^2} = \ab(\frac{\sigma^2}{15})^2 \variance{\chi^2(15)} = \frac{\sigma^4}{225} \cdot 30 = \frac{2}{15} \sigma^4
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
 

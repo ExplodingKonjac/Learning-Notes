@@ -1,0 +1,36 @@
+\section{图论}
+
+\subsection{图}
+
+\begin{definition}[图]
+    设 $V, E$ 是有限集合且 $V \neq \varnothing$。
+    \begin{itemize}
+        \item 若存在 $\Psi: E \to \{\{v_1, v_2\}: v_1, v_2 \in V\}$，那么称 $G = \langle V, E, |\Psi \rangle$ 为\textbf{无向图}。
+        \item 若存在 $\Psi: E \to V \times V$，那么称 $G = \langle V, R, \Psi \rangle$ 为\textbf{有向图}。
+    \end{itemize}
+    其中，$V$ 称为 $G$ 的\textbf{顶点集}，$E$ 称为 $G$ 的\textbf{边集}。
+\end{definition}
+
+下面是一些特殊图的定义：
+
+\begin{itemize}
+    \item 定点都是孤立点的图称为\textbf{零图}。
+    \item 一阶零图称为\textbf{平凡图}。
+    \item 每个点度数都是 $d$ 的无向图称为 \textbf{$d$-正则图}。
+    \item 设 $n \in \NN^+$，称 $n$ 阶 $(n-1)$-正则图为 $n$ 阶\textbf{完全无向图}，记作 $K_n$。
+    \item 设 $n \in \NN^+$，称每个顶点的入度和出度均为 $n - 1$ 的 $n$ 阶简单有向图为\textbf{完全有向图}。
+\end{itemize}
+
+\begin{definition}[同态和同构]
+    对于两个无向图 $G = \langle V, E, \Psi \rangle,\ G' = \langle V', E', \Psi' \rangle$。若存在函数 $f: V \to V',\ g: E \to E'$，使得：
+    $$
+    \forall\,e \in E,\ v_1, v_2 \in V,\ \Psi(e) = \{v_1, v_2\}: \Psi'(g(e)) = \{f(v_1), f(v_2)\}
+    $$
+    那么称 $G, G'$ \textbf{同态}，记作 $G \to G'$。有向图也可以类似定义。
+
+    当函数 $f, g$ 是双射时，称 $G, G'$ \textbf{同构}。
+\end{definition}
+
+\begin{definition}[导出子图]
+    对于一个图 $G = \langle V, E, \Psi \rangle$，以及 $V' \subseteq V$，那么称 $G' = \langle V', E', \Psi \rangle$ 为 $G$ 的 $V'$ 顶点集合的\textbf{导出子图}，其中 $E'$ 是所有和 $V'$ 中点相连的边。
+\end{definition}

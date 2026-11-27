@@ -1,0 +1,188 @@
+\section{Cache 和虚拟储存器}
+
+\subsection{作业}
+
+\begin{problem}
+    习题 1
+    \begin{solution}
+        设 Cache 的命中率为 $h=0.95$，Cache 的存取时间为 $t_c=10\,\mathrm{ns}$，缺失时将所访问的字从主存装入 Cache 的时间为 $t_m=60\,\mathrm{ns}$。命中时只需访问 Cache，缺失时先装入再从 Cache 读取，因此平均存取时间为
+        $$
+        T = h t_c + (1-h)(t_c + t_m) = t_c + (1-h)t_m = 10 + 0.05 \times 60 = 13\,\mathrm{ns}
+        $$
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 2
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 字长为 $16$ 位，即每个字占 $2\,\mathrm{B}$。
+            \begin{itemize}
+                \item 第一级 Cache 有 $16 \times 8 = 128$ 个字，容量为 $128 \times 2 = 256\,\mathrm{B}$；
+                \item 第二级 Cache 有 $16 \times 128 = 2048$ 个字，容量为 $2048 \times 2 = 4096\,\mathrm{B} = 4\,\mathrm{KB}$。
+            \end{itemize}
+            第一级 Cache 的字地址为 $\log_2 128 = 7$ 位，第二级 Cache 的字地址为 $\log_2 2048 = 11$ 位。两级的块内字地址均为 $\log_2 16 = 4$ 位，块号分别为 $3$ 位和 $7$ 位。
+
+            \item[\textbf{2)}] 全局不命中率为：
+            $$
+            m = m_1 m_2 = 4\% \times 30\% = 1.2\%.
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 3
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] Cache 共有 $16\,\mathrm{KB} / 256\,\mathrm{B} = 64$ 块，采用 $4$ 路组相联，故组数为
+            $$
+            \frac{64}{4} = 16.
+            $$
+            主存共有 $1\,\mathrm{MB} / 256\,\mathrm{B} = 4096$ 块，按 Cache 的组数划分为 $16$ 组，每组含 $4096/16=256$ 块。
+
+            主存地址共 $20$ 位，其格式为
+            \begin{center}
+                \begin{mytable}{ccc}
+                    标记 & 组号 & 块内地址 \\
+                    $8$ 位 & $4$ 位 & $8$ 位 \\
+                    $A_{19}\sim A_{12}$ & $A_{11}\sim A_8$ & $A_7\sim A_0$
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{2)}] Cache 的地址标记为地址的高 $8$ 位，即 $A_{19}\sim A_{12}$，故 Tag 为 $8$ 位。
+
+            \item[\textbf{3)}] 块大小为 $256=2^8$ 字节，因此地址的低 $8$ 位为块内地址，$A_{11}\sim A_8$ 为组号，高 $8$ 位为标记。10 个地址的分解如下：
+            \begin{center}
+                \small
+                \begin{mytable}{cccccc}
+                    序号 & 地址 & 标记 & 组号 & 块内地址 & 结果 \\
+                    1 & \texttt{A10A8H} & \texttt{A1} & 0 & \texttt{A8} & 缺失 \\
+                    2 & \texttt{B20A8H} & \texttt{B2} & 0 & \texttt{A8} & 缺失 \\
+                    3 & \texttt{C30B2H} & \texttt{C3} & 0 & \texttt{B2} & 缺失 \\
+                    4 & \texttt{D40B2H} & \texttt{D4} & 0 & \texttt{B2} & 缺失 \\
+                    5 & \texttt{A10B2H} & \texttt{A1} & 0 & \texttt{B2} & 命中 \\
+                    6 & \texttt{B20B4H} & \texttt{B2} & 0 & \texttt{B4} & 命中 \\
+                    7 & \texttt{C30D6H} & \texttt{C3} & 0 & \texttt{D6} & 命中 \\
+                    8 & \texttt{A10A2H} & \texttt{A1} & 0 & \texttt{A2} & 命中 \\
+                    9 & \texttt{B20A4H} & \texttt{B2} & 0 & \texttt{A4} & 命中 \\
+                    10 & \texttt{E50A8H} & \texttt{E5} & 0 & \texttt{A8} & 缺失 \\
+                \end{mytable}
+            \end{center}
+            所有地址的组号均为 $0$，因此都映射到第 $0$ 组。前 $4$ 次访问依次填入标记为 \texttt{A1}、\texttt{B2}、\texttt{C3}、\texttt{D4} 的块；此后 $5$ 次访问均命中，并刷新相应块的 LRU 顺序；最后一次访问 \texttt{E50A8H} 时缺失，最久未使用的 \texttt{D4} 块被替换。
+
+            因此程序执行完毕后，Cache 第 $0$ 组中 $4$ 个块的 Tag 为 \texttt{A1}、\texttt{B2}、\texttt{C3}、\texttt{E5}。$10$ 次访问中命中 $5$ 次，命中率为
+            $$
+            \frac{5}{10} = 50\%.
+            $$
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 4
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 行大小为 $64\,\mathrm{B}$，每个字 $4\,\mathrm{B}$，故一行含 $16$ 个字。缺失时先传送第一个字，再传送其余 $15$ 个字，耗时
+            $$
+            50 + 15 \times 5 = 125\,\mathrm{ns}.
+            $$
+            题目假定 Cache 等待整行传送完毕后再读取，故缺失时的存取时间为
+            $$
+            125 + 2.5 = 127.5\,\mathrm{ns}.
+            $$
+            平均存取时间为
+            $$
+            T = 0.95 \times 2.5 + 0.05 \times 127.5 = 8.75\,\mathrm{ns}.
+            $$
+
+            \item[\textbf{2)}] 行增大到 $128\,\mathrm{B}$ 时每行含 $32$ 个字，缺失传送耗时为
+            $$
+            50 + 31 \times 5 = 205\,\mathrm{ns},
+            $$
+            缺失存取时间为 $205+2.5=207.5\,\mathrm{ns}$。此时平均存取时间为
+            $$
+            T' = 0.97 \times 2.5 + 0.03 \times 207.5 = 8.65\,\mathrm{ns}.
+            $$
+            由于 $T' < T$，平均存取时间略有下降，约减少 $0.1\,\mathrm{ns}$（约 $1.14\%$）。增大行大小虽然提高了命中率，但也使缺失代价从 $125\,\mathrm{ns}$ 增至 $205\,\mathrm{ns}$；在本题参数下前者的收益略大于后者。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 5
+    \begin{solution}
+        设页大小 $P=2^p$，则虚拟页内偏移和物理页内偏移均占 $p$ 位，虚拟页号占 $32-p$ 位，物理页号占 $24-p$ 位。由此得到
+        \begin{center}
+            \begin{mytable}{ccccc}
+                $P$ & \#VPN 位数 & \#VPO 位数 & \#PPN 位数 & \#PPO 位数 \\
+                $1\,\mathrm{KB}$ & 22 & 10 & 14 & 10 \\
+                $2\,\mathrm{KB}$ & 21 & 11 & 13 & 11 \\
+                $4\,\mathrm{KB}$ & 20 & 12 & 12 & 12 \\
+                $8\,\mathrm{KB}$ & 19 & 13 & 11 & 13 \\
+            \end{mytable}
+        \end{center}
+        以 $P=4\,\mathrm{KB}=2^{12}\,\mathrm{B}$ 为例，页内偏移占 $12$ 位，故 VPN 为 $32-12=20$ 位，PPN 为 $24-12=12$ 位。
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    习题 6
+    \begin{solution}
+        \begin{enumerate}
+            \item[\textbf{1)}] 页大小为 $128\,\mathrm{B}=2^7\,\mathrm{B}$，故页内偏移占 $7$ 位，虚拟页号占 $16-7=9$ 位：
+            \begin{center}
+                \begin{mytable}{cc}
+                    虚拟页号 VPN & 页内偏移 VPO \\
+                    $9$ 位（第 $15\sim7$ 位） & $7$ 位（第 $6\sim0$ 位）
+                \end{mytable}
+            \end{center}
+            TLB 共 $16$ 个页表项、$4$ 路组相联，故有 $16/4=4$ 组，组索引占 $\log_2 4=2$ 位。虚拟页号的低 $2$ 位为 TLB 组索引，高 $7$ 位为 TLB 标记：
+            \begin{center}
+                \begin{mytable}{cc}
+                    TLB 标记 & TLB 组索引 \\
+                    $7$ 位（虚拟页号第 $8\sim2$ 位） & $2$ 位（虚拟页号第 $1\sim0$ 位）
+                \end{mytable}
+            \end{center}
+            也就是 TLB 标记对应虚拟地址的第 $15\sim9$ 位，TLB 组索引对应虚拟地址的第 $8\sim7$ 位。
+
+            \item[\textbf{2)}] 物理地址共 $12$ 位，页大小为 $128\,\mathrm{B}$，故物理页号占 $12-7=5$ 位，页内偏移占 $7$ 位：
+            \begin{center}
+                \begin{mytable}{cc}
+                    物理页号 PPN & 页内偏移 PPO \\
+                    $5$ 位（第 $11\sim7$ 位） & $7$ 位（第 $6\sim0$ 位）
+                \end{mytable}
+            \end{center}
+            访问 Cache 时，物理地址进一步划分为标记、行索引和块内地址。L1 Data Cache 共 $16$ 行，块大小为 $4\,\mathrm{B}=2^2\,\mathrm{B}$，故行索引占 $\log_2 16=4$ 位，块内地址占 $2$ 位，标记占 $12-4-2=6$ 位：
+            \begin{center}
+                \begin{mytable}{ccc}
+                    Cache 标记 & 行索引 & 块内地址 \\
+                    $6$ 位（第 $11\sim6$ 位） & $4$ 位（第 $5\sim2$ 位） & $2$ 位（第 $1\sim0$ 位）
+                \end{mytable}
+            \end{center}
+
+            \item[\textbf{3)}] 虚拟地址 $\texttt{067AH}$ 的二进制为
+            $$
+            \texttt{067AH} = (\texttt{0000 0110 0111 1010})_2.
+            $$
+            按第 1) 问的划分，虚拟页号和页内偏移分别为
+            \begin{center}
+                \begin{mytable}{cc}
+                    虚拟页号 VPN & 页内偏移 VPO \\
+                    $(\texttt{000001100})_2 = \texttt{00CH}$ & $(\texttt{1111010})_2 = \texttt{7AH}$
+                \end{mytable}
+            \end{center}
+
+            TLB 组索引为 VPN 的低 $2$ 位，即 $(\texttt{00})_2$，故查 TLB 第 $0$ 组；TLB 标记为 VPN 的高 $7$ 位，即 $(\texttt{0000011})_2=\texttt{03H}$。第 $0$ 组中标记为 \texttt{03H} 的项有效位为 $0$，其余项的标记均不等于 \texttt{03H}，因此 TLB 缺失。
+
+            TLB 缺失后访问页表，虚页号 \texttt{00CH} 对应的页表项中实页号为 \texttt{19H}，有效位为 $1$，故物理页号 PPN $=\texttt{19H}$。物理地址由物理页号和页内偏移拼接而成：
+            $$
+            \mathrm{PA} = \texttt{19H} \ll 7 \mid \texttt{7AH} = (\texttt{11001 1111010})_2 = (\texttt{1100 1111 1010})_2 = \texttt{0CFAH}.
+            $$
+
+            在 Cache 中，行索引为物理地址第 $5\sim2$ 位，即 $(\texttt{1110})_2=\texttt{EH}$；标记为第 $11\sim6$ 位，即 $(\texttt{110011})_2=\texttt{33H}$；块内地址为第 $1\sim0$ 位，即 $(\texttt{10})_2=2$。第 \texttt{EH} 行的有效位为 $1$，标记为 \texttt{33H}，与物理地址的标记相同，故 Cache 命中。块内地址 $2$ 选中该行的字节 $2$，其内容为 \texttt{4AH}。
+
+            因此 CPU 从地址 \texttt{067AH} 中取出的值为 \texttt{4AH}，即十进制数 $74$。整个过程为：虚拟地址 \texttt{067AH} $\to$ TLB 缺失 $\to$ 查页表得 PPN \texttt{19H} $\to$ 物理地址 \texttt{0CFAH} $\to$ Cache 第 \texttt{EH} 行命中 $\to$ 取字节 $2$，得到 \texttt{4AH}。
+        \end{enumerate}
+    \end{solution}
+\end{problem}
